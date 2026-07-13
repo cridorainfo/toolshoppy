@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compress Image to Exact KB Free — No Signup | ToolShoppy</title>
+<meta name="description" content="Compress any image to an exact KB size (20KB, 50KB, 100KB, 200KB) free online. No signup, files never leave your device. Perfect for PSC, UPSC, PAN, government forms.">
+<meta name="keywords" content="compress image to 20kb online free, compress image to 50kb for psc, reduce image size in kb, image compressor free">
+<link rel="canonical" href="https://toolshoppy.com/tools/image/compress/">
+<meta property="og:title" content="Image Compressor — ToolShoppy">
+<meta property="og:description" content="Compress any image to an exact KB size free online. 100% client-side.">
+<meta property="og:image" content="https://toolshoppy.com/assets/img/og-compress.jpg">
+<meta property="og:url" content="https://toolshoppy.com/tools/image/compress/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/main.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Image Compressor",
+  "url": "https://toolshoppy.com/tools/image/compress/",
+  "description": "Compress any image to an exact KB size free online, 100% client-side.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo">🛠️ Tool<span>Shoppy</span></a>
+    <div class="site-search"><input type="text" placeholder="Search tools…" onfocus="location.href='/'"></div>
+  </div>
+</header>
+
+<main class="tool-page container">
+  <p class="breadcrumb"><a href="/">Home</a> › <a href="/#image">Image Tools</a> › Image Compressor</p>
+
+  <div class="tool-header">
+    <h1>🗜️ Image Compressor — Compress to Exact KB</h1>
+    <p>Shrink any photo to a precise file size. Perfect for PSC, UPSC, PAN, job portals.</p>
+  </div>
+
+  <div class="ad-slot ad-top">Advertisement</div>
+
+  <div class="tool-layout with-sidebar">
+    <div class="tool-card-main">
+
+      <div class="drop-zone" id="dropZone">
+        <div class="icon">📤</div>
+        <p><strong>Click to upload</strong> or drag & drop — also works with paste (Ctrl+V)</p>
+        <p>JPG, PNG, WebP supported</p>
+        <input type="file" id="fileInput" accept="image/*">
+      </div>
+
+      <div id="controls" style="display:none;">
+        <h3 style="margin-top:20px;font-size:1rem;">Target size</h3>
+        <div class="chip-row" id="presetRow">
+          <button class="chip" data-kb="20">20 KB</button>
+          <button class="chip active" data-kb="50">50 KB</button>
+          <button class="chip" data-kb="100">100 KB</button>
+          <button class="chip" data-kb="200">200 KB</button>
+          <button class="chip" data-kb="500">500 KB</button>
+          <button class="chip" data-kb="custom">Custom</button>
+        </div>
+        <div id="customRow" style="display:none;margin-bottom:14px;">
+          <input type="number" id="customKb" min="1" placeholder="Enter target KB" style="padding:10px;border:1px solid var(--border);border-radius:8px;width:160px;">
+        </div>
+
+        <button class="btn btn-primary btn-block" id="compressBtn">Compress Image</button>
+        <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+      </div>
+
+      <div class="result-panel" id="resultPanel">
+        <div class="compare-row">
+          <div class="compare-box">
+            <div class="label">Original</div>
+            <div class="value" id="originalSize">-</div>
+          </div>
+          <div class="compare-box">
+            <div class="label">Compressed</div>
+            <div class="value" id="compressedSize">-</div>
+          </div>
+          <div class="compare-box saved">
+            <div class="label">Saved</div>
+            <div class="value" id="savedPercent">-</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px;">
+          <div style="flex:1;min-width:140px;">
+            <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:6px;">Preview</p>
+            <img id="previewImg" style="border-radius:8px;border:1px solid var(--border);max-height:260px;">
+          </div>
+        </div>
+        <button class="btn btn-accent btn-block" id="downloadBtn">⬇ Download Compressed Image</button>
+      </div>
+
+      <div class="trust-badge">🔒 Your files never leave your device</div>
+    </div>
+
+    <aside class="sidebar">
+      <div class="ad-slot ad-sidebar">Advertisement</div>
+      <div class="info-box">
+        <h4>How it works</h4>
+        <ul>
+          <li>Pick a target size (20KB–500KB) or enter a custom value</li>
+          <li>We binary-search JPEG quality in your browser until the size matches</li>
+          <li>Nothing is uploaded — 100% Canvas API, runs locally</li>
+        </ul>
+      </div>
+      <div class="info-box">
+        <h4>Common uses</h4>
+        <ul>
+          <li>PSC / UPSC / SSC application photo uploads</li>
+          <li>PAN card & Aadhaar correction forms</li>
+          <li>Job portal profile photo limits</li>
+          <li>Email attachment size limits</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div>
+  </div>
+</footer>
+<div class="ad-slot ad-sticky-footer">Advertisement</div>
+
+<script src="/assets/js/core.js"></script>
+<script src="/assets/js/ads.js"></script>
+<script src="/assets/js/analytics.js"></script>
+<script>
+(function () {
+  const dropZone = document.getElementById('dropZone');
+  const fileInput = document.getElementById('fileInput');
+  const controls = document.getElementById('controls');
+  const presetRow = document.getElementById('presetRow');
+  const customRow = document.getElementById('customRow');
+  const customKb = document.getElementById('customKb');
+  const compressBtn = document.getElementById('compressBtn');
+  const progressBar = document.getElementById('progressBar');
+  const progressFill = document.getElementById('progressFill');
+  const resultPanel = document.getElementById('resultPanel');
+  const originalSize = document.getElementById('originalSize');
+  const compressedSize = document.getElementById('compressedSize');
+  const savedPercent = document.getElementById('savedPercent');
+  const previewImg = document.getElementById('previewImg');
+  const downloadBtn = document.getElementById('downloadBtn');
+
+  let currentFile = null;
+  let targetKb = 50;
+  let resultBlob = null;
+
+  TS.setupDropZone(dropZone, fileInput, (files) => {
+    currentFile = files[0];
+    if (!currentFile) return;
+    controls.style.display = 'block';
+    resultPanel.classList.remove('active');
+    originalSize.textContent = TS.formatBytes(currentFile.size);
+  });
+
+  presetRow.addEventListener('click', (e) => {
+    const btn = e.target.closest('.chip');
+    if (!btn) return;
+    presetRow.querySelectorAll('.chip').forEach((c) => c.classList.remove('active'));
+    btn.classList.add('active');
+    if (btn.dataset.kb === 'custom') {
+      customRow.style.display = 'block';
+      targetKb = parseInt(customKb.value, 10) || 50;
+    } else {
+      customRow.style.display = 'none';
+      targetKb = parseInt(btn.dataset.kb, 10);
+    }
+  });
+
+  customKb.addEventListener('input', () => {
+    targetKb = parseInt(customKb.value, 10) || 50;
+  });
+
+  compressBtn.addEventListener('click', async () => {
+    if (!currentFile) return;
+    compressBtn.disabled = true;
+    progressBar.classList.add('active');
+    progressFill.style.width = '30%';
+
+    try {
+      const { img, url } = await TS.loadImage(currentFile);
+      const canvas = document.createElement('canvas');
+      canvas.width = img.naturalWidth;
+      canvas.height = img.naturalHeight;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0);
+      progressFill.style.width = '60%';
+
+      const targetBytes = targetKb * 1024;
+      let blob = await TS.canvasToTargetSize(canvas, targetBytes, 'image/jpeg');
+
+      // If still too big (e.g. huge source image), progressively downscale.
+      let scale = 1;
+      while (blob && blob.size > targetBytes * 1.5 && scale > 0.2) {
+        scale -= 0.15;
+        const w = Math.round(img.naturalWidth * scale);
+        const h = Math.round(img.naturalHeight * scale);
+        canvas.width = w;
+        canvas.height = h;
+        ctx.drawImage(img, 0, 0, w, h);
+        blob = await TS.canvasToTargetSize(canvas, targetBytes, 'image/jpeg');
+      }
+
+      progressFill.style.width = '100%';
+      resultBlob = blob;
+
+      originalSize.textContent = TS.formatBytes(currentFile.size);
+      compressedSize.textContent = TS.formatBytes(blob.size);
+      savedPercent.textContent = TS.percentSaved(currentFile.size, blob.size) + '%';
+      previewImg.src = URL.createObjectURL(blob);
+      resultPanel.classList.add('active');
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      alert('Could not process this image. Try a different file.');
+    } finally {
+      compressBtn.disabled = false;
+      setTimeout(() => progressBar.classList.remove('active'), 500);
+    }
+  });
+
+  downloadBtn.addEventListener('click', () => {
+    if (!resultBlob) return;
+    const baseName = (currentFile.name || 'image').replace(/\.[^/.]+$/, '');
+    TS.downloadBlob(resultBlob, baseName + '-compressed-' + targetKb + 'kb.jpg');
+  });
+})();
+</script>
+</body>
+</html>

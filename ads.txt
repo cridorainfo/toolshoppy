@@ -1,0 +1,3 @@
+# ads.txt — placeholder until AdSense/Ezoic account is approved
+# Once approved, add lines like:
+# google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0

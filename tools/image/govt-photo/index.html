@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Govt Photo Resizer — PSC, UPSC, PAN, Aadhaar, Passport Size | ToolShoppy</title>
+<meta name="description" content="Resize your photo to exact government form requirements — Kerala PSC, UPSC, SSC, PAN Card, Aadhaar, Passport (India/UAE/UK/US). Free, no signup, 100% on your device.">
+<meta name="keywords" content="psc photo size, upsc photo size, pan card photo size, aadhaar photo size, passport size photo maker online">
+<link rel="canonical" href="https://toolshoppy.com/tools/image/govt-photo/">
+<meta property="og:title" content="Govt Photo Resizer — ToolShoppy">
+<meta property="og:description" content="Resize your photo to exact PSC/UPSC/PAN/Aadhaar/Passport requirements free online.">
+<meta property="og:image" content="https://toolshoppy.com/assets/img/og-govt-photo.jpg">
+<meta property="og:url" content="https://toolshoppy.com/tools/image/govt-photo/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/main.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Govt Photo Resizer",
+  "url": "https://toolshoppy.com/tools/image/govt-photo/",
+  "description": "Resize photos to exact PSC/UPSC/PAN/Aadhaar/Passport requirements free online, 100% client-side.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo">🛠️ Tool<span>Shoppy</span></a>
+    <div class="site-search"><input type="text" placeholder="Search tools…" onfocus="location.href='/'"></div>
+  </div>
+</header>
+
+<main class="tool-page container">
+  <p class="breadcrumb"><a href="/">Home</a> › <a href="/#image">Image Tools</a> › Govt Photo Resizer</p>
+
+  <div class="tool-header">
+    <h1>🪪 Govt Form Photo Resizer</h1>
+    <p>Auto-crop to the exact pixel size for PSC, UPSC, PAN, Aadhaar & Passport forms.</p>
+  </div>
+
+  <div class="ad-slot ad-top">Advertisement</div>
+
+  <div class="tool-layout with-sidebar">
+    <div class="tool-card-main">
+
+      <h3 style="font-size:1rem;margin-bottom:10px;">1. Choose form type</h3>
+      <div class="chip-row" id="presetRow"></div>
+      <p id="presetInfo" style="font-size:0.82rem;color:var(--text-muted);margin-bottom:14px;"></p>
+
+      <h3 style="font-size:1rem;margin-bottom:10px;">2. Background</h3>
+      <div class="chip-row" id="bgRow">
+        <button class="chip active" data-bg="#FFFFFF">White</button>
+        <button class="chip" data-bg="#EAF2FA">Light Blue</button>
+        <button class="chip" data-bg="#F3EAEA">Light Red</button>
+      </div>
+
+      <h3 style="font-size:1rem;margin:16px 0 10px;">3. Upload photo</h3>
+      <div class="drop-zone" id="dropZone">
+        <div class="icon">📤</div>
+        <p><strong>Click to upload</strong> or drag & drop a photo</p>
+        <p>Use a clear, front-facing photo for best results</p>
+        <input type="file" id="fileInput" accept="image/*">
+      </div>
+
+      <canvas id="workCanvas" style="display:none;"></canvas>
+
+      <div id="controls" style="display:none;margin-top:16px;">
+        <button class="btn btn-primary btn-block" id="generateBtn">Generate Photo</button>
+        <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+      </div>
+
+      <div class="result-panel" id="resultPanel">
+        <div class="compare-row">
+          <div class="compare-box">
+            <div class="label">Output Size</div>
+            <div class="value" id="outDims">-</div>
+          </div>
+          <div class="compare-box">
+            <div class="label">File Size</div>
+            <div class="value" id="outFileSize">-</div>
+          </div>
+        </div>
+        <img id="previewImg" style="border-radius:8px;border:1px solid var(--border);max-height:280px;margin-bottom:16px;">
+        <button class="btn btn-accent btn-block" id="downloadBtn">⬇ Download Photo</button>
+      </div>
+
+      <div class="trust-badge">🔒 Your files never leave your device</div>
+    </div>
+
+    <aside class="sidebar">
+      <div class="ad-slot ad-sidebar">Advertisement</div>
+      <div class="info-box">
+        <h4>Tips for best results</h4>
+        <ul>
+          <li>Use a well-lit, front-facing photo</li>
+          <li>Plain background works best (we'll pad it for you)</li>
+          <li>Check your form's official size before submitting — presets are general guidance</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div>
+  </div>
+</footer>
+<div class="ad-slot ad-sticky-footer">Advertisement</div>
+
+<script src="/assets/js/core.js"></script>
+<script src="/assets/js/ads.js"></script>
+<script src="/assets/js/analytics.js"></script>
+<script>
+(function () {
+  const PRESETS = [
+    { id: 'psc', label: 'Kerala PSC', w: 276, h: 354, maxKb: 50, note: '3.5cm × 4.5cm, max 50KB' },
+    { id: 'upsc', label: 'UPSC', w: 200, h: 230, maxKb: 300, note: '200×230 px, max 300KB' },
+    { id: 'ssc', label: 'SSC', w: 200, h: 230, maxKb: 50, note: '200×230 px, max 50KB' },
+    { id: 'pan', label: 'PAN Card', w: 213, h: 213, maxKb: 100, note: '2.5cm × 3.5cm square-ish, max 100KB' },
+    { id: 'aadhaar', label: 'Aadhaar', w: 200, h: 230, maxKb: 100, note: '200×230 px, max 100KB' },
+    { id: 'passport-in', label: 'Passport (India)', w: 350, h: 350, maxKb: 200, note: '2×2 inch, max 200KB' },
+    { id: 'emirates-id', label: 'UAE Emirates ID', w: 413, h: 531, maxKb: 300, note: '35mm × 45mm, max 300KB' },
+    { id: 'passport-uk', label: 'Passport (UK)', w: 413, h: 531, maxKb: 300, note: '35mm × 45mm, max 300KB' },
+    { id: 'passport-us', label: 'Passport (US)', w: 600, h: 600, maxKb: 300, note: '2×2 inch, max 300KB' },
+  ];
+
+  const presetRow = document.getElementById('presetRow');
+  const presetInfo = document.getElementById('presetInfo');
+  const bgRow = document.getElementById('bgRow');
+  const dropZone = document.getElementById('dropZone');
+  const fileInput = document.getElementById('fileInput');
+  const controls = document.getElementById('controls');
+  const generateBtn = document.getElementById('generateBtn');
+  const progressBar = document.getElementById('progressBar');
+  const progressFill = document.getElementById('progressFill');
+  const resultPanel = document.getElementById('resultPanel');
+  const outDims = document.getElementById('outDims');
+  const outFileSize = document.getElementById('outFileSize');
+  const previewImg = document.getElementById('previewImg');
+  const downloadBtn = document.getElementById('downloadBtn');
+
+  let activePreset = PRESETS[0];
+  let bgColor = '#FFFFFF';
+  let currentFile = null;
+  let resultBlob = null;
+
+  PRESETS.forEach((p, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'chip' + (i === 0 ? ' active' : '');
+    btn.textContent = p.label;
+    btn.dataset.id = p.id;
+    btn.addEventListener('click', () => {
+      presetRow.querySelectorAll('.chip').forEach((c) => c.classList.remove('active'));
+      btn.classList.add('active');
+      activePreset = p;
+      presetInfo.textContent = p.note;
+    });
+    presetRow.appendChild(btn);
+  });
+  presetInfo.textContent = activePreset.note;
+
+  bgRow.addEventListener('click', (e) => {
+    const btn = e.target.closest('.chip');
+    if (!btn) return;
+    bgRow.querySelectorAll('.chip').forEach((c) => c.classList.remove('active'));
+    btn.classList.add('active');
+    bgColor = btn.dataset.bg;
+  });
+
+  TS.setupDropZone(dropZone, fileInput, (files) => {
+    currentFile = files[0];
+    if (!currentFile) return;
+    controls.style.display = 'block';
+    resultPanel.classList.remove('active');
+  });
+
+  generateBtn.addEventListener('click', async () => {
+    if (!currentFile) return;
+    generateBtn.disabled = true;
+    progressBar.classList.add('active');
+    progressFill.style.width = '40%';
+
+    try {
+      const { img, url } = await TS.loadImage(currentFile);
+      const canvas = document.createElement('canvas');
+      canvas.width = activePreset.w;
+      canvas.height = activePreset.h;
+      const ctx = canvas.getContext('2d');
+
+      ctx.fillStyle = bgColor;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // cover-fit crop: fill target box, center-cropping overflow
+      const targetRatio = activePreset.w / activePreset.h;
+      const srcRatio = img.naturalWidth / img.naturalHeight;
+      let sx, sy, sw, sh;
+      if (srcRatio > targetRatio) {
+        sh = img.naturalHeight;
+        sw = sh * targetRatio;
+        sx = (img.naturalWidth - sw) / 2;
+        sy = 0;
+      } else {
+        sw = img.naturalWidth;
+        sh = sw / targetRatio;
+        sx = 0;
+        sy = (img.naturalHeight - sh) / 2;
+      }
+      ctx.drawImage(img, sx, sy, sw, sh, 0, 0, canvas.width, canvas.height);
+      progressFill.style.width = '70%';
+
+      const targetBytes = activePreset.maxKb * 1024;
+      let blob = await TS.canvasToTargetSize(canvas, targetBytes, 'image/jpeg');
+      progressFill.style.width = '100%';
+      resultBlob = blob;
+
+      outDims.textContent = activePreset.w + '×' + activePreset.h + ' px';
+      outFileSize.textContent = TS.formatBytes(blob.size);
+      previewImg.src = URL.createObjectURL(blob);
+      resultPanel.classList.add('active');
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      alert('Could not process this image. Try a different file.');
+    } finally {
+      generateBtn.disabled = false;
+      setTimeout(() => progressBar.classList.remove('active'), 500);
+    }
+  });
+
+  downloadBtn.addEventListener('click', () => {
+    if (!resultBlob) return;
+    TS.downloadBlob(resultBlob, activePreset.id + '-photo.jpg');
+  });
+})();
+</script>
+</body>
+</html>

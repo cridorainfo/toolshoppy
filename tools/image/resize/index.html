@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resize Image Online Free — By Pixels or Percent | ToolShoppy</title>
+<meta name="description" content="Resize any image online free — by exact pixels or by percentage. No signup, files never leave your device. Works on mobile.">
+<meta name="keywords" content="resize image online free, image resizer, resize photo pixels, resize image percent">
+<link rel="canonical" href="https://toolshoppy.com/tools/image/resize/">
+<meta property="og:title" content="Image Resizer — ToolShoppy">
+<meta property="og:description" content="Resize any image online free by exact pixels or percentage, 100% client-side.">
+<meta property="og:image" content="https://toolshoppy.com/assets/img/og-resize.jpg">
+<meta property="og:url" content="https://toolshoppy.com/tools/image/resize/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/main.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Image Resizer",
+  "url": "https://toolshoppy.com/tools/image/resize/",
+  "description": "Resize any image online free by exact pixels or percentage, 100% client-side.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo">🛠️ Tool<span>Shoppy</span></a>
+    <div class="site-search"><input type="text" placeholder="Search tools…" onfocus="location.href='/'"></div>
+  </div>
+</header>
+
+<main class="tool-page container">
+  <p class="breadcrumb"><a href="/">Home</a> › <a href="/#image">Image Tools</a> › Image Resizer</p>
+
+  <div class="tool-header">
+    <h1>📐 Image Resizer</h1>
+    <p>Resize by exact pixels or by percentage — keep aspect ratio or set custom dimensions.</p>
+  </div>
+
+  <div class="ad-slot ad-top">Advertisement</div>
+
+  <div class="tool-layout with-sidebar">
+    <div class="tool-card-main">
+
+      <div class="drop-zone" id="dropZone">
+        <div class="icon">📤</div>
+        <p><strong>Click to upload</strong> or drag & drop</p>
+        <p>JPG, PNG, WebP supported</p>
+        <input type="file" id="fileInput" accept="image/*">
+      </div>
+
+      <div id="controls" style="display:none;margin-top:16px;">
+        <div class="chip-row" id="modeRow">
+          <button class="chip active" data-mode="pixels">By Pixels</button>
+          <button class="chip" data-mode="percent">By Percent</button>
+        </div>
+
+        <div id="pixelMode" style="display:flex;gap:12px;align-items:center;margin:14px 0;flex-wrap:wrap;">
+          <label>Width <input type="number" id="widthInput" style="width:100px;padding:8px;border:1px solid var(--border);border-radius:8px;"></label>
+          <label>Height <input type="number" id="heightInput" style="width:100px;padding:8px;border:1px solid var(--border);border-radius:8px;"></label>
+          <label style="display:flex;align-items:center;gap:6px;"><input type="checkbox" id="lockAspect" checked> Lock aspect ratio</label>
+        </div>
+
+        <div id="percentMode" style="display:none;margin:14px 0;">
+          <input type="range" id="percentSlider" min="5" max="150" value="100" style="width:100%;">
+          <p style="font-size:0.85rem;color:var(--text-muted);">Scale: <strong id="percentValue">100%</strong> → <span id="percentDims"></span></p>
+        </div>
+
+        <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:10px;">Original: <strong id="origDims">-</strong></p>
+
+        <button class="btn btn-primary btn-block" id="resizeBtn">Resize Image</button>
+        <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+      </div>
+
+      <div class="result-panel" id="resultPanel">
+        <div class="compare-row">
+          <div class="compare-box">
+            <div class="label">New Size</div>
+            <div class="value" id="outDims">-</div>
+          </div>
+          <div class="compare-box">
+            <div class="label">File Size</div>
+            <div class="value" id="outFileSize">-</div>
+          </div>
+        </div>
+        <img id="previewImg" style="border-radius:8px;border:1px solid var(--border);max-height:280px;margin-bottom:16px;">
+        <button class="btn btn-accent btn-block" id="downloadBtn">⬇ Download Resized Image</button>
+      </div>
+
+      <div class="trust-badge">🔒 Your files never leave your device</div>
+    </div>
+
+    <aside class="sidebar">
+      <div class="ad-slot ad-sidebar">Advertisement</div>
+      <div class="info-box">
+        <h4>Tips</h4>
+        <ul>
+          <li>Lock aspect ratio to avoid stretching your photo</li>
+          <li>Use percent mode for quick scaling (e.g. 50% = half size)</li>
+          <li>Output format matches your original file where possible</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div>
+  </div>
+</footer>
+<div class="ad-slot ad-sticky-footer">Advertisement</div>
+
+<script src="/assets/js/core.js"></script>
+<script src="/assets/js/ads.js"></script>
+<script src="/assets/js/analytics.js"></script>
+<script>
+(function () {
+  const dropZone = document.getElementById('dropZone');
+  const fileInput = document.getElementById('fileInput');
+  const controls = document.getElementById('controls');
+  const modeRow = document.getElementById('modeRow');
+  const pixelMode = document.getElementById('pixelMode');
+  const percentMode = document.getElementById('percentMode');
+  const widthInput = document.getElementById('widthInput');
+  const heightInput = document.getElementById('heightInput');
+  const lockAspect = document.getElementById('lockAspect');
+  const percentSlider = document.getElementById('percentSlider');
+  const percentValue = document.getElementById('percentValue');
+  const percentDims = document.getElementById('percentDims');
+  const origDims = document.getElementById('origDims');
+  const resizeBtn = document.getElementById('resizeBtn');
+  const progressBar = document.getElementById('progressBar');
+  const progressFill = document.getElementById('progressFill');
+  const resultPanel = document.getElementById('resultPanel');
+  const outDims = document.getElementById('outDims');
+  const outFileSize = document.getElementById('outFileSize');
+  const previewImg = document.getElementById('previewImg');
+  const downloadBtn = document.getElementById('downloadBtn');
+
+  let currentFile = null;
+  let naturalW = 0, naturalH = 0;
+  let mode = 'pixels';
+  let resultBlob = null;
+
+  TS.setupDropZone(dropZone, fileInput, async (files) => {
+    currentFile = files[0];
+    if (!currentFile) return;
+    const { img, url } = await TS.loadImage(currentFile);
+    naturalW = img.naturalWidth;
+    naturalH = img.naturalHeight;
+    URL.revokeObjectURL(url);
+    origDims.textContent = naturalW + '×' + naturalH + ' px';
+    widthInput.value = naturalW;
+    heightInput.value = naturalH;
+    updatePercentDims();
+    controls.style.display = 'block';
+    resultPanel.classList.remove('active');
+  });
+
+  modeRow.addEventListener('click', (e) => {
+    const btn = e.target.closest('.chip');
+    if (!btn) return;
+    modeRow.querySelectorAll('.chip').forEach((c) => c.classList.remove('active'));
+    btn.classList.add('active');
+    mode = btn.dataset.mode;
+    pixelMode.style.display = mode === 'pixels' ? 'flex' : 'none';
+    percentMode.style.display = mode === 'percent' ? 'block' : 'none';
+  });
+
+  widthInput.addEventListener('input', () => {
+    if (lockAspect.checked && naturalW) {
+      heightInput.value = Math.round((parseInt(widthInput.value, 10) || 0) * naturalH / naturalW);
+    }
+  });
+  heightInput.addEventListener('input', () => {
+    if (lockAspect.checked && naturalH) {
+      widthInput.value = Math.round((parseInt(heightInput.value, 10) || 0) * naturalW / naturalH);
+    }
+  });
+
+  function updatePercentDims() {
+    const pct = parseInt(percentSlider.value, 10);
+    percentValue.textContent = pct + '%';
+    if (naturalW) {
+      percentDims.textContent = Math.round(naturalW * pct / 100) + '×' + Math.round(naturalH * pct / 100) + ' px';
+    }
+  }
+  percentSlider.addEventListener('input', updatePercentDims);
+
+  resizeBtn.addEventListener('click', async () => {
+    if (!currentFile) return;
+    resizeBtn.disabled = true;
+    progressBar.classList.add('active');
+    progressFill.style.width = '40%';
+
+    try {
+      const { img, url } = await TS.loadImage(currentFile);
+      let w, h;
+      if (mode === 'pixels') {
+        w = parseInt(widthInput.value, 10) || naturalW;
+        h = parseInt(heightInput.value, 10) || naturalH;
+      } else {
+        const pct = parseInt(percentSlider.value, 10);
+        w = Math.round(naturalW * pct / 100);
+        h = Math.round(naturalH * pct / 100);
+      }
+      const canvas = document.createElement('canvas');
+      canvas.width = w;
+      canvas.height = h;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, w, h);
+      progressFill.style.width = '80%';
+
+      const mimeType = currentFile.type && currentFile.type.startsWith('image/') ? currentFile.type : 'image/jpeg';
+      const blob = await new Promise((resolve) => canvas.toBlob(resolve, mimeType, 0.92));
+      resultBlob = blob;
+
+      progressFill.style.width = '100%';
+      outDims.textContent = w + '×' + h + ' px';
+      outFileSize.textContent = TS.formatBytes(blob.size);
+      previewImg.src = URL.createObjectURL(blob);
+      resultPanel.classList.add('active');
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      alert('Could not process this image. Try a different file.');
+    } finally {
+      resizeBtn.disabled = false;
+      setTimeout(() => progressBar.classList.remove('active'), 500);
+    }
+  });
+
+  downloadBtn.addEventListener('click', () => {
+    if (!resultBlob) return;
+    const baseName = (currentFile.name || 'image').replace(/\.[^/.]+$/, '');
+    const ext = (currentFile.name.match(/\.[^/.]+$/) || ['.jpg'])[0];
+    TS.downloadBlob(resultBlob, baseName + '-resized' + ext);
+  });
+})();
+</script>
+</body>
+</html>

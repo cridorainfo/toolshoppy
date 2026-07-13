@@ -1,0 +1,12 @@
+{
+  "name": "toolshoppy",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ToolShoppy — free client-side utility tools",
+  "scripts": {
+    "start": "serve . -l $PORT"
+  },
+  "dependencies": {
+    "serve": "^14.2.6"
+  }
+}

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image Converter Free — JPG, PNG, WebP, HEIC | ToolShoppy</title>
+<meta name="description" content="Convert images between JPG, PNG, WebP and HEIC free online. No signup, files never leave your device. Fast client-side conversion.">
+<meta name="keywords" content="heic to jpg converter free, image format converter, png to jpg, jpg to webp, convert image online free">
+<link rel="canonical" href="https://toolshoppy.com/tools/image/convert/">
+<meta property="og:title" content="Image Converter — ToolShoppy">
+<meta property="og:description" content="Convert images between JPG, PNG, WebP and HEIC free online, 100% client-side.">
+<meta property="og:image" content="https://toolshoppy.com/assets/img/og-convert.jpg">
+<meta property="og:url" content="https://toolshoppy.com/tools/image/convert/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/main.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Image Converter",
+  "url": "https://toolshoppy.com/tools/image/convert/",
+  "description": "Convert images between JPG, PNG, WebP and HEIC free online, 100% client-side.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo">🛠️ Tool<span>Shoppy</span></a>
+    <div class="site-search"><input type="text" placeholder="Search tools…" onfocus="location.href='/'"></div>
+  </div>
+</header>
+
+<main class="tool-page container">
+  <p class="breadcrumb"><a href="/">Home</a> › <a href="/#image">Image Tools</a> › Image Converter</p>
+
+  <div class="tool-header">
+    <h1>🔄 Image Converter</h1>
+    <p>Convert between JPG, PNG, WebP and HEIC — instantly, on your device.</p>
+  </div>
+
+  <div class="ad-slot ad-top">Advertisement</div>
+
+  <div class="tool-layout with-sidebar">
+    <div class="tool-card-main">
+
+      <div class="drop-zone" id="dropZone">
+        <div class="icon">📤</div>
+        <p><strong>Click to upload</strong> or drag & drop — multiple files supported</p>
+        <p>JPG, PNG, WebP, GIF, BMP, HEIC*</p>
+        <input type="file" id="fileInput" accept="image/*" multiple>
+      </div>
+
+      <div id="controls" style="display:none;margin-top:16px;">
+        <h3 style="font-size:1rem;margin-bottom:10px;">Convert to</h3>
+        <div class="chip-row" id="formatRow">
+          <button class="chip active" data-fmt="image/jpeg" data-ext="jpg">JPG</button>
+          <button class="chip" data-fmt="image/png" data-ext="png">PNG</button>
+          <button class="chip" data-fmt="image/webp" data-ext="webp">WebP</button>
+        </div>
+
+        <div class="file-list" id="fileList"></div>
+
+        <button class="btn btn-primary btn-block" id="convertBtn" style="margin-top:10px;">Convert All</button>
+        <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+      </div>
+
+      <div class="result-panel" id="resultPanel">
+        <div class="file-list" id="resultList"></div>
+        <button class="btn btn-accent btn-block" id="downloadAllBtn">⬇ Download All</button>
+      </div>
+
+      <div class="trust-badge">🔒 Your files never leave your device</div>
+    </div>
+
+    <aside class="sidebar">
+      <div class="ad-slot ad-sidebar">Advertisement</div>
+      <div class="info-box">
+        <h4>Note on HEIC (iPhone photos)</h4>
+        <ul>
+          <li>HEIC decoding depends on your browser/OS support</li>
+          <li>Works out of the box on Safari / recent Chrome on Mac & Windows 11</li>
+          <li>If a HEIC file fails, try exporting it as JPG from your Photos app first</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div>
+  </div>
+</footer>
+<div class="ad-slot ad-sticky-footer">Advertisement</div>
+
+<script src="/assets/js/core.js"></script>
+<script src="/assets/js/ads.js"></script>
+<script src="/assets/js/analytics.js"></script>
+<script>
+(function () {
+  const dropZone = document.getElementById('dropZone');
+  const fileInput = document.getElementById('fileInput');
+  const controls = document.getElementById('controls');
+  const formatRow = document.getElementById('formatRow');
+  const fileList = document.getElementById('fileList');
+  const convertBtn = document.getElementById('convertBtn');
+  const progressBar = document.getElementById('progressBar');
+  const progressFill = document.getElementById('progressFill');
+  const resultPanel = document.getElementById('resultPanel');
+  const resultList = document.getElementById('resultList');
+  const downloadAllBtn = document.getElementById('downloadAllBtn');
+
+  let files = [];
+  let targetFmt = 'image/jpeg';
+  let targetExt = 'jpg';
+  let results = [];
+
+  TS.setupDropZone(dropZone, fileInput, (newFiles) => {
+    files = files.concat(newFiles);
+    controls.style.display = 'block';
+    resultPanel.classList.remove('active');
+    renderFileList();
+  });
+
+  function renderFileList() {
+    fileList.innerHTML = '';
+    files.forEach((f, i) => {
+      const row = document.createElement('div');
+      row.className = 'file-item';
+      row.innerHTML = '<span class="name">' + f.name + '</span><span>' + TS.formatBytes(f.size) + '</span><span class="remove" data-i="' + i + '">✕</span>';
+      fileList.appendChild(row);
+    });
+  }
+
+  fileList.addEventListener('click', (e) => {
+    const rm = e.target.closest('.remove');
+    if (!rm) return;
+    files.splice(parseInt(rm.dataset.i, 10), 1);
+    renderFileList();
+  });
+
+  formatRow.addEventListener('click', (e) => {
+    const btn = e.target.closest('.chip');
+    if (!btn) return;
+    formatRow.querySelectorAll('.chip').forEach((c) => c.classList.remove('active'));
+    btn.classList.add('active');
+    targetFmt = btn.dataset.fmt;
+    targetExt = btn.dataset.ext;
+  });
+
+  convertBtn.addEventListener('click', async () => {
+    if (!files.length) return;
+    convertBtn.disabled = true;
+    progressBar.classList.add('active');
+    results = [];
+    resultList.innerHTML = '';
+
+    for (let i = 0; i < files.length; i++) {
+      progressFill.style.width = Math.round(((i) / files.length) * 100) + '%';
+      const file = files[i];
+      try {
+        const { img, url } = await TS.loadImage(file);
+        const canvas = document.createElement('canvas');
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+        const ctx = canvas.getContext('2d');
+        if (targetFmt === 'image/jpeg') {
+          ctx.fillStyle = '#FFFFFF';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
+        ctx.drawImage(img, 0, 0);
+        const blob = await new Promise((resolve) => canvas.toBlob(resolve, targetFmt, 0.92));
+        URL.revokeObjectURL(url);
+        const baseName = file.name.replace(/\.[^/.]+$/, '');
+        const outName = baseName + '.' + targetExt;
+        results.push({ name: outName, blob });
+        const row = document.createElement('div');
+        row.className = 'file-item';
+        row.innerHTML = '<span class="name">✅ ' + outName + '</span><span>' + TS.formatBytes(blob.size) + '</span>';
+        resultList.appendChild(row);
+      } catch (err) {
+        const row = document.createElement('div');
+        row.className = 'file-item';
+        row.innerHTML = '<span class="name">❌ ' + file.name + ' — could not decode (HEIC not supported by this browser?)</span>';
+        resultList.appendChild(row);
+      }
+    }
+
+    progressFill.style.width = '100%';
+    resultPanel.classList.add('active');
+    convertBtn.disabled = false;
+    setTimeout(() => progressBar.classList.remove('active'), 500);
+  });
+
+  downloadAllBtn.addEventListener('click', () => {
+    results.forEach((r, i) => {
+      setTimeout(() => TS.downloadBlob(r.blob, r.name), i * 200);
+    });
+  });
+})();
+</script>
+</body>
+</html>
