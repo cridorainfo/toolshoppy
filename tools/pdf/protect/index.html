@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Password Protect PDF Free — Secure Aadhaar, PAN, Voter ID | ToolShoppy</title>
+<meta name="description" content="Add a password to any PDF for free — perfect for protecting Aadhaar, PAN, Voter ID, and other personal documents before sharing. AES-128 encryption, 100% in your browser, no upload.">
+<meta name="keywords" content="password protect pdf free, add password to pdf, lock pdf online, encrypt aadhaar pdf, protect pan card pdf, secure voter id pdf">
+<link rel="canonical" href="https://toolshoppy.com/tools/pdf/protect/">
+<meta property="og:title" content="Password Protect PDF — ToolShoppy">
+<meta property="og:description" content="Add a password to any PDF free online. Perfect for Aadhaar, PAN, Voter ID and other personal documents. 100% client-side.">
+<meta property="og:image" content="https://toolshoppy.com/assets/img/og-image.svg">
+<meta property="og:url" content="https://toolshoppy.com/tools/pdf/protect/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/main.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Password Protect PDF",
+  "url": "https://toolshoppy.com/tools/pdf/protect/",
+  "description": "Add a password to any PDF free online, 100% client-side, AES-128 encryption.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://toolshoppy.com/" },
+    { "@type": "ListItem", "position": 2, "name": "PDF Tools", "item": "https://toolshoppy.com/#pdf" },
+    { "@type": "ListItem", "position": 3, "name": "Password Protect PDF", "item": "https://toolshoppy.com/tools/pdf/protect/" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I password protect my Aadhaar or PAN card PDF?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Upload the PDF, type a password twice to confirm, and click Protect PDF. The downloaded file will ask for that password whenever anyone tries to open it — useful before emailing ID documents." }
+    },
+    {
+      "@type": "Question",
+      "name": "What encryption does ToolShoppy use?",
+      "acceptedAnswer": { "@type": "Answer", "text": "AES-128, the PDF standard security handler (the same base scheme most PDF readers and free tools use). It's suitable for keeping casual viewers and automated scraping out of a document — not a substitute for a full digital signature or bank-grade security workflow." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my document uploaded anywhere?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. The PDF is parsed, encrypted, and re-downloaded entirely inside your browser using the Web Crypto API. It never leaves your device — which matters a lot for ID documents like Aadhaar, PAN, and Voter ID." }
+    },
+    {
+      "@type": "Question",
+      "name": "What if I forget the password?",
+      "acceptedAnswer": { "@type": "Answer", "text": "There is no recovery option — ToolShoppy does not store your password anywhere. Write it down somewhere safe before sharing the file." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I protect a PDF that's already password protected?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Not directly — you'd need to remove the existing password first (in the app that created it, or a PDF unlock tool) before adding a new one here." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo">🛠️ Tool<span>Shoppy</span></a>
+    <div class="site-search"><input type="text" placeholder="Search tools…" onfocus="location.href='/'"></div>
+  </div>
+</header>
+
+<main class="tool-page container">
+  <p class="breadcrumb"><a href="/">Home</a> › <a href="/#pdf">PDF Tools</a> › Password Protect PDF</p>
+
+  <div class="tool-header">
+    <h1>🔒 Password Protect PDF</h1>
+    <p>Add a password to any PDF — ideal for securing Aadhaar, PAN, Voter ID, and other personal documents before sharing.</p>
+  </div>
+
+  <div class="ad-slot ad-top">Advertisement</div>
+
+  <div class="tool-layout with-sidebar">
+    <div class="tool-card-main">
+
+      <div class="drop-zone" id="dropZone">
+        <div class="icon">📤</div>
+        <p><strong>Click to upload</strong> or drag & drop a PDF</p>
+        <p>One file at a time</p>
+        <input type="file" id="fileInput" accept="application/pdf">
+      </div>
+
+      <div id="controls" style="display:none;margin-top:16px;">
+        <div class="file-list" id="fileList"></div>
+
+        <label style="display:block;font-size:0.85rem;font-weight:600;margin:14px 0 6px;">Set a password</label>
+        <input type="password" id="pw1" placeholder="Enter password" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;margin-bottom:10px;">
+        <input type="password" id="pw2" placeholder="Confirm password" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;">
+        <p id="pwError" style="display:none;color:var(--danger);font-size:0.8rem;margin-top:6px;"></p>
+
+        <button class="btn btn-primary btn-block" id="protectBtn" style="margin-top:14px;">Protect PDF</button>
+        <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+      </div>
+
+      <div class="result-panel" id="resultPanel">
+        <div class="compare-row">
+          <div class="compare-box">
+            <div class="label">Status</div>
+            <div class="value" style="color:var(--success);">Protected ✅</div>
+          </div>
+          <div class="compare-box">
+            <div class="label">File Size</div>
+            <div class="value" id="outFileSize">-</div>
+          </div>
+        </div>
+        <button class="btn btn-accent btn-block" id="downloadBtn">⬇ Download Protected PDF</button>
+      </div>
+
+      <div class="trust-badge">🔒 Your file never leaves your device</div>
+    </div>
+
+    <aside class="sidebar">
+      <div class="ad-slot ad-sidebar">Advertisement</div>
+      <div class="info-box">
+        <h4>Great for protecting</h4>
+        <ul>
+          <li>Aadhaar Card PDFs</li>
+          <li>PAN Card PDFs</li>
+          <li>Voter ID / EPIC PDFs</li>
+          <li>Bank statements & salary slips</li>
+          <li>Any document with personal data</li>
+        </ul>
+      </div>
+      <div class="info-box">
+        <h4>How it works</h4>
+        <ul>
+          <li>AES-128 encryption, applied entirely in your browser</li>
+          <li>Uses the standard PDF security handler — opens in Adobe Reader, Chrome, and mobile PDF apps</li>
+          <li>Nothing is uploaded — no server ever sees your file or password</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <div class="content-section">
+    <h2>How to password protect a PDF</h2>
+    <ol>
+      <li>Upload your PDF — drag & drop or click to browse.</li>
+      <li>Type a password and confirm it.</li>
+      <li>Click <strong>Protect PDF</strong> — encryption happens instantly in your browser.</li>
+      <li>Download the protected file and share it — anyone opening it will be asked for the password.</li>
+    </ol>
+  </div>
+
+  <div class="content-section">
+    <h2>Frequently asked questions</h2>
+    <div class="faq-item">
+      <h3>How do I password protect my Aadhaar or PAN card PDF?</h3>
+      <p>Upload the PDF, type a password twice to confirm, and click Protect PDF. The downloaded file will ask for that password whenever anyone tries to open it — useful before emailing ID documents.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What encryption does ToolShoppy use?</h3>
+      <p>AES-128, the PDF standard security handler (the same base scheme most PDF readers and free tools use). It's suitable for keeping casual viewers and automated scraping out of a document — not a substitute for a full digital signature or bank-grade security workflow.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Is my document uploaded anywhere?</h3>
+      <p>No. The PDF is parsed, encrypted, and re-downloaded entirely inside your browser using the Web Crypto API. It never leaves your device — which matters a lot for ID documents like Aadhaar, PAN, and Voter ID.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What if I forget the password?</h3>
+      <p>There is no recovery option — ToolShoppy does not store your password anywhere. Write it down somewhere safe before sharing the file.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can I protect a PDF that's already password protected?</h3>
+      <p>Not directly — you'd need to remove the existing password first (in the app that created it, or a PDF unlock tool) before adding a new one here.</p>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div>
+  </div>
+</footer>
+<div class="ad-slot ad-sticky-footer">Advertisement</div>
+
+<script src="/assets/js/core.js"></script>
+<script src="/assets/js/ads.js"></script>
+<script src="/assets/js/analytics.js"></script>
+<script src="/assets/libs/pdf-lib.min.js"></script>
+<script src="/assets/js/pdf-crypt.js"></script>
+<script>
+(function () {
+  const dropZone = document.getElementById('dropZone');
+  const fileInput = document.getElementById('fileInput');
+  const controls = document.getElementById('controls');
+  const fileList = document.getElementById('fileList');
+  const pw1 = document.getElementById('pw1');
+  const pw2 = document.getElementById('pw2');
+  const pwError = document.getElementById('pwError');
+  const protectBtn = document.getElementById('protectBtn');
+  const progressBar = document.getElementById('progressBar');
+  const progressFill = document.getElementById('progressFill');
+  const resultPanel = document.getElementById('resultPanel');
+  const outFileSize = document.getElementById('outFileSize');
+  const downloadBtn = document.getElementById('downloadBtn');
+
+  let currentFile = null;
+  let resultBlob = null;
+
+  TS.setupDropZone(dropZone, fileInput, (files) => {
+    const file = files[0];
+    if (!file) return;
+    if (file.type !== 'application/pdf' && !file.name.toLowerCase().endsWith('.pdf')) {
+      alert('Please choose a PDF file.');
+      return;
+    }
+    currentFile = file;
+    fileList.innerHTML = '<div class="file-item"><span class="name">' + file.name + '</span><span>' + TS.formatBytes(file.size) + '</span></div>';
+    controls.style.display = 'block';
+    resultPanel.classList.remove('active');
+    pwError.style.display = 'none';
+  });
+
+  protectBtn.addEventListener('click', async () => {
+    if (!currentFile) return;
+    const password = pw1.value;
+    if (!password || password.length < 4) {
+      pwError.textContent = 'Password must be at least 4 characters.';
+      pwError.style.display = 'block';
+      return;
+    }
+    if (password !== pw2.value) {
+      pwError.textContent = 'Passwords do not match.';
+      pwError.style.display = 'block';
+      return;
+    }
+    pwError.style.display = 'none';
+
+    protectBtn.disabled = true;
+    progressBar.classList.add('active');
+    progressFill.style.width = '30%';
+
+    try {
+      const arrayBuffer = await currentFile.arrayBuffer();
+      progressFill.style.width = '55%';
+      const inputBytes = new Uint8Array(arrayBuffer);
+      const encryptedBytes = await TSPdfCrypt.protectPdf(inputBytes, { userPassword: password });
+      progressFill.style.width = '100%';
+
+      resultBlob = new Blob([encryptedBytes], { type: 'application/pdf' });
+      outFileSize.textContent = TS.formatBytes(resultBlob.size);
+      resultPanel.classList.add('active');
+    } catch (err) {
+      alert(err.message || 'Could not protect this PDF. It may already be encrypted or corrupted.');
+    } finally {
+      protectBtn.disabled = false;
+      setTimeout(() => progressBar.classList.remove('active'), 500);
+    }
+  });
+
+  downloadBtn.addEventListener('click', () => {
+    if (!resultBlob) return;
+    const baseName = (currentFile.name || 'document').replace(/\.pdf$/i, '');
+    TS.downloadBlob(resultBlob, baseName + '-protected.pdf');
+  });
+})();
+</script>
+</body>
+</html>

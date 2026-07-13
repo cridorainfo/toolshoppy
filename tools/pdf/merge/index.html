@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Merge PDF Free Online — Combine PDFs, No Signup | ToolShoppy</title>
+<meta name="description" content="Merge multiple PDF files into one free online. Reorder, combine, and download instantly. No signup, files never leave your device.">
+<meta name="keywords" content="merge pdf free online, combine pdf files, join pdf online free, pdf merger no signup">
+<link rel="canonical" href="https://toolshoppy.com/tools/pdf/merge/">
+<meta property="og:title" content="Merge PDF — ToolShoppy">
+<meta property="og:description" content="Combine multiple PDF files into one free online, 100% client-side.">
+<meta property="og:image" content="https://toolshoppy.com/assets/img/og-image.svg">
+<meta property="og:url" content="https://toolshoppy.com/tools/pdf/merge/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/main.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Merge PDF",
+  "url": "https://toolshoppy.com/tools/pdf/merge/",
+  "description": "Merge multiple PDF files into one free online, 100% client-side.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://toolshoppy.com/" },
+    { "@type": "ListItem", "position": 2, "name": "PDF Tools", "item": "https://toolshoppy.com/#pdf" },
+    { "@type": "ListItem", "position": 3, "name": "Merge PDF", "item": "https://toolshoppy.com/tools/pdf/merge/" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I merge multiple PDFs into one file?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Upload all the PDFs you want to combine, arrange them in the order you want (top to bottom = first to last), then click Merge PDFs and download the combined file." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a limit on how many PDFs I can merge?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No fixed limit — since merging runs in your browser, the practical limit is your device's memory for larger files." }
+    },
+    {
+      "@type": "Question",
+      "name": "Are my PDFs uploaded to a server?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Merging happens entirely client-side using pdf-lib in your browser — your files never leave your device." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo">🛠️ Tool<span>Shoppy</span></a>
+    <div class="site-search"><input type="text" placeholder="Search tools…" onfocus="location.href='/'"></div>
+  </div>
+</header>
+
+<main class="tool-page container">
+  <p class="breadcrumb"><a href="/">Home</a> › <a href="/#pdf">PDF Tools</a> › Merge PDF</p>
+
+  <div class="tool-header">
+    <h1>🔗 Merge PDF Files</h1>
+    <p>Combine multiple PDFs into one, in the order you choose.</p>
+  </div>
+
+  <div class="ad-slot ad-top">Advertisement</div>
+
+  <div class="tool-layout with-sidebar">
+    <div class="tool-card-main">
+
+      <div class="drop-zone" id="dropZone">
+        <div class="icon">📤</div>
+        <p><strong>Click to upload</strong> or drag & drop — multiple PDFs supported</p>
+        <p>Files merge in the order shown below</p>
+        <input type="file" id="fileInput" accept="application/pdf" multiple>
+      </div>
+
+      <div id="controls" style="display:none;margin-top:16px;">
+        <div class="file-list" id="fileList"></div>
+        <p style="font-size:0.78rem;color:var(--text-muted);margin-bottom:10px;">Use ↑ / ↓ to reorder, ✕ to remove.</p>
+
+        <button class="btn btn-primary btn-block" id="mergeBtn">Merge PDFs</button>
+        <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+      </div>
+
+      <div class="result-panel" id="resultPanel">
+        <div class="compare-row">
+          <div class="compare-box">
+            <div class="label">Pages</div>
+            <div class="value" id="outPages">-</div>
+          </div>
+          <div class="compare-box">
+            <div class="label">File Size</div>
+            <div class="value" id="outFileSize">-</div>
+          </div>
+        </div>
+        <button class="btn btn-accent btn-block" id="downloadBtn">⬇ Download Merged PDF</button>
+      </div>
+
+      <div class="trust-badge">🔒 Your files never leave your device</div>
+    </div>
+
+    <aside class="sidebar">
+      <div class="ad-slot ad-sidebar">Advertisement</div>
+      <div class="info-box">
+        <h4>Tips</h4>
+        <ul>
+          <li>Upload files in any order — reorder them before merging</li>
+          <li>Works with scanned PDFs and text PDFs alike</li>
+          <li>Password-protected PDFs must be unlocked first</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <div class="content-section">
+    <h2>How to merge PDF files online</h2>
+    <ol>
+      <li>Upload two or more PDFs — drag & drop or click to browse.</li>
+      <li>Reorder them using the arrow buttons if needed.</li>
+      <li>Click <strong>Merge PDFs</strong>.</li>
+      <li>Download your combined PDF.</li>
+    </ol>
+  </div>
+
+  <div class="content-section">
+    <h2>Frequently asked questions</h2>
+    <div class="faq-item">
+      <h3>How do I merge multiple PDFs into one file?</h3>
+      <p>Upload all the PDFs you want to combine, arrange them in the order you want (top to bottom = first to last), then click Merge PDFs and download the combined file.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Is there a limit on how many PDFs I can merge?</h3>
+      <p>No fixed limit — since merging runs in your browser, the practical limit is your device's memory for larger files.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Are my PDFs uploaded to a server?</h3>
+      <p>No. Merging happens entirely client-side using pdf-lib in your browser — your files never leave your device.</p>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div>
+  </div>
+</footer>
+<div class="ad-slot ad-sticky-footer">Advertisement</div>
+
+<script src="/assets/js/core.js"></script>
+<script src="/assets/js/ads.js"></script>
+<script src="/assets/js/analytics.js"></script>
+<script src="/assets/libs/pdf-lib.min.js"></script>
+<script>
+(function () {
+  const dropZone = document.getElementById('dropZone');
+  const fileInput = document.getElementById('fileInput');
+  const controls = document.getElementById('controls');
+  const fileList = document.getElementById('fileList');
+  const mergeBtn = document.getElementById('mergeBtn');
+  const progressBar = document.getElementById('progressBar');
+  const progressFill = document.getElementById('progressFill');
+  const resultPanel = document.getElementById('resultPanel');
+  const outPages = document.getElementById('outPages');
+  const outFileSize = document.getElementById('outFileSize');
+  const downloadBtn = document.getElementById('downloadBtn');
+
+  let files = [];
+  let resultBlob = null;
+
+  TS.setupDropZone(dropZone, fileInput, (newFiles) => {
+    const pdfFiles = newFiles.filter((f) => f.type === 'application/pdf' || f.name.toLowerCase().endsWith('.pdf'));
+    files = files.concat(pdfFiles);
+    controls.style.display = 'block';
+    resultPanel.classList.remove('active');
+    renderFileList();
+  });
+
+  function renderFileList() {
+    fileList.innerHTML = '';
+    files.forEach((f, i) => {
+      const row = document.createElement('div');
+      row.className = 'file-item';
+      row.innerHTML =
+        '<span class="name">' + (i + 1) + '. ' + f.name + '</span>' +
+        '<span>' + TS.formatBytes(f.size) + '</span>' +
+        '<span data-act="up" data-i="' + i + '" style="cursor:pointer;">↑</span>' +
+        '<span data-act="down" data-i="' + i + '" style="cursor:pointer;">↓</span>' +
+        '<span class="remove" data-act="remove" data-i="' + i + '">✕</span>';
+      fileList.appendChild(row);
+    });
+  }
+
+  fileList.addEventListener('click', (e) => {
+    const el = e.target.closest('[data-act]');
+    if (!el) return;
+    const i = parseInt(el.dataset.i, 10);
+    const act = el.dataset.act;
+    if (act === 'remove') files.splice(i, 1);
+    if (act === 'up' && i > 0) [files[i - 1], files[i]] = [files[i], files[i - 1]];
+    if (act === 'down' && i < files.length - 1) [files[i + 1], files[i]] = [files[i], files[i + 1]];
+    renderFileList();
+  });
+
+  mergeBtn.addEventListener('click', async () => {
+    if (files.length < 2) {
+      alert('Please add at least 2 PDF files to merge.');
+      return;
+    }
+    mergeBtn.disabled = true;
+    progressBar.classList.add('active');
+    progressFill.style.width = '10%';
+
+    try {
+      const { PDFDocument } = PDFLib;
+      const mergedDoc = await PDFDocument.create();
+
+      for (let i = 0; i < files.length; i++) {
+        progressFill.style.width = Math.round(10 + ((i / files.length) * 80)) + '%';
+        const bytes = new Uint8Array(await files[i].arrayBuffer());
+        const srcDoc = await PDFDocument.load(bytes, { ignoreEncryption: true });
+        const pages = await mergedDoc.copyPages(srcDoc, srcDoc.getPageIndices());
+        pages.forEach((p) => mergedDoc.addPage(p));
+      }
+
+      const mergedBytes = await mergedDoc.save();
+      progressFill.style.width = '100%';
+
+      resultBlob = new Blob([mergedBytes], { type: 'application/pdf' });
+      outPages.textContent = mergedDoc.getPageCount();
+      outFileSize.textContent = TS.formatBytes(resultBlob.size);
+      resultPanel.classList.add('active');
+    } catch (err) {
+      alert('Could not merge these PDFs. One of them may be password protected or corrupted.');
+    } finally {
+      mergeBtn.disabled = false;
+      setTimeout(() => progressBar.classList.remove('active'), 500);
+    }
+  });
+
+  downloadBtn.addEventListener('click', () => {
+    if (!resultBlob) return;
+    TS.downloadBlob(resultBlob, 'merged.pdf');
+  });
+})();
+</script>
+</body>
+</html>

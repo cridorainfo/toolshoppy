@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QR Code Generator Free — No Signup, Instant Download | ToolShoppy</title>
+<meta name="description" content="Generate a free QR code from any text, URL, or WhatsApp link instantly. No signup, works offline in your browser, download as PNG.">
+<meta name="keywords" content="qr code generator free, qr code maker online, free qr code download, generate qr code no signup">
+<link rel="canonical" href="https://toolshoppy.com/tools/misc/qr-generator/">
+<meta property="og:title" content="QR Code Generator — ToolShoppy">
+<meta property="og:description" content="Generate a free QR code from any text or URL instantly, 100% client-side.">
+<meta property="og:image" content="https://toolshoppy.com/assets/img/og-image.svg">
+<meta property="og:url" content="https://toolshoppy.com/tools/misc/qr-generator/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/main.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "QR Code Generator",
+  "url": "https://toolshoppy.com/tools/misc/qr-generator/",
+  "description": "Generate a free QR code from any text or URL instantly, 100% client-side.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://toolshoppy.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Misc Tools", "item": "https://toolshoppy.com/#misc" },
+    { "@type": "ListItem", "position": 3, "name": "QR Code Generator", "item": "https://toolshoppy.com/tools/misc/qr-generator/" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I make a QR code for free?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Type or paste any text, URL, or WhatsApp link into the box — the QR code generates instantly. Pick a size, then download it as a PNG." }
+    },
+    {
+      "@type": "Question",
+      "name": "Do these QR codes expire?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. The QR code is generated entirely in your browser and encodes your text directly — there's no server, tracking, or expiry involved." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use this for a WhatsApp chat link?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes — paste a link like https://wa.me/91XXXXXXXXXX and the QR code will open a WhatsApp chat when scanned." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo">🛠️ Tool<span>Shoppy</span></a>
+    <div class="site-search"><input type="text" placeholder="Search tools…" onfocus="location.href='/'"></div>
+  </div>
+</header>
+
+<main class="tool-page container">
+  <p class="breadcrumb"><a href="/">Home</a> › <a href="/#misc">Misc Tools</a> › QR Code Generator</p>
+
+  <div class="tool-header">
+    <h1>🔳 QR Code Generator</h1>
+    <p>Turn any text, URL, or WhatsApp link into a QR code instantly.</p>
+  </div>
+
+  <div class="ad-slot ad-top">Advertisement</div>
+
+  <div class="tool-layout with-sidebar">
+    <div class="tool-card-main">
+
+      <label style="display:block;font-size:0.85rem;font-weight:600;margin-bottom:6px;">Text, URL, or WhatsApp link</label>
+      <textarea id="qrText" rows="3" placeholder="https://toolshoppy.com or any text…" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-family:inherit;font-size:0.95rem;resize:vertical;"></textarea>
+
+      <h3 style="font-size:1rem;margin:16px 0 10px;">Size</h3>
+      <div class="chip-row" id="sizeRow">
+        <button class="chip" data-size="200">200px</button>
+        <button class="chip active" data-size="300">300px</button>
+        <button class="chip" data-size="400">400px</button>
+        <button class="chip" data-size="500">500px</button>
+      </div>
+
+      <div style="text-align:center;margin-top:20px;">
+        <canvas id="qrCanvas" style="max-width:100%;border:1px solid var(--border);border-radius:8px;background:#fff;"></canvas>
+      </div>
+
+      <div class="result-panel active" id="resultPanel" style="margin-top:16px;">
+        <button class="btn btn-accent btn-block" id="downloadBtn">⬇ Download PNG</button>
+      </div>
+
+      <div class="trust-badge">🔒 Generated entirely in your browser</div>
+    </div>
+
+    <aside class="sidebar">
+      <div class="ad-slot ad-sidebar">Advertisement</div>
+      <div class="info-box">
+        <h4>Ideas for QR codes</h4>
+        <ul>
+          <li>WhatsApp chat link: https://wa.me/91XXXXXXXXXX</li>
+          <li>Your website or portfolio URL</li>
+          <li>Wi-Fi details, contact info, event links</li>
+          <li>UPI payment links</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <div class="content-section">
+    <h2>How to create a QR code</h2>
+    <ol>
+      <li>Type or paste your text, URL, or link into the box.</li>
+      <li>Pick a size — the QR code updates instantly as you type.</li>
+      <li>Click <strong>Download PNG</strong> to save it.</li>
+    </ol>
+  </div>
+
+  <div class="content-section">
+    <h2>Frequently asked questions</h2>
+    <div class="faq-item">
+      <h3>How do I make a QR code for free?</h3>
+      <p>Type or paste any text, URL, or WhatsApp link into the box — the QR code generates instantly. Pick a size, then download it as a PNG.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Do these QR codes expire?</h3>
+      <p>No. The QR code is generated entirely in your browser and encodes your text directly — there's no server, tracking, or expiry involved.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can I use this for a WhatsApp chat link?</h3>
+      <p>Yes — paste a link like https://wa.me/91XXXXXXXXXX and the QR code will open a WhatsApp chat when scanned.</p>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div>
+  </div>
+</footer>
+<div class="ad-slot ad-sticky-footer">Advertisement</div>
+
+<script src="/assets/js/core.js"></script>
+<script src="/assets/js/ads.js"></script>
+<script src="/assets/js/analytics.js"></script>
+<script src="/assets/libs/qrcode-generator.min.js"></script>
+<script>
+(function () {
+  const qrText = document.getElementById('qrText');
+  const sizeRow = document.getElementById('sizeRow');
+  const canvas = document.getElementById('qrCanvas');
+  const downloadBtn = document.getElementById('downloadBtn');
+  const ctx = canvas.getContext('2d');
+
+  let size = 300;
+  let debounceTimer = null;
+
+  function render() {
+    const text = qrText.value.trim() || 'https://toolshoppy.com';
+    let qr;
+    try {
+      qr = qrcode(0, 'M');
+      qr.addData(text);
+      qr.make();
+    } catch (e) {
+      // typeNumber 0 auto-sizing can overflow for very long text at low EC; retry with higher type
+      qr = qrcode(10, 'L');
+      qr.addData(text);
+      qr.make();
+    }
+    const count = qr.getModuleCount();
+    const cellSize = Math.floor(size / count) || 1;
+    const canvasSize = cellSize * count;
+    canvas.width = canvasSize;
+    canvas.height = canvasSize;
+    ctx.fillStyle = '#FFFFFF';
+    ctx.fillRect(0, 0, canvasSize, canvasSize);
+    ctx.fillStyle = '#000000';
+    for (let row = 0; row < count; row++) {
+      for (let col = 0; col < count; col++) {
+        if (qr.isDark(row, col)) {
+          ctx.fillRect(col * cellSize, row * cellSize, cellSize, cellSize);
+        }
+      }
+    }
+  }
+
+  qrText.addEventListener('input', () => {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(render, 150);
+  });
+
+  sizeRow.addEventListener('click', (e) => {
+    const btn = e.target.closest('.chip');
+    if (!btn) return;
+    sizeRow.querySelectorAll('.chip').forEach((c) => c.classList.remove('active'));
+    btn.classList.add('active');
+    size = parseInt(btn.dataset.size, 10);
+    render();
+  });
+
+  downloadBtn.addEventListener('click', () => {
+    canvas.toBlob((blob) => TS.downloadBlob(blob, 'qrcode.png'));
+  });
+
+  qrText.value = 'https://toolshoppy.com';
+  render();
+})();
+</script>
+</body>
+</html>
