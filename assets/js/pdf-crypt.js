@@ -313,39 +313,38 @@
 
     const rootMatch = trailerText.match(/\/Root\s+(\d+)\s+(\d+)\s+R/);
     const infoMatch = trailerText.match(/\/Info\s+(\d+)\s+(\d+)\s+R/);
-    const sizeMatch = trailerText.match(/\/Size\s+(\d+)/);
-    if (!rootMatch || !sizeMatch) throw new Error('Malformed trailer — missing /Root or /Size');
-
-    const size = parseInt(sizeMatch[1], 10);
+    if (!rootMatch) throw new Error('Malformed trailer — missing /Root');
 
     const xrefIdx = text.lastIndexOf('\nxref');
-    if (xrefIdx === -1) throw new Error('No classic xref table found (unexpected PDF structure)');
-    const subHeaderMatch = text.substring(xrefIdx).match(/xref\s*\n(\d+)\s+(\d+)\s*\n/);
-    if (!subHeaderMatch) throw new Error('Malformed xref subsection header');
-    const entriesStart = xrefIdx + subHeaderMatch.index + subHeaderMatch[0].length;
-    const entryRe = /(\d{10}) (\d{5}) ([fn])/g;
-    entryRe.lastIndex = entriesStart;
-    const offsets = new Array(size).fill(0);
-    for (let n = 0; n < size; n++) {
-      const m = entryRe.exec(text);
-      if (!m) throw new Error('Truncated xref table');
-      if (m[3] === 'n') offsets[n] = parseInt(m[1], 10);
-    }
+    const scanEnd = xrefIdx !== -1 ? xrefIdx : trailerIdx;
+
+    // Walk the body directly for "N G obj ... endobj" blocks instead of
+    // trusting the xref table's own bookkeeping — the xref table's format
+    // (subsection count, exact spacing) can vary in ways that are brittle to
+    // parse, but pdf-lib's own object layout (since we always feed it
+    // normalized `useObjectStreams:false` output) is simple to scan directly.
+    const firstObjMatch = text.match(/\d+\s+\d+\s+obj\b/);
+    if (!firstObjMatch) throw new Error('No indirect objects found — unexpected PDF structure');
+    const headerEnd = firstObjMatch.index;
 
     const objects = [];
-    for (let n = 1; n < size; n++) {
-      if (!offsets[n]) continue;
-      const obj = parseObjectAt(text, bytes, offsets[n], n);
+    let cursor = headerEnd;
+    while (cursor < scanEnd) {
+      while (cursor < scanEnd && /\s/.test(text[cursor])) cursor++;
+      if (cursor >= scanEnd) break;
+      const obj = parseObjectAt(text, bytes, cursor);
       objects.push(obj);
+      cursor = obj.nextScanPos;
     }
+    if (!objects.length) throw new Error('No indirect objects found — unexpected PDF structure');
 
     return {
       text,
       objects,
-      size,
+      size: Math.max.apply(null, objects.map((o) => o.objNum)) + 1,
       rootRef: { num: parseInt(rootMatch[1], 10), gen: parseInt(rootMatch[2], 10) },
       infoRef: infoMatch ? { num: parseInt(infoMatch[1], 10), gen: parseInt(infoMatch[2], 10) } : null,
-      headerEnd: Math.min(...objects.map((o) => o.offset)),
+      headerEnd,
     };
   }
 
@@ -360,21 +359,24 @@
     throw new Error('Unterminated dictionary');
   }
 
-  function resolveLength(text, bytes, dictText) {
-    let m = dictText.match(/\/Length\s+(\d+)\s+(\d+)\s+R/);
-    if (m) {
-      const refNum = parseInt(m[1], 10);
-      // Fallback resolver: caller passes a map for this; handled by caller instead.
-      return { indirect: true, refNum };
+  function resolveLength(dictText) {
+    // pdf-lib's own normalized output (useObjectStreams:false) always writes a
+    // direct integer /Length. An indirect reference would require the length
+    // object to already be parsed before we can find where this object's
+    // "endobj" is during a linear left-to-right scan — since that referenced
+    // object normally comes *later* in the file, this can't be resolved on
+    // the fly. Fail loudly instead of silently mis-scanning.
+    if (/\/Length\s+\d+\s+\d+\s+R/.test(dictText)) {
+      throw new Error('This PDF uses an indirect stream /Length, which is not supported.');
     }
-    m = dictText.match(/\/Length\s+(\d+)/);
-    if (m) return { indirect: false, value: parseInt(m[1], 10) };
+    const m = dictText.match(/\/Length\s+(\d+)/);
+    if (m) return parseInt(m[1], 10);
     throw new Error('Stream object missing /Length');
   }
 
-  function parseObjectAt(text, bytes, offset, expectedNum) {
+  function parseObjectAt(text, bytes, offset) {
     const headerMatch = text.substring(offset, offset + 40).match(/^(\d+)\s+(\d+)\s+obj\b/);
-    if (!headerMatch) throw new Error('Object header mismatch at offset ' + offset + ' for object ' + expectedNum);
+    if (!headerMatch) throw new Error('Expected an object header at byte offset ' + offset);
     const objNum = parseInt(headerMatch[1], 10);
     const genNum = parseInt(headerMatch[2], 10);
     let cursor = offset + headerMatch[0].length;
@@ -389,16 +391,20 @@
     let after = dictEnd;
     while (/\s/.test(text[after])) after++;
     let streamBytes = null;
-    let streamLenInfo = null;
+    let scanCursor = dictEnd;
     if (text.substr(after, 6) === 'stream') {
       let streamDataStart = after + 6;
       if (text[streamDataStart] === '\r' && text[streamDataStart + 1] === '\n') streamDataStart += 2;
       else if (text[streamDataStart] === '\n') streamDataStart += 1;
-      streamLenInfo = resolveLength(text, bytes, dictText);
-      streamBytes = { start: streamDataStart, lenInfo: streamLenInfo };
+      const length = resolveLength(dictText);
+      streamBytes = { start: streamDataStart, length };
+      scanCursor = streamDataStart + length;
     }
+    const endobjIdx = text.indexOf('endobj', scanCursor);
+    if (endobjIdx === -1) throw new Error('Missing endobj for object ' + objNum);
+    const nextScanPos = endobjIdx + 'endobj'.length;
 
-    return { objNum, genNum, dictStart, dictEnd, dictText, offset, streamBytes };
+    return { objNum, genNum, dictStart, dictEnd, dictText, offset, streamBytes, nextScanPos };
   }
 
   async function protectPdf(inputBytes, opts) {
@@ -418,17 +424,6 @@
     const normalized = await srcDoc.save({ useObjectStreams: false });
 
     const struct = parsePdfStructure(normalized);
-
-    // Resolve any indirect /Length values (rare with pdf-lib's own output, but handled defensively)
-    const byNum = {};
-    for (const o of struct.objects) byNum[o.objNum] = o;
-    for (const o of struct.objects) {
-      if (o.streamBytes && o.streamBytes.lenInfo.indirect) {
-        const refObj = byNum[o.streamBytes.lenInfo.refNum];
-        const m = refObj.dictText.match(/(\d+)/) || struct.text.substring(refObj.dictEnd).match(/^\s*(\d+)/);
-        o.streamBytes.lenInfo = { indirect: false, value: parseInt(m[1], 10) };
-      }
-    }
 
     const idBytes = crypto.getRandomValues(new Uint8Array(16));
     const userPwBytes = strToBytes(unescape(encodeURIComponent(userPassword)));
@@ -451,7 +446,7 @@
       let streamChunk = null;
 
       if (obj.streamBytes) {
-        const rawStream = normalized.subarray(obj.streamBytes.start, obj.streamBytes.start + obj.streamBytes.lenInfo.value);
+        const rawStream = normalized.subarray(obj.streamBytes.start, obj.streamBytes.start + obj.streamBytes.length);
         const encryptedStream = await aesEncryptCBC(objKey, rawStream);
         let newDictText = bytesToBinaryString(newDictBytes);
         newDictText = newDictText.replace(/\/Length\s+\d+/, '/Length ' + encryptedStream.length);
