@@ -359,19 +359,14 @@
     throw new Error('Unterminated dictionary');
   }
 
-  function resolveLength(dictText) {
-    // pdf-lib's own normalized output (useObjectStreams:false) always writes a
-    // direct integer /Length. An indirect reference would require the length
-    // object to already be parsed before we can find where this object's
-    // "endobj" is during a linear left-to-right scan — since that referenced
-    // object normally comes *later* in the file, this can't be resolved on
-    // the fly. Fail loudly instead of silently mis-scanning.
-    if (/\/Length\s+\d+\s+\d+\s+R/.test(dictText)) {
-      throw new Error('This PDF uses an indirect stream /Length, which is not supported.');
-    }
+  function resolveDirectLength(dictText) {
+    // Only handles a direct integer /Length. Indirect refs (/Length N G R)
+    // are resolved by the endstream-search fallback in parseObjectAt instead,
+    // since the referenced length object commonly appears *later* in the
+    // file than the stream itself — unresolvable during a left-to-right scan.
+    if (/\/Length\s+\d+\s+\d+\s+R/.test(dictText)) return null;
     const m = dictText.match(/\/Length\s+(\d+)/);
-    if (m) return parseInt(m[1], 10);
-    throw new Error('Stream object missing /Length');
+    return m ? parseInt(m[1], 10) : null;
   }
 
   function parseObjectAt(text, bytes, offset) {
@@ -381,9 +376,24 @@
     const genNum = parseInt(headerMatch[2], 10);
     let cursor = offset + headerMatch[0].length;
     while (/\s/.test(text[cursor])) cursor++;
+
+    // Not every indirect object is a dictionary — plain integers (e.g. an
+    // object used only as an indirect /Length elsewhere), names, arrays, and
+    // strings can also stand alone as a whole object body. We still need to
+    // know where such an object ends so the scan can continue, and still
+    // need to encrypt any strings it directly contains, but there's no
+    // dictionary or stream to parse.
     if (text[cursor] !== '<' || text[cursor + 1] !== '<') {
-      throw new Error('Expected dictionary at object ' + objNum);
+      const bodyStart = cursor;
+      const endobjIdx = text.indexOf('endobj', bodyStart);
+      if (endobjIdx === -1) throw new Error('Missing endobj for object ' + objNum);
+      const nextScanPos = endobjIdx + 'endobj'.length;
+      return {
+        objNum, genNum, offset, streamBytes: null, nextScanPos,
+        dictStart: bodyStart, dictEnd: endobjIdx, dictText: text.substring(bodyStart, endobjIdx),
+      };
     }
+
     const dictStart = cursor;
     const dictEnd = findMatchingDictEnd(text, dictStart);
     const dictText = text.substring(dictStart, dictEnd);
@@ -396,7 +406,24 @@
       let streamDataStart = after + 6;
       if (text[streamDataStart] === '\r' && text[streamDataStart + 1] === '\n') streamDataStart += 2;
       else if (text[streamDataStart] === '\n') streamDataStart += 1;
-      const length = resolveLength(dictText);
+
+      const directLength = resolveDirectLength(dictText);
+      let length;
+      if (directLength !== null) {
+        length = directLength;
+      } else {
+        // Indirect /Length: fall back to locating the literal "endstream"
+        // keyword. Safe in practice — pdf-lib always places it immediately
+        // after the real stream bytes, and that exact 9-byte ASCII sequence
+        // occurring by chance inside compressed/binary stream data is
+        // vanishingly unlikely.
+        const endstreamIdx = text.indexOf('endstream', streamDataStart);
+        if (endstreamIdx === -1) throw new Error('Missing endstream for object ' + objNum);
+        let trimmed = endstreamIdx;
+        if (text[trimmed - 1] === '\n') { trimmed--; if (text[trimmed - 1] === '\r') trimmed--; }
+        else if (text[trimmed - 1] === '\r') { trimmed--; }
+        length = trimmed - streamDataStart;
+      }
       streamBytes = { start: streamDataStart, length };
       scanCursor = streamDataStart + length;
     }
@@ -449,7 +476,7 @@
         const rawStream = normalized.subarray(obj.streamBytes.start, obj.streamBytes.start + obj.streamBytes.length);
         const encryptedStream = await aesEncryptCBC(objKey, rawStream);
         let newDictText = bytesToBinaryString(newDictBytes);
-        newDictText = newDictText.replace(/\/Length\s+\d+/, '/Length ' + encryptedStream.length);
+        newDictText = newDictText.replace(/\/Length\s+\d+(\s+\d+\s+R)?/, '/Length ' + encryptedStream.length);
         newDictBytes = strToBytes(newDictText);
         streamChunk = encryptedStream;
       }
