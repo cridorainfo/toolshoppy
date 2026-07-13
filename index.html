@@ -45,103 +45,99 @@
 <main>
   <section class="hero container">
     <h1>Your one-stop shop for every free tool</h1>
-    <p>No signup. No login. No file ever leaves your device. Just pick a tool and go.</p>
-    <div class="trust-badge" style="max-width:420px;margin-left:auto;margin-right:auto;">🔒 Your files never leave your device</div>
+    <p>No signup. No login. No file ever leaves your device.</p>
   </section>
 
+  <nav class="filter-bar">
+    <div class="container filter-scroll" id="filterScroll">
+      <button class="filter-chip active" data-cat="all">All</button>
+      <button class="filter-chip" data-cat="image">📷 Image</button>
+      <button class="filter-chip" data-cat="pdf">📄 PDF</button>
+      <button class="filter-chip" data-cat="finance">💰 Finance</button>
+      <button class="filter-chip" data-cat="video">🎬 Video</button>
+      <button class="filter-chip" data-cat="misc">🧩 Misc</button>
+    </div>
+  </nav>
+
   <div class="container">
+    <h2 class="section-title">✅ Available Now</h2>
+    <div class="featured-grid">
+      <a class="tool-card" href="/tools/image/compress/" data-cat="image" data-name="image compressor compress kb">
+        <div class="icon">🗜️</div><h3>Image Compressor</h3><p>Compress to exact KB</p><span class="live-badge">LIVE</span>
+      </a>
+      <a class="tool-card" href="/tools/image/govt-photo/" data-cat="image" data-name="govt photo resizer psc upsc pan aadhaar passport">
+        <div class="icon">🪪</div><h3>Govt Photo Resizer</h3><p>PSC, UPSC, PAN, Aadhaar</p><span class="live-badge">LIVE</span>
+      </a>
+      <a class="tool-card" href="/tools/image/convert/" data-cat="image" data-name="image converter heic jpg png webp">
+        <div class="icon">🔄</div><h3>Image Converter</h3><p>HEIC, PNG, JPG, WebP</p><span class="live-badge">LIVE</span>
+      </a>
+      <a class="tool-card" href="/tools/image/resize/" data-cat="image" data-name="image resizer resize dimensions">
+        <div class="icon">📐</div><h3>Image Resizer</h3><p>Resize by size or %</p><span class="live-badge">LIVE</span>
+      </a>
+    </div>
+
     <div class="ad-slot ad-top">Advertisement</div>
 
-    <h2 class="section-title">📷 Image Tools</h2>
-    <div class="tool-grid" data-category="image">
-      <a class="tool-card" href="/tools/image/compress/" data-name="image compressor compress kb">
-        <div class="icon">🗜️</div><h3>Image Compressor</h3><p>Compress to exact KB</p>
-      </a>
-      <a class="tool-card" href="/tools/image/govt-photo/" data-name="govt photo resizer psc upsc pan aadhaar passport">
-        <div class="icon">🪪</div><h3>Govt Photo Resizer</h3><p>PSC, UPSC, PAN, Aadhaar</p>
-      </a>
-      <a class="tool-card" href="/tools/image/convert/" data-name="image converter heic jpg png webp">
-        <div class="icon">🔄</div><h3>Image Converter</h3><p>HEIC, PNG, JPG, WebP</p>
-      </a>
-      <a class="tool-card" href="/tools/image/resize/" data-name="image resizer resize dimensions">
-        <div class="icon">📐</div><h3>Image Resizer</h3><p>Resize by size or %</p>
-      </a>
-      <div class="tool-card" data-name="background remover">
+    <h2 class="section-title">🔜 More Tools</h2>
+    <div class="tool-grid" id="toolGrid">
+      <div class="tool-card" data-cat="image" data-name="background remover">
         <div class="icon">✂️</div><h3>Background Remover</h3><p>Coming soon</p><span class="soon">SOON</span>
       </div>
-      <div class="tool-card" data-name="passport photo maker">
+      <div class="tool-card" data-cat="image" data-name="passport photo maker">
         <div class="icon">🛂</div><h3>Passport Photo Maker</h3><p>Coming soon</p><span class="soon">SOON</span>
       </div>
-      <div class="tool-card" data-name="whatsapp sticker maker">
+      <div class="tool-card" data-cat="image" data-name="whatsapp sticker maker">
         <div class="icon">🏷️</div><h3>Sticker Maker</h3><p>Coming soon</p><span class="soon">SOON</span>
       </div>
-    </div>
-
-    <h2 class="section-title">📄 PDF Tools</h2>
-    <div class="tool-grid" data-category="pdf">
-      <div class="tool-card" data-name="pdf merge combine">
+      <div class="tool-card" data-cat="pdf" data-name="pdf merge combine">
         <div class="icon">🔗</div><h3>PDF Merge</h3><p>Coming soon</p><span class="soon">SOON</span>
       </div>
-      <div class="tool-card" data-name="pdf compress">
+      <div class="tool-card" data-cat="pdf" data-name="pdf compress">
         <div class="icon">🗜️</div><h3>PDF Compress</h3><p>Coming soon</p><span class="soon">SOON</span>
       </div>
-      <div class="tool-card" data-name="pdf split">
+      <div class="tool-card" data-cat="pdf" data-name="pdf split">
         <div class="icon">✂️</div><h3>PDF Split</h3><p>Coming soon</p><span class="soon">SOON</span>
       </div>
-      <div class="tool-card" data-name="image to pdf">
+      <div class="tool-card" data-cat="pdf" data-name="image to pdf">
         <div class="icon">🖼️</div><h3>Image to PDF</h3><p>Coming soon</p><span class="soon">SOON</span>
       </div>
-      <div class="tool-card" data-name="pdf to image jpg">
+      <div class="tool-card" data-cat="pdf" data-name="pdf to image jpg">
         <div class="icon">📄</div><h3>PDF to Image</h3><p>Coming soon</p><span class="soon">SOON</span>
       </div>
-    </div>
-
-    <h2 class="section-title">💰 Rates & Finance</h2>
-    <div class="tool-grid" data-category="finance">
-      <div class="tool-card" data-name="gold rate today kerala dubai">
+      <div class="tool-card" data-cat="finance" data-name="gold rate today kerala dubai">
         <div class="icon">🪙</div><h3>Gold Rate Today</h3><p>Kerala, India & UAE</p><span class="soon">SOON</span>
       </div>
-      <div class="tool-card" data-name="silver rate today">
+      <div class="tool-card" data-cat="finance" data-name="silver rate today">
         <div class="icon">🥈</div><h3>Silver Rate</h3><p>Coming soon</p><span class="soon">SOON</span>
       </div>
-      <div class="tool-card" data-name="petrol diesel price">
+      <div class="tool-card" data-cat="finance" data-name="petrol diesel price">
         <div class="icon">⛽</div><h3>Petrol Price</h3><p>Coming soon</p><span class="soon">SOON</span>
       </div>
-      <div class="tool-card" data-name="currency converter aed inr usd">
+      <div class="tool-card" data-cat="finance" data-name="currency converter aed inr usd">
         <div class="icon">💱</div><h3>Currency Converter</h3><p>Coming soon</p><span class="soon">SOON</span>
       </div>
-      <div class="tool-card" data-name="emi calculator loan">
+      <div class="tool-card" data-cat="finance" data-name="emi calculator loan">
         <div class="icon">🏦</div><h3>EMI Calculator</h3><p>Coming soon</p><span class="soon">SOON</span>
       </div>
-      <div class="tool-card" data-name="income tax calculator">
+      <div class="tool-card" data-cat="finance" data-name="income tax calculator">
         <div class="icon">🧾</div><h3>Income Tax Calculator</h3><p>Coming soon</p><span class="soon">SOON</span>
       </div>
-      <div class="tool-card" data-name="salary calculator in hand">
+      <div class="tool-card" data-cat="finance" data-name="salary calculator in hand">
         <div class="icon">💵</div><h3>Salary Calculator</h3><p>Coming soon</p><span class="soon">SOON</span>
       </div>
-      <div class="tool-card" data-name="gst calculator">
+      <div class="tool-card" data-cat="finance" data-name="gst calculator">
         <div class="icon">🧮</div><h3>GST Calculator</h3><p>Coming soon</p><span class="soon">SOON</span>
       </div>
-    </div>
-
-    <div class="ad-slot ad-incontent">Advertisement</div>
-
-    <h2 class="section-title">🎬 Video & Audio</h2>
-    <div class="tool-grid" data-category="video">
-      <div class="tool-card" data-name="video compressor"><div class="icon">🎞️</div><h3>Video Compressor</h3><p>Coming soon</p><span class="soon">SOON</span></div>
-      <div class="tool-card" data-name="video trimmer cutter"><div class="icon">✂️</div><h3>Video Trimmer</h3><p>Coming soon</p><span class="soon">SOON</span></div>
-      <div class="tool-card" data-name="video to mp3 audio"><div class="icon">🎵</div><h3>Video to MP3</h3><p>Coming soon</p><span class="soon">SOON</span></div>
-      <div class="tool-card" data-name="whatsapp status splitter"><div class="icon">📱</div><h3>Status Splitter</h3><p>Coming soon</p><span class="soon">SOON</span></div>
-    </div>
-
-    <h2 class="section-title">🧩 Misc Tools</h2>
-    <div class="tool-grid" data-category="misc">
-      <div class="tool-card" data-name="qr code generator"><div class="icon">🔳</div><h3>QR Generator</h3><p>Coming soon</p><span class="soon">SOON</span></div>
-      <div class="tool-card" data-name="word counter character"><div class="icon">🔤</div><h3>Word Counter</h3><p>Coming soon</p><span class="soon">SOON</span></div>
-      <div class="tool-card" data-name="age calculator"><div class="icon">🎂</div><h3>Age Calculator</h3><p>Coming soon</p><span class="soon">SOON</span></div>
-      <div class="tool-card" data-name="fancy font generator"><div class="icon">✨</div><h3>Font Styler</h3><p>Coming soon</p><span class="soon">SOON</span></div>
-      <div class="tool-card" data-name="whatsapp link generator"><div class="icon">💬</div><h3>WhatsApp Link</h3><p>Coming soon</p><span class="soon">SOON</span></div>
-      <div class="tool-card" data-name="bmi calculator"><div class="icon">⚖️</div><h3>BMI Calculator</h3><p>Coming soon</p><span class="soon">SOON</span></div>
+      <div class="tool-card" data-cat="video" data-name="video compressor"><div class="icon">🎞️</div><h3>Video Compressor</h3><p>Coming soon</p><span class="soon">SOON</span></div>
+      <div class="tool-card" data-cat="video" data-name="video trimmer cutter"><div class="icon">✂️</div><h3>Video Trimmer</h3><p>Coming soon</p><span class="soon">SOON</span></div>
+      <div class="tool-card" data-cat="video" data-name="video to mp3 audio"><div class="icon">🎵</div><h3>Video to MP3</h3><p>Coming soon</p><span class="soon">SOON</span></div>
+      <div class="tool-card" data-cat="video" data-name="whatsapp status splitter"><div class="icon">📱</div><h3>Status Splitter</h3><p>Coming soon</p><span class="soon">SOON</span></div>
+      <div class="tool-card" data-cat="misc" data-name="qr code generator"><div class="icon">🔳</div><h3>QR Generator</h3><p>Coming soon</p><span class="soon">SOON</span></div>
+      <div class="tool-card" data-cat="misc" data-name="word counter character"><div class="icon">🔤</div><h3>Word Counter</h3><p>Coming soon</p><span class="soon">SOON</span></div>
+      <div class="tool-card" data-cat="misc" data-name="age calculator"><div class="icon">🎂</div><h3>Age Calculator</h3><p>Coming soon</p><span class="soon">SOON</span></div>
+      <div class="tool-card" data-cat="misc" data-name="fancy font generator"><div class="icon">✨</div><h3>Font Styler</h3><p>Coming soon</p><span class="soon">SOON</span></div>
+      <div class="tool-card" data-cat="misc" data-name="whatsapp link generator"><div class="icon">💬</div><h3>WhatsApp Link</h3><p>Coming soon</p><span class="soon">SOON</span></div>
+      <div class="tool-card" data-cat="misc" data-name="bmi calculator"><div class="icon">⚖️</div><h3>BMI Calculator</h3><p>Coming soon</p><span class="soon">SOON</span></div>
     </div>
 
     <p id="noResults" style="display:none;text-align:center;color:var(--text-muted);padding:30px 0;">No tools match your search.</p>
@@ -192,17 +188,42 @@
 <script src="/assets/js/analytics.js"></script>
 <script>
   const searchInput = document.getElementById('toolSearch');
-  const cards = Array.from(document.querySelectorAll('.tool-card'));
+  const featuredCards = Array.from(document.querySelectorAll('.featured-grid .tool-card'));
+  const gridCards = Array.from(document.querySelectorAll('#toolGrid .tool-card'));
   const noResults = document.getElementById('noResults');
-  searchInput.addEventListener('input', () => {
+  const filterChips = Array.from(document.querySelectorAll('.filter-chip'));
+  let activeCat = 'all';
+
+  function applyFilters() {
     const q = searchInput.value.trim().toLowerCase();
     let visible = 0;
-    cards.forEach((card) => {
+
+    featuredCards.forEach((card) => {
       const match = !q || (card.dataset.name || '').includes(q) || card.textContent.toLowerCase().includes(q);
       card.style.display = match ? '' : 'none';
       if (match) visible++;
     });
+
+    gridCards.forEach((card) => {
+      const matchQ = !q || (card.dataset.name || '').includes(q) || card.textContent.toLowerCase().includes(q);
+      const matchCat = activeCat === 'all' || card.dataset.cat === activeCat;
+      const match = matchQ && matchCat;
+      card.style.display = match ? '' : 'none';
+      if (match) visible++;
+    });
+
     noResults.style.display = visible === 0 ? 'block' : 'none';
+  }
+
+  searchInput.addEventListener('input', applyFilters);
+
+  filterChips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      filterChips.forEach((c) => c.classList.remove('active'));
+      chip.classList.add('active');
+      activeCat = chip.dataset.cat;
+      applyFilters();
+    });
   });
 </script>
 </body>
