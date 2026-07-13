@@ -453,3 +453,42 @@ button { font-family: inherit; cursor: pointer; }
 @media (min-width: 901px) {
   .tool-grid, .featured-grid { grid-template-columns: repeat(6, 1fr); }
 }
+
+/* Real AdSense Auto ads is active (see <head> script) — hide our own
+   placeholder boxes so we never show a fake "Advertisement" label
+   alongside or instead of a real ad. */
+.ad-slot { display: none !important; }
+
+/* Tool page SEO content: How it works + FAQ */
+.content-section {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.content-section h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.content-section ol {
+  padding-left: 20px;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+.content-section ol li { margin-bottom: 4px; }
+.faq-item {
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+}
+.faq-item:last-child { border-bottom: none; }
+.faq-item h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.faq-item p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
