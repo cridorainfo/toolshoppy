@@ -17,6 +17,29 @@ ToolShoppy is a globally accessible, ad-funded free utility platform targeting:
 
 ---
 
+## 📈 Trend-Driven Priorities (Google Trends analysis, Jul 2026)
+
+Analysis of a Google Trends export (8 keyword clusters, UAE-weighted search profile) surfaced tool gaps with real, current search demand. This drove the roadmap changes below — see full reasoning inline in Build Priority and Keyword Clusters sections.
+
+**New tools added to the roadmap (previously zero coverage):**
+1. **PDF ⇄ Word Converter** (`word-to-pdf`, `pdf-to-word`) — the single largest untapped cluster in the data (`word to pdf free` interest 48, `pdf to word free` 47, plus dozens of "ilovepdf ___ to word" variants growing 20–30%). Build: Word→PDF via `mammoth.js` (docx→HTML) + `pdf-lib`/print-to-PDF; PDF→Word via `pdf.js` text extraction + `docx` library to rebuild a `.docx`.
+2. **Free PDF Editor (annotate)** — sustained 90–100 interest scores on "free online pdf editor" / "editor pdf online free" / "pdf editor free online" — some of the highest raw scores in the entire dataset. Scope as a canvas-overlay annotator on `pdf.js` render + `pdf-lib` save (add text, shapes, signature, redact, reorder/delete pages) — not a full WYSIWYG text editor, which isn't feasible client-side-only.
+3. **Unlock PDF / Remove Password** — pairs with the already-live PDF Password Protect tool; reuses `pdf-crypt.js` in reverse (decrypt with known password). Small lift, ships fast.
+4. **Image Upscaler / HD Enhancer** (lower priority) — smaller cluster (`image upscaler`, `hd image converter`, `4k image converter`, `enhance image`) — canvas resize + sharpen, marketed honestly as "HD Enhancer," not true AI upscaling.
+
+**Reprioritization signals (tools already on roadmap):**
+- **PDF Compress** trends harder than its Phase 2 slot suggested (`pdf file compression` 78, `compression pdf` 77) — now sequenced before Split / Image-to-PDF / PDF-to-Image.
+- **Video Compressor** (Phase 5) shows some of the largest %-increases in the whole dataset (`best video compressor` +350%, `free video compressor` interest 95) — flagged for possible pull-forward if FFmpeg.wasm bandwidth cost is acceptable.
+- **Silver Rate** trends almost as hard as Gold Rate in the UAE cluster (+250–300%) — should ship together, not as an afterthought.
+- **Currency Converter** — confirmed Gulf↔India pairs as required presets: AED→INR, SAR→INR, KWD→INR, OMR→INR, USD→INR (each appears individually in the trends data).
+
+**Enhancement, not a new tool:**
+- **QR Generator** (already live) under-serves demand — trends show dynamic QR, vCard QR, WiFi/location QR, bulk QR, and "PDF to QR" as distinct high-growth searches. Add as modes on the existing tool.
+
+**Ignored as noise:** brand/competitor terms (`microsoft word`, `google doc`, `adobe acrobat`, `canva`, `wise`, `xe`) and unrelated news/finance terms (`uae news`, `iran news`, `sensex`, `nifty 50`, `amazon uae`, `lidl near me`) — not actionable as tools.
+
+---
+
 ## 🏗️ Tech Stack
 
 | Layer | Choice | Reason |
@@ -110,10 +133,15 @@ toolshoppy/
 │   │   ├── govt-photo/index.html
 │   │   ├── background-remove/index.html
 │   │   ├── passport-photo/index.html
-│   │   └── sticker-maker/index.html
+│   │   ├── sticker-maker/index.html
+│   │   └── upscale/index.html      # NEW — trends: image upscaler, hd converter
 │   ├── pdf/
 │   │   ├── merge/index.html
+│   │   ├── word-to-pdf/index.html  # NEW — trends: word to pdf free (48)
+│   │   ├── pdf-to-word/index.html  # NEW — trends: pdf to word free (47)
 │   │   ├── compress/index.html
+│   │   ├── editor/index.html       # NEW — trends: free online pdf editor (90-100)
+│   │   ├── unlock/index.html       # NEW — pairs with live PDF Password Protect
 │   │   ├── split/index.html
 │   │   ├── image-to-pdf/index.html
 │   │   └── pdf-to-image/index.html
@@ -168,54 +196,63 @@ toolshoppy/
 **→ Apply for AdSense**
 
 ### 📋 Phase 2 — PDF Suite (Week 3–4)
-| # | Tool | URL |
-|---|---|---|
-| 6 | PDF Merge | /tools/pdf/merge/ |
-| 7 | PDF Compress | /tools/pdf/compress/ |
-| 8 | PDF Split | /tools/pdf/split/ |
-| 9 | Image to PDF | /tools/pdf/image-to-pdf/ |
-| 10 | PDF to Image | /tools/pdf/pdf-to-image/ |
+*Reordered per Google Trends analysis — word/PDF conversion and PDF editing outrank split/image-to-pdf*
+
+| # | Tool | URL | Why |
+|---|---|---|---|
+| 6 | PDF Merge | /tools/pdf/merge/ | |
+| 7 | 🔥 Word to PDF | /tools/pdf/word-to-pdf/ | NEW — highest untapped search volume in trends data |
+| 8 | 🔥 PDF to Word | /tools/pdf/pdf-to-word/ | NEW — same cluster, heavy "ilovepdf" brand-search overlap |
+| 9 | PDF Compress | /tools/pdf/compress/ | Moved up — trends harder than Split (interest 74-78) |
+| 10 | 🔥 Free PDF Editor (annotate) | /tools/pdf/editor/ | NEW — highest single interest scores in dataset (90-100) |
+| 11 | Unlock PDF | /tools/pdf/unlock/ | NEW — pairs with live PDF Password Protect, small lift |
+| 12 | PDF Split | /tools/pdf/split/ | |
+| 13 | Image to PDF | /tools/pdf/image-to-pdf/ | |
+| 14 | PDF to Image | /tools/pdf/pdf-to-image/ | |
 
 ### 📊 Phase 3 — Rates & Finance (Week 5–6)
-| # | Tool | URL |
-|---|---|---|
-| 11 | Petrol/Diesel Price | /tools/rates/petrol-price/ |
-| 12 | Currency Converter | /tools/rates/currency-converter/ |
-| 13 | EMI Calculator | /tools/finance/emi-calculator/ |
-| 14 | Income Tax Calculator | /tools/finance/income-tax/ |
-| 15 | Salary Calculator | /tools/finance/salary-calculator/ |
-| 16 | Silver Rate | /tools/rates/silver-rate/ |
+| # | Tool | URL | Why |
+|---|---|---|---|
+| 15 | Petrol/Diesel Price | /tools/rates/petrol-price/ | |
+| 16 | Currency Converter | /tools/rates/currency-converter/ | Presets: AED/SAR/KWD/OMR→INR confirmed by trends |
+| 17 | EMI Calculator | /tools/finance/emi-calculator/ | |
+| 18 | Income Tax Calculator | /tools/finance/income-tax/ | |
+| 19 | Salary Calculator | /tools/finance/salary-calculator/ | |
+| 20 | Silver Rate | /tools/rates/silver-rate/ | Ship with Gold Rate — trends almost as strong (+250-300%) |
 
 ### 📱 Phase 4 — Viral/Social (Week 7–9)
 | # | Tool | URL |
 |---|---|---|
-| 17 | WhatsApp Sticker Maker | /tools/image/sticker-maker/ |
-| 18 | Passport Photo Maker | /tools/image/passport-photo/ |
-| 19 | Fancy Font Generator | /tools/misc/font-styler/ |
-| 20 | YouTube Thumbnail Grabber | /tools/misc/yt-thumbnail/ |
-| 21 | WhatsApp Status Splitter | /tools/video/status-splitter/ |
-| 22 | Background Remover | /tools/image/background-remove/ |
+| 21 | WhatsApp Sticker Maker | /tools/image/sticker-maker/ |
+| 22 | Passport Photo Maker | /tools/image/passport-photo/ |
+| 23 | Fancy Font Generator | /tools/misc/font-styler/ |
+| 24 | YouTube Thumbnail Grabber | /tools/misc/yt-thumbnail/ |
+| 25 | WhatsApp Status Splitter | /tools/video/status-splitter/ |
+| 26 | Background Remover | /tools/image/background-remove/ |
 
 ### 🎬 Phase 5 — Video/Audio (Week 10–12)
+*Candidate to pull forward — trends show some of the largest %-increases in the dataset*
+
 | # | Tool | URL |
 |---|---|---|
-| 23 | Video Compressor | /tools/video/compress/ |
-| 24 | Video Trimmer | /tools/video/trim/ |
-| 25 | Video to MP3 | /tools/video/to-audio/ |
-| 26 | Audio Cutter / Ringtone | /tools/misc/audio-cutter/ |
+| 27 | Video Compressor | /tools/video/compress/ |
+| 28 | Video Trimmer | /tools/video/trim/ |
+| 29 | Video to MP3 | /tools/video/to-audio/ |
+| 30 | Audio Cutter / Ringtone | /tools/misc/audio-cutter/ |
 
 ### 🔧 Phase 6 — Long Tail (Ongoing)
 | # | Tool |
 |---|---|
-| 27 | Age Calculator |
-| 28 | QR Code Generator |
-| 29 | Word/Character Counter |
-| 30 | GST Calculator |
-| 31 | UAE VAT Calculator |
-| 32 | SIP/FD/RD Calculator |
-| 33 | Text to Handwriting |
-| 34 | BMI Calculator |
-| 35 | Time Zone Converter |
+| 31 | Age Calculator |
+| 32 | QR Code Generator |
+| 33 | Word/Character Counter |
+| 34 | GST Calculator |
+| 35 | UAE VAT Calculator |
+| 36 | SIP/FD/RD Calculator |
+| 37 | Text to Handwriting |
+| 38 | BMI Calculator |
+| 39 | Time Zone Converter |
+| 40 | Image Upscaler / HD Enhancer (NEW — trends: image upscaler, hd image converter) |
 
 ---
 
@@ -352,6 +389,25 @@ Create location/variant pages automatically:
 - "passport size photo maker online"
 - "fancy text generator for instagram"
 - "youtube thumbnail downloader"
+
+**Cluster 6 — Word ⇄ PDF (from trends, largest untapped cluster)**
+- "word to pdf free"
+- "pdf to word free"
+- "pdf to word online"
+- "convert word to pdf online free"
+- "pdf to word converter free online"
+
+**Cluster 7 — PDF Editor (from trends, highest raw interest scores in dataset)**
+- "free online pdf editor"
+- "editor pdf online free"
+- "online pdf editor free without login"
+- "unlock pdf"
+
+**Cluster 8 — Image Upscale/HD (from trends, smaller but zero-competition)**
+- "image upscaler"
+- "hd image converter"
+- "4k image converter"
+- "low to high resolution image converter"
 
 ---
 

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compress PDF Free Online — Reduce PDF Size, No Signup | ToolShoppy</title>
+<meta name="description" content="Compress PDF free online to reduce file size. No signup, files never leave your device. Perfect for email attachments and form uploads.">
+<meta name="keywords" content="compress pdf, pdf compression, reduce pdf file size, free pdf compressor, pdf compression online">
+<link rel="canonical" href="https://toolshoppy.com/tools/pdf/compress/">
+<meta property="og:title" content="Compress PDF — ToolShoppy">
+<meta property="og:description" content="Compress PDF free online, 100% client-side.">
+<meta property="og:image" content="https://toolshoppy.com/assets/img/og-image.jpg">
+<meta property="og:url" content="https://toolshoppy.com/tools/pdf/compress/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/icon-192.png">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#6366F1">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Compress PDF","url":"https://toolshoppy.com/tools/pdf/compress/","description":"Compress PDF free online, 100% client-side.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolshoppy.com/"},{"@type":"ListItem","position":2,"name":"PDF Tools","item":"https://toolshoppy.com/#pdf"},{"@type":"ListItem","position":3,"name":"Compress PDF","item":"https://toolshoppy.com/tools/pdf/compress/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I compress a PDF for free?","acceptedAnswer":{"@type":"Answer","text":"Upload your PDF, pick a quality (High / Medium / Low), click Compress, then download the smaller file."}},{"@type":"Question","name":"Will compression reduce quality?","acceptedAnswer":{"@type":"Answer","text":"Pages are re-rendered as optimized images. Lower quality presets shrink more but look softer. Text stays readable at Medium for most form uploads."}},{"@type":"Question","name":"Is my PDF uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. Compression runs in your browser with PDF.js and pdf-lib."}}]}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo"><svg class="icon-svg" aria-hidden="true"><use href="/assets/icons/sprite.svg#tool"></use></svg> Tool<span>Shoppy</span></a>
+    <div class="site-search"><input type="text" placeholder="Search tools…" onfocus="location.href='/'"></div>
+  </div>
+</header>
+<main class="tool-page container">
+  <p class="breadcrumb"><a href="/">Home</a> › <a href="/#pdf">PDF Tools</a> › Compress PDF</p>
+  <div class="tool-header">
+    <h1><svg class="icon-svg" aria-hidden="true"><use href="/assets/icons/sprite.svg#file-zip"></use></svg> Compress PDF</h1>
+    <p>Reduce PDF file size for email, forms, and uploads — free and private.</p>
+  </div>
+  <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
+  <div class="tool-layout with-sidebar">
+    <div class="tool-card-main">
+      <div class="drop-zone" id="dropZone">
+        <div class="icon"><svg class="icon-svg" aria-hidden="true"><use href="/assets/icons/sprite.svg#upload"></use></svg></div>
+        <p><strong>Click to upload</strong> or drag &amp; drop a PDF</p>
+        <p>Client-side compression — nothing uploaded</p>
+        <input type="file" id="fileInput" accept="application/pdf,.pdf">
+      </div>
+      <div id="controls" style="display:none;margin-top:16px;">
+        <div class="file-list" id="fileList"></div>
+        <h3 style="margin:14px 0 8px;font-size:0.95rem;">Quality</h3>
+        <div class="chip-row" id="qualityRow">
+          <button class="chip" data-q="0.92" data-scale="1.5">High</button>
+          <button class="chip active" data-q="0.72" data-scale="1.2">Medium</button>
+          <button class="chip" data-q="0.5" data-scale="1">Low</button>
+        </div>
+        <button class="btn btn-primary btn-block" id="compressBtn" style="margin-top:12px;">Compress PDF</button>
+        <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+      </div>
+      <div class="result-panel" id="resultPanel">
+        <div class="compare-row">
+          <div class="compare-box"><div class="label">Original</div><div class="value" id="origSize">-</div></div>
+          <div class="compare-box"><div class="label">Compressed</div><div class="value" id="outSize">-</div></div>
+          <div class="compare-box saved"><div class="label">Saved</div><div class="value" id="savedPct">-</div></div>
+        </div>
+        <button class="btn btn-accent btn-block" id="downloadBtn"><svg class="icon-svg" aria-hidden="true"><use href="/assets/icons/sprite.svg#download"></use></svg> Download Compressed PDF</button>
+      </div>
+      <div class="trust-badge"><svg class="icon-svg" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock"></use></svg> Your files never leave your device</div>
+    </div>
+    <aside class="sidebar">
+      <div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div>
+      <div class="info-box">
+        <h4>Tips</h4>
+        <ul>
+          <li>Use Medium for most government / email limits</li>
+          <li>Use Low when you need the smallest size</li>
+          <li>Already tiny text PDFs may not shrink further</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+  <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
+  <div class="content-section">
+    <h2>How to compress a PDF online</h2>
+    <ol>
+      <li>Upload your PDF.</li>
+      <li>Choose High, Medium, or Low quality.</li>
+      <li>Click Compress PDF and download the smaller file.</li>
+    </ol>
+  </div>
+  <div class="content-section">
+    <h2>Frequently asked questions</h2>
+    <div class="faq-item"><h3>How do I compress a PDF for free?</h3><p>Upload your PDF, pick a quality preset, click Compress, then download.</p></div>
+    <div class="faq-item"><h3>Will compression reduce quality?</h3><p>Lower presets shrink more but look softer. Medium is a good default.</p></div>
+    <div class="faq-item"><h3>Is my PDF uploaded to a server?</h3><p>No. Compression runs entirely in your browser.</p></div>
+  </div>
+  <div class="content-section">
+    <h2>Related tools</h2>
+    <div class="related-tools">
+      <a href="/tools/pdf/merge/"><svg class="icon-svg" aria-hidden="true"><use href="/assets/icons/sprite.svg#link"></use></svg> Merge PDF</a>
+      <a href="/tools/pdf/word-to-pdf/"><svg class="icon-svg" aria-hidden="true"><use href="/assets/icons/sprite.svg#file-export"></use></svg> Word to PDF</a>
+      <a href="/tools/pdf/protect/"><svg class="icon-svg" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock"></use></svg> Password Protect</a>
+    </div>
+  </div>
+</main>
+<footer class="site-footer"><div class="container"><div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div></div></footer>
+<div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
+<script src="/assets/js/ga-config.js"></script>
+<script src="/assets/js/ad-config.js"></script>
+<script src="/assets/js/core.js"></script>
+<script src="/assets/js/ads.js"></script>
+<script src="/assets/js/analytics.js"></script>
+<script src="/assets/libs/pdf.min.js"></script>
+<script src="/assets/libs/pdf-lib.min.js"></script>
+<script>
+(function () {
+  pdfjsLib.GlobalWorkerOptions.workerSrc = '/assets/libs/pdf.worker.min.js';
+  const dropZone = document.getElementById('dropZone');
+  const fileInput = document.getElementById('fileInput');
+  const controls = document.getElementById('controls');
+  const fileList = document.getElementById('fileList');
+  const qualityRow = document.getElementById('qualityRow');
+  const compressBtn = document.getElementById('compressBtn');
+  const progressBar = document.getElementById('progressBar');
+  const progressFill = document.getElementById('progressFill');
+  const resultPanel = document.getElementById('resultPanel');
+  const origSize = document.getElementById('origSize');
+  const outSize = document.getElementById('outSize');
+  const savedPct = document.getElementById('savedPct');
+  const downloadBtn = document.getElementById('downloadBtn');
+  let currentFile = null, resultBlob = null, quality = 0.72, scale = 1.2;
+
+  qualityRow.addEventListener('click', (e) => {
+    const chip = e.target.closest('.chip');
+    if (!chip) return;
+    qualityRow.querySelectorAll('.chip').forEach((c) => c.classList.remove('active'));
+    chip.classList.add('active');
+    quality = parseFloat(chip.dataset.q);
+    scale = parseFloat(chip.dataset.scale);
+  });
+
+  TS.setupDropZone(dropZone, fileInput, (files) => {
+    const file = files[0];
+    if (!file) return;
+    if (file.type !== 'application/pdf' && !file.name.toLowerCase().endsWith('.pdf')) {
+      alert('Please choose a PDF file.');
+      return;
+    }
+    currentFile = file;
+    fileList.innerHTML = '<div class="file-item"><span class="name">' + file.name + '</span><span>' + TS.formatBytes(file.size) + '</span></div>';
+    controls.style.display = 'block';
+    resultPanel.classList.remove('active');
+  });
+
+  function canvasToJpegBytes(canvas, q) {
+    return new Promise((resolve) => {
+      canvas.toBlob(async (blob) => {
+        const buf = await blob.arrayBuffer();
+        resolve(new Uint8Array(buf));
+      }, 'image/jpeg', q);
+    });
+  }
+
+  compressBtn.addEventListener('click', async () => {
+    if (!currentFile) return;
+    compressBtn.disabled = true;
+    progressBar.classList.add('active');
+    progressFill.style.width = '10%';
+    try {
+      const data = new Uint8Array(await currentFile.arrayBuffer());
+      const src = await pdfjsLib.getDocument({ data }).promise;
+      const outDoc = await PDFLib.PDFDocument.create();
+      for (let i = 1; i <= src.numPages; i++) {
+        const page = await src.getPage(i);
+        const viewport = page.getViewport({ scale });
+        const canvas = document.createElement('canvas');
+        canvas.width = Math.floor(viewport.width);
+        canvas.height = Math.floor(viewport.height);
+        await page.render({ canvasContext: canvas.getContext('2d'), viewport }).promise;
+        const jpg = await canvasToJpegBytes(canvas, quality);
+        const img = await outDoc.embedJpg(jpg);
+        const pg = outDoc.addPage([img.width, img.height]);
+        pg.drawImage(img, { x: 0, y: 0, width: img.width, height: img.height });
+        progressFill.style.width = (10 + (i / src.numPages) * 85) + '%';
+      }
+      const bytes = await outDoc.save({ useObjectStreams: false });
+      resultBlob = new Blob([bytes], { type: 'application/pdf' });
+      origSize.textContent = TS.formatBytes(currentFile.size);
+      outSize.textContent = TS.formatBytes(resultBlob.size);
+      savedPct.textContent = TS.percentSaved(currentFile.size, resultBlob.size) + '%';
+      resultPanel.classList.add('active');
+      progressFill.style.width = '100%';
+      if (window.TSAnalytics) TSAnalytics.track('tool_complete', { tool: 'pdf-compress' });
+    } catch (err) {
+      alert(err.message || 'Could not compress this PDF.');
+    } finally {
+      compressBtn.disabled = false;
+      setTimeout(() => progressBar.classList.remove('active'), 400);
+    }
+  });
+
+  downloadBtn.addEventListener('click', () => {
+    if (!resultBlob) return;
+    const base = (currentFile.name || 'document').replace(/\.pdf$/i, '');
+    TS.downloadBlob(resultBlob, base + '-compressed.pdf');
+  });
+})();
+</script>
+</body>
+</html>

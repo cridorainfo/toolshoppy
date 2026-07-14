@@ -1,0 +1,19 @@
+# Trailing-slash consistency for tool pages
+/tools/image/compress /tools/image/compress/ 301
+/tools/image/govt-photo /tools/image/govt-photo/ 301
+/tools/image/convert /tools/image/convert/ 301
+/tools/image/resize /tools/image/resize/ 301
+/tools/pdf/protect /tools/pdf/protect/ 301
+/tools/pdf/merge /tools/pdf/merge/ 301
+/tools/pdf/word-to-pdf /tools/pdf/word-to-pdf/ 301
+/tools/pdf/pdf-to-word /tools/pdf/pdf-to-word/ 301
+/tools/pdf/compress /tools/pdf/compress/ 301
+/tools/pdf/editor /tools/pdf/editor/ 301
+/tools/pdf/unlock /tools/pdf/unlock/ 301
+/tools/misc/qr-generator /tools/misc/qr-generator/ 301
+
+# Pretty URLs for legal pages (optional)
+/about /about.html 200
+/privacy /privacy.html 200
+/terms /terms.html 200
+/contact /contact.html 200

@@ -9,12 +9,15 @@
 <link rel="canonical" href="https://toolshoppy.com/tools/image/resize/">
 <meta property="og:title" content="Image Resizer — ToolShoppy">
 <meta property="og:description" content="Resize any image online free by exact pixels or percentage, 100% client-side.">
-<meta property="og:image" content="https://toolshoppy.com/assets/img/og-image.svg">
+<meta property="og:image" content="https://toolshoppy.com/assets/img/og-image.jpg">
 <meta property="og:url" content="https://toolshoppy.com/tools/image/resize/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/icon-192.png">
 <link rel="stylesheet" href="/assets/css/main.css">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#6366F1">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
 <script type="application/ld+json">
 {
@@ -72,7 +75,7 @@
 
 <header class="site-header">
   <div class="container">
-    <a href="/" class="logo">🛠️ Tool<span>Shoppy</span></a>
+    <a href="/" class="logo"><svg class="icon-svg" aria-hidden="true"><use href="/assets/icons/sprite.svg#tool"></use></svg> Tool<span>Shoppy</span></a>
     <div class="site-search"><input type="text" placeholder="Search tools…" onfocus="location.href='/'"></div>
   </div>
 </header>
@@ -81,17 +84,17 @@
   <p class="breadcrumb"><a href="/">Home</a> › <a href="/#image">Image Tools</a> › Image Resizer</p>
 
   <div class="tool-header">
-    <h1>📐 Image Resizer</h1>
+    <h1><svg class="icon-svg" aria-hidden="true"><use href="/assets/icons/sprite.svg#ruler-2"></use></svg> Image Resizer</h1>
     <p>Resize by exact pixels or by percentage — keep aspect ratio or set custom dimensions.</p>
   </div>
 
-  <div class="ad-slot ad-top">Advertisement</div>
+  <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
 
   <div class="tool-layout with-sidebar">
     <div class="tool-card-main">
 
       <div class="drop-zone" id="dropZone">
-        <div class="icon">📤</div>
+        <div class="icon"><svg class="icon-svg" aria-hidden="true"><use href="/assets/icons/sprite.svg#upload"></use></svg></div>
         <p><strong>Click to upload</strong> or drag & drop</p>
         <p>JPG, PNG, WebP supported</p>
         <input type="file" id="fileInput" accept="image/*">
@@ -131,15 +134,15 @@
             <div class="value" id="outFileSize">-</div>
           </div>
         </div>
-        <img id="previewImg" style="border-radius:8px;border:1px solid var(--border);max-height:280px;margin-bottom:16px;">
-        <button class="btn btn-accent btn-block" id="downloadBtn">⬇ Download Resized Image</button>
+        <img id="previewImg" alt="Processed image preview" style="border-radius:8px;border:1px solid var(--border);max-height:280px;margin-bottom:16px;">
+        <button class="btn btn-accent btn-block" id="downloadBtn"><svg class="icon-svg" aria-hidden="true"><use href="/assets/icons/sprite.svg#download"></use></svg> Download Resized Image</button>
       </div>
 
-      <div class="trust-badge">🔒 Your files never leave your device</div>
+      <div class="trust-badge"><svg class="icon-svg" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock"></use></svg> Your files never leave your device</div>
     </div>
 
     <aside class="sidebar">
-      <div class="ad-slot ad-sidebar">Advertisement</div>
+      <div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div>
       <div class="info-box">
         <h4>Tips</h4>
         <ul>
@@ -151,6 +154,7 @@
     </aside>
   </div>
 
+  <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
   <div class="content-section">
     <h2>How to resize an image online</h2>
     <ol>
@@ -161,6 +165,7 @@
     </ol>
   </div>
 
+  <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
   <div class="content-section">
     <h2>Frequently asked questions</h2>
     <div class="faq-item">
@@ -182,13 +187,24 @@
   </div>
 </main>
 
+  <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
+  <div class="content-section">
+    <h2>Related tools</h2>
+    <div class="related-tools">
+      <a href="/tools/image/compress/"><svg class="icon-svg" aria-hidden="true"><use href="/assets/icons/sprite.svg#arrows-minimize"></use></svg> Image Compressor</a>
+      <a href="/tools/image/govt-photo/"><svg class="icon-svg" aria-hidden="true"><use href="/assets/icons/sprite.svg#id"></use></svg> Govt Photo Resizer</a>
+      <a href="/tools/image/convert/"><svg class="icon-svg" aria-hidden="true"><use href="/assets/icons/sprite.svg#refresh"></use></svg> Image Converter</a>
+    </div>
+  </div>
 <footer class="site-footer">
   <div class="container">
     <div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div>
   </div>
 </footer>
-<div class="ad-slot ad-sticky-footer">Advertisement</div>
+<div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
 
+<script src="/assets/js/ga-config.js"></script>
+<script src="/assets/js/ad-config.js"></script>
 <script src="/assets/js/core.js"></script>
 <script src="/assets/js/ads.js"></script>
 <script src="/assets/js/analytics.js"></script>

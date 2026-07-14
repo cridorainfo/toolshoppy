@@ -102,8 +102,20 @@ font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 ### Session 5:
 `tools/rates/gold-rate/index.html` — Kerala + India + UAE gold rate
 
-### Sessions 6–10:
-PDF suite (merge, compress, split, image-to-pdf, pdf-to-image)
+### Session 6 — NEXT (trend-driven, see README.md "Trend-Driven Priorities"):
+`tools/pdf/word-to-pdf/index.html` and `tools/pdf/pdf-to-word/index.html` — highest untapped search volume found in Google Trends analysis (Jul 2026). Word→PDF via `mammoth.js` (docx→HTML) + `pdf-lib`; PDF→Word via `pdf.js` text extraction + `docx` library. Ship both together since they share the same UI shell.
+
+### Session 7 (already live — PDF Merge, PDF Password Protect built ahead of schedule):
+`tools/pdf/compress/index.html` — PDF Compress, moved up in priority (trends: "pdf file compression" interest 78)
+
+### Session 8 (trend-driven, NEW — not in original plan):
+`tools/pdf/editor/index.html` — Free PDF Editor (annotate). Canvas overlay on `pdf.js` render + `pdf-lib` save: add text, shapes, signature, redact/whiteout, reorder/delete pages. Trends show 90-100 sustained interest on "free online pdf editor" variants — do not attempt full WYSIWYG text re-flow, that's not feasible client-side-only.
+
+### Session 9 (trend-driven, NEW — pairs with live PDF Password Protect):
+`tools/pdf/unlock/index.html` — Unlock/remove PDF password. Reuse `pdf-crypt.js` in reverse (decrypt given a known password).
+
+### Sessions 10–12:
+Remaining PDF suite (split, image-to-pdf, pdf-to-image)
 
 ## File Naming Convention
 - All lowercase, hyphens not underscores
@@ -118,3 +130,24 @@ PDF suite (merge, compress, split, image-to-pdf, pdf-to-image)
 - No file upload to any server
 - No popups or interstitials (AdSense policy)
 - No video downloader tools (copyright / AdSense ban risk)
+
+## AdSense go-live runbook
+1. Keep Auto ads script in page `<head>` (already present).
+2. After AdSense approval, create 4 units in the AdSense dashboard:
+   - Top leaderboard (responsive)
+   - Sidebar rectangle (300×250)
+   - In-content (responsive)
+   - Sticky footer mobile (responsive)
+3. Paste the unit slot IDs into [`assets/js/ad-config.js`](assets/js/ad-config.js) (`slots.top`, `slots.sidebar`, `slots.incontent`, `slots.stickyFooterMobile`).
+4. Redeploy — [`assets/js/ads.js`](assets/js/ads.js) injects real `<ins class="adsbygoogle">` units site-wide automatically.
+5. Until slot IDs are set, reserved-height placeholders keep CLS stable and Auto ads can still serve.
+
+## GA4 go-live
+1. Create a GA4 property and copy the Measurement ID (`G-XXXXXXXX`).
+2. Set `window.TS_GA_ID` in [`assets/js/ga-config.js`](assets/js/ga-config.js).
+3. Redeploy — [`assets/js/analytics.js`](assets/js/analytics.js) loads gtag and exposes `TSAnalytics.track()`.
+
+## Icons
+- Self-hosted Tabler Icons (MIT) sprite at `/assets/icons/sprite.svg`
+- Usage: `<svg class="icon-svg" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock"></use></svg>`
+- Do not use emoji icons on new pages.

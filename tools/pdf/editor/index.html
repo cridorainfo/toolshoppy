@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDF Editor Free Online — Annotate PDF, No Signup | ToolShoppy</title>
+<meta name="description" content="Edit PDF free online — add text, highlight, redact, and sign. No signup, files never leave your device.">
+<meta name="keywords" content="free online pdf editor, pdf editor free online, online pdf editor free, pdf editor without login">
+<link rel="canonical" href="https://toolshoppy.com/tools/pdf/editor/">
+<meta property="og:title" content="PDF Editor — ToolShoppy">
+<meta property="og:description" content="Annotate and edit PDFs free online, 100% client-side.">
+<meta property="og:image" content="https://toolshoppy.com/assets/img/og-image.jpg">
+<meta property="og:url" content="https://toolshoppy.com/tools/pdf/editor/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/icon-192.png">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#6366F1">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+<style>
+.editor-toolbar{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0;}
+.editor-toolbar .chip.active{background:var(--primary);color:#fff;border-color:var(--primary);}
+.editor-stage{position:relative;overflow:auto;max-height:70vh;border:1px solid var(--border);border-radius:var(--radius-sm);background:#e2e8f0;padding:12px;text-align:center;}
+.editor-stage canvas{display:block;margin:0 auto;max-width:100%;background:#fff;box-shadow:var(--shadow-md);cursor:crosshair;}
+.page-nav{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:10px;}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"PDF Editor","url":"https://toolshoppy.com/tools/pdf/editor/","description":"Annotate and edit PDFs free online, 100% client-side.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I edit PDF text online for free?","acceptedAnswer":{"@type":"Answer","text":"ToolShoppy’s free PDF editor lets you annotate: add text boxes, highlight, whiteout/redact, and draw. Full reflow of existing PDF text is not supported client-side."}},{"@type":"Question","name":"Do I need to create an account?","acceptedAnswer":{"@type":"Answer","text":"No. Editing runs in your browser with no signup."}}]}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo"><svg class="icon-svg" aria-hidden="true"><use href="/assets/icons/sprite.svg#tool"></use></svg> Tool<span>Shoppy</span></a>
+    <div class="site-search"><input type="text" placeholder="Search tools…" onfocus="location.href='/'"></div>
+  </div>
+</header>
+<main class="tool-page container">
+  <p class="breadcrumb"><a href="/">Home</a> › <a href="/#pdf">PDF Tools</a> › PDF Editor</p>
+  <div class="tool-header">
+    <h1><svg class="icon-svg" aria-hidden="true"><use href="/assets/icons/sprite.svg#file-pencil"></use></svg> PDF Editor</h1>
+    <p>Annotate, highlight, redact, and sign — free, no login.</p>
+  </div>
+  <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
+  <div class="tool-layout with-sidebar">
+    <div class="tool-card-main">
+      <div class="drop-zone" id="dropZone">
+        <div class="icon"><svg class="icon-svg" aria-hidden="true"><use href="/assets/icons/sprite.svg#upload"></use></svg></div>
+        <p><strong>Click to upload</strong> or drag &amp; drop a PDF to edit</p>
+        <input type="file" id="fileInput" accept="application/pdf,.pdf">
+      </div>
+      <div id="editorUI" style="display:none;">
+        <div class="editor-toolbar" id="toolbar">
+          <button class="chip active" data-tool="pen">Draw</button>
+          <button class="chip" data-tool="highlighter">Highlight</button>
+          <button class="chip" data-tool="text">Text</button>
+          <button class="chip" data-tool="redact">Redact</button>
+          <button class="chip" data-tool="erase">Erase</button>
+        </div>
+        <div class="editor-stage"><canvas id="editCanvas"></canvas></div>
+        <div class="page-nav">
+          <button class="btn" id="prevPage" type="button">‹ Prev</button>
+          <span id="pageLabel">Page 1 / 1</span>
+          <button class="btn" id="nextPage" type="button">Next ›</button>
+        </div>
+        <button class="btn btn-primary btn-block" id="saveBtn" style="margin-top:14px;">Save Annotated PDF</button>
+        <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+        <div class="result-panel" id="resultPanel">
+          <button class="btn btn-accent btn-block" id="downloadBtn"><svg class="icon-svg" aria-hidden="true"><use href="/assets/icons/sprite.svg#download"></use></svg> Download Edited PDF</button>
+        </div>
+      </div>
+      <div class="trust-badge"><svg class="icon-svg" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock"></use></svg> Your files never leave your device</div>
+    </div>
+    <aside class="sidebar">
+      <div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div>
+      <div class="info-box">
+        <h4>Tools</h4>
+        <ul>
+          <li><strong>Draw</strong> — freehand ink</li>
+          <li><strong>Highlight</strong> — translucent yellow</li>
+          <li><strong>Text</strong> — click to place a label</li>
+          <li><strong>Redact</strong> — solid black whiteout</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+  <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
+  <div class="content-section">
+    <h2>Free online PDF editor — no signup</h2>
+    <p>Annotate contracts, forms, and homework without creating an account. Your PDF stays on your device.</p>
+  </div>
+  <div class="content-section">
+    <h2>Frequently asked questions</h2>
+    <div class="faq-item"><h3>Can I edit existing PDF text?</h3><p>This editor adds annotations on top of pages (text, draw, highlight, redact). Full reflow editing of native PDF text isn’t available client-side.</p></div>
+    <div class="faq-item"><h3>Do I need an account?</h3><p>No — never.</p></div>
+  </div>
+  <div class="content-section">
+    <h2>Related tools</h2>
+    <div class="related-tools">
+      <a href="/tools/pdf/unlock/"><svg class="icon-svg" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock-open"></use></svg> Unlock PDF</a>
+      <a href="/tools/pdf/protect/"><svg class="icon-svg" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock"></use></svg> Password Protect</a>
+      <a href="/tools/pdf/compress/"><svg class="icon-svg" aria-hidden="true"><use href="/assets/icons/sprite.svg#file-zip"></use></svg> PDF Compress</a>
+    </div>
+  </div>
+</main>
+<footer class="site-footer"><div class="container"><div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div></div></footer>
+<div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
+<script src="/assets/js/ga-config.js"></script>
+<script src="/assets/js/ad-config.js"></script>
+<script src="/assets/js/core.js"></script>
+<script src="/assets/js/ads.js"></script>
+<script src="/assets/js/analytics.js"></script>
+<script src="/assets/libs/pdf.min.js"></script>
+<script src="/assets/libs/pdf-lib.min.js"></script>
+<script>
+(function () {
+  pdfjsLib.GlobalWorkerOptions.workerSrc = '/assets/libs/pdf.worker.min.js';
+  const dropZone = document.getElementById('dropZone');
+  const fileInput = document.getElementById('fileInput');
+  const editorUI = document.getElementById('editorUI');
+  const canvas = document.getElementById('editCanvas');
+  const ctx = canvas.getContext('2d');
+  const toolbar = document.getElementById('toolbar');
+  const pageLabel = document.getElementById('pageLabel');
+  const prevPage = document.getElementById('prevPage');
+  const nextPage = document.getElementById('nextPage');
+  const saveBtn = document.getElementById('saveBtn');
+  const progressBar = document.getElementById('progressBar');
+  const progressFill = document.getElementById('progressFill');
+  const resultPanel = document.getElementById('resultPanel');
+  const downloadBtn = document.getElementById('downloadBtn');
+
+  let pdfDoc = null, pageNum = 1, tool = 'pen', drawing = false;
+  let overlays = {}; // pageNum -> canvas ImageData snapshot stack base
+  let baseCanvases = {};
+  let currentFile = null, resultBlob = null;
+  let lastX = 0, lastY = 0;
+
+  function getScale() { return Math.min(1.4, (window.innerWidth - 48) / 600); }
+
+  async function renderPage(num) {
+    const page = await pdfDoc.getPage(num);
+    const viewport = page.getViewport({ scale: getScale() });
+    canvas.width = Math.floor(viewport.width);
+    canvas.height = Math.floor(viewport.height);
+    await page.render({ canvasContext: ctx, viewport }).promise;
+    if (!baseCanvases[num]) {
+      baseCanvases[num] = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    } else {
+      ctx.putImageData(baseCanvases[num], 0, 0);
+    }
+    if (overlays[num]) ctx.drawImage(overlays[num], 0, 0);
+    pageLabel.textContent = 'Page ' + num + ' / ' + pdfDoc.numPages;
+  }
+
+  function snapshotOverlay() {
+    const o = document.createElement('canvas');
+    o.width = canvas.width; o.height = canvas.height;
+    o.getContext('2d').drawImage(canvas, 0, 0);
+    // Rebuild: base + keep current as overlay by storing full page look
+    overlays[pageNum] = o;
+    baseCanvases[pageNum] = null; // force re-merge via full canvas
+    // Actually store annotated full frame as new base
+    baseCanvases[pageNum] = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    overlays[pageNum] = null;
+  }
+
+  toolbar.addEventListener('click', (e) => {
+    const chip = e.target.closest('.chip');
+    if (!chip) return;
+    toolbar.querySelectorAll('.chip').forEach((c) => c.classList.remove('active'));
+    chip.classList.add('active');
+    tool = chip.dataset.tool;
+  });
+
+  function pos(e) {
+    const r = canvas.getBoundingClientRect();
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    return {
+      x: (clientX - r.left) * (canvas.width / r.width),
+      y: (clientY - r.top) * (canvas.height / r.height)
+    };
+  }
+
+  function startDraw(e) {
+    e.preventDefault();
+    if (tool === 'text') {
+      const p = pos(e);
+      const t = prompt('Enter text:');
+      if (t) {
+        ctx.fillStyle = '#1e293b';
+        ctx.font = Math.max(16, canvas.width * 0.028) + 'px sans-serif';
+        ctx.fillText(t, p.x, p.y);
+        snapshotOverlay();
+      }
+      return;
+    }
+    drawing = true;
+    const p = pos(e);
+    lastX = p.x; lastY = p.y;
+  }
+  function moveDraw(e) {
+    if (!drawing) return;
+    e.preventDefault();
+    const p = pos(e);
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    if (tool === 'pen') {
+      ctx.strokeStyle = '#1e293b'; ctx.lineWidth = 2; ctx.globalAlpha = 1;
+    } else if (tool === 'highlighter') {
+      ctx.strokeStyle = '#facc15'; ctx.lineWidth = 14; ctx.globalAlpha = 0.35;
+    } else if (tool === 'redact') {
+      ctx.strokeStyle = '#000'; ctx.lineWidth = 18; ctx.globalAlpha = 1;
+    } else if (tool === 'erase') {
+      ctx.strokeStyle = '#fff'; ctx.lineWidth = 18; ctx.globalAlpha = 1;
+    }
+    ctx.beginPath();
+    ctx.moveTo(lastX, lastY);
+    ctx.lineTo(p.x, p.y);
+    ctx.stroke();
+    ctx.globalAlpha = 1;
+    lastX = p.x; lastY = p.y;
+  }
+  function endDraw() {
+    if (!drawing) return;
+    drawing = false;
+    snapshotOverlay();
+  }
+
+  canvas.addEventListener('mousedown', startDraw);
+  canvas.addEventListener('mousemove', moveDraw);
+  window.addEventListener('mouseup', endDraw);
+  canvas.addEventListener('touchstart', startDraw, { passive: false });
+  canvas.addEventListener('touchmove', moveDraw, { passive: false });
+  canvas.addEventListener('touchend', endDraw);
+
+  prevPage.addEventListener('click', async () => {
+    if (pageNum <= 1) return;
+    pageNum--;
+    await renderPage(pageNum);
+  });
+  nextPage.addEventListener('click', async () => {
+    if (!pdfDoc || pageNum >= pdfDoc.numPages) return;
+    pageNum++;
+    await renderPage(pageNum);
+  });
+
+  TS.setupDropZone(dropZone, fileInput, async (files) => {
+    const file = files[0];
+    if (!file) return;
+    currentFile = file;
+    try {
+      const data = new Uint8Array(await file.arrayBuffer());
+      pdfDoc = await pdfjsLib.getDocument({ data }).promise;
+      pageNum = 1;
+      overlays = {}; baseCanvases = {};
+      dropZone.style.display = 'none';
+      editorUI.style.display = 'block';
+      await renderPage(1);
+    } catch (err) {
+      alert(err.message || 'Could not open PDF.');
+    }
+  });
+
+  saveBtn.addEventListener('click', async () => {
+    if (!pdfDoc) return;
+    saveBtn.disabled = true;
+    progressBar.classList.add('active');
+    progressFill.style.width = '10%';
+    try {
+      // Persist current page first
+      snapshotOverlay();
+      const outDoc = await PDFLib.PDFDocument.create();
+      for (let i = 1; i <= pdfDoc.numPages; i++) {
+        if (i === pageNum && !baseCanvases[i]) snapshotOverlay();
+        if (!baseCanvases[i]) {
+          pageNum = i;
+          await renderPage(i);
+          snapshotOverlay();
+        }
+        const imgData = baseCanvases[i];
+        const tmp = document.createElement('canvas');
+        tmp.width = imgData.width; tmp.height = imgData.height;
+        tmp.getContext('2d').putImageData(imgData, 0, 0);
+        const jpg = await new Promise((res) => tmp.toBlob(async (b) => res(new Uint8Array(await b.arrayBuffer())), 'image/jpeg', 0.92));
+        const embedded = await outDoc.embedJpg(jpg);
+        const pg = outDoc.addPage([embedded.width, embedded.height]);
+        pg.drawImage(embedded, { x: 0, y: 0, width: embedded.width, height: embedded.height });
+        progressFill.style.width = (10 + (i / pdfDoc.numPages) * 85) + '%';
+      }
+      const bytes = await outDoc.save();
+      resultBlob = new Blob([bytes], { type: 'application/pdf' });
+      resultPanel.classList.add('active');
+      progressFill.style.width = '100%';
+      if (window.TSAnalytics) TSAnalytics.track('tool_complete', { tool: 'pdf-editor' });
+    } catch (err) {
+      alert(err.message || 'Could not save PDF.');
+    } finally {
+      saveBtn.disabled = false;
+      setTimeout(() => progressBar.classList.remove('active'), 400);
+    }
+  });
+
+  downloadBtn.addEventListener('click', () => {
+    if (!resultBlob) return;
+    const base = (currentFile.name || 'document').replace(/\.pdf$/i, '');
+    TS.downloadBlob(resultBlob, base + '-edited.pdf');
+  });
+})();
+</script>
+</body>
+</html>

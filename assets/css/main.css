@@ -64,6 +64,27 @@ button { font-family: inherit; cursor: pointer; }
   white-space: nowrap;
 }
 .logo span { color: var(--accent); }
+.logo .icon-svg {
+  width: 1.35em;
+  height: 1.35em;
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+/* Tabler SVG icons (sprite) */
+.icon-svg {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vertical-align: -0.15em;
+  flex-shrink: 0;
+}
+.icon-svg use { pointer-events: none; }
 
 .site-search {
   flex: 1;
@@ -201,8 +222,16 @@ button { font-family: inherit; cursor: pointer; }
   border-color: var(--primary);
 }
 .tool-card .icon {
-  font-size: 1.6rem;
-  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  color: var(--primary);
+  height: 2rem;
+}
+.tool-card .icon .icon-svg {
+  width: 1.75rem;
+  height: 1.75rem;
 }
 .tool-card h3 {
   font-size: 0.82rem;
@@ -279,7 +308,14 @@ button { font-family: inherit; cursor: pointer; }
   background: var(--bg);
 }
 .drop-zone.dragover { border-color: var(--primary); background: #EEF2FF; }
-.drop-zone .icon { font-size: 2.5rem; margin-bottom: 10px; }
+.drop-zone .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  color: var(--primary);
+}
+.drop-zone .icon .icon-svg { width: 2.5rem; height: 2.5rem; }
 .drop-zone p { color: var(--text-muted); font-size: 0.9rem; }
 .drop-zone strong { color: var(--primary-dark); }
 .drop-zone input[type=file] { display: none; }
@@ -373,22 +409,29 @@ button { font-family: inherit; cursor: pointer; }
 .info-box h4 { font-size: 0.9rem; color: var(--text); margin-bottom: 8px; }
 .info-box ul { padding-left: 18px; margin-top: 6px; }
 
-/* Ads */
+/* Ads — reserved heights for CLS; real units injected by ads.js when slot IDs exist */
 .ad-slot {
-  background: var(--card);
-  border: 1px solid var(--border);
+  background: var(--bg);
+  border: 1px dashed var(--border);
   border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--text-muted);
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   overflow: hidden;
   min-height: 90px;
+  width: 100%;
 }
-.ad-top { margin: 16px 0; }
+.ad-slot[data-ad-ready="1"] {
+  background: transparent;
+  border-style: solid;
+  border-color: transparent;
+}
+.ad-slot .ad-label { opacity: 0.55; letter-spacing: 0.04em; text-transform: uppercase; }
+.ad-top { margin: 16px 0; min-height: 90px; }
 .ad-sidebar { min-height: 250px; }
-.ad-incontent { margin: 24px 0; }
+.ad-incontent { margin: 24px 0; min-height: 90px; }
 .ad-sticky-footer {
   position: fixed;
   left: 0; right: 0; bottom: 0;
@@ -454,10 +497,56 @@ button { font-family: inherit; cursor: pointer; }
   .tool-grid, .featured-grid { grid-template-columns: repeat(6, 1fr); }
 }
 
-/* Real AdSense Auto ads is active (see <head> script) — hide our own
-   placeholder boxes so we never show a fake "Advertisement" label
-   alongside or instead of a real ad. */
-.ad-slot { display: none !important; }
+.tool-header h1 .icon-svg {
+  width: 1.15em;
+  height: 1.15em;
+  color: var(--primary);
+  vertical-align: -0.2em;
+  margin-right: 4px;
+}
+.related-tools {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+.related-tools a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text);
+  transition: border-color .15s, box-shadow .15s;
+}
+.related-tools a:hover {
+  border-color: var(--primary);
+  box-shadow: var(--shadow);
+  color: var(--primary-dark);
+}
+.related-tools .icon-svg { width: 1.25rem; height: 1.25rem; color: var(--primary); }
+
+.filter-chip .icon-svg {
+  width: 1em;
+  height: 1em;
+  margin-right: 4px;
+  vertical-align: -0.2em;
+}
+.section-title .icon-svg {
+  width: 1.1em;
+  height: 1.1em;
+  vertical-align: -0.15em;
+  margin-right: 4px;
+}
+.trust-badge .icon-svg {
+  width: 1.1em;
+  height: 1.1em;
+  color: #047857;
+}
 
 /* Tool page SEO content: How it works + FAQ */
 .content-section {
