@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<script>(function(){try{var t=localStorage.getItem('ts-theme');if(!t){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ToolShoppy — Free Online Tools, No Signup | Compress, Convert, Resize</title>
 <meta name="description" content="ToolShoppy is your one-stop shop for every free online tool — image compressor, PDF password protect, PDF merge, Word to PDF, govt photo resizer, QR code generator and more. 100% free, no signup, files never leave your device.">
@@ -17,7 +18,7 @@
 <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/img/icon-192.png">
 <link rel="manifest" href="/manifest.json">
-<meta name="theme-color" content="#6366F1">
+<meta name="theme-color" content="#E11D48">
 <link rel="stylesheet" href="/assets/css/main.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
 <script type="application/ld+json">
@@ -53,12 +54,17 @@
     <div class="site-search">
       <input type="text" id="toolSearch" placeholder="Search tools… e.g. compress image, gold rate" aria-label="Search tools">
     </div>
+    <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode">
+      <svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg>
+      <svg class="icon-svg theme-icon-moon" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#moon"></use></svg>
+    </button>
   </div>
 </header>
 
 <main>
   <section class="hero container">
-    <h1>Your one-stop shop for every free tool</h1>
+    <span class="hero-badge"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sparkles"></use></svg> 100% private, zero signup</span>
+    <h1>Your one-stop shop for <span class="hero-accent">every free tool</span></h1>
     <p>No signup. No login. No file ever leaves your device.</p>
   </section>
 

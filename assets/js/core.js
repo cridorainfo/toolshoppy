@@ -117,6 +117,15 @@
     });
   }
 
+  // Theme is applied pre-paint by an inline <head> script (see page <head>);
+  // this just flips + persists it after the toggle button is clicked.
+  function toggleTheme() {
+    const root = document.documentElement;
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('ts-theme', next); } catch (e) { /* private mode */ }
+  }
+
   global.TS = {
     formatBytes,
     percentSaved,
@@ -124,5 +133,6 @@
     downloadBlob,
     loadImage,
     canvasToTargetSize,
+    toggleTheme,
   };
 })(window);

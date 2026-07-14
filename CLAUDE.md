@@ -21,22 +21,31 @@ Goal: Beat them on UX, speed, privacy, and India/Gulf localisation.
 
 ## Design System
 
+Premium crimson/rose-gold palette (switched from the original indigo scheme in Jul 2026). Full source of truth is [`assets/css/main.css`](assets/css/main.css) `:root` — copy from there, not from this snippet, if the two ever drift.
+
 ```css
 :root {
-  --primary: #6366F1;
-  --primary-dark: #4F46E5;
+  --primary: #E11D48;
+  --primary-dark: #BE123C;
+  --primary-darker: #9F1239;
+  --primary-tint: #FFF1F2;
   --accent: #F59E0B;
   --success: #10B981;
-  --bg: #F8FAFC;
+  --bg: #FAF9FA;
   --card: #FFFFFF;
   --text: #1E293B;
   --text-muted: #64748B;
   --border: #E2E8F0;
   --shadow: 0 1px 3px rgba(0,0,0,0.08);
-  --radius: 12px;
+  --shadow-premium: 0 12px 30px -10px rgba(225,29,72,0.16);
+  --radius: 16px;
 }
 font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 ```
+
+**Dark mode**: every page supports a light/dark toggle via `[data-theme="dark"]` on `<html>`, persisted in `localStorage` under `ts-theme` and applied pre-paint by a tiny inline script in `<head>` (to avoid a flash of the wrong theme) — see `index.html` for the pattern. `assets/js/core.js` exposes `TS.toggleTheme()`, wired to a `.theme-toggle` button in the header (self-hosted `sun`/`moon` icons in `assets/icons/sprite.svg`). When adding new components, use CSS custom properties (`var(--card)`, `var(--border)`, etc.) rather than hardcoded hex so they respond to dark mode automatically — see the `:root[data-theme="dark"]` overrides in `main.css` for hardcoded colors that needed explicit dark variants (drop-zone gradient, icon-tile pastels, trust-badge, pdf-tile hover states).
+
+Cards, buttons, chips, and tool-page components (`.tool-card`, `.btn`, `.filter-chip`, `.drop-zone`, `.pdf-tile`, etc.) are defined once in `main.css` and reused everywhere — do not redefine card/button styles inline on a per-page basis.
 
 ## Ad Slot Template (paste in every tool page)
 
