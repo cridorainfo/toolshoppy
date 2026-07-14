@@ -36,7 +36,8 @@
 <main class="tool-page container">
   <p class="breadcrumb"><a href="/">Home</a> › <a href="/#pdf">PDF Tools</a> › Unlock PDF</p>
   <div class="tool-header">
-    <h1><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock-open"></use></svg> Unlock PDF</h1>
+    <div class="icon-tile icon-tile--lg icon-tile--emerald"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock-open"></use></svg></div>
+    <h1>Unlock PDF</h1>
     <p>Remove password protection when you already know the password.</p>
   </div>
   <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
@@ -44,11 +45,13 @@
     <div class="tool-card-main">
       <div class="drop-zone" id="dropZone">
         <div class="icon"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#upload"></use></svg></div>
-        <p><strong>Click to upload</strong> or drag &amp; drop a locked PDF</p>
+        <div class="dz-cta">Select PDF file</div>
+        <p>or drop a locked PDF here</p>
+        <p class="drop-zone-hint">Enter the password below to unlock. Nothing is uploaded.</p>
         <input type="file" id="fileInput" accept="application/pdf,.pdf">
       </div>
       <div id="controls" style="display:none;margin-top:16px;">
-        <div class="file-list" id="fileList"></div>
+        <div class="pdf-preview-single" id="pdfPreview" aria-live="polite"></div>
         <label style="display:block;font-size:0.9rem;font-weight:600;margin:12px 0 6px;">PDF password</label>
         <input type="password" id="pw" placeholder="Enter the current password" style="width:100%;padding:12px;border:1px solid var(--border);border-radius:8px;margin-bottom:12px;">
         <p id="pwError" style="display:none;color:var(--danger);font-size:0.85rem;margin-bottom:10px;"></p>
@@ -93,9 +96,26 @@
   <div class="content-section">
     <h2>Related tools</h2>
     <div class="related-tools">
-      <a href="/tools/pdf/protect/"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock"></use></svg> Password Protect</a>
-      <a href="/tools/pdf/editor/"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#file-pencil"></use></svg> PDF Editor</a>
-      <a href="/tools/pdf/compress/"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#file-zip"></use></svg> PDF Compress</a>
+      <a href="/tools/pdf/protect/">
+        <span class="icon-tile icon-tile--sm icon-tile--rose"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock"></use></svg></span>
+        Password Protect
+        <span class="related-desc">Encrypt Aadhaar, PAN, and contracts</span>
+      </a>
+      <a href="/tools/pdf/editor/">
+        <span class="icon-tile icon-tile--sm icon-tile--violet"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#file-pencil"></use></svg></span>
+        PDF Editor
+        <span class="related-desc">Annotate, highlight, redact, sign</span>
+      </a>
+      <a href="/tools/pdf/compress/">
+        <span class="icon-tile icon-tile--sm icon-tile--orange"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#file-zip"></use></svg></span>
+        PDF Compress
+        <span class="related-desc">Shrink PDF file size for email &amp; uploads</span>
+      </a>
+      <a href="/tools/pdf/merge/">
+        <span class="icon-tile icon-tile--sm icon-tile--amber"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#link"></use></svg></span>
+        Merge PDF
+        <span class="related-desc">Combine multiple PDFs into one file</span>
+      </a>
     </div>
   </div>
 </main>
@@ -108,13 +128,14 @@
 <script src="/assets/js/analytics.js"></script>
 <script src="/assets/libs/pdf.min.js"></script>
 <script src="/assets/libs/pdf-lib.min.js"></script>
+<script src="/assets/js/pdf-preview.js"></script>
 <script>
 (function () {
   pdfjsLib.GlobalWorkerOptions.workerSrc = '/assets/libs/pdf.worker.min.js';
   const dropZone = document.getElementById('dropZone');
   const fileInput = document.getElementById('fileInput');
   const controls = document.getElementById('controls');
-  const fileList = document.getElementById('fileList');
+  const pdfPreview = document.getElementById('pdfPreview');
   const pw = document.getElementById('pw');
   const pwError = document.getElementById('pwError');
   const unlockBtn = document.getElementById('unlockBtn');
@@ -126,14 +147,38 @@
   const downloadBtn = document.getElementById('downloadBtn');
   let currentFile = null, resultBlob = null;
 
+  async function showPdfPreview(file) {
+    pdfPreview.innerHTML = '';
+    let thumb;
+    try {
+      thumb = await TSPdfPreview.renderPdfThumb(file, { maxWidth: 200 });
+    } catch (e) {
+      thumb = TSPdfPreview.placeholderThumb('Locked');
+    }
+    pdfPreview.appendChild(TSPdfPreview.createPdfTile(file, thumb, '', 0));
+    const info = document.createElement('div');
+    info.className = 'pdf-preview-info';
+    const pages = thumb.pageCount != null
+      ? thumb.pageCount + (thumb.pageCount === 1 ? ' page' : ' pages')
+      : 'Preview locked until unlocked';
+    info.innerHTML = '<h3></h3><p></p>';
+    info.querySelector('h3').textContent = file.name || 'document.pdf';
+    info.querySelector('p').textContent = TS.formatBytes(file.size) + ' · ' + pages;
+    pdfPreview.appendChild(info);
+  }
+
   TS.setupDropZone(dropZone, fileInput, (files) => {
     const file = files[0];
     if (!file) return;
+    if (file.type !== 'application/pdf' && !file.name.toLowerCase().endsWith('.pdf')) {
+      alert('Please choose a PDF file.');
+      return;
+    }
     currentFile = file;
-    fileList.innerHTML = '<div class="file-item"><span class="name">' + file.name + '</span><span>' + TS.formatBytes(file.size) + '</span></div>';
     controls.style.display = 'block';
     resultPanel.classList.remove('active');
     pwError.style.display = 'none';
+    showPdfPreview(file);
   });
 
   unlockBtn.addEventListener('click', async () => {

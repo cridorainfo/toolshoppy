@@ -43,7 +43,8 @@
 <main class="tool-page container">
   <p class="breadcrumb"><a href="/">Home</a> › <a href="/#pdf">PDF Tools</a> › PDF Editor</p>
   <div class="tool-header">
-    <h1><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#file-pencil"></use></svg> PDF Editor</h1>
+    <div class="icon-tile icon-tile--lg icon-tile--violet"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#file-pencil"></use></svg></div>
+    <h1>PDF Editor</h1>
     <p>Annotate, highlight, redact, and sign — free, no login.</p>
   </div>
   <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
@@ -51,7 +52,9 @@
     <div class="tool-card-main">
       <div class="drop-zone" id="dropZone">
         <div class="icon"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#upload"></use></svg></div>
-        <p><strong>Click to upload</strong> or drag &amp; drop a PDF to edit</p>
+        <div class="dz-cta">Select PDF file</div>
+        <p>or drop a PDF here to annotate</p>
+        <p class="drop-zone-hint">Edit privately — pages open in your browser.</p>
         <input type="file" id="fileInput" accept="application/pdf,.pdf">
       </div>
       <div id="editorUI" style="display:none;">
@@ -102,9 +105,26 @@
   <div class="content-section">
     <h2>Related tools</h2>
     <div class="related-tools">
-      <a href="/tools/pdf/unlock/"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock-open"></use></svg> Unlock PDF</a>
-      <a href="/tools/pdf/protect/"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock"></use></svg> Password Protect</a>
-      <a href="/tools/pdf/compress/"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#file-zip"></use></svg> PDF Compress</a>
+      <a href="/tools/pdf/unlock/">
+        <span class="icon-tile icon-tile--sm icon-tile--emerald"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock-open"></use></svg></span>
+        Unlock PDF
+        <span class="related-desc">Remove a password when you know it</span>
+      </a>
+      <a href="/tools/pdf/protect/">
+        <span class="icon-tile icon-tile--sm icon-tile--rose"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock"></use></svg></span>
+        Password Protect
+        <span class="related-desc">Encrypt Aadhaar, PAN, and contracts</span>
+      </a>
+      <a href="/tools/pdf/compress/">
+        <span class="icon-tile icon-tile--sm icon-tile--orange"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#file-zip"></use></svg></span>
+        PDF Compress
+        <span class="related-desc">Shrink PDF file size for email &amp; uploads</span>
+      </a>
+      <a href="/tools/pdf/merge/">
+        <span class="icon-tile icon-tile--sm icon-tile--amber"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#link"></use></svg></span>
+        Merge PDF
+        <span class="related-desc">Combine multiple PDFs into one file</span>
+      </a>
     </div>
   </div>
 </main>

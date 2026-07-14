@@ -39,7 +39,8 @@
 <main class="tool-page container">
   <p class="breadcrumb"><a href="/">Home</a> › <a href="/#pdf">PDF Tools</a> › PDF to Word</p>
   <div class="tool-header">
-    <h1><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#file-word"></use></svg> PDF to Word</h1>
+    <div class="icon-tile icon-tile--lg icon-tile--green"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#file-word"></use></svg></div>
+    <h1>PDF to Word</h1>
     <p>Extract PDF text into an editable Word document — free and private.</p>
   </div>
   <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
@@ -47,12 +48,13 @@
     <div class="tool-card-main">
       <div class="drop-zone" id="dropZone">
         <div class="icon"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#upload"></use></svg></div>
-        <p><strong>Click to upload</strong> or drag &amp; drop a PDF</p>
-        <p>Works best with text-based PDFs</p>
+        <div class="dz-cta">Select PDF file</div>
+        <p>or drop a PDF here</p>
+        <p class="drop-zone-hint">Works best with text-based PDFs. Nothing is uploaded.</p>
         <input type="file" id="fileInput" accept="application/pdf,.pdf">
       </div>
       <div id="controls" style="display:none;margin-top:16px;">
-        <div class="file-list" id="fileList"></div>
+        <div class="pdf-preview-single" id="pdfPreview" aria-live="polite"></div>
         <button class="btn btn-primary btn-block" id="convertBtn">Convert to Word</button>
         <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
       </div>
@@ -95,9 +97,26 @@
   <div class="content-section">
     <h2>Related tools</h2>
     <div class="related-tools">
-      <a href="/tools/pdf/word-to-pdf/"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#file-export"></use></svg> Word to PDF</a>
-      <a href="/tools/pdf/editor/"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#file-pencil"></use></svg> PDF Editor</a>
-      <a href="/tools/pdf/compress/"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#file-zip"></use></svg> PDF Compress</a>
+      <a href="/tools/pdf/word-to-pdf/">
+        <span class="icon-tile icon-tile--sm icon-tile--blue"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#file-export"></use></svg></span>
+        Word to PDF
+        <span class="related-desc">Convert DOCX to PDF in your browser</span>
+      </a>
+      <a href="/tools/pdf/editor/">
+        <span class="icon-tile icon-tile--sm icon-tile--violet"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#file-pencil"></use></svg></span>
+        PDF Editor
+        <span class="related-desc">Annotate, highlight, redact, sign</span>
+      </a>
+      <a href="/tools/pdf/compress/">
+        <span class="icon-tile icon-tile--sm icon-tile--orange"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#file-zip"></use></svg></span>
+        PDF Compress
+        <span class="related-desc">Shrink PDF file size for email &amp; uploads</span>
+      </a>
+      <a href="/tools/pdf/merge/">
+        <span class="icon-tile icon-tile--sm icon-tile--amber"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#link"></use></svg></span>
+        Merge PDF
+        <span class="related-desc">Combine multiple PDFs into one file</span>
+      </a>
     </div>
   </div>
 </main>
@@ -109,15 +128,14 @@
 <script src="/assets/js/ads.js"></script>
 <script src="/assets/js/analytics.js"></script>
 <script src="/assets/libs/pdf.min.js"></script>
+<script src="/assets/js/pdf-preview.js"></script>
 <script>
 (function () {
-  if (window.pdfjsLib) {
-    pdfjsLib.GlobalWorkerOptions.workerSrc = '/assets/libs/pdf.worker.min.js';
-  }
+  pdfjsLib.GlobalWorkerOptions.workerSrc = '/assets/libs/pdf.worker.min.js';
   const dropZone = document.getElementById('dropZone');
   const fileInput = document.getElementById('fileInput');
   const controls = document.getElementById('controls');
-  const fileList = document.getElementById('fileList');
+  const pdfPreview = document.getElementById('pdfPreview');
   const convertBtn = document.getElementById('convertBtn');
   const progressBar = document.getElementById('progressBar');
   const progressFill = document.getElementById('progressFill');
@@ -132,6 +150,26 @@
     return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
   }
 
+  async function showPdfPreview(file) {
+    pdfPreview.innerHTML = '';
+    let thumb;
+    try {
+      thumb = await TSPdfPreview.renderPdfThumb(file, { maxWidth: 200 });
+    } catch (e) {
+      thumb = TSPdfPreview.placeholderThumb('PDF');
+    }
+    pdfPreview.appendChild(TSPdfPreview.createPdfTile(file, thumb, '', 0));
+    const info = document.createElement('div');
+    info.className = 'pdf-preview-info';
+    const pages = thumb.pageCount != null
+      ? thumb.pageCount + (thumb.pageCount === 1 ? ' page' : ' pages')
+      : 'Page count unavailable';
+    info.innerHTML = '<h3></h3><p></p>';
+    info.querySelector('h3').textContent = file.name || 'document.pdf';
+    info.querySelector('p').textContent = TS.formatBytes(file.size) + ' · ' + pages;
+    pdfPreview.appendChild(info);
+  }
+
   TS.setupDropZone(dropZone, fileInput, (files) => {
     const file = files[0];
     if (!file) return;
@@ -140,9 +178,9 @@
       return;
     }
     currentFile = file;
-    fileList.innerHTML = '<div class="file-item"><span class="name">' + file.name + '</span><span>' + TS.formatBytes(file.size) + '</span></div>';
     controls.style.display = 'block';
     resultPanel.classList.remove('active');
+    showPdfPreview(file);
   });
 
   convertBtn.addEventListener('click', async () => {

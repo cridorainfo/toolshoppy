@@ -84,7 +84,8 @@
   <p class="breadcrumb"><a href="/">Home</a> › <a href="/#image">Image Tools</a> › Image Resizer</p>
 
   <div class="tool-header">
-    <h1><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#ruler-2"></use></svg> Image Resizer</h1>
+    <div class="icon-tile icon-tile--lg icon-tile--teal"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#ruler-2"></use></svg></div>
+    <h1>Image Resizer</h1>
     <p>Resize by exact pixels or by percentage — keep aspect ratio or set custom dimensions.</p>
   </div>
 
@@ -94,9 +95,10 @@
     <div class="tool-card-main">
 
       <div class="drop-zone" id="dropZone">
-        <div class="icon"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#upload"></use></svg></div>
-        <p><strong>Click to upload</strong> or drag & drop</p>
-        <p>JPG, PNG, WebP supported</p>
+        <div class="icon"><span class="icon-tile icon-tile--sm icon-tile--teal"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#upload"></use></svg></span></div>
+        <div class="dz-cta">Select image</div>
+        <p>or drop an image here</p>
+        <p class="drop-zone-hint">JPG, PNG, WebP supported</p>
         <input type="file" id="fileInput" accept="image/*">
       </div>
 
@@ -185,17 +187,33 @@
       <p>Scaling down generally preserves visual quality well. Scaling up beyond the original resolution can look softer, since no new detail is added.</p>
     </div>
   </div>
-</main>
-
   <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
   <div class="content-section">
     <h2>Related tools</h2>
     <div class="related-tools">
-      <a href="/tools/image/compress/"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#arrows-minimize"></use></svg> Image Compressor</a>
-      <a href="/tools/image/govt-photo/"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#id"></use></svg> Govt Photo Resizer</a>
-      <a href="/tools/image/convert/"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#refresh"></use></svg> Image Converter</a>
+      <a href="/tools/image/compress/">
+        <span class="icon-tile icon-tile--sm icon-tile--indigo"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#arrows-minimize"></use></svg></span>
+        Image Compressor
+        <span class="related-desc">Compress to an exact KB target</span>
+      </a>
+      <a href="/tools/image/govt-photo/">
+        <span class="icon-tile icon-tile--sm icon-tile--pink"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#id"></use></svg></span>
+        Govt Photo Resizer
+        <span class="related-desc">PSC, UPSC, PAN &amp; passport sizes</span>
+      </a>
+      <a href="/tools/image/convert/">
+        <span class="icon-tile icon-tile--sm icon-tile--cyan"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#refresh"></use></svg></span>
+        Image Converter
+        <span class="related-desc">JPG, PNG, WebP, HEIC conversion</span>
+      </a>
+      <a href="/tools/misc/qr-generator/">
+        <span class="icon-tile icon-tile--sm icon-tile--sky"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#qrcode"></use></svg></span>
+        QR Generator
+        <span class="related-desc">Create QR codes for links &amp; text</span>
+      </a>
     </div>
   </div>
+</main>
 <footer class="site-footer">
   <div class="container">
     <div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div>
