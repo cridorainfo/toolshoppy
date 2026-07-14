@@ -70,9 +70,9 @@
 
   <nav class="filter-bar">
     <div class="container filter-scroll" id="filterScroll">
-      <button class="filter-chip active" data-cat="all">All</button>
+      <button class="filter-chip" data-cat="all">All</button>
       <button class="filter-chip filter-chip--image" data-cat="image"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#photo"></use></svg> Image</button>
-      <button class="filter-chip filter-chip--pdf" data-cat="pdf"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#file-type-pdf"></use></svg> PDF</button>
+      <button class="filter-chip filter-chip--pdf active" data-cat="pdf"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#file-type-pdf"></use></svg> PDF</button>
       <button class="filter-chip filter-chip--finance" data-cat="finance"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#coin"></use></svg> Finance</button>
       <button class="filter-chip filter-chip--video" data-cat="video"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#movie"></use></svg> Video</button>
       <button class="filter-chip filter-chip--misc" data-cat="misc"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#puzzle"></use></svg> Misc</button>
@@ -247,7 +247,7 @@
   const gridCards = Array.from(document.querySelectorAll('#toolGrid .tool-card'));
   const noResults = document.getElementById('noResults');
   const filterChips = Array.from(document.querySelectorAll('.filter-chip'));
-  let activeCat = 'all';
+  let activeCat = 'pdf';
 
   const params = new URLSearchParams(location.search);
   if (params.get('q')) searchInput.value = params.get('q');
@@ -257,7 +257,9 @@
     let visible = 0;
 
     featuredCards.forEach((card) => {
-      const match = !q || (card.dataset.name || '').includes(q) || card.textContent.toLowerCase().includes(q);
+      const matchQ = !q || (card.dataset.name || '').includes(q) || card.textContent.toLowerCase().includes(q);
+      const matchCat = activeCat === 'all' || card.dataset.cat === activeCat;
+      const match = matchQ && matchCat;
       card.style.display = match ? '' : 'none';
       if (match) visible++;
     });
