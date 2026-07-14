@@ -46,6 +46,7 @@ button { font-family: inherit; cursor: pointer; }
   position: sticky;
   top: 0;
   z-index: 100;
+  overflow: hidden;
 }
 .site-header .container {
   display: flex;
@@ -65,24 +66,34 @@ button { font-family: inherit; cursor: pointer; }
 }
 .logo span { color: var(--accent); }
 .logo .icon-svg {
-  width: 1.35em;
-  height: 1.35em;
+  width: 1.35rem;
+  height: 1.35rem;
+  min-width: 1.35rem;
+  min-height: 1.35rem;
+  max-width: 1.35rem;
+  max-height: 1.35rem;
   color: var(--primary);
   flex-shrink: 0;
 }
 
-/* Tabler SVG icons (sprite) */
+/* Tabler SVG icons (sprite) — pin size hard: bare <svg> defaults to 300×150 and blows up flex layouts */
 .icon-svg {
   display: inline-block;
-  width: 1em;
-  height: 1em;
+  width: 1.25rem;
+  height: 1.25rem;
+  min-width: 1.25rem;
+  min-height: 1.25rem;
+  max-width: 2rem;
+  max-height: 2rem;
+  overflow: hidden;
   stroke: currentColor;
   fill: none;
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
-  vertical-align: -0.15em;
+  vertical-align: -0.2em;
   flex-shrink: 0;
+  box-sizing: content-box;
 }
 .icon-svg use { pointer-events: none; }
 
@@ -161,6 +172,9 @@ button { font-family: inherit; cursor: pointer; }
 }
 .filter-bar .filter-scroll::-webkit-scrollbar { display: none; }
 .filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   flex: 0 0 auto;
   padding: 7px 14px;
   border-radius: 999px;
@@ -170,14 +184,40 @@ button { font-family: inherit; cursor: pointer; }
   font-weight: 600;
   color: var(--text);
   white-space: nowrap;
+  line-height: 1.2;
+  max-height: 2.5rem;
+  overflow: hidden;
 }
 .filter-chip.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+.filter-chip .icon-svg {
+  width: 1rem;
+  height: 1rem;
+  min-width: 1rem;
+  min-height: 1rem;
+  max-width: 1rem;
+  max-height: 1rem;
+  margin: 0;
+  vertical-align: middle;
+}
 
 /* Featured (live) tools strip */
 .section-title {
   font-size: 1.1rem;
   font-weight: 700;
   margin: 20px 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-title .icon-svg {
+  width: 1.15rem;
+  height: 1.15rem;
+  min-width: 1.15rem;
+  min-height: 1.15rem;
+  max-width: 1.15rem;
+  max-height: 1.15rem;
+  margin: 0;
+  color: var(--primary);
 }
 .featured-grid {
   display: grid;
@@ -232,6 +272,10 @@ button { font-family: inherit; cursor: pointer; }
 .tool-card .icon .icon-svg {
   width: 1.75rem;
   height: 1.75rem;
+  min-width: 1.75rem;
+  min-height: 1.75rem;
+  max-width: 1.75rem;
+  max-height: 1.75rem;
 }
 .tool-card h3 {
   font-size: 0.82rem;
@@ -315,7 +359,14 @@ button { font-family: inherit; cursor: pointer; }
   margin-bottom: 10px;
   color: var(--primary);
 }
-.drop-zone .icon .icon-svg { width: 2.5rem; height: 2.5rem; }
+.drop-zone .icon .icon-svg {
+  width: 2.5rem;
+  height: 2.5rem;
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+  max-width: 2.5rem;
+  max-height: 2.5rem;
+}
 .drop-zone p { color: var(--text-muted); font-size: 0.9rem; }
 .drop-zone strong { color: var(--primary-dark); }
 .drop-zone input[type=file] { display: none; }
@@ -498,8 +549,12 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 .tool-header h1 .icon-svg {
-  width: 1.15em;
-  height: 1.15em;
+  width: 1.15rem;
+  height: 1.15rem;
+  min-width: 1.15rem;
+  min-height: 1.15rem;
+  max-width: 1.15rem;
+  max-height: 1.15rem;
   color: var(--primary);
   vertical-align: -0.2em;
   margin-right: 4px;
@@ -528,23 +583,15 @@ button { font-family: inherit; cursor: pointer; }
   box-shadow: var(--shadow);
   color: var(--primary-dark);
 }
-.related-tools .icon-svg { width: 1.25rem; height: 1.25rem; color: var(--primary); }
+.related-tools .icon-svg { width: 1.25rem; height: 1.25rem; min-width: 1.25rem; min-height: 1.25rem; max-width: 1.25rem; max-height: 1.25rem; color: var(--primary); }
 
-.filter-chip .icon-svg {
-  width: 1em;
-  height: 1em;
-  margin-right: 4px;
-  vertical-align: -0.2em;
-}
-.section-title .icon-svg {
-  width: 1.1em;
-  height: 1.1em;
-  vertical-align: -0.15em;
-  margin-right: 4px;
-}
 .trust-badge .icon-svg {
-  width: 1.1em;
-  height: 1.1em;
+  width: 1.1rem;
+  height: 1.1rem;
+  min-width: 1.1rem;
+  min-height: 1.1rem;
+  max-width: 1.1rem;
+  max-height: 1.1rem;
   color: #047857;
 }
 
