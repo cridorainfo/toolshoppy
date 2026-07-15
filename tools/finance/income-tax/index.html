@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>(function(){try{var t=localStorage.getItem('ts-theme');if(!t){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Income Tax Calculator FY 2025-26 — New &amp; Old Regime | ToolShoppy</title>
+<meta name="description" content="Income tax calculator for FY 2025-26 (AY 2026-27). Compare new vs old regime. Free, instant, no signup.">
+<link rel="canonical" href="https://toolshoppy.com/tools/finance/income-tax/">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/main.css">
+<meta name="theme-color" content="#E11D48">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+</head>
+<body>
+<header class="site-header"><div class="container">
+  <a href="/" class="logo"><img src="/assets/img/logo.png" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
+  <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode"><svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg><svg class="icon-svg theme-icon-moon" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#moon"></use></svg></button>
+</div></header>
+<main class="tool-page container">
+  <nav class="breadcrumb"><a href="/">Home</a> › <a href="/#finance">Finance</a> › <span class="crumb-current">Income Tax Calculator</span></nav>
+  <div class="tool-header">
+    <div class="icon-tile icon-tile--lg icon-tile--slate"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#receipt"></use></svg></div>
+    <h1>Income Tax Calculator</h1>
+    <p>FY 2025-26 · Compare new vs old tax regime instantly.</p>
+  </div>
+  <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
+  <div class="tool-layout with-sidebar">
+    <div class="tool-card-main">
+      <div class="calc-form">
+        <div class="calc-field"><label for="income">Annual income (₹)</label><input type="number" id="income" value="1500000" min="0" step="10000"></div>
+        <div class="calc-field" id="deductWrap" style="display:none;"><label for="deductions">Deductions — 80C etc. (₹, old regime)</label><input type="number" id="deductions" value="150000" min="0" max="500000" step="5000"></div>
+      </div>
+      <div class="chip-row" id="regimeRow">
+        <button class="chip active" data-regime="compare" type="button">Compare both</button>
+        <button class="chip" data-regime="new" type="button">New regime</button>
+        <button class="chip" data-regime="old" type="button">Old regime</button>
+      </div>
+      <div class="compare-row" id="resultRow">
+        <div class="compare-box"><div class="label">New regime tax</div><div class="value" id="taxNew">—</div></div>
+        <div class="compare-box"><div class="label">Old regime tax</div><div class="value" id="taxOld">—</div></div>
+        <div class="compare-box saved"><div class="label">Better option</div><div class="value" id="better">—</div></div>
+      </div>
+      <p class="rate-disclaimer">FY 2025-26 slabs with standard deduction (₹75k new / ₹50k old). Includes 4% cess. For planning only — consult a CA for final filing.</p>
+    </div>
+    <aside class="sidebar"><div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div>
+      <div class="info-box"><h4>New regime slabs</h4><p style="font-size:0.8rem;color:var(--text-muted);line-height:1.6;">Up to ₹4L nil · 5% · 10% · 15% · 20% · 25% · 30%. Rebate u/s 87A makes tax zero up to ₹12L income.</p></div>
+    </aside>
+  </div>
+</main>
+<footer class="site-footer"><div class="container"><div class="footer-bottom">© 2026 ToolShoppy</div></div></footer>
+<div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
+<script src="/assets/js/ga-config.js"></script><script src="/assets/js/ad-config.js"></script><script src="/assets/js/core.js"></script><script src="/assets/js/ads.js"></script><script src="/assets/js/analytics.js"></script>
+<script>
+(function () {
+  var mode = 'compare';
+  function calcNew(inc) {
+    var sd = 75000, ti = Math.max(0, inc - sd), tax = 0, rem = ti, prev = 0;
+    var slabs = [[400000,0],[400000,0.05],[400000,0.10],[400000,0.15],[400000,0.20],[400000,0.25],[Infinity,0.30]];
+    for (var i = 0; i < slabs.length && rem > 0; i++) {
+      var w = Math.min(rem, slabs[i][0] - prev); tax += w * slabs[i][1]; rem -= w; prev = slabs[i][0];
+    }
+    if (ti <= 1200000) tax = 0;
+    return Math.round(tax * 1.04);
+  }
+  function calcOld(inc, ded) {
+    var ti = Math.max(0, inc - 50000 - (ded || 0)), tax = 0;
+    if (ti > 1000000) tax = 112500 + (ti - 1000000) * 0.30;
+    else if (ti > 500000) tax = 12500 + (ti - 500000) * 0.20;
+    else if (ti > 250000) tax = (ti - 250000) * 0.05;
+    return Math.round(tax * 1.04);
+  }
+  function fmt(n) { return '₹' + n.toLocaleString('en-IN'); }
+  function run() {
+    var inc = parseFloat(document.getElementById('income').value) || 0;
+    var ded = parseFloat(document.getElementById('deductions').value) || 0;
+    var tn = calcNew(inc), to = calcOld(inc, ded);
+    document.getElementById('taxNew').textContent = fmt(tn);
+    document.getElementById('taxOld').textContent = fmt(to);
+    document.getElementById('better').textContent = tn <= to ? 'New (' + fmt(tn - to) + ' saved)' : 'Old (' + fmt(to - tn) + ' saved)';
+    document.getElementById('resultRow').style.display = '';
+  }
+  document.getElementById('income').addEventListener('input', run);
+  document.getElementById('deductions').addEventListener('input', run);
+  document.getElementById('regimeRow').addEventListener('click', function (e) {
+    var chip = e.target.closest('[data-regime]'); if (!chip) return;
+    document.getElementById('regimeRow').querySelectorAll('.chip').forEach(function (c) { c.classList.remove('active'); });
+    chip.classList.add('active');
+    mode = chip.dataset.regime;
+    document.getElementById('deductWrap').style.display = mode === 'old' ? '' : 'none';
+    run();
+  });
+  run();
+})();
+</script>
+</body>
+</html>

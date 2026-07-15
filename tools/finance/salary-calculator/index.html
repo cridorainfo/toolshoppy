@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>(function(){try{var t=localStorage.getItem('ts-theme');if(!t){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salary Calculator — In-Hand Salary India Free | ToolShoppy</title>
+<meta name="description" content="Calculate in-hand salary from CTC free online. PF, tax estimate, monthly take-home for India. No signup.">
+<link rel="canonical" href="https://toolshoppy.com/tools/finance/salary-calculator/">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/main.css">
+<meta name="theme-color" content="#E11D48">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+</head>
+<body>
+<header class="site-header"><div class="container">
+  <a href="/" class="logo"><img src="/assets/img/logo.png" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
+  <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode"><svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg><svg class="icon-svg theme-icon-moon" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#moon"></use></svg></button>
+</div></header>
+<main class="tool-page container">
+  <nav class="breadcrumb"><a href="/">Home</a> › <a href="/#finance">Finance</a> › <span class="crumb-current">Salary Calculator</span></nav>
+  <div class="tool-header">
+    <div class="icon-tile icon-tile--lg icon-tile--emerald"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#cash"></use></svg></div>
+    <h1>Salary Calculator</h1>
+    <p>Estimate monthly in-hand salary from annual CTC — PF, tax &amp; deductions.</p>
+  </div>
+  <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
+  <div class="tool-layout with-sidebar">
+    <div class="tool-card-main">
+      <div class="calc-form">
+        <div class="calc-field"><label for="ctc">Annual CTC (₹)</label><input type="number" id="ctc" value="1200000" min="100000" step="10000"></div>
+        <div class="calc-row">
+          <div class="calc-field"><label for="basicPct">Basic salary (% of CTC)</label><input type="number" id="basicPct" value="40" min="20" max="60" step="5"></div>
+          <div class="calc-field"><label for="regime">Tax regime</label><select id="regime"><option value="new" selected>New regime</option><option value="old">Old regime</option></select></div>
+        </div>
+      </div>
+      <div class="calc-result-hero"><div class="calc-result-label">Monthly in-hand (approx)</div><div class="calc-result-value" id="inHand">—</div></div>
+      <div class="compare-row">
+        <div class="compare-box"><div class="label">Annual tax</div><div class="value" id="tax">—</div></div>
+        <div class="compare-box"><div class="label">PF (employee)</div><div class="value" id="pf">—</div></div>
+        <div class="compare-box"><div class="label">Monthly gross</div><div class="value" id="gross">—</div></div>
+      </div>
+      <p class="rate-disclaimer">Simplified estimate for salaried employees. Actual payslip may include HRA, bonuses, ESI, professional tax, and employer-specific components.</p>
+    </div>
+    <aside class="sidebar"><div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div>
+      <div class="info-box"><h4>Related</h4><ul><li><a href="/tools/finance/income-tax/">Income tax calculator →</a></li><li><a href="/tools/finance/emi-calculator/">EMI calculator →</a></li></ul></div>
+    </aside>
+  </div>
+</main>
+<footer class="site-footer"><div class="container"><div class="footer-bottom">© 2026 ToolShoppy</div></div></footer>
+<div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
+<script src="/assets/js/ga-config.js"></script><script src="/assets/js/ad-config.js"></script><script src="/assets/js/core.js"></script><script src="/assets/js/rates.js"></script><script src="/assets/js/ads.js"></script><script src="/assets/js/analytics.js"></script>
+<script>
+(function () {
+  function taxNew(taxable) {
+    var sd = 75000;
+    var ti = Math.max(0, taxable - sd);
+    var tax = 0;
+    var slabs = [[400000,0],[400000,0.05],[400000,0.10],[400000,0.15],[400000,0.20],[400000,0.25],[Infinity,0.30]];
+    var rem = ti, prev = 0;
+    for (var i = 0; i < slabs.length && rem > 0; i++) {
+      var width = Math.min(rem, slabs[i][0] - prev);
+      tax += width * slabs[i][1];
+      rem -= width;
+      prev = slabs[i][0];
+    }
+    if (ti <= 1200000) tax = 0;
+    return Math.round(tax * 1.04);
+  }
+  function taxOld(taxable) {
+    var ti = Math.max(0, taxable - 50000 - 150000);
+    var tax = 0;
+    if (ti > 1000000) tax = 112500 + (ti - 1000000) * 0.30;
+    else if (ti > 500000) tax = 12500 + (ti - 500000) * 0.20;
+    else if (ti > 250000) tax = (ti - 250000) * 0.05;
+    return Math.round(tax * 1.04);
+  }
+  function calc() {
+    var ctc = parseFloat(document.getElementById('ctc').value) || 0;
+    var basicPct = (parseFloat(document.getElementById('basicPct').value) || 40) / 100;
+    var regime = document.getElementById('regime').value;
+    var basic = ctc * basicPct;
+    var pf = Math.min(basic * 0.12, 21600);
+    var profTax = 2400;
+    var taxable = ctc - pf;
+    var tax = regime === 'new' ? taxNew(taxable) : taxOld(taxable);
+    var netAnnual = ctc - pf - profTax - tax;
+    var monthly = netAnnual / 12;
+    var fmt = function (n) { return '₹' + Math.round(n).toLocaleString('en-IN'); };
+    document.getElementById('inHand').textContent = fmt(monthly);
+    document.getElementById('tax').textContent = fmt(tax);
+    document.getElementById('pf').textContent = fmt(pf) + '/yr';
+    document.getElementById('gross').textContent = fmt(ctc / 12);
+  }
+  ['ctc','basicPct','regime'].forEach(function (id) { document.getElementById(id).addEventListener('input', calc); document.getElementById(id).addEventListener('change', calc); });
+  calc();
+})();
+</script>
+</body>
+</html>

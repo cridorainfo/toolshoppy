@@ -1,0 +1,21 @@
+{
+  "_fallback": true,
+  "updated_at": "2026-07-15T06:00:00+05:30",
+  "source_note": "Offline fallback — deploy /api/fuel for live Goodreturns prices",
+  "live": false,
+  "states": {
+    "kerala": { "label": "Kerala", "petrol": 108.47, "diesel": 97.18 },
+    "tamil-nadu": { "label": "Tamil Nadu", "petrol": 104.86, "diesel": 94.02 },
+    "karnataka": { "label": "Karnataka", "petrol": 103.42, "diesel": 92.65 },
+    "maharashtra": { "label": "Maharashtra", "petrol": 106.28, "diesel": 95.11 },
+    "delhi": { "label": "Delhi", "petrol": 97.81, "diesel": 89.62 },
+    "gujarat": { "label": "Gujarat", "petrol": 98.45, "diesel": 90.18 },
+    "andhra-pradesh": { "label": "Andhra Pradesh", "petrol": 110.12, "diesel": 98.54 },
+    "telangana": { "label": "Telangana", "petrol": 111.05, "diesel": 99.21 },
+    "uttar-pradesh": { "label": "Uttar Pradesh", "petrol": 99.76, "diesel": 91.44 },
+    "west-bengal": { "label": "West Bengal", "petrol": 107.33, "diesel": 96.02 },
+    "rajasthan": { "label": "Rajasthan", "petrol": 105.89, "diesel": 94.77 },
+    "punjab": { "label": "Punjab", "petrol": 100.12, "diesel": 91.88 },
+    "haryana": { "label": "Haryana", "petrol": 99.34, "diesel": 90.95 }
+  }
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>(function(){try{var t=localStorage.getItem('ts-theme');if(!t){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WhatsApp Link Generator Free — wa.me Link Builder | ToolShoppy</title>
+<meta name="description" content="Create a WhatsApp chat link (wa.me) with pre-filled message free online. Copy or share instantly, no signup.">
+<link rel="canonical" href="https://toolshoppy.com/tools/misc/whatsapp-link/">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/main.css">
+<meta name="theme-color" content="#E11D48">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+</head>
+<body>
+<header class="site-header"><div class="container">
+  <a href="/" class="logo"><img src="/assets/img/logo.png" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
+  <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode"><svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg><svg class="icon-svg theme-icon-moon" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#moon"></use></svg></button>
+</div></header>
+<main class="tool-page container">
+  <nav class="breadcrumb"><a href="/">Home</a> › <a href="/#misc">Misc</a> › <span class="crumb-current">WhatsApp Link</span></nav>
+  <div class="tool-header">
+    <div class="icon-tile icon-tile--lg icon-tile--green"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#brand-whatsapp"></use></svg></div>
+    <h1>WhatsApp Link Generator</h1>
+    <p>Create a wa.me link with optional pre-filled message.</p>
+  </div>
+  <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
+  <div class="tool-layout with-sidebar">
+    <div class="tool-card-main">
+      <div class="calc-form">
+        <div class="calc-field"><label for="phone">Phone number (with country code, no +)</label><input type="tel" id="phone" placeholder="e.g. 919876543210" inputmode="numeric"></div>
+        <div class="calc-field"><label for="message">Pre-filled message (optional)</label><textarea class="text-tool-area" id="message" style="min-height:90px;" placeholder="Hi, I'm interested in…"></textarea></div>
+      </div>
+      <div class="calc-result-hero" style="text-align:left;">
+        <div class="calc-result-label">Your link</div>
+        <div id="linkOut" style="font-size:0.9rem;word-break:break-all;margin-top:6px;color:var(--primary-dark);font-weight:600;">https://wa.me/</div>
+      </div>
+      <div class="action-bar">
+        <button class="btn btn-primary" id="copyBtn" type="button">Copy link</button>
+        <a class="btn btn-accent" id="openBtn" href="https://wa.me/" target="_blank" rel="noopener">Open in WhatsApp</a>
+      </div>
+      <p style="margin-top:12px;font-size:0.85rem;color:var(--text-muted);">Tip: Use <a href="/tools/misc/qr-generator/">QR Generator</a> to turn this link into a scannable code.</p>
+    </div>
+    <aside class="sidebar"><div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div></aside>
+  </div>
+</main>
+<footer class="site-footer"><div class="container"><div class="footer-bottom">© 2026 ToolShoppy</div></div></footer>
+<div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
+<script src="/assets/js/ga-config.js"></script><script src="/assets/js/ad-config.js"></script><script src="/assets/js/core.js"></script><script src="/assets/js/ads.js"></script><script src="/assets/js/analytics.js"></script>
+<script>
+(function () {
+  var phone = document.getElementById('phone');
+  var message = document.getElementById('message');
+  var linkOut = document.getElementById('linkOut');
+  var openBtn = document.getElementById('openBtn');
+  function build() {
+    var p = (phone.value || '').replace(/\D/g, '');
+    var url = p ? 'https://wa.me/' + p : 'https://wa.me/';
+    var msg = (message.value || '').trim();
+    if (msg) url += '?text=' + encodeURIComponent(msg);
+    linkOut.textContent = url;
+    openBtn.href = url;
+    return url;
+  }
+  phone.addEventListener('input', build);
+  message.addEventListener('input', build);
+  document.getElementById('copyBtn').addEventListener('click', function () {
+    var url = build();
+    navigator.clipboard.writeText(url).then(function () { alert('Link copied!'); }).catch(function () { prompt('Copy:', url); });
+  });
+  build();
+})();
+</script>
+</body>
+</html>

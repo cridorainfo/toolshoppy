@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>(function(){try{var t=localStorage.getItem('ts-theme');if(!t){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Petrol &amp; Diesel Price Today — All India States | ToolShoppy</title>
+<meta name="description" content="Petrol and diesel price today in Kerala, Tamil Nadu, Delhi, Maharashtra and all major Indian states. Live updates, free, no signup.">
+<link rel="canonical" href="https://toolshoppy.com/tools/rates/petrol-price/">
+<meta property="og:title" content="Petrol Price Today — ToolShoppy">
+<meta property="og:image" content="https://toolshoppy.com/assets/img/og-image.jpg">
+<meta property="og:url" content="https://toolshoppy.com/tools/rates/petrol-price/">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/main.css">
+<meta name="theme-color" content="#E11D48">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Petrol Price Today","url":"https://toolshoppy.com/tools/rates/petrol-price/","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+</head>
+<body>
+<header class="site-header"><div class="container">
+  <a href="/" class="logo"><img src="/assets/img/logo.png" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
+  <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode">
+    <svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg>
+    <svg class="icon-svg theme-icon-moon" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#moon"></use></svg>
+  </button>
+</div></header>
+<main class="tool-page container">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a> › <a href="/#finance">Finance</a> › <span class="crumb-current">Petrol Price</span>
+  </nav>
+  <div class="tool-header">
+    <div class="icon-tile icon-tile--lg icon-tile--orange"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#gas-station"></use></svg></div>
+    <h1>Petrol &amp; Diesel Price Today</h1>
+    <p>Live fuel prices across major Indian states — Kerala, Delhi, Mumbai &amp; more.</p>
+  </div>
+  <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
+  <div class="tool-layout with-sidebar">
+    <div class="tool-card-main">
+      <p class="rate-updated" id="updatedLine">Loading live prices…</p>
+      <p class="rate-updated" id="sourceLine" style="margin-top:-8px;"></p>
+      <div class="rate-hero" id="heroPanel">
+        <div class="rate-hero-label" id="heroLabel">Select a state</div>
+        <div class="rate-hero-value" id="heroPetrol">—</div>
+        <div class="rate-hero-sub" id="heroDiesel">Diesel —</div>
+      </div>
+      <div class="state-grid" id="stateGrid"></div>
+      <p class="rate-disclaimer">Prices per litre, indicative. Updated from public fuel price feeds. Actual pump prices may vary slightly.</p>
+    </div>
+    <aside class="sidebar">
+      <div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div>
+      <div class="info-box"><h4>Related</h4><ul>
+        <li><a href="/tools/rates/gold-rate/">Gold rate today →</a></li>
+        <li><a href="/tools/rates/currency-converter/">Currency converter →</a></li>
+      </ul></div>
+    </aside>
+  </div>
+  <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
+</main>
+<footer class="site-footer"><div class="container"><div class="footer-bottom">© 2026 ToolShoppy</div></div></footer>
+<div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
+<script src="/assets/js/ga-config.js"></script><script src="/assets/js/ad-config.js"></script><script src="/assets/js/core.js"></script><script src="/assets/js/rates.js"></script><script src="/assets/js/fuel.js"></script><script src="/assets/js/ads.js"></script><script src="/assets/js/analytics.js"></script>
+<script>
+(function () {
+  var grid = document.getElementById('stateGrid');
+  var heroLabel = document.getElementById('heroLabel');
+  var heroPetrol = document.getElementById('heroPetrol');
+  var heroDiesel = document.getElementById('heroDiesel');
+  var updatedLine = document.getElementById('updatedLine');
+  var sourceLine = document.getElementById('sourceLine');
+  var data = null;
+  var active = 'kerala';
+
+  function showState(key) {
+    if (!data || !data.states || !data.states[key]) return;
+    active = key;
+    var s = data.states[key];
+    heroLabel.textContent = s.label;
+    heroPetrol.textContent = TSFuel.formatFuel(s.petrol);
+    heroDiesel.textContent = 'Diesel ' + TSFuel.formatFuel(s.diesel);
+    grid.querySelectorAll('.state-card').forEach(function (c) {
+      c.classList.toggle('is-active', c.dataset.state === key);
+    });
+  }
+
+  function renderGrid() {
+    grid.innerHTML = '';
+    Object.keys(data.states).forEach(function (key) {
+      var s = data.states[key];
+      var card = document.createElement('button');
+      card.type = 'button';
+      card.className = 'state-card' + (key === active ? ' is-active' : '');
+      card.dataset.state = key;
+      card.innerHTML = '<h4>' + s.label + '</h4><div class="fuel-line"><span>Petrol</span><span>' + TSFuel.formatFuel(s.petrol) + '</span></div><div class="fuel-line"><span>Diesel</span><span>' + TSFuel.formatFuel(s.diesel) + '</span></div>';
+      card.addEventListener('click', function () { showState(key); });
+      grid.appendChild(card);
+    });
+    showState(active);
+  }
+
+  TSFuel.fetchFuel().then(function (d) {
+    data = d;
+    updatedLine.innerHTML = 'Last updated: <strong>' + (TSRates && TSRates.formatUpdatedAt ? TSRates.formatUpdatedAt(d.updated_at) : new Date(d.updated_at).toLocaleString()) + '</strong>';
+    sourceLine.textContent = (d.live ? '● Live' : '○ Cached') + ' · ' + (d.source_note || '');
+    renderGrid();
+    if (location.hash) {
+      var h = location.hash.replace('#', '');
+      if (data.states[h]) showState(h);
+    }
+  }).catch(function () { updatedLine.textContent = 'Could not load fuel prices.'; });
+})();
+</script>
+</body>
+</html>

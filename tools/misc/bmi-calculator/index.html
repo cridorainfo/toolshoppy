@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>(function(){try{var t=localStorage.getItem('ts-theme');if(!t){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BMI Calculator Free — Body Mass Index Online | ToolShoppy</title>
+<meta name="description" content="Calculate BMI free online from height and weight. Metric or imperial. Instant category result, no signup.">
+<link rel="canonical" href="https://toolshoppy.com/tools/misc/bmi-calculator/">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/main.css">
+<meta name="theme-color" content="#E11D48">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+</head>
+<body>
+<header class="site-header"><div class="container">
+  <a href="/" class="logo"><img src="/assets/img/logo.png" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
+  <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode"><svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg><svg class="icon-svg theme-icon-moon" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#moon"></use></svg></button>
+</div></header>
+<main class="tool-page container">
+  <nav class="breadcrumb"><a href="/">Home</a> › <a href="/#misc">Misc</a> › <span class="crumb-current">BMI Calculator</span></nav>
+  <div class="tool-header">
+    <div class="icon-tile icon-tile--lg icon-tile--teal"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#scale"></use></svg></div>
+    <h1>BMI Calculator</h1>
+    <p>Body Mass Index from height &amp; weight — metric or imperial.</p>
+  </div>
+  <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
+  <div class="tool-layout with-sidebar">
+    <div class="tool-card-main">
+      <div class="chip-row" id="unitRow"><button class="chip active" data-unit="metric" type="button">Metric (kg, cm)</button><button class="chip" data-unit="imperial" type="button">Imperial (lb, ft)</button></div>
+      <div class="calc-form" id="metricForm">
+        <div class="calc-row">
+          <div class="calc-field"><label for="weightKg">Weight (kg)</label><input type="number" id="weightKg" value="70" min="1" step="0.1"></div>
+          <div class="calc-field"><label for="heightCm">Height (cm)</label><input type="number" id="heightCm" value="170" min="50" step="1"></div>
+        </div>
+      </div>
+      <div class="calc-form" id="imperialForm" style="display:none;">
+        <div class="calc-row">
+          <div class="calc-field"><label for="weightLb">Weight (lb)</label><input type="number" id="weightLb" value="154" min="1"></div>
+          <div class="calc-field"><label for="heightFt">Height (ft)</label><input type="number" id="heightFt" value="5" min="3" step="1"></div>
+          <div class="calc-field"><label for="heightIn">Inches</label><input type="number" id="heightIn" value="7" min="0" max="11"></div>
+        </div>
+      </div>
+      <div class="calc-result-hero"><div class="calc-result-label">Your BMI</div><div class="calc-result-value" id="bmiValue">—</div></div>
+      <p style="text-align:center;font-weight:700;color:var(--primary-dark);" id="bmiCat">—</p>
+    </div>
+    <aside class="sidebar"><div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div>
+      <div class="info-box"><h4>BMI categories</h4><ul><li>Under 18.5 — Underweight</li><li>18.5–24.9 — Normal</li><li>25–29.9 — Overweight</li><li>30+ — Obese</li></ul></div>
+    </aside>
+  </div>
+</main>
+<footer class="site-footer"><div class="container"><div class="footer-bottom">© 2026 ToolShoppy</div></div></footer>
+<div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
+<script src="/assets/js/ga-config.js"></script><script src="/assets/js/ad-config.js"></script><script src="/assets/js/core.js"></script><script src="/assets/js/ads.js"></script><script src="/assets/js/analytics.js"></script>
+<script>
+(function () {
+  var unit = 'metric';
+  function category(b) {
+    if (b < 18.5) return 'Underweight';
+    if (b < 25) return 'Normal weight';
+    if (b < 30) return 'Overweight';
+    return 'Obese';
+  }
+  function run() {
+    var bmi;
+    if (unit === 'metric') {
+      var kg = parseFloat(document.getElementById('weightKg').value) || 0;
+      var cm = parseFloat(document.getElementById('heightCm').value) || 0;
+      var m = cm / 100;
+      bmi = m > 0 ? kg / (m * m) : 0;
+    } else {
+      var lb = parseFloat(document.getElementById('weightLb').value) || 0;
+      var inches = (parseFloat(document.getElementById('heightFt').value) || 0) * 12 + (parseFloat(document.getElementById('heightIn').value) || 0);
+      bmi = inches > 0 ? (703 * lb) / (inches * inches) : 0;
+    }
+    document.getElementById('bmiValue').textContent = bmi ? bmi.toFixed(1) : '—';
+    document.getElementById('bmiCat').textContent = bmi ? category(bmi) : '—';
+  }
+  document.getElementById('unitRow').addEventListener('click', function (e) {
+    var chip = e.target.closest('[data-unit]'); if (!chip) return;
+    unit = chip.dataset.unit;
+    document.getElementById('unitRow').querySelectorAll('.chip').forEach(function (c) { c.classList.remove('active'); });
+    chip.classList.add('active');
+    document.getElementById('metricForm').style.display = unit === 'metric' ? '' : 'none';
+    document.getElementById('imperialForm').style.display = unit === 'imperial' ? '' : 'none';
+    run();
+  });
+  ['weightKg','heightCm','weightLb','heightFt','heightIn'].forEach(function (id) { document.getElementById(id).addEventListener('input', run); });
+  run();
+})();
+</script>
+</body>
+</html>

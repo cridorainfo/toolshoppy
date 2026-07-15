@@ -5,7 +5,7 @@
 <script>(function(){try{var t=localStorage.getItem('ts-theme');if(!t){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ToolShoppy | Premium Free Online Tool Suite & Converter Hub</title>
-<meta name="description" content="Access 20+ free online PDF, Image, and Finance tools. Gold rate Kerala & UAE, currency converter, EMI calculator, and more. Privacy-first, no signup.">
+<meta name="description" content="Access 28+ free online PDF, Image, and Finance tools. Gold rate Kerala & UAE, petrol price, salary calculator, and more. Privacy-first, no signup.">
 <meta name="robots" content="index, follow">
 <meta name="keywords" content="image compressor, govt photo resizer, pdf password, word to pdf, background remover, emi calculator, toolshoppy premium">
 <link rel="canonical" href="https://toolshoppy.com/">
@@ -203,9 +203,12 @@
         <ul>
           <li><a href="/tools/rates/gold-rate/">Gold Rate Today</a></li>
           <li><a href="/tools/rates/silver-rate/">Silver Rate</a></li>
+          <li><a href="/tools/rates/petrol-price/">Petrol Price</a></li>
           <li><a href="/tools/rates/currency-converter/">Currency Converter</a></li>
           <li><a href="/tools/finance/emi-calculator/">EMI Calculator</a></li>
           <li><a href="/tools/finance/gst-calculator/">GST Calculator</a></li>
+          <li><a href="/tools/finance/income-tax/">Income Tax Calculator</a></li>
+          <li><a href="/tools/finance/salary-calculator/">Salary Calculator</a></li>
         </ul>
       </div>
       <div>
@@ -214,6 +217,11 @@
           <li><a href="/tools/pdf/unlock/">Unlock PDF</a></li>
           <li><a href="/tools/pdf/image-to-pdf/">Image to PDF</a></li>
           <li><a href="/tools/misc/qr-generator/">QR Generator</a></li>
+          <li><a href="/tools/misc/word-counter/">Word Counter</a></li>
+          <li><a href="/tools/misc/age-calculator/">Age Calculator</a></li>
+          <li><a href="/tools/misc/bmi-calculator/">BMI Calculator</a></li>
+          <li><a href="/tools/misc/whatsapp-link/">WhatsApp Link</a></li>
+          <li><a href="/tools/misc/font-styler/">Font Styler</a></li>
           <li><a href="/about.html">About</a></li>
           <li><a href="/privacy.html">Privacy Policy</a></li>
           <li><a href="/terms.html">Terms of Service</a></li>
@@ -270,7 +278,15 @@
     { id: 'currency-converter', href: '/tools/rates/currency-converter/', cat: 'finance', name: 'currency converter aed inr sar usd', icon: 'currency-dollar', tile: 'green', title: 'Currency Converter', desc: 'AED, SAR, USD to INR' },
     { id: 'emi-calculator', href: '/tools/finance/emi-calculator/', cat: 'finance', name: 'emi calculator home loan personal', icon: 'building-bank', tile: 'blue', title: 'EMI Calculator', desc: 'Home & personal loan EMI' },
     { id: 'gst-calculator', href: '/tools/finance/gst-calculator/', cat: 'finance', name: 'gst calculator add remove cgst sgst', icon: 'calculator', tile: 'indigo', title: 'GST Calculator', desc: 'Add or remove GST' },
-    { id: 'qr-generator', href: '/tools/misc/qr-generator/', cat: 'misc', name: 'qr code generator', icon: 'qrcode', tile: 'sky', title: 'QR Generator', desc: 'Text, URL, WhatsApp link' }
+    { id: 'petrol-price', href: '/tools/rates/petrol-price/', cat: 'finance', name: 'petrol diesel price today india', icon: 'gas-station', tile: 'orange', title: 'Petrol Price', desc: 'State-wise petrol & diesel' },
+    { id: 'income-tax', href: '/tools/finance/income-tax/', cat: 'finance', name: 'income tax calculator india fy', icon: 'receipt', tile: 'slate', title: 'Income Tax Calculator', desc: 'New vs old regime FY 25-26' },
+    { id: 'salary-calculator', href: '/tools/finance/salary-calculator/', cat: 'finance', name: 'salary calculator in hand ctc', icon: 'cash', tile: 'emerald', title: 'Salary Calculator', desc: 'CTC to monthly in-hand' },
+    { id: 'qr-generator', href: '/tools/misc/qr-generator/', cat: 'misc', name: 'qr code generator', icon: 'qrcode', tile: 'sky', title: 'QR Generator', desc: 'Text, URL, WhatsApp link' },
+    { id: 'word-counter', href: '/tools/misc/word-counter/', cat: 'misc', name: 'word counter character', icon: 'abc', tile: 'indigo', title: 'Word Counter', desc: 'Words, chars & reading time' },
+    { id: 'age-calculator', href: '/tools/misc/age-calculator/', cat: 'misc', name: 'age calculator dob birthday', icon: 'cake', tile: 'pink', title: 'Age Calculator', desc: 'DOB to exact age' },
+    { id: 'font-styler', href: '/tools/misc/font-styler/', cat: 'misc', name: 'fancy font generator instagram', icon: 'sparkles', tile: 'amber', title: 'Font Styler', desc: 'Stylish Unicode text' },
+    { id: 'whatsapp-link', href: '/tools/misc/whatsapp-link/', cat: 'misc', name: 'whatsapp link generator wa.me', icon: 'brand-whatsapp', tile: 'green', title: 'WhatsApp Link', desc: 'wa.me link with message' },
+    { id: 'bmi-calculator', href: '/tools/misc/bmi-calculator/', cat: 'misc', name: 'bmi calculator body mass index', icon: 'scale', tile: 'teal', title: 'BMI Calculator', desc: 'Metric or imperial BMI' }
   ];
 
   const comingTools = [
@@ -278,18 +294,10 @@
     { cat: 'image', name: 'passport photo maker', icon: 'photo', tile: 'blue', title: 'Passport Photo Maker', desc: 'Coming soon' },
     { cat: 'image', name: 'whatsapp sticker maker', icon: 'sticker-2', tile: 'amber', title: 'Sticker Maker', desc: 'Coming soon' },
     { cat: 'image', name: 'image upscaler hd enhancer', icon: 'zoom-in', tile: 'violet', title: 'Image Upscaler', desc: 'Coming soon' },
-    { cat: 'finance', name: 'petrol diesel price', icon: 'gas-station', tile: 'orange', title: 'Petrol Price', desc: 'Coming soon' },
-    { cat: 'finance', name: 'income tax calculator', icon: 'receipt', tile: 'slate', title: 'Income Tax Calculator', desc: 'Coming soon' },
-    { cat: 'finance', name: 'salary calculator in hand', icon: 'cash', tile: 'emerald', title: 'Salary Calculator', desc: 'Coming soon' },
     { cat: 'video', name: 'video compressor', icon: 'video', tile: 'rose', title: 'Video Compressor', desc: 'Coming soon' },
     { cat: 'video', name: 'video trimmer cutter', icon: 'scissors', tile: 'pink', title: 'Video Trimmer', desc: 'Coming soon' },
     { cat: 'video', name: 'video to mp3 audio', icon: 'music', tile: 'violet', title: 'Video to MP3', desc: 'Coming soon' },
-    { cat: 'video', name: 'whatsapp status splitter', icon: 'device-mobile', tile: 'sky', title: 'Status Splitter', desc: 'Coming soon' },
-    { cat: 'misc', name: 'word counter character', icon: 'abc', tile: 'indigo', title: 'Word Counter', desc: 'Coming soon' },
-    { cat: 'misc', name: 'age calculator', icon: 'cake', tile: 'pink', title: 'Age Calculator', desc: 'Coming soon' },
-    { cat: 'misc', name: 'fancy font generator', icon: 'sparkles', tile: 'amber', title: 'Font Styler', desc: 'Coming soon' },
-    { cat: 'misc', name: 'whatsapp link generator', icon: 'brand-whatsapp', tile: 'green', title: 'WhatsApp Link', desc: 'Coming soon' },
-    { cat: 'misc', name: 'bmi calculator', icon: 'scale', tile: 'teal', title: 'BMI Calculator', desc: 'Coming soon' }
+    { cat: 'video', name: 'whatsapp status splitter', icon: 'device-mobile', tile: 'sky', title: 'Status Splitter', desc: 'Coming soon' }
   ];
 
   // ---- Favorites (localStorage) ----
