@@ -4,7 +4,8 @@
   "private": true,
   "description": "ToolShoppy — free client-side utility tools",
   "scripts": {
-    "start": "serve . -l $PORT"
+    "start": "serve . -l $PORT",
+    "sync:trends": "node scripts/sync-trends-seo.mjs"
   },
   "dependencies": {
     "serve": "^14.2.6"

@@ -7,7 +7,7 @@
 <title>ToolShoppy | Premium Free Online Tool Suite & Converter Hub</title>
 <meta name="description" content="Access 43+ free online PDF, Image, Video, and Finance tools. Gold rate, SIP calculator, video compressor, and more. Privacy-first, no signup.">
 <meta name="robots" content="index, follow">
-<meta name="keywords" content="image compressor, govt photo resizer, pdf password, word to pdf, background remover, emi calculator, toolshoppy premium">
+<meta name="keywords" content="pdf image converter, editor pdf online free, pdf to image converter, free online pdf editor, pdf free editor online, online pdf editor free, pdf free editor, pdf editor free, image to pdf converter, free pdf editor, toolshoppy, free online tools">
 <link rel="canonical" href="https://toolshoppy.com/">
 <meta property="og:title" content="ToolShoppy | Premium Free Online Tool Suite & Converter Hub">
 <meta property="og:description" content="Access 43+ free online PDF, Image, Video, and Finance tools. Redesigned with a premium, privacy-first interface.">
@@ -33,7 +33,7 @@
   "url": "https://toolshoppy.com/",
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "https://toolshoppy.com/?q={search_term_string}",
+    "target": "https://toolshoppy.com/search/?q={search_term_string}",
     "query-input": "required name=search_term_string"
   }
 }
@@ -59,6 +59,7 @@
   <div class="container">
     <a href="/" class="logo"><img src="/assets/img/logo.png" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
     <nav class="site-nav">
+      <a href="#trending-section">Trending</a>
       <a href="#available-section">All Tools</a>
       <a href="#about-section">Privacy Shield</a>
       <a href="#faq-section">Support &amp; FAQs</a>
@@ -73,6 +74,7 @@
     </button>
   </div>
   <div class="mobile-nav-panel" id="mobileNavPanel">
+    <a href="#trending-section">Trending</a>
     <a href="#available-section">All Tools</a>
     <a href="#about-section">Privacy Shield</a>
     <a href="#faq-section">Support &amp; FAQs</a>
@@ -97,6 +99,7 @@
 
   <nav class="filter-bar">
     <div class="container filter-scroll" id="filterScroll">
+      <button class="filter-chip filter-chip--trending" data-cat="trending"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#bolt"></use></svg> Trending</button>
       <button class="filter-chip active" data-cat="all">All</button>
       <button class="filter-chip filter-chip--favorites" data-cat="favorites"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#star"></use></svg> Favorites</button>
       <button class="filter-chip filter-chip--image" data-cat="image"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#photo"></use></svg> Image</button>
@@ -108,7 +111,13 @@
   </nav>
 
   <div class="container">
-    <h2 id="available-section" class="section-title"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#circle-check"></use></svg> Available Now</h2>
+    <section class="trending-section" id="trending-section" aria-label="Trending tools">
+      <h2 class="section-title"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#bolt"></use></svg> Trending Searches</h2>
+      <p class="trending-section-sub">Popular tools from Google Trends — tap to open instantly.</p>
+      <div class="trending-pills" id="trendingPills"></div>
+    </section>
+
+    <h2 id="available-section" class="section-title"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#circle-check"></use></svg> All Tools</h2>
     <div class="featured-grid" id="featuredGrid"></div>
 
     <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
@@ -270,6 +279,8 @@
 
 <div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
 
+<script src="/assets/js/trends-data.js"></script>
+<script src="/assets/js/trends-seo.js"></script>
 <script src="/assets/js/ga-config.js"></script>
 <script src="/assets/js/ad-config.js"></script>
 <script src="/assets/js/core.js"></script>
@@ -355,8 +366,10 @@
   const featuredGrid = document.getElementById('featuredGrid');
   const toolGrid = document.getElementById('toolGrid');
 
-  featuredGrid.innerHTML = liveTools.map((t) => `
-    <div class="tool-card" data-cat="${t.cat}" data-name="${t.name}" data-id="${t.id}">
+  featuredGrid.innerHTML = liveTools.map((t) => {
+    const trendScore = (typeof TSTrendsSEO !== 'undefined') ? TSTrendsSEO.getToolScore(t.id) : 0;
+    return `
+    <div class="tool-card" data-cat="${t.cat}" data-name="${t.name}" data-id="${t.id}" data-trend="${trendScore}">
       <a href="${t.href}" class="tool-card-cover" aria-label="Open ${t.title}"></a>
       <button type="button" class="star-btn${favorites.includes(t.id) ? ' is-fav' : ''}" data-id="${t.id}" aria-label="Toggle favorite" onclick="toggleFavorite(event, this)">
         <svg class="icon-svg" width="18" height="18" aria-hidden="true"><use href="/assets/icons/sprite.svg#star"></use></svg>
@@ -364,8 +377,8 @@
       <div class="icon"><span class="icon-tile icon-tile--${t.tile}"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#${t.icon}"></use></svg></span></div>
       <h3>${t.title}</h3>
       <p>${t.desc}</p>
-    </div>
-  `).join('');
+    </div>`;
+  }).join('');
 
   toolGrid.innerHTML = comingTools.map((t) => `
     <div class="tool-card" data-cat="${t.cat}" data-name="${t.name}">
@@ -389,7 +402,28 @@
   let activeCat = 'all';
 
   const params = new URLSearchParams(location.search);
-  if (params.get('q')) searchInput.value = params.get('q');
+  const qParam = params.get('q');
+  if (qParam && typeof TSTrendsSEO !== 'undefined') {
+    const match = TSTrendsSEO.resolveQuery(qParam);
+    if (match && match.redirect) {
+      location.replace(match.href);
+    }
+  } else if (qParam) {
+    searchInput.value = qParam;
+  }
+
+  // Trending search pills (from Google Trends CSV)
+  const trendingPills = document.getElementById('trendingPills');
+  if (trendingPills && typeof TSTrendsSEO !== 'undefined') {
+    TSTrendsSEO.getTrendingQueries(12).forEach((item) => {
+      const a = document.createElement('a');
+      a.className = 'trend-pill';
+      a.href = '/search/?q=' + encodeURIComponent(item.q);
+      a.title = 'Open tool for: ' + item.q;
+      a.textContent = item.q;
+      trendingPills.appendChild(a);
+    });
+  }
 
   function applyFilters() {
     const q = searchInput.value.trim().toLowerCase();
@@ -397,9 +431,21 @@
     let visibleLive = 0;
     let visibleSoon = 0;
 
+    if (activeCat === 'trending') {
+      const sorted = [...featuredCards].sort((a, b) =>
+        (parseInt(b.dataset.trend, 10) || 0) - (parseInt(a.dataset.trend, 10) || 0)
+      );
+      sorted.forEach((card, i) => {
+        featuredGrid.appendChild(card);
+      });
+    }
+
     featuredCards.forEach((card) => {
       const matchQ = !q || (card.dataset.name || '').includes(q) || card.textContent.toLowerCase().includes(q);
-      const matchCat = activeCat === 'all' || (activeCat === 'favorites' ? favorites.includes(card.dataset.id) : card.dataset.cat === activeCat);
+      let matchCat = true;
+      if (activeCat === 'favorites') matchCat = favorites.includes(card.dataset.id);
+      else if (activeCat === 'trending') matchCat = (parseInt(card.dataset.trend, 10) || 0) > 0;
+      else if (activeCat !== 'all') matchCat = card.dataset.cat === activeCat;
       const match = matchQ && matchCat;
       card.style.display = match ? '' : 'none';
       if (match) visibleLive++;
@@ -419,6 +465,21 @@
     toolGrid.style.display = visibleSoon === 0 ? 'none' : '';
     noResults.style.display = (visibleLive + visibleSoon) === 0 ? 'block' : 'none';
   }
+
+  searchInput.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter') return;
+    const q = searchInput.value.trim();
+    if (!q) return;
+    e.preventDefault();
+    if (typeof TSTrendsSEO !== 'undefined') {
+      const match = TSTrendsSEO.resolveQuery(q);
+      if (match && match.href) {
+        location.href = match.href;
+        return;
+      }
+    }
+    location.href = '/search/?q=' + encodeURIComponent(q);
+  });
 
   searchInput.addEventListener('input', applyFilters);
   heroSearchClear.addEventListener('click', () => {

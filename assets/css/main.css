@@ -325,7 +325,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 /* Anchor targets scrolled to from .site-nav — offset for the sticky header + filter bar */
-#available-section, #coming-section, #about-section, #faq-section {
+#available-section, #coming-section, #about-section, #faq-section, #trending-section {
   scroll-margin-top: 120px;
 }
 
@@ -366,6 +366,19 @@ button { font-family: inherit; cursor: pointer; }
   0%, 100% { opacity: 1; transform: scale(1); }
   50% { opacity: 0.4; transform: scale(0.7); }
 }
+
+/* Trending searches strip (Google Trends) */
+.trending-section { margin-bottom: 8px; }
+.trending-section-sub { font-size: 0.85rem; color: var(--text-muted); margin: -4px 0 12px; }
+.trending-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+.trend-pill {
+  display: inline-flex; align-items: center; padding: 7px 14px; font-size: 0.78rem; font-weight: 600;
+  color: var(--primary-dark); background: var(--primary-tint); border: 1px solid rgba(225, 29, 72, 0.2);
+  border-radius: 999px; text-decoration: none; transition: background .2s ease, border-color .2s ease;
+}
+.trend-pill:hover { background: var(--card); border-color: var(--primary); color: var(--primary); }
+:root[data-theme="dark"] .trend-pill { color: var(--primary); background: rgba(225, 29, 72, 0.1); }
+.filter-chip--trending.active { background: var(--primary); color: #fff; border-color: var(--primary); }
 
 /* Tool Grid */
 .tool-grid {

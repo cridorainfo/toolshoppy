@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>(function(){try{var t=localStorage.getItem('ts-theme');if(!t){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Search Tools — ToolShoppy</title>
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://toolshoppy.com/search/">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/main.css">
+<script src="/assets/js/trends-data.js"></script>
+<script src="/assets/js/trends-seo.js"></script>
+<script>
+(function () {
+  var params = new URLSearchParams(location.search);
+  var q = params.get('q') || params.get('query') || '';
+  var dest = '/';
+  if (q && globalThis.TSTrendsSEO) {
+    var match = TSTrendsSEO.resolveQuery(q);
+    if (match && match.href) dest = match.href;
+    else dest = '/?q=' + encodeURIComponent(q);
+  }
+  location.replace(dest);
+})();
+</script>
+</head>
+<body style="font-family:system-ui,sans-serif;text-align:center;padding:48px 16px;color:#64748B;">
+<p>Redirecting to the right tool…</p>
+<p><a href="/">ToolShoppy home</a></p>
+</body>
+</html>

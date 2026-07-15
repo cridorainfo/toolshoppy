@@ -17,3 +17,22 @@
 /privacy /privacy.html 200
 /terms /terms.html 200
 /contact /contact.html 200
+
+# Trend SEO — auto-managed by npm run sync:trends
+# TRENDS-AUTO-START
+/search /search/ 301
+/free-online-pdf-editor /tools/pdf/editor/free-online/ 301
+/word-to-pdf-free /tools/pdf/word-to-pdf/free-online/ 301
+/pdf-to-word-free /tools/pdf/pdf-to-word/free-online/ 301
+/pdf-compression-online /tools/pdf/compress/online/ 301
+/free-video-compressor /tools/video/compress/free-online/ 301
+/image-compressor-free /tools/image/compress/free-online/ 301
+/image-to-pdf-free /tools/pdf/image-to-pdf/free-online/ 301
+/pdf-to-image-free /tools/pdf/pdf-to-image/free-online/ 301
+/free-image-converter /tools/image/convert/free-online/ 301
+/free-qr-code-generator /tools/misc/qr-generator/free-online/ 301
+/remove-background-free /tools/image/background-remove/free-online/ 301
+/aed-to-inr /tools/rates/currency-converter/aed-inr/ 301
+/silver-rate-uae /tools/rates/silver-rate/uae/ 301
+/uae-gold-rate /tools/rates/gold-rate/dubai/ 301
+# TRENDS-AUTO-END

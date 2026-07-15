@@ -4,9 +4,9 @@
 window.TS_AD_CONFIG = {
   client: 'ca-pub-1180208702657280',
   slots: {
-    top: null,                 // Leaderboard / auto responsive above tool
-    sidebar: null,             // 300x250 rectangle in sidebar
-    incontent: null,           // In-content unit between tool steps / SEO blocks
-    stickyFooterMobile: null,  // Sticky footer (mobile only via CSS)
+    top: '3653298378',
+    sidebar: '9769637241',
+    incontent: '6610634207',
+    stickyFooterMobile: '9617473861',
   },
 };
