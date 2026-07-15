@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>(function(){try{var t=localStorage.getItem('ts-theme');if(!t){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UAE VAT Calculator Free — Add &amp; Remove 5% VAT | ToolShoppy</title>
+<meta name="description" content="UAE VAT calculator free online. Add or remove 5% VAT for Dubai, Abu Dhabi invoices. No signup, instant results.">
+<link rel="canonical" href="https://toolshoppy.com/tools/finance/uae-vat/">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/main.css">
+<meta name="theme-color" content="#E11D48">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"UAE VAT Calculator","url":"https://toolshoppy.com/tools/finance/uae-vat/","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+</head>
+<body>
+<header class="site-header"><div class="container">
+  <a href="/" class="logo"><img src="/assets/img/logo.png" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
+  <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode"><svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg><svg class="icon-svg theme-icon-moon" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#moon"></use></svg></button>
+</div></header>
+<main class="tool-page container">
+  <nav class="breadcrumb"><a href="/">Home</a> › <a href="/#finance">Finance</a> › <span class="crumb-current">UAE VAT</span></nav>
+  <div class="tool-header">
+    <div class="icon-tile icon-tile--lg icon-tile--green"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#calculator"></use></svg></div>
+    <h1>UAE VAT Calculator</h1>
+    <p>Add or remove 5% VAT — for UAE invoices &amp; shopping.</p>
+  </div>
+  <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
+  <div class="tool-layout with-sidebar">
+    <div class="tool-card-main">
+      <div class="chip-row" id="modeRow">
+        <button class="chip active" data-mode="add" type="button">Add VAT (5%)</button>
+        <button class="chip" data-mode="remove" type="button">Remove VAT</button>
+      </div>
+      <div class="calc-form" style="margin-top:14px;">
+        <div class="calc-field"><label for="amount" id="amountLabel">Amount (excl. VAT) AED</label><input type="number" id="amount" value="1000" min="0" step="any"></div>
+      </div>
+      <div class="calc-result-hero"><div class="calc-result-label" id="resultLabel">Total (incl. VAT)</div><div class="calc-result-value" id="total">—</div></div>
+      <div class="compare-row" style="margin-top:12px;">
+        <div class="compare-box"><div class="label">VAT amount (5%)</div><div class="value" id="vatAmt">—</div></div>
+        <div class="compare-box"><div class="label">Net / Gross</div><div class="value" id="netGross">—</div></div>
+      </div>
+      <p style="margin-top:12px;font-size:0.85rem;color:var(--text-muted);">Standard UAE VAT rate is 5%. <a href="/tools/finance/gst-calculator/">India GST calculator →</a></p>
+    </div>
+    <aside class="sidebar"><div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div></aside>
+  </div>
+  <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
+</main>
+<footer class="site-footer"><div class="container"><div class="footer-bottom">© 2026 ToolShoppy</div></div></footer>
+<div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
+<script src="/assets/js/ga-config.js"></script><script src="/assets/js/ad-config.js"></script><script src="/assets/js/core.js"></script><script src="/assets/js/ads.js"></script><script src="/assets/js/analytics.js"></script>
+<script>
+(function () {
+  var VAT = 0.05, mode = 'add';
+  function fmt(n) { return 'AED ' + (Math.round(n * 100) / 100).toLocaleString('en-AE'); }
+  function run() {
+    var amt = parseFloat(document.getElementById('amount').value) || 0;
+    var vat, total, net;
+    if (mode === 'add') {
+      vat = amt * VAT; total = amt + vat; net = amt;
+      document.getElementById('amountLabel').textContent = 'Amount (excl. VAT) AED';
+      document.getElementById('resultLabel').textContent = 'Total (incl. VAT)';
+    } else {
+      total = amt; net = amt / (1 + VAT); vat = total - net;
+      document.getElementById('amountLabel').textContent = 'Amount (incl. VAT) AED';
+      document.getElementById('resultLabel').textContent = 'Amount (excl. VAT)';
+    }
+    document.getElementById('total').textContent = fmt(mode === 'add' ? total : net);
+    document.getElementById('vatAmt').textContent = fmt(vat);
+    document.getElementById('netGross').textContent = fmt(net) + ' / ' + fmt(total);
+  }
+  document.getElementById('modeRow').addEventListener('click', function (e) {
+    var c = e.target.closest('[data-mode]'); if (!c) return;
+    document.getElementById('modeRow').querySelectorAll('.chip').forEach(function (x) { x.classList.remove('active'); });
+    c.classList.add('active'); mode = c.dataset.mode; run();
+  });
+  document.getElementById('amount').addEventListener('input', run);
+  run();
+})();
+</script>
+</body>
+</html>

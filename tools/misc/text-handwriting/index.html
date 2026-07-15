@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>(function(){try{var t=localStorage.getItem('ts-theme');if(!t){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Text to Handwriting Free — Convert Text to Handwritten Image | ToolShoppy</title>
+<meta name="description" content="Convert text to handwriting style image free online. Download as PNG for notes, assignments. No signup, 100% on device.">
+<link rel="canonical" href="https://toolshoppy.com/tools/misc/text-handwriting/">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/main.css">
+<meta name="theme-color" content="#E11D48">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Text to Handwriting","url":"https://toolshoppy.com/tools/misc/text-handwriting/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+</head>
+<body>
+<header class="site-header"><div class="container">
+  <a href="/" class="logo"><img src="/assets/img/logo.png" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
+  <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode"><svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg><svg class="icon-svg theme-icon-moon" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#moon"></use></svg></button>
+</div></header>
+<main class="tool-page container">
+  <nav class="breadcrumb"><a href="/">Home</a> › <a href="/#misc">Misc</a> › <span class="crumb-current">Text to Handwriting</span></nav>
+  <div class="tool-header">
+    <div class="icon-tile icon-tile--lg icon-tile--amber"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#file-pencil"></use></svg></div>
+    <h1>Text to Handwriting</h1>
+    <p>Type text → download as a handwritten-style PNG image.</p>
+  </div>
+  <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
+  <div class="tool-layout with-sidebar">
+    <div class="tool-card-main">
+      <div class="calc-field"><label for="inputText">Your text</label><textarea class="text-tool-area" id="inputText" style="min-height:120px;">Dear Teacher,
+
+Please find my assignment attached.
+
+Thank you.</textarea></div>
+      <div class="chip-row" id="styleRow" style="margin-top:12px;">
+        <button class="chip active" data-style="casual" type="button">Casual</button>
+        <button class="chip" data-style="neat" type="button">Neat</button>
+        <button class="chip" data-style="cursive" type="button">Cursive</button>
+      </div>
+      <div class="chip-row" id="paperRow" style="margin-top:8px;">
+        <button class="chip active" data-paper="#fffef8" type="button">White</button>
+        <button class="chip" data-paper="#f0f7ff" type="button">Blue ruled</button>
+        <button class="chip" data-paper="#fff8f0" type="button">Cream</button>
+      </div>
+      <canvas id="outCanvas" style="width:100%;max-width:600px;border:1px solid var(--border);border-radius:8px;margin-top:16px;background:#fffef8;"></canvas>
+      <button class="btn btn-accent btn-block" id="downloadBtn" type="button" style="margin-top:12px;">Download PNG</button>
+      <div class="trust-badge" style="margin-top:16px;"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock"></use></svg> 100% client-side — nothing uploaded</div>
+    </div>
+    <aside class="sidebar"><div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div></aside>
+  </div>
+  <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
+</main>
+<footer class="site-footer"><div class="container"><div class="footer-bottom">© 2026 ToolShoppy</div></div></footer>
+<div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
+<script src="/assets/js/ga-config.js"></script><script src="/assets/js/ad-config.js"></script><script src="/assets/js/core.js"></script><script src="/assets/js/ads.js"></script><script src="/assets/js/analytics.js"></script>
+<script>
+(function () {
+  var STYLES = {
+    casual: { font: '22px "Segoe Script", "Bradley Hand", cursive', line: 34, jitter: 1.2 },
+    neat: { font: '20px "Segoe Print", "Comic Sans MS", cursive', line: 32, jitter: 0.4 },
+    cursive: { font: '24px "Brush Script MT", "Segoe Script", cursive', line: 36, jitter: 1.5 },
+  };
+  var style = 'casual', paper = '#fffef8';
+  var canvas = document.getElementById('outCanvas'), ctx = canvas.getContext('2d');
+  var input = document.getElementById('inputText');
+  function render() {
+    var cfg = STYLES[style], pad = 28, w = 600;
+    var lines = input.value.replace(/\r/g, '').split('\n');
+    var h = Math.max(200, pad * 2 + lines.length * cfg.line + 20);
+    canvas.width = w; canvas.height = h;
+    ctx.fillStyle = paper; ctx.fillRect(0, 0, w, h);
+    if (paper === '#f0f7ff') {
+      ctx.strokeStyle = 'rgba(100,160,220,0.35)'; ctx.lineWidth = 1;
+      for (var y = pad + 10; y < h; y += cfg.line) { ctx.beginPath(); ctx.moveTo(pad, y); ctx.lineTo(w - pad, y); ctx.stroke(); }
+    }
+    ctx.fillStyle = '#1a365d'; ctx.font = cfg.font; ctx.textBaseline = 'top';
+    lines.forEach(function (line, li) {
+      var x = pad, y = pad + li * cfg.line;
+      for (var i = 0; i < line.length; i++) {
+        var ch = line[i];
+        var jx = (Math.random() - 0.5) * cfg.jitter * 2;
+        var jy = (Math.random() - 0.5) * cfg.jitter;
+        ctx.save(); ctx.translate(x + jx, y + jy); ctx.rotate((Math.random() - 0.5) * 0.04);
+        ctx.fillText(ch, 0, 0); ctx.restore();
+        x += ctx.measureText(ch).width + (Math.random() * 0.8);
+      }
+    });
+  }
+  document.getElementById('styleRow').addEventListener('click', function (e) {
+    var c = e.target.closest('[data-style]'); if (!c) return;
+    document.getElementById('styleRow').querySelectorAll('.chip').forEach(function (x) { x.classList.remove('active'); });
+    c.classList.add('active'); style = c.dataset.style; render();
+  });
+  document.getElementById('paperRow').addEventListener('click', function (e) {
+    var c = e.target.closest('[data-paper]'); if (!c) return;
+    document.getElementById('paperRow').querySelectorAll('.chip').forEach(function (x) { x.classList.remove('active'); });
+    c.classList.add('active'); paper = c.dataset.paper; canvas.style.background = paper; render();
+  });
+  input.addEventListener('input', render);
+  document.getElementById('downloadBtn').addEventListener('click', function () {
+    canvas.toBlob(function (b) { TS.downloadBlob(b, 'handwriting.png'); });
+    if (window.TSAnalytics) TSAnalytics.track('tool_complete', { tool: 'text-handwriting' });
+  });
+  render();
+})();
+</script>
+</body>
+</html>

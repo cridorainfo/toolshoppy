@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>(function(){try{var t=localStorage.getItem('ts-theme');if(!t){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Audio Cutter Free Online — Trim MP3 &amp; Ringtone Maker | ToolShoppy</title>
+<meta name="description" content="Cut and trim audio free online. Make ringtones from MP3, WAV, M4A in your browser. No upload, no signup.">
+<link rel="canonical" href="https://toolshoppy.com/tools/misc/audio-cutter/">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/main.css">
+<meta name="theme-color" content="#E11D48">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Audio Cutter","url":"https://toolshoppy.com/tools/misc/audio-cutter/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+</head>
+<body>
+<header class="site-header"><div class="container">
+  <a href="/" class="logo"><img src="/assets/img/logo.png" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
+  <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode"><svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg><svg class="icon-svg theme-icon-moon" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#moon"></use></svg></button>
+</div></header>
+<main class="tool-page container">
+  <nav class="breadcrumb"><a href="/">Home</a> › <a href="/#misc">Misc</a> › <span class="crumb-current">Audio Cutter</span></nav>
+  <div class="tool-header">
+    <div class="icon-tile icon-tile--lg icon-tile--violet"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#music"></use></svg></div>
+    <h1>Audio Cutter / Ringtone Maker</h1>
+    <p>Trim any audio clip — perfect for phone ringtones.</p>
+  </div>
+  <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
+  <div class="tool-layout with-sidebar">
+    <div class="tool-card-main">
+      <div class="drop-zone" id="dropZone"><div class="dz-cta">Select audio file</div><input type="file" id="fileInput" accept="audio/*"></div>
+      <div id="controls" style="display:none;margin-top:16px;">
+        <audio id="preview" controls style="width:100%;margin-bottom:12px;"></audio>
+        <div class="calc-row">
+          <div class="calc-field"><label for="startSec">Start (sec)</label><input type="number" id="startSec" value="0" min="0" step="0.1"></div>
+          <div class="calc-field"><label for="endSec">End (sec)</label><input type="number" id="endSec" value="30" min="0.1" step="0.1"></div>
+        </div>
+        <button class="btn btn-primary btn-block" id="cutBtn">Cut Audio</button>
+        <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+        <p id="statusText" style="font-size:0.85rem;color:var(--text-muted);"></p>
+      </div>
+      <div class="result-panel" id="resultPanel"><button class="btn btn-accent btn-block" id="downloadBtn">Download Clip</button></div>
+      <div class="trust-badge"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock"></use></svg> Your files never leave your device</div>
+    </div>
+    <aside class="sidebar"><div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div></aside>
+  </div>
+  <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
+</main>
+<footer class="site-footer"><div class="container"><div class="footer-bottom">© 2026 ToolShoppy</div></div></footer>
+<div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
+<script src="/assets/js/ga-config.js"></script><script src="/assets/js/ad-config.js"></script><script src="/assets/js/core.js"></script><script src="/assets/js/ads.js"></script><script src="/assets/js/analytics.js"></script>
+<script type="module">
+import { runFFmpeg } from '/assets/js/ffmpeg-loader.mjs';
+var file = null, blob = null, outName = 'ringtone.mp3';
+var preview = document.getElementById('preview');
+TS.setupDropZone(document.getElementById('dropZone'), document.getElementById('fileInput'), function (f) {
+  file = f[0]; if (!file) return;
+  preview.src = URL.createObjectURL(file);
+  document.getElementById('controls').style.display = 'block';
+  preview.onloadedmetadata = function () {
+    document.getElementById('endSec').value = Math.min(30, preview.duration).toFixed(1);
+    document.getElementById('endSec').max = preview.duration;
+    document.getElementById('startSec').max = preview.duration;
+  };
+});
+document.getElementById('cutBtn').addEventListener('click', async function () {
+  if (!file) return;
+  var start = parseFloat(document.getElementById('startSec').value) || 0;
+  var end = parseFloat(document.getElementById('endSec').value) || 0;
+  if (end <= start) { alert('End must be after start.'); return; }
+  var ext = (file.name.split('.').pop() || 'mp3').toLowerCase();
+  var btn = document.getElementById('cutBtn'); btn.disabled = true;
+  document.getElementById('progressBar').classList.add('active');
+  document.getElementById('statusText').textContent = 'Loading engine…';
+  try {
+    blob = await runFFmpeg(file, 'input.' + ext, 'output.mp3', ['-ss', String(start), '-t', String(end - start), '-acodec', 'libmp3lame', '-q:a', '2'], function (p) {
+      document.getElementById('progressFill').style.width = p + '%';
+      document.getElementById('statusText').textContent = 'Cutting… ' + p + '%';
+    });
+    blob = new Blob([blob], { type: 'audio/mpeg' }); outName = 'ringtone.mp3';
+  } catch (e) {
+    blob = await runFFmpeg(file, 'input.' + ext, 'output.m4a', ['-ss', String(start), '-t', String(end - start), '-acodec', 'aac'], function () {});
+    blob = new Blob([blob], { type: 'audio/mp4' }); outName = 'ringtone.m4a';
+  }
+  document.getElementById('resultPanel').classList.add('active');
+  document.getElementById('statusText').textContent = 'Done · ' + TS.formatBytes(blob.size);
+  btn.disabled = false; document.getElementById('progressBar').classList.remove('active');
+  if (window.TSAnalytics) TSAnalytics.track('tool_complete', { tool: 'audio-cutter' });
+});
+document.getElementById('downloadBtn').addEventListener('click', function () {
+  if (blob) TS.downloadBlob(blob, outName);
+});
+</script>
+</body>
+</html>

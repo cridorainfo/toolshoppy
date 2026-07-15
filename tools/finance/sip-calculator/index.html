@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>(function(){try{var t=localStorage.getItem('ts-theme');if(!t){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIP Calculator Free — Mutual Fund SIP Returns India | ToolShoppy</title>
+<meta name="description" content="Calculate SIP returns free online. Monthly investment, expected rate, tenure — see maturity value and wealth gained. No signup.">
+<link rel="canonical" href="https://toolshoppy.com/tools/finance/sip-calculator/">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/main.css">
+<meta name="theme-color" content="#E11D48">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"SIP Calculator","url":"https://toolshoppy.com/tools/finance/sip-calculator/","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+</head>
+<body>
+<header class="site-header"><div class="container">
+  <a href="/" class="logo"><img src="/assets/img/logo.png" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
+  <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode"><svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg><svg class="icon-svg theme-icon-moon" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#moon"></use></svg></button>
+</div></header>
+<main class="tool-page container">
+  <nav class="breadcrumb"><a href="/">Home</a> › <a href="/#finance">Finance</a> › <span class="crumb-current">SIP Calculator</span></nav>
+  <div class="tool-header">
+    <div class="icon-tile icon-tile--lg icon-tile--emerald"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#coin"></use></svg></div>
+    <h1>SIP Calculator</h1>
+    <p>Estimate mutual fund SIP maturity value &amp; returns.</p>
+  </div>
+  <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
+  <div class="tool-layout with-sidebar">
+    <div class="tool-card-main">
+      <div class="calc-form">
+        <div class="calc-row">
+          <div class="calc-field"><label for="monthly">Monthly SIP ₹</label><input type="number" id="monthly" value="5000" min="100" step="100"></div>
+          <div class="calc-field"><label for="rate">Expected return % p.a.</label><input type="number" id="rate" value="12" min="1" max="30" step="0.5"></div>
+          <div class="calc-field"><label for="years">Tenure (years)</label><input type="number" id="years" value="10" min="1" max="40" step="1"></div>
+        </div>
+      </div>
+      <div class="calc-result-hero"><div class="calc-result-label">Maturity value</div><div class="calc-result-value" id="maturity">—</div></div>
+      <div class="compare-row" style="margin-top:12px;">
+        <div class="compare-box"><div class="label">Invested</div><div class="value" id="invested">—</div></div>
+        <div class="compare-box"><div class="label">Wealth gained</div><div class="value" id="gained">—</div></div>
+      </div>
+    </div>
+    <aside class="sidebar"><div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div>
+      <div class="info-box"><h4>Related</h4><ul><li><a href="/tools/finance/fd-calculator/">FD / RD Calculator →</a></li><li><a href="/tools/finance/emi-calculator/">EMI Calculator →</a></li></ul></div>
+    </aside>
+  </div>
+  <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
+</main>
+<footer class="site-footer"><div class="container"><div class="footer-bottom">© 2026 ToolShoppy</div></div></footer>
+<div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
+<script src="/assets/js/ga-config.js"></script><script src="/assets/js/ad-config.js"></script><script src="/assets/js/core.js"></script><script src="/assets/js/ads.js"></script><script src="/assets/js/analytics.js"></script>
+<script>
+(function () {
+  function fmt(n) { return '₹' + Math.round(n).toLocaleString('en-IN'); }
+  function run() {
+    var P = parseFloat(document.getElementById('monthly').value) || 0;
+    var annual = parseFloat(document.getElementById('rate').value) || 0;
+    var years = parseFloat(document.getElementById('years').value) || 0;
+    var n = years * 12, r = annual / 12 / 100;
+    var fv = r > 0 ? P * ((Math.pow(1 + r, n) - 1) / r) * (1 + r) : P * n;
+    var invested = P * n;
+    document.getElementById('maturity').textContent = fmt(fv);
+    document.getElementById('invested').textContent = fmt(invested);
+    document.getElementById('gained').textContent = fmt(fv - invested);
+  }
+  ['monthly', 'rate', 'years'].forEach(function (id) { document.getElementById(id).addEventListener('input', run); });
+  run();
+})();
+</script>
+</body>
+</html>

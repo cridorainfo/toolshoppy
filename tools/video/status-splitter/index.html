@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>(function(){try{var t=localStorage.getItem('ts-theme');if(!t){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WhatsApp Status Splitter Free — Split Video for Status | ToolShoppy</title>
+<meta name="description" content="Split long video into 30-second WhatsApp status clips free online. 9:16 vertical format. No upload, no signup.">
+<link rel="canonical" href="https://toolshoppy.com/tools/video/status-splitter/">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/main.css">
+<meta name="theme-color" content="#E11D48">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"WhatsApp Status Splitter","url":"https://toolshoppy.com/tools/video/status-splitter/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+</head>
+<body>
+<header class="site-header"><div class="container">
+  <a href="/" class="logo"><img src="/assets/img/logo.png" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
+  <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode"><svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg><svg class="icon-svg theme-icon-moon" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#moon"></use></svg></button>
+</div></header>
+<main class="tool-page container">
+  <nav class="breadcrumb"><a href="/">Home</a> › <a href="/#video">Video</a> › <span class="crumb-current">Status Splitter</span></nav>
+  <div class="tool-header">
+    <div class="icon-tile icon-tile--lg icon-tile--sky"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#device-mobile"></use></svg></div>
+    <h1>WhatsApp Status Splitter</h1>
+    <p>Split video into 30s status clips — 9:16 vertical, ready to post.</p>
+  </div>
+  <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
+  <div class="tool-layout with-sidebar">
+    <div class="tool-card-main">
+      <div class="chip-row" id="modeRow">
+        <button class="chip active" data-mode="video" type="button">Video</button>
+        <button class="chip" data-mode="image" type="button">Long image</button>
+      </div>
+      <div class="drop-zone" id="dropZone" style="margin-top:14px;">
+        <div class="dz-cta">Upload video or tall image</div>
+        <input type="file" id="fileInput" accept="video/*,image/*">
+      </div>
+      <p id="fileInfo" style="font-size:0.85rem;color:var(--text-muted);margin-top:8px;"></p>
+      <button class="btn btn-primary btn-block" id="splitBtn" style="margin-top:12px;display:none;">Split for Status</button>
+      <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+      <p id="statusText" style="font-size:0.85rem;color:var(--text-muted);"></p>
+      <div class="result-panel" id="resultPanel">
+        <p id="partCount" style="margin-bottom:12px;font-weight:600;"></p>
+        <button class="btn btn-accent btn-block" id="downloadBtn">Download ZIP of Parts</button>
+      </div>
+      <div class="trust-badge"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock"></use></svg> Your files never leave your device</div>
+    </div>
+    <aside class="sidebar"><div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div>
+      <div class="info-box"><h4>WhatsApp limits</h4><ul><li>Status video max ~30 seconds</li><li>9:16 vertical works best</li></ul></div>
+    </aside>
+  </div>
+  <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
+</main>
+<footer class="site-footer"><div class="container"><div class="footer-bottom">© 2026 ToolShoppy</div></div></footer>
+<div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
+<script src="/assets/js/ga-config.js"></script><script src="/assets/js/ad-config.js"></script><script src="/assets/js/core.js"></script><script src="/assets/js/image-tools.js"></script><script src="/assets/js/ads.js"></script><script src="/assets/js/analytics.js"></script>
+<script type="module">
+import { getFFmpeg, fetchFile } from '/assets/js/ffmpeg-loader.mjs';
+
+var file = null, mode = 'video', zipEntries = [];
+var SEG = 30;
+var VF = 'scale=1080:1920:force_original_aspect_ratio=decrease,pad=1080:1920:(ow-iw)/2:(oh-ih)/2:black';
+
+document.getElementById('modeRow').addEventListener('click', function (e) {
+  var c = e.target.closest('[data-mode]'); if (!c) return;
+  document.getElementById('modeRow').querySelectorAll('.chip').forEach(function (x) { x.classList.remove('active'); });
+  c.classList.add('active'); mode = c.dataset.mode;
+});
+
+TS.setupDropZone(document.getElementById('dropZone'), document.getElementById('fileInput'), function (f) {
+  file = f[0]; if (!file) return;
+  mode = file.type.startsWith('image/') ? 'image' : 'video';
+  document.getElementById('fileInfo').textContent = file.name + ' · ' + TS.formatBytes(file.size);
+  document.getElementById('splitBtn').style.display = 'block';
+});
+
+async function splitImage() {
+  var loaded = await TS.loadImage(file);
+  var img = loaded.img, w = 1080, h = 1920;
+  var slices = Math.ceil(img.naturalHeight / (img.naturalWidth * (h / w)));
+  if (slices < 1) slices = 1;
+  var sliceH = Math.ceil(img.naturalHeight / slices);
+  zipEntries = [];
+  for (var i = 0; i < slices; i++) {
+    var canvas = document.createElement('canvas');
+    canvas.width = w; canvas.height = h;
+    var ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#000'; ctx.fillRect(0, 0, w, h);
+    var sy = i * sliceH, sh = Math.min(sliceH, img.naturalHeight - sy);
+    var scale = w / img.naturalWidth;
+    var dh = sh * scale;
+    ctx.drawImage(img, 0, sy, img.naturalWidth, sh, 0, (h - dh) / 2, w, dh);
+    var blob = await new Promise(function (r) { canvas.toBlob(r, 'image/jpeg', 0.9); });
+    var buf = new Uint8Array(await blob.arrayBuffer());
+    zipEntries.push({ name: 'status-part-' + (i + 1) + '.jpg', data: buf });
+    document.getElementById('progressFill').style.width = Math.round(((i + 1) / slices) * 100) + '%';
+  }
+}
+
+async function splitVideo() {
+  var duration = await new Promise(function (resolve, reject) {
+    var v = document.createElement('video');
+    v.preload = 'metadata';
+    v.onloadedmetadata = function () { resolve(v.duration); URL.revokeObjectURL(v.src); };
+    v.onerror = reject;
+    v.src = URL.createObjectURL(file);
+  });
+  var parts = Math.ceil(duration / SEG);
+  var ffmpeg = await getFFmpeg(function (p) {
+    document.getElementById('progressFill').style.width = p + '%';
+  });
+  var ext = (file.name.split('.').pop() || 'mp4').toLowerCase();
+  await ffmpeg.writeFile('input.' + ext, await fetchFile(file));
+  zipEntries = [];
+  for (var i = 0; i < parts; i++) {
+    var start = i * SEG;
+    var out = 'part' + (i + 1) + '.mp4';
+    document.getElementById('statusText').textContent = 'Part ' + (i + 1) + ' of ' + parts + '…';
+    await ffmpeg.exec(['-ss', String(start), '-t', String(SEG), '-i', 'input.' + ext, '-vf', VF, '-c:v', 'libx264', '-crf', '28', '-c:a', 'aac', out]);
+    var data = await ffmpeg.readFile(out);
+    zipEntries.push({ name: 'status-part-' + (i + 1) + '.mp4', data: data });
+    await ffmpeg.deleteFile(out);
+    document.getElementById('progressFill').style.width = Math.round(((i + 1) / parts) * 100) + '%';
+  }
+  await ffmpeg.deleteFile('input.' + ext);
+}
+
+document.getElementById('splitBtn').addEventListener('click', async function () {
+  if (!file) return;
+  var btn = document.getElementById('splitBtn'); btn.disabled = true;
+  document.getElementById('progressBar').classList.add('active');
+  document.getElementById('statusText').textContent = 'Processing…';
+  try {
+    if (mode === 'image' || file.type.startsWith('image/')) await splitImage();
+    else await splitVideo();
+    document.getElementById('partCount').textContent = zipEntries.length + ' status parts ready';
+    document.getElementById('resultPanel').classList.add('active');
+    document.getElementById('statusText').textContent = 'Done!';
+    if (window.TSAnalytics) TSAnalytics.track('tool_complete', { tool: 'status-splitter' });
+  } catch (e) { document.getElementById('statusText').textContent = 'Split failed. Try a shorter file.'; console.error(e); }
+  btn.disabled = false; document.getElementById('progressBar').classList.remove('active');
+});
+
+document.getElementById('downloadBtn').addEventListener('click', function () {
+  if (!zipEntries.length) return;
+  var zip = TS.buildZip(zipEntries);
+  TS.downloadBlob(new Blob([zip], { type: 'application/zip' }), 'whatsapp-status-parts.zip');
+});
+</script>
+</body>
+</html>

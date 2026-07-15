@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>(function(){try{var t=localStorage.getItem('ts-theme');if(!t){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Time Zone Converter Free — IST, GST, EST, UTC Online | ToolShoppy</title>
+<meta name="description" content="Convert time between time zones free online. IST, Dubai GST, US EST, UK GMT and more. No signup, instant results.">
+<link rel="canonical" href="https://toolshoppy.com/tools/misc/timezone-converter/">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/main.css">
+<meta name="theme-color" content="#E11D48">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Time Zone Converter","url":"https://toolshoppy.com/tools/misc/timezone-converter/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+</head>
+<body>
+<header class="site-header"><div class="container">
+  <a href="/" class="logo"><img src="/assets/img/logo.png" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
+  <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode"><svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg><svg class="icon-svg theme-icon-moon" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#moon"></use></svg></button>
+</div></header>
+<main class="tool-page container">
+  <nav class="breadcrumb"><a href="/">Home</a> › <a href="/#misc">Misc</a> › <span class="crumb-current">Time Zone</span></nav>
+  <div class="tool-header">
+    <div class="icon-tile icon-tile--lg icon-tile--cyan"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#world"></use></svg></div>
+    <h1>Time Zone Converter</h1>
+    <p>Convert any date &amp; time between global time zones instantly.</p>
+  </div>
+  <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
+  <div class="tool-layout with-sidebar">
+    <div class="tool-card-main">
+      <div class="calc-row">
+        <div class="calc-field"><label for="fromTz">From</label><select id="fromTz" style="width:100%;padding:10px;border:1px solid var(--border);border-radius:10px;background:var(--card);color:var(--text);"></select></div>
+        <div class="calc-field"><label for="toTz">To</label><select id="toTz" style="width:100%;padding:10px;border:1px solid var(--border);border-radius:10px;background:var(--card);color:var(--text);"></select></div>
+      </div>
+      <div class="calc-field" style="margin-top:12px;"><label for="dtInput">Date &amp; time</label><input type="datetime-local" id="dtInput" style="width:100%;padding:10px;border:1px solid var(--border);border-radius:10px;background:var(--card);color:var(--text);"></div>
+      <div class="calc-result-hero" style="margin-top:16px;">
+        <div class="calc-result-label">Converted time</div>
+        <div class="calc-result-value" id="resultOut" style="font-size:1.25rem;">—</div>
+        <p id="diffOut" style="font-size:0.85rem;color:var(--text-muted);margin-top:6px;"></p>
+      </div>
+      <button class="btn" id="nowBtn" type="button" style="margin-top:12px;background:var(--card);border:1px solid var(--border);">Use current time</button>
+      <div class="trust-badge" style="margin-top:16px;"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock"></use></svg> 100% client-side — nothing uploaded</div>
+    </div>
+    <aside class="sidebar"><div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div>
+      <div class="info-box"><h4>Popular</h4><ul><li>IST ↔ Dubai (GST)</li><li>IST ↔ US Eastern</li><li>IST ↔ UK (GMT/BST)</li></ul></div>
+    </aside>
+  </div>
+  <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
+</main>
+<footer class="site-footer"><div class="container"><div class="footer-bottom">© 2026 ToolShoppy</div></div></footer>
+<div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
+<script src="/assets/js/ga-config.js"></script><script src="/assets/js/ad-config.js"></script><script src="/assets/js/core.js"></script><script src="/assets/js/ads.js"></script><script src="/assets/js/analytics.js"></script>
+<script>
+(function () {
+  var ZONES = [
+    { id: 'Asia/Kolkata', label: 'India (IST)' },
+    { id: 'Asia/Dubai', label: 'UAE / Dubai (GST)' },
+    { id: 'Asia/Riyadh', label: 'Saudi Arabia' },
+    { id: 'Asia/Kuwait', label: 'Kuwait' },
+    { id: 'Europe/London', label: 'UK (GMT/BST)' },
+    { id: 'America/New_York', label: 'US Eastern' },
+    { id: 'America/Los_Angeles', label: 'US Pacific' },
+    { id: 'Europe/Berlin', label: 'Central Europe' },
+    { id: 'Asia/Singapore', label: 'Singapore' },
+    { id: 'Australia/Sydney', label: 'Australia (Sydney)' },
+    { id: 'UTC', label: 'UTC' },
+  ];
+  var fromTz = document.getElementById('fromTz'), toTz = document.getElementById('toTz');
+  ZONES.forEach(function (z) {
+    fromTz.innerHTML += '<option value="' + z.id + '">' + z.label + '</option>';
+    toTz.innerHTML += '<option value="' + z.id + '">' + z.label + '</option>';
+  });
+  fromTz.value = 'Asia/Kolkata'; toTz.value = 'Asia/Dubai';
+  function pad(n) { return String(n).padStart(2, '0'); }
+  function toLocalInput(d) {
+    return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()) + 'T' + pad(d.getHours()) + ':' + pad(d.getMinutes());
+  }
+  function partsInZone(date, tz) {
+    var f = new Intl.DateTimeFormat('en-GB', { timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false });
+    var p = f.formatToParts(date);
+    var g = function (t) { return p.find(function (x) { return x.type === t; }).value; };
+    return { y: +g('year'), m: +g('month'), d: +g('day'), h: +g('hour'), min: +g('minute') };
+  }
+  function convert() {
+    var raw = document.getElementById('dtInput').value;
+    if (!raw) return;
+    var local = new Date(raw);
+    var src = partsInZone(local, fromTz.value);
+    var utcGuess = Date.UTC(src.y, src.m - 1, src.d, src.h, src.min);
+    var corrected = utcGuess - (partsInZone(new Date(utcGuess), fromTz.value).h - src.h) * 3600000;
+    var result = new Date(corrected);
+    var fmt = new Intl.DateTimeFormat('en-IN', { timeZone: toTz.value, weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
+    document.getElementById('resultOut').textContent = fmt.format(result);
+    var offFrom = -new Date().toLocaleString('en-US', { timeZone: fromTz.value }).length;
+    document.getElementById('diffOut').textContent = fromTz.options[fromTz.selectedIndex].text + ' → ' + toTz.options[toTz.selectedIndex].text;
+  }
+  document.getElementById('dtInput').value = toLocalInput(new Date());
+  ['fromTz', 'toTz', 'dtInput'].forEach(function (id) { document.getElementById(id).addEventListener('change', convert); document.getElementById(id).addEventListener('input', convert); });
+  document.getElementById('nowBtn').addEventListener('click', function () { document.getElementById('dtInput').value = toLocalInput(new Date()); convert(); });
+  convert();
+})();
+</script>
+</body>
+</html>

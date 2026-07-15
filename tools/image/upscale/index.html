@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>(function(){try{var t=localStorage.getItem('ts-theme');if(!t){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image Upscaler Free — HD Enhancer Online | ToolShoppy</title>
+<meta name="description" content="Upscale and sharpen images free online. 2×, 3× or 4× HD enhancer — 100% on your device, no signup.">
+<link rel="canonical" href="https://toolshoppy.com/tools/image/upscale/">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/main.css">
+<meta name="theme-color" content="#E11D48">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Image Upscaler","url":"https://toolshoppy.com/tools/image/upscale/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+</head>
+<body>
+<header class="site-header"><div class="container">
+  <a href="/" class="logo"><img src="/assets/img/logo.png" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
+  <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode"><svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg><svg class="icon-svg theme-icon-moon" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#moon"></use></svg></button>
+</div></header>
+<main class="tool-page container">
+  <nav class="breadcrumb"><a href="/">Home</a> › <a href="/#image">Image</a> › <span class="crumb-current">Image Upscaler</span></nav>
+  <div class="tool-header">
+    <div class="icon-tile icon-tile--lg icon-tile--violet"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#zoom-in"></use></svg></div>
+    <h1>Image Upscaler / HD Enhancer</h1>
+    <p>Upscale 2×, 3× or 4× with sharpening — honest canvas enhancement.</p>
+  </div>
+  <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
+  <div class="tool-layout with-sidebar">
+    <div class="tool-card-main">
+      <div class="chip-row" id="scaleRow">
+        <button class="chip active" data-scale="2" type="button">2×</button>
+        <button class="chip" data-scale="3" type="button">3×</button>
+        <button class="chip" data-scale="4" type="button">4×</button>
+      </div>
+      <div class="drop-zone" id="dropZone" style="margin-top:14px;">
+        <div class="dz-cta">Upload image</div>
+        <input type="file" id="fileInput" accept="image/*">
+      </div>
+      <div id="controls" style="display:none;margin-top:16px;">
+        <button class="btn btn-primary btn-block" id="upscaleBtn">Enhance Image</button>
+        <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+      </div>
+      <div class="result-panel" id="resultPanel">
+        <div class="compare-row"><div class="compare-box"><div class="label">Output</div><div class="value" id="outDims">—</div></div><div class="compare-box"><div class="label">File</div><div class="value" id="outSize">—</div></div></div>
+        <img id="previewImg" alt="Upscaled preview" style="max-width:100%;border-radius:8px;border:1px solid var(--border);margin-bottom:12px;">
+        <button class="btn btn-accent btn-block" id="downloadBtn">Download</button>
+      </div>
+      <div class="trust-badge"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock"></use></svg> Your files never leave your device</div>
+    </div>
+    <aside class="sidebar"><div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div>
+      <div class="info-box"><h4>Note</h4><p style="font-size:0.85rem;color:var(--text-muted);">This is canvas upscale + sharpen, not AI super-resolution. Best for modest enlargements.</p></div>
+    </aside>
+  </div>
+  <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
+</main>
+<footer class="site-footer"><div class="container"><div class="footer-bottom">© 2026 ToolShoppy</div></div></footer>
+<div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
+<script src="/assets/js/ga-config.js"></script><script src="/assets/js/ad-config.js"></script><script src="/assets/js/core.js"></script><script src="/assets/js/image-tools.js"></script><script src="/assets/js/ads.js"></script><script src="/assets/js/analytics.js"></script>
+<script>
+(function () {
+  var scale = 2, file = null, blob = null;
+  document.getElementById('scaleRow').addEventListener('click', function (e) {
+    var c = e.target.closest('[data-scale]'); if (!c) return;
+    document.getElementById('scaleRow').querySelectorAll('.chip').forEach(function (x) { x.classList.remove('active'); });
+    c.classList.add('active'); scale = +c.dataset.scale;
+  });
+  TS.setupDropZone(document.getElementById('dropZone'), document.getElementById('fileInput'), function (f) { file = f[0]; if (file) document.getElementById('controls').style.display = 'block'; });
+  document.getElementById('upscaleBtn').addEventListener('click', async function () {
+    if (!file) return;
+    var btn = document.getElementById('upscaleBtn'); btn.disabled = true;
+    document.getElementById('progressBar').classList.add('active');
+    try {
+      var loaded = await TS.loadImage(file);
+      var canvas = TSImage.upscaleImage(loaded.img, scale);
+      blob = await new Promise(function (r) { canvas.toBlob(r, 'image/png'); });
+      document.getElementById('outDims').textContent = canvas.width + '×' + canvas.height;
+      document.getElementById('outSize').textContent = TS.formatBytes(blob.size);
+      document.getElementById('previewImg').src = URL.createObjectURL(blob);
+      document.getElementById('resultPanel').classList.add('active');
+      if (window.TSAnalytics) TSAnalytics.track('tool_complete', { tool: 'image-upscale' });
+    } catch (e) { alert('Upscale failed.'); }
+    btn.disabled = false; document.getElementById('progressBar').classList.remove('active');
+  });
+  document.getElementById('downloadBtn').addEventListener('click', function () {
+    if (blob) TS.downloadBlob(blob, 'upscaled-' + scale + 'x.png');
+  });
+})();
+</script>
+</body>
+</html>

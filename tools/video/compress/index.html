@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>(function(){try{var t=localStorage.getItem('ts-theme');if(!t){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Video Compressor Free Online — Reduce Video Size | ToolShoppy</title>
+<meta name="description" content="Compress video free online in your browser. Reduce MP4 file size with quality presets. No upload, no signup.">
+<link rel="canonical" href="https://toolshoppy.com/tools/video/compress/">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/main.css">
+<meta name="theme-color" content="#E11D48">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Video Compressor","url":"https://toolshoppy.com/tools/video/compress/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+</head>
+<body>
+<header class="site-header"><div class="container">
+  <a href="/" class="logo"><img src="/assets/img/logo.png" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
+  <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode"><svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg><svg class="icon-svg theme-icon-moon" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#moon"></use></svg></button>
+</div></header>
+<main class="tool-page container">
+  <nav class="breadcrumb"><a href="/">Home</a> › <a href="/#video">Video</a> › <span class="crumb-current">Video Compressor</span></nav>
+  <div class="tool-header">
+    <div class="icon-tile icon-tile--lg icon-tile--rose"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#video"></use></svg></div>
+    <h1>Video Compressor</h1>
+    <p>Reduce video file size — processed locally with FFmpeg.</p>
+  </div>
+  <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
+  <div class="tool-layout with-sidebar">
+    <div class="tool-card-main">
+      <div class="chip-row" id="qualityRow">
+        <button class="chip active" data-crf="23" type="button">High quality</button>
+        <button class="chip" data-crf="28" type="button">Balanced</button>
+        <button class="chip" data-crf="32" type="button">Smallest</button>
+      </div>
+      <div class="drop-zone" id="dropZone" style="margin-top:14px;">
+        <div class="dz-cta">Select video</div>
+        <p>MP4, MOV, WebM — first load downloads ~30MB engine</p>
+        <input type="file" id="fileInput" accept="video/*">
+      </div>
+      <p id="fileInfo" style="font-size:0.85rem;color:var(--text-muted);margin-top:8px;"></p>
+      <button class="btn btn-primary btn-block" id="compressBtn" style="margin-top:12px;display:none;">Compress Video</button>
+      <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+      <p id="statusText" style="font-size:0.85rem;color:var(--text-muted);margin-top:8px;"></p>
+      <div class="result-panel" id="resultPanel">
+        <button class="btn btn-accent btn-block" id="downloadBtn">Download Compressed Video</button>
+      </div>
+      <div class="trust-badge"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock"></use></svg> Your files never leave your device</div>
+    </div>
+    <aside class="sidebar"><div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div></aside>
+  </div>
+  <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
+</main>
+<footer class="site-footer"><div class="container"><div class="footer-bottom">© 2026 ToolShoppy</div></div></footer>
+<div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
+<script src="/assets/js/ga-config.js"></script><script src="/assets/js/ad-config.js"></script><script src="/assets/js/core.js"></script><script src="/assets/js/ads.js"></script><script src="/assets/js/analytics.js"></script>
+<script type="module">
+import { runFFmpeg } from '/assets/js/ffmpeg-loader.mjs';
+var file = null, blob = null, crf = '23';
+document.getElementById('qualityRow').addEventListener('click', function (e) {
+  var c = e.target.closest('[data-crf]'); if (!c) return;
+  document.getElementById('qualityRow').querySelectorAll('.chip').forEach(function (x) { x.classList.remove('active'); });
+  c.classList.add('active'); crf = c.dataset.crf;
+});
+TS.setupDropZone(document.getElementById('dropZone'), document.getElementById('fileInput'), function (f) {
+  file = f[0]; if (!file) return;
+  document.getElementById('fileInfo').textContent = file.name + ' · ' + TS.formatBytes(file.size);
+  document.getElementById('compressBtn').style.display = 'block';
+});
+document.getElementById('compressBtn').addEventListener('click', async function () {
+  if (!file) return;
+  var btn = document.getElementById('compressBtn'); btn.disabled = true;
+  var bar = document.getElementById('progressBar'), fill = document.getElementById('progressFill');
+  var status = document.getElementById('statusText');
+  bar.classList.add('active'); status.textContent = 'Loading video engine…';
+  try {
+    var ext = (file.name.split('.').pop() || 'mp4').toLowerCase();
+    var inName = 'input.' + ext;
+    blob = await runFFmpeg(file, inName, 'output.mp4', ['-c:v', 'libx264', '-crf', crf, '-preset', 'fast', '-c:a', 'aac', '-movflags', '+faststart'], function (p) {
+      fill.style.width = p + '%'; status.textContent = 'Compressing… ' + p + '%';
+    });
+    blob = new Blob([blob], { type: 'video/mp4' });
+    document.getElementById('resultPanel').classList.add('active');
+    status.textContent = 'Done · ' + TS.formatBytes(blob.size) + ' (was ' + TS.formatBytes(file.size) + ')';
+    if (window.TSAnalytics) TSAnalytics.track('tool_complete', { tool: 'video-compress' });
+  } catch (e) { status.textContent = 'Compression failed. Try a shorter clip.'; console.error(e); }
+  btn.disabled = false; bar.classList.remove('active');
+});
+document.getElementById('downloadBtn').addEventListener('click', function () {
+  if (blob) TS.downloadBlob(blob, 'compressed-video.mp4');
+});
+</script>
+</body>
+</html>

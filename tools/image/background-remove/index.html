@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>(function(){try{var t=localStorage.getItem('ts-theme');if(!t){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Background Remover Free Online — Remove Image Background | ToolShoppy</title>
+<meta name="description" content="Remove solid or plain backgrounds from photos free online. PNG with transparency, 100% on your device, no signup.">
+<link rel="canonical" href="https://toolshoppy.com/tools/image/background-remove/">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/main.css">
+<meta name="theme-color" content="#E11D48">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Background Remover","url":"https://toolshoppy.com/tools/image/background-remove/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+</head>
+<body>
+<header class="site-header"><div class="container">
+  <a href="/" class="logo"><img src="/assets/img/logo.png" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
+  <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode"><svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg><svg class="icon-svg theme-icon-moon" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#moon"></use></svg></button>
+</div></header>
+<main class="tool-page container">
+  <nav class="breadcrumb"><a href="/">Home</a> › <a href="/#image">Image</a> › <span class="crumb-current">Background Remover</span></nav>
+  <div class="tool-header">
+    <div class="icon-tile icon-tile--lg icon-tile--pink"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#background"></use></svg></div>
+    <h1>Background Remover</h1>
+    <p>Remove plain or solid backgrounds — exports PNG with transparency.</p>
+  </div>
+  <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
+  <div class="tool-layout with-sidebar">
+    <div class="tool-card-main">
+      <div class="drop-zone" id="dropZone">
+        <div class="icon"><span class="icon-tile icon-tile--sm icon-tile--pink"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#upload"></use></svg></span></div>
+        <div class="dz-cta">Upload image</div>
+        <p>Best for white, grey or single-colour backgrounds</p>
+        <input type="file" id="fileInput" accept="image/*">
+      </div>
+      <div id="controls" style="display:none;margin-top:16px;">
+        <div class="calc-field"><label for="tolerance">Tolerance <span id="tolVal">40</span></label><input type="range" id="tolerance" min="10" max="120" value="40"></div>
+        <button class="btn btn-primary btn-block" id="processBtn">Remove Background</button>
+        <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+      </div>
+      <div class="result-panel" id="resultPanel">
+        <img id="previewImg" alt="Preview" style="max-height:280px;border-radius:8px;border:1px solid var(--border);margin-bottom:12px;background:repeating-conic-gradient(#e2e8f0 0% 25%,#fff 0% 50%) 50%/16px 16px;">
+        <button class="btn btn-accent btn-block" id="downloadBtn"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#download"></use></svg> Download PNG</button>
+      </div>
+      <div class="trust-badge"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock"></use></svg> Your files never leave your device</div>
+    </div>
+    <aside class="sidebar"><div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div>
+      <div class="info-box"><h4>Tips</h4><ul><li>Works best on plain backgrounds</li><li>Increase tolerance for off-white walls</li><li><a href="/tools/image/govt-photo/">Govt Photo Resizer</a> adds a white background</li></ul></div>
+    </aside>
+  </div>
+  <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
+</main>
+<footer class="site-footer"><div class="container"><div class="footer-bottom">© 2026 ToolShoppy</div></div></footer>
+<div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
+<script src="/assets/js/ga-config.js"></script><script src="/assets/js/ad-config.js"></script><script src="/assets/js/core.js"></script><script src="/assets/js/image-tools.js"></script><script src="/assets/js/ads.js"></script><script src="/assets/js/analytics.js"></script>
+<script>
+(function () {
+  var file = null, blob = null;
+  var dropZone = document.getElementById('dropZone'), fileInput = document.getElementById('fileInput');
+  var controls = document.getElementById('controls'), processBtn = document.getElementById('processBtn');
+  var progressBar = document.getElementById('progressBar'), progressFill = document.getElementById('progressFill');
+  var resultPanel = document.getElementById('resultPanel'), previewImg = document.getElementById('previewImg');
+  var tolerance = document.getElementById('tolerance'), tolVal = document.getElementById('tolVal');
+  tolerance.addEventListener('input', function () { tolVal.textContent = tolerance.value; });
+  TS.setupDropZone(dropZone, fileInput, function (files) { file = files[0]; if (file) controls.style.display = 'block'; });
+  processBtn.addEventListener('click', async function () {
+    if (!file) return;
+    processBtn.disabled = true; progressBar.classList.add('active'); progressFill.style.width = '30%';
+    try {
+      var loaded = await TS.loadImage(file);
+      var canvas = TSImage.removeSolidBackground(loaded.img, { tolerance: +tolerance.value });
+      progressFill.style.width = '80%';
+      blob = await new Promise(function (r) { canvas.toBlob(r, 'image/png'); });
+      previewImg.src = URL.createObjectURL(blob);
+      resultPanel.classList.add('active');
+      progressFill.style.width = '100%';
+      if (window.TSAnalytics) TSAnalytics.track('tool_complete', { tool: 'background-remove' });
+    } catch (e) { alert('Could not process image.'); }
+    processBtn.disabled = false; progressBar.classList.remove('active');
+  });
+  document.getElementById('downloadBtn').addEventListener('click', function () {
+    if (blob) TS.downloadBlob(blob, 'no-background.png');
+  });
+})();
+</script>
+</body>
+</html>

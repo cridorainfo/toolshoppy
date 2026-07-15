@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>(function(){try{var t=localStorage.getItem('ts-theme');if(!t){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YouTube Thumbnail Downloader Free — HD Thumbnail Grabber | ToolShoppy</title>
+<meta name="description" content="Get YouTube video thumbnail free online in HD, HQ and max resolution. Paste any YouTube link, no signup.">
+<link rel="canonical" href="https://toolshoppy.com/tools/misc/yt-thumbnail/">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/main.css">
+<meta name="theme-color" content="#E11D48">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"YouTube Thumbnail Grabber","url":"https://toolshoppy.com/tools/misc/yt-thumbnail/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+</head>
+<body>
+<header class="site-header"><div class="container">
+  <a href="/" class="logo"><img src="/assets/img/logo.png" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
+  <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode"><svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg><svg class="icon-svg theme-icon-moon" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#moon"></use></svg></button>
+</div></header>
+<main class="tool-page container">
+  <nav class="breadcrumb"><a href="/">Home</a> › <a href="/#misc">Misc</a> › <span class="crumb-current">YT Thumbnail</span></nav>
+  <div class="tool-header">
+    <div class="icon-tile icon-tile--lg icon-tile--rose"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#movie"></use></svg></div>
+    <h1>YouTube Thumbnail Grabber</h1>
+    <p>Download HD thumbnails from any public YouTube video link.</p>
+  </div>
+  <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
+  <div class="tool-layout with-sidebar">
+    <div class="tool-card-main">
+      <div class="calc-field"><label for="ytUrl">YouTube URL or video ID</label><input type="url" id="ytUrl" placeholder="https://youtube.com/watch?v=…" style="width:100%;padding:11px 12px;border:1px solid var(--border);border-radius:10px;background:var(--card);color:var(--text);"></div>
+      <button class="btn btn-primary btn-block" id="fetchBtn" type="button" style="margin-top:12px;">Get Thumbnails</button>
+      <div id="results" style="margin-top:16px;display:none;"></div>
+      <div class="trust-badge" style="margin-top:16px;"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock"></use></svg> Public thumbnails only — nothing uploaded</div>
+    </div>
+    <aside class="sidebar"><div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div></aside>
+  </div>
+  <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
+</main>
+<footer class="site-footer"><div class="container"><div class="footer-bottom">© 2026 ToolShoppy</div></div></footer>
+<div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
+<script src="/assets/js/ga-config.js"></script><script src="/assets/js/ad-config.js"></script><script src="/assets/js/core.js"></script><script src="/assets/js/ads.js"></script><script src="/assets/js/analytics.js"></script>
+<script>
+(function () {
+  var SIZES = [
+    { label: 'Max (1280×720)', key: 'maxresdefault' },
+    { label: 'High (480×360)', key: 'hqdefault' },
+    { label: 'Medium (320×180)', key: 'mqdefault' },
+    { label: 'Standard (120×90)', key: 'default' },
+  ];
+  function parseId(v) {
+    v = (v || '').trim();
+    if (/^[a-zA-Z0-9_-]{11}$/.test(v)) return v;
+    var m = v.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/|live\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+    return m ? m[1] : null;
+  }
+  document.getElementById('fetchBtn').addEventListener('click', function () {
+    var id = parseId(document.getElementById('ytUrl').value);
+    if (!id) { alert('Paste a valid YouTube URL or 11-character video ID.'); return; }
+    var box = document.getElementById('results');
+    box.style.display = 'block';
+    box.innerHTML = SIZES.map(function (s) {
+      var url = 'https://img.youtube.com/vi/' + id + '/' + s.key + '.jpg';
+      return '<div style="margin-bottom:16px;padding:12px;border:1px solid var(--border);border-radius:var(--radius-sm);"><div style="font-size:0.8rem;font-weight:700;color:var(--text-muted);margin-bottom:8px;">' + s.label + '</div><img src="' + url + '" alt="' + s.label + '" style="max-width:100%;border-radius:8px;" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'block\'"><p style="display:none;font-size:0.85rem;color:var(--text-muted);">Not available for this video</p><a class="btn btn-accent" href="' + url + '" download="youtube-' + id + '-' + s.key + '.jpg" target="_blank" rel="noopener" style="margin-top:8px;display:inline-block;">Download</a></div>';
+    }).join('');
+    if (window.TSAnalytics) TSAnalytics.track('tool_complete', { tool: 'yt-thumbnail' });
+  });
+})();
+</script>
+</body>
+</html>

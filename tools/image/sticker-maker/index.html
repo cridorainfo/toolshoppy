@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>(function(){try{var t=localStorage.getItem('ts-theme');if(!t){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WhatsApp Sticker Maker Free — 512×512 WebP Online | ToolShoppy</title>
+<meta name="description" content="Create WhatsApp stickers free online. Auto 512×512 WebP under 100KB. No signup, files stay on your device.">
+<link rel="canonical" href="https://toolshoppy.com/tools/image/sticker-maker/">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/main.css">
+<meta name="theme-color" content="#E11D48">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"WhatsApp Sticker Maker","url":"https://toolshoppy.com/tools/image/sticker-maker/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+</head>
+<body>
+<header class="site-header"><div class="container">
+  <a href="/" class="logo"><img src="/assets/img/logo.png" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
+  <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode"><svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg><svg class="icon-svg theme-icon-moon" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#moon"></use></svg></button>
+</div></header>
+<main class="tool-page container">
+  <nav class="breadcrumb"><a href="/">Home</a> › <a href="/#image">Image</a> › <span class="crumb-current">Sticker Maker</span></nav>
+  <div class="tool-header">
+    <div class="icon-tile icon-tile--lg icon-tile--amber"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sticker-2"></use></svg></div>
+    <h1>WhatsApp Sticker Maker</h1>
+    <p>512×512 sticker, optimised for WhatsApp (&lt;100KB).</p>
+  </div>
+  <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
+  <div class="tool-layout with-sidebar">
+    <div class="tool-card-main">
+      <div class="drop-zone" id="dropZone">
+        <div class="dz-cta">Upload image</div>
+        <p>Square crop, centred — transparent PNG or photo</p>
+        <input type="file" id="fileInput" accept="image/*">
+      </div>
+      <div id="controls" style="display:none;margin-top:16px;">
+        <button class="btn btn-primary btn-block" id="makeBtn">Create Sticker</button>
+        <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+      </div>
+      <div class="result-panel" id="resultPanel">
+        <img id="previewImg" alt="Sticker preview" style="width:200px;height:200px;object-fit:contain;border-radius:8px;border:1px solid var(--border);margin-bottom:12px;">
+        <p id="sizeInfo" style="font-size:0.85rem;color:var(--text-muted);"></p>
+        <button class="btn btn-accent btn-block" id="downloadBtn">Download Sticker</button>
+      </div>
+      <div class="trust-badge"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock"></use></svg> Your files never leave your device</div>
+    </div>
+    <aside class="sidebar"><div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div></aside>
+  </div>
+  <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
+</main>
+<footer class="site-footer"><div class="container"><div class="footer-bottom">© 2026 ToolShoppy</div></div></footer>
+<div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
+<script src="/assets/js/ga-config.js"></script><script src="/assets/js/ad-config.js"></script><script src="/assets/js/core.js"></script><script src="/assets/js/image-tools.js"></script><script src="/assets/js/ads.js"></script><script src="/assets/js/analytics.js"></script>
+<script>
+(function () {
+  var file = null, blob = null, ext = 'webp';
+  TS.setupDropZone(document.getElementById('dropZone'), document.getElementById('fileInput'), function (f) { file = f[0]; if (file) document.getElementById('controls').style.display = 'block'; });
+  document.getElementById('makeBtn').addEventListener('click', async function () {
+    if (!file) return;
+    var btn = document.getElementById('makeBtn'); btn.disabled = true;
+    document.getElementById('progressBar').classList.add('active');
+    try {
+      var loaded = await TS.loadImage(file);
+      blob = await TSImage.makeSticker(loaded.img, 512, 100 * 1024);
+      ext = blob.type.indexOf('webp') >= 0 ? 'webp' : 'png';
+      document.getElementById('previewImg').src = URL.createObjectURL(blob);
+      document.getElementById('sizeInfo').textContent = '512×512 · ' + TS.formatBytes(blob.size);
+      document.getElementById('resultPanel').classList.add('active');
+      if (window.TSAnalytics) TSAnalytics.track('tool_complete', { tool: 'sticker-maker' });
+    } catch (e) { alert('Could not create sticker.'); }
+    btn.disabled = false; document.getElementById('progressBar').classList.remove('active');
+  });
+  document.getElementById('downloadBtn').addEventListener('click', function () {
+    if (blob) TS.downloadBlob(blob, 'whatsapp-sticker.' + ext);
+  });
+})();
+</script>
+</body>
+</html>
