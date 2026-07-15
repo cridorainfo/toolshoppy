@@ -40,7 +40,12 @@
 .editor-modal[hidden]{display:none!important;}
 .editor-modal-panel{background:var(--card);border-radius:var(--radius);padding:20px;max-width:420px;width:100%;box-shadow:var(--shadow-premium);}
 .editor-modal-panel h3{margin:0 0 12px;font-size:1rem;}
-#sigPad{display:block;width:100%;height:160px;border:1px dashed var(--border);border-radius:8px;background:#fff;cursor:crosshair;touch-action:none;}
+.sig-pad-wrap{position:relative;width:100%;height:160px;border:1px dashed var(--border);border-radius:8px;background:repeating-conic-gradient(#e2e8f0 0% 25%,#fff 0% 50%) 50%/16px 16px;touch-action:none;cursor:none;overflow:hidden;}
+:root[data-theme="dark"] .sig-pad-wrap{background:repeating-conic-gradient(#334155 0% 25%,#1e293b 0% 50%) 50%/16px 16px;}
+#sigPad{display:block;width:100%;height:100%;background:transparent;cursor:none;touch-action:none;}
+.sig-cursor{position:absolute;width:10px;height:10px;border-radius:50%;background:var(--primary);border:2px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,0.18);pointer-events:none;z-index:2;transform:translate(-50%,-50%);left:0;top:0;}
+.sig-cursor.is-drawing{width:8px;height:8px;background:#1e293b;}
+.sig-cursor[hidden]{display:none!important;}
 .sig-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
 </style>
 <script type="application/ld+json">
@@ -121,7 +126,10 @@
       <div class="editor-modal" id="sigModal" hidden>
         <div class="editor-modal-panel">
           <h3>Draw or upload signature</h3>
-          <canvas id="sigPad" width="360" height="160"></canvas>
+          <div class="sig-pad-wrap" id="sigPadWrap">
+            <canvas id="sigPad" width="360" height="160"></canvas>
+            <span class="sig-cursor" id="sigCursor" hidden aria-hidden="true"></span>
+          </div>
           <div class="sig-actions">
             <button class="btn btn-sm" id="sigClear" type="button">Clear</button>
             <button class="btn btn-sm" id="sigUpload" type="button">Upload image</button>
@@ -218,7 +226,9 @@
   const resultPanel = document.getElementById('resultPanel');
   const downloadBtn = document.getElementById('downloadBtn');
   const sigModal = document.getElementById('sigModal');
+  const sigPadWrap = document.getElementById('sigPadWrap');
   const sigPad = document.getElementById('sigPad');
+  const sigCursor = document.getElementById('sigCursor');
   const sigCtx = sigPad.getContext('2d');
   const sigClear = document.getElementById('sigClear');
   const sigUpload = document.getElementById('sigUpload');
@@ -493,20 +503,88 @@
     composite();
   }
 
+  function clearSigPad() {
+    sigCtx.clearRect(0, 0, sigPad.width, sigPad.height);
+  }
+
+  function setupSigStrokeStyle() {
+    sigCtx.strokeStyle = '#1e293b';
+    sigCtx.fillStyle = '#1e293b';
+    sigCtx.lineWidth = 2.5;
+    sigCtx.lineCap = 'round';
+    sigCtx.lineJoin = 'round';
+  }
+
+  function exportSignaturePng() {
+    const w = sigPad.width;
+    const h = sigPad.height;
+    const imgData = sigCtx.getImageData(0, 0, w, h);
+    const data = imgData.data;
+    let minX = w;
+    let minY = h;
+    let maxX = 0;
+    let maxY = 0;
+    let hasInk = false;
+    for (let y = 0; y < h; y++) {
+      for (let x = 0; x < w; x++) {
+        const a = data[(y * w + x) * 4 + 3];
+        if (a > 12) {
+          hasInk = true;
+          if (x < minX) minX = x;
+          if (y < minY) minY = y;
+          if (x > maxX) maxX = x;
+          if (y > maxY) maxY = y;
+        }
+      }
+    }
+    if (!hasInk) return null;
+    const pad = 10;
+    minX = Math.max(0, minX - pad);
+    minY = Math.max(0, minY - pad);
+    maxX = Math.min(w - 1, maxX + pad);
+    maxY = Math.min(h - 1, maxY + pad);
+    const cw = maxX - minX + 1;
+    const ch = maxY - minY + 1;
+    const out = document.createElement('canvas');
+    out.width = cw;
+    out.height = ch;
+    out.getContext('2d').drawImage(sigPad, minX, minY, cw, ch, 0, 0, cw, ch);
+    return out.toDataURL('image/png');
+  }
+
+  function updateSigCursor(e) {
+    const r = sigPad.getBoundingClientRect();
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    if (clientX < r.left || clientX > r.right || clientY < r.top || clientY > r.bottom) {
+      sigCursor.hidden = true;
+      return;
+    }
+    sigCursor.hidden = false;
+    sigCursor.style.left = ((clientX - r.left) / r.width * 100) + '%';
+    sigCursor.style.top = ((clientY - r.top) / r.height * 100) + '%';
+  }
+
+  function sigDot(x, y) {
+    sigCtx.beginPath();
+    sigCtx.arc(x, y, sigCtx.lineWidth / 2, 0, Math.PI * 2);
+    sigCtx.fill();
+  }
+
   function openSigModal() {
     sigModal.hidden = false;
     pendingSigData = null;
-    sigCtx.fillStyle = '#fff';
-    sigCtx.fillRect(0, 0, sigPad.width, sigPad.height);
-    sigCtx.strokeStyle = '#1e293b';
-    sigCtx.lineWidth = 2;
-    sigCtx.lineCap = 'round';
-    sigCtx.lineJoin = 'round';
+    clearSigPad();
+    setupSigStrokeStyle();
+    sigCursor.hidden = true;
+    sigCursor.classList.remove('is-drawing');
   }
 
   function closeSigModal() {
     sigModal.hidden = true;
     pendingSigData = null;
+    sigCursor.hidden = true;
+    sigCursor.classList.remove('is-drawing');
     setTool('select');
   }
 
@@ -521,9 +599,15 @@
   }
 
   function applySignature() {
-    const dataUrl = sigPad.toDataURL('image/png');
+    const dataUrl = exportSignaturePng();
+    if (!dataUrl) {
+      alert('Draw your signature first.');
+      return;
+    }
     sigModal.hidden = true;
     pendingSigData = null;
+    sigCursor.hidden = true;
+    sigCursor.classList.remove('is-drawing');
     addImageObject(dataUrl, 'signature');
   }
 
@@ -560,8 +644,8 @@
   });
 
   sigClear.addEventListener('click', () => {
-    sigCtx.fillStyle = '#fff';
-    sigCtx.fillRect(0, 0, sigPad.width, sigPad.height);
+    clearSigPad();
+    setupSigStrokeStyle();
   });
   sigUpload.addEventListener('click', () => sigUploadInput.click());
   sigUploadInput.addEventListener('change', async (e) => {
@@ -576,9 +660,9 @@
         r.readAsDataURL(file);
       });
       const img = await loadImageDataUrl(dataUrl);
-      sigCtx.fillStyle = '#fff';
-      sigCtx.fillRect(0, 0, sigPad.width, sigPad.height);
-      const scale = Math.min(sigPad.width / img.width, sigPad.height / img.height);
+      clearSigPad();
+      setupSigStrokeStyle();
+      const scale = Math.min(sigPad.width / img.width, sigPad.height / img.height, 1);
       const w = img.width * scale;
       const h = img.height * scale;
       sigCtx.drawImage(img, (sigPad.width - w) / 2, (sigPad.height - h) / 2, w, h);
@@ -592,14 +676,25 @@
     if (e.target === sigModal) closeSigModal();
   });
 
+  sigPadWrap.addEventListener('mousemove', updateSigCursor);
+  sigPadWrap.addEventListener('mouseenter', updateSigCursor);
+  sigPadWrap.addEventListener('mouseleave', () => {
+    sigCursor.hidden = true;
+    sigCursor.classList.remove('is-drawing');
+  });
+
   sigPad.addEventListener('mousedown', (e) => {
     e.preventDefault();
     sigDrawing = true;
+    sigCursor.classList.add('is-drawing');
+    updateSigCursor(e);
     const p = sigPos(e);
     sigLastX = p.x;
     sigLastY = p.y;
+    sigDot(p.x, p.y);
   });
   sigPad.addEventListener('mousemove', (e) => {
+    updateSigCursor(e);
     if (!sigDrawing) return;
     e.preventDefault();
     const p = sigPos(e);
@@ -610,11 +705,24 @@
     sigLastX = p.x;
     sigLastY = p.y;
   });
-  window.addEventListener('mouseup', () => { sigDrawing = false; });
-  sigPad.addEventListener('touchstart', (e) => { sigDrawing = true; const p = sigPos(e); sigLastX = p.x; sigLastY = p.y; }, { passive: false });
+  window.addEventListener('mouseup', () => {
+    sigDrawing = false;
+    sigCursor.classList.remove('is-drawing');
+  });
+  sigPad.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    sigDrawing = true;
+    sigCursor.classList.add('is-drawing');
+    const p = sigPos(e);
+    sigLastX = p.x;
+    sigLastY = p.y;
+    updateSigCursor(e);
+    sigDot(p.x, p.y);
+  }, { passive: false });
   sigPad.addEventListener('touchmove', (e) => {
     if (!sigDrawing) return;
     e.preventDefault();
+    updateSigCursor(e);
     const p = sigPos(e);
     sigCtx.beginPath();
     sigCtx.moveTo(sigLastX, sigLastY);
@@ -623,7 +731,11 @@
     sigLastX = p.x;
     sigLastY = p.y;
   }, { passive: false });
-  sigPad.addEventListener('touchend', () => { sigDrawing = false; });
+  sigPad.addEventListener('touchend', () => {
+    sigDrawing = false;
+    sigCursor.classList.remove('is-drawing');
+    sigCursor.hidden = true;
+  });
 
   function pos(e) {
     const r = canvas.getBoundingClientRect();
