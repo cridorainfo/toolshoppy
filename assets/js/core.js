@@ -126,6 +126,84 @@
     try { localStorage.setItem('ts-theme', next); } catch (e) { /* private mode */ }
   }
 
+  // Build a store-only ZIP (no compression) for multi-file downloads.
+  function buildZip(entries) {
+    const CRC_TABLE = (function () {
+      const t = new Uint32Array(256);
+      for (let i = 0; i < 256; i++) {
+        let c = i;
+        for (let j = 0; j < 8; j++) c = (c & 1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1);
+        t[i] = c;
+      }
+      return t;
+    })();
+
+    function crc32(data) {
+      let crc = 0xFFFFFFFF;
+      for (let i = 0; i < data.length; i++) crc = CRC_TABLE[(crc ^ data[i]) & 0xFF] ^ (crc >>> 8);
+      return (crc ^ 0xFFFFFFFF) >>> 0;
+    }
+
+    function u16(n) { return [n & 0xFF, (n >>> 8) & 0xFF]; }
+    function u32(n) { return [n & 0xFF, (n >>> 8) & 0xFF, (n >>> 16) & 0xFF, (n >>> 24) & 0xFF]; }
+
+    const parts = [];
+    const central = [];
+    let offset = 0;
+
+    entries.forEach((entry) => {
+      const nameBytes = new TextEncoder().encode(entry.name);
+      const data = entry.data instanceof Uint8Array ? entry.data : new Uint8Array(entry.data);
+      const checksum = crc32(data);
+      const local = new Uint8Array([
+        0x50, 0x4B, 0x03, 0x04, 0x14, 0x00, 0x00, 0x00, 0x00, 0x00,
+        ...u32(checksum),
+        ...u32(data.length),
+        ...u32(data.length),
+        ...u16(nameBytes.length),
+        0x00, 0x00,
+        ...nameBytes,
+        ...data,
+      ]);
+      parts.push(local);
+      central.push({ nameBytes, data, checksum, offset });
+      offset += local.length;
+    });
+
+    const centralStart = offset;
+    central.forEach((c) => {
+      const cd = new Uint8Array([
+        0x50, 0x4B, 0x01, 0x02, 0x14, 0x00, 0x14, 0x00, 0x00, 0x00, 0x00, 0x00,
+        ...u32(c.checksum),
+        ...u32(c.data.length),
+        ...u32(c.data.length),
+        ...u16(c.nameBytes.length),
+        0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+        ...u32(c.offset),
+        ...c.nameBytes,
+      ]);
+      parts.push(cd);
+      offset += cd.length;
+    });
+
+    const centralSize = offset - centralStart;
+    const end = new Uint8Array([
+      0x50, 0x4B, 0x05, 0x06, 0x00, 0x00, 0x00, 0x00,
+      ...u16(central.length),
+      ...u16(central.length),
+      ...u32(centralSize),
+      ...u32(centralStart),
+      0x00, 0x00,
+    ]);
+    parts.push(end);
+
+    const total = parts.reduce((sum, p) => sum + p.length, 0);
+    const out = new Uint8Array(total);
+    let pos = 0;
+    parts.forEach((p) => { out.set(p, pos); pos += p.length; });
+    return out;
+  }
+
   global.TS = {
     formatBytes,
     percentSaved,
@@ -134,5 +212,6 @@
     loadImage,
     canvasToTargetSize,
     toggleTheme,
+    buildZip,
   };
 })(window);

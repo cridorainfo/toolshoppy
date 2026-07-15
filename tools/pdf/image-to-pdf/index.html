@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>(function(){try{var t=localStorage.getItem('ts-theme');if(!t){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image to PDF Free Online — JPG PNG to PDF, No Signup | ToolShoppy</title>
+<meta name="description" content="Convert images to PDF free online. Combine JPG, PNG, WebP into one PDF. No signup, files never leave your device. Works on mobile.">
+<meta name="robots" content="index, follow">
+<meta name="keywords" content="image to pdf free, jpg to pdf, png to pdf, convert images to pdf online, photo to pdf">
+<link rel="canonical" href="https://toolshoppy.com/tools/pdf/image-to-pdf/">
+<meta property="og:title" content="Image to PDF — ToolShoppy">
+<meta property="og:description" content="Convert JPG, PNG, WebP images to PDF free online. 100% client-side.">
+<meta property="og:image" content="https://toolshoppy.com/assets/img/og-image.jpg">
+<meta property="og:url" content="https://toolshoppy.com/tools/pdf/image-to-pdf/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ToolShoppy">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Image to PDF — ToolShoppy">
+<meta name="twitter:description" content="Convert JPG, PNG, WebP images to PDF free online. 100% client-side.">
+<meta name="twitter:image" content="https://toolshoppy.com/assets/img/og-image.jpg">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/icon-192.png">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#E11D48">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Image to PDF","url":"https://toolshoppy.com/tools/pdf/image-to-pdf/","description":"Convert images to PDF free online. 100% client-side.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolshoppy.com/"},{"@type":"ListItem","position":2,"name":"PDF Tools","item":"https://toolshoppy.com/#pdf"},{"@type":"ListItem","position":3,"name":"Image to PDF","item":"https://toolshoppy.com/tools/pdf/image-to-pdf/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I convert JPG to PDF for free?","acceptedAnswer":{"@type":"Answer","text":"Upload your JPG images, reorder if needed, pick a page size, and click Create PDF. Download the combined PDF instantly — no upload to any server."}},{"@type":"Question","name":"Can I combine multiple images into one PDF?","acceptedAnswer":{"@type":"Answer","text":"Yes. Add as many images as you need. Each image becomes one page in the final PDF, in the order shown."}},{"@type":"Question","name":"What image formats are supported?","acceptedAnswer":{"@type":"Answer","text":"JPG, PNG, WebP, GIF, and BMP. Other formats are converted via canvas before embedding."}}]}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo"><img src="/assets/img/logo.png" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
+    <div class="site-search"><input type="text" placeholder="Search tools…" onfocus="location.href='/'"></div>
+    <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode">
+      <svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg>
+      <svg class="icon-svg theme-icon-moon" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#moon"></use></svg>
+    </button>
+  </div>
+</header>
+
+<main class="tool-page container">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/"><svg class="icon-svg" width="16" height="16" aria-hidden="true"><use href="/assets/icons/sprite.svg#home"></use></svg> Home</a>
+    <svg class="icon-svg crumb-sep" width="14" height="14" aria-hidden="true"><use href="/assets/icons/sprite.svg#chevron-right"></use></svg>
+    <a href="/#pdf">PDF Tools</a>
+    <svg class="icon-svg crumb-sep" width="14" height="14" aria-hidden="true"><use href="/assets/icons/sprite.svg#chevron-right"></use></svg>
+    <span class="crumb-current">Image to PDF</span>
+  </nav>
+
+  <div class="tool-header">
+    <div class="icon-tile icon-tile--lg icon-tile--cyan"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#photo-up"></use></svg></div>
+    <h1>Image to PDF</h1>
+    <p>Turn JPG, PNG, and WebP photos into a single PDF — reorder pages before export.</p>
+  </div>
+
+  <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
+
+  <div class="tool-layout with-sidebar">
+    <div class="tool-card-main">
+      <div class="drop-zone" id="dropZone">
+        <div class="icon"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#upload"></use></svg></div>
+        <div class="dz-cta">Select images</div>
+        <p>or drop images here — multiple files supported</p>
+        <p class="drop-zone-hint">JPG, PNG, WebP, GIF, BMP</p>
+        <input type="file" id="fileInput" accept="image/*" multiple>
+      </div>
+
+      <div id="controls" style="display:none;">
+        <div class="pdf-preview-grid" id="fileList" aria-live="polite"></div>
+        <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:12px;">Use arrows to reorder pages before creating the PDF.</p>
+
+        <h3 style="margin:8px 0;font-size:0.95rem;">Page size</h3>
+        <div class="chip-row" id="sizeRow">
+          <button class="chip active" data-size="a4" type="button">A4</button>
+          <button class="chip" data-size="letter" type="button">Letter</button>
+          <button class="chip" data-size="fit" type="button">Fit to image</button>
+        </div>
+
+        <h3 style="margin:14px 0 8px;font-size:0.95rem;">Orientation</h3>
+        <div class="chip-row" id="orientRow">
+          <button class="chip active" data-orient="auto" type="button">Auto</button>
+          <button class="chip" data-orient="portrait" type="button">Portrait</button>
+          <button class="chip" data-orient="landscape" type="button">Landscape</button>
+        </div>
+
+        <div class="action-bar">
+          <button class="btn btn-primary" id="createBtn">Create PDF</button>
+          <button class="btn" id="addMoreBtn" type="button" style="background:var(--bg);border:1px solid var(--border);">+ Add more</button>
+        </div>
+        <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+      </div>
+
+      <div class="result-panel" id="resultPanel">
+        <div class="compare-row">
+          <div class="compare-box"><div class="label">Pages</div><div class="value" id="outPages">-</div></div>
+          <div class="compare-box"><div class="label">File Size</div><div class="value" id="outFileSize">-</div></div>
+        </div>
+        <button class="btn btn-accent btn-block" id="downloadBtn"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#download"></use></svg> Download PDF</button>
+      </div>
+
+      <div class="trust-badge"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock"></use></svg> Your files never leave your device</div>
+    </div>
+
+    <aside class="sidebar">
+      <div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div>
+      <div class="info-box">
+        <h4>How it works</h4>
+        <ul>
+          <li>Each image becomes one PDF page</li>
+          <li>Reorder with ↑ / ↓ before export</li>
+          <li>Perfect for scans, receipts, and ID proofs</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
+
+  <div class="content-section">
+    <h2>How to convert images to PDF</h2>
+    <ol>
+      <li>Upload one or more images (JPG, PNG, WebP, etc.).</li>
+      <li>Reorder thumbnails and pick page size / orientation.</li>
+      <li>Click <strong>Create PDF</strong> and download your file.</li>
+    </ol>
+  </div>
+
+  <div class="content-section">
+    <h2>Related tools</h2>
+    <div class="related-tools">
+      <a href="/tools/pdf/pdf-to-image/">
+        <span class="icon-tile icon-tile--sm icon-tile--teal"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#photo-down"></use></svg></span>
+        PDF to Image
+        <span class="related-desc">Export PDF pages as JPG or PNG</span>
+      </a>
+      <a href="/tools/pdf/merge/">
+        <span class="icon-tile icon-tile--sm icon-tile--amber"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#link"></use></svg></span>
+        PDF Merge
+        <span class="related-desc">Combine multiple PDFs into one</span>
+      </a>
+      <a href="/tools/image/compress/">
+        <span class="icon-tile icon-tile--sm icon-tile--indigo"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#arrows-minimize"></use></svg></span>
+        Image Compressor
+        <span class="related-desc">Shrink images to exact KB for forms</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="content-section">
+    <h2>Frequently asked questions</h2>
+    <div class="faq-item"><h3>How do I convert JPG to PDF for free?</h3><p>Upload your JPG images, reorder if needed, pick a page size, and click Create PDF. Download instantly — no server upload.</p></div>
+    <div class="faq-item"><h3>Can I combine multiple images into one PDF?</h3><p>Yes. Add as many images as you need. Each image becomes one page in the final PDF, in the order shown.</p></div>
+    <div class="faq-item"><h3>What image formats are supported?</h3><p>JPG, PNG, WebP, GIF, and BMP. Other formats are converted via canvas before embedding.</p></div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container"><div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div></div>
+</footer>
+<div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
+
+<script src="/assets/js/ga-config.js"></script>
+<script src="/assets/js/ad-config.js"></script>
+<script src="/assets/js/core.js"></script>
+<script src="/assets/js/ads.js"></script>
+<script src="/assets/js/analytics.js"></script>
+<script src="/assets/libs/pdf-lib.min.js"></script>
+<script>
+(function () {
+  const PAGE_SIZES = {
+    a4: [595.28, 841.89],
+    letter: [612, 792],
+  };
+
+  const dropZone = document.getElementById('dropZone');
+  const fileInput = document.getElementById('fileInput');
+  const controls = document.getElementById('controls');
+  const fileList = document.getElementById('fileList');
+  const createBtn = document.getElementById('createBtn');
+  const addMoreBtn = document.getElementById('addMoreBtn');
+  const sizeRow = document.getElementById('sizeRow');
+  const orientRow = document.getElementById('orientRow');
+  const progressBar = document.getElementById('progressBar');
+  const progressFill = document.getElementById('progressFill');
+  const resultPanel = document.getElementById('resultPanel');
+  const outPages = document.getElementById('outPages');
+  const outFileSize = document.getElementById('outFileSize');
+  const downloadBtn = document.getElementById('downloadBtn');
+
+  let files = [];
+  let thumbs = [];
+  let pageSize = 'a4';
+  let orientation = 'auto';
+  let resultBlob = null;
+
+  function isImage(f) {
+    return f.type.startsWith('image/') || /\.(jpe?g|png|gif|webp|bmp)$/i.test(f.name);
+  }
+
+  TS.setupDropZone(dropZone, fileInput, (newFiles) => {
+    const imgs = newFiles.filter(isImage);
+    if (!imgs.length) { alert('Please choose image files.'); return; }
+    files = files.concat(imgs);
+    thumbs = thumbs.concat(imgs.map(() => null));
+    controls.style.display = 'block';
+    dropZone.style.display = files.length ? 'none' : '';
+    resultPanel.classList.remove('active');
+    renderFileList();
+    loadThumbs();
+  });
+
+  addMoreBtn.addEventListener('click', () => fileInput.click());
+
+  async function loadThumbs() {
+    for (let i = 0; i < files.length; i++) {
+      if (thumbs[i]) continue;
+      try {
+        const { img, url } = await TS.loadImage(files[i]);
+        const canvas = document.createElement('canvas');
+        const maxW = 200;
+        const scale = Math.min(1, maxW / img.naturalWidth);
+        canvas.width = Math.floor(img.naturalWidth * scale);
+        canvas.height = Math.floor(img.naturalHeight * scale);
+        canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+        thumbs[i] = { dataUrl: canvas.toDataURL('image/jpeg', 0.8), width: canvas.width, height: canvas.height };
+        URL.revokeObjectURL(url);
+      } catch (e) {
+        thumbs[i] = { dataUrl: '', width: 140, height: 180 };
+      }
+      renderFileList();
+    }
+  }
+
+  function renderFileList() {
+    fileList.innerHTML = '';
+    files.forEach((f, i) => {
+      const actions =
+        '<button type="button" data-act="up" data-i="' + i + '" title="Move up">↑</button>' +
+        '<button type="button" data-act="down" data-i="' + i + '" title="Move down">↓</button>' +
+        '<button type="button" class="is-danger" data-act="remove" data-i="' + i + '" title="Remove">✕</button>';
+      const thumb = thumbs[i] || { dataUrl: '', width: 140, height: 180 };
+      const tile = document.createElement('div');
+      tile.className = 'pdf-tile';
+      tile.innerHTML =
+        '<div class="pdf-tile-thumb"><img alt="" src="' + (thumb.dataUrl || '') + '"><span class="pdf-tile-badge" style="background:var(--primary);">IMG</span></div>' +
+        '<div class="pdf-tile-body"><div class="pdf-tile-name" title="' + escapeAttr(f.name) + '">' + escapeHtml(f.name) + '</div>' +
+        '<div class="pdf-tile-meta">' + TS.formatBytes(f.size) + '</div>' +
+        '<div class="pdf-tile-actions">' + actions + '</div></div>';
+      if (!thumb.dataUrl) {
+        const img = tile.querySelector('img');
+        if (img) img.style.opacity = '0.4';
+      }
+      fileList.appendChild(tile);
+    });
+  }
+
+  fileList.addEventListener('click', (e) => {
+    const el = e.target.closest('[data-act]');
+    if (!el) return;
+    const i = parseInt(el.dataset.i, 10);
+    const act = el.dataset.act;
+    if (act === 'remove') { files.splice(i, 1); thumbs.splice(i, 1); }
+    if (act === 'up' && i > 0) {
+      [files[i - 1], files[i]] = [files[i], files[i - 1]];
+      [thumbs[i - 1], thumbs[i]] = [thumbs[i], thumbs[i - 1]];
+    }
+    if (act === 'down' && i < files.length - 1) {
+      [files[i + 1], files[i]] = [files[i], files[i + 1]];
+      [thumbs[i + 1], thumbs[i]] = [thumbs[i], thumbs[i + 1]];
+    }
+    if (!files.length) { controls.style.display = 'none'; dropZone.style.display = ''; }
+    renderFileList();
+  });
+
+  sizeRow.addEventListener('click', (e) => {
+    const chip = e.target.closest('[data-size]');
+    if (!chip) return;
+    sizeRow.querySelectorAll('.chip').forEach((c) => c.classList.remove('active'));
+    chip.classList.add('active');
+    pageSize = chip.dataset.size;
+  });
+
+  orientRow.addEventListener('click', (e) => {
+    const chip = e.target.closest('[data-orient]');
+    if (!chip) return;
+    orientRow.querySelectorAll('.chip').forEach((c) => c.classList.remove('active'));
+    chip.classList.add('active');
+    orientation = chip.dataset.orient;
+  });
+
+  async function fileToBytes(file) {
+    const buf = await file.arrayBuffer();
+    const type = file.type.toLowerCase();
+    if (type === 'image/jpeg' || type === 'image/jpg' || /\.jpe?g$/i.test(file.name)) {
+      return { kind: 'jpg', bytes: new Uint8Array(buf) };
+    }
+    if (type === 'image/png' || /\.png$/i.test(file.name)) {
+      return { kind: 'png', bytes: new Uint8Array(buf) };
+    }
+    const { img, url } = await TS.loadImage(file);
+    const canvas = document.createElement('canvas');
+    canvas.width = img.naturalWidth;
+    canvas.height = img.naturalHeight;
+    canvas.getContext('2d').drawImage(img, 0, 0);
+    URL.revokeObjectURL(url);
+    const blob = await new Promise((res) => canvas.toBlob(res, 'image/jpeg', 0.92));
+    return { kind: 'jpg', bytes: new Uint8Array(await blob.arrayBuffer()) };
+  }
+
+  createBtn.addEventListener('click', async () => {
+    if (!files.length) { alert('Add at least one image.'); return; }
+    createBtn.disabled = true;
+    progressBar.classList.add('active');
+    progressFill.style.width = '15%';
+
+    try {
+      const { PDFDocument } = PDFLib;
+      const pdf = await PDFDocument.create();
+
+      for (let i = 0; i < files.length; i++) {
+        const { kind, bytes } = await fileToBytes(files[i]);
+        const image = kind === 'png' ? await pdf.embedPng(bytes) : await pdf.embedJpg(bytes);
+        const iw = image.width;
+        const ih = image.height;
+
+        let pw, ph;
+        if (pageSize === 'fit') {
+          pw = iw;
+          ph = ih;
+        } else {
+          [pw, ph] = PAGE_SIZES[pageSize];
+          if (orientation === 'landscape' || (orientation === 'auto' && iw > ih)) {
+            [pw, ph] = [ph, pw];
+          }
+        }
+
+        const page = pdf.addPage([pw, ph]);
+        const margin = pageSize === 'fit' ? 0 : 36;
+        const availW = pw - margin * 2;
+        const availH = ph - margin * 2;
+        const scale = Math.min(availW / iw, availH / ih, pageSize === 'fit' ? 1 : 1);
+        const w = iw * scale;
+        const h = ih * scale;
+        const x = (pw - w) / 2;
+        const y = (ph - h) / 2;
+
+        page.drawImage(image, { x, y, width: w, height: h });
+        progressFill.style.width = (15 + ((i + 1) / files.length) * 75) + '%';
+      }
+
+      const out = await pdf.save();
+      resultBlob = new Blob([out], { type: 'application/pdf' });
+      outPages.textContent = String(files.length);
+      outFileSize.textContent = TS.formatBytes(resultBlob.size);
+      resultPanel.classList.add('active');
+      progressFill.style.width = '100%';
+      if (window.TSAnalytics) TSAnalytics.track('tool_complete', { tool: 'image-to-pdf' });
+    } catch (err) {
+      alert(err.message || 'Could not create PDF from these images.');
+    } finally {
+      createBtn.disabled = false;
+      setTimeout(() => progressBar.classList.remove('active'), 400);
+    }
+  });
+
+  downloadBtn.addEventListener('click', () => {
+    if (!resultBlob) return;
+    TS.downloadBlob(resultBlob, 'images.pdf');
+  });
+
+  function escapeHtml(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+  function escapeAttr(s) { return escapeHtml(s).replace(/"/g, '&quot;'); }
+})();
+</script>
+</body>
+</html>

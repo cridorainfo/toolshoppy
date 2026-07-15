@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>(function(){try{var t=localStorage.getItem('ts-theme');if(!t){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDF to Image Free — Convert PDF to JPG PNG Online | ToolShoppy</title>
+<meta name="description" content="Convert PDF to JPG or PNG free online. Export every page as high-quality images. No signup, files never leave your device. Works on mobile.">
+<meta name="robots" content="index, follow">
+<meta name="keywords" content="pdf to jpg free, pdf to png, pdf to image converter, convert pdf to jpg online free">
+<link rel="canonical" href="https://toolshoppy.com/tools/pdf/pdf-to-image/">
+<meta property="og:title" content="PDF to Image — ToolShoppy">
+<meta property="og:description" content="Convert PDF pages to JPG or PNG free online. 100% client-side.">
+<meta property="og:image" content="https://toolshoppy.com/assets/img/og-image.jpg">
+<meta property="og:url" content="https://toolshoppy.com/tools/pdf/pdf-to-image/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ToolShoppy">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PDF to Image — ToolShoppy">
+<meta name="twitter:description" content="Convert PDF pages to JPG or PNG free online. 100% client-side.">
+<meta name="twitter:image" content="https://toolshoppy.com/assets/img/og-image.jpg">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/icon-192.png">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#E11D48">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"PDF to Image","url":"https://toolshoppy.com/tools/pdf/pdf-to-image/","description":"Convert PDF pages to JPG or PNG free online. 100% client-side.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolshoppy.com/"},{"@type":"ListItem","position":2,"name":"PDF Tools","item":"https://toolshoppy.com/#pdf"},{"@type":"ListItem","position":3,"name":"PDF to Image","item":"https://toolshoppy.com/tools/pdf/pdf-to-image/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I convert PDF to JPG for free?","acceptedAnswer":{"@type":"Answer","text":"Upload your PDF, choose JPG or PNG, pick a quality preset, and click Convert. Download a single image or a ZIP for multi-page PDFs."}},{"@type":"Question","name":"What image quality can I expect?","acceptedAnswer":{"@type":"Answer","text":"Pages are rendered with PDF.js at up to 2× scale. High quality is best for printing; Medium works well for sharing on WhatsApp."}},{"@type":"Question","name":"Is my PDF uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. Conversion runs entirely in your browser — your document never leaves your device."}}]}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo"><img src="/assets/img/logo.png" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
+    <div class="site-search"><input type="text" placeholder="Search tools…" onfocus="location.href='/'"></div>
+    <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode">
+      <svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg>
+      <svg class="icon-svg theme-icon-moon" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#moon"></use></svg>
+    </button>
+  </div>
+</header>
+
+<main class="tool-page container">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/"><svg class="icon-svg" width="16" height="16" aria-hidden="true"><use href="/assets/icons/sprite.svg#home"></use></svg> Home</a>
+    <svg class="icon-svg crumb-sep" width="14" height="14" aria-hidden="true"><use href="/assets/icons/sprite.svg#chevron-right"></use></svg>
+    <a href="/#pdf">PDF Tools</a>
+    <svg class="icon-svg crumb-sep" width="14" height="14" aria-hidden="true"><use href="/assets/icons/sprite.svg#chevron-right"></use></svg>
+    <span class="crumb-current">PDF to Image</span>
+  </nav>
+
+  <div class="tool-header">
+    <div class="icon-tile icon-tile--lg icon-tile--teal"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#photo-down"></use></svg></div>
+    <h1>PDF to Image</h1>
+    <p>Export PDF pages as JPG or PNG — high quality, fully private.</p>
+  </div>
+
+  <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
+
+  <div class="tool-layout with-sidebar">
+    <div class="tool-card-main">
+      <div class="drop-zone" id="dropZone">
+        <div class="icon"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#upload"></use></svg></div>
+        <div class="dz-cta">Select PDF file</div>
+        <p>or drop a PDF here</p>
+        <p class="drop-zone-hint">Every page exports as a separate image</p>
+        <input type="file" id="fileInput" accept="application/pdf,.pdf">
+      </div>
+
+      <div id="controls" style="display:none;">
+        <div class="pdf-preview-single" id="pdfPreview" aria-live="polite"></div>
+
+        <h3 style="margin:14px 0 8px;font-size:0.95rem;">Output format</h3>
+        <div class="chip-row" id="formatRow">
+          <button class="chip active" data-fmt="jpg" type="button">JPG</button>
+          <button class="chip" data-fmt="png" type="button">PNG</button>
+        </div>
+
+        <h3 style="margin:14px 0 8px;font-size:0.95rem;">Quality</h3>
+        <div class="chip-row" id="qualityRow">
+          <button class="chip" data-scale="3" data-q="0.92" type="button">High</button>
+          <button class="chip active" data-scale="2" data-q="0.85" type="button">Medium</button>
+          <button class="chip" data-scale="1.5" data-q="0.75" type="button">Low</button>
+        </div>
+
+        <button class="btn btn-primary btn-block" id="convertBtn" style="margin-top:14px;">Convert to Images</button>
+        <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+      </div>
+
+      <div class="result-panel" id="resultPanel">
+        <div class="compare-row">
+          <div class="compare-box"><div class="label">Images</div><div class="value" id="outCount">-</div></div>
+          <div class="compare-box"><div class="label">Total size</div><div class="value" id="outSize">-</div></div>
+        </div>
+        <button class="btn btn-accent btn-block" id="downloadBtn"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#download"></use></svg> Download</button>
+      </div>
+
+      <div class="trust-badge"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock"></use></svg> Your files never leave your device</div>
+    </div>
+
+    <aside class="sidebar">
+      <div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div>
+      <div class="info-box">
+        <h4>How it works</h4>
+        <ul>
+          <li>Each PDF page → one JPG or PNG</li>
+          <li>Multi-page PDFs download as ZIP</li>
+          <li>Great for sharing on WhatsApp</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
+
+  <div class="content-section">
+    <h2>How to convert PDF to JPG</h2>
+    <ol>
+      <li>Upload your PDF — page count appears instantly.</li>
+      <li>Choose JPG or PNG and a quality preset.</li>
+      <li>Click <strong>Convert to Images</strong> and download.</li>
+    </ol>
+  </div>
+
+  <div class="content-section">
+    <h2>Related tools</h2>
+    <div class="related-tools">
+      <a href="/tools/pdf/image-to-pdf/">
+        <span class="icon-tile icon-tile--sm icon-tile--cyan"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#photo-up"></use></svg></span>
+        Image to PDF
+        <span class="related-desc">Combine photos into a single PDF</span>
+      </a>
+      <a href="/tools/pdf/compress/">
+        <span class="icon-tile icon-tile--sm icon-tile--orange"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#file-zip"></use></svg></span>
+        PDF Compress
+        <span class="related-desc">Reduce PDF size before sharing</span>
+      </a>
+      <a href="/tools/pdf/split/">
+        <span class="icon-tile icon-tile--sm icon-tile--rose"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#cut"></use></svg></span>
+        PDF Split
+        <span class="related-desc">Extract or split PDF pages</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="content-section">
+    <h2>Frequently asked questions</h2>
+    <div class="faq-item"><h3>How do I convert PDF to JPG for free?</h3><p>Upload your PDF, choose JPG or PNG, pick a quality preset, and click Convert. Download a single image or a ZIP for multi-page PDFs.</p></div>
+    <div class="faq-item"><h3>What image quality can I expect?</h3><p>Pages are rendered with PDF.js at up to 2× scale. High quality is best for printing; Medium works well for sharing on WhatsApp.</p></div>
+    <div class="faq-item"><h3>Is my PDF uploaded to a server?</h3><p>No. Conversion runs entirely in your browser — your document never leaves your device.</p></div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container"><div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div></div>
+</footer>
+<div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
+
+<script src="/assets/js/ga-config.js"></script>
+<script src="/assets/js/ad-config.js"></script>
+<script src="/assets/js/core.js"></script>
+<script src="/assets/js/ads.js"></script>
+<script src="/assets/js/analytics.js"></script>
+<script src="/assets/libs/pdf.min.js"></script>
+<script src="/assets/js/pdf-preview.js"></script>
+<script>
+(function () {
+  pdfjsLib.GlobalWorkerOptions.workerSrc = '/assets/libs/pdf.worker.min.js';
+
+  const dropZone = document.getElementById('dropZone');
+  const fileInput = document.getElementById('fileInput');
+  const controls = document.getElementById('controls');
+  const pdfPreview = document.getElementById('pdfPreview');
+  const formatRow = document.getElementById('formatRow');
+  const qualityRow = document.getElementById('qualityRow');
+  const convertBtn = document.getElementById('convertBtn');
+  const progressBar = document.getElementById('progressBar');
+  const progressFill = document.getElementById('progressFill');
+  const resultPanel = document.getElementById('resultPanel');
+  const outCount = document.getElementById('outCount');
+  const outSize = document.getElementById('outSize');
+  const downloadBtn = document.getElementById('downloadBtn');
+
+  let pdfFile = null;
+  let pageCount = 0;
+  let fmt = 'jpg';
+  let renderScale = 2;
+  let jpegQuality = 0.85;
+  let resultBlob = null;
+  let resultName = 'page.jpg';
+
+  TS.setupDropZone(dropZone, fileInput, async (files) => {
+    const f = files.find((x) => x.type === 'application/pdf' || x.name.toLowerCase().endsWith('.pdf'));
+    if (!f) { alert('Please choose a PDF file.'); return; }
+    pdfFile = f;
+    controls.style.display = 'block';
+    dropZone.style.display = 'none';
+    resultPanel.classList.remove('active');
+    resultBlob = null;
+    try {
+      const info = await TSPdfPreview.getPdfInfo(f);
+      pageCount = info.pageCount;
+      renderPreview();
+    } catch (e) {
+      alert('Could not read this PDF. It may be password-protected.');
+      pdfFile = null;
+      controls.style.display = 'none';
+      dropZone.style.display = '';
+    }
+  });
+
+  async function renderPreview() {
+    pdfPreview.innerHTML = '';
+    try {
+      const thumb = await TSPdfPreview.renderPdfThumb(pdfFile);
+      const tile = TSPdfPreview.createPdfTile(pdfFile, thumb, '');
+      const wrap = document.createElement('div');
+      wrap.className = 'pdf-preview-single';
+      wrap.innerHTML = '<div class="pdf-preview-info"><h3>' + escapeHtml(pdfFile.name) + '</h3><p>' + pageCount + ' pages · ' + TS.formatBytes(pdfFile.size) + '</p><button type="button" class="btn" id="changeFileBtn" style="margin-top:8px;background:var(--bg);border:1px solid var(--border);font-size:0.8rem;">Change file</button></div>';
+      wrap.insertBefore(tile, wrap.firstChild);
+      pdfPreview.appendChild(wrap);
+      document.getElementById('changeFileBtn').addEventListener('click', () => {
+        pdfFile = null;
+        controls.style.display = 'none';
+        dropZone.style.display = '';
+        fileInput.value = '';
+        fileInput.click();
+      });
+    } catch (e) {
+      pdfPreview.innerHTML = '<p>' + escapeHtml(pdfFile.name) + ' — ' + pageCount + ' pages</p>';
+    }
+  }
+
+  formatRow.addEventListener('click', (e) => {
+    const chip = e.target.closest('[data-fmt]');
+    if (!chip) return;
+    formatRow.querySelectorAll('.chip').forEach((c) => c.classList.remove('active'));
+    chip.classList.add('active');
+    fmt = chip.dataset.fmt;
+  });
+
+  qualityRow.addEventListener('click', (e) => {
+    const chip = e.target.closest('[data-scale]');
+    if (!chip) return;
+    qualityRow.querySelectorAll('.chip').forEach((c) => c.classList.remove('active'));
+    chip.classList.add('active');
+    renderScale = parseFloat(chip.dataset.scale);
+    jpegQuality = parseFloat(chip.dataset.q);
+  });
+
+  function dataUrlToBytes(dataUrl) {
+    const base64 = dataUrl.split(',')[1];
+    const bin = atob(base64);
+    const out = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
+    return out;
+  }
+
+  convertBtn.addEventListener('click', async () => {
+    if (!pdfFile) return;
+    convertBtn.disabled = true;
+    progressBar.classList.add('active');
+    progressFill.style.width = '5%';
+
+    try {
+      const baseName = pdfFile.name.replace(/\.pdf$/i, '') || 'document';
+      const ext = fmt === 'png' ? 'png' : 'jpg';
+      const mime = fmt === 'png' ? 'image/png' : 'image/jpeg';
+      const outputs = [];
+
+      for (let p = 1; p <= pageCount; p++) {
+        const res = await TSPdfPreview.renderPdfPage(pdfFile, p, {
+          scale: renderScale,
+          mime: mime,
+          quality: jpegQuality,
+        });
+        outputs.push({
+          name: baseName + '-page-' + p + '.' + ext,
+          data: dataUrlToBytes(res.dataUrl),
+        });
+        progressFill.style.width = (5 + (p / pageCount) * 90) + '%';
+      }
+
+      const totalSize = outputs.reduce((s, o) => s + o.data.length, 0);
+      if (outputs.length === 1) {
+        resultBlob = new Blob([outputs[0].data], { type: mime });
+        resultName = outputs[0].name;
+      } else {
+        const zipData = TS.buildZip(outputs);
+        resultBlob = new Blob([zipData], { type: 'application/zip' });
+        resultName = baseName + '-images.zip';
+      }
+
+      outCount.textContent = String(outputs.length);
+      outSize.textContent = TS.formatBytes(totalSize);
+      resultPanel.classList.add('active');
+      progressFill.style.width = '100%';
+      if (window.TSAnalytics) TSAnalytics.track('tool_complete', { tool: 'pdf-to-image' });
+    } catch (err) {
+      alert(err.message || 'Could not convert this PDF.');
+    } finally {
+      convertBtn.disabled = false;
+      setTimeout(() => progressBar.classList.remove('active'), 400);
+    }
+  });
+
+  downloadBtn.addEventListener('click', () => {
+    if (!resultBlob) return;
+    TS.downloadBlob(resultBlob, resultName);
+  });
+
+  function escapeHtml(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+})();
+</script>
+</body>
+</html>

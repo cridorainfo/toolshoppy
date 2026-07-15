@@ -118,8 +118,70 @@
   }
   function escapeAttr(s) { return escapeHtml(s).replace(/'/g, '&#39;'); }
 
+  /**
+   * Render a specific page of a PDF to a PNG/JPEG data URL.
+   * @param {File|Blob|Uint8Array} file
+   * @param {number} pageNum 1-based page index
+   * @param {object} [opts]
+   * @returns {Promise<{dataUrl:string, width:number, height:number, pageCount:number}>}
+   */
+  function renderPdfPage(file, pageNum, opts) {
+    opts = opts || {};
+    var maxWidth = opts.maxWidth || 180;
+    var mime = opts.mime || 'image/jpeg';
+    var quality = opts.quality != null ? opts.quality : 0.82;
+
+    if (!ensureWorker()) return Promise.reject(new Error('pdf.js not loaded'));
+
+    var dataPromise = file instanceof Uint8Array
+      ? Promise.resolve(file)
+      : file.arrayBuffer().then(function (buf) { return new Uint8Array(buf); });
+
+    return dataPromise.then(function (data) {
+      var params = { data: data };
+      if (opts.password) params.password = opts.password;
+      return pdfjsLib.getDocument(params).promise;
+    }).then(function (pdf) {
+      var num = Math.max(1, Math.min(pageNum, pdf.numPages));
+      return pdf.getPage(num).then(function (page) {
+        var base = page.getViewport({ scale: 1 });
+        var scale = opts.scale || Math.min(maxWidth / base.width, opts.maxScale || 2);
+        var viewport = page.getViewport({ scale: scale });
+        var canvas = document.createElement('canvas');
+        canvas.width = Math.floor(viewport.width);
+        canvas.height = Math.floor(viewport.height);
+        return page.render({ canvasContext: canvas.getContext('2d'), viewport: viewport }).promise
+          .then(function () {
+            return {
+              dataUrl: canvas.toDataURL(mime, quality),
+              width: canvas.width,
+              height: canvas.height,
+              pageCount: pdf.numPages,
+            };
+          });
+      });
+    });
+  }
+
+  /** Load PDF metadata (page count) without rendering. */
+  function getPdfInfo(file, password) {
+    if (!ensureWorker()) return Promise.reject(new Error('pdf.js not loaded'));
+    var dataPromise = file instanceof Uint8Array
+      ? Promise.resolve(file)
+      : file.arrayBuffer().then(function (buf) { return new Uint8Array(buf); });
+    return dataPromise.then(function (data) {
+      var params = { data: data };
+      if (password) params.password = password;
+      return pdfjsLib.getDocument(params).promise;
+    }).then(function (pdf) {
+      return { pageCount: pdf.numPages };
+    });
+  }
+
   global.TSPdfPreview = {
     renderPdfThumb: renderPdfThumb,
+    renderPdfPage: renderPdfPage,
+    getPdfInfo: getPdfInfo,
     placeholderThumb: placeholderThumb,
     createPdfTile: createPdfTile,
   };
