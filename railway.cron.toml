@@ -1,10 +1,13 @@
-# Railway — Trends SEO cron service (separate from Cloudflare Pages static site)
+# Railway — Trends SEO cron service (separate from the toolshoppy static-site service)
 #
-# Create a NEW Railway service from this repo (do not replace your static site host).
-# Settings:
-#   Start command:  node scripts/railway-trends-cron.mjs
-#   Cron schedule:  0 6 1 * *     (1st of every month, 06:00 UTC)
-#   Restart policy: On failure only (cron jobs should exit when done)
+# IMPORTANT: this file is intentionally NOT named railway.toml, because Railway
+# defaults to reading railway.toml/railway.json at the repo root for ANY service
+# built from this repo, and config-as-code overrides dashboard settings. Since
+# this repo also hosts the live static site (service "toolshoppy"), a root-level
+# railway.toml here previously crashed that service by hijacking its start command.
+#
+# This file must be wired up explicitly as the cron service's config file:
+#   Service settings → Config-as-code → Config File Path → /railway.cron.toml
 #
 # Environment variables — see scripts/railway-trends-cron.mjs
 
@@ -15,3 +18,4 @@ builder = "NIXPACKS"
 startCommand = "node scripts/railway-trends-cron.mjs"
 restartPolicyType = "ON_FAILURE"
 restartPolicyMaxRetries = 3
+cronSchedule = "0 6 1 * *"
