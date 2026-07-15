@@ -172,6 +172,22 @@ button { font-family: inherit; cursor: pointer; }
 .site-search input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-tint); }
 .site-search input::placeholder { color: var(--text-muted); }
 
+/* Header nav (desktop only — search + theme toggle already crowd the mobile header) */
+.site-nav { display: none; align-items: center; gap: 2px; flex-shrink: 0; }
+.site-nav a {
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  white-space: nowrap;
+  transition: color .15s ease, background .15s ease;
+}
+.site-nav a:hover { color: var(--primary); background: var(--primary-tint); }
+@media (min-width: 900px) {
+  .site-nav { display: flex; }
+}
+
 /* Buttons */
 .btn {
   display: inline-flex;
@@ -292,6 +308,11 @@ button { font-family: inherit; cursor: pointer; }
   max-height: 1rem;
   margin: 0;
   vertical-align: middle;
+}
+
+/* Anchor targets scrolled to from .site-nav — offset for the sticky header + filter bar */
+#available-section, #coming-section, #about-section, #faq-section {
+  scroll-margin-top: 120px;
 }
 
 /* Featured (live) tools strip */
@@ -431,6 +452,27 @@ button { font-family: inherit; cursor: pointer; }
   color: #34D399;
   border-color: rgba(52,211,153,0.3);
 }
+
+/* Homepage feature grid (Privacy Shield section) */
+.feature-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin: 0 0 8px;
+}
+@media (min-width: 640px) {
+  .feature-grid { grid-template-columns: repeat(3, 1fr); }
+}
+.feature-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px;
+  box-shadow: var(--shadow);
+}
+.feature-card .icon-tile { margin-bottom: 14px; }
+.feature-card h3 { font-size: 0.98rem; font-weight: 800; margin-bottom: 6px; }
+.feature-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; }
 
 /* Tool page layout */
 .tool-page {

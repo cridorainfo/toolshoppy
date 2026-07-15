@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <script>(function(){try{var t=localStorage.getItem('ts-theme');if(!t){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ToolShoppy — Free Online Tools, No Signup | Compress, Convert, Resize</title>
-<meta name="description" content="ToolShoppy is your one-stop shop for every free online tool — image compressor, PDF password protect, PDF merge, Word to PDF, govt photo resizer, QR code generator and more. 100% free, no signup, files never leave your device.">
-<meta name="keywords" content="free online tools, image compressor, pdf password protect, pdf merge, word to pdf, pdf to word, govt photo resizer, qr code generator, toolshoppy">
+<title>ToolShoppy | Premium Free Online Tool Suite & Converter Hub</title>
+<meta name="description" content="Access 36+ free online PDF, Image, Video, and Finance tools. Redesigned with a premium, privacy-first interface. Convert, compress, and resize with ultimate privacy.">
+<meta name="keywords" content="image compressor, govt photo resizer, pdf password, word to pdf, background remover, emi calculator, toolshoppy premium">
 <link rel="canonical" href="https://toolshoppy.com/">
-<meta property="og:title" content="ToolShoppy — Free Online Tools, No Signup">
-<meta property="og:description" content="Your one-stop shop for every free tool. 100% free, private, client-side.">
+<meta property="og:title" content="ToolShoppy | Premium Free Online Tool Suite & Converter Hub">
+<meta property="og:description" content="Access 36+ free online PDF, Image, Video, and Finance tools. Redesigned with a premium, privacy-first interface.">
 <meta property="og:image" content="https://toolshoppy.com/assets/img/og-image.jpg">
 <meta property="og:url" content="https://toolshoppy.com/">
 <meta property="og:type" content="website">
@@ -45,12 +45,21 @@
   "sameAs": []
 }
 </script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How does ToolShoppy process files directly inside the browser?","acceptedAnswer":{"@type":"Answer","text":"ToolShoppy uses modern HTML5 File APIs and client-side scripts. Every tool runs entirely inside your local browser, keeping ID proofs, documents, and private photos completely secure."}},{"@type":"Question","name":"What sizes and templates does the Govt Photo Resizer support?","acceptedAnswer":{"@type":"Answer","text":"It includes ready-made templates for UPSC, state PSC, Aadhaar, and PAN card requirements — adjusting pixel dimensions and target KB size instantly."}},{"@type":"Question","name":"Are there limits on file size?","acceptedAnswer":{"@type":"Answer","text":"Most modern devices can process files up to 100MB in real time. Since everything runs in your browser's memory, very large files may depend on your device's specs."}}]}
+</script>
 </head>
 <body>
 
 <header class="site-header">
   <div class="container">
     <a href="/" class="logo"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#tool"></use></svg> Tool<span>Shoppy</span></a>
+    <nav class="site-nav">
+      <a href="#available-section">Active Sandbox</a>
+      <a href="#coming-section">Coming Soon</a>
+      <a href="#about-section">Privacy Shield</a>
+      <a href="#faq-section">Support &amp; FAQs</a>
+    </nav>
     <div class="site-search">
       <input type="text" id="toolSearch" placeholder="Search tools… e.g. compress image, gold rate" aria-label="Search tools">
     </div>
@@ -80,7 +89,7 @@
   </nav>
 
   <div class="container">
-    <h2 class="section-title"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#circle-check"></use></svg> Available Now</h2>
+    <h2 id="available-section" class="section-title"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#circle-check"></use></svg> Available Now</h2>
     <div class="featured-grid">
       <a class="tool-card" href="/tools/image/compress/" data-cat="image" data-name="image compressor compress kb">
         <div class="icon"><span class="icon-tile icon-tile--indigo"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#arrows-minimize"></use></svg></span></div><h3>Image Compressor</h3><p>Compress to exact KB</p><span class="live-badge">LIVE</span>
@@ -122,7 +131,7 @@
 
     <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
 
-    <h2 class="section-title"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#clock"></use></svg> More Tools</h2>
+    <h2 id="coming-section" class="section-title"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#clock"></use></svg> More Tools</h2>
     <div class="tool-grid" id="toolGrid">
       <div class="tool-card" data-cat="image" data-name="background remover">
         <div class="icon"><span class="icon-tile icon-tile--pink"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#background"></use></svg></span></div><h3>Background Remover</h3><p>Coming soon</p><span class="soon">SOON</span>
@@ -182,10 +191,54 @@
 
     <p id="noResults" style="display:none;text-align:center;color:var(--text-muted);padding:30px 0;">No tools match your search.</p>
   </div>
+
+  <section id="about-section" class="container" style="padding:48px 0 8px;">
+    <div style="text-align:center;max-width:640px;margin:0 auto 28px;">
+      <h2 class="section-title" style="justify-content:center;">Pure Client-Side Privacy</h2>
+      <p style="color:var(--text-muted);">ToolShoppy converts, compresses, and edits everything locally inside your browser sandbox — nothing is ever uploaded to a server.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <span class="icon-tile icon-tile--rose"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#shield-lock"></use></svg></span>
+        <h3>Zero Server Handshakes</h3>
+        <p>Your files and metadata never cross the network. Complete privacy, guaranteed.</p>
+      </div>
+      <div class="feature-card">
+        <span class="icon-tile icon-tile--amber"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#bolt"></use></svg></span>
+        <h3>Blazing Processing Speed</h3>
+        <p>No upload queue or server latency — outputs convert in milliseconds.</p>
+      </div>
+      <div class="feature-card">
+        <span class="icon-tile icon-tile--emerald"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock-open"></use></svg></span>
+        <h3>Completely Free, No Limits</h3>
+        <p>Unrestricted access to every tool — no trial caps, no accounts, ever.</p>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:20px;"><a href="/about.html" style="color:var(--primary-dark);font-weight:700;">Read more about ToolShoppy →</a></p>
+  </section>
+
+  <section id="faq-section" class="container">
+    <div class="content-section">
+      <h2>Frequently asked questions</h2>
+      <div class="faq-item">
+        <h3>How does ToolShoppy process files directly inside the browser?</h3>
+        <p>ToolShoppy uses modern HTML5 File APIs and client-side scripts. Every tool runs entirely inside your local browser, keeping ID proofs, documents, and private photos completely secure.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What sizes and templates does the Govt Photo Resizer support?</h3>
+        <p>It includes ready-made templates for UPSC, state PSC, Aadhaar, and PAN card requirements — adjusting pixel dimensions and target KB size instantly.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Are there limits on file size?</h3>
+        <p>Most modern devices can process files up to 100MB in real time. Since everything runs in your browser's memory, very large files may depend on your device's specs.</p>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer class="site-footer">
   <div class="container">
+    <p style="color:var(--text-muted);font-size:0.85rem;max-width:520px;margin-bottom:24px;">A privacy-first utility platform — every tool runs locally in your browser, so your files never touch a server.</p>
     <div class="footer-grid">
       <div>
         <h4>Image Tools</h4>
