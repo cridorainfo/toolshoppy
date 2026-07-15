@@ -1,0 +1,17 @@
+# Railway — Trends SEO cron service (separate from Cloudflare Pages static site)
+#
+# Create a NEW Railway service from this repo (do not replace your static site host).
+# Settings:
+#   Start command:  node scripts/railway-trends-cron.mjs
+#   Cron schedule:  0 6 1 * *     (1st of every month, 06:00 UTC)
+#   Restart policy: On failure only (cron jobs should exit when done)
+#
+# Environment variables — see scripts/railway-trends-cron.mjs
+
+[build]
+builder = "NIXPACKS"
+
+[deploy]
+startCommand = "node scripts/railway-trends-cron.mjs"
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 3

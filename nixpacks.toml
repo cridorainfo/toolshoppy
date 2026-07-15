@@ -1,0 +1,3 @@
+# Railway cron service — install git for commit/push
+[phases.setup]
+nixPkgs = ["...", "git"]

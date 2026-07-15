@@ -5,7 +5,8 @@
   "description": "ToolShoppy — free client-side utility tools",
   "scripts": {
     "start": "serve . -l $PORT",
-    "sync:trends": "node scripts/sync-trends-seo.mjs"
+    "sync:trends": "node scripts/sync-trends-seo.mjs",
+    "cron:trends": "node scripts/railway-trends-cron.mjs"
   },
   "dependencies": {
     "serve": "^14.2.6"

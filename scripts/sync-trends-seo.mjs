@@ -33,10 +33,13 @@ const TEMPLATE = path.join(ROOT, 'assets/templates/seo-trend-landing.html');
 function parseArgs() {
   const args = process.argv.slice(2);
   let csv = DEFAULT_CSV;
+  if (process.env.TRENDS_CSV_URL) {
+    csv = process.env.TRENDS_CSV_URL;
+  }
   for (let i = 0; i < args.length; i++) {
     if (args[i] === '--csv' && args[i + 1]) csv = path.resolve(args[++i]);
   }
-  return { csv };
+  return { csv, csvIsUrl: /^https?:\/\//i.test(csv) };
 }
 
 function parseCsv(text) {
@@ -93,13 +96,24 @@ function mapQuery(query) {
   return null;
 }
 
-function resolveCsvPath(requested) {
+function resolveCsvPath(requested, isUrl) {
+  if (isUrl) return requested;
   if (fs.existsSync(requested)) return requested;
   if (requested === DEFAULT_CSV && fs.existsSync(DESKTOP_CSV)) {
     console.log('Using Desktop CSV:', DESKTOP_CSV);
     return DESKTOP_CSV;
   }
   throw new Error('CSV not found: ' + requested);
+}
+
+async function loadCsvText(csvPath, isUrl) {
+  if (isUrl) {
+    console.log('Fetching CSV from URL…');
+    const res = await fetch(csvPath);
+    if (!res.ok) throw new Error(`CSV fetch failed: ${res.status} ${res.statusText}`);
+    return await res.text();
+  }
+  return fs.readFileSync(csvPath, 'utf8');
 }
 
 function buildQueries(rows) {
@@ -327,25 +341,26 @@ function updateIndexKeywords(queries) {
   fs.writeFileSync(indexPath, html);
 }
 
-function main() {
-  const { csv: csvArg } = parseArgs();
-  const csvPath = resolveCsvPath(csvArg);
+async function main() {
+  const { csv: csvArg, csvIsUrl } = parseArgs();
+  const csvPath = resolveCsvPath(csvArg, csvIsUrl);
   const generatedAt = new Date().toISOString().slice(0, 10);
 
-  console.log('Reading', csvPath);
-  const rows = parseCsv(fs.readFileSync(csvPath, 'utf8'));
+  console.log('Reading', csvIsUrl ? csvPath : csvPath);
+  const csvText = await loadCsvText(csvPath, csvIsUrl);
+  const rows = parseCsv(csvText);
   console.log('Parsed', rows.length, 'CSV rows');
 
-  if (csvPath !== DEFAULT_CSV) {
+  if (csvIsUrl || csvPath !== DEFAULT_CSV) {
     fs.mkdirSync(path.dirname(DEFAULT_CSV), { recursive: true });
-    fs.copyFileSync(csvPath, DEFAULT_CSV);
-    console.log('Copied CSV → assets/data/google-trends.csv');
+    fs.writeFileSync(DEFAULT_CSV, csvText);
+    console.log('Saved CSV → assets/data/google-trends.csv');
   }
 
   const queries = buildQueries(rows);
   console.log('Mapped', queries.length, 'queries to tools');
 
-  writeTrendsData(queries, LANDING_PAGES, generatedAt, csvPath);
+  writeTrendsData(queries, LANDING_PAGES, generatedAt, csvIsUrl ? csvPath : csvPath);
   console.log('Wrote assets/js/trends-data.js');
 
   writeTrendsSeoJs();
@@ -363,4 +378,7 @@ function main() {
   console.log('Deploy, then submit sitemap in Google Search Console.');
 }
 
-main();
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});
