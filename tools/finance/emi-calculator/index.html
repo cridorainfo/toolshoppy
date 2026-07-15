@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>(function(){try{var t=localStorage.getItem('ts-theme');if(!t){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EMI Calculator Free — Home Loan &amp; Personal Loan | ToolShoppy</title>
+<meta name="description" content="Calculate EMI for home loan, car loan and personal loan free online. See monthly payment, total interest and total amount. No signup.">
+<meta name="robots" content="index, follow">
+<meta name="keywords" content="emi calculator home loan, loan emi calculator india, personal loan emi, car loan emi calculator free">
+<link rel="canonical" href="https://toolshoppy.com/tools/finance/emi-calculator/">
+<meta property="og:title" content="EMI Calculator — ToolShoppy">
+<meta property="og:description" content="Calculate loan EMI free online. Home, car, personal loans.">
+<meta property="og:image" content="https://toolshoppy.com/assets/img/og-image.jpg">
+<meta property="og:url" content="https://toolshoppy.com/tools/finance/emi-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ToolShoppy">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/icon-192.png">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#E11D48">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"EMI Calculator","url":"https://toolshoppy.com/tools/finance/emi-calculator/","description":"Calculate loan EMI free online.","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo"><img src="/assets/img/logo.png" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
+    <div class="site-search"><input type="text" placeholder="Search tools…" onfocus="location.href='/'"></div>
+    <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode">
+      <svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg>
+      <svg class="icon-svg theme-icon-moon" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#moon"></use></svg>
+    </button>
+  </div>
+</header>
+
+<main class="tool-page container">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/"><svg class="icon-svg" width="16" height="16" aria-hidden="true"><use href="/assets/icons/sprite.svg#home"></use></svg> Home</a>
+    <svg class="icon-svg crumb-sep" width="14" height="14" aria-hidden="true"><use href="/assets/icons/sprite.svg#chevron-right"></use></svg>
+    <a href="/#finance">Finance</a>
+    <svg class="icon-svg crumb-sep" width="14" height="14" aria-hidden="true"><use href="/assets/icons/sprite.svg#chevron-right"></use></svg>
+    <span class="crumb-current">EMI Calculator</span>
+  </nav>
+
+  <div class="tool-header">
+    <div class="icon-tile icon-tile--lg icon-tile--blue"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#building-bank"></use></svg></div>
+    <h1>EMI Calculator</h1>
+    <p>Home loan, car loan, personal loan — monthly EMI in seconds.</p>
+  </div>
+
+  <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
+
+  <div class="tool-layout with-sidebar">
+    <div class="tool-card-main">
+      <div class="chip-row" id="presetRow">
+        <button class="chip active" data-p="5000000" data-r="8.5" data-y="20" type="button">Home ₹50L</button>
+        <button class="chip" data-p="1000000" data-r="9" data-y="5" type="button">Car ₹10L</button>
+        <button class="chip" data-p="300000" data-r="12" data-y="3" type="button">Personal ₹3L</button>
+      </div>
+
+      <div class="calc-form">
+        <div class="calc-field">
+          <label for="principal">Loan amount (₹)</label>
+          <input type="number" id="principal" value="5000000" min="1000" step="1000" inputmode="numeric">
+        </div>
+        <div class="calc-row">
+          <div class="calc-field">
+            <label for="rate">Interest rate (% p.a.)</label>
+            <input type="number" id="rate" value="8.5" min="0" max="30" step="0.1" inputmode="decimal">
+          </div>
+          <div class="calc-field">
+            <label for="tenure">Tenure (years)</label>
+            <input type="number" id="tenure" value="20" min="1" max="40" step="1" inputmode="numeric">
+          </div>
+        </div>
+      </div>
+
+      <div class="calc-result-hero">
+        <div class="calc-result-label">Monthly EMI</div>
+        <div class="calc-result-value" id="emiValue">—</div>
+      </div>
+
+      <div class="compare-row">
+        <div class="compare-box"><div class="label">Total interest</div><div class="value" id="totalInterest">—</div></div>
+        <div class="compare-box"><div class="label">Total payment</div><div class="value" id="totalPayment">—</div></div>
+      </div>
+
+      <p class="rate-disclaimer">Standard reducing-balance EMI formula. Actual bank EMI may differ due to processing fees, insurance, and rate type (fixed vs floating).</p>
+    </div>
+
+    <aside class="sidebar">
+      <div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div>
+      <div class="info-box">
+        <h4>EMI formula</h4>
+        <p style="font-size:0.82rem;color:var(--text-muted);line-height:1.6;">EMI = P × r × (1+r)ⁿ / ((1+r)ⁿ − 1), where P is principal, r is monthly rate, n is months.</p>
+      </div>
+      <div class="info-box" style="margin-top:12px;">
+        <h4>Related</h4>
+        <ul>
+          <li><a href="/tools/finance/gst-calculator/">GST calculator →</a></li>
+          <li><a href="/tools/rates/currency-converter/">Currency converter →</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
+
+  <div class="content-section">
+    <h2>How to use</h2>
+    <ol>
+      <li>Enter loan amount, annual interest rate, and tenure in years.</li>
+      <li>EMI updates instantly — no button needed.</li>
+      <li>Use presets for quick home, car, or personal loan estimates.</li>
+    </ol>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container"><div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div></div>
+</footer>
+<div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
+
+<script src="/assets/js/ga-config.js"></script>
+<script src="/assets/js/ad-config.js"></script>
+<script src="/assets/js/core.js"></script>
+<script src="/assets/js/rates.js"></script>
+<script src="/assets/js/ads.js"></script>
+<script src="/assets/js/analytics.js"></script>
+<script>
+(function () {
+  var principal = document.getElementById('principal');
+  var rate = document.getElementById('rate');
+  var tenure = document.getElementById('tenure');
+  var emiValue = document.getElementById('emiValue');
+  var totalInterest = document.getElementById('totalInterest');
+  var totalPayment = document.getElementById('totalPayment');
+  var presetRow = document.getElementById('presetRow');
+
+  function calcEmi() {
+    var P = parseFloat(principal.value) || 0;
+    var annual = parseFloat(rate.value) || 0;
+    var years = parseFloat(tenure.value) || 0;
+    if (P <= 0 || years <= 0) {
+      emiValue.textContent = '—';
+      return;
+    }
+    var n = Math.round(years * 12);
+    var r = annual / 12 / 100;
+    var emi;
+    if (r === 0) {
+      emi = P / n;
+    } else {
+      var pow = Math.pow(1 + r, n);
+      emi = P * r * pow / (pow - 1);
+    }
+    var total = emi * n;
+    var interest = total - P;
+    emiValue.textContent = TSRates ? TSRates.formatINR(Math.round(emi)) : '₹' + Math.round(emi).toLocaleString('en-IN');
+    totalInterest.textContent = '₹' + Math.round(interest).toLocaleString('en-IN');
+    totalPayment.textContent = '₹' + Math.round(total).toLocaleString('en-IN');
+  }
+
+  [principal, rate, tenure].forEach(function (el) {
+    el.addEventListener('input', calcEmi);
+  });
+
+  presetRow.addEventListener('click', function (e) {
+    var chip = e.target.closest('[data-p]');
+    if (!chip) return;
+    presetRow.querySelectorAll('.chip').forEach(function (c) { c.classList.remove('active'); });
+    chip.classList.add('active');
+    principal.value = chip.dataset.p;
+    rate.value = chip.dataset.r;
+    tenure.value = chip.dataset.y;
+    calcEmi();
+  });
+
+  calcEmi();
+})();
+</script>
+</body>
+</html>

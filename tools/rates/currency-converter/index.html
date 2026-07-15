@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>(function(){try{var t=localStorage.getItem('ts-theme');if(!t){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Currency Converter — AED, SAR, USD to INR Free | ToolShoppy</title>
+<meta name="description" content="Convert AED, SAR, KWD, OMR, USD to INR free online. Gulf to India presets for NRIs. Updated rates, no signup.">
+<meta name="robots" content="index, follow">
+<meta name="keywords" content="aed to inr today, sar to inr, usd to inr converter, dubai currency to india, gulf to india remittance rate">
+<link rel="canonical" href="https://toolshoppy.com/tools/rates/currency-converter/">
+<meta property="og:title" content="Currency Converter — ToolShoppy">
+<meta property="og:description" content="Convert AED, SAR, USD to INR. Gulf to India presets.">
+<meta property="og:image" content="https://toolshoppy.com/assets/img/og-image.jpg">
+<meta property="og:url" content="https://toolshoppy.com/tools/rates/currency-converter/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ToolShoppy">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/icon-192.png">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#E11D48">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Currency Converter","url":"https://toolshoppy.com/tools/rates/currency-converter/","description":"Convert AED, SAR, USD to INR free online.","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo"><img src="/assets/img/logo.png" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
+    <div class="site-search"><input type="text" placeholder="Search tools…" onfocus="location.href='/'"></div>
+    <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode">
+      <svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg>
+      <svg class="icon-svg theme-icon-moon" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#moon"></use></svg>
+    </button>
+  </div>
+</header>
+
+<main class="tool-page container">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/"><svg class="icon-svg" width="16" height="16" aria-hidden="true"><use href="/assets/icons/sprite.svg#home"></use></svg> Home</a>
+    <svg class="icon-svg crumb-sep" width="14" height="14" aria-hidden="true"><use href="/assets/icons/sprite.svg#chevron-right"></use></svg>
+    <a href="/#finance">Finance</a>
+    <svg class="icon-svg crumb-sep" width="14" height="14" aria-hidden="true"><use href="/assets/icons/sprite.svg#chevron-right"></use></svg>
+    <span class="crumb-current">Currency Converter</span>
+  </nav>
+
+  <div class="tool-header">
+    <div class="icon-tile icon-tile--lg icon-tile--green"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#currency-dollar"></use></svg></div>
+    <h1>Currency Converter</h1>
+    <p>AED, SAR, KWD, OMR, USD ↔ INR — built for Gulf NRIs.</p>
+  </div>
+
+  <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
+
+  <div class="tool-layout with-sidebar">
+    <div class="tool-card-main">
+      <p class="rate-updated" id="updatedLine">Loading rates…</p>
+
+      <h3 style="font-size:0.95rem;margin-bottom:8px;">Gulf → India presets</h3>
+      <div class="chip-row" id="presetRow">
+        <button class="chip active" data-from="AED" data-to="INR" type="button">AED → INR</button>
+        <button class="chip" data-from="SAR" data-to="INR" type="button">SAR → INR</button>
+        <button class="chip" data-from="KWD" data-to="INR" type="button">KWD → INR</button>
+        <button class="chip" data-from="OMR" data-to="INR" type="button">OMR → INR</button>
+        <button class="chip" data-from="USD" data-to="INR" type="button">USD → INR</button>
+      </div>
+
+      <div class="calc-form">
+        <div class="currency-swap-row">
+          <div class="calc-field">
+            <label for="amountIn">Amount</label>
+            <input type="number" id="amountIn" value="1000" min="0" step="any" inputmode="decimal">
+          </div>
+          <button type="button" class="currency-swap-btn" id="swapBtn" aria-label="Swap currencies">⇄</button>
+          <div class="calc-field">
+            <label for="fromCur">From</label>
+            <select id="fromCur"></select>
+          </div>
+          <div class="calc-field">
+            <label for="toCur">To</label>
+            <select id="toCur"></select>
+          </div>
+        </div>
+      </div>
+
+      <div class="calc-result-hero">
+        <div class="calc-result-label" id="resultLabel">Result</div>
+        <div class="calc-result-value" id="resultValue">—</div>
+      </div>
+
+      <div class="compare-row" id="rateInfo">
+        <div class="compare-box"><div class="label">1 unit =</div><div class="value" id="unitRate">—</div></div>
+        <div class="compare-box"><div class="label">Reverse</div><div class="value" id="reverseRate">—</div></div>
+      </div>
+
+      <p class="rate-disclaimer">Mid-market indicative rates for reference. Banks and exchange houses apply their own spreads and fees. For remittances, compare Wise, Remitly, or your bank's live rate.</p>
+    </div>
+
+    <aside class="sidebar">
+      <div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div>
+      <div class="info-box">
+        <h4>Popular pairs</h4>
+        <ul>
+          <li>1 AED ≈ <span id="sideAed">—</span> INR</li>
+          <li>1 SAR ≈ <span id="sideSar">—</span> INR</li>
+          <li>1 USD ≈ <span id="sideUsd">—</span> INR</li>
+        </ul>
+      </div>
+      <div class="info-box" style="margin-top:12px;">
+        <h4>Related</h4>
+        <ul>
+          <li><a href="/tools/rates/gold-rate/#uae">Dubai gold rate →</a></li>
+          <li><a href="/tools/finance/emi-calculator/">EMI calculator →</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
+
+  <div class="content-section">
+    <h2>Why Gulf → INR presets?</h2>
+    <p style="color:var(--text-muted);font-size:0.92rem;line-height:1.7;">Millions of Indians in the UAE, Saudi, Kuwait, and Oman send money home every month. Quick AED→INR and SAR→INR checks help you decide when to remit — pair with our <a href="/tools/rates/gold-rate/">gold rate</a> page for Dubai shopping decisions too.</p>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container"><div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div></div>
+</footer>
+<div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
+
+<script src="/assets/js/ga-config.js"></script>
+<script src="/assets/js/ad-config.js"></script>
+<script src="/assets/js/core.js"></script>
+<script src="/assets/js/rates.js"></script>
+<script src="/assets/js/ads.js"></script>
+<script src="/assets/js/analytics.js"></script>
+<script>
+(function () {
+  var ratesData = null;
+  var currencies = ['INR', 'AED', 'SAR', 'USD', 'KWD', 'OMR', 'EUR', 'GBP', 'QAR', 'BHD'];
+
+  var amountIn = document.getElementById('amountIn');
+  var fromCur = document.getElementById('fromCur');
+  var toCur = document.getElementById('toCur');
+  var swapBtn = document.getElementById('swapBtn');
+  var resultValue = document.getElementById('resultValue');
+  var unitRate = document.getElementById('unitRate');
+  var reverseRate = document.getElementById('reverseRate');
+  var presetRow = document.getElementById('presetRow');
+  var updatedLine = document.getElementById('updatedLine');
+
+  function fillSelects() {
+    var opts = currencies.map(function (c) {
+      var name = ratesData.currency.names[c] || c;
+      return '<option value="' + c + '">' + c + ' — ' + name + '</option>';
+    }).join('');
+    fromCur.innerHTML = opts;
+    toCur.innerHTML = opts;
+    fromCur.value = 'AED';
+    toCur.value = 'INR';
+  }
+
+  function fmtCur(amount, code) {
+    if (code === 'INR') return TSRates.formatINR(amount, 2);
+    if (code === 'AED') return TSRates.formatAED(amount, 2);
+    var sym = ratesData.currency.symbols[code] || code;
+    return sym + ' ' + Number(amount).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
+  function convert() {
+    if (!ratesData) return;
+    var amt = parseFloat(amountIn.value) || 0;
+    var from = fromCur.value;
+    var to = toCur.value;
+    var out = TSRates.convertCurrency(amt, from, to, ratesData);
+    if (out === null) {
+      resultValue.textContent = '—';
+      return;
+    }
+    resultValue.textContent = fmtCur(out, to);
+    var one = TSRates.convertCurrency(1, from, to, ratesData);
+    var rev = TSRates.convertCurrency(1, to, from, ratesData);
+    unitRate.textContent = fmtCur(one, to);
+    reverseRate.textContent = '1 ' + to + ' = ' + fmtCur(rev, from);
+  }
+
+  amountIn.addEventListener('input', convert);
+  fromCur.addEventListener('change', convert);
+  toCur.addEventListener('change', convert);
+
+  swapBtn.addEventListener('click', function () {
+    var tmp = fromCur.value;
+    fromCur.value = toCur.value;
+    toCur.value = tmp;
+    convert();
+  });
+
+  presetRow.addEventListener('click', function (e) {
+    var chip = e.target.closest('[data-from]');
+    if (!chip) return;
+    presetRow.querySelectorAll('.chip').forEach(function (c) { c.classList.remove('active'); });
+    chip.classList.add('active');
+    fromCur.value = chip.dataset.from;
+    toCur.value = chip.dataset.to;
+    convert();
+  });
+
+  TSRates.fetchRates().then(function (d) {
+    ratesData = d;
+    updatedLine.innerHTML = 'Rates as of: <strong>' + TSRates.formatUpdatedAt(d.currency.updated_at || d.updated_at) + '</strong>';
+    fillSelects();
+    document.getElementById('sideAed').textContent = d.currency.inr_per_unit.AED.toFixed(2);
+    document.getElementById('sideSar').textContent = d.currency.inr_per_unit.SAR.toFixed(2);
+    document.getElementById('sideUsd').textContent = d.currency.inr_per_unit.USD.toFixed(2);
+    convert();
+  }).catch(function () {
+    updatedLine.textContent = 'Could not load rates.';
+  });
+})();
+</script>
+</body>
+</html>

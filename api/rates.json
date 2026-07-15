@@ -1,0 +1,94 @@
+{
+  "updated_at": "2026-07-15T06:00:00+05:30",
+  "source_note": "Indicative rates for display. Updated daily via Cloudflare Worker when deployed.",
+  "gold": {
+    "kerala": {
+      "label": "Kerala",
+      "currency": "INR",
+      "per_gram": { "24k": 7450, "22k": 6829, "18k": 5588 },
+      "per_sovereign_8g": { "22k": 54632 },
+      "per_10g": { "24k": 74500, "22k": 68290 }
+    },
+    "india": {
+      "label": "India",
+      "currency": "INR",
+      "per_gram": { "24k": 7450, "22k": 6829, "18k": 5588 },
+      "per_sovereign_8g": { "22k": 54632 },
+      "per_10g": { "24k": 74500, "22k": 68290 }
+    },
+    "uae": {
+      "label": "UAE (Dubai)",
+      "currency": "AED",
+      "per_gram": { "24k": 292.50, "22k": 268.10, "18k": 219.40 },
+      "per_tola_11_664g": { "24k": 3412, "22k": 3128 },
+      "per_10g": { "24k": 2925, "22k": 2681 }
+    }
+  },
+  "silver": {
+    "kerala": {
+      "label": "Kerala",
+      "currency": "INR",
+      "per_gram": 102,
+      "per_kg": 102000,
+      "per_10g": 1020
+    },
+    "india": {
+      "label": "India",
+      "currency": "INR",
+      "per_gram": 102,
+      "per_kg": 102000,
+      "per_10g": 1020
+    },
+    "uae": {
+      "label": "UAE (Dubai)",
+      "currency": "AED",
+      "per_gram": 3.85,
+      "per_kg": 3850,
+      "per_10g": 38.50
+    }
+  },
+  "history": {
+    "gold_22k_inr": [6785, 6798, 6805, 6810, 6818, 6824, 6829],
+    "silver_inr": [98, 99, 99, 100, 101, 101, 102],
+    "dates": ["2026-07-09", "2026-07-10", "2026-07-11", "2026-07-12", "2026-07-13", "2026-07-14", "2026-07-15"]
+  },
+  "currency": {
+    "updated_at": "2026-07-15T06:00:00+05:30",
+    "inr_per_unit": {
+      "INR": 1,
+      "AED": 22.62,
+      "SAR": 22.17,
+      "USD": 86.15,
+      "KWD": 281.50,
+      "OMR": 223.80,
+      "EUR": 93.40,
+      "GBP": 109.20,
+      "QAR": 23.65,
+      "BHD": 228.40
+    },
+    "symbols": {
+      "INR": "₹",
+      "AED": "AED",
+      "SAR": "SAR",
+      "USD": "$",
+      "KWD": "KWD",
+      "OMR": "OMR",
+      "EUR": "€",
+      "GBP": "£",
+      "QAR": "QAR",
+      "BHD": "BHD"
+    },
+    "names": {
+      "INR": "Indian Rupee",
+      "AED": "UAE Dirham",
+      "SAR": "Saudi Riyal",
+      "USD": "US Dollar",
+      "KWD": "Kuwaiti Dinar",
+      "OMR": "Omani Rial",
+      "EUR": "Euro",
+      "GBP": "British Pound",
+      "QAR": "Qatari Riyal",
+      "BHD": "Bahraini Dinar"
+    }
+  }
+}
