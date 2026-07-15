@@ -69,7 +69,8 @@
         <button class="chip" data-region="uae" type="button">UAE (Dubai)</button>
       </div>
 
-      <p class="rate-updated" id="updatedLine">Loading rates…</p>
+      <p class="rate-updated" id="updatedLine">Loading live rates…</p>
+      <p class="rate-updated" id="sourceLine" style="margin-top:-8px;"></p>
 
       <div class="rate-hero" id="rateHero">
         <div class="rate-hero-label">22 Carat Gold</div>
@@ -160,6 +161,7 @@
 
   var regionRow = document.getElementById('regionRow');
   var updatedLine = document.getElementById('updatedLine');
+  var sourceLine = document.getElementById('sourceLine');
   var heroValue = document.getElementById('heroValue');
   var heroSub = document.getElementById('heroSub');
   var rateGrid = document.getElementById('rateGrid');
@@ -168,7 +170,12 @@
   var trendLabels = document.getElementById('trendLabels');
 
   function renderRegion(key) {
-    if (!data || !data.gold[key]) return;
+    if (!data || !data.gold || !data.gold[key]) {
+      heroValue.textContent = '—';
+      heroSub.textContent = 'Rate unavailable — refresh shortly';
+      rateGrid.innerHTML = '';
+      return;
+    }
     region = key;
     var g = data.gold[key];
     var fmt = g.currency === 'INR' ? TSRates.formatINR : TSRates.formatAED;
@@ -208,6 +215,9 @@
   TSRates.fetchRates().then(function (d) {
     data = d;
     updatedLine.innerHTML = 'Last updated: <strong>' + TSRates.formatUpdatedAt(d.updated_at) + '</strong>';
+    if (sourceLine) {
+      sourceLine.textContent = (d.live ? '● Live' : '○ Cached') + ' · ' + (d.source_note || '');
+    }
     var hash = (location.hash || '').replace('#', '');
     if (hash === 'india' || hash === 'uae' || hash === 'kerala') {
       regionRow.querySelector('[data-region="' + hash + '"]').click();
