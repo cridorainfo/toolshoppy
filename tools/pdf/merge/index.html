@@ -27,7 +27,7 @@
 <body>
 <header class="site-header">
   <div class="container">
-    <a href="/" class="logo"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#tool"></use></svg> Tool<span>Shoppy</span></a>
+    <a href="/" class="logo"><img src="/assets/img/logo.png" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
     <div class="site-search"><input type="text" placeholder="Search tools…" onfocus="location.href='/'"></div>
     <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode">
       <svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg>
@@ -37,7 +37,13 @@
 </header>
 
 <main class="tool-page container">
-  <p class="breadcrumb"><a href="/">Home</a> › <a href="/#pdf">PDF Tools</a> › Merge PDF</p>
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/"><svg class="icon-svg" width="16" height="16" aria-hidden="true"><use href="/assets/icons/sprite.svg#home"></use></svg> Home</a>
+    <svg class="icon-svg crumb-sep" width="14" height="14" aria-hidden="true"><use href="/assets/icons/sprite.svg#chevron-right"></use></svg>
+    <a href="/#pdf">PDF Tools</a>
+    <svg class="icon-svg crumb-sep" width="14" height="14" aria-hidden="true"><use href="/assets/icons/sprite.svg#chevron-right"></use></svg>
+    <span class="crumb-current">Merge PDF</span>
+  </nav>
 
   <div class="tool-header">
     <div class="icon-tile icon-tile--lg icon-tile--amber"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#link"></use></svg></div>

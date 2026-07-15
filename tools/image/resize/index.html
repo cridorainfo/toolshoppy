@@ -76,7 +76,7 @@
 
 <header class="site-header">
   <div class="container">
-    <a href="/" class="logo"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#tool"></use></svg> Tool<span>Shoppy</span></a>
+    <a href="/" class="logo"><img src="/assets/img/logo.png" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
     <div class="site-search"><input type="text" placeholder="Search tools…" onfocus="location.href='/'"></div>
     <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode">
       <svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg>
@@ -86,7 +86,13 @@
 </header>
 
 <main class="tool-page container">
-  <p class="breadcrumb"><a href="/">Home</a> › <a href="/#image">Image Tools</a> › Image Resizer</p>
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/"><svg class="icon-svg" width="16" height="16" aria-hidden="true"><use href="/assets/icons/sprite.svg#home"></use></svg> Home</a>
+    <svg class="icon-svg crumb-sep" width="14" height="14" aria-hidden="true"><use href="/assets/icons/sprite.svg#chevron-right"></use></svg>
+    <a href="/#image">Image Tools</a>
+    <svg class="icon-svg crumb-sep" width="14" height="14" aria-hidden="true"><use href="/assets/icons/sprite.svg#chevron-right"></use></svg>
+    <span class="crumb-current">Image Resizer</span>
+  </nav>
 
   <div class="tool-header">
     <div class="icon-tile icon-tile--lg icon-tile--teal"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#ruler-2"></use></svg></div>
@@ -174,26 +180,6 @@
 
   <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
   <div class="content-section">
-    <h2>Frequently asked questions</h2>
-    <div class="faq-item">
-      <h3>How do I resize an image to exact pixel dimensions?</h3>
-      <p>Upload your image, switch to By Pixels mode, enter a width or height (aspect ratio locks automatically), and click Resize Image.</p>
-    </div>
-    <div class="faq-item">
-      <h3>Can I resize by percentage instead of pixels?</h3>
-      <p>Yes. Switch to By Percent mode and drag the slider — for example 50% halves both width and height.</p>
-    </div>
-    <div class="faq-item">
-      <h3>Will resizing change my image's format?</h3>
-      <p>No, the output keeps your original file format (JPG stays JPG, PNG stays PNG) unless you use the separate Image Converter tool.</p>
-    </div>
-    <div class="faq-item">
-      <h3>Does resizing reduce quality?</h3>
-      <p>Scaling down generally preserves visual quality well. Scaling up beyond the original resolution can look softer, since no new detail is added.</p>
-    </div>
-  </div>
-  <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
-  <div class="content-section">
     <h2>Related tools</h2>
     <div class="related-tools">
       <a href="/tools/image/compress/">
@@ -216,6 +202,27 @@
         QR Generator
         <span class="related-desc">Create QR codes for links &amp; text</span>
       </a>
+    </div>
+  </div>
+
+  <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
+  <div class="content-section">
+    <h2>Frequently asked questions</h2>
+    <div class="faq-item">
+      <h3>How do I resize an image to exact pixel dimensions?</h3>
+      <p>Upload your image, switch to By Pixels mode, enter a width or height (aspect ratio locks automatically), and click Resize Image.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can I resize by percentage instead of pixels?</h3>
+      <p>Yes. Switch to By Percent mode and drag the slider — for example 50% halves both width and height.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Will resizing change my image's format?</h3>
+      <p>No, the output keeps your original file format (JPG stays JPG, PNG stays PNG) unless you use the separate Image Converter tool.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Does resizing reduce quality?</h3>
+      <p>Scaling down generally preserves visual quality well. Scaling up beyond the original resolution can look softer, since no new detail is added.</p>
     </div>
   </div>
 </main>

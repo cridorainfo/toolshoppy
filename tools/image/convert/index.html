@@ -76,7 +76,7 @@
 
 <header class="site-header">
   <div class="container">
-    <a href="/" class="logo"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#tool"></use></svg> Tool<span>Shoppy</span></a>
+    <a href="/" class="logo"><img src="/assets/img/logo.png" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
     <div class="site-search"><input type="text" placeholder="Search tools…" onfocus="location.href='/'"></div>
     <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode">
       <svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg>
@@ -86,7 +86,13 @@
 </header>
 
 <main class="tool-page container">
-  <p class="breadcrumb"><a href="/">Home</a> › <a href="/#image">Image Tools</a> › Image Converter</p>
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/"><svg class="icon-svg" width="16" height="16" aria-hidden="true"><use href="/assets/icons/sprite.svg#home"></use></svg> Home</a>
+    <svg class="icon-svg crumb-sep" width="14" height="14" aria-hidden="true"><use href="/assets/icons/sprite.svg#chevron-right"></use></svg>
+    <a href="/#image">Image Tools</a>
+    <svg class="icon-svg crumb-sep" width="14" height="14" aria-hidden="true"><use href="/assets/icons/sprite.svg#chevron-right"></use></svg>
+    <span class="crumb-current">Image Converter</span>
+  </nav>
 
   <div class="tool-header">
     <div class="icon-tile icon-tile--lg icon-tile--cyan"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#refresh"></use></svg></div>
@@ -155,26 +161,6 @@
 
   <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
   <div class="content-section">
-    <h2>Frequently asked questions</h2>
-    <div class="faq-item">
-      <h3>How do I convert HEIC to JPG for free?</h3>
-      <p>Upload your HEIC photo, select JPG as the output format, and click Convert All. Conversion happens in your browser — no upload, no signup.</p>
-    </div>
-    <div class="faq-item">
-      <h3>Can I convert multiple images at once?</h3>
-      <p>Yes. Drag and drop multiple files at once, pick your target format, and download them all together with one click.</p>
-    </div>
-    <div class="faq-item">
-      <h3>Why did my HEIC file fail to convert?</h3>
-      <p>HEIC decoding depends on your browser and operating system. It works out of the box on Safari and recent Chrome on Mac/Windows 11. If it fails, try exporting the photo as JPG from your Photos app first.</p>
-    </div>
-    <div class="faq-item">
-      <h3>What formats are supported?</h3>
-      <p>You can convert to JPG, PNG, or WebP. Supported source formats include JPG, PNG, WebP, GIF, BMP, and HEIC (browser-dependent).</p>
-    </div>
-  </div>
-  <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
-  <div class="content-section">
     <h2>Related tools</h2>
     <div class="related-tools">
       <a href="/tools/image/compress/">
@@ -197,6 +183,27 @@
         Merge PDF
         <span class="related-desc">Combine multiple PDFs into one file</span>
       </a>
+    </div>
+  </div>
+
+  <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
+  <div class="content-section">
+    <h2>Frequently asked questions</h2>
+    <div class="faq-item">
+      <h3>How do I convert HEIC to JPG for free?</h3>
+      <p>Upload your HEIC photo, select JPG as the output format, and click Convert All. Conversion happens in your browser — no upload, no signup.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can I convert multiple images at once?</h3>
+      <p>Yes. Drag and drop multiple files at once, pick your target format, and download them all together with one click.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Why did my HEIC file fail to convert?</h3>
+      <p>HEIC decoding depends on your browser and operating system. It works out of the box on Safari and recent Chrome on Mac/Windows 11. If it fails, try exporting the photo as JPG from your Photos app first.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What formats are supported?</h3>
+      <p>You can convert to JPG, PNG, or WebP. Supported source formats include JPG, PNG, WebP, GIF, BMP, and HEIC (browser-dependent).</p>
     </div>
   </div>
 </main>

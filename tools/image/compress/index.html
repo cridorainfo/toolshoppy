@@ -76,7 +76,7 @@
 
 <header class="site-header">
   <div class="container">
-    <a href="/" class="logo"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#tool"></use></svg> Tool<span>Shoppy</span></a>
+    <a href="/" class="logo"><img src="/assets/img/logo.png" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
     <div class="site-search"><input type="text" placeholder="Search tools…" onfocus="location.href='/'"></div>
     <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode">
       <svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg>
@@ -86,7 +86,13 @@
 </header>
 
 <main class="tool-page container">
-  <p class="breadcrumb"><a href="/">Home</a> › <a href="/#image">Image Tools</a> › Image Compressor</p>
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/"><svg class="icon-svg" width="16" height="16" aria-hidden="true"><use href="/assets/icons/sprite.svg#home"></use></svg> Home</a>
+    <svg class="icon-svg crumb-sep" width="14" height="14" aria-hidden="true"><use href="/assets/icons/sprite.svg#chevron-right"></use></svg>
+    <a href="/#image">Image Tools</a>
+    <svg class="icon-svg crumb-sep" width="14" height="14" aria-hidden="true"><use href="/assets/icons/sprite.svg#chevron-right"></use></svg>
+    <span class="crumb-current">Image Compressor</span>
+  </nav>
 
   <div class="tool-header">
     <div class="icon-tile icon-tile--lg icon-tile--indigo"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#arrows-minimize"></use></svg></div>
@@ -187,27 +193,6 @@
 
   <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
   <div class="content-section">
-    <h2>Frequently asked questions</h2>
-    <div class="faq-item">
-      <h3>How do I compress an image to 20KB or 50KB?</h3>
-      <p>Upload your photo, choose the 20KB or 50KB preset (or enter a custom target), then click Compress Image. ToolShoppy adjusts JPEG quality automatically in your browser until the file matches your target size.</p>
-    </div>
-    <div class="faq-item">
-      <h3>Will compressing reduce my photo's dimensions?</h3>
-      <p>Not usually — we first try to hit your target size using quality compression alone. Only if the source photo is very large do we also slightly reduce dimensions, and we always show you the final size before download.</p>
-    </div>
-    <div class="faq-item">
-      <h3>Is this safe to use for PSC, UPSC, or PAN card photo uploads?</h3>
-      <p>Yes. The presets (20KB, 50KB, 100KB) match common government portal limits. Always double-check the exact limit stated on your specific form before submitting.</p>
-    </div>
-    <div class="faq-item">
-      <h3>Does ToolShoppy upload my photo to a server?</h3>
-      <p>No. Compression runs entirely in your browser using the Canvas API — your photo never leaves your device.</p>
-    </div>
-  </div>
-
-  <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
-  <div class="content-section">
     <h2>Related tools</h2>
     <div class="related-tools">
       <a href="/tools/image/resize/">
@@ -230,6 +215,27 @@
         QR Generator
         <span class="related-desc">Create QR codes for links &amp; text</span>
       </a>
+    </div>
+  </div>
+
+  <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
+  <div class="content-section">
+    <h2>Frequently asked questions</h2>
+    <div class="faq-item">
+      <h3>How do I compress an image to 20KB or 50KB?</h3>
+      <p>Upload your photo, choose the 20KB or 50KB preset (or enter a custom target), then click Compress Image. ToolShoppy adjusts JPEG quality automatically in your browser until the file matches your target size.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Will compressing reduce my photo's dimensions?</h3>
+      <p>Not usually — we first try to hit your target size using quality compression alone. Only if the source photo is very large do we also slightly reduce dimensions, and we always show you the final size before download.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Is this safe to use for PSC, UPSC, or PAN card photo uploads?</h3>
+      <p>Yes. The presets (20KB, 50KB, 100KB) match common government portal limits. Always double-check the exact limit stated on your specific form before submitting.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Does ToolShoppy upload my photo to a server?</h3>
+      <p>No. Compression runs entirely in your browser using the Canvas API — your photo never leaves your device.</p>
     </div>
   </div>
 </main>

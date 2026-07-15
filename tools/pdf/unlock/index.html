@@ -30,7 +30,7 @@
 <body>
 <header class="site-header">
   <div class="container">
-    <a href="/" class="logo"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#tool"></use></svg> Tool<span>Shoppy</span></a>
+    <a href="/" class="logo"><img src="/assets/img/logo.png" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
     <div class="site-search"><input type="text" placeholder="Search tools…" onfocus="location.href='/'"></div>
     <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode">
       <svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg>
@@ -39,7 +39,13 @@
   </div>
 </header>
 <main class="tool-page container">
-  <p class="breadcrumb"><a href="/">Home</a> › <a href="/#pdf">PDF Tools</a> › Unlock PDF</p>
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/"><svg class="icon-svg" width="16" height="16" aria-hidden="true"><use href="/assets/icons/sprite.svg#home"></use></svg> Home</a>
+    <svg class="icon-svg crumb-sep" width="14" height="14" aria-hidden="true"><use href="/assets/icons/sprite.svg#chevron-right"></use></svg>
+    <a href="/#pdf">PDF Tools</a>
+    <svg class="icon-svg crumb-sep" width="14" height="14" aria-hidden="true"><use href="/assets/icons/sprite.svg#chevron-right"></use></svg>
+    <span class="crumb-current">Unlock PDF</span>
+  </nav>
   <div class="tool-header">
     <div class="icon-tile icon-tile--lg icon-tile--emerald"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock-open"></use></svg></div>
     <h1>Unlock PDF</h1>
@@ -94,11 +100,6 @@
     </ol>
   </div>
   <div class="content-section">
-    <h2>Frequently asked questions</h2>
-    <div class="faq-item"><h3>Can I unlock a PDF without the password?</h3><p>No. We only unlock when you provide the correct password you already know.</p></div>
-    <div class="faq-item"><h3>Is unlocking safe?</h3><p>Yes — the file and password stay in your browser.</p></div>
-  </div>
-  <div class="content-section">
     <h2>Related tools</h2>
     <div class="related-tools">
       <a href="/tools/pdf/protect/">
@@ -122,6 +123,11 @@
         <span class="related-desc">Combine multiple PDFs into one file</span>
       </a>
     </div>
+  </div>
+  <div class="content-section">
+    <h2>Frequently asked questions</h2>
+    <div class="faq-item"><h3>Can I unlock a PDF without the password?</h3><p>No. We only unlock when you provide the correct password you already know.</p></div>
+    <div class="faq-item"><h3>Is unlocking safe?</h3><p>Yes — the file and password stay in your browser.</p></div>
   </div>
 </main>
 <footer class="site-footer"><div class="container"><div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div></div></footer>

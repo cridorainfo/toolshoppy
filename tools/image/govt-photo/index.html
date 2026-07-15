@@ -76,7 +76,7 @@
 
 <header class="site-header">
   <div class="container">
-    <a href="/" class="logo"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#tool"></use></svg> Tool<span>Shoppy</span></a>
+    <a href="/" class="logo"><img src="/assets/img/logo.png" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
     <div class="site-search"><input type="text" placeholder="Search tools…" onfocus="location.href='/'"></div>
     <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode">
       <svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg>
@@ -86,7 +86,13 @@
 </header>
 
 <main class="tool-page container">
-  <p class="breadcrumb"><a href="/">Home</a> › <a href="/#image">Image Tools</a> › Govt Photo Resizer</p>
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/"><svg class="icon-svg" width="16" height="16" aria-hidden="true"><use href="/assets/icons/sprite.svg#home"></use></svg> Home</a>
+    <svg class="icon-svg crumb-sep" width="14" height="14" aria-hidden="true"><use href="/assets/icons/sprite.svg#chevron-right"></use></svg>
+    <a href="/#image">Image Tools</a>
+    <svg class="icon-svg crumb-sep" width="14" height="14" aria-hidden="true"><use href="/assets/icons/sprite.svg#chevron-right"></use></svg>
+    <span class="crumb-current">Govt Photo Resizer</span>
+  </nav>
 
   <div class="tool-header">
     <div class="icon-tile icon-tile--lg icon-tile--pink"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#id"></use></svg></div>
@@ -170,26 +176,6 @@
 
   <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
   <div class="content-section">
-    <h2>Frequently asked questions</h2>
-    <div class="faq-item">
-      <h3>What is the correct photo size for Kerala PSC applications?</h3>
-      <p>Kerala PSC typically requires a 3.5cm x 4.5cm photo (around 276x354 px) under 50KB on a plain white background. Select the Kerala PSC preset, upload your photo, and download — it's auto-cropped to the exact size.</p>
-    </div>
-    <div class="faq-item">
-      <h3>Can I use this for UPSC, SSC, PAN, and Aadhaar photos too?</h3>
-      <p>Yes. Presets are included for UPSC, SSC, PAN Card, Aadhaar, Indian Passport, UAE Emirates ID, UK Passport, and US Passport — each with the correct pixel dimensions and file size limit.</p>
-    </div>
-    <div class="faq-item">
-      <h3>Why does the tool add a background color?</h3>
-      <p>Many government forms require a plain white, light blue, or light red background. Choose your required background before uploading, and the tool centers and pads your photo onto it.</p>
-    </div>
-    <div class="faq-item">
-      <h3>Are these presets officially guaranteed to be accepted?</h3>
-      <p>Presets follow commonly published requirements, but portals occasionally change specs. Always verify the exact size and file limit on your specific application form before final submission.</p>
-    </div>
-  </div>
-  <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
-  <div class="content-section">
     <h2>Related tools</h2>
     <div class="related-tools">
       <a href="/tools/image/compress/">
@@ -212,6 +198,27 @@
         QR Generator
         <span class="related-desc">Create QR codes for links &amp; text</span>
       </a>
+    </div>
+  </div>
+
+  <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
+  <div class="content-section">
+    <h2>Frequently asked questions</h2>
+    <div class="faq-item">
+      <h3>What is the correct photo size for Kerala PSC applications?</h3>
+      <p>Kerala PSC typically requires a 3.5cm x 4.5cm photo (around 276x354 px) under 50KB on a plain white background. Select the Kerala PSC preset, upload your photo, and download — it's auto-cropped to the exact size.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can I use this for UPSC, SSC, PAN, and Aadhaar photos too?</h3>
+      <p>Yes. Presets are included for UPSC, SSC, PAN Card, Aadhaar, Indian Passport, UAE Emirates ID, UK Passport, and US Passport — each with the correct pixel dimensions and file size limit.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Why does the tool add a background color?</h3>
+      <p>Many government forms require a plain white, light blue, or light red background. Choose your required background before uploading, and the tool centers and pads your photo onto it.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Are these presets officially guaranteed to be accepted?</h3>
+      <p>Presets follow commonly published requirements, but portals occasionally change specs. Always verify the exact size and file limit on your specific application form before final submission.</p>
     </div>
   </div>
 </main>

@@ -71,7 +71,7 @@
 
 <header class="site-header">
   <div class="container">
-    <a href="/" class="logo"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#tool"></use></svg> Tool<span>Shoppy</span></a>
+    <a href="/" class="logo"><img src="/assets/img/logo.png" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
     <div class="site-search"><input type="text" placeholder="Search tools…" onfocus="location.href='/'"></div>
     <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode">
       <svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg>
@@ -81,7 +81,13 @@
 </header>
 
 <main class="tool-page container">
-  <p class="breadcrumb"><a href="/">Home</a> › <a href="/#misc">Misc Tools</a> › QR Code Generator</p>
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/"><svg class="icon-svg" width="16" height="16" aria-hidden="true"><use href="/assets/icons/sprite.svg#home"></use></svg> Home</a>
+    <svg class="icon-svg crumb-sep" width="14" height="14" aria-hidden="true"><use href="/assets/icons/sprite.svg#chevron-right"></use></svg>
+    <a href="/#misc">Misc Tools</a>
+    <svg class="icon-svg crumb-sep" width="14" height="14" aria-hidden="true"><use href="/assets/icons/sprite.svg#chevron-right"></use></svg>
+    <span class="crumb-current">QR Code Generator</span>
+  </nav>
 
   <div class="tool-header">
     <div class="icon-tile icon-tile--lg icon-tile--sky"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#qrcode"></use></svg></div>
@@ -142,22 +148,6 @@
 
   <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
   <div class="content-section">
-    <h2>Frequently asked questions</h2>
-    <div class="faq-item">
-      <h3>How do I make a QR code for free?</h3>
-      <p>Type or paste any text, URL, or WhatsApp link into the box — the QR code generates instantly. Pick a size, then download it as a PNG.</p>
-    </div>
-    <div class="faq-item">
-      <h3>Do these QR codes expire?</h3>
-      <p>No. The QR code is generated entirely in your browser and encodes your text directly — there's no server, tracking, or expiry involved.</p>
-    </div>
-    <div class="faq-item">
-      <h3>Can I use this for a WhatsApp chat link?</h3>
-      <p>Yes — paste a link like https://wa.me/91XXXXXXXXXX and the QR code will open a WhatsApp chat when scanned.</p>
-    </div>
-  </div>
-  <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
-  <div class="content-section">
     <h2>Related tools</h2>
     <div class="related-tools">
       <a href="/tools/image/compress/">
@@ -180,6 +170,23 @@
         PDF Compress
         <span class="related-desc">Shrink PDF file size for email &amp; uploads</span>
       </a>
+    </div>
+  </div>
+
+  <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
+  <div class="content-section">
+    <h2>Frequently asked questions</h2>
+    <div class="faq-item">
+      <h3>How do I make a QR code for free?</h3>
+      <p>Type or paste any text, URL, or WhatsApp link into the box — the QR code generates instantly. Pick a size, then download it as a PNG.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Do these QR codes expire?</h3>
+      <p>No. The QR code is generated entirely in your browser and encodes your text directly — there's no server, tracking, or expiry involved.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can I use this for a WhatsApp chat link?</h3>
+      <p>Yes — paste a link like https://wa.me/91XXXXXXXXXX and the QR code will open a WhatsApp chat when scanned.</p>
     </div>
   </div>
 </main>

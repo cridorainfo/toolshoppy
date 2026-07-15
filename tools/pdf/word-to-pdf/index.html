@@ -33,7 +33,7 @@
 <body>
 <header class="site-header">
   <div class="container">
-    <a href="/" class="logo"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#tool"></use></svg> Tool<span>Shoppy</span></a>
+    <a href="/" class="logo"><img src="/assets/img/logo.png" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
     <div class="site-search"><input type="text" placeholder="Search tools…" onfocus="location.href='/'"></div>
     <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode">
       <svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg>
@@ -42,7 +42,13 @@
   </div>
 </header>
 <main class="tool-page container">
-  <p class="breadcrumb"><a href="/">Home</a> › <a href="/#pdf">PDF Tools</a> › Word to PDF</p>
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/"><svg class="icon-svg" width="16" height="16" aria-hidden="true"><use href="/assets/icons/sprite.svg#home"></use></svg> Home</a>
+    <svg class="icon-svg crumb-sep" width="14" height="14" aria-hidden="true"><use href="/assets/icons/sprite.svg#chevron-right"></use></svg>
+    <a href="/#pdf">PDF Tools</a>
+    <svg class="icon-svg crumb-sep" width="14" height="14" aria-hidden="true"><use href="/assets/icons/sprite.svg#chevron-right"></use></svg>
+    <span class="crumb-current">Word to PDF</span>
+  </nav>
   <div class="tool-header">
     <div class="icon-tile icon-tile--lg icon-tile--blue"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#file-export"></use></svg></div>
     <h1>Word to PDF</h1>
@@ -95,12 +101,6 @@
     </ol>
   </div>
   <div class="content-section">
-    <h2>Frequently asked questions</h2>
-    <div class="faq-item"><h3>How do I convert Word to PDF for free?</h3><p>Upload your .docx file, click Convert to PDF, then download. Conversion runs entirely in your browser.</p></div>
-    <div class="faq-item"><h3>Does ToolShoppy upload my Word document?</h3><p>No. The document is processed locally — nothing is uploaded.</p></div>
-    <div class="faq-item"><h3>Are complex layouts preserved?</h3><p>Basic formatting is preserved. Very complex Word layouts may look slightly different from print layout.</p></div>
-  </div>
-  <div class="content-section">
     <h2>Related tools</h2>
     <div class="related-tools">
       <a href="/tools/pdf/pdf-to-word/">
@@ -124,6 +124,12 @@
         <span class="related-desc">Encrypt Aadhaar, PAN, and contracts</span>
       </a>
     </div>
+  </div>
+  <div class="content-section">
+    <h2>Frequently asked questions</h2>
+    <div class="faq-item"><h3>How do I convert Word to PDF for free?</h3><p>Upload your .docx file, click Convert to PDF, then download. Conversion runs entirely in your browser.</p></div>
+    <div class="faq-item"><h3>Does ToolShoppy upload my Word document?</h3><p>No. The document is processed locally — nothing is uploaded.</p></div>
+    <div class="faq-item"><h3>Are complex layouts preserved?</h3><p>Basic formatting is preserved. Very complex Word layouts may look slightly different from print layout.</p></div>
   </div>
 </main>
 <footer class="site-footer"><div class="container"><div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div></div></footer>
