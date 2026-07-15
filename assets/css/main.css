@@ -266,7 +266,7 @@ button { font-family: inherit; cursor: pointer; }
   top: 64px;
   z-index: 90;
   background: var(--bg);
-  padding: 10px 0;
+  padding: 12px 0 10px;
   margin-bottom: 4px;
   border-bottom: 1px solid var(--border);
 }
@@ -274,9 +274,10 @@ button { font-family: inherit; cursor: pointer; }
   display: flex;
   gap: 8px;
   overflow-x: auto;
+  overflow-y: visible;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  padding-bottom: 2px;
+  padding: 2px 0 2px;
 }
 .filter-bar .filter-scroll::-webkit-scrollbar { display: none; }
 .filter-chip {
@@ -294,10 +295,9 @@ button { font-family: inherit; cursor: pointer; }
   white-space: nowrap;
   line-height: 1.2;
   max-height: 2.5rem;
-  overflow: hidden;
-  transition: background .15s ease, border-color .15s ease, box-shadow .15s ease, transform .15s ease;
+  transition: background .15s ease, border-color .15s ease, box-shadow .15s ease;
 }
-.filter-chip:hover { border-color: var(--primary); transform: translateY(-1px); }
+.filter-chip:hover { border-color: var(--primary); box-shadow: 0 2px 8px rgba(225,29,72,0.12); }
 .filter-chip.active { background: var(--primary); border-color: var(--primary); color: #fff; box-shadow: var(--shadow-premium); }
 .filter-chip--favorites { color: #B45309; background: rgba(217,119,6,0.08); }
 .filter-chip--favorites .icon-svg { fill: currentColor; }
