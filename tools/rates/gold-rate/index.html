@@ -96,6 +96,9 @@
       <div class="info-box">
         <h4>Quick links</h4>
         <ul>
+          <li><a href="/tools/rates/gold-rate/kerala/">Kerala gold rate →</a></li>
+          <li><a href="/tools/rates/gold-rate/dubai/">Dubai gold rate →</a></li>
+          <li><a href="/tools/rates/gold-rate/mumbai/">Mumbai gold rate →</a></li>
           <li><a href="/tools/rates/silver-rate/">Silver rate today →</a></li>
           <li><a href="/tools/rates/currency-converter/">AED to INR converter →</a></li>
           <li><a href="/tools/image/govt-photo/">Govt photo resizer →</a></li>
@@ -218,9 +221,10 @@
     if (sourceLine) {
       sourceLine.textContent = (d.live ? '● Live' : '○ Cached') + ' · ' + (d.source_note || '');
     }
-    var hash = (location.hash || '').replace('#', '');
-    if (hash === 'india' || hash === 'uae' || hash === 'kerala') {
-      regionRow.querySelector('[data-region="' + hash + '"]').click();
+    var pick = new URLSearchParams(location.search).get('region') || (location.hash || '').replace('#', '');
+    if (pick === 'india' || pick === 'uae' || pick === 'kerala' || pick === 'dubai') {
+      var key = pick === 'dubai' ? 'uae' : pick;
+      regionRow.querySelector('[data-region="' + key + '"]').click();
     } else {
       renderRegion(region);
     }

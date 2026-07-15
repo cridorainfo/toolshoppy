@@ -74,6 +74,12 @@
     presetRow.appendChild(b);
   });
   presetInfo.textContent = active.note;
+  var urlPreset = new URLSearchParams(location.search).get('preset');
+  if (urlPreset) {
+    PRESETS.forEach(function (p, i) {
+      if (p.id === urlPreset && presetRow.children[i]) presetRow.children[i].click();
+    });
+  }
   document.getElementById('bgRow').addEventListener('click', function (e) {
     var c = e.target.closest('.chip'); if (!c) return;
     document.getElementById('bgRow').querySelectorAll('.chip').forEach(function (x) { x.classList.remove('active'); });

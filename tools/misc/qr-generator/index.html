@@ -5,7 +5,7 @@
 <script>(function(){try{var t=localStorage.getItem('ts-theme');if(!t){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>QR Code Generator Free — No Signup, Instant Download | ToolShoppy</title>
-<meta name="description" content="Generate a free QR code from any text, URL, or WhatsApp link instantly. No signup, works offline in your browser, download as PNG.">
+<meta name="description" content="Generate free QR codes — text, URL, WiFi, vCard contact, WhatsApp link, or bulk ZIP export. No signup, 100% in your browser.">
 <meta name="robots" content="index, follow">
 <meta name="keywords" content="qr code generator free, qr code maker online, free qr code download, generate qr code no signup">
 <link rel="canonical" href="https://toolshoppy.com/tools/misc/qr-generator/">
@@ -97,7 +97,7 @@
   <div class="tool-header">
     <div class="icon-tile icon-tile--lg icon-tile--sky"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#qrcode"></use></svg></div>
     <h1>QR Code Generator</h1>
-    <p>Turn any text, URL, or WhatsApp link into a QR code instantly.</p>
+    <p>Text, URL, WiFi, vCard, WhatsApp — or export bulk QR codes as ZIP.</p>
   </div>
 
   <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
@@ -105,8 +105,55 @@
   <div class="tool-layout with-sidebar">
     <div class="tool-card-main">
 
-      <label style="display:block;font-size:0.85rem;font-weight:600;margin-bottom:6px;">Text, URL, or WhatsApp link</label>
-      <textarea id="qrText" rows="3" placeholder="https://toolshoppy.com or any text…" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-family:inherit;font-size:0.95rem;resize:vertical;"></textarea>
+      <div class="chip-row" id="modeRow">
+        <button class="chip active" data-mode="text" type="button">Text / URL</button>
+        <button class="chip" data-mode="wifi" type="button">WiFi</button>
+        <button class="chip" data-mode="vcard" type="button">vCard</button>
+        <button class="chip" data-mode="whatsapp" type="button">WhatsApp</button>
+        <button class="chip" data-mode="bulk" type="button">Bulk</button>
+      </div>
+
+      <div id="panelText" class="qr-panel">
+        <label style="display:block;font-size:0.85rem;font-weight:600;margin:12px 0 6px;">Text, URL, or UPI link</label>
+        <textarea id="qrText" rows="3" placeholder="https://toolshoppy.com or any text…" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-family:inherit;font-size:0.95rem;resize:vertical;"></textarea>
+      </div>
+
+      <div id="panelWifi" class="qr-panel" style="display:none;">
+        <div class="calc-row" style="margin-top:12px;">
+          <div class="calc-field"><label for="wifiSsid">Network name (SSID)</label><input type="text" id="wifiSsid" placeholder="HomeWiFi"></div>
+          <div class="calc-field"><label for="wifiPass">Password</label><input type="text" id="wifiPass" placeholder="Optional for open networks"></div>
+        </div>
+        <div class="calc-field" style="margin-top:10px;"><label for="wifiEnc">Security</label>
+          <select id="wifiEnc" style="width:100%;padding:10px;border:1px solid var(--border);border-radius:10px;background:var(--card);color:var(--text);">
+            <option value="WPA">WPA / WPA2</option>
+            <option value="WEP">WEP</option>
+            <option value="nopass">Open (no password)</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="panelVcard" class="qr-panel" style="display:none;">
+        <div class="calc-row" style="margin-top:12px;">
+          <div class="calc-field"><label for="vcName">Full name</label><input type="text" id="vcName" placeholder="Rahul Kumar"></div>
+          <div class="calc-field"><label for="vcPhone">Phone</label><input type="tel" id="vcPhone" placeholder="+91 98765 43210"></div>
+        </div>
+        <div class="calc-row" style="margin-top:10px;">
+          <div class="calc-field"><label for="vcEmail">Email</label><input type="email" id="vcEmail" placeholder="name@email.com"></div>
+          <div class="calc-field"><label for="vcOrg">Company</label><input type="text" id="vcOrg" placeholder="Optional"></div>
+        </div>
+        <div class="calc-field" style="margin-top:10px;"><label for="vcUrl">Website</label><input type="url" id="vcUrl" placeholder="https://"></div>
+      </div>
+
+      <div id="panelWhatsapp" class="qr-panel" style="display:none;">
+        <div class="calc-field" style="margin-top:12px;"><label for="waPhone">Phone (country code, no +)</label><input type="tel" id="waPhone" placeholder="919876543210"></div>
+        <div class="calc-field" style="margin-top:10px;"><label for="waMsg">Pre-filled message</label><textarea id="waMsg" rows="2" placeholder="Hi, I saw your QR code…" style="width:100%;padding:10px;border:1px solid var(--border);border-radius:10px;font-family:inherit;"></textarea></div>
+      </div>
+
+      <div id="panelBulk" class="qr-panel" style="display:none;">
+        <label style="display:block;font-size:0.85rem;font-weight:600;margin:12px 0 6px;">One QR payload per line (URL or text)</label>
+        <textarea id="bulkLines" rows="5" placeholder="https://toolshoppy.com&#10;https://example.com/page2&#10;Product SKU-123" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-family:inherit;font-size:0.95rem;resize:vertical;"></textarea>
+        <p style="font-size:0.82rem;color:var(--text-muted);margin-top:8px;">Generates numbered PNG files in a ZIP — max 50 lines.</p>
+      </div>
 
       <h3 style="font-size:1rem;margin:16px 0 10px;">Size</h3>
       <div class="chip-row" id="sizeRow">
@@ -116,12 +163,13 @@
         <button class="chip" data-size="500">500px</button>
       </div>
 
-      <div style="text-align:center;margin-top:20px;">
+      <div id="singlePreview" style="text-align:center;margin-top:20px;">
         <canvas id="qrCanvas" style="max-width:100%;border:1px solid var(--border);border-radius:8px;background:#fff;"></canvas>
       </div>
 
       <div class="result-panel active" id="resultPanel" style="margin-top:16px;">
         <button class="btn btn-accent btn-block" id="downloadBtn"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#download"></use></svg> Download PNG</button>
+        <button class="btn btn-primary btn-block" id="bulkBtn" style="display:none;margin-top:10px;">Download ZIP of QR codes</button>
       </div>
 
       <div class="trust-badge"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock"></use></svg> Generated entirely in your browser</div>
@@ -211,47 +259,127 @@
 <script>
 (function () {
   const qrText = document.getElementById('qrText');
+  const modeRow = document.getElementById('modeRow');
   const sizeRow = document.getElementById('sizeRow');
   const canvas = document.getElementById('qrCanvas');
   const downloadBtn = document.getElementById('downloadBtn');
+  const bulkBtn = document.getElementById('bulkBtn');
+  const singlePreview = document.getElementById('singlePreview');
   const ctx = canvas.getContext('2d');
 
+  const panels = {
+    text: document.getElementById('panelText'),
+    wifi: document.getElementById('panelWifi'),
+    vcard: document.getElementById('panelVcard'),
+    whatsapp: document.getElementById('panelWhatsapp'),
+    bulk: document.getElementById('panelBulk'),
+  };
+
+  let mode = 'text';
   let size = 300;
   let debounceTimer = null;
 
-  function render() {
-    const text = qrText.value.trim() || 'https://toolshoppy.com';
+  function escVcard(s) {
+    return (s || '').replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\n/g, ' ');
+  }
+
+  function buildPayload() {
+    if (mode === 'wifi') {
+      const ssid = document.getElementById('wifiSsid').value.trim();
+      if (!ssid) return '';
+      const enc = document.getElementById('wifiEnc').value;
+      const pass = document.getElementById('wifiPass').value;
+      if (enc === 'nopass') return 'WIFI:T:nopass;S:' + ssid + ';;';
+      return 'WIFI:T:' + enc + ';S:' + ssid + ';P:' + pass + ';;';
+    }
+    if (mode === 'vcard') {
+      const name = document.getElementById('vcName').value.trim();
+      const phone = document.getElementById('vcPhone').value.trim();
+      const email = document.getElementById('vcEmail').value.trim();
+      const org = document.getElementById('vcOrg').value.trim();
+      const url = document.getElementById('vcUrl').value.trim();
+      if (!name && !phone && !email) return '';
+      let v = 'BEGIN:VCARD\nVERSION:3.0\n';
+      if (name) v += 'FN:' + escVcard(name) + '\nN:' + escVcard(name) + ';;;;\n';
+      if (phone) v += 'TEL;TYPE=CELL:' + phone.replace(/\s/g, '') + '\n';
+      if (email) v += 'EMAIL:' + email + '\n';
+      if (org) v += 'ORG:' + escVcard(org) + '\n';
+      if (url) v += 'URL:' + url + '\n';
+      return v + 'END:VCARD';
+    }
+    if (mode === 'whatsapp') {
+      const phone = document.getElementById('waPhone').value.replace(/\D/g, '');
+      if (!phone) return '';
+      const msg = encodeURIComponent(document.getElementById('waMsg').value.trim());
+      return 'https://wa.me/' + phone + (msg ? '?text=' + msg : '');
+    }
+    if (mode === 'bulk') return '';
+    return qrText.value.trim() || 'https://toolshoppy.com';
+  }
+
+  function makeQr(text) {
     let qr;
     try {
       qr = qrcode(0, 'M');
       qr.addData(text);
       qr.make();
     } catch (e) {
-      // typeNumber 0 auto-sizing can overflow for very long text at low EC; retry with higher type
       qr = qrcode(10, 'L');
       qr.addData(text);
       qr.make();
     }
-    const count = qr.getModuleCount();
-    const cellSize = Math.floor(size / count) || 1;
-    const canvasSize = cellSize * count;
-    canvas.width = canvasSize;
-    canvas.height = canvasSize;
-    ctx.fillStyle = '#FFFFFF';
-    ctx.fillRect(0, 0, canvasSize, canvasSize);
-    ctx.fillStyle = '#000000';
-    for (let row = 0; row < count; row++) {
-      for (let col = 0; col < count; col++) {
-        if (qr.isDark(row, col)) {
-          ctx.fillRect(col * cellSize, row * cellSize, cellSize, cellSize);
-        }
-      }
-    }
+    return qr;
   }
 
-  qrText.addEventListener('input', () => {
+  function drawQrOnCanvas(targetCanvas, text, px) {
+    const qr = makeQr(text);
+    const count = qr.getModuleCount();
+    const cellSize = Math.floor(px / count) || 1;
+    const canvasSize = cellSize * count;
+    targetCanvas.width = canvasSize;
+    targetCanvas.height = canvasSize;
+    const c = targetCanvas.getContext('2d');
+    c.fillStyle = '#FFFFFF';
+    c.fillRect(0, 0, canvasSize, canvasSize);
+    c.fillStyle = '#000000';
+    for (let row = 0; row < count; row++) {
+      for (let col = 0; col < count; col++) {
+        if (qr.isDark(row, col)) c.fillRect(col * cellSize, row * cellSize, cellSize, cellSize);
+      }
+    }
+    return targetCanvas;
+  }
+
+  function render() {
+    if (mode === 'bulk') return;
+    const text = buildPayload() || 'https://toolshoppy.com';
+    drawQrOnCanvas(canvas, text, size);
+  }
+
+  function scheduleRender() {
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(render, 150);
+  }
+
+  modeRow.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-mode]');
+    if (!btn) return;
+    modeRow.querySelectorAll('.chip').forEach((c) => c.classList.remove('active'));
+    btn.classList.add('active');
+    mode = btn.dataset.mode;
+    Object.keys(panels).forEach((k) => { panels[k].style.display = k === mode ? '' : 'none'; });
+    const isBulk = mode === 'bulk';
+    singlePreview.style.display = isBulk ? 'none' : '';
+    downloadBtn.style.display = isBulk ? 'none' : '';
+    bulkBtn.style.display = isBulk ? '' : 'none';
+    if (!isBulk) render();
+  });
+
+  ['qrText', 'wifiSsid', 'wifiPass', 'wifiEnc', 'vcName', 'vcPhone', 'vcEmail', 'vcOrg', 'vcUrl', 'waPhone', 'waMsg'].forEach((id) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('input', scheduleRender);
+    el.addEventListener('change', scheduleRender);
   });
 
   sizeRow.addEventListener('click', (e) => {
@@ -265,6 +393,27 @@
 
   downloadBtn.addEventListener('click', () => {
     canvas.toBlob((blob) => TS.downloadBlob(blob, 'qrcode.png'));
+  });
+
+  bulkBtn.addEventListener('click', async () => {
+    const lines = document.getElementById('bulkLines').value.split(/\r?\n/).map((l) => l.trim()).filter(Boolean).slice(0, 50);
+    if (!lines.length) { alert('Add at least one line.'); return; }
+    bulkBtn.disabled = true;
+    try {
+      const entries = await Promise.all(lines.map((line, i) => new Promise((resolve) => {
+        const c = document.createElement('canvas');
+        drawQrOnCanvas(c, line, size);
+        c.toBlob((blob) => {
+          blob.arrayBuffer().then((buf) => {
+            resolve({ name: 'qr-' + String(i + 1).padStart(2, '0') + '.png', data: new Uint8Array(buf) });
+          });
+        }, 'image/png');
+      })));
+      const zip = TS.buildZip(entries);
+      TS.downloadBlob(new Blob([zip], { type: 'application/zip' }), 'qr-codes.zip');
+      if (window.TSAnalytics) TSAnalytics.track('tool_complete', { tool: 'qr-generator-bulk', count: lines.length });
+    } catch (e) { alert('Bulk export failed.'); }
+    bulkBtn.disabled = false;
   });
 
   qrText.value = 'https://toolshoppy.com';

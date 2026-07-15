@@ -288,6 +288,12 @@
   });
   presetInfo.textContent = activePreset.note;
 
+  var urlPreset = new URLSearchParams(location.search).get('preset');
+  if (urlPreset) {
+    var matchBtn = presetRow.querySelector('[data-id="' + urlPreset + '"]');
+    if (matchBtn) matchBtn.click();
+  }
+
   bgRow.addEventListener('click', (e) => {
     const btn = e.target.closest('.chip');
     if (!btn) return;

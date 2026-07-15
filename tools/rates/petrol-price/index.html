@@ -102,10 +102,8 @@
     updatedLine.innerHTML = 'Last updated: <strong>' + (TSRates && TSRates.formatUpdatedAt ? TSRates.formatUpdatedAt(d.updated_at) : new Date(d.updated_at).toLocaleString()) + '</strong>';
     sourceLine.textContent = (d.live ? '● Live' : '○ Cached') + ' · ' + (d.source_note || '');
     renderGrid();
-    if (location.hash) {
-      var h = location.hash.replace('#', '');
-      if (data.states[h]) showState(h);
-    }
+    var pick = new URLSearchParams(location.search).get('state') || (location.hash || '').replace('#', '');
+    if (pick && data.states[pick]) showState(pick);
   }).catch(function () { updatedLine.textContent = 'Could not load fuel prices.'; });
 })();
 </script>
