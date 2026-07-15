@@ -1179,7 +1179,7 @@ button { font-family: inherit; cursor: pointer; }
   0%, 100% { opacity: 0.5; transform: scale(1); }
   50% { opacity: 0.9; transform: scale(1.12); }
 }
-.hero > * { position: relative; z-index: 1; }
+.hero > *:not(.hero-blob) { position: relative; z-index: 1; }
 
 /* Hero: elegant premium search box */
 .hero-search {
