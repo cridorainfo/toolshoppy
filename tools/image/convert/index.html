@@ -248,9 +248,10 @@
     controls.style.display = 'block';
     resultPanel.classList.remove('active');
     renderFileList();
-  });
+  }, { preview: false });
 
   function renderFileList() {
+    TS.renderFilePreview(TS.getOrCreatePreviewContainer(dropZone), files, { maxFiles: 24 });
     fileList.innerHTML = '';
     files.forEach((f, i) => {
       const row = document.createElement('div');

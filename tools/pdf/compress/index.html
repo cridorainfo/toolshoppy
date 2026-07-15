@@ -211,7 +211,7 @@
     controls.style.display = 'block';
     resultPanel.classList.remove('active');
     showPdfPreview(file);
-  });
+  }, { preview: false });
 
   function canvasToJpegBytes(canvas, q) {
     return new Promise((resolve) => {

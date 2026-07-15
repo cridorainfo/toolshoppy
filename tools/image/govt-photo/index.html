@@ -116,10 +116,13 @@
 
       <h3 style="font-size:1rem;margin-bottom:10px;">2. Background</h3>
       <div class="chip-row" id="bgRow">
-        <button class="chip active" data-bg="#FFFFFF">White</button>
-        <button class="chip" data-bg="#EAF2FA">Light Blue</button>
-        <button class="chip" data-bg="#F3EAEA">Light Red</button>
+        <button class="chip active" data-bg="#FFFFFF" type="button">White</button>
+        <button class="chip" data-bg="#EAF2FA" type="button">Light Blue</button>
+        <button class="chip" data-bg="#F3EAEA" type="button">Light Red</button>
       </div>
+      <p class="govt-bg-hint" style="font-size:0.82rem;color:var(--text-muted);margin:-4px 0 14px;line-height:1.5;">
+        Use with <a href="/tools/image/background-remove/">Background Remover</a> if your photo isn't already on a plain backdrop.
+      </p>
 
       <h3 style="font-size:1rem;margin:16px 0 10px;">3. Upload photo</h3>
       <div class="drop-zone" id="dropZone">
@@ -161,7 +164,7 @@
         <h4>Tips for best results</h4>
         <ul>
           <li>Use a well-lit, front-facing photo</li>
-          <li>Plain background works best (we'll pad it for you)</li>
+          <li>Plain background works best — try <a href="/tools/image/background-remove/">Background Remover</a> first if needed</li>
           <li>Check your form's official size before submitting — presets are general guidance</li>
         </ul>
       </div>
@@ -172,8 +175,8 @@
   <div class="content-section">
     <h2>How to resize a photo for government forms</h2>
     <ol>
-      <li>Choose your form type — Kerala PSC, UPSC, SSC, PAN, Aadhaar, Passport, or Emirates ID.</li>
-      <li>Pick a background color if your form requires white, light blue, or light red.</li>
+      <li>Choose your form type — Kerala PSC, UPSC, SSC, PAN, Aadhaar, Passport, or Emirates ID. The matching background is selected automatically.</li>
+      <li>Adjust the background if needed, or use <a href="/tools/image/background-remove/">Background Remover</a> first if your photo isn't on a plain backdrop.</li>
       <li>Upload a clear, front-facing photo.</li>
       <li>Click <strong>Generate Photo</strong> — it's auto-cropped and padded to the exact pixel size and file limit.</li>
     </ol>
@@ -197,6 +200,11 @@
         <span class="icon-tile icon-tile--sm icon-tile--cyan"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#refresh"></use></svg></span>
         Image Converter
         <span class="related-desc">JPG, PNG, WebP, HEIC conversion</span>
+      </a>
+      <a href="/tools/image/background-remove/">
+        <span class="icon-tile icon-tile--sm icon-tile--pink"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#background"></use></svg></span>
+        Background Remover
+        <span class="related-desc">Remove busy backgrounds before resizing</span>
       </a>
       <a href="/tools/misc/qr-generator/">
         <span class="icon-tile icon-tile--sm icon-tile--sky"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#qrcode"></use></svg></span>
@@ -242,15 +250,15 @@
 <script>
 (function () {
   const PRESETS = [
-    { id: 'psc', label: 'Kerala PSC', w: 276, h: 354, maxKb: 50, note: '3.5cm × 4.5cm, max 50KB' },
-    { id: 'upsc', label: 'UPSC', w: 200, h: 230, maxKb: 300, note: '200×230 px, max 300KB' },
-    { id: 'ssc', label: 'SSC', w: 200, h: 230, maxKb: 50, note: '200×230 px, max 50KB' },
-    { id: 'pan', label: 'PAN Card', w: 213, h: 213, maxKb: 100, note: '2.5cm × 3.5cm square-ish, max 100KB' },
-    { id: 'aadhaar', label: 'Aadhaar', w: 200, h: 230, maxKb: 100, note: '200×230 px, max 100KB' },
-    { id: 'passport-in', label: 'Passport (India)', w: 350, h: 350, maxKb: 200, note: '2×2 inch, max 200KB' },
-    { id: 'emirates-id', label: 'UAE Emirates ID', w: 413, h: 531, maxKb: 300, note: '35mm × 45mm, max 300KB' },
-    { id: 'passport-uk', label: 'Passport (UK)', w: 413, h: 531, maxKb: 300, note: '35mm × 45mm, max 300KB' },
-    { id: 'passport-us', label: 'Passport (US)', w: 600, h: 600, maxKb: 300, note: '2×2 inch, max 300KB' },
+    { id: 'psc', label: 'Kerala PSC', w: 276, h: 354, maxKb: 50, bg: '#FFFFFF', note: '3.5cm × 4.5cm, max 50KB · white background' },
+    { id: 'upsc', label: 'UPSC', w: 200, h: 230, maxKb: 300, bg: '#FFFFFF', note: '200×230 px, max 300KB · white or light background' },
+    { id: 'ssc', label: 'SSC', w: 200, h: 230, maxKb: 50, bg: '#FFFFFF', note: '200×230 px, max 50KB · white background' },
+    { id: 'pan', label: 'PAN Card', w: 213, h: 213, maxKb: 100, bg: '#FFFFFF', note: '2.5cm × 3.5cm square-ish, max 100KB · white background' },
+    { id: 'aadhaar', label: 'Aadhaar', w: 200, h: 230, maxKb: 100, bg: '#FFFFFF', note: '200×230 px, max 100KB · white background' },
+    { id: 'passport-in', label: 'Passport (India)', w: 350, h: 350, maxKb: 200, bg: '#FFFFFF', note: '2×2 inch, max 200KB · white background' },
+    { id: 'emirates-id', label: 'UAE Emirates ID', w: 413, h: 531, maxKb: 300, bg: '#FFFFFF', note: '35mm × 45mm, max 300KB · white background' },
+    { id: 'passport-uk', label: 'Passport (UK)', w: 413, h: 531, maxKb: 300, bg: '#FFFFFF', note: '35mm × 45mm, max 300KB · white background' },
+    { id: 'passport-us', label: 'Passport (US)', w: 600, h: 600, maxKb: 300, bg: '#FFFFFF', note: '2×2 inch, max 300KB · white background' },
   ];
 
   const presetRow = document.getElementById('presetRow');
@@ -269,24 +277,37 @@
   const downloadBtn = document.getElementById('downloadBtn');
 
   let activePreset = PRESETS[0];
-  let bgColor = '#FFFFFF';
+  let bgColor = PRESETS[0].bg;
   let currentFile = null;
   let resultBlob = null;
+
+  function setBackground(color) {
+    bgColor = color;
+    bgRow.querySelectorAll('.chip').forEach((c) => {
+      c.classList.toggle('active', c.dataset.bg === color);
+    });
+  }
+
+  function selectPreset(p) {
+    activePreset = p;
+    presetInfo.textContent = p.note;
+    if (p.bg) setBackground(p.bg);
+  }
 
   PRESETS.forEach((p, i) => {
     const btn = document.createElement('button');
     btn.className = 'chip' + (i === 0 ? ' active' : '');
+    btn.type = 'button';
     btn.textContent = p.label;
     btn.dataset.id = p.id;
     btn.addEventListener('click', () => {
       presetRow.querySelectorAll('.chip').forEach((c) => c.classList.remove('active'));
       btn.classList.add('active');
-      activePreset = p;
-      presetInfo.textContent = p.note;
+      selectPreset(p);
     });
     presetRow.appendChild(btn);
   });
-  presetInfo.textContent = activePreset.note;
+  selectPreset(activePreset);
 
   var urlPreset = new URLSearchParams(location.search).get('preset');
   if (urlPreset) {

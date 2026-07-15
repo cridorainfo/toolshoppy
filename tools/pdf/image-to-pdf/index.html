@@ -216,7 +216,7 @@
     resultPanel.classList.remove('active');
     renderFileList();
     loadThumbs();
-  });
+  }, { preview: false });
 
   addMoreBtn.addEventListener('click', () => fileInput.click());
 

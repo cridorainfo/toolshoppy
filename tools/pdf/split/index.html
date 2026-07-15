@@ -231,7 +231,7 @@
       alert('Could not read this PDF. It may be password-protected.');
       resetAll();
     }
-  });
+  }, { preview: false });
 
   function resetAll() {
     pdfFile = null;

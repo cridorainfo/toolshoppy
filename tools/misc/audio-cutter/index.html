@@ -62,7 +62,7 @@ TS.setupDropZone(document.getElementById('dropZone'), document.getElementById('f
     document.getElementById('endSec').max = preview.duration;
     document.getElementById('startSec').max = preview.duration;
   };
-});
+}, { preview: false });
 document.getElementById('cutBtn').addEventListener('click', async function () {
   if (!file) return;
   var start = parseFloat(document.getElementById('startSec').value) || 0;

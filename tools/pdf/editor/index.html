@@ -28,9 +28,20 @@
 <style>
 .editor-toolbar{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0;}
 .editor-toolbar .chip.active{background:var(--primary);color:#fff;border-color:var(--primary);}
-.editor-stage{position:relative;overflow:auto;max-height:70vh;border:1px solid var(--border);border-radius:var(--radius-sm);background:#e2e8f0;padding:12px;text-align:center;}
-.editor-stage canvas{display:block;margin:0 auto;max-width:100%;background:#fff;box-shadow:var(--shadow-md);cursor:crosshair;}
+.editor-props{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 10px;padding:10px 12px;background:var(--primary-tint);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:0.85rem;}
+.editor-props[hidden]{display:none!important;}
+.editor-props .obj-label{font-weight:600;color:var(--text);margin-right:4px;}
+.editor-props .btn-sm{padding:6px 12px;font-size:0.8rem;}
+.editor-props .btn-sm.is-danger{color:var(--danger);}
+.editor-stage{position:relative;overflow:auto;max-height:70vh;border:1px solid var(--border);border-radius:var(--radius-sm);background:#e2e8f0;padding:12px;text-align:center;touch-action:none;}
+.editor-stage canvas{display:block;margin:0 auto;max-width:100%;background:#fff;box-shadow:var(--shadow-md);touch-action:none;}
 .page-nav{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:10px;}
+.editor-modal{position:fixed;inset:0;z-index:1000;background:rgba(15,23,42,0.55);display:flex;align-items:center;justify-content:center;padding:16px;}
+.editor-modal[hidden]{display:none!important;}
+.editor-modal-panel{background:var(--card);border-radius:var(--radius);padding:20px;max-width:420px;width:100%;box-shadow:var(--shadow-premium);}
+.editor-modal-panel h3{margin:0 0 12px;font-size:1rem;}
+#sigPad{display:block;width:100%;height:160px;border:1px dashed var(--border);border-radius:8px;background:#fff;cursor:crosshair;touch-action:none;}
+.sig-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"PDF Editor","url":"https://toolshoppy.com/tools/pdf/editor/","description":"Annotate and edit PDFs free online, 100% client-side.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
@@ -64,7 +75,7 @@
   <div class="tool-header">
     <div class="icon-tile icon-tile--lg icon-tile--violet"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#file-pencil"></use></svg></div>
     <h1>PDF Editor</h1>
-    <p>Annotate, highlight, redact, and sign — free, no login.</p>
+    <p>Annotate, highlight, redact, sign, and add images — free, no login.</p>
   </div>
   <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
   <div class="tool-layout with-sidebar">
@@ -78,22 +89,46 @@
       </div>
       <div id="editorUI" style="display:none;">
         <div class="editor-toolbar" id="toolbar">
-          <button class="chip active" data-tool="pen">Draw</button>
-          <button class="chip" data-tool="highlighter">Highlight</button>
-          <button class="chip" data-tool="text">Text</button>
-          <button class="chip" data-tool="redact">Redact</button>
-          <button class="chip" data-tool="erase">Erase</button>
+          <button class="chip active" data-tool="select" type="button">Select</button>
+          <button class="chip" data-tool="pen" type="button">Draw</button>
+          <button class="chip" data-tool="highlighter" type="button">Highlight</button>
+          <button class="chip" data-tool="text" type="button">Text</button>
+          <button class="chip" data-tool="image" type="button">Image</button>
+          <button class="chip" data-tool="signature" type="button">Signature</button>
+          <button class="chip" data-tool="redact" type="button">Redact</button>
+          <button class="chip" data-tool="erase" type="button">Erase</button>
+        </div>
+        <div class="editor-props" id="objProps" hidden>
+          <span class="obj-label" id="objLabel">Object selected</span>
+          <button class="btn btn-sm" id="lockBtn" type="button">Lock</button>
+          <button class="btn btn-sm" id="unlockBtn" type="button" hidden>Unlock</button>
+          <button class="btn btn-sm" id="editTextBtn" type="button" hidden>Edit text</button>
+          <button class="btn btn-sm is-danger" id="deleteObjBtn" type="button">Delete</button>
         </div>
         <div class="editor-stage"><canvas id="editCanvas"></canvas></div>
+        <input type="file" id="imageInput" accept="image/*" hidden>
         <div class="page-nav">
           <button class="btn" id="prevPage" type="button">‹ Prev</button>
           <span id="pageLabel">Page 1 / 1</span>
           <button class="btn" id="nextPage" type="button">Next ›</button>
         </div>
-        <button class="btn btn-primary btn-block" id="saveBtn" style="margin-top:14px;">Save Annotated PDF</button>
+        <button class="btn btn-primary btn-block" id="saveBtn" style="margin-top:14px;" type="button">Save Annotated PDF</button>
         <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
         <div class="result-panel" id="resultPanel">
-          <button class="btn btn-accent btn-block" id="downloadBtn"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#download"></use></svg> Download Edited PDF</button>
+          <button class="btn btn-accent btn-block" id="downloadBtn" type="button"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#download"></use></svg> Download Edited PDF</button>
+        </div>
+      </div>
+      <div class="editor-modal" id="sigModal" hidden>
+        <div class="editor-modal-panel">
+          <h3>Draw or upload signature</h3>
+          <canvas id="sigPad" width="360" height="160"></canvas>
+          <div class="sig-actions">
+            <button class="btn btn-sm" id="sigClear" type="button">Clear</button>
+            <button class="btn btn-sm" id="sigUpload" type="button">Upload image</button>
+            <input type="file" id="sigUploadInput" accept="image/*" hidden>
+            <button class="btn btn-primary btn-sm" id="sigApply" type="button">Add to page</button>
+            <button class="btn btn-sm" id="sigCancel" type="button">Cancel</button>
+          </div>
         </div>
       </div>
       <div class="trust-badge"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock"></use></svg> Your files never leave your device</div>
@@ -103,9 +138,9 @@
       <div class="info-box">
         <h4>Tools</h4>
         <ul>
-          <li><strong>Draw</strong> — freehand ink</li>
-          <li><strong>Highlight</strong> — translucent yellow</li>
-          <li><strong>Text</strong> — click to place a label</li>
+          <li><strong>Select</strong> — move, resize, lock, or delete items</li>
+          <li><strong>Text / Image / Signature</strong> — add elements you can reposition</li>
+          <li><strong>Draw &amp; Highlight</strong> — freehand ink on the page</li>
           <li><strong>Redact</strong> — solid black whiteout</li>
         </ul>
       </div>
@@ -143,6 +178,7 @@
   </div>
   <div class="content-section">
     <h2>Frequently asked questions</h2>
+    <div class="faq-item"><h3>Can I move text and signatures after placing them?</h3><p>Yes. Use the <strong>Select</strong> tool to drag text, images, and signatures. Corner handles resize them; Lock prevents accidental edits. Double-click text to edit the wording.</p></div>
     <div class="faq-item"><h3>Can I edit existing PDF text?</h3><p>This editor adds annotations on top of pages (text, draw, highlight, redact). Full reflow editing of native PDF text isn’t available client-side.</p></div>
     <div class="faq-item"><h3>Do I need an account?</h3><p>No — never.</p></div>
   </div>
@@ -159,12 +195,20 @@
 <script>
 (function () {
   pdfjsLib.GlobalWorkerOptions.workerSrc = '/assets/libs/pdf.worker.min.js';
+
   const dropZone = document.getElementById('dropZone');
   const fileInput = document.getElementById('fileInput');
   const editorUI = document.getElementById('editorUI');
   const canvas = document.getElementById('editCanvas');
   const ctx = canvas.getContext('2d');
   const toolbar = document.getElementById('toolbar');
+  const objProps = document.getElementById('objProps');
+  const objLabel = document.getElementById('objLabel');
+  const lockBtn = document.getElementById('lockBtn');
+  const unlockBtn = document.getElementById('unlockBtn');
+  const editTextBtn = document.getElementById('editTextBtn');
+  const deleteObjBtn = document.getElementById('deleteObjBtn');
+  const imageInput = document.getElementById('imageInput');
   const pageLabel = document.getElementById('pageLabel');
   const prevPage = document.getElementById('prevPage');
   const nextPage = document.getElementById('nextPage');
@@ -173,14 +217,192 @@
   const progressFill = document.getElementById('progressFill');
   const resultPanel = document.getElementById('resultPanel');
   const downloadBtn = document.getElementById('downloadBtn');
+  const sigModal = document.getElementById('sigModal');
+  const sigPad = document.getElementById('sigPad');
+  const sigCtx = sigPad.getContext('2d');
+  const sigClear = document.getElementById('sigClear');
+  const sigUpload = document.getElementById('sigUpload');
+  const sigUploadInput = document.getElementById('sigUploadInput');
+  const sigApply = document.getElementById('sigApply');
+  const sigCancel = document.getElementById('sigCancel');
 
-  let pdfDoc = null, pageNum = 1, tool = 'pen', drawing = false;
-  let overlays = {}; // pageNum -> canvas ImageData snapshot stack base
-  let baseCanvases = {};
-  let currentFile = null, resultBlob = null;
-  let lastX = 0, lastY = 0;
+  let pdfDoc = null;
+  let pageNum = 1;
+  let tool = 'select';
+  let drawing = false;
+  let lastX = 0;
+  let lastY = 0;
+  let pages = {};
+  let selectedId = null;
+  let drag = null;
+  let pendingSigData = null;
+  let currentFile = null;
+  let resultBlob = null;
+  let sigDrawing = false;
+  let sigLastX = 0;
+  let sigLastY = 0;
 
-  function getScale() { return Math.min(1.4, (window.innerWidth - 48) / 600); }
+  const HANDLE = 8;
+
+  function uid() {
+    return 'o' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+  }
+
+  function getScale() {
+    return Math.min(1.4, (window.innerWidth - 48) / 600);
+  }
+
+  function pageState(num) {
+    if (!pages[num]) {
+      pages[num] = {
+        base: null,
+        strokes: null,
+        objects: [],
+      };
+    }
+    return pages[num];
+  }
+
+  function ensureStrokeCanvas(num) {
+    const st = pageState(num);
+    if (!st.strokes) {
+      st.strokes = document.createElement('canvas');
+    }
+    if (st.strokes.width !== canvas.width || st.strokes.height !== canvas.height) {
+      st.strokes.width = canvas.width;
+      st.strokes.height = canvas.height;
+    }
+    return st.strokes;
+  }
+
+  function measureTextObj(text, fontSize) {
+    ctx.save();
+    ctx.font = fontSize + 'px sans-serif';
+    const w = ctx.measureText(text).width;
+    ctx.restore();
+    return { w: Math.max(40, w + 8), h: Math.max(24, fontSize + 12) };
+  }
+
+  function loadImageDataUrl(dataUrl) {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => resolve(img);
+      img.onerror = reject;
+      img.src = dataUrl;
+    });
+  }
+
+  function getSelectedObject() {
+    const st = pageState(pageNum);
+    return st.objects.find((o) => o.id === selectedId) || null;
+  }
+
+  function updateObjProps() {
+    const obj = getSelectedObject();
+    if (!obj) {
+      objProps.hidden = true;
+      return;
+    }
+    objProps.hidden = false;
+    const labels = { text: 'Text', image: 'Image', signature: 'Signature' };
+    objLabel.textContent = (labels[obj.type] || 'Object') + (obj.locked ? ' (locked)' : '');
+    lockBtn.hidden = obj.locked;
+    unlockBtn.hidden = !obj.locked;
+    editTextBtn.hidden = obj.type !== 'text';
+  }
+
+  function selectObject(id) {
+    selectedId = id;
+    updateObjProps();
+    composite();
+  }
+
+  function setTool(next) {
+    tool = next;
+    toolbar.querySelectorAll('.chip').forEach((c) => {
+      c.classList.toggle('active', c.dataset.tool === tool);
+    });
+    if (tool === 'image') imageInput.click();
+    if (tool === 'signature') openSigModal();
+    updateCanvasCursor();
+  }
+
+  function updateCanvasCursor() {
+    const cursors = {
+      select: 'default',
+      pen: 'crosshair',
+      highlighter: 'crosshair',
+      text: 'text',
+      redact: 'crosshair',
+      erase: 'crosshair',
+      image: 'copy',
+      signature: 'copy',
+    };
+    canvas.style.cursor = cursors[tool] || 'default';
+  }
+
+  function hitHandle(obj, x, y) {
+    if (obj.locked) return null;
+    const corners = {
+      nw: [obj.x, obj.y],
+      ne: [obj.x + obj.w, obj.y],
+      se: [obj.x + obj.w, obj.y + obj.h],
+      sw: [obj.x, obj.y + obj.h],
+    };
+    for (const key of Object.keys(corners)) {
+      const hx = corners[key][0];
+      const hy = corners[key][1];
+      if (Math.abs(x - hx) <= HANDLE && Math.abs(y - hy) <= HANDLE) return key;
+    }
+    return null;
+  }
+
+  function hitObject(x, y) {
+    const st = pageState(pageNum);
+    for (let i = st.objects.length - 1; i >= 0; i--) {
+      const o = st.objects[i];
+      if (x >= o.x && x <= o.x + o.w && y >= o.y && y <= o.y + o.h) return o;
+    }
+    return null;
+  }
+
+  function drawObject(o) {
+    if (o.type === 'text') {
+      ctx.fillStyle = o.color || '#1e293b';
+      ctx.font = o.fontSize + 'px sans-serif';
+      ctx.textBaseline = 'top';
+      ctx.fillText(o.text, o.x + 4, o.y + 4);
+    } else if ((o.type === 'image' || o.type === 'signature') && o.img) {
+      ctx.drawImage(o.img, o.x, o.y, o.w, o.h);
+    }
+  }
+
+  function drawSelection(obj) {
+    if (!obj) return;
+    ctx.save();
+    ctx.strokeStyle = obj.locked ? '#94a3b8' : '#E11D48';
+    ctx.lineWidth = 2;
+    ctx.setLineDash(obj.locked ? [6, 4] : []);
+    ctx.strokeRect(obj.x, obj.y, obj.w, obj.h);
+    ctx.setLineDash([]);
+    if (!obj.locked) {
+      ctx.fillStyle = '#E11D48';
+      [[obj.x, obj.y], [obj.x + obj.w, obj.y], [obj.x + obj.w, obj.y + obj.h], [obj.x, obj.y + obj.h]].forEach(([hx, hy]) => {
+        ctx.fillRect(hx - HANDLE / 2, hy - HANDLE / 2, HANDLE, HANDLE);
+      });
+    }
+    ctx.restore();
+  }
+
+  function composite() {
+    const st = pageState(pageNum);
+    if (!st.base) return;
+    ctx.putImageData(st.base, 0, 0);
+    if (st.strokes) ctx.drawImage(st.strokes, 0, 0);
+    st.objects.forEach(drawObject);
+    const sel = getSelectedObject();
+    if (sel && tool === 'select') drawSelection(sel);
+  }
 
   async function renderPage(num) {
     const page = await pdfDoc.getPage(num);
@@ -188,34 +410,220 @@
     canvas.width = Math.floor(viewport.width);
     canvas.height = Math.floor(viewport.height);
     await page.render({ canvasContext: ctx, viewport }).promise;
-    if (!baseCanvases[num]) {
-      baseCanvases[num] = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    } else {
-      ctx.putImageData(baseCanvases[num], 0, 0);
-    }
-    if (overlays[num]) ctx.drawImage(overlays[num], 0, 0);
+    const st = pageState(num);
+    if (!st.base) st.base = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    ensureStrokeCanvas(num);
+    composite();
     pageLabel.textContent = 'Page ' + num + ' / ' + pdfDoc.numPages;
+    updateObjProps();
+    updateCanvasCursor();
   }
 
-  function snapshotOverlay() {
-    const o = document.createElement('canvas');
-    o.width = canvas.width; o.height = canvas.height;
-    o.getContext('2d').drawImage(canvas, 0, 0);
-    // Rebuild: base + keep current as overlay by storing full page look
-    overlays[pageNum] = o;
-    baseCanvases[pageNum] = null; // force re-merge via full canvas
-    // Actually store annotated full frame as new base
-    baseCanvases[pageNum] = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    overlays[pageNum] = null;
+  function addTextObject(x, y) {
+    const text = prompt('Enter text:');
+    if (!text) return;
+    const fontSize = Math.max(16, Math.round(canvas.width * 0.028));
+    const size = measureTextObj(text, fontSize);
+    const st = pageState(pageNum);
+    const obj = {
+      id: uid(),
+      type: 'text',
+      x: x,
+      y: y - size.h / 2,
+      w: size.w,
+      h: size.h,
+      text: text,
+      fontSize: fontSize,
+      color: '#1e293b',
+      locked: false,
+    };
+    st.objects.push(obj);
+    selectObject(obj.id);
+    setTool('select');
+  }
+
+  async function addImageObject(dataUrl, type) {
+    const img = await loadImageDataUrl(dataUrl);
+    const maxW = canvas.width * 0.35;
+    const scale = Math.min(1, maxW / img.width);
+    const w = img.width * scale;
+    const h = img.height * scale;
+    const st = pageState(pageNum);
+    const obj = {
+      id: uid(),
+      type: type,
+      x: (canvas.width - w) / 2,
+      y: (canvas.height - h) / 2,
+      w: w,
+      h: h,
+      dataUrl: dataUrl,
+      img: img,
+      locked: false,
+    };
+    st.objects.push(obj);
+    selectObject(obj.id);
+    setTool('select');
+  }
+
+  function editSelectedText() {
+    const obj = getSelectedObject();
+    if (!obj || obj.type !== 'text' || obj.locked) return;
+    const next = prompt('Edit text:', obj.text);
+    if (next === null) return;
+    obj.text = next;
+    const size = measureTextObj(obj.text, obj.fontSize);
+    obj.w = size.w;
+    obj.h = size.h;
+    composite();
+  }
+
+  function deleteSelectedObject() {
+    const st = pageState(pageNum);
+    st.objects = st.objects.filter((o) => o.id !== selectedId);
+    selectedId = null;
+    updateObjProps();
+    composite();
+  }
+
+  function toggleLock(locked) {
+    const obj = getSelectedObject();
+    if (!obj) return;
+    obj.locked = locked;
+    updateObjProps();
+    composite();
+  }
+
+  function openSigModal() {
+    sigModal.hidden = false;
+    pendingSigData = null;
+    sigCtx.fillStyle = '#fff';
+    sigCtx.fillRect(0, 0, sigPad.width, sigPad.height);
+    sigCtx.strokeStyle = '#1e293b';
+    sigCtx.lineWidth = 2;
+    sigCtx.lineCap = 'round';
+    sigCtx.lineJoin = 'round';
+  }
+
+  function closeSigModal() {
+    sigModal.hidden = true;
+    pendingSigData = null;
+    setTool('select');
+  }
+
+  function sigPos(e) {
+    const r = sigPad.getBoundingClientRect();
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    return {
+      x: (clientX - r.left) * (sigPad.width / r.width),
+      y: (clientY - r.top) * (sigPad.height / r.height),
+    };
+  }
+
+  function applySignature() {
+    const dataUrl = sigPad.toDataURL('image/png');
+    sigModal.hidden = true;
+    pendingSigData = null;
+    addImageObject(dataUrl, 'signature');
   }
 
   toolbar.addEventListener('click', (e) => {
     const chip = e.target.closest('.chip');
     if (!chip) return;
-    toolbar.querySelectorAll('.chip').forEach((c) => c.classList.remove('active'));
-    chip.classList.add('active');
-    tool = chip.dataset.tool;
+    setTool(chip.dataset.tool);
   });
+
+  lockBtn.addEventListener('click', () => toggleLock(true));
+  unlockBtn.addEventListener('click', () => toggleLock(false));
+  editTextBtn.addEventListener('click', editSelectedText);
+  deleteObjBtn.addEventListener('click', deleteSelectedObject);
+
+  imageInput.addEventListener('change', async (e) => {
+    const file = e.target.files && e.target.files[0];
+    e.target.value = '';
+    if (!file) {
+      setTool('select');
+      return;
+    }
+    try {
+      const dataUrl = await new Promise((res, rej) => {
+        const r = new FileReader();
+        r.onload = () => res(r.result);
+        r.onerror = rej;
+        r.readAsDataURL(file);
+      });
+      await addImageObject(dataUrl, 'image');
+    } catch (err) {
+      alert('Could not load image.');
+      setTool('select');
+    }
+  });
+
+  sigClear.addEventListener('click', () => {
+    sigCtx.fillStyle = '#fff';
+    sigCtx.fillRect(0, 0, sigPad.width, sigPad.height);
+  });
+  sigUpload.addEventListener('click', () => sigUploadInput.click());
+  sigUploadInput.addEventListener('change', async (e) => {
+    const file = e.target.files && e.target.files[0];
+    e.target.value = '';
+    if (!file) return;
+    try {
+      const dataUrl = await new Promise((res, rej) => {
+        const r = new FileReader();
+        r.onload = () => res(r.result);
+        r.onerror = rej;
+        r.readAsDataURL(file);
+      });
+      const img = await loadImageDataUrl(dataUrl);
+      sigCtx.fillStyle = '#fff';
+      sigCtx.fillRect(0, 0, sigPad.width, sigPad.height);
+      const scale = Math.min(sigPad.width / img.width, sigPad.height / img.height);
+      const w = img.width * scale;
+      const h = img.height * scale;
+      sigCtx.drawImage(img, (sigPad.width - w) / 2, (sigPad.height - h) / 2, w, h);
+    } catch (err) {
+      alert('Could not load signature image.');
+    }
+  });
+  sigApply.addEventListener('click', applySignature);
+  sigCancel.addEventListener('click', closeSigModal);
+  sigModal.addEventListener('click', (e) => {
+    if (e.target === sigModal) closeSigModal();
+  });
+
+  sigPad.addEventListener('mousedown', (e) => {
+    e.preventDefault();
+    sigDrawing = true;
+    const p = sigPos(e);
+    sigLastX = p.x;
+    sigLastY = p.y;
+  });
+  sigPad.addEventListener('mousemove', (e) => {
+    if (!sigDrawing) return;
+    e.preventDefault();
+    const p = sigPos(e);
+    sigCtx.beginPath();
+    sigCtx.moveTo(sigLastX, sigLastY);
+    sigCtx.lineTo(p.x, p.y);
+    sigCtx.stroke();
+    sigLastX = p.x;
+    sigLastY = p.y;
+  });
+  window.addEventListener('mouseup', () => { sigDrawing = false; });
+  sigPad.addEventListener('touchstart', (e) => { sigDrawing = true; const p = sigPos(e); sigLastX = p.x; sigLastY = p.y; }, { passive: false });
+  sigPad.addEventListener('touchmove', (e) => {
+    if (!sigDrawing) return;
+    e.preventDefault();
+    const p = sigPos(e);
+    sigCtx.beginPath();
+    sigCtx.moveTo(sigLastX, sigLastY);
+    sigCtx.lineTo(p.x, p.y);
+    sigCtx.stroke();
+    sigLastX = p.x;
+    sigLastY = p.y;
+  }, { passive: false });
+  sigPad.addEventListener('touchend', () => { sigDrawing = false; });
 
   function pos(e) {
     const r = canvas.getBoundingClientRect();
@@ -223,53 +631,176 @@
     const clientY = e.touches ? e.touches[0].clientY : e.clientY;
     return {
       x: (clientX - r.left) * (canvas.width / r.width),
-      y: (clientY - r.top) * (canvas.height / r.height)
+      y: (clientY - r.top) * (canvas.height / r.height),
     };
+  }
+
+  function resizeObject(obj, handle, x, y, start) {
+    let nx = obj.x;
+    let ny = obj.y;
+    let nw = obj.w;
+    let nh = obj.h;
+    if (handle === 'se') {
+      nw = Math.max(24, start.ow + (x - start.mx));
+      nh = Math.max(24, start.oh + (y - start.my));
+    } else if (handle === 'sw') {
+      nw = Math.max(24, start.ow - (x - start.mx));
+      nh = Math.max(24, start.oh + (y - start.my));
+      nx = start.ox + (start.ow - nw);
+    } else if (handle === 'ne') {
+      nw = Math.max(24, start.ow + (x - start.mx));
+      nh = Math.max(24, start.oh - (y - start.my));
+      ny = start.oy + (start.oh - nh);
+    } else if (handle === 'nw') {
+      nw = Math.max(24, start.ow - (x - start.mx));
+      nh = Math.max(24, start.oh - (y - start.my));
+      nx = start.ox + (start.ow - nw);
+      ny = start.oy + (start.oh - nh);
+    }
+    if (obj.type === 'text') {
+      const ratio = nw / start.ow;
+      obj.fontSize = Math.max(10, Math.round(start.fontSize * ratio));
+      const size = measureTextObj(obj.text, obj.fontSize);
+      obj.w = size.w;
+      obj.h = size.h;
+      if (handle === 'nw') {
+        obj.x = start.ox + start.ow - obj.w;
+        obj.y = start.oy + start.oh - obj.h;
+      } else if (handle === 'ne') {
+        obj.x = start.ox;
+        obj.y = start.oy + start.oh - obj.h;
+      } else if (handle === 'sw') {
+        obj.x = start.ox + start.ow - obj.w;
+        obj.y = start.oy;
+      } else {
+        obj.x = start.ox;
+        obj.y = start.oy;
+      }
+    } else {
+      obj.x = nx;
+      obj.y = ny;
+      obj.w = nw;
+      obj.h = nh;
+    }
   }
 
   function startDraw(e) {
     e.preventDefault();
-    if (tool === 'text') {
-      const p = pos(e);
-      const t = prompt('Enter text:');
-      if (t) {
-        ctx.fillStyle = '#1e293b';
-        ctx.font = Math.max(16, canvas.width * 0.028) + 'px sans-serif';
-        ctx.fillText(t, p.x, p.y);
-        snapshotOverlay();
+    const p = pos(e);
+
+    if (tool === 'select') {
+      const sel = getSelectedObject();
+      if (sel && !sel.locked) {
+        const handle = hitHandle(sel, p.x, p.y);
+        if (handle) {
+          drag = { mode: 'resize', handle: handle, mx: p.x, my: p.y, ox: sel.x, oy: sel.y, ow: sel.w, oh: sel.h, fontSize: sel.fontSize };
+          return;
+        }
       }
+      const hit = hitObject(p.x, p.y);
+      if (hit) {
+        if (hit.locked) {
+          selectObject(hit.id);
+          return;
+        }
+        selectObject(hit.id);
+        drag = { mode: 'move', mx: p.x, my: p.y, ox: hit.x, oy: hit.y };
+        canvas.style.cursor = 'grabbing';
+        return;
+      }
+      selectedId = null;
+      updateObjProps();
+      composite();
       return;
     }
+
+    if (tool === 'text') {
+      addTextObject(p.x, p.y);
+      return;
+    }
+
+    if (tool === 'image' || tool === 'signature') return;
+
     drawing = true;
-    const p = pos(e);
-    lastX = p.x; lastY = p.y;
+    lastX = p.x;
+    lastY = p.y;
   }
+
   function moveDraw(e) {
+    const p = pos(e);
+
+    if (drag) {
+      e.preventDefault();
+      const obj = getSelectedObject();
+      if (!obj || obj.locked) return;
+      if (drag.mode === 'move') {
+        obj.x = drag.ox + (p.x - drag.mx);
+        obj.y = drag.oy + (p.y - drag.my);
+      } else if (drag.mode === 'resize') {
+        resizeObject(obj, drag.handle, p.x, p.y, drag);
+      }
+      composite();
+      return;
+    }
+
+    if (tool === 'select') {
+      const sel = getSelectedObject();
+      if (sel && !sel.locked && hitHandle(sel, p.x, p.y)) {
+        canvas.style.cursor = 'nwse-resize';
+        return;
+      }
+      if (hitObject(p.x, p.y) && !hitObject(p.x, p.y).locked) {
+        canvas.style.cursor = 'grab';
+        return;
+      }
+      updateCanvasCursor();
+    }
+
     if (!drawing) return;
     e.preventDefault();
-    const p = pos(e);
-    ctx.lineCap = 'round';
-    ctx.lineJoin = 'round';
+    const strokeCanvas = ensureStrokeCanvas(pageNum);
+    const sctx = strokeCanvas.getContext('2d');
+    sctx.lineCap = 'round';
+    sctx.lineJoin = 'round';
     if (tool === 'pen') {
-      ctx.strokeStyle = '#1e293b'; ctx.lineWidth = 2; ctx.globalAlpha = 1;
+      sctx.globalCompositeOperation = 'source-over';
+      sctx.strokeStyle = '#1e293b';
+      sctx.lineWidth = 2;
+      sctx.globalAlpha = 1;
     } else if (tool === 'highlighter') {
-      ctx.strokeStyle = '#facc15'; ctx.lineWidth = 14; ctx.globalAlpha = 0.35;
+      sctx.globalCompositeOperation = 'source-over';
+      sctx.strokeStyle = '#facc15';
+      sctx.lineWidth = 14;
+      sctx.globalAlpha = 0.35;
     } else if (tool === 'redact') {
-      ctx.strokeStyle = '#000'; ctx.lineWidth = 18; ctx.globalAlpha = 1;
+      sctx.globalCompositeOperation = 'source-over';
+      sctx.strokeStyle = '#000';
+      sctx.lineWidth = 18;
+      sctx.globalAlpha = 1;
     } else if (tool === 'erase') {
-      ctx.strokeStyle = '#fff'; ctx.lineWidth = 18; ctx.globalAlpha = 1;
+      sctx.globalCompositeOperation = 'destination-out';
+      sctx.strokeStyle = '#000';
+      sctx.lineWidth = 18;
+      sctx.globalAlpha = 1;
     }
-    ctx.beginPath();
-    ctx.moveTo(lastX, lastY);
-    ctx.lineTo(p.x, p.y);
-    ctx.stroke();
-    ctx.globalAlpha = 1;
-    lastX = p.x; lastY = p.y;
+    sctx.beginPath();
+    sctx.moveTo(lastX, lastY);
+    sctx.lineTo(p.x, p.y);
+    sctx.stroke();
+    sctx.globalAlpha = 1;
+    sctx.globalCompositeOperation = 'source-over';
+    lastX = p.x;
+    lastY = p.y;
+    composite();
   }
+
   function endDraw() {
-    if (!drawing) return;
+    if (drag) {
+      drag = null;
+      updateCanvasCursor();
+      return;
+    }
     drawing = false;
-    snapshotOverlay();
   }
 
   canvas.addEventListener('mousedown', startDraw);
@@ -278,6 +809,15 @@
   canvas.addEventListener('touchstart', startDraw, { passive: false });
   canvas.addEventListener('touchmove', moveDraw, { passive: false });
   canvas.addEventListener('touchend', endDraw);
+  canvas.addEventListener('dblclick', (e) => {
+    if (tool !== 'select') return;
+    const p = pos(e);
+    const hit = hitObject(p.x, p.y);
+    if (hit && hit.type === 'text' && !hit.locked) {
+      selectObject(hit.id);
+      editSelectedText();
+    }
+  });
 
   prevPage.addEventListener('click', async () => {
     if (pageNum <= 1) return;
@@ -298,14 +838,41 @@
       const data = new Uint8Array(await file.arrayBuffer());
       pdfDoc = await pdfjsLib.getDocument({ data }).promise;
       pageNum = 1;
-      overlays = {}; baseCanvases = {};
+      pages = {};
+      selectedId = null;
       dropZone.style.display = 'none';
       editorUI.style.display = 'block';
+      setTool('select');
       await renderPage(1);
     } catch (err) {
       alert(err.message || 'Could not open PDF.');
     }
-  });
+  }, { preview: false });
+
+  async function renderPageToImageData(num) {
+    const savedPage = pageNum;
+    if (num !== pageNum) await renderPage(num);
+    else composite();
+    const st = pageState(num);
+    const tmp = document.createElement('canvas');
+    tmp.width = canvas.width;
+    tmp.height = canvas.height;
+    const tctx = tmp.getContext('2d');
+    tctx.putImageData(st.base, 0, 0);
+    if (st.strokes) tctx.drawImage(st.strokes, 0, 0);
+    st.objects.forEach((o) => {
+      if (o.type === 'text') {
+        tctx.fillStyle = o.color || '#1e293b';
+        tctx.font = o.fontSize + 'px sans-serif';
+        tctx.textBaseline = 'top';
+        tctx.fillText(o.text, o.x + 4, o.y + 4);
+      } else if (o.img) {
+        tctx.drawImage(o.img, o.x, o.y, o.w, o.h);
+      }
+    });
+    if (num !== savedPage) await renderPage(savedPage);
+    return tctx.getImageData(0, 0, tmp.width, tmp.height);
+  }
 
   saveBtn.addEventListener('click', async () => {
     if (!pdfDoc) return;
@@ -313,19 +880,13 @@
     progressBar.classList.add('active');
     progressFill.style.width = '10%';
     try {
-      // Persist current page first
-      snapshotOverlay();
+      composite();
       const outDoc = await PDFLib.PDFDocument.create();
       for (let i = 1; i <= pdfDoc.numPages; i++) {
-        if (i === pageNum && !baseCanvases[i]) snapshotOverlay();
-        if (!baseCanvases[i]) {
-          pageNum = i;
-          await renderPage(i);
-          snapshotOverlay();
-        }
-        const imgData = baseCanvases[i];
+        const imgData = await renderPageToImageData(i);
         const tmp = document.createElement('canvas');
-        tmp.width = imgData.width; tmp.height = imgData.height;
+        tmp.width = imgData.width;
+        tmp.height = imgData.height;
         tmp.getContext('2d').putImageData(imgData, 0, 0);
         const jpg = await new Promise((res) => tmp.toBlob(async (b) => res(new Uint8Array(await b.arrayBuffer())), 'image/jpeg', 0.92));
         const embedded = await outDoc.embedJpg(jpg);

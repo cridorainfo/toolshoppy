@@ -69,7 +69,7 @@ import { runFFmpeg } from '/assets/js/ffmpeg-loader.mjs';
       document.getElementById('endSec').max = preview.duration;
       document.getElementById('startSec').max = preview.duration;
     };
-  });
+  }, { preview: false });
   document.getElementById('trimBtn').addEventListener('click', async function () {
     if (!file) return;
     var start = parseFloat(document.getElementById('startSec').value) || 0;

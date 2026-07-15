@@ -306,7 +306,7 @@
     resultPanel.classList.remove('active');
     pwError.style.display = 'none';
     showPdfPreview(file);
-  });
+  }, { preview: false });
 
   protectBtn.addEventListener('click', async () => {
     if (!currentFile) return;
