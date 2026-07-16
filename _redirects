@@ -11,6 +11,7 @@
 /tools/pdf/editor /tools/pdf/editor/ 301
 /tools/pdf/unlock /tools/pdf/unlock/ 301
 /tools/misc/qr-generator /tools/misc/qr-generator/ 301
+/tools/misc/url-shortener /tools/misc/url-shortener/ 301
 
 # Pretty URLs for legal pages (optional)
 /about /about.html 200

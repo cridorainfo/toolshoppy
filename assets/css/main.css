@@ -493,12 +493,12 @@ button { font-family: inherit; cursor: pointer; }
 
 .tool-layout {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
   gap: 20px;
 }
 @media (min-width: 960px) {
   .tool-layout.with-sidebar {
-    grid-template-columns: 1fr 300px;
+    grid-template-columns: minmax(0, 1fr) 300px;
   }
 }
 
@@ -508,6 +508,7 @@ button { font-family: inherit; cursor: pointer; }
   border-radius: var(--radius);
   padding: 24px;
   box-shadow: var(--shadow);
+  min-width: 0;
 }
 
 /* Drop zone — iLovePDF-style big CTA */
@@ -747,6 +748,70 @@ button { font-family: inherit; cursor: pointer; }
 .file-item .name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .file-item .remove { color: var(--danger); font-weight: 700; }
 
+/* Short-link history rows (URL shortener) */
+.short-history-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 22px 0 10px;
+}
+.short-history-header h3 { font-size: 1rem; margin: 0; }
+.short-history-header button {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  text-decoration: underline;
+  padding: 0;
+}
+.short-history-header button:hover { color: var(--primary-dark); }
+.short-history-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  margin-bottom: 8px;
+}
+.short-history-item .sh-info { flex: 1; min-width: 0; }
+.short-history-item .sh-short {
+  display: block;
+  font-weight: 700;
+  color: var(--primary-dark);
+  font-size: 0.9rem;
+  word-break: break-all;
+}
+.short-history-item .sh-original {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.short-history-item .sh-actions { display: flex; gap: 4px; flex-shrink: 0; }
+.short-history-item .sh-actions button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text-muted);
+}
+.short-history-item .sh-actions button:hover { color: var(--primary); border-color: var(--primary); }
+.short-history-item .sh-actions button.remove:hover { color: var(--danger); border-color: var(--danger); }
+.short-history-empty {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  padding: 18px 0;
+}
+
 /* Sidebar */
 .sidebar { display: flex; flex-direction: column; gap: 16px; }
 .info-box {
@@ -821,6 +886,28 @@ button { font-family: inherit; cursor: pointer; }
   color: var(--text-muted);
   border-top: 1px solid var(--border);
   padding-top: 20px;
+}
+
+.footer-badges {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.footer-badges a {
+  display: inline-flex;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform 0.15s ease;
+}
+
+.footer-badges a:hover {
+  transform: translateY(-2px);
+}
+
+.footer-badges img {
+  display: block;
 }
 
 /* Breadcrumb — styled as visible pill buttons, not plain text */
