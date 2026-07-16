@@ -245,7 +245,7 @@
 
   var STORE_KEY = 'ts-url-shortener-history';
   var ALIAS_RE = /^[a-zA-Z0-9_]{5,30}$/;
-  var providers = ['https://is.gd', 'https://v.gd'];
+  var GD_PROVIDERS = ['https://is.gd', 'https://v.gd'];
 
   function showError(msg) {
     errorMsg.textContent = msg;
@@ -351,7 +351,19 @@
     }).catch(function () { prompt('Copy:', text); });
   }
 
-  function shortenViaProvider(base, longUrl, alias) {
+  function delay(ms) { return new Promise(function (resolve) { setTimeout(resolve, ms); }); }
+
+  // Retries a couple of times on transient failures — is.gd/v.gd occasionally
+  // return a malformed (non-JSON, no-CORS) error page under load, which surfaces
+  // to fetch() as a generic network error rather than a normal API error.
+  function withRetries(fn, attempts, delayMs) {
+    return fn().catch(function (err) {
+      if (attempts <= 1) throw err;
+      return delay(delayMs).then(function () { return withRetries(fn, attempts - 1, delayMs); });
+    });
+  }
+
+  function shortenViaGd(base, longUrl, alias) {
     var api = base + '/create.php?format=json&url=' + encodeURIComponent(longUrl) + (alias ? '&shorturl=' + encodeURIComponent(alias) : '');
     return fetch(api).then(function (res) { return res.json(); }).then(function (data) {
       if (data.errorcode) {
@@ -363,9 +375,25 @@
     });
   }
 
+  // Independent third provider (different operator/infra) used only as a last
+  // resort if both is.gd and v.gd are down — doesn't support a custom alias.
+  function shortenViaClck(longUrl) {
+    return fetch('https://clck.ru/--?url=' + encodeURIComponent(longUrl)).then(function (res) {
+      return res.text();
+    }).then(function (text) {
+      text = (text || '').trim();
+      if (!/^https?:\/\//.test(text)) throw new Error('Could not shorten this URL.');
+      return text;
+    });
+  }
+
   function shortenUrl(longUrl, alias) {
-    return shortenViaProvider(providers[0], longUrl, alias).catch(function (err) {
-      return shortenViaProvider(providers[1], longUrl, alias).catch(function () { throw err; });
+    var tryGd = function (base) { return withRetries(function () { return shortenViaGd(base, longUrl, alias); }, 2, 600); };
+    return tryGd(GD_PROVIDERS[0]).catch(function (firstErr) {
+      return tryGd(GD_PROVIDERS[1]).catch(function (secondErr) {
+        if (alias) throw secondErr;
+        return shortenViaClck(longUrl).catch(function () { throw secondErr; });
+      });
     });
   }
 
@@ -388,7 +416,7 @@
       if (window.TSAnalytics) TSAnalytics.track('tool_complete', { tool: 'url-shortener' });
     }).catch(function (err) {
       var msg = err && err.message ? err.message : 'Something went wrong. Please try again.';
-      if (err instanceof TypeError) msg = 'Could not reach the shortening service. Check your connection and try again.';
+      if (err instanceof TypeError) msg = 'The shortening service is temporarily busy. Please try again in a moment.';
       showError(msg);
     }).then(function () {
       shortenBtn.disabled = false;
