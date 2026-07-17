@@ -1516,6 +1516,30 @@ button { font-family: inherit; cursor: pointer; }
   line-height: 1.7;
   word-break: break-word;
 }
+
+/* Image to ASCII */
+.ascii-stage {
+  padding: 12px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  overflow-x: auto;
+  transition: background .15s, border-color .15s;
+}
+.ascii-stage--light { background: #FFFFFF; color-scheme: light; }
+.ascii-stage--dark { background: #0B0F19; border-color: #1E293B; color-scheme: dark; }
+.ascii-stage pre {
+  margin: 0;
+  white-space: pre;
+  letter-spacing: 0;
+  font-family: "Cascadia Mono", "SF Mono", Consolas, "Courier New", monospace;
+  width: max-content;
+}
+.ascii-stage--light pre { color: #111827; }
+.ascii-stage--dark pre { color: #F8FAFC; }
+.fit-badge { font-weight: 700; }
+.fit-badge--ok { border-color: var(--success); color: var(--success); }
+.fit-badge--warn { border-color: var(--accent); color: var(--accent); }
+.fit-badge--over { border-color: var(--danger); color: var(--danger); background: rgba(239,68,68,0.08); }
 .state-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
