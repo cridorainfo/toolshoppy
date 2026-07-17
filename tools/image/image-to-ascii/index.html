@@ -112,6 +112,10 @@
           <button class="btn" id="downloadTxtBtn" type="button" style="flex:1;min-width:140px;background:var(--card);border:1px solid var(--border);">Download .txt</button>
         </div>
 
+        <label style="display:flex;align-items:center;gap:6px;margin-top:12px;font-size:0.82rem;color:var(--text-muted);">
+          <input type="checkbox" id="creditToggle" checked> Add a small "made at toolshoppy.com" credit line so friends can find the tool too
+        </label>
+
         <div class="info-box" style="margin-top:16px;">
           <h4>Where this works best</h4>
           <ul>
@@ -171,8 +175,17 @@
   var RAMPS = { classic: ' .:-=+*#%@', blocks: ' \u2591\u2592\u2593\u2588' };
   var CHAR_ASPECT = 0.5; // monospace glyph width/height ratio, used to keep the art proportional
   var MIN_COLS = 12, MAX_COLS = 120;
+  var SIGNATURE = '\n\n\u2014 toolshoppy.com';
 
-  var state = { img: null, style: 'braille', bg: 'light', cols: 60, lines: [], limit: 2200, limitName: 'Instagram comments' };
+  var state = { img: null, style: 'braille', bg: 'light', cols: 60, lines: [], limit: 2200, limitName: 'Instagram comments', credit: true };
+
+  function signatureSuffix() {
+    return state.credit ? SIGNATURE : '';
+  }
+
+  function finalText() {
+    return state.lines.join('\n') + signatureSuffix();
+  }
 
   var stage = document.getElementById('asciiStage');
   var output = document.getElementById('asciiOutput');
@@ -197,8 +210,9 @@
   }
 
   function bestWidthForLimit(limit) {
+    var budget = limit - signatureSuffix().length;
     for (var c = MAX_COLS; c > MIN_COLS; c--) {
-      if (charCountFor(c) <= limit) return c;
+      if (charCountFor(c) <= budget) return c;
     }
     return MIN_COLS;
   }
@@ -213,15 +227,37 @@
     return ctx.getImageData(0, 0, w, h).data;
   }
 
+  // Most real photos live entirely in the 30-70% brightness range - mapping
+  // luminance straight to dots without normalizing first dithers into a flat
+  // gray fuzz. Stretch the 2nd-98th percentile out to the full 0-1 range so
+  // any photo, regardless of lighting, resolves to clean dark/light regions.
+  function luminanceContrast(data, count) {
+    var lums = new Float32Array(count);
+    for (var p = 0; p < count; p++) {
+      var i = p * 4;
+      lums[p] = (0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2]) / 255;
+    }
+    var sorted = Array.prototype.slice.call(lums).sort(function (a, b) { return a - b; });
+    var lo = sorted[Math.floor(sorted.length * 0.02)];
+    var hi = sorted[Math.min(sorted.length - 1, Math.ceil(sorted.length * 0.98))];
+    if (hi - lo < 0.05) { lo = sorted[0]; hi = sorted[sorted.length - 1]; }
+    if (hi - lo < 1e-6) hi = lo + 1e-6;
+    return { lums: lums, lo: lo, hi: hi };
+  }
+
+  function normLum(cr, p) {
+    return Math.min(1, Math.max(0, (cr.lums[p] - cr.lo) / (cr.hi - cr.lo)));
+  }
+
   function renderRamp(img, cols, ramp, lightBg) {
     var rows = rowsFor(cols, img);
     var data = sampleCanvas(img, cols, rows);
+    var cr = luminanceContrast(data, cols * rows);
     var lines = [];
     for (var r = 0; r < rows; r++) {
       var line = '';
       for (var c = 0; c < cols; c++) {
-        var i = (r * cols + c) * 4;
-        var lum = (0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2]) / 255;
+        var lum = normLum(cr, r * cols + c);
         var density = lightBg ? (1 - lum) : lum;
         var ci = Math.min(ramp.length - 1, Math.max(0, Math.round(density * (ramp.length - 1))));
         line += ramp[ci];
@@ -235,10 +271,10 @@
     var rows = rowsFor(cols, img);
     var w = cols * 2, h = rows * 4;
     var data = sampleCanvas(img, w, h);
+    var cr = luminanceContrast(data, w * h);
     var target = new Float32Array(w * h);
     for (var p = 0; p < w * h; p++) {
-      var i = p * 4;
-      var lum = (0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2]) / 255;
+      var lum = normLum(cr, p);
       target[p] = lightBg ? (1 - lum) : lum;
     }
     var dots = new Uint8Array(w * h);
@@ -312,13 +348,13 @@
       ? renderBraille(state.img, state.cols, state.bg === 'light')
       : renderRamp(state.img, state.cols, RAMPS[state.style], state.bg === 'light');
     state.lines = lines;
-    var text = lines.join('\n');
-    output.textContent = text;
+    output.textContent = lines.join('\n');
     stage.classList.toggle('ascii-stage--dark', state.bg === 'dark');
     stage.classList.toggle('ascii-stage--light', state.bg !== 'dark');
-    document.getElementById('charCount').textContent = text.length.toLocaleString();
+    var totalLen = finalText().length;
+    document.getElementById('charCount').textContent = totalLen.toLocaleString();
     document.getElementById('lineCount').textContent = lines.length;
-    updateFitBadge(text.length);
+    updateFitBadge(totalLen);
     resultPanel.classList.add('active');
     fitFontSize();
   }
@@ -389,9 +425,18 @@
     generate();
   });
 
+  document.getElementById('creditToggle').addEventListener('change', function () {
+    state.credit = this.checked;
+    if (state.limit && state.img) {
+      state.cols = bestWidthForLimit(state.limit);
+      syncWidthControl();
+    }
+    generate();
+  });
+
   document.getElementById('copyBtn').addEventListener('click', function () {
     var btn = this;
-    var text = state.lines.join('\n');
+    var text = finalText();
     function done(ok) {
       btn.textContent = ok ? 'Copied!' : 'Could not copy — select manually';
       setTimeout(function () { btn.textContent = 'Copy Text'; }, 1800);
@@ -404,7 +449,7 @@
   });
 
   document.getElementById('downloadTxtBtn').addEventListener('click', function () {
-    TS.downloadBlob(new Blob([state.lines.join('\n')], { type: 'text/plain' }), 'ascii-art.txt');
+    TS.downloadBlob(new Blob([finalText()], { type: 'text/plain' }), 'ascii-art.txt');
   });
 
   document.getElementById('downloadPngBtn').addEventListener('click', function () {
@@ -417,8 +462,9 @@
     ctx.font = fontPx + 'px "Cascadia Mono","SF Mono",Consolas,"Courier New",monospace';
     var charW = ctx.measureText('M').width;
     var lineH = fontPx * 1.1;
+    var creditH = state.credit ? lineH * 1.6 : 0;
     canvas.width = Math.ceil(pad * 2 + charW * state.cols);
-    canvas.height = Math.ceil(pad * 2 + lineH * state.lines.length);
+    canvas.height = Math.ceil(pad * 2 + lineH * state.lines.length + creditH);
     ctx.font = fontPx + 'px "Cascadia Mono","SF Mono",Consolas,"Courier New",monospace';
     ctx.textBaseline = 'top';
     var dark = state.bg === 'dark';
@@ -428,6 +474,11 @@
     state.lines.forEach(function (line, i) {
       ctx.fillText(line, pad, pad + i * lineH);
     });
+    if (state.credit) {
+      ctx.font = (fontPx * 0.6) + 'px "Cascadia Mono","SF Mono",Consolas,"Courier New",monospace';
+      ctx.fillStyle = dark ? 'rgba(248,250,252,0.55)' : 'rgba(17,24,39,0.5)';
+      ctx.fillText('made at toolshoppy.com', pad, pad + state.lines.length * lineH + creditH * 0.35);
+    }
     canvas.toBlob(function (blob) {
       TS.downloadBlob(blob, 'ascii-art.png');
     });
