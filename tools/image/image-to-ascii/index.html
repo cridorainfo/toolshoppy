@@ -74,14 +74,19 @@
           <button class="chip" data-style="classic" type="button">Classic ASCII</button>
         </div>
 
+        <label style="display:flex;align-items:center;gap:6px;margin-top:10px;font-size:0.82rem;color:var(--text-muted);">
+          <input type="checkbox" id="outlineToggle"> Outline only — just the edges, not the full shading
+        </label>
+        <p id="outlineHint" style="display:none;margin:4px 0 0;font-size:0.78rem;color:var(--text-muted);">Outlines stay readable at a much smaller width than a fully-shaded photo — try dragging "Detail / width" down to 16–20 for an even shorter comment.</p>
+
         <label style="font-size:0.8rem;font-weight:700;color:var(--text-muted);display:block;margin:14px 0 6px;">Posting to — auto-fits width to the character limit</label>
         <div class="chip-row" id="platformRow">
-          <button class="chip active" data-limit="2200" data-bg="light" data-name="Instagram comments" type="button">Instagram Comment · 2,200</button>
-          <button class="chip" data-limit="700" data-bg="dark" data-name="WhatsApp Status" type="button">WhatsApp Status · 700</button>
-          <button class="chip" data-limit="8000" data-bg="light" data-name="Facebook comments" type="button">Facebook Comment · 8,000</button>
-          <button class="chip" data-limit="1250" data-bg="light" data-name="LinkedIn comments" type="button">LinkedIn Comment · 1,250</button>
-          <button class="chip" data-limit="280" data-bg="light" data-name="X / Twitter" type="button">X / Twitter · 280</button>
-          <button class="chip" data-limit="0" data-bg="" data-name="" type="button">No limit</button>
+          <button class="chip active" data-limit="2200" data-bg="light" data-name="Instagram comments" data-canvas="1080x1080" type="button">Instagram Comment · 2,200</button>
+          <button class="chip" data-limit="700" data-bg="dark" data-name="WhatsApp Status" data-canvas="1080x1920" type="button">WhatsApp Status · 700</button>
+          <button class="chip" data-limit="8000" data-bg="light" data-name="Facebook comments" data-canvas="1080x1080" type="button">Facebook Comment · 8,000</button>
+          <button class="chip" data-limit="1250" data-bg="light" data-name="LinkedIn comments" data-canvas="1080x1080" type="button">LinkedIn Comment · 1,250</button>
+          <button class="chip" data-limit="280" data-bg="light" data-name="X / Twitter" data-canvas="1200x675" type="button">X / Twitter · 280</button>
+          <button class="chip" data-limit="0" data-bg="" data-name="" data-canvas="1080x1080" type="button">No limit</button>
         </div>
 
         <label style="font-size:0.8rem;font-weight:700;color:var(--text-muted);display:block;margin:14px 0 6px;">Background colour</label>
@@ -91,13 +96,21 @@
         </div>
 
         <div class="calc-field" style="margin-top:14px;">
-          <label for="widthRange">Detail / width — <span id="widthLabel">60</span> characters</label>
-          <input type="range" id="widthRange" min="12" max="120" step="1" value="60" style="width:100%;accent-color:var(--primary);">
+          <label for="widthRange">Detail / width — <span id="widthLabel">26</span> characters</label>
+          <input type="range" id="widthRange" min="12" max="120" step="1" value="26" style="width:100%;accent-color:var(--primary);">
+          <p id="wrapWarning" style="display:none;margin:6px 0 0;font-size:0.78rem;color:var(--accent);font-weight:600;">⚠ Wider than ~26 characters may wrap mid-row in a phone's chat bubble and break the image. Safe for PC/desktop viewing only.</p>
         </div>
       </div>
 
       <div class="result-panel" id="resultPanel">
         <div class="ascii-stage" id="asciiStage"><pre id="asciiOutput" aria-label="ASCII art output"></pre></div>
+
+        <div style="margin-top:10px;">
+          <label style="font-size:0.78rem;font-weight:700;color:var(--text-muted);display:block;margin-bottom:6px;">📱 Mobile preview — exactly how this looks in a narrow phone chat bubble</label>
+          <div id="mobilePreviewFrame" style="max-width:230px;margin:0 auto;border:8px solid var(--border);border-radius:20px;padding:10px 8px;background:var(--card);overflow:hidden;">
+            <pre id="mobilePreviewOutput" style="margin:0;font-size:10px;line-height:1;white-space:pre-wrap;word-break:break-all;overflow-wrap:anywhere;font-family:'Cascadia Mono','SF Mono',Consolas,'Courier New',monospace;"></pre>
+          </div>
+        </div>
 
         <div class="stat-pills" style="margin-top:12px;align-items:center;">
           <div class="stat-pill">Characters <strong id="charCount">0</strong></div>
@@ -119,10 +132,12 @@
         <div class="info-box" style="margin-top:16px;">
           <h4>Where this works best</h4>
           <ul>
+            <li><strong>Width is capped at ~26 characters by default on purpose.</strong> A row that fits fine in a wide PC browser window will silently wrap onto the next line in a narrow phone chat bubble — and one wrapped row shifts every row below it, turning the whole image into noise. This has been tested on real narrow screens; going wider risks exactly that distortion on mobile.</li>
             <li><strong>Instagram / Facebook / LinkedIn comments</strong> — use <em>Braille</em>. These platforms strip monospace fonts and collapse spaces, but Braille dot-patterns stay recognisable in any font. Each has its own comment character limit — use the "Posting to" chips above so the art is auto-sized to fit in one paste.</li>
-            <li><strong>WhatsApp Status</strong> — text status is capped at 700 characters and re-flows to fit the screen, so keep width small (the "WhatsApp Status" chip does this automatically) and stick to Braille or Blocks — it holds up better than Classic ASCII when lines wrap unpredictably.</li>
-            <li><strong>WhatsApp chat</strong> — use <em>Classic ASCII</em> and wrap it in triple backticks (<code>```like this```</code>) when you paste, to force a monospace font so it lines up perfectly.</li>
-            <li><strong>Anywhere as a picture</strong> — hit "Download as Image" to post a pixel-perfect PNG instead of raw text — works everywhere, guaranteed.</li>
+            <li><strong>WhatsApp / Telegram chat</strong> — wrap the copied text in triple backticks (<code>```like this```</code>) when you paste, to force a true monospace font so rows line up perfectly. Pasting without the backticks uses the app's normal font, which is not guaranteed to line up.</li>
+            <li><strong>Check the mobile preview</strong> below the art before posting — it's rendered at real phone-bubble width, so if it's going to wrap, you'll see it there first.</li>
+            <li><strong>Outline only</strong> traces just the edges instead of shading the whole photo — it's the fastest to recognise and reads clearly at an even smaller width, so it fits in a shorter comment.</li>
+            <li><strong>Anywhere as a picture</strong> — hit "Download as Image" for a PNG sized to that platform's real canvas (1080×1080 for feed/comment images, 1080×1920 for WhatsApp Status) so it fills the frame properly on a phone instead of getting letterboxed or cropped.</li>
           </ul>
         </div>
       </div>
@@ -136,7 +151,7 @@
         <h4>Advertising tip</h4>
         <ul>
           <li>Attention-grabbing text art stands out in busy comment sections on Instagram &amp; LinkedIn ads.</li>
-          <li>Keep width at 30–45 chars so the whole thing fits on one screen without wrapping oddly.</li>
+          <li>Most people will see this on a phone, not a PC — keep width at ~26 characters (the default) or check the mobile preview below the art before you post.</li>
           <li>Pair it with a short caption and a link in your bio — text can't carry a clickable link.</li>
         </ul>
       </div>
@@ -165,7 +180,7 @@
 <div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
 
 <script src="/assets/js/ga-config.js"></script>
-<script src="/assets/js/adsterra-config.js"></script>
+<script src="/assets/js/adsterra-config.js?v=2"></script>
 <script src="/assets/js/ad-config.js"></script>
 <script src="/assets/js/core.js"></script>
 <script src="/assets/js/ads.js"></script>
@@ -175,9 +190,23 @@
   var RAMPS = { classic: ' .:-=+*#%@', blocks: ' \u2591\u2592\u2593\u2588' };
   var CHAR_ASPECT = 0.5; // monospace glyph width/height ratio, used to keep the art proportional
   var MIN_COLS = 12, MAX_COLS = 120;
+  // A wide row that never wraps on a PC-width WhatsApp/Instagram window will still
+  // wrap mid-row on a phone's narrow chat bubble - and one wrapped row shifts every
+  // row below it, destroying the whole image. This is the widest column count that
+  // stays on one line in a chat bubble on a small phone. Extra "detail" beyond this
+  // has to come from height (more rows), never width.
+  var MOBILE_SAFE_COLS = 26;
+  // Rows are stretched a bit past the pure aspect-ratio math so images pack in more
+  // vertical dot detail without touching row width - height never causes wrapping.
+  var DENSITY_BOOST = 1.18;
+  var EDGE_THRESHOLD = 0.28; // Sobel magnitude cutoff for "outline only" mode
   var SIGNATURE = '\n\n\u2014 toolshoppy.com';
 
-  var state = { img: null, style: 'braille', bg: 'light', cols: 60, lines: [], limit: 2200, limitName: 'Instagram comments', credit: true };
+  var state = {
+    img: null, style: 'braille', bg: 'light', cols: MOBILE_SAFE_COLS, lines: [],
+    limit: 2200, limitName: 'Instagram comments', credit: true, outline: false,
+    canvasSize: { w: 1080, h: 1080 },
+  };
 
   function signatureSuffix() {
     return state.credit ? SIGNATURE : '';
@@ -198,7 +227,7 @@
 
   function rowsFor(cols, img) {
     var ratio = (img.naturalHeight || 1) / (img.naturalWidth || 1);
-    return Math.max(1, Math.round(cols * ratio * CHAR_ASPECT));
+    return Math.max(1, Math.round(cols * ratio * CHAR_ASPECT * DENSITY_BOOST));
   }
 
   // Character count is identical across styles — always exactly one character
@@ -209,9 +238,13 @@
     return cols * rows + Math.max(0, rows - 1);
   }
 
+  // Auto-fit never searches wider than the mobile-safe cap, even when a platform's
+  // character budget would allow more columns - extra budget goes into height
+  // (more rows) instead, via DENSITY_BOOST, so it never causes phone-side wrapping.
   function bestWidthForLimit(limit) {
     var budget = limit - signatureSuffix().length;
-    for (var c = MAX_COLS; c > MIN_COLS; c--) {
+    var ceiling = Math.min(MAX_COLS, MOBILE_SAFE_COLS);
+    for (var c = ceiling; c > MIN_COLS; c--) {
       if (charCountFor(c) <= budget) return c;
     }
     return MIN_COLS;
@@ -238,8 +271,8 @@
       lums[p] = (0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2]) / 255;
     }
     var sorted = Array.prototype.slice.call(lums).sort(function (a, b) { return a - b; });
-    var lo = sorted[Math.floor(sorted.length * 0.02)];
-    var hi = sorted[Math.min(sorted.length - 1, Math.ceil(sorted.length * 0.98))];
+    var lo = sorted[Math.floor(sorted.length * 0.03)];
+    var hi = sorted[Math.min(sorted.length - 1, Math.ceil(sorted.length * 0.97))];
     if (hi - lo < 0.05) { lo = sorted[0]; hi = sorted[sorted.length - 1]; }
     if (hi - lo < 1e-6) hi = lo + 1e-6;
     return { lums: lums, lo: lo, hi: hi };
@@ -249,16 +282,63 @@
     return Math.min(1, Math.max(0, (cr.lums[p] - cr.lo) / (cr.hi - cr.lo)));
   }
 
+  // Sobel edge-magnitude map, normalized 0-1, for "outline only" mode - traces just
+  // the contours of the subject instead of shading every region, so the shape reads
+  // clearly with far fewer "on" dots (and stays legible at a narrower width).
+  function sobelMagnitude(cr, w, h) {
+    function L(x, y) {
+      x = Math.min(w - 1, Math.max(0, x));
+      y = Math.min(h - 1, Math.max(0, y));
+      return normLum(cr, y * w + x);
+    }
+    var mag = new Float32Array(w * h);
+    var maxMag = 1e-6;
+    for (var y = 0; y < h; y++) {
+      for (var x = 0; x < w; x++) {
+        var gx = -L(x - 1, y - 1) - 2 * L(x - 1, y) - L(x - 1, y + 1) + L(x + 1, y - 1) + 2 * L(x + 1, y) + L(x + 1, y + 1);
+        var gy = -L(x - 1, y - 1) - 2 * L(x, y - 1) - L(x + 1, y - 1) + L(x - 1, y + 1) + 2 * L(x, y + 1) + L(x + 1, y + 1);
+        var m = Math.sqrt(gx * gx + gy * gy);
+        mag[y * w + x] = m;
+        if (m > maxMag) maxMag = m;
+      }
+    }
+    for (var p = 0; p < w * h; p++) mag[p] /= maxMag;
+    return mag;
+  }
+
+  // Thickens 1px-thin edges horizontally so Braille cells (8 dots each) show
+  // connected lines instead of scattered, disconnected single dots.
+  function dilateEdgesX(bits, w, h) {
+    var out = new Uint8Array(w * h);
+    for (var y = 0; y < h; y++) {
+      for (var x = 0; x < w; x++) {
+        var idx = y * w + x;
+        var on = bits[idx];
+        if (!on && x > 0) on = bits[idx - 1];
+        if (!on && x < w - 1) on = bits[idx + 1];
+        out[idx] = on;
+      }
+    }
+    return out;
+  }
+
   function renderRamp(img, cols, ramp, lightBg) {
     var rows = rowsFor(cols, img);
     var data = sampleCanvas(img, cols, rows);
     var cr = luminanceContrast(data, cols * rows);
+    var mag = state.outline ? sobelMagnitude(cr, cols, rows) : null;
     var lines = [];
     for (var r = 0; r < rows; r++) {
       var line = '';
       for (var c = 0; c < cols; c++) {
-        var lum = normLum(cr, r * cols + c);
-        var density = lightBg ? (1 - lum) : lum;
+        var p = r * cols + c;
+        var density;
+        if (state.outline) {
+          density = mag[p] > EDGE_THRESHOLD ? mag[p] : 0;
+        } else {
+          var lum = normLum(cr, p);
+          density = lightBg ? (1 - lum) : lum;
+        }
         var ci = Math.min(ramp.length - 1, Math.max(0, Math.round(density * (ramp.length - 1))));
         line += ramp[ci];
       }
@@ -272,41 +352,51 @@
     var w = cols * 2, h = rows * 4;
     var data = sampleCanvas(img, w, h);
     var cr = luminanceContrast(data, w * h);
-    var target = new Float32Array(w * h);
-    for (var p = 0; p < w * h; p++) {
-      var lum = normLum(cr, p);
-      target[p] = lightBg ? (1 - lum) : lum;
-    }
-    var dots = new Uint8Array(w * h);
-    // Floyd–Steinberg dithering for a much cleaner binary dot pattern than a flat threshold.
-    for (var y = 0; y < h; y++) {
-      for (var x = 0; x < w; x++) {
-        var idx = y * w + x;
-        var old = Math.min(1, Math.max(0, target[idx]));
-        var on = old >= 0.5 ? 1 : 0;
-        dots[idx] = on;
-        var err = old - on;
-        if (x + 1 < w) target[idx + 1] += err * 7 / 16;
-        if (x - 1 >= 0 && y + 1 < h) target[idx - 1 + w] += err * 3 / 16;
-        if (y + 1 < h) target[idx + w] += err * 5 / 16;
-        if (x + 1 < w && y + 1 < h) target[idx + w + 1] += err * 1 / 16;
+    var dots;
+
+    if (state.outline) {
+      var mag = sobelMagnitude(cr, w, h);
+      var bits = new Uint8Array(w * h);
+      for (var p = 0; p < w * h; p++) bits[p] = mag[p] > EDGE_THRESHOLD ? 1 : 0;
+      dots = dilateEdgesX(bits, w, h);
+    } else {
+      var target = new Float32Array(w * h);
+      for (var p2 = 0; p2 < w * h; p2++) {
+        var lum = normLum(cr, p2);
+        target[p2] = lightBg ? (1 - lum) : lum;
+      }
+      dots = new Uint8Array(w * h);
+      // Floyd–Steinberg dithering for a much cleaner binary dot pattern than a flat threshold.
+      for (var y = 0; y < h; y++) {
+        for (var x = 0; x < w; x++) {
+          var idx = y * w + x;
+          var old = Math.min(1, Math.max(0, target[idx]));
+          var on = old >= 0.5 ? 1 : 0;
+          dots[idx] = on;
+          var err = old - on;
+          if (x + 1 < w) target[idx + 1] += err * 7 / 16;
+          if (x - 1 >= 0 && y + 1 < h) target[idx - 1 + w] += err * 3 / 16;
+          if (y + 1 < h) target[idx + w] += err * 5 / 16;
+          if (x + 1 < w && y + 1 < h) target[idx + w + 1] += err * 1 / 16;
+        }
       }
     }
+
     function dot(dx, dy, bx, by) {
       var xx = bx + dx, yy = by + dy;
       if (xx >= w || yy >= h) return 0;
       return dots[yy * w + xx];
     }
     var lines = [];
-    for (var cr = 0; cr < rows; cr++) {
+    for (var rowIdx = 0; rowIdx < rows; rowIdx++) {
       var line = '';
-      var by = cr * 4;
+      var by = rowIdx * 4;
       for (var cc = 0; cc < cols; cc++) {
         var bx = cc * 2;
-        var bits = dot(0, 0, bx, by) * 0x01 + dot(0, 1, bx, by) * 0x02 + dot(0, 2, bx, by) * 0x04 +
+        var bits2 = dot(0, 0, bx, by) * 0x01 + dot(0, 1, bx, by) * 0x02 + dot(0, 2, bx, by) * 0x04 +
           dot(1, 0, bx, by) * 0x08 + dot(1, 1, bx, by) * 0x10 + dot(1, 2, bx, by) * 0x20 +
           dot(0, 3, bx, by) * 0x40 + dot(1, 3, bx, by) * 0x80;
-        line += String.fromCharCode(0x2800 + bits);
+        line += String.fromCharCode(0x2800 + bits2);
       }
       lines.push(line);
     }
@@ -340,6 +430,7 @@
   function syncWidthControl() {
     widthRange.value = state.cols;
     widthLabel.textContent = state.cols;
+    document.getElementById('wrapWarning').style.display = state.cols > MOBILE_SAFE_COLS ? 'block' : 'none';
   }
 
   function generate() {
@@ -357,6 +448,12 @@
     updateFitBadge(totalLen);
     resultPanel.classList.add('active');
     fitFontSize();
+
+    var previewFrame = document.getElementById('mobilePreviewFrame');
+    var previewOutput = document.getElementById('mobilePreviewOutput');
+    previewOutput.textContent = finalText();
+    previewFrame.style.background = state.bg === 'dark' ? '#0B0F19' : '#FFFFFF';
+    previewOutput.style.color = state.bg === 'dark' ? '#F8FAFC' : '#111827';
   }
 
   TS.setupDropZone(document.getElementById('dropZone'), document.getElementById('fileInput'), function (files) {
@@ -381,6 +478,12 @@
     generate();
   });
 
+  document.getElementById('outlineToggle').addEventListener('change', function () {
+    state.outline = this.checked;
+    document.getElementById('outlineHint').style.display = state.outline ? 'block' : 'none';
+    generate();
+  });
+
   document.getElementById('bgRow').addEventListener('click', function (e) {
     var chip = e.target.closest('[data-bg]');
     if (!chip) return;
@@ -398,6 +501,10 @@
     var limit = parseInt(chip.dataset.limit, 10);
     state.limit = limit > 0 ? limit : null;
     state.limitName = chip.dataset.name || '';
+    if (chip.dataset.canvas) {
+      var dims = chip.dataset.canvas.split('x');
+      state.canvasSize = { w: parseInt(dims[0], 10), h: parseInt(dims[1], 10) };
+    }
     if (chip.dataset.bg) {
       state.bg = chip.dataset.bg;
       document.getElementById('bgRow').querySelectorAll('.chip').forEach(function (c) {
@@ -411,9 +518,9 @@
 
   var widthDebounce = null;
   widthRange.addEventListener('input', function () {
-    var cols = parseInt(this.value, 10) || 60;
-    widthLabel.textContent = cols;
+    var cols = parseInt(this.value, 10) || MOBILE_SAFE_COLS;
     state.cols = cols;
+    syncWidthControl();
     clearTimeout(widthDebounce);
     widthDebounce = setTimeout(generate, 60);
   });
@@ -454,30 +561,56 @@
 
   document.getElementById('downloadPngBtn').addEventListener('click', function () {
     if (!state.lines.length) return;
-    var scale = 2;
-    var fontPx = 18 * scale;
-    var pad = 28 * scale;
-    var canvas = document.createElement('canvas');
-    var ctx = canvas.getContext('2d');
-    ctx.font = fontPx + 'px "Cascadia Mono","SF Mono",Consolas,"Courier New",monospace';
-    var charW = ctx.measureText('M').width;
-    var lineH = fontPx * 1.1;
-    var creditH = state.credit ? lineH * 1.6 : 0;
-    canvas.width = Math.ceil(pad * 2 + charW * state.cols);
-    canvas.height = Math.ceil(pad * 2 + lineH * state.lines.length + creditH);
-    ctx.font = fontPx + 'px "Cascadia Mono","SF Mono",Consolas,"Courier New",monospace';
-    ctx.textBaseline = 'top';
+    var mono = '"Cascadia Mono","SF Mono",Consolas,"Courier New",monospace';
     var dark = state.bg === 'dark';
+
+    // Render onto the platform's real native canvas (1080x1080 feed/comment square,
+    // 1080x1920 for WhatsApp Status/Stories) instead of a box sized to the text -
+    // posting an odd-shaped image into a Story frame gets letterboxed or cropped by
+    // the app; matching its actual canvas avoids that on any phone.
+    var canvas = document.createElement('canvas');
+    var target = state.canvasSize || { w: 1080, h: 1080 };
+    canvas.width = target.w;
+    canvas.height = target.h;
+    var ctx = canvas.getContext('2d');
     ctx.fillStyle = dark ? '#0B0F19' : '#FFFFFF';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Measure at a large reference size, then scale to whichever dimension (width
+    // or height) is the tighter fit, so the art always fits fully and stays centered.
+    var refPx = 200;
+    ctx.font = refPx + 'px ' + mono;
+    var refCharW = ctx.measureText('M').width;
+    var refLineH = refPx * 1.1;
+    var refCreditH = state.credit ? refLineH * 1.6 : 0;
+
+    var pad = Math.round(Math.min(canvas.width, canvas.height) * 0.09);
+    var maxTextW = canvas.width - pad * 2;
+    var maxTextH = canvas.height - pad * 2;
+
+    var scaleByWidth = maxTextW / (refCharW * state.cols);
+    var scaleByHeight = maxTextH / (refLineH * state.lines.length + refCreditH);
+    var scale = Math.min(scaleByWidth, scaleByHeight);
+
+    var fontPx = refPx * scale;
+    var lineH = refLineH * scale;
+    var creditH = refCreditH * scale;
+    var charW = refCharW * scale;
+    var textBlockW = charW * state.cols;
+    var textBlockH = lineH * state.lines.length + creditH;
+    var startX = pad + (maxTextW - textBlockW) / 2;
+    var startY = pad + (maxTextH - textBlockH) / 2;
+
+    ctx.font = fontPx + 'px ' + mono;
+    ctx.textBaseline = 'top';
     ctx.fillStyle = dark ? '#F8FAFC' : '#111827';
     state.lines.forEach(function (line, i) {
-      ctx.fillText(line, pad, pad + i * lineH);
+      ctx.fillText(line, startX, startY + i * lineH);
     });
     if (state.credit) {
-      ctx.font = (fontPx * 0.6) + 'px "Cascadia Mono","SF Mono",Consolas,"Courier New",monospace';
+      ctx.font = (fontPx * 0.6) + 'px ' + mono;
       ctx.fillStyle = dark ? 'rgba(248,250,252,0.55)' : 'rgba(17,24,39,0.5)';
-      ctx.fillText('made at toolshoppy.com', pad, pad + state.lines.length * lineH + creditH * 0.35);
+      ctx.fillText('made at toolshoppy.com', startX, startY + state.lines.length * lineH + creditH * 0.35);
     }
     canvas.toBlob(function (blob) {
       TS.downloadBlob(blob, 'ascii-art.png');
