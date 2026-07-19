@@ -90,7 +90,7 @@ async function fetchSilverUsd() {
 }
 
 async function fetchForex() {
-  const res = await fetch('https://api.frankfurter.app/latest?from=USD&to=INR', { cf: { cacheTtl: 3600 } });
+  const res = await fetch('https://api.frankfurter.dev/v1/latest?from=USD&to=INR', { cf: { cacheTtl: 3600 } });
   if (!res.ok) return null;
   const data = await res.json();
   return data && data.rates && data.rates.INR ? data.rates.INR : null;

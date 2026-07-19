@@ -139,7 +139,7 @@
       fetchGoodreturnsGold('kerala', day).catch(function () { return null; }),
       fetchGoodreturnsSilver(day).catch(function () { return null; }),
       fetch('https://api.gold-api.com/price/XAG').then(function (r) { return r.json(); }).catch(function () { return null; }),
-      fetch('https://api.frankfurter.app/latest?from=USD&to=INR').then(function (r) { return r.json(); }).catch(function () { return null; }),
+      fetch('https://api.frankfurter.dev/v1/latest?from=USD&to=INR').then(function (r) { return r.json(); }).catch(function () { return null; }),
     ]).then(function (parts) {
       var dahab = parts[0];
       var keralaGold = parts[1];
