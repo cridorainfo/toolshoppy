@@ -1,0 +1,10 @@
+name = "toolshoppy-rates-api"
+main = "index.js"
+compatibility_date = "2026-07-19"
+
+# Deploys this Worker to run only on the /api/* path of the live domain, so it can
+# sit in front of the existing Railway-hosted static site without any DNS or hosting
+# change there — everything except /api/rates and /api/fuel keeps hitting Railway.
+routes = [
+  { pattern = "toolshoppy.com/api/*", zone_name = "toolshoppy.com" }
+]

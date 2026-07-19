@@ -201,8 +201,80 @@
   var fitBadge = document.getElementById('fitBadge');
   var fitBtn = document.getElementById('fitBtn');
   function rowsFor(cols, img) {
-    var ratio = (img.naturalHeight || 1) / (img.naturalWidth || 1);
-    return Math.max(1, Math.round(cols * ratio * CHAR_ASPECT * DENSITY_BOOST));
+    var iw = img.naturalWidth || img.width || 1;
+    var ih = img.naturalHeight || img.height || 1;
+    return Math.max(1, Math.round(cols * (ih / iw) * CHAR_ASPECT * DENSITY_BOOST));
+  }
+  // Auto-crop to the subject before sampling. At the low column counts this tool
+  // targets for mobile-safe text, every character is precious — an old-phone-era
+  // icon read clearly because the whole tiny image WAS the subject, with no wasted
+  // margin. Estimates "background" from the four border edges (works well for the
+  // plain-backdrop product/portrait shots this matters most for) and finds the
+  // bounding box of pixels that differ from it; returns null (no crop) for busy /
+  // full-bleed photos where that assumption doesn't hold, so nothing is lost there.
+  function detectCropBox(img) {
+    var AN = 100;
+    var iw = img.naturalWidth || img.width || 1;
+    var ih = img.naturalHeight || img.height || 1;
+    var aw = AN, ah = Math.max(1, Math.round(AN * (ih / iw)));
+    var c = document.createElement('canvas');
+    c.width = aw; c.height = ah;
+    var actx = c.getContext('2d');
+    actx.drawImage(img, 0, 0, aw, ah);
+    var data = actx.getImageData(0, 0, aw, ah).data;
+
+    function at(x, y) {
+      var i = (y * aw + x) * 4;
+      return [data[i], data[i + 1], data[i + 2]];
+    }
+
+    var sum = [0, 0, 0], n = 0;
+    function addSample(x, y) {
+      var p = at(x, y);
+      sum[0] += p[0]; sum[1] += p[1]; sum[2] += p[2]; n++;
+    }
+    for (var x = 0; x < aw; x++) { addSample(x, 0); addSample(x, ah - 1); }
+    for (var y = 0; y < ah; y++) { addSample(0, y); addSample(aw - 1, y); }
+    var bg = [sum[0] / n, sum[1] / n, sum[2] / n];
+
+    var THRESH = 70; // combined R+G+B distance from the estimated background
+    var minX = aw, minY = ah, maxX = -1, maxY = -1;
+    for (var yy = 0; yy < ah; yy++) {
+      for (var xx = 0; xx < aw; xx++) {
+        var p = at(xx, yy);
+        var dist = Math.abs(p[0] - bg[0]) + Math.abs(p[1] - bg[1]) + Math.abs(p[2] - bg[2]);
+        if (dist > THRESH) {
+          if (xx < minX) minX = xx;
+          if (xx > maxX) maxX = xx;
+          if (yy < minY) minY = yy;
+          if (yy > maxY) maxY = yy;
+        }
+      }
+    }
+    if (maxX < 0) return null;
+
+    var fw = maxX - minX + 1, fh = maxY - minY + 1;
+    var area = (fw * fh) / (aw * ah);
+    // Skip cropping when the "subject" is basically the whole frame (busy photo, no
+    // real background margin to reclaim) or implausibly tiny (background-detection
+    // noise) — both cases mean the full image is the safer bet.
+    if (area > 0.92 || area < 0.03) return null;
+
+    var padX = Math.round(fw * 0.08) + 1, padY = Math.round(fh * 0.08) + 1;
+    minX = Math.max(0, minX - padX); maxX = Math.min(aw - 1, maxX + padX);
+    minY = Math.max(0, minY - padY); maxY = Math.min(ah - 1, maxY + padY);
+
+    var sx = iw / aw, sy = ih / ah;
+    return {
+      x: Math.round(minX * sx), y: Math.round(minY * sy),
+      w: Math.round((maxX - minX + 1) * sx), h: Math.round((maxY - minY + 1) * sy),
+    };
+  }
+  function cropToCanvas(img, box) {
+    var c = document.createElement('canvas');
+    c.width = box.w; c.height = box.h;
+    c.getContext('2d').drawImage(img, box.x, box.y, box.w, box.h, 0, 0, box.w, box.h);
+    return c;
   }
   // Character count is identical across styles — always exactly one character
   // per sampled cell, plus one newline per line — so this cheap structural
@@ -249,7 +321,12 @@
     return { lums: lums, lo: lo, hi: hi };
   }
   function normLum(cr, p) {
-    return Math.min(1, Math.max(0, (cr.lums[p] - cr.lo) / (cr.hi - cr.lo)));
+    var v = Math.min(1, Math.max(0, (cr.lums[p] - cr.lo) / (cr.hi - cr.lo)));
+    // Smoothstep-style S-curve on top of the percentile stretch — pushes mid-tones
+    // toward the dark/light extremes for punchier, more binary-leaning contrast.
+    // A handful of clean dark/light regions reads far more clearly at low character
+    // counts than a smooth gradient does (the same trick old low-res icon art relied on).
+    return v * v * (3 - 2 * v);
   }
   // Sobel edge-magnitude map, normalized 0-1, for "outline only" mode - traces just
   // the contours of the subject instead of shading every region, so the shape reads
@@ -418,7 +495,8 @@
     var file = files[0];
     if (!file) return;
     TS.loadImage(file).then(function (loaded) {
-      state.img = loaded.img;
+      var box = detectCropBox(loaded.img);
+      state.img = box ? cropToCanvas(loaded.img, box) : loaded.img;
       controls.style.display = 'block';
       if (state.limit) state.cols = bestWidthForLimit(state.limit);
       syncWidthControl();
