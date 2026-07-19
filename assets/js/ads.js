@@ -1,7 +1,11 @@
 // ToolShoppy — config-driven ad slot loader
-// Runs 3 networks side by side so all 3 show up somewhere on the page: each placement
-// has one primary network (see PLACEMENT_NETWORK below); AdSense is also the fallback
-// for any placement whose primary network has no config/zone set, so nothing sits blank.
+// Every .ad-slot on a page gets its own dedicated ad unit — no two slots on the same
+// page ever request the identical network+unit ID at once (that reads as stacked/
+// duplicate impressions to ad networks and causes intermittent no-fill on refresh).
+// Each placement type has an ordered pool of (network, configKey) pairs; the Nth
+// occurrence of a placement on a page uses the Nth pool entry (wrapping if needed),
+// then walks the rest of the pool, then falls back to AdSense by placement key,
+// before finally leaving a blank reserved-height placeholder.
 (function () {
   'use strict';
 
@@ -10,30 +14,41 @@
     'ad-sidebar': 'sidebar',
     'ad-incontent': 'incontent',
     'ad-sticky-footer': 'stickyFooterMobile',
+    'ad-bottom': 'bottom',
   };
 
-  // Which network owns each placement. Falls through to AdSense if that network's
-  // config/zone for the placement is missing (see loadSlot).
-  var PLACEMENT_NETWORK = {
-    top: 'adsterra',
-    sidebar: 'mybid',
-    incontent: 'mybid',
-    stickyFooterMobile: 'adsterra',
+  // Each pool entry is [network, configKey]. configKey looks up that network's own
+  // config (Adsterra zones, MyBid banners, AdSense slots) — it doesn't have to match
+  // the placement name, e.g. an 'incontent' slot can render the Adsterra zone that's
+  // configured under the 'sidebar' key.
+  var OCCURRENCE_POOLS = {
+    top: [['adsterra', 'top']],
+    sidebar: [['adsterra', 'sidebar']],
+    incontent: [['mybid', 'incontent'], ['mybid', 'sidebar'], ['adsterra', 'incontent']],
+    stickyFooterMobile: [['adsterra', 'stickyFooterMobile']],
+    bottom: [['adsense', 'incontent']],
   };
 
   function getConfig() {
     return window.TS_AD_CONFIG || { client: '', slots: {} };
   }
 
-  function getAdsterraZone(key) {
+  function getAdsterraZone(configKey) {
     var cfg = window.TS_ADSTERRA_CONFIG;
     if (!cfg || cfg.enabled === false) return null;
-    return (cfg && cfg.zones && cfg.zones[key]) || null;
+    return (cfg && cfg.zones && cfg.zones[configKey]) || null;
   }
 
-  function getMybidBanner(key) {
+  function getMybidBanner(configKey) {
     var cfg = window.TS_MYBID_CONFIG;
-    return (cfg && cfg.banners && cfg.banners[key]) || null;
+    return (cfg && cfg.banners && cfg.banners[configKey]) || null;
+  }
+
+  function getAdsenseSlot(configKey) {
+    var cfg = getConfig();
+    var slotId = configKey && cfg.slots ? cfg.slots[configKey] : null;
+    if (!cfg.client || !slotId) return null;
+    return { client: cfg.client, slotId: String(slotId) };
   }
 
   function placementKey(slotEl) {
@@ -111,53 +126,66 @@
     slot.setAttribute('data-ad-ready', '1');
   }
 
-  function tryAdsterra(slot, key) {
-    var zone = getAdsterraZone(key);
-    if (!zone) return false;
-    if (zone.type === 'native') {
-      renderAdsterraNative(slot, zone);
-    } else {
-      renderAdsterraBanner(slot, zone);
+  function tryNetwork(slot, network, configKey) {
+    if (network === 'adsterra') {
+      var zone = getAdsterraZone(configKey);
+      if (!zone) return false;
+      if (zone.type === 'native') {
+        renderAdsterraNative(slot, zone);
+      } else {
+        renderAdsterraBanner(slot, zone);
+      }
+      return true;
     }
-    return true;
+    if (network === 'mybid') {
+      var bannerId = getMybidBanner(configKey);
+      if (!bannerId) return false;
+      renderMybidBanner(slot, bannerId);
+      return true;
+    }
+    if (network === 'adsense') {
+      var res = getAdsenseSlot(configKey);
+      if (!res) return false;
+      var format = configKey === 'sidebar' ? 'rectangle' : 'auto';
+      renderRealAd(slot, res.client, res.slotId, format);
+      return true;
+    }
+    return false;
   }
-
-  function tryMybid(slot, key) {
-    var bannerId = getMybidBanner(key);
-    if (!bannerId) return false;
-    renderMybidBanner(slot, bannerId);
-    return true;
-  }
-
-  function tryAdsense(slot, key) {
-    var cfg = getConfig();
-    var slotId = key && cfg.slots ? cfg.slots[key] : null;
-    if (!cfg.client || !slotId) return false;
-    var format = key === 'sidebar' ? 'rectangle' : 'auto';
-    renderRealAd(slot, cfg.client, String(slotId), format);
-    return true;
-  }
-
-  var NETWORK_TRY = { adsterra: tryAdsterra, mybid: tryMybid, adsense: tryAdsense };
 
   function loadSlot(slot) {
     if (slot.dataset.loaded === 'true') return;
     slot.dataset.loaded = 'true';
 
     var key = placementKey(slot);
-    var primary = PLACEMENT_NETWORK[key];
-    var primaryTry = primary && NETWORK_TRY[primary];
+    var pool = OCCURRENCE_POOLS[key] || [];
+    var idx = parseInt(slot.dataset.occIndex || '0', 10) % (pool.length || 1);
 
-    // Try the placement's assigned network first, then AdSense as universal fallback
-    // (skip re-trying AdSense if it was already the primary), then a blank placeholder.
-    if (primaryTry && primaryTry(slot, key)) return;
-    if (primary !== 'adsense' && tryAdsense(slot, key)) return;
+    // Start from this slot's assigned pool entry, then walk the rest of the pool
+    // (covers the case where its first choice has no config set), then fall back to
+    // AdSense keyed by placement, then give up with a blank placeholder.
+    var order = pool.slice(idx).concat(pool.slice(0, idx));
+    for (var i = 0; i < order.length; i++) {
+      if (tryNetwork(slot, order[i][0], order[i][1])) return;
+    }
+    if (tryNetwork(slot, 'adsense', key)) return;
     ensurePlaceholder(slot);
   }
 
   function initAds() {
     var slots = document.querySelectorAll('.ad-slot');
     if (!slots.length) return;
+
+    // Assign each slot its occurrence index within its placement type, in DOM order,
+    // before any lazy-loading happens — keeps the pool assignment deterministic
+    // regardless of which slot's IntersectionObserver callback fires first.
+    var counters = {};
+    slots.forEach(function (slot) {
+      var key = placementKey(slot);
+      var idx = counters[key] || 0;
+      slot.dataset.occIndex = String(idx);
+      counters[key] = idx + 1;
+    });
 
     if (!('IntersectionObserver' in window)) {
       slots.forEach(loadSlot);
