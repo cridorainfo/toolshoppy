@@ -1,8 +1,9 @@
-// ToolShoppy — Adsterra zone config
-// ads.js assigns Adsterra as the primary network for 'top' and 'stickyFooterMobile'
-// (see PLACEMENT_NETWORK in assets/js/ads.js). Set enabled:false below to pull Adsterra
-// out site-wide without touching ads.js (e.g. temporarily, while an AdSense review is
-// in progress) — those placements fall back to AdSense automatically when off.
+// ToolShoppy — Adsterra zone config (currently unused)
+// Disabled 2026-07-19: ads.js no longer references Adsterra in OCCURRENCE_POOLS
+// (MyBid + AdSense only, per instruction). enabled:false here is a second, redundant
+// kill switch in case that ever changes back — zone data is left in place so Adsterra
+// can be turned back on by (1) flipping enabled:true and (2) adding 'adsterra' entries
+// back into OCCURRENCE_POOLS in assets/js/ads.js.
 //
 // Banner zone shape (Adsterra "Banner" unit, e.g. 300x250 sidebar):
 //   { type: 'banner', key: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
@@ -16,7 +17,7 @@
 // Copy the 'key'/container id and script src straight from the snippet Adsterra gives you —
 // don't retype them, they're unique per zone.
 window.TS_ADSTERRA_CONFIG = {
-  enabled: true,
+  enabled: false,
   zones: {
     top: {
       type: 'banner',

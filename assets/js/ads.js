@@ -18,15 +18,22 @@
   };
 
   // Each pool entry is [network, configKey]. configKey looks up that network's own
-  // config (Adsterra zones, MyBid banners, AdSense slots) — it doesn't have to match
-  // the placement name, e.g. an 'incontent' slot can render the Adsterra zone that's
-  // configured under the 'sidebar' key.
+  // config (MyBid banners, AdSense slots) — it doesn't have to match the placement
+  // name, e.g. an 'incontent' slot can render the AdSense unit configured under the
+  // 'sidebar' key. Adsterra dropped 2026-07-19 (MyBid + AdSense only, per instruction).
+  // MyBid only has 2 distinct banner units, so with Adsterra gone there are just 6
+  // distinct ad codes total (2 MyBid + 4 AdSense) to cover up to 7 concurrent slots on
+  // the busiest pages (3 in-content + top/sidebar/sticky/bottom) — 'bottom' reuses
+  // 'top's AdSense unit as the one unavoidable repeat. That's the lowest-risk possible
+  // repeat: AdSense explicitly supports the same ad unit appearing more than once on a
+  // page (unlike MyBid), and top/bottom load many seconds apart via lazy-loading, so
+  // they're very unlikely to both request at once the way adjacent duplicate slots did.
   var OCCURRENCE_POOLS = {
-    top: [['adsterra', 'top']],
-    sidebar: [['adsterra', 'sidebar']],
-    incontent: [['mybid', 'incontent'], ['mybid', 'sidebar'], ['adsterra', 'incontent']],
-    stickyFooterMobile: [['adsterra', 'stickyFooterMobile']],
-    bottom: [['adsense', 'incontent']],
+    top: [['adsense', 'top']],
+    sidebar: [['mybid', 'sidebar']],
+    incontent: [['mybid', 'incontent'], ['adsense', 'incontent'], ['adsense', 'sidebar']],
+    stickyFooterMobile: [['adsense', 'stickyFooterMobile']],
+    bottom: [['adsense', 'top']],
   };
 
   function getConfig() {
