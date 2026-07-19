@@ -1,6 +1,7 @@
 // ToolShoppy — config-driven ad slot loader
-// Renders real AdSense <ins> units when slot IDs exist in ad-config.js;
-// otherwise keeps CLS-safe reserved-height placeholders.
+// Runs 3 networks side by side so all 3 show up somewhere on the page: each placement
+// has one primary network (see PLACEMENT_NETWORK below); AdSense is also the fallback
+// for any placement whose primary network has no config/zone set, so nothing sits blank.
 (function () {
   'use strict';
 
@@ -11,16 +12,28 @@
     'ad-sticky-footer': 'stickyFooterMobile',
   };
 
-  var ADSTERRA_PLACEMENTS = { top: true, sidebar: true, incontent: true, stickyFooterMobile: true };
+  // Which network owns each placement. Falls through to AdSense if that network's
+  // config/zone for the placement is missing (see loadSlot).
+  var PLACEMENT_NETWORK = {
+    top: 'adsterra',
+    sidebar: 'mybid',
+    incontent: 'mybid',
+    stickyFooterMobile: 'adsterra',
+  };
 
   function getConfig() {
     return window.TS_AD_CONFIG || { client: '', slots: {} };
   }
 
   function getAdsterraZone(key) {
-    if (!ADSTERRA_PLACEMENTS[key]) return null;
     var cfg = window.TS_ADSTERRA_CONFIG;
+    if (!cfg || cfg.enabled === false) return null;
     return (cfg && cfg.zones && cfg.zones[key]) || null;
+  }
+
+  function getMybidBanner(key) {
+    var cfg = window.TS_MYBID_CONFIG;
+    return (cfg && cfg.banners && cfg.banners[key]) || null;
   }
 
   function placementKey(slotEl) {
@@ -84,31 +97,62 @@
     slot.setAttribute('data-ad-ready', '1');
   }
 
+  function renderMybidBanner(slot, bannerId) {
+    slot.innerHTML = '';
+    var cfg = window.TS_MYBID_CONFIG || {};
+    var div = document.createElement('div');
+    div.setAttribute('data-banner-id', bannerId);
+    var loader = document.createElement('script');
+    loader.async = true;
+    loader.src = cfg.scriptSrc || 'https://js.mbidadm.com/static/scripts.js';
+    loader.setAttribute('data-admpid', cfg.admpid || '');
+    slot.appendChild(div);
+    slot.appendChild(loader);
+    slot.setAttribute('data-ad-ready', '1');
+  }
+
+  function tryAdsterra(slot, key) {
+    var zone = getAdsterraZone(key);
+    if (!zone) return false;
+    if (zone.type === 'native') {
+      renderAdsterraNative(slot, zone);
+    } else {
+      renderAdsterraBanner(slot, zone);
+    }
+    return true;
+  }
+
+  function tryMybid(slot, key) {
+    var bannerId = getMybidBanner(key);
+    if (!bannerId) return false;
+    renderMybidBanner(slot, bannerId);
+    return true;
+  }
+
+  function tryAdsense(slot, key) {
+    var cfg = getConfig();
+    var slotId = key && cfg.slots ? cfg.slots[key] : null;
+    if (!cfg.client || !slotId) return false;
+    var format = key === 'sidebar' ? 'rectangle' : 'auto';
+    renderRealAd(slot, cfg.client, String(slotId), format);
+    return true;
+  }
+
+  var NETWORK_TRY = { adsterra: tryAdsterra, mybid: tryMybid, adsense: tryAdsense };
+
   function loadSlot(slot) {
     if (slot.dataset.loaded === 'true') return;
     slot.dataset.loaded = 'true';
 
     var key = placementKey(slot);
-    var adsterraZone = getAdsterraZone(key);
+    var primary = PLACEMENT_NETWORK[key];
+    var primaryTry = primary && NETWORK_TRY[primary];
 
-    if (adsterraZone) {
-      if (adsterraZone.type === 'native') {
-        renderAdsterraNative(slot, adsterraZone);
-      } else {
-        renderAdsterraBanner(slot, adsterraZone);
-      }
-      return;
-    }
-
-    var cfg = getConfig();
-    var slotId = key && cfg.slots ? cfg.slots[key] : null;
-
-    if (cfg.client && slotId) {
-      var format = key === 'sidebar' ? 'rectangle' : 'auto';
-      renderRealAd(slot, cfg.client, String(slotId), format);
-    } else {
-      ensurePlaceholder(slot);
-    }
+    // Try the placement's assigned network first, then AdSense as universal fallback
+    // (skip re-trying AdSense if it was already the primary), then a blank placeholder.
+    if (primaryTry && primaryTry(slot, key)) return;
+    if (primary !== 'adsense' && tryAdsense(slot, key)) return;
+    ensurePlaceholder(slot);
   }
 
   function initAds() {
@@ -129,7 +173,18 @@
       });
     }, { rootMargin: '200px' });
 
-    slots.forEach(function (slot) { observer.observe(slot); });
+    slots.forEach(function (slot) {
+      observer.observe(slot);
+      // Fallback: if IntersectionObserver never fires for this slot (seen in some
+      // embedded webviews/preview environments), force-load it anyway so ads don't
+      // silently stay blank with no error.
+      setTimeout(function () {
+        if (slot.dataset.loaded !== 'true') {
+          loadSlot(slot);
+          observer.unobserve(slot);
+        }
+      }, 4000);
+    });
   }
 
   if (document.readyState === 'loading') {

@@ -1,6 +1,8 @@
-// ToolShoppy — Adsterra zone config (fill in after creating ad units in the Adsterra dashboard)
-// All 4 placements route through Adsterra when a zone is set below; a placement falls back to
-// AdSense automatically if its zone here is null. See assets/js/ads.js for the routing logic.
+// ToolShoppy — Adsterra zone config
+// ads.js assigns Adsterra as the primary network for 'top' and 'stickyFooterMobile'
+// (see PLACEMENT_NETWORK in assets/js/ads.js). Set enabled:false below to pull Adsterra
+// out site-wide without touching ads.js (e.g. temporarily, while an AdSense review is
+// in progress) — those placements fall back to AdSense automatically when off.
 //
 // Banner zone shape (Adsterra "Banner" unit, e.g. 300x250 sidebar):
 //   { type: 'banner', key: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
@@ -14,6 +16,7 @@
 // Copy the 'key'/container id and script src straight from the snippet Adsterra gives you —
 // don't retype them, they're unique per zone.
 window.TS_ADSTERRA_CONFIG = {
+  enabled: true,
   zones: {
     top: {
       type: 'banner',
