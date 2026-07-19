@@ -28,7 +28,6 @@
 <meta name="theme-color" content="#E11D48">
 <link rel="stylesheet" href="/assets/css/main.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
-<script async src="https://js.mbidadm.com/static/scripts.js" data-admpid="448541"></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -58,7 +57,6 @@
 </script>
 </head>
 <body>
-
 <header class="site-header">
   <div class="container">
     <a href="/" class="logo"><img src="/assets/img/logo.png" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
@@ -84,7 +82,6 @@
     <a href="#faq-section">Support &amp; FAQs</a>
   </div>
 </header>
-
 <main>
   <section class="hero container">
     <div class="hero-blob hero-blob--1"></div>
@@ -100,7 +97,6 @@
       </button>
     </div>
   </section>
-
   <nav class="filter-bar">
     <div class="container filter-scroll" id="filterScroll">
       <button class="filter-chip filter-chip--trending" data-cat="trending"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#bolt"></use></svg> Trending</button>
@@ -113,27 +109,20 @@
       <button class="filter-chip filter-chip--misc" data-cat="misc"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#puzzle"></use></svg> Misc</button>
     </div>
   </nav>
-
   <div class="container">
     <section class="trending-section" id="trending-section" aria-label="Trending tools">
       <h2 class="section-title"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#bolt"></use></svg> Trending Searches</h2>
       <p class="trending-section-sub">Popular tools from Google Trends — tap to open instantly.</p>
       <div class="trending-pills" id="trendingPills"></div>
     </section>
-
     <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
-
     <h2 id="available-section" class="section-title"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#circle-check"></use></svg> All Tools</h2>
     <div class="featured-grid" id="featuredGrid"></div>
-
     <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
-
     <h2 id="coming-section" class="section-title" style="display:none;"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#clock"></use></svg> More Tools</h2>
     <div class="tool-grid" id="toolGrid" style="display:none;"></div>
-
     <p id="noResults" style="display:none;text-align:center;color:var(--text-muted);padding:30px 0;">No tools match your search.</p>
   </div>
-
   <section id="about-section" class="container" style="padding:48px 0 8px;">
     <div style="text-align:center;max-width:640px;margin:0 auto 28px;">
       <h2 class="section-title" style="justify-content:center;">Pure Client-Side Privacy</h2>
@@ -158,7 +147,6 @@
     </div>
     <p style="text-align:center;margin-top:20px;"><a href="/about.html" style="color:var(--primary-dark);font-weight:700;">Read more about ToolShoppy →</a></p>
   </section>
-
   <section id="faq-section" class="container">
     <div class="content-section">
       <h2>Frequently asked questions</h2>
@@ -186,7 +174,6 @@
     </div>
   </section>
 </main>
-
 <div class="ad-slot ad-bottom"><span class="ad-label">Ad</span></div>
 <footer class="site-footer">
   <div class="container">
@@ -283,22 +270,18 @@
     </div>
   </div>
 </footer>
-
 <div class="toast" id="toast">
   <svg class="icon-svg" width="20" height="20" aria-hidden="true"><use href="/assets/icons/sprite.svg#circle-check"></use></svg>
   <span id="toastMsg">Saved</span>
 </div>
-
 <div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
-
 <script src="/assets/js/trends-data.js"></script>
 <script src="/assets/js/trends-seo.js"></script>
 <script src="/assets/js/ga-config.js"></script>
 <script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/mybid-config.js"></script>
 <script src="/assets/js/core.js"></script>
-<script src="/assets/js/ads.js?v=5"></script>
+<script src="/assets/js/ads.js?v=6"></script>
 <script src="/assets/js/analytics.js"></script>
 <script>
   // ---- Data (Available Now = real, working tools; More Tools = coming soon) ----
@@ -349,17 +332,13 @@
     { id: 'video-to-mp3', href: '/tools/video/to-audio/', cat: 'video', name: 'video to mp3 audio extract', icon: 'music', tile: 'violet', title: 'Video to MP3', desc: 'Extract audio track' },
     { id: 'status-splitter', href: '/tools/video/status-splitter/', cat: 'video', name: 'whatsapp status splitter 30s', icon: 'device-mobile', tile: 'sky', title: 'Status Splitter', desc: '30s WhatsApp status clips' }
   ];
-
   const comingTools = [];
-
   // ---- Favorites (localStorage) ----
   let favorites = [];
   try { favorites = JSON.parse(localStorage.getItem('ts-favorites')) || []; } catch (e) { favorites = []; }
-
   function saveFavorites() {
     try { localStorage.setItem('ts-favorites', JSON.stringify(favorites)); } catch (e) { /* private mode */ }
   }
-
   function toggleFavorite(evt, btn) {
     evt.preventDefault();
     evt.stopPropagation();
@@ -377,11 +356,9 @@
     saveFavorites();
     if (activeCat === 'favorites') applyFilters();
   }
-
   // ---- Render cards ----
   const featuredGrid = document.getElementById('featuredGrid');
   const toolGrid = document.getElementById('toolGrid');
-
   featuredGrid.innerHTML = liveTools.map((t) => {
     const trendScore = (typeof TSTrendsSEO !== 'undefined') ? TSTrendsSEO.getToolScore(t.id) : 0;
     return `
@@ -395,7 +372,6 @@
       <p>${t.desc}</p>
     </div>`;
   }).join('');
-
   toolGrid.innerHTML = comingTools.map((t) => `
     <div class="tool-card" data-cat="${t.cat}" data-name="${t.name}">
       <div class="icon"><span class="icon-tile icon-tile--${t.tile}"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#${t.icon}"></use></svg></span></div>
@@ -404,7 +380,6 @@
       <span class="soon">SOON</span>
     </div>
   `).join('');
-
   // ---- Search + category filter (incl. Favorites) ----
   const searchInput = document.getElementById('toolSearch');
   const heroSearch = document.getElementById('heroSearch');
@@ -416,7 +391,6 @@
   const comingHeading = document.getElementById('coming-section');
   const filterChips = Array.from(document.querySelectorAll('.filter-chip'));
   let activeCat = 'all';
-
   const params = new URLSearchParams(location.search);
   const qParam = params.get('q');
   if (qParam && typeof TSTrendsSEO !== 'undefined') {
@@ -427,7 +401,6 @@
   } else if (qParam) {
     searchInput.value = qParam;
   }
-
   // Trending search pills (from Google Trends CSV)
   const trendingPills = document.getElementById('trendingPills');
   if (trendingPills && typeof TSTrendsSEO !== 'undefined') {
@@ -440,13 +413,11 @@
       trendingPills.appendChild(a);
     });
   }
-
   function applyFilters() {
     const q = searchInput.value.trim().toLowerCase();
     heroSearch.classList.toggle('has-value', q.length > 0);
     let visibleLive = 0;
     let visibleSoon = 0;
-
     if (activeCat === 'trending') {
       const sorted = [...featuredCards].sort((a, b) =>
         (parseInt(b.dataset.trend, 10) || 0) - (parseInt(a.dataset.trend, 10) || 0)
@@ -455,7 +426,6 @@
         featuredGrid.appendChild(card);
       });
     }
-
     featuredCards.forEach((card) => {
       const matchQ = !q || (card.dataset.name || '').includes(q) || card.textContent.toLowerCase().includes(q);
       let matchCat = true;
@@ -466,7 +436,6 @@
       card.style.display = match ? '' : 'none';
       if (match) visibleLive++;
     });
-
     gridCards.forEach((card) => {
       const matchQ = !q || (card.dataset.name || '').includes(q) || card.textContent.toLowerCase().includes(q);
       const matchCat = activeCat === 'all' || (activeCat === 'favorites' ? false : card.dataset.cat === activeCat);
@@ -474,14 +443,12 @@
       card.style.display = match ? '' : 'none';
       if (match) visibleSoon++;
     });
-
     availableHeading.style.display = visibleLive === 0 ? 'none' : '';
     featuredGrid.style.display = visibleLive === 0 ? 'none' : '';
     comingHeading.style.display = visibleSoon === 0 ? 'none' : '';
     toolGrid.style.display = visibleSoon === 0 ? 'none' : '';
     noResults.style.display = (visibleLive + visibleSoon) === 0 ? 'block' : 'none';
   }
-
   searchInput.addEventListener('keydown', (e) => {
     if (e.key !== 'Enter') return;
     const q = searchInput.value.trim();
@@ -496,14 +463,12 @@
     }
     location.href = '/search/?q=' + encodeURIComponent(q);
   });
-
   searchInput.addEventListener('input', applyFilters);
   heroSearchClear.addEventListener('click', () => {
     searchInput.value = '';
     searchInput.focus();
     applyFilters();
   });
-
   filterChips.forEach((chip) => {
     chip.addEventListener('click', () => {
       filterChips.forEach((c) => c.classList.remove('active'));
@@ -512,9 +477,7 @@
       applyFilters();
     });
   });
-
   applyFilters();
-
   // ---- Toast ----
   let toastTimer = null;
   function showToast(message) {
@@ -524,7 +487,6 @@
     clearTimeout(toastTimer);
     toastTimer = setTimeout(() => toast.classList.remove('show'), 2400);
   }
-
   // ---- FAQ accordion ----
   document.querySelectorAll('.faq-q').forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -533,7 +495,6 @@
       btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
   });
-
   // ---- Mobile nav menu ----
   const mobileMenuBtn = document.getElementById('mobileMenuBtn');
   const mobileNavPanel = document.getElementById('mobileNavPanel');

@@ -25,7 +25,6 @@
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#E11D48">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
-<script async src="https://js.mbidadm.com/static/scripts.js" data-admpid="448541"></script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"Currency Converter","url":"https://toolshoppy.com/tools/rates/currency-converter/","description":"Convert AED, SAR, USD to INR free online.","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
 </script>
@@ -41,7 +40,6 @@
     </button>
   </div>
 </header>
-
 <main class="tool-page container">
   <nav class="breadcrumb" aria-label="Breadcrumb">
     <a href="/"><svg class="icon-svg" width="16" height="16" aria-hidden="true"><use href="/assets/icons/sprite.svg#home"></use></svg> Home</a>
@@ -50,19 +48,15 @@
     <svg class="icon-svg crumb-sep" width="14" height="14" aria-hidden="true"><use href="/assets/icons/sprite.svg#chevron-right"></use></svg>
     <span class="crumb-current">Currency Converter</span>
   </nav>
-
   <div class="tool-header">
     <div class="icon-tile icon-tile--lg icon-tile--green"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#currency-dollar"></use></svg></div>
     <h1>Currency Converter</h1>
     <p>AED, SAR, KWD, OMR, USD ↔ INR — built for Gulf NRIs.</p>
   </div>
-
   <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
-
   <div class="tool-layout with-sidebar">
     <div class="tool-card-main">
       <p class="rate-updated" id="updatedLine">Loading rates…</p>
-
       <h3 style="font-size:0.95rem;margin-bottom:8px;">Gulf → India presets</h3>
       <div class="chip-row" id="presetRow">
         <button class="chip active" data-from="AED" data-to="INR" type="button">AED → INR</button>
@@ -71,7 +65,6 @@
         <button class="chip" data-from="OMR" data-to="INR" type="button">OMR → INR</button>
         <button class="chip" data-from="USD" data-to="INR" type="button">USD → INR</button>
       </div>
-
       <div class="calc-form">
         <div class="currency-swap-row">
           <div class="calc-field">
@@ -89,20 +82,16 @@
           </div>
         </div>
       </div>
-
       <div class="calc-result-hero">
         <div class="calc-result-label" id="resultLabel">Result</div>
         <div class="calc-result-value" id="resultValue">—</div>
       </div>
-
       <div class="compare-row" id="rateInfo">
         <div class="compare-box"><div class="label">1 unit =</div><div class="value" id="unitRate">—</div></div>
         <div class="compare-box"><div class="label">Reverse</div><div class="value" id="reverseRate">—</div></div>
       </div>
-
       <p class="rate-disclaimer">Mid-market indicative rates for reference. Banks and exchange houses apply their own spreads and fees. For remittances, compare Wise, Remitly, or your bank's live rate.</p>
     </div>
-
     <aside class="sidebar">
       <div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div>
       <div class="info-box">
@@ -122,34 +111,28 @@
       </div>
     </aside>
   </div>
-
   <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
-
   <div class="content-section">
     <h2>Why Gulf → INR presets?</h2>
     <p style="color:var(--text-muted);font-size:0.92rem;line-height:1.7;">Millions of Indians in the UAE, Saudi, Kuwait, and Oman send money home every month. Quick AED→INR and SAR→INR checks help you decide when to remit — pair with our <a href="/tools/rates/gold-rate/">gold rate</a> page for Dubai shopping decisions too.</p>
   </div>
 </main>
-
 <div class="ad-slot ad-bottom"><span class="ad-label">Ad</span></div>
 <footer class="site-footer">
   <div class="container"><div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div></div>
 </footer>
 <div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
-
 <script src="/assets/js/ga-config.js"></script>
 <script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/mybid-config.js"></script>
 <script src="/assets/js/core.js"></script>
 <script src="/assets/js/rates.js"></script>
-<script src="/assets/js/ads.js?v=5"></script>
+<script src="/assets/js/ads.js?v=6"></script>
 <script src="/assets/js/analytics.js"></script>
 <script>
 (function () {
   var ratesData = null;
   var currencies = ['INR', 'AED', 'SAR', 'USD', 'KWD', 'OMR', 'EUR', 'GBP', 'QAR', 'BHD'];
-
   var amountIn = document.getElementById('amountIn');
   var fromCur = document.getElementById('fromCur');
   var toCur = document.getElementById('toCur');
@@ -159,7 +142,6 @@
   var reverseRate = document.getElementById('reverseRate');
   var presetRow = document.getElementById('presetRow');
   var updatedLine = document.getElementById('updatedLine');
-
   function fillSelects() {
     var opts = currencies.map(function (c) {
       var name = ratesData.currency.names[c] || c;
@@ -170,14 +152,12 @@
     fromCur.value = 'AED';
     toCur.value = 'INR';
   }
-
   function fmtCur(amount, code) {
     if (code === 'INR') return TSRates.formatINR(amount, 2);
     if (code === 'AED') return TSRates.formatAED(amount, 2);
     var sym = ratesData.currency.symbols[code] || code;
     return sym + ' ' + Number(amount).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   }
-
   function convert() {
     if (!ratesData) return;
     var amt = parseFloat(amountIn.value) || 0;
@@ -194,18 +174,15 @@
     unitRate.textContent = fmtCur(one, to);
     reverseRate.textContent = '1 ' + to + ' = ' + fmtCur(rev, from);
   }
-
   amountIn.addEventListener('input', convert);
   fromCur.addEventListener('change', convert);
   toCur.addEventListener('change', convert);
-
   swapBtn.addEventListener('click', function () {
     var tmp = fromCur.value;
     fromCur.value = toCur.value;
     toCur.value = tmp;
     convert();
   });
-
   presetRow.addEventListener('click', function (e) {
     var chip = e.target.closest('[data-from]');
     if (!chip) return;
@@ -215,7 +192,6 @@
     toCur.value = chip.dataset.to;
     convert();
   });
-
   TSRates.fetchRates().then(function (d) {
     ratesData = d;
     updatedLine.innerHTML = 'Rates as of: <strong>' + TSRates.formatUpdatedAt(d.currency.updated_at || d.updated_at) + '</strong>';

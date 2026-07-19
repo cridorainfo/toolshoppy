@@ -28,7 +28,6 @@
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#E11D48">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
-<script async src="https://js.mbidadm.com/static/scripts.js" data-admpid="448541"></script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"Compress PDF","url":"https://toolshoppy.com/tools/pdf/compress/","description":"Compress PDF free online, 100% client-side.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
 </script>
@@ -153,9 +152,8 @@
 <script src="/assets/js/ga-config.js"></script>
 <script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/mybid-config.js"></script>
 <script src="/assets/js/core.js"></script>
-<script src="/assets/js/ads.js?v=5"></script>
+<script src="/assets/js/ads.js?v=6"></script>
 <script src="/assets/js/analytics.js"></script>
 <script src="/assets/libs/pdf.min.js"></script>
 <script src="/assets/libs/pdf-lib.min.js"></script>
@@ -177,7 +175,6 @@
   const savedPct = document.getElementById('savedPct');
   const downloadBtn = document.getElementById('downloadBtn');
   let currentFile = null, resultBlob = null, quality = 0.72, scale = 1.2;
-
   qualityRow.addEventListener('click', (e) => {
     const chip = e.target.closest('.chip');
     if (!chip) return;
@@ -186,7 +183,6 @@
     quality = parseFloat(chip.dataset.q);
     scale = parseFloat(chip.dataset.scale);
   });
-
   async function showPdfPreview(file) {
     pdfPreview.innerHTML = '';
     let thumb;
@@ -206,7 +202,6 @@
     info.querySelector('p').textContent = TS.formatBytes(file.size) + ' · ' + pages;
     pdfPreview.appendChild(info);
   }
-
   TS.setupDropZone(dropZone, fileInput, (files) => {
     const file = files[0];
     if (!file) return;
@@ -219,7 +214,6 @@
     resultPanel.classList.remove('active');
     showPdfPreview(file);
   }, { preview: false });
-
   function canvasToJpegBytes(canvas, q) {
     return new Promise((resolve) => {
       canvas.toBlob(async (blob) => {
@@ -228,7 +222,6 @@
       }, 'image/jpeg', q);
     });
   }
-
   compressBtn.addEventListener('click', async () => {
     if (!currentFile) return;
     compressBtn.disabled = true;
@@ -266,7 +259,6 @@
       setTimeout(() => progressBar.classList.remove('active'), 400);
     }
   });
-
   downloadBtn.addEventListener('click', () => {
     if (!resultBlob) return;
     const base = (currentFile.name || 'document').replace(/\.pdf$/i, '');

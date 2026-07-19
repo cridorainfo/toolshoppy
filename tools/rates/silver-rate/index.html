@@ -25,7 +25,6 @@
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#E11D48">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
-<script async src="https://js.mbidadm.com/static/scripts.js" data-admpid="448541"></script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"Silver Rate Today","url":"https://toolshoppy.com/tools/rates/silver-rate/","description":"Silver rate today in Kerala, India and UAE.","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
 </script>
@@ -44,7 +43,6 @@
     </button>
   </div>
 </header>
-
 <main class="tool-page container">
   <nav class="breadcrumb" aria-label="Breadcrumb">
     <a href="/"><svg class="icon-svg" width="16" height="16" aria-hidden="true"><use href="/assets/icons/sprite.svg#home"></use></svg> Home</a>
@@ -53,15 +51,12 @@
     <svg class="icon-svg crumb-sep" width="14" height="14" aria-hidden="true"><use href="/assets/icons/sprite.svg#chevron-right"></use></svg>
     <span class="crumb-current">Silver Rate Today</span>
   </nav>
-
   <div class="tool-header">
     <div class="icon-tile icon-tile--lg icon-tile--slate"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#coin"></use></svg></div>
     <h1>Silver Rate Today</h1>
     <p>Kerala, India &amp; UAE — per gram and per kg.</p>
   </div>
-
   <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
-
   <div class="tool-layout with-sidebar">
     <div class="tool-card-main">
       <div class="chip-row" id="regionRow">
@@ -69,27 +64,21 @@
         <button class="chip" data-region="india" type="button">India</button>
         <button class="chip" data-region="uae" type="button">UAE (Dubai)</button>
       </div>
-
       <p class="rate-updated" id="updatedLine">Loading live rates…</p>
       <p class="rate-updated" id="sourceLine" style="margin-top:-8px;"></p>
-
       <div class="rate-hero" id="rateHero">
         <div class="rate-hero-label">Silver</div>
         <div class="rate-hero-value" id="heroValue">—</div>
         <div class="rate-hero-sub" id="heroSub">per gram</div>
       </div>
-
       <div class="rate-grid" id="rateGrid"></div>
-
       <div class="rate-trend-wrap" id="trendWrap" style="display:none;">
         <h3>7-day trend (India per gram)</h3>
         <div class="rate-trend-bars" id="trendBars"></div>
         <div class="rate-trend-labels" id="trendLabels"></div>
       </div>
-
       <p class="rate-disclaimer">Rates are indicative. Jeweller and bullion prices may differ. Not financial advice.</p>
     </div>
-
     <aside class="sidebar">
       <div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div>
       <div class="info-box">
@@ -101,9 +90,7 @@
       </div>
     </aside>
   </div>
-
   <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
-
   <div class="content-section">
     <h2>Related tools</h2>
     <div class="related-tools">
@@ -120,20 +107,17 @@
     </div>
   </div>
 </main>
-
 <div class="ad-slot ad-bottom"><span class="ad-label">Ad</span></div>
 <footer class="site-footer">
   <div class="container"><div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div></div>
 </footer>
 <div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
-
 <script src="/assets/js/ga-config.js"></script>
 <script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/mybid-config.js"></script>
 <script src="/assets/js/core.js"></script>
 <script src="/assets/js/rates.js"></script>
-<script src="/assets/js/ads.js?v=5"></script>
+<script src="/assets/js/ads.js?v=6"></script>
 <script src="/assets/js/analytics.js"></script>
 <script>
 (function () {
@@ -147,7 +131,6 @@
   var trendWrap = document.getElementById('trendWrap');
   var trendBars = document.getElementById('trendBars');
   var trendLabels = document.getElementById('trendLabels');
-
   function renderRegion(key) {
     if (!data || !data.silver || !data.silver[key]) {
       heroValue.textContent = '—';
@@ -158,16 +141,13 @@
     var s = data.silver[key];
     var fmt = s.currency === 'INR' ? TSRates.formatINR : TSRates.formatAED;
     var dec = s.currency === 'AED' ? 2 : 0;
-
     heroValue.textContent = fmt(s.per_gram, dec);
     heroSub.textContent = 'per gram · ' + s.label;
-
     rateGrid.innerHTML =
       '<div class="rate-card"><div class="rate-card-label">Per gram</div><div class="rate-card-value">' + fmt(s.per_gram, dec) + '</div></div>' +
       '<div class="rate-card"><div class="rate-card-label">Per 10g</div><div class="rate-card-value">' + fmt(s.per_10g, dec) + '</div></div>' +
       '<div class="rate-card"><div class="rate-card-label">Per kg</div><div class="rate-card-value">' + fmt(s.per_kg, 0) + '</div></div>';
   }
-
   regionRow.addEventListener('click', function (e) {
     var chip = e.target.closest('[data-region]');
     if (!chip) return;
@@ -175,7 +155,6 @@
     chip.classList.add('active');
     renderRegion(chip.dataset.region);
   });
-
   TSRates.fetchRates().then(function (d) {
     data = d;
     updatedLine.innerHTML = 'Last updated: <strong>' + TSRates.formatUpdatedAt(d.updated_at) + '</strong>';

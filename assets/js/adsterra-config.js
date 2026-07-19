@@ -1,9 +1,11 @@
 // ToolShoppy — Adsterra zone config (currently unused)
 // Disabled 2026-07-19: ads.js no longer references Adsterra in OCCURRENCE_POOLS
-// (MyBid + AdSense only, per instruction). enabled:false here is a second, redundant
-// kill switch in case that ever changes back — zone data is left in place so Adsterra
-// can be turned back on by (1) flipping enabled:true and (2) adding 'adsterra' entries
-// back into OCCURRENCE_POOLS in assets/js/ads.js.
+// (AdSense-only as of the same day — MyBid was also removed shortly after, per
+// instruction, to keep the live ad footprint to a single policy-compliant network
+// ahead of AdSense review). enabled:false here is a second, redundant kill switch in
+// case that ever changes back — zone data is left in place so Adsterra can be turned
+// back on by (1) flipping enabled:true and (2) adding 'adsterra' entries back into
+// OCCURRENCE_POOLS in assets/js/ads.js.
 //
 // Banner zone shape (Adsterra "Banner" unit, e.g. 300x250 sidebar):
 //   { type: 'banner', key: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',

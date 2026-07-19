@@ -18,20 +18,21 @@
   };
 
   // Each pool entry is [network, configKey]. configKey looks up that network's own
-  // config (MyBid banners, AdSense slots) — it doesn't have to match the placement
-  // name, e.g. an 'incontent' slot can render the AdSense unit configured under the
-  // 'sidebar' key. Adsterra dropped 2026-07-19 (MyBid + AdSense only, per instruction).
-  // MyBid only has 2 distinct banner units, so with Adsterra gone there are just 6
-  // distinct ad codes total (2 MyBid + 4 AdSense) to cover up to 7 concurrent slots on
-  // the busiest pages (3 in-content + top/sidebar/sticky/bottom) — 'bottom' reuses
-  // 'top's AdSense unit as the one unavoidable repeat. That's the lowest-risk possible
-  // repeat: AdSense explicitly supports the same ad unit appearing more than once on a
-  // page (unlike MyBid), and top/bottom load many seconds apart via lazy-loading, so
-  // they're very unlikely to both request at once the way adjacent duplicate slots did.
+  // config (AdSense slots) — it doesn't have to match the placement name, e.g. an
+  // 'incontent' slot can render the AdSense unit configured under the 'sidebar' key.
+  // AdSense-only as of 2026-07-19 (Adsterra and MyBid both removed, per instruction —
+  // keeping the site's live ad footprint to a single policy-compliant network ahead of
+  // the next AdSense review pass). Only 4 distinct AdSense slot IDs exist for 5
+  // placement types (up to 7 concurrent slots on the busiest pages: 3 in-content +
+  // top/sidebar/sticky/bottom), so some repeats are unavoidable — 'bottom' reuses
+  // 'top's unit, and the 2nd/3rd in-content occurrences reuse 'incontent'/'sidebar'.
+  // AdSense explicitly supports the same ad unit appearing more than once on a page,
+  // so this is safe (unlike the MyBid/Adsterra duplicate-ID no-fill problem this
+  // occurrence-pool system was originally built to solve).
   var OCCURRENCE_POOLS = {
     top: [['adsense', 'top']],
-    sidebar: [['mybid', 'sidebar']],
-    incontent: [['mybid', 'incontent'], ['adsense', 'incontent'], ['adsense', 'sidebar']],
+    sidebar: [['adsense', 'sidebar']],
+    incontent: [['adsense', 'incontent'], ['adsense', 'sidebar'], ['adsense', 'incontent']],
     stickyFooterMobile: [['adsense', 'stickyFooterMobile']],
     bottom: [['adsense', 'top']],
   };
@@ -44,11 +45,6 @@
     var cfg = window.TS_ADSTERRA_CONFIG;
     if (!cfg || cfg.enabled === false) return null;
     return (cfg && cfg.zones && cfg.zones[configKey]) || null;
-  }
-
-  function getMybidBanner(configKey) {
-    var cfg = window.TS_MYBID_CONFIG;
-    return (cfg && cfg.banners && cfg.banners[configKey]) || null;
   }
 
   function getAdsenseSlot(configKey) {
@@ -119,20 +115,6 @@
     slot.setAttribute('data-ad-ready', '1');
   }
 
-  function renderMybidBanner(slot, bannerId) {
-    slot.innerHTML = '';
-    var cfg = window.TS_MYBID_CONFIG || {};
-    var div = document.createElement('div');
-    div.setAttribute('data-banner-id', bannerId);
-    var loader = document.createElement('script');
-    loader.async = true;
-    loader.src = cfg.scriptSrc || 'https://js.mbidadm.com/static/scripts.js';
-    loader.setAttribute('data-admpid', cfg.admpid || '');
-    slot.appendChild(div);
-    slot.appendChild(loader);
-    slot.setAttribute('data-ad-ready', '1');
-  }
-
   function tryNetwork(slot, network, configKey) {
     if (network === 'adsterra') {
       var zone = getAdsterraZone(configKey);
@@ -142,12 +124,6 @@
       } else {
         renderAdsterraBanner(slot, zone);
       }
-      return true;
-    }
-    if (network === 'mybid') {
-      var bannerId = getMybidBanner(configKey);
-      if (!bannerId) return false;
-      renderMybidBanner(slot, bannerId);
       return true;
     }
     if (network === 'adsense') {

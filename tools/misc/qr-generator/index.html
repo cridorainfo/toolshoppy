@@ -28,7 +28,6 @@
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#E11D48">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
-<script async src="https://js.mbidadm.com/static/scripts.js" data-admpid="448541"></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -77,7 +76,6 @@
 </script>
 </head>
 <body>
-
 <header class="site-header">
   <div class="container">
     <a href="/" class="logo"><img src="/assets/img/logo.png" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
@@ -88,7 +86,6 @@
     </button>
   </div>
 </header>
-
 <main class="tool-page container">
   <nav class="breadcrumb" aria-label="Breadcrumb">
     <a href="/"><svg class="icon-svg" width="16" height="16" aria-hidden="true"><use href="/assets/icons/sprite.svg#home"></use></svg> Home</a>
@@ -97,18 +94,14 @@
     <svg class="icon-svg crumb-sep" width="14" height="14" aria-hidden="true"><use href="/assets/icons/sprite.svg#chevron-right"></use></svg>
     <span class="crumb-current">QR Code Generator</span>
   </nav>
-
   <div class="tool-header">
     <div class="icon-tile icon-tile--lg icon-tile--sky"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#qrcode"></use></svg></div>
     <h1>QR Code Generator</h1>
     <p>Text, URL, WiFi, vCard, WhatsApp — or export bulk QR codes as ZIP.</p>
   </div>
-
   <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
-
   <div class="tool-layout with-sidebar">
     <div class="tool-card-main">
-
       <div class="chip-row" id="modeRow">
         <button class="chip active" data-mode="text" type="button">Text / URL</button>
         <button class="chip" data-mode="wifi" type="button">WiFi</button>
@@ -116,12 +109,10 @@
         <button class="chip" data-mode="whatsapp" type="button">WhatsApp</button>
         <button class="chip" data-mode="bulk" type="button">Bulk</button>
       </div>
-
       <div id="panelText" class="qr-panel">
         <label style="display:block;font-size:0.85rem;font-weight:600;margin:12px 0 6px;">Text, URL, or UPI link</label>
         <textarea id="qrText" rows="3" placeholder="https://toolshoppy.com or any text…" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-family:inherit;font-size:0.95rem;resize:vertical;"></textarea>
       </div>
-
       <div id="panelWifi" class="qr-panel" style="display:none;">
         <div class="calc-row" style="margin-top:12px;">
           <div class="calc-field"><label for="wifiSsid">Network name (SSID)</label><input type="text" id="wifiSsid" placeholder="HomeWiFi"></div>
@@ -135,7 +126,6 @@
           </select>
         </div>
       </div>
-
       <div id="panelVcard" class="qr-panel" style="display:none;">
         <div class="calc-row" style="margin-top:12px;">
           <div class="calc-field"><label for="vcName">Full name</label><input type="text" id="vcName" placeholder="Rahul Kumar"></div>
@@ -147,18 +137,15 @@
         </div>
         <div class="calc-field" style="margin-top:10px;"><label for="vcUrl">Website</label><input type="url" id="vcUrl" placeholder="https://"></div>
       </div>
-
       <div id="panelWhatsapp" class="qr-panel" style="display:none;">
         <div class="calc-field" style="margin-top:12px;"><label for="waPhone">Phone (country code, no +)</label><input type="tel" id="waPhone" placeholder="919876543210"></div>
         <div class="calc-field" style="margin-top:10px;"><label for="waMsg">Pre-filled message</label><textarea id="waMsg" rows="2" placeholder="Hi, I saw your QR code…" style="width:100%;padding:10px;border:1px solid var(--border);border-radius:10px;font-family:inherit;"></textarea></div>
       </div>
-
       <div id="panelBulk" class="qr-panel" style="display:none;">
         <label style="display:block;font-size:0.85rem;font-weight:600;margin:12px 0 6px;">One QR payload per line (URL or text)</label>
         <textarea id="bulkLines" rows="5" placeholder="https://toolshoppy.com&#10;https://example.com/page2&#10;Product SKU-123" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-family:inherit;font-size:0.95rem;resize:vertical;"></textarea>
         <p style="font-size:0.82rem;color:var(--text-muted);margin-top:8px;">Generates numbered PNG files in a ZIP — max 50 lines.</p>
       </div>
-
       <h3 style="font-size:1rem;margin:16px 0 10px;">Size</h3>
       <div class="chip-row" id="sizeRow">
         <button class="chip" data-size="200">200px</button>
@@ -166,19 +153,15 @@
         <button class="chip" data-size="400">400px</button>
         <button class="chip" data-size="500">500px</button>
       </div>
-
       <div id="singlePreview" style="text-align:center;margin-top:20px;">
         <canvas id="qrCanvas" style="max-width:100%;border:1px solid var(--border);border-radius:8px;background:#fff;"></canvas>
       </div>
-
       <div class="result-panel active" id="resultPanel" style="margin-top:16px;">
         <button class="btn btn-accent btn-block" id="downloadBtn"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#download"></use></svg> Download PNG</button>
         <button class="btn btn-primary btn-block" id="bulkBtn" style="display:none;margin-top:10px;">Download ZIP of QR codes</button>
       </div>
-
       <div class="trust-badge"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock"></use></svg> Generated entirely in your browser</div>
     </div>
-
     <aside class="sidebar">
       <div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div>
       <div class="info-box">
@@ -192,7 +175,6 @@
       </div>
     </aside>
   </div>
-
   <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
   <div class="content-section">
     <h2>How to create a QR code</h2>
@@ -202,7 +184,6 @@
       <li>Click <strong>Download PNG</strong> to save it.</li>
     </ol>
   </div>
-
   <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
   <div class="content-section">
     <h2>Related tools</h2>
@@ -229,7 +210,6 @@
       </a>
     </div>
   </div>
-
   <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
   <div class="content-section">
     <h2>Frequently asked questions</h2>
@@ -254,13 +234,11 @@
   </div>
 </footer>
 <div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
-
 <script src="/assets/js/ga-config.js"></script>
 <script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/mybid-config.js"></script>
 <script src="/assets/js/core.js"></script>
-<script src="/assets/js/ads.js?v=5"></script>
+<script src="/assets/js/ads.js?v=6"></script>
 <script src="/assets/js/analytics.js"></script>
 <script src="/assets/libs/qrcode-generator.min.js"></script>
 <script>
@@ -273,7 +251,6 @@
   const bulkBtn = document.getElementById('bulkBtn');
   const singlePreview = document.getElementById('singlePreview');
   const ctx = canvas.getContext('2d');
-
   const panels = {
     text: document.getElementById('panelText'),
     wifi: document.getElementById('panelWifi'),
@@ -281,15 +258,12 @@
     whatsapp: document.getElementById('panelWhatsapp'),
     bulk: document.getElementById('panelBulk'),
   };
-
   let mode = 'text';
   let size = 300;
   let debounceTimer = null;
-
   function escVcard(s) {
     return (s || '').replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\n/g, ' ');
   }
-
   function buildPayload() {
     if (mode === 'wifi') {
       const ssid = document.getElementById('wifiSsid').value.trim();
@@ -323,7 +297,6 @@
     if (mode === 'bulk') return '';
     return qrText.value.trim() || 'https://toolshoppy.com';
   }
-
   function makeQr(text) {
     let qr;
     try {
@@ -337,7 +310,6 @@
     }
     return qr;
   }
-
   function drawQrOnCanvas(targetCanvas, text, px) {
     const qr = makeQr(text);
     const count = qr.getModuleCount();
@@ -356,18 +328,15 @@
     }
     return targetCanvas;
   }
-
   function render() {
     if (mode === 'bulk') return;
     const text = buildPayload() || 'https://toolshoppy.com';
     drawQrOnCanvas(canvas, text, size);
   }
-
   function scheduleRender() {
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(render, 150);
   }
-
   modeRow.addEventListener('click', (e) => {
     const btn = e.target.closest('[data-mode]');
     if (!btn) return;
@@ -381,14 +350,12 @@
     bulkBtn.style.display = isBulk ? '' : 'none';
     if (!isBulk) render();
   });
-
   ['qrText', 'wifiSsid', 'wifiPass', 'wifiEnc', 'vcName', 'vcPhone', 'vcEmail', 'vcOrg', 'vcUrl', 'waPhone', 'waMsg'].forEach((id) => {
     const el = document.getElementById(id);
     if (!el) return;
     el.addEventListener('input', scheduleRender);
     el.addEventListener('change', scheduleRender);
   });
-
   sizeRow.addEventListener('click', (e) => {
     const btn = e.target.closest('.chip');
     if (!btn) return;
@@ -397,11 +364,9 @@
     size = parseInt(btn.dataset.size, 10);
     render();
   });
-
   downloadBtn.addEventListener('click', () => {
     canvas.toBlob((blob) => TS.downloadBlob(blob, 'qrcode.png'));
   });
-
   bulkBtn.addEventListener('click', async () => {
     const lines = document.getElementById('bulkLines').value.split(/\r?\n/).map((l) => l.trim()).filter(Boolean).slice(0, 50);
     if (!lines.length) { alert('Add at least one line.'); return; }
@@ -422,7 +387,6 @@
     } catch (e) { alert('Bulk export failed.'); }
     bulkBtn.disabled = false;
   });
-
   qrText.value = 'https://toolshoppy.com';
   render();
 })();

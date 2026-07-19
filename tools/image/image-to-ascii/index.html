@@ -25,7 +25,6 @@
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#E11D48">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
-<script async src="https://js.mbidadm.com/static/scripts.js" data-admpid="448541"></script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"Image to ASCII Art Converter","url":"https://toolshoppy.com/tools/image/image-to-ascii/","description":"Convert any photo to ASCII or Braille text art free online. Copy-paste into Instagram, WhatsApp, Facebook and LinkedIn comments, or download as an image.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
 </script>
@@ -41,7 +40,6 @@
     </button>
   </div>
 </header>
-
 <main class="tool-page container">
   <nav class="breadcrumb" aria-label="Breadcrumb">
     <a href="/"><svg class="icon-svg" width="16" height="16" aria-hidden="true"><use href="/assets/icons/sprite.svg#home"></use></svg> Home</a>
@@ -50,15 +48,12 @@
     <svg class="icon-svg crumb-sep" width="14" height="14" aria-hidden="true"><use href="/assets/icons/sprite.svg#chevron-right"></use></svg>
     <span class="crumb-current">Image to ASCII Art</span>
   </nav>
-
   <div class="tool-header">
     <div class="icon-tile icon-tile--lg icon-tile--slate"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#transform"></use></svg></div>
     <h1>Image to ASCII Art Converter</h1>
     <p>Turn any photo into text art you can paste straight into Instagram, WhatsApp, Facebook &amp; LinkedIn comments.</p>
   </div>
-
   <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
-
   <div class="tool-layout with-sidebar">
     <div class="tool-card-main">
       <div class="drop-zone" id="dropZone">
@@ -66,7 +61,6 @@
         <p>JPG, PNG or WebP — clear subjects with good contrast work best</p>
         <input type="file" id="fileInput" accept="image/*">
       </div>
-
       <div id="controls" style="display:none;margin-top:16px;">
         <label style="font-size:0.8rem;font-weight:700;color:var(--text-muted);display:block;margin-bottom:6px;">Text style</label>
         <div class="chip-row" id="styleRow">
@@ -74,12 +68,10 @@
           <button class="chip" data-style="blocks" type="button">Blocks</button>
           <button class="chip" data-style="classic" type="button">Classic ASCII</button>
         </div>
-
         <label style="display:flex;align-items:center;gap:6px;margin-top:10px;font-size:0.82rem;color:var(--text-muted);">
           <input type="checkbox" id="outlineToggle"> Outline only — just the edges, not the full shading
         </label>
         <p id="outlineHint" style="display:none;margin:4px 0 0;font-size:0.78rem;color:var(--text-muted);">Outlines stay readable at a much smaller width than a fully-shaded photo — try dragging "Detail / width" down to 16–20 for an even shorter comment.</p>
-
         <label style="font-size:0.8rem;font-weight:700;color:var(--text-muted);display:block;margin:14px 0 6px;">Posting to — auto-fits width to the character limit</label>
         <div class="chip-row" id="platformRow">
           <button class="chip active" data-limit="2200" data-bg="light" data-name="Instagram comments" data-canvas="1080x1080" type="button">Instagram Comment · 2,200</button>
@@ -89,47 +81,39 @@
           <button class="chip" data-limit="280" data-bg="light" data-name="X / Twitter" data-canvas="1200x675" type="button">X / Twitter · 280</button>
           <button class="chip" data-limit="0" data-bg="" data-name="" data-canvas="1080x1080" type="button">No limit</button>
         </div>
-
         <label style="font-size:0.8rem;font-weight:700;color:var(--text-muted);display:block;margin:14px 0 6px;">Background colour</label>
         <div class="chip-row" id="bgRow">
           <button class="chip active" data-bg="light" type="button">Light (Instagram, Facebook, LinkedIn)</button>
           <button class="chip" data-bg="dark" type="button">Dark (WhatsApp, terminal)</button>
         </div>
-
         <div class="calc-field" style="margin-top:14px;">
           <label for="widthRange">Detail / width — <span id="widthLabel">26</span> characters</label>
           <input type="range" id="widthRange" min="12" max="120" step="1" value="26" style="width:100%;accent-color:var(--primary);">
           <p id="wrapWarning" style="display:none;margin:6px 0 0;font-size:0.78rem;color:var(--accent);font-weight:600;">⚠ Wider than ~26 characters may wrap mid-row in a phone's chat bubble and break the image. Safe for PC/desktop viewing only.</p>
         </div>
       </div>
-
       <div class="result-panel" id="resultPanel">
         <div class="ascii-stage" id="asciiStage"><pre id="asciiOutput" aria-label="ASCII art output"></pre></div>
-
         <div style="margin-top:10px;">
           <label style="font-size:0.78rem;font-weight:700;color:var(--text-muted);display:block;margin-bottom:6px;">📱 Mobile preview — exactly how this looks in a narrow phone chat bubble</label>
           <div id="mobilePreviewFrame" style="max-width:230px;margin:0 auto;border:8px solid var(--border);border-radius:20px;padding:10px 8px;background:var(--card);overflow:hidden;">
             <pre id="mobilePreviewOutput" style="margin:0;font-size:10px;line-height:1;white-space:pre-wrap;word-break:break-all;overflow-wrap:anywhere;font-family:'Cascadia Mono','SF Mono',Consolas,'Courier New',monospace;"></pre>
           </div>
         </div>
-
         <div class="stat-pills" style="margin-top:12px;align-items:center;">
           <div class="stat-pill">Characters <strong id="charCount">0</strong></div>
           <div class="stat-pill">Lines <strong id="lineCount">0</strong></div>
           <div class="stat-pill fit-badge" id="fitBadge">No platform limit selected</div>
           <button type="button" id="fitBtn" style="display:none;background:none;border:none;color:var(--primary-dark);font-size:0.8rem;font-weight:700;text-decoration:underline;cursor:pointer;padding:4px 0;">Shrink to fit ↓</button>
         </div>
-
         <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;">
           <button class="btn btn-primary" id="copyBtn" type="button" style="flex:1;min-width:140px;">Copy Text</button>
           <button class="btn btn-accent" id="downloadPngBtn" type="button" style="flex:1;min-width:140px;">Download as Image</button>
           <button class="btn" id="downloadTxtBtn" type="button" style="flex:1;min-width:140px;background:var(--card);border:1px solid var(--border);">Download .txt</button>
         </div>
-
         <label style="display:flex;align-items:center;gap:6px;margin-top:12px;font-size:0.82rem;color:var(--text-muted);">
           <input type="checkbox" id="creditToggle" checked> Add a small "made at toolshoppy.com" credit line so friends can find the tool too
         </label>
-
         <div class="info-box" style="margin-top:16px;">
           <h4>Where this works best</h4>
           <ul>
@@ -142,10 +126,8 @@
           </ul>
         </div>
       </div>
-
       <div class="trust-badge" style="margin-top:16px;"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock"></use></svg> Your photo never leaves your device</div>
     </div>
-
     <aside class="sidebar">
       <div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div>
       <div class="info-box">
@@ -166,27 +148,22 @@
       </div>
     </aside>
   </div>
-
   <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
-
   <section style="margin-top:8px;">
     <h2 style="font-size:1.15rem;margin-bottom:10px;">Why text art beats a plain photo in comments</h2>
     <p style="color:var(--text-muted);font-size:0.92rem;line-height:1.7;">Instagram, Facebook and LinkedIn comment sections don't let you attach a photo the way a post does — but they always accept plain text. Converting your product shot, logo or face into Braille or block text art turns an ordinary comment into something people stop and read, which is exactly why brands and creators use it for cheeky call-to-action comments, giveaway teasers and "look closer" style engagement bait. Because everything runs locally in your browser using the Canvas API, no image is ever uploaded anywhere — pick a style, tune the width, then copy or download and post.</p>
   </section>
 </main>
-
 <div class="ad-slot ad-bottom"><span class="ad-label">Ad</span></div>
 <footer class="site-footer">
   <div class="container"><div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div></div>
 </footer>
 <div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
-
 <script src="/assets/js/ga-config.js"></script>
 <script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/mybid-config.js"></script>
 <script src="/assets/js/core.js"></script>
-<script src="/assets/js/ads.js?v=5"></script>
+<script src="/assets/js/ads.js?v=6"></script>
 <script src="/assets/js/analytics.js"></script>
 <script>
 (function () {
@@ -204,21 +181,17 @@
   var DENSITY_BOOST = 1.18;
   var EDGE_THRESHOLD = 0.28; // Sobel magnitude cutoff for "outline only" mode
   var SIGNATURE = '\n\n\u2014 toolshoppy.com';
-
   var state = {
     img: null, style: 'braille', bg: 'light', cols: MOBILE_SAFE_COLS, lines: [],
     limit: 2200, limitName: 'Instagram comments', credit: true, outline: false,
     canvasSize: { w: 1080, h: 1080 },
   };
-
   function signatureSuffix() {
     return state.credit ? SIGNATURE : '';
   }
-
   function finalText() {
     return state.lines.join('\n') + signatureSuffix();
   }
-
   var stage = document.getElementById('asciiStage');
   var output = document.getElementById('asciiOutput');
   var resultPanel = document.getElementById('resultPanel');
@@ -227,12 +200,10 @@
   var widthLabel = document.getElementById('widthLabel');
   var fitBadge = document.getElementById('fitBadge');
   var fitBtn = document.getElementById('fitBtn');
-
   function rowsFor(cols, img) {
     var ratio = (img.naturalHeight || 1) / (img.naturalWidth || 1);
     return Math.max(1, Math.round(cols * ratio * CHAR_ASPECT * DENSITY_BOOST));
   }
-
   // Character count is identical across styles — always exactly one character
   // per sampled cell, plus one newline per line — so this cheap structural
   // formula (no pixel sampling) is enough to search for the best-fit width.
@@ -240,7 +211,6 @@
     var rows = rowsFor(cols, state.img);
     return cols * rows + Math.max(0, rows - 1);
   }
-
   // Auto-fit never searches wider than the mobile-safe cap, even when a platform's
   // character budget would allow more columns - extra budget goes into height
   // (more rows) instead, via DENSITY_BOOST, so it never causes phone-side wrapping.
@@ -252,7 +222,6 @@
     }
     return MIN_COLS;
   }
-
   function sampleCanvas(img, w, h) {
     var c = document.createElement('canvas');
     c.width = w; c.height = h;
@@ -262,7 +231,6 @@
     ctx.drawImage(img, 0, 0, w, h);
     return ctx.getImageData(0, 0, w, h).data;
   }
-
   // Most real photos live entirely in the 30-70% brightness range - mapping
   // luminance straight to dots without normalizing first dithers into a flat
   // gray fuzz. Stretch the 2nd-98th percentile out to the full 0-1 range so
@@ -280,11 +248,9 @@
     if (hi - lo < 1e-6) hi = lo + 1e-6;
     return { lums: lums, lo: lo, hi: hi };
   }
-
   function normLum(cr, p) {
     return Math.min(1, Math.max(0, (cr.lums[p] - cr.lo) / (cr.hi - cr.lo)));
   }
-
   // Sobel edge-magnitude map, normalized 0-1, for "outline only" mode - traces just
   // the contours of the subject instead of shading every region, so the shape reads
   // clearly with far fewer "on" dots (and stays legible at a narrower width).
@@ -308,7 +274,6 @@
     for (var p = 0; p < w * h; p++) mag[p] /= maxMag;
     return mag;
   }
-
   // Thickens 1px-thin edges horizontally so Braille cells (8 dots each) show
   // connected lines instead of scattered, disconnected single dots.
   function dilateEdgesX(bits, w, h) {
@@ -324,7 +289,6 @@
     }
     return out;
   }
-
   function renderRamp(img, cols, ramp, lightBg) {
     var rows = rowsFor(cols, img);
     var data = sampleCanvas(img, cols, rows);
@@ -349,14 +313,12 @@
     }
     return lines;
   }
-
   function renderBraille(img, cols, lightBg) {
     var rows = rowsFor(cols, img);
     var w = cols * 2, h = rows * 4;
     var data = sampleCanvas(img, w, h);
     var cr = luminanceContrast(data, w * h);
     var dots;
-
     if (state.outline) {
       var mag = sobelMagnitude(cr, w, h);
       var bits = new Uint8Array(w * h);
@@ -384,7 +346,6 @@
         }
       }
     }
-
     function dot(dx, dy, bx, by) {
       var xx = bx + dx, yy = by + dy;
       if (xx >= w || yy >= h) return 0;
@@ -405,7 +366,6 @@
     }
     return lines;
   }
-
   function fitFontSize() {
     if (!state.lines.length) return;
     var width = stage.clientWidth - 24; // minus stage padding
@@ -414,7 +374,6 @@
     output.style.fontSize = px + 'px';
     output.style.lineHeight = '1';
   }
-
   function updateFitBadge(charLen) {
     if (!state.limit) {
       fitBadge.textContent = 'No platform limit selected';
@@ -429,13 +388,11 @@
     fitBadge.className = 'stat-pill fit-badge ' + (over ? 'fit-badge--over' : pct > 0.9 ? 'fit-badge--warn' : 'fit-badge--ok');
     fitBtn.style.display = over ? 'inline-block' : 'none';
   }
-
   function syncWidthControl() {
     widthRange.value = state.cols;
     widthLabel.textContent = state.cols;
     document.getElementById('wrapWarning').style.display = state.cols > MOBILE_SAFE_COLS ? 'block' : 'none';
   }
-
   function generate() {
     if (!state.img) return;
     var lines = state.style === 'braille'
@@ -451,14 +408,12 @@
     updateFitBadge(totalLen);
     resultPanel.classList.add('active');
     fitFontSize();
-
     var previewFrame = document.getElementById('mobilePreviewFrame');
     var previewOutput = document.getElementById('mobilePreviewOutput');
     previewOutput.textContent = finalText();
     previewFrame.style.background = state.bg === 'dark' ? '#0B0F19' : '#FFFFFF';
     previewOutput.style.color = state.bg === 'dark' ? '#F8FAFC' : '#111827';
   }
-
   TS.setupDropZone(document.getElementById('dropZone'), document.getElementById('fileInput'), function (files) {
     var file = files[0];
     if (!file) return;
@@ -471,7 +426,6 @@
       if (window.TSAnalytics) TSAnalytics.track('tool_complete', { tool: 'image-to-ascii' });
     }).catch(function () { alert('Could not read that image.'); });
   }, { preview: false });
-
   document.getElementById('styleRow').addEventListener('click', function (e) {
     var chip = e.target.closest('[data-style]');
     if (!chip) return;
@@ -480,13 +434,11 @@
     state.style = chip.dataset.style;
     generate();
   });
-
   document.getElementById('outlineToggle').addEventListener('change', function () {
     state.outline = this.checked;
     document.getElementById('outlineHint').style.display = state.outline ? 'block' : 'none';
     generate();
   });
-
   document.getElementById('bgRow').addEventListener('click', function (e) {
     var chip = e.target.closest('[data-bg]');
     if (!chip) return;
@@ -495,7 +447,6 @@
     state.bg = chip.dataset.bg;
     generate();
   });
-
   document.getElementById('platformRow').addEventListener('click', function (e) {
     var chip = e.target.closest('[data-limit]');
     if (!chip) return;
@@ -518,7 +469,6 @@
     syncWidthControl();
     generate();
   });
-
   var widthDebounce = null;
   widthRange.addEventListener('input', function () {
     var cols = parseInt(this.value, 10) || MOBILE_SAFE_COLS;
@@ -527,14 +477,12 @@
     clearTimeout(widthDebounce);
     widthDebounce = setTimeout(generate, 60);
   });
-
   fitBtn.addEventListener('click', function () {
     if (!state.limit) return;
     state.cols = bestWidthForLimit(state.limit);
     syncWidthControl();
     generate();
   });
-
   document.getElementById('creditToggle').addEventListener('change', function () {
     state.credit = this.checked;
     if (state.limit && state.img) {
@@ -543,7 +491,6 @@
     }
     generate();
   });
-
   document.getElementById('copyBtn').addEventListener('click', function () {
     var btn = this;
     var text = finalText();
@@ -557,16 +504,13 @@
       done(false);
     }
   });
-
   document.getElementById('downloadTxtBtn').addEventListener('click', function () {
     TS.downloadBlob(new Blob([finalText()], { type: 'text/plain' }), 'ascii-art.txt');
   });
-
   document.getElementById('downloadPngBtn').addEventListener('click', function () {
     if (!state.lines.length) return;
     var mono = '"Cascadia Mono","SF Mono",Consolas,"Courier New",monospace';
     var dark = state.bg === 'dark';
-
     // Render onto the platform's real native canvas (1080x1080 feed/comment square,
     // 1080x1920 for WhatsApp Status/Stories) instead of a box sized to the text -
     // posting an odd-shaped image into a Story frame gets letterboxed or cropped by
@@ -578,7 +522,6 @@
     var ctx = canvas.getContext('2d');
     ctx.fillStyle = dark ? '#0B0F19' : '#FFFFFF';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-
     // Measure at a large reference size, then scale to whichever dimension (width
     // or height) is the tighter fit, so the art always fits fully and stays centered.
     var refPx = 200;
@@ -586,15 +529,12 @@
     var refCharW = ctx.measureText('M').width;
     var refLineH = refPx * 1.1;
     var refCreditH = state.credit ? refLineH * 1.6 : 0;
-
     var pad = Math.round(Math.min(canvas.width, canvas.height) * 0.09);
     var maxTextW = canvas.width - pad * 2;
     var maxTextH = canvas.height - pad * 2;
-
     var scaleByWidth = maxTextW / (refCharW * state.cols);
     var scaleByHeight = maxTextH / (refLineH * state.lines.length + refCreditH);
     var scale = Math.min(scaleByWidth, scaleByHeight);
-
     var fontPx = refPx * scale;
     var lineH = refLineH * scale;
     var creditH = refCreditH * scale;
@@ -603,7 +543,6 @@
     var textBlockH = lineH * state.lines.length + creditH;
     var startX = pad + (maxTextW - textBlockW) / 2;
     var startY = pad + (maxTextH - textBlockH) / 2;
-
     ctx.font = fontPx + 'px ' + mono;
     ctx.textBaseline = 'top';
     ctx.fillStyle = dark ? '#F8FAFC' : '#111827';
@@ -619,7 +558,6 @@
       TS.downloadBlob(blob, 'ascii-art.png');
     });
   });
-
   window.addEventListener('resize', function () { fitFontSize(); });
 })();
 </script>

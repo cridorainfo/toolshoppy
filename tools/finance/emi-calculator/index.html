@@ -25,7 +25,6 @@
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#E11D48">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
-<script async src="https://js.mbidadm.com/static/scripts.js" data-admpid="448541"></script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"EMI Calculator","url":"https://toolshoppy.com/tools/finance/emi-calculator/","description":"Calculate loan EMI free online.","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
 </script>
@@ -41,7 +40,6 @@
     </button>
   </div>
 </header>
-
 <main class="tool-page container">
   <nav class="breadcrumb" aria-label="Breadcrumb">
     <a href="/"><svg class="icon-svg" width="16" height="16" aria-hidden="true"><use href="/assets/icons/sprite.svg#home"></use></svg> Home</a>
@@ -50,15 +48,12 @@
     <svg class="icon-svg crumb-sep" width="14" height="14" aria-hidden="true"><use href="/assets/icons/sprite.svg#chevron-right"></use></svg>
     <span class="crumb-current">EMI Calculator</span>
   </nav>
-
   <div class="tool-header">
     <div class="icon-tile icon-tile--lg icon-tile--blue"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#building-bank"></use></svg></div>
     <h1>EMI Calculator</h1>
     <p>Home loan, car loan, personal loan — monthly EMI in seconds.</p>
   </div>
-
   <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
-
   <div class="tool-layout with-sidebar">
     <div class="tool-card-main">
       <div class="chip-row" id="presetRow">
@@ -66,7 +61,6 @@
         <button class="chip" data-p="1000000" data-r="9" data-y="5" type="button">Car ₹10L</button>
         <button class="chip" data-p="300000" data-r="12" data-y="3" type="button">Personal ₹3L</button>
       </div>
-
       <div class="calc-form">
         <div class="calc-field">
           <label for="principal">Loan amount (₹)</label>
@@ -83,20 +77,16 @@
           </div>
         </div>
       </div>
-
       <div class="calc-result-hero">
         <div class="calc-result-label">Monthly EMI</div>
         <div class="calc-result-value" id="emiValue">—</div>
       </div>
-
       <div class="compare-row">
         <div class="compare-box"><div class="label">Total interest</div><div class="value" id="totalInterest">—</div></div>
         <div class="compare-box"><div class="label">Total payment</div><div class="value" id="totalPayment">—</div></div>
       </div>
-
       <p class="rate-disclaimer">Standard reducing-balance EMI formula. Actual bank EMI may differ due to processing fees, insurance, and rate type (fixed vs floating).</p>
     </div>
-
     <aside class="sidebar">
       <div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div>
       <div class="info-box">
@@ -112,9 +102,7 @@
       </div>
     </aside>
   </div>
-
   <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
-
   <div class="content-section">
     <h2>How to use</h2>
     <ol>
@@ -124,20 +112,17 @@
     </ol>
   </div>
 </main>
-
 <div class="ad-slot ad-bottom"><span class="ad-label">Ad</span></div>
 <footer class="site-footer">
   <div class="container"><div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div></div>
 </footer>
 <div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
-
 <script src="/assets/js/ga-config.js"></script>
 <script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/mybid-config.js"></script>
 <script src="/assets/js/core.js"></script>
 <script src="/assets/js/rates.js"></script>
-<script src="/assets/js/ads.js?v=5"></script>
+<script src="/assets/js/ads.js?v=6"></script>
 <script src="/assets/js/analytics.js"></script>
 <script>
 (function () {
@@ -148,7 +133,6 @@
   var totalInterest = document.getElementById('totalInterest');
   var totalPayment = document.getElementById('totalPayment');
   var presetRow = document.getElementById('presetRow');
-
   function calcEmi() {
     var P = parseFloat(principal.value) || 0;
     var annual = parseFloat(rate.value) || 0;
@@ -172,11 +156,9 @@
     totalInterest.textContent = '₹' + Math.round(interest).toLocaleString('en-IN');
     totalPayment.textContent = '₹' + Math.round(total).toLocaleString('en-IN');
   }
-
   [principal, rate, tenure].forEach(function (el) {
     el.addEventListener('input', calcEmi);
   });
-
   presetRow.addEventListener('click', function (e) {
     var chip = e.target.closest('[data-p]');
     if (!chip) return;
@@ -187,7 +169,6 @@
     tenure.value = chip.dataset.y;
     calcEmi();
   });
-
   calcEmi();
 })();
 </script>

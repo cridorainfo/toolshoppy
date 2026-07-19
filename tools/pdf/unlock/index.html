@@ -28,7 +28,6 @@
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#E11D48">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
-<script async src="https://js.mbidadm.com/static/scripts.js" data-admpid="448541"></script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"Unlock PDF","url":"https://toolshoppy.com/tools/pdf/unlock/","description":"Remove PDF password free online when you know the password.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
 </script>
@@ -148,9 +147,8 @@
 <script src="/assets/js/ga-config.js"></script>
 <script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/mybid-config.js"></script>
 <script src="/assets/js/core.js"></script>
-<script src="/assets/js/ads.js?v=5"></script>
+<script src="/assets/js/ads.js?v=6"></script>
 <script src="/assets/js/analytics.js"></script>
 <script src="/assets/libs/pdf.min.js"></script>
 <script src="/assets/libs/pdf-lib.min.js"></script>
@@ -172,7 +170,6 @@
   const outSize = document.getElementById('outSize');
   const downloadBtn = document.getElementById('downloadBtn');
   let currentFile = null, resultBlob = null;
-
   async function showPdfPreview(file) {
     pdfPreview.innerHTML = '';
     let thumb;
@@ -192,7 +189,6 @@
     info.querySelector('p').textContent = TS.formatBytes(file.size) + ' · ' + pages;
     pdfPreview.appendChild(info);
   }
-
   TS.setupDropZone(dropZone, fileInput, (files) => {
     const file = files[0];
     if (!file) return;
@@ -206,7 +202,6 @@
     pwError.style.display = 'none';
     showPdfPreview(file);
   }, { preview: false });
-
   unlockBtn.addEventListener('click', async () => {
     if (!currentFile) return;
     const password = pw.value;
@@ -260,7 +255,6 @@
       setTimeout(() => progressBar.classList.remove('active'), 400);
     }
   });
-
   downloadBtn.addEventListener('click', () => {
     if (!resultBlob) return;
     const base = (currentFile.name || 'document').replace(/\.pdf$/i, '');

@@ -17,7 +17,6 @@
 <link rel="stylesheet" href="/assets/css/main.css">
 <meta name="theme-color" content="#E11D48">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
-<script async src="https://js.mbidadm.com/static/scripts.js" data-admpid="448541"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Petrol Price Today","url":"https://toolshoppy.com/tools/rates/petrol-price/","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
 </head>
 <body>
@@ -65,7 +64,7 @@
 <div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
 <script src="/assets/js/ga-config.js"></script><script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/mybid-config.js"></script><script src="/assets/js/core.js"></script><script src="/assets/js/rates.js"></script><script src="/assets/js/fuel.js"></script><script src="/assets/js/ads.js?v=5"></script><script src="/assets/js/analytics.js"></script>
+<script src="/assets/js/core.js"></script><script src="/assets/js/rates.js"></script><script src="/assets/js/fuel.js"></script><script src="/assets/js/ads.js?v=6"></script><script src="/assets/js/analytics.js"></script>
 <script>
 (function () {
   var grid = document.getElementById('stateGrid');
@@ -76,7 +75,6 @@
   var sourceLine = document.getElementById('sourceLine');
   var data = null;
   var active = 'kerala';
-
   function showState(key) {
     if (!data || !data.states || !data.states[key]) return;
     active = key;
@@ -88,7 +86,6 @@
       c.classList.toggle('is-active', c.dataset.state === key);
     });
   }
-
   function renderGrid() {
     grid.innerHTML = '';
     Object.keys(data.states).forEach(function (key) {
@@ -103,7 +100,6 @@
     });
     showState(active);
   }
-
   TSFuel.fetchFuel().then(function (d) {
     data = d;
     updatedLine.innerHTML = 'Last updated: <strong>' + (TSRates && TSRates.formatUpdatedAt ? TSRates.formatUpdatedAt(d.updated_at) : new Date(d.updated_at).toLocaleString()) + '</strong>';

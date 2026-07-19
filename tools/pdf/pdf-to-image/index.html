@@ -28,7 +28,6 @@
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#E11D48">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
-<script async src="https://js.mbidadm.com/static/scripts.js" data-admpid="448541"></script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"PDF to Image","url":"https://toolshoppy.com/tools/pdf/pdf-to-image/","description":"Convert PDF pages to JPG or PNG free online. 100% client-side.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
 </script>
@@ -50,7 +49,6 @@
     </button>
   </div>
 </header>
-
 <main class="tool-page container">
   <nav class="breadcrumb" aria-label="Breadcrumb">
     <a href="/"><svg class="icon-svg" width="16" height="16" aria-hidden="true"><use href="/assets/icons/sprite.svg#home"></use></svg> Home</a>
@@ -59,15 +57,12 @@
     <svg class="icon-svg crumb-sep" width="14" height="14" aria-hidden="true"><use href="/assets/icons/sprite.svg#chevron-right"></use></svg>
     <span class="crumb-current">PDF to Image</span>
   </nav>
-
   <div class="tool-header">
     <div class="icon-tile icon-tile--lg icon-tile--teal"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#photo-down"></use></svg></div>
     <h1>PDF to Image</h1>
     <p>Export PDF pages as JPG or PNG — high quality, fully private.</p>
   </div>
-
   <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
-
   <div class="tool-layout with-sidebar">
     <div class="tool-card-main">
       <div class="drop-zone" id="dropZone">
@@ -77,27 +72,22 @@
         <p class="drop-zone-hint">Every page exports as a separate image</p>
         <input type="file" id="fileInput" accept="application/pdf,.pdf">
       </div>
-
       <div id="controls" style="display:none;">
         <div class="pdf-preview-single" id="pdfPreview" aria-live="polite"></div>
-
         <h3 style="margin:14px 0 8px;font-size:0.95rem;">Output format</h3>
         <div class="chip-row" id="formatRow">
           <button class="chip active" data-fmt="jpg" type="button">JPG</button>
           <button class="chip" data-fmt="png" type="button">PNG</button>
         </div>
-
         <h3 style="margin:14px 0 8px;font-size:0.95rem;">Quality</h3>
         <div class="chip-row" id="qualityRow">
           <button class="chip" data-scale="3" data-q="0.92" type="button">High</button>
           <button class="chip active" data-scale="2" data-q="0.85" type="button">Medium</button>
           <button class="chip" data-scale="1.5" data-q="0.75" type="button">Low</button>
         </div>
-
         <button class="btn btn-primary btn-block" id="convertBtn" style="margin-top:14px;">Convert to Images</button>
         <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
       </div>
-
       <div class="result-panel" id="resultPanel">
         <div class="compare-row">
           <div class="compare-box"><div class="label">Images</div><div class="value" id="outCount">-</div></div>
@@ -105,10 +95,8 @@
         </div>
         <button class="btn btn-accent btn-block" id="downloadBtn"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#download"></use></svg> Download</button>
       </div>
-
       <div class="trust-badge"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock"></use></svg> Your files never leave your device</div>
     </div>
-
     <aside class="sidebar">
       <div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div>
       <div class="info-box">
@@ -121,9 +109,7 @@
       </div>
     </aside>
   </div>
-
   <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
-
   <div class="content-section">
     <h2>How to convert PDF to JPG</h2>
     <ol>
@@ -132,7 +118,6 @@
       <li>Click <strong>Convert to Images</strong> and download.</li>
     </ol>
   </div>
-
   <div class="content-section">
     <h2>Related tools</h2>
     <div class="related-tools">
@@ -153,7 +138,6 @@
       </a>
     </div>
   </div>
-
   <div class="content-section">
     <h2>Frequently asked questions</h2>
     <div class="faq-item"><h3>How do I convert PDF to JPG for free?</h3><p>Upload your PDF, choose JPG or PNG, pick a quality preset, and click Convert. Download a single image or a ZIP for multi-page PDFs.</p></div>
@@ -161,26 +145,22 @@
     <div class="faq-item"><h3>Is my PDF uploaded to a server?</h3><p>No. Conversion runs entirely in your browser — your document never leaves your device.</p></div>
   </div>
 </main>
-
 <div class="ad-slot ad-bottom"><span class="ad-label">Ad</span></div>
 <footer class="site-footer">
   <div class="container"><div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div></div>
 </footer>
 <div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
-
 <script src="/assets/js/ga-config.js"></script>
 <script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/mybid-config.js"></script>
 <script src="/assets/js/core.js"></script>
-<script src="/assets/js/ads.js?v=5"></script>
+<script src="/assets/js/ads.js?v=6"></script>
 <script src="/assets/js/analytics.js"></script>
 <script src="/assets/libs/pdf.min.js"></script>
 <script src="/assets/js/pdf-preview.js"></script>
 <script>
 (function () {
   pdfjsLib.GlobalWorkerOptions.workerSrc = '/assets/libs/pdf.worker.min.js';
-
   const dropZone = document.getElementById('dropZone');
   const fileInput = document.getElementById('fileInput');
   const controls = document.getElementById('controls');
@@ -194,7 +174,6 @@
   const outCount = document.getElementById('outCount');
   const outSize = document.getElementById('outSize');
   const downloadBtn = document.getElementById('downloadBtn');
-
   let pdfFile = null;
   let pageCount = 0;
   let fmt = 'jpg';
@@ -202,7 +181,6 @@
   let jpegQuality = 0.85;
   let resultBlob = null;
   let resultName = 'page.jpg';
-
   TS.setupDropZone(dropZone, fileInput, async (files) => {
     const f = files.find((x) => x.type === 'application/pdf' || x.name.toLowerCase().endsWith('.pdf'));
     if (!f) { alert('Please choose a PDF file.'); return; }
@@ -222,7 +200,6 @@
       dropZone.style.display = '';
     }
   }, { preview: false });
-
   async function renderPreview() {
     pdfPreview.innerHTML = '';
     try {
@@ -244,7 +221,6 @@
       pdfPreview.innerHTML = '<p>' + escapeHtml(pdfFile.name) + ' — ' + pageCount + ' pages</p>';
     }
   }
-
   formatRow.addEventListener('click', (e) => {
     const chip = e.target.closest('[data-fmt]');
     if (!chip) return;
@@ -252,7 +228,6 @@
     chip.classList.add('active');
     fmt = chip.dataset.fmt;
   });
-
   qualityRow.addEventListener('click', (e) => {
     const chip = e.target.closest('[data-scale]');
     if (!chip) return;
@@ -261,7 +236,6 @@
     renderScale = parseFloat(chip.dataset.scale);
     jpegQuality = parseFloat(chip.dataset.q);
   });
-
   function dataUrlToBytes(dataUrl) {
     const base64 = dataUrl.split(',')[1];
     const bin = atob(base64);
@@ -269,19 +243,16 @@
     for (let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
     return out;
   }
-
   convertBtn.addEventListener('click', async () => {
     if (!pdfFile) return;
     convertBtn.disabled = true;
     progressBar.classList.add('active');
     progressFill.style.width = '5%';
-
     try {
       const baseName = pdfFile.name.replace(/\.pdf$/i, '') || 'document';
       const ext = fmt === 'png' ? 'png' : 'jpg';
       const mime = fmt === 'png' ? 'image/png' : 'image/jpeg';
       const outputs = [];
-
       for (let p = 1; p <= pageCount; p++) {
         const res = await TSPdfPreview.renderPdfPage(pdfFile, p, {
           scale: renderScale,
@@ -294,7 +265,6 @@
         });
         progressFill.style.width = (5 + (p / pageCount) * 90) + '%';
       }
-
       const totalSize = outputs.reduce((s, o) => s + o.data.length, 0);
       if (outputs.length === 1) {
         resultBlob = new Blob([outputs[0].data], { type: mime });
@@ -304,7 +274,6 @@
         resultBlob = new Blob([zipData], { type: 'application/zip' });
         resultName = baseName + '-images.zip';
       }
-
       outCount.textContent = String(outputs.length);
       outSize.textContent = TS.formatBytes(totalSize);
       resultPanel.classList.add('active');
@@ -317,12 +286,10 @@
       setTimeout(() => progressBar.classList.remove('active'), 400);
     }
   });
-
   downloadBtn.addEventListener('click', () => {
     if (!resultBlob) return;
     TS.downloadBlob(resultBlob, resultName);
   });
-
   function escapeHtml(s) {
     return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }

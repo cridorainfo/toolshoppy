@@ -25,7 +25,6 @@
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#E11D48">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
-<script async src="https://js.mbidadm.com/static/scripts.js" data-admpid="448541"></script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"GST Calculator","url":"https://toolshoppy.com/tools/finance/gst-calculator/","description":"Add or remove GST free online.","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
 </script>
@@ -41,7 +40,6 @@
     </button>
   </div>
 </header>
-
 <main class="tool-page container">
   <nav class="breadcrumb" aria-label="Breadcrumb">
     <a href="/"><svg class="icon-svg" width="16" height="16" aria-hidden="true"><use href="/assets/icons/sprite.svg#home"></use></svg> Home</a>
@@ -50,48 +48,40 @@
     <svg class="icon-svg crumb-sep" width="14" height="14" aria-hidden="true"><use href="/assets/icons/sprite.svg#chevron-right"></use></svg>
     <span class="crumb-current">GST Calculator</span>
   </nav>
-
   <div class="tool-header">
     <div class="icon-tile icon-tile--lg icon-tile--indigo"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#calculator"></use></svg></div>
     <h1>GST Calculator</h1>
     <p>Add or remove GST — with CGST / SGST split for India.</p>
   </div>
-
   <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
-
   <div class="tool-layout with-sidebar">
     <div class="tool-card-main">
       <div class="chip-row" id="modeRow">
         <button class="chip active" data-mode="add" type="button">Add GST</button>
         <button class="chip" data-mode="remove" type="button">Remove GST</button>
       </div>
-
       <div class="chip-row" id="gstRow">
         <button class="chip" data-gst="5" type="button">5%</button>
         <button class="chip" data-gst="12" type="button">12%</button>
         <button class="chip active" data-gst="18" type="button">18%</button>
         <button class="chip" data-gst="28" type="button">28%</button>
       </div>
-
       <div class="calc-form">
         <div class="calc-field">
           <label for="amount" id="amountLabel">Amount (excl. GST) ₹</label>
           <input type="number" id="amount" value="10000" min="0" step="any" inputmode="decimal">
         </div>
       </div>
-
       <div class="calc-result-hero">
         <div class="calc-result-label" id="resultLabel">Total (incl. GST)</div>
         <div class="calc-result-value" id="resultValue">—</div>
       </div>
-
       <div class="compare-row">
         <div class="compare-box"><div class="label">GST amount</div><div class="value" id="gstAmount">—</div></div>
         <div class="compare-box"><div class="label">CGST (50%)</div><div class="value" id="cgst">—</div></div>
         <div class="compare-box"><div class="label">SGST (50%)</div><div class="value" id="sgst">—</div></div>
       </div>
     </div>
-
     <aside class="sidebar">
       <div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div>
       <div class="info-box">
@@ -111,23 +101,19 @@
       </div>
     </aside>
   </div>
-
   <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
 </main>
-
 <div class="ad-slot ad-bottom"><span class="ad-label">Ad</span></div>
 <footer class="site-footer">
   <div class="container"><div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div></div>
 </footer>
 <div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
-
 <script src="/assets/js/ga-config.js"></script>
 <script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/mybid-config.js"></script>
 <script src="/assets/js/core.js"></script>
 <script src="/assets/js/rates.js"></script>
-<script src="/assets/js/ads.js?v=5"></script>
+<script src="/assets/js/ads.js?v=6"></script>
 <script src="/assets/js/analytics.js"></script>
 <script>
 (function () {
@@ -140,11 +126,9 @@
   var gstAmount = document.getElementById('gstAmount');
   var cgst = document.getElementById('cgst');
   var sgst = document.getElementById('sgst');
-
   function fmt(n) {
     return TSRates.formatINR(n, 2);
   }
-
   function calc() {
     var amt = parseFloat(amount.value) || 0;
     var rate = gstPct / 100;
@@ -166,7 +150,6 @@
     cgst.textContent = fmt(gst / 2);
     sgst.textContent = fmt(gst / 2);
   }
-
   document.getElementById('modeRow').addEventListener('click', function (e) {
     var chip = e.target.closest('[data-mode]');
     if (!chip) return;
@@ -176,7 +159,6 @@
     amountLabel.textContent = mode === 'add' ? 'Amount (excl. GST) ₹' : 'Amount (incl. GST) ₹';
     calc();
   });
-
   document.getElementById('gstRow').addEventListener('click', function (e) {
     var chip = e.target.closest('[data-gst]');
     if (!chip) return;
@@ -185,7 +167,6 @@
     gstPct = parseFloat(chip.dataset.gst);
     calc();
   });
-
   amount.addEventListener('input', calc);
   calc();
 })();

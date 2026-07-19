@@ -28,7 +28,6 @@
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#E11D48">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
-<script async src="https://js.mbidadm.com/static/scripts.js" data-admpid="448541"></script>
 <style>
 .editor-toolbar{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0;}
 .editor-toolbar .chip.active{background:var(--primary);color:#fff;border-color:var(--primary);}
@@ -201,16 +200,14 @@
 <script src="/assets/js/ga-config.js"></script>
 <script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/mybid-config.js"></script>
 <script src="/assets/js/core.js"></script>
-<script src="/assets/js/ads.js?v=5"></script>
+<script src="/assets/js/ads.js?v=6"></script>
 <script src="/assets/js/analytics.js"></script>
 <script src="/assets/libs/pdf.min.js"></script>
 <script src="/assets/libs/pdf-lib.min.js"></script>
 <script>
 (function () {
   pdfjsLib.GlobalWorkerOptions.workerSrc = '/assets/libs/pdf.worker.min.js';
-
   const dropZone = document.getElementById('dropZone');
   const fileInput = document.getElementById('fileInput');
   const editorUI = document.getElementById('editorUI');
@@ -242,7 +239,6 @@
   const sigUploadInput = document.getElementById('sigUploadInput');
   const sigApply = document.getElementById('sigApply');
   const sigCancel = document.getElementById('sigCancel');
-
   let pdfDoc = null;
   let pageNum = 1;
   let tool = 'select';
@@ -258,17 +254,13 @@
   let sigDrawing = false;
   let sigLastX = 0;
   let sigLastY = 0;
-
   const HANDLE = 8;
-
   function uid() {
     return 'o' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
   }
-
   function getScale() {
     return Math.min(1.4, (window.innerWidth - 48) / 600);
   }
-
   function pageState(num) {
     if (!pages[num]) {
       pages[num] = {
@@ -279,7 +271,6 @@
     }
     return pages[num];
   }
-
   function ensureStrokeCanvas(num) {
     const st = pageState(num);
     if (!st.strokes) {
@@ -291,7 +282,6 @@
     }
     return st.strokes;
   }
-
   function measureTextObj(text, fontSize) {
     ctx.save();
     ctx.font = fontSize + 'px sans-serif';
@@ -299,7 +289,6 @@
     ctx.restore();
     return { w: Math.max(40, w + 8), h: Math.max(24, fontSize + 12) };
   }
-
   function loadImageDataUrl(dataUrl) {
     return new Promise((resolve, reject) => {
       const img = new Image();
@@ -308,12 +297,10 @@
       img.src = dataUrl;
     });
   }
-
   function getSelectedObject() {
     const st = pageState(pageNum);
     return st.objects.find((o) => o.id === selectedId) || null;
   }
-
   function updateObjProps() {
     const obj = getSelectedObject();
     if (!obj) {
@@ -327,13 +314,11 @@
     unlockBtn.hidden = !obj.locked;
     editTextBtn.hidden = obj.type !== 'text';
   }
-
   function selectObject(id) {
     selectedId = id;
     updateObjProps();
     composite();
   }
-
   function setTool(next) {
     tool = next;
     toolbar.querySelectorAll('.chip').forEach((c) => {
@@ -343,7 +328,6 @@
     if (tool === 'signature') openSigModal();
     updateCanvasCursor();
   }
-
   function updateCanvasCursor() {
     const cursors = {
       select: 'default',
@@ -357,7 +341,6 @@
     };
     canvas.style.cursor = cursors[tool] || 'default';
   }
-
   function hitHandle(obj, x, y) {
     if (obj.locked) return null;
     const corners = {
@@ -373,7 +356,6 @@
     }
     return null;
   }
-
   function hitObject(x, y) {
     const st = pageState(pageNum);
     for (let i = st.objects.length - 1; i >= 0; i--) {
@@ -382,7 +364,6 @@
     }
     return null;
   }
-
   function drawObject(o) {
     if (o.type === 'text') {
       ctx.fillStyle = o.color || '#1e293b';
@@ -393,7 +374,6 @@
       ctx.drawImage(o.img, o.x, o.y, o.w, o.h);
     }
   }
-
   function drawSelection(obj) {
     if (!obj) return;
     ctx.save();
@@ -410,7 +390,6 @@
     }
     ctx.restore();
   }
-
   function composite() {
     const st = pageState(pageNum);
     if (!st.base) return;
@@ -420,7 +399,6 @@
     const sel = getSelectedObject();
     if (sel && tool === 'select') drawSelection(sel);
   }
-
   async function renderPage(num) {
     const page = await pdfDoc.getPage(num);
     const viewport = page.getViewport({ scale: getScale() });
@@ -435,7 +413,6 @@
     updateObjProps();
     updateCanvasCursor();
   }
-
   function addTextObject(x, y) {
     const text = prompt('Enter text:');
     if (!text) return;
@@ -458,7 +435,6 @@
     selectObject(obj.id);
     setTool('select');
   }
-
   async function addImageObject(dataUrl, type) {
     const img = await loadImageDataUrl(dataUrl);
     const maxW = canvas.width * 0.35;
@@ -481,7 +457,6 @@
     selectObject(obj.id);
     setTool('select');
   }
-
   function editSelectedText() {
     const obj = getSelectedObject();
     if (!obj || obj.type !== 'text' || obj.locked) return;
@@ -493,7 +468,6 @@
     obj.h = size.h;
     composite();
   }
-
   function deleteSelectedObject() {
     const st = pageState(pageNum);
     st.objects = st.objects.filter((o) => o.id !== selectedId);
@@ -501,7 +475,6 @@
     updateObjProps();
     composite();
   }
-
   function toggleLock(locked) {
     const obj = getSelectedObject();
     if (!obj) return;
@@ -509,11 +482,9 @@
     updateObjProps();
     composite();
   }
-
   function clearSigPad() {
     sigCtx.clearRect(0, 0, sigPad.width, sigPad.height);
   }
-
   function setupSigStrokeStyle() {
     sigCtx.strokeStyle = '#1e293b';
     sigCtx.fillStyle = '#1e293b';
@@ -521,7 +492,6 @@
     sigCtx.lineCap = 'round';
     sigCtx.lineJoin = 'round';
   }
-
   function exportSignaturePng() {
     const w = sigPad.width;
     const h = sigPad.height;
@@ -558,7 +528,6 @@
     out.getContext('2d').drawImage(sigPad, minX, minY, cw, ch, 0, 0, cw, ch);
     return out.toDataURL('image/png');
   }
-
   function updateSigCursor(e) {
     const r = sigPad.getBoundingClientRect();
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
@@ -571,13 +540,11 @@
     sigCursor.style.left = ((clientX - r.left) / r.width * 100) + '%';
     sigCursor.style.top = ((clientY - r.top) / r.height * 100) + '%';
   }
-
   function sigDot(x, y) {
     sigCtx.beginPath();
     sigCtx.arc(x, y, sigCtx.lineWidth / 2, 0, Math.PI * 2);
     sigCtx.fill();
   }
-
   function openSigModal() {
     sigModal.hidden = false;
     pendingSigData = null;
@@ -586,7 +553,6 @@
     sigCursor.hidden = true;
     sigCursor.classList.remove('is-drawing');
   }
-
   function closeSigModal() {
     sigModal.hidden = true;
     pendingSigData = null;
@@ -594,7 +560,6 @@
     sigCursor.classList.remove('is-drawing');
     setTool('select');
   }
-
   function sigPos(e) {
     const r = sigPad.getBoundingClientRect();
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
@@ -604,7 +569,6 @@
       y: (clientY - r.top) * (sigPad.height / r.height),
     };
   }
-
   function applySignature() {
     const dataUrl = exportSignaturePng();
     if (!dataUrl) {
@@ -617,18 +581,15 @@
     sigCursor.classList.remove('is-drawing');
     addImageObject(dataUrl, 'signature');
   }
-
   toolbar.addEventListener('click', (e) => {
     const chip = e.target.closest('.chip');
     if (!chip) return;
     setTool(chip.dataset.tool);
   });
-
   lockBtn.addEventListener('click', () => toggleLock(true));
   unlockBtn.addEventListener('click', () => toggleLock(false));
   editTextBtn.addEventListener('click', editSelectedText);
   deleteObjBtn.addEventListener('click', deleteSelectedObject);
-
   imageInput.addEventListener('change', async (e) => {
     const file = e.target.files && e.target.files[0];
     e.target.value = '';
@@ -649,7 +610,6 @@
       setTool('select');
     }
   });
-
   sigClear.addEventListener('click', () => {
     clearSigPad();
     setupSigStrokeStyle();
@@ -682,14 +642,12 @@
   sigModal.addEventListener('click', (e) => {
     if (e.target === sigModal) closeSigModal();
   });
-
   sigPadWrap.addEventListener('mousemove', updateSigCursor);
   sigPadWrap.addEventListener('mouseenter', updateSigCursor);
   sigPadWrap.addEventListener('mouseleave', () => {
     sigCursor.hidden = true;
     sigCursor.classList.remove('is-drawing');
   });
-
   sigPad.addEventListener('mousedown', (e) => {
     e.preventDefault();
     sigDrawing = true;
@@ -743,7 +701,6 @@
     sigCursor.classList.remove('is-drawing');
     sigCursor.hidden = true;
   });
-
   function pos(e) {
     const r = canvas.getBoundingClientRect();
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
@@ -753,7 +710,6 @@
       y: (clientY - r.top) * (canvas.height / r.height),
     };
   }
-
   function resizeObject(obj, handle, x, y, start) {
     let nx = obj.x;
     let ny = obj.y;
@@ -802,11 +758,9 @@
       obj.h = nh;
     }
   }
-
   function startDraw(e) {
     e.preventDefault();
     const p = pos(e);
-
     if (tool === 'select') {
       const sel = getSelectedObject();
       if (sel && !sel.locked) {
@@ -832,22 +786,17 @@
       composite();
       return;
     }
-
     if (tool === 'text') {
       addTextObject(p.x, p.y);
       return;
     }
-
     if (tool === 'image' || tool === 'signature') return;
-
     drawing = true;
     lastX = p.x;
     lastY = p.y;
   }
-
   function moveDraw(e) {
     const p = pos(e);
-
     if (drag) {
       e.preventDefault();
       const obj = getSelectedObject();
@@ -861,7 +810,6 @@
       composite();
       return;
     }
-
     if (tool === 'select') {
       const sel = getSelectedObject();
       if (sel && !sel.locked && hitHandle(sel, p.x, p.y)) {
@@ -874,7 +822,6 @@
       }
       updateCanvasCursor();
     }
-
     if (!drawing) return;
     e.preventDefault();
     const strokeCanvas = ensureStrokeCanvas(pageNum);
@@ -912,7 +859,6 @@
     lastY = p.y;
     composite();
   }
-
   function endDraw() {
     if (drag) {
       drag = null;
@@ -921,7 +867,6 @@
     }
     drawing = false;
   }
-
   canvas.addEventListener('mousedown', startDraw);
   canvas.addEventListener('mousemove', moveDraw);
   window.addEventListener('mouseup', endDraw);
@@ -937,7 +882,6 @@
       editSelectedText();
     }
   });
-
   prevPage.addEventListener('click', async () => {
     if (pageNum <= 1) return;
     pageNum--;
@@ -948,7 +892,6 @@
     pageNum++;
     await renderPage(pageNum);
   });
-
   TS.setupDropZone(dropZone, fileInput, async (files) => {
     const file = files[0];
     if (!file) return;
@@ -967,7 +910,6 @@
       alert(err.message || 'Could not open PDF.');
     }
   }, { preview: false });
-
   async function renderPageToImageData(num) {
     const savedPage = pageNum;
     if (num !== pageNum) await renderPage(num);
@@ -992,7 +934,6 @@
     if (num !== savedPage) await renderPage(savedPage);
     return tctx.getImageData(0, 0, tmp.width, tmp.height);
   }
-
   saveBtn.addEventListener('click', async () => {
     if (!pdfDoc) return;
     saveBtn.disabled = true;
@@ -1025,7 +966,6 @@
       setTimeout(() => progressBar.classList.remove('active'), 400);
     }
   });
-
   downloadBtn.addEventListener('click', () => {
     if (!resultBlob) return;
     const base = (currentFile.name || 'document').replace(/\.pdf$/i, '');

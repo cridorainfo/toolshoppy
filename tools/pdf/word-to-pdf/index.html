@@ -28,7 +28,6 @@
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#E11D48">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
-<script async src="https://js.mbidadm.com/static/scripts.js" data-admpid="448541"></script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"Word to PDF","url":"https://toolshoppy.com/tools/pdf/word-to-pdf/","description":"Convert Word DOCX to PDF free online, 100% client-side.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
 </script>
@@ -147,9 +146,8 @@
 <script src="/assets/js/ga-config.js"></script>
 <script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/mybid-config.js"></script>
 <script src="/assets/js/core.js"></script>
-<script src="/assets/js/ads.js?v=5"></script>
+<script src="/assets/js/ads.js?v=6"></script>
 <script src="/assets/js/analytics.js"></script>
 <script src="/assets/libs/mammoth.browser.min.js"></script>
 <script src="/assets/libs/html2canvas.min.js"></script>
@@ -170,7 +168,6 @@
   const renderHost = document.getElementById('renderHost');
   let currentFile = null;
   let resultBlob = null;
-
   TS.setupDropZone(dropZone, fileInput, (files) => {
     const file = files[0];
     if (!file) return;
@@ -184,7 +181,6 @@
     controls.style.display = 'block';
     resultPanel.classList.remove('active');
   });
-
   convertBtn.addEventListener('click', async () => {
     if (!currentFile) return;
     convertBtn.disabled = true;
@@ -229,7 +225,6 @@
       renderHost.innerHTML = '';
     }
   });
-
   downloadBtn.addEventListener('click', () => {
     if (!resultBlob) return;
     const base = (currentFile.name || 'document').replace(/\.docx$/i, '');

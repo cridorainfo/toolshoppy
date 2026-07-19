@@ -28,7 +28,6 @@
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#E11D48">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
-<script async src="https://js.mbidadm.com/static/scripts.js" data-admpid="448541"></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -87,7 +86,6 @@
 </script>
 </head>
 <body>
-
 <header class="site-header">
   <div class="container">
     <a href="/" class="logo"><img src="/assets/img/logo.png" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
@@ -98,7 +96,6 @@
     </button>
   </div>
 </header>
-
 <main class="tool-page container">
   <nav class="breadcrumb" aria-label="Breadcrumb">
     <a href="/"><svg class="icon-svg" width="16" height="16" aria-hidden="true"><use href="/assets/icons/sprite.svg#home"></use></svg> Home</a>
@@ -107,18 +104,14 @@
     <svg class="icon-svg crumb-sep" width="14" height="14" aria-hidden="true"><use href="/assets/icons/sprite.svg#chevron-right"></use></svg>
     <span class="crumb-current">Password Protect PDF</span>
   </nav>
-
   <div class="tool-header">
     <div class="icon-tile icon-tile--lg icon-tile--rose"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock"></use></svg></div>
     <h1>Password Protect PDF</h1>
     <p>Add a password to any PDF — ideal for securing Aadhaar, PAN, Voter ID, and other personal documents before sharing.</p>
   </div>
-
   <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
-
   <div class="tool-layout with-sidebar">
     <div class="tool-card-main">
-
       <div class="drop-zone" id="dropZone">
         <div class="icon"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#upload"></use></svg></div>
         <div class="dz-cta">Select PDF file</div>
@@ -126,19 +119,15 @@
         <p class="drop-zone-hint">Preview appears instantly. Encryption stays on your device.</p>
         <input type="file" id="fileInput" accept="application/pdf,.pdf">
       </div>
-
       <div id="controls" style="display:none;margin-top:16px;">
         <div class="pdf-preview-single" id="pdfPreview" aria-live="polite"></div>
-
         <label style="display:block;font-size:0.85rem;font-weight:600;margin:14px 0 6px;">Set a password</label>
         <input type="password" id="pw1" placeholder="Enter password" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;margin-bottom:10px;">
         <input type="password" id="pw2" placeholder="Confirm password" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;">
         <p id="pwError" style="display:none;color:var(--danger);font-size:0.8rem;margin-top:6px;"></p>
-
         <button class="btn btn-primary btn-block" id="protectBtn" style="margin-top:14px;">Protect PDF</button>
         <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
       </div>
-
       <div class="result-panel" id="resultPanel">
         <div class="compare-row">
           <div class="compare-box">
@@ -152,10 +141,8 @@
         </div>
         <button class="btn btn-accent btn-block" id="downloadBtn"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#download"></use></svg> Download Protected PDF</button>
       </div>
-
       <div class="trust-badge"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock"></use></svg> Your file never leaves your device</div>
     </div>
-
     <aside class="sidebar">
       <div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div>
       <div class="info-box">
@@ -178,7 +165,6 @@
       </div>
     </aside>
   </div>
-
   <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
   <div class="content-section">
     <h2>How to password protect a PDF</h2>
@@ -189,7 +175,6 @@
       <li>Download the protected file and share it — anyone opening it will be asked for the password.</li>
     </ol>
   </div>
-
   <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
   <div class="content-section">
     <h2>Related tools</h2>
@@ -216,7 +201,6 @@
       </a>
     </div>
   </div>
-
   <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
   <div class="content-section">
     <h2>Frequently asked questions</h2>
@@ -249,13 +233,11 @@
   </div>
 </footer>
 <div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
-
 <script src="/assets/js/ga-config.js"></script>
 <script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/mybid-config.js"></script>
 <script src="/assets/js/core.js"></script>
-<script src="/assets/js/ads.js?v=5"></script>
+<script src="/assets/js/ads.js?v=6"></script>
 <script src="/assets/js/analytics.js"></script>
 <script src="/assets/libs/pdf.min.js"></script>
 <script src="/assets/libs/pdf-lib.min.js"></script>
@@ -277,10 +259,8 @@
   const resultPanel = document.getElementById('resultPanel');
   const outFileSize = document.getElementById('outFileSize');
   const downloadBtn = document.getElementById('downloadBtn');
-
   let currentFile = null;
   let resultBlob = null;
-
   async function showPdfPreview(file) {
     pdfPreview.innerHTML = '';
     let thumb;
@@ -300,7 +280,6 @@
     info.querySelector('p').textContent = TS.formatBytes(file.size) + ' · ' + pages;
     pdfPreview.appendChild(info);
   }
-
   TS.setupDropZone(dropZone, fileInput, (files) => {
     const file = files[0];
     if (!file) return;
@@ -314,7 +293,6 @@
     pwError.style.display = 'none';
     showPdfPreview(file);
   }, { preview: false });
-
   protectBtn.addEventListener('click', async () => {
     if (!currentFile) return;
     const password = pw1.value;
@@ -329,18 +307,15 @@
       return;
     }
     pwError.style.display = 'none';
-
     protectBtn.disabled = true;
     progressBar.classList.add('active');
     progressFill.style.width = '30%';
-
     try {
       const arrayBuffer = await currentFile.arrayBuffer();
       progressFill.style.width = '55%';
       const inputBytes = new Uint8Array(arrayBuffer);
       const encryptedBytes = await TSPdfCrypt.protectPdf(inputBytes, { userPassword: password });
       progressFill.style.width = '100%';
-
       resultBlob = new Blob([encryptedBytes], { type: 'application/pdf' });
       outFileSize.textContent = TS.formatBytes(resultBlob.size);
       resultPanel.classList.add('active');
@@ -351,7 +326,6 @@
       setTimeout(() => progressBar.classList.remove('active'), 500);
     }
   });
-
   downloadBtn.addEventListener('click', () => {
     if (!resultBlob) return;
     const baseName = (currentFile.name || 'document').replace(/\.pdf$/i, '');
