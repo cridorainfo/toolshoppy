@@ -108,7 +108,7 @@
       '<div class="pdf-tile-body">' +
         '<div class="pdf-tile-name" title="' + escapeAttr(name) + '">' + escapeHtml(name) + '</div>' +
         '<div class="pdf-tile-meta">' + escapeHtml([pages, size].filter(Boolean).join(' · ')) + '</div>' +
-        (actionsHtml ? '<div class="pdf-tile-actions">' + actionsHtml + '</div>' : '') +
+        (actionsHtml ? '<div class="pdf-tile-actions" draggable="false">' + actionsHtml + '</div>' : '') +
       '</div>';
     return tile;
   }

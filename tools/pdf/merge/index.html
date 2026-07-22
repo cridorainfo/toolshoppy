@@ -67,14 +67,14 @@
     <div class="tool-card-main">
       <div class="drop-zone" id="dropZone">
         <div class="icon"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#upload"></use></svg></div>
-        <div class="dz-cta">Select PDF files</div>
+        <div class="dz-cta" id="dzCta">Select PDF files</div>
         <p>or drop PDFs here — multiple files supported</p>
         <p class="drop-zone-hint">Previews appear instantly. Reorder before merging.</p>
         <input type="file" id="fileInput" accept="application/pdf,.pdf" multiple>
       </div>
       <div id="controls" style="display:none;">
         <div class="pdf-preview-grid" id="fileList" aria-live="polite"></div>
-        <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:12px;">Drag order is left-to-right, top-to-bottom. Use arrows to rearrange.</p>
+        <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:12px;">Drag a file to reorder, or use the ↑ / ↓ arrows.</p>
         <div class="action-bar">
           <button class="btn btn-primary" id="mergeBtn">Merge PDFs</button>
           <button class="btn" id="addMoreBtn" type="button" style="background:var(--bg);border:1px solid var(--border);">+ Add more</button>
@@ -161,6 +161,7 @@
 (function () {
   pdfjsLib.GlobalWorkerOptions.workerSrc = '/assets/libs/pdf.worker.min.js';
   const dropZone = document.getElementById('dropZone');
+  const dzCta = document.getElementById('dzCta');
   const fileInput = document.getElementById('fileInput');
   const controls = document.getElementById('controls');
   const fileList = document.getElementById('fileList');
@@ -176,6 +177,11 @@
   let thumbs = [];
   let resultBlob = null;
   let rendering = false;
+  function syncDropZoneUI() {
+    const hasFiles = files.length > 0;
+    dropZone.classList.toggle('drop-zone--compact', hasFiles);
+    dzCta.textContent = hasFiles ? '+ Add more PDFs' : 'Select PDF files';
+  }
   TS.setupDropZone(dropZone, fileInput, (newFiles) => {
     const pdfFiles = newFiles.filter((f) => f.type === 'application/pdf' || f.name.toLowerCase().endsWith('.pdf'));
     if (!pdfFiles.length) {
@@ -185,12 +191,20 @@
     files = files.concat(pdfFiles);
     thumbs = thumbs.concat(pdfFiles.map(() => null));
     controls.style.display = 'block';
-    dropZone.style.display = files.length ? 'none' : '';
+    syncDropZoneUI();
     resultPanel.classList.remove('active');
     renderFileList();
     loadThumbs();
+    fileInput.value = '';
   }, { preview: false });
   addMoreBtn.addEventListener('click', () => fileInput.click());
+  TS.enableDragReorder(fileList, {
+    onReorder: (from, to) => {
+      TS.moveItem(files, from, to);
+      TS.moveItem(thumbs, from, to);
+      renderFileList();
+    },
+  });
   async function loadThumbs() {
     if (rendering) return;
     rendering = true;
@@ -214,6 +228,7 @@
         '<button type="button" class="is-danger" data-act="remove" data-i="' + i + '" title="Remove">✕</button>';
       const thumb = thumbs[i] || TSPdfPreview.placeholderThumb('…');
       const tile = TSPdfPreview.createPdfTile(f, thumb, actions, i);
+      tile.draggable = true;
       if (!thumbs[i]) {
         const img = tile.querySelector('img');
         if (img) img.style.opacity = '0.45';
@@ -240,8 +255,8 @@
     }
     if (!files.length) {
       controls.style.display = 'none';
-      dropZone.style.display = '';
     }
+    syncDropZoneUI();
     renderFileList();
   });
   mergeBtn.addEventListener('click', async () => {

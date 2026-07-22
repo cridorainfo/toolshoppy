@@ -228,6 +228,70 @@
     return previewContainer;
   }
 
+  // Enables drag-to-reorder for tiles inside a list/grid container (in addition to
+  // any up/down arrow buttons). Bind once per container — it uses event delegation,
+  // so it keeps working after the container's innerHTML is re-rendered.
+  // opts.tileSelector — CSS selector for a draggable tile (default '[data-index]').
+  // opts.onReorder(fromIndex, toIndex) — called with the tile's data-index values.
+  function enableDragReorder(container, opts) {
+    if (!container || container._tsReorderBound) return;
+    container._tsReorderBound = true;
+    opts = opts || {};
+    const tileSelector = opts.tileSelector || '[data-index]';
+    const onReorder = typeof opts.onReorder === 'function' ? opts.onReorder : function () {};
+    let dragEl = null;
+
+    container.addEventListener('dragstart', (e) => {
+      const tile = e.target.closest(tileSelector);
+      if (!tile || !container.contains(tile) || tile.draggable === false) return;
+      dragEl = tile;
+      tile.classList.add('is-dragging');
+      if (e.dataTransfer) {
+        e.dataTransfer.effectAllowed = 'move';
+        try { e.dataTransfer.setData('text/plain', tile.dataset.index || ''); } catch (err) { /* Safari needs a set call, ignore value */ }
+        try { e.dataTransfer.setDragImage(tile, tile.offsetWidth / 2, tile.offsetHeight / 2); } catch (err) { /* setDragImage unsupported, browser falls back to default ghost */ }
+      }
+    });
+
+    container.addEventListener('dragend', () => {
+      if (dragEl) dragEl.classList.remove('is-dragging');
+      container.querySelectorAll('.drag-over').forEach((el) => el.classList.remove('drag-over'));
+      dragEl = null;
+    });
+
+    container.addEventListener('dragover', (e) => {
+      if (!dragEl) return;
+      const tile = e.target.closest(tileSelector);
+      if (!tile || tile === dragEl || !container.contains(tile)) return;
+      e.preventDefault();
+      container.querySelectorAll('.drag-over').forEach((el) => { if (el !== tile) el.classList.remove('drag-over'); });
+      tile.classList.add('drag-over');
+    });
+
+    container.addEventListener('dragleave', (e) => {
+      const tile = e.target.closest(tileSelector);
+      if (tile && !tile.contains(e.relatedTarget)) tile.classList.remove('drag-over');
+    });
+
+    container.addEventListener('drop', (e) => {
+      const tile = e.target.closest(tileSelector);
+      if (!dragEl || !tile || tile === dragEl || !container.contains(tile)) return;
+      e.preventDefault();
+      tile.classList.remove('drag-over');
+      const from = parseInt(dragEl.dataset.index, 10);
+      const to = parseInt(tile.dataset.index, 10);
+      if (Number.isInteger(from) && Number.isInteger(to) && from !== to) onReorder(from, to);
+    });
+  }
+
+  // Moves an array item from one index to another, in place.
+  function moveItem(arr, from, to) {
+    if (from === to || from < 0 || to < 0 || from >= arr.length || to >= arr.length) return arr;
+    const [item] = arr.splice(from, 1);
+    arr.splice(to, 0, item);
+    return arr;
+  }
+
   function downloadBlob(blob, filename) {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -373,6 +437,8 @@
     setupDropZone,
     renderFilePreview,
     getOrCreatePreviewContainer,
+    enableDragReorder,
+    moveItem,
     downloadBlob,
     loadImage,
     canvasToTargetSize,
