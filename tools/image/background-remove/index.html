@@ -7,14 +7,14 @@
 <meta charset="UTF-8">
 <script>(function(){try{var t=localStorage.getItem('ts-theme');if(!t){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Background Remover Free Online — Remove Image Background | ToolShoppy</title>
-<meta name="description" content="Remove solid or plain backgrounds from photos free online. PNG with transparency, 100% on your device, no signup.">
+<title>Background Remover Free Online — AI Photo Background Remover | ToolShoppy</title>
+<meta name="description" content="Remove any background from a photo with on-device AI — people, products, pets, any backdrop. Free, no signup, transparent PNG, runs entirely in your browser.">
 <link rel="canonical" href="https://toolshoppy.com/tools/image/background-remove/">
 <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/assets/css/main.css">
 <meta name="theme-color" content="#E11D48">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Background Remover","url":"https://toolshoppy.com/tools/image/background-remove/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Background Remover","url":"https://toolshoppy.com/tools/image/background-remove/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","description":"AI-powered background remover that runs on-device — no upload, no signup.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
 </head>
 <body>
 <header class="site-header"><div class="container">
@@ -25,8 +25,8 @@
   <nav class="breadcrumb"><a href="/">Home</a> › <a href="/#image">Image</a> › <span class="crumb-current">Background Remover</span></nav>
   <div class="tool-header">
     <div class="icon-tile icon-tile--lg icon-tile--pink"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#background"></use></svg></div>
-    <h1>Background Remover</h1>
-    <p>Remove plain or solid backgrounds — exports PNG with transparency.</p>
+    <h1>AI Background Remover</h1>
+    <p>Cuts out the subject automatically — any background, not just plain colours. Exports a transparent PNG.</p>
   </div>
   <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
   <div class="tool-layout with-sidebar">
@@ -34,25 +34,44 @@
       <div class="drop-zone" id="dropZone">
         <div class="icon"><span class="icon-tile icon-tile--sm icon-tile--pink"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#upload"></use></svg></span></div>
         <div class="dz-cta">Upload image</div>
-        <p>Best for white, grey or single-colour backgrounds</p>
+        <p>AI detects the subject automatically — people, products, pets, anything</p>
         <input type="file" id="fileInput" accept="image/*">
       </div>
-      <div id="controls" style="display:none;margin-top:16px;">
-        <div class="calc-field"><label for="tolerance">Tolerance <span id="tolVal">40</span></label><input type="range" id="tolerance" min="10" max="120" value="40"></div>
-        <button class="btn btn-primary btn-block" id="processBtn">Remove Background</button>
-        <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+      <div id="working" style="display:none;text-align:center;padding:24px 0;">
+        <p id="workingLabel" style="font-weight:600;color:var(--text);margin-bottom:10px;">Removing background…</p>
+        <div class="progress-bar active"><div class="progress-bar-fill" id="progressFill"></div></div>
+        <p id="workingHint" style="font-size:0.8rem;color:var(--text-muted);margin-top:8px;"></p>
       </div>
       <div class="result-panel" id="resultPanel">
-        <img id="previewImg" alt="Preview" style="max-height:280px;border-radius:8px;border:1px solid var(--border);margin-bottom:12px;background:repeating-conic-gradient(#e2e8f0 0% 25%,#fff 0% 50%) 50%/16px 16px;">
-        <button class="btn btn-accent btn-block" id="downloadBtn"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#download"></use></svg> Download PNG</button>
+        <div class="ba-compare" id="baCompare">
+          <img id="afterImg" alt="Background removed">
+          <div class="ba-before-wrap" id="beforeWrap"><img id="beforeImg" alt="Original"></div>
+          <div class="ba-divider" id="baDivider"></div>
+          <div class="ba-handle" id="baHandle">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="8 7 3 12 8 17"></polyline><polyline points="16 7 21 12 16 17"></polyline></svg>
+          </div>
+          <span class="ba-tag before">Before</span>
+          <span class="ba-tag after">After</span>
+          <input type="range" class="ba-range" id="baSlider" min="0" max="100" value="50" aria-label="Drag to compare before and after">
+        </div>
+        <div class="calc-field" style="margin-top:16px;"><label for="feather">Edge softness <span id="featherVal">2</span>px</label><input type="range" id="feather" min="0" max="8" value="2"></div>
+        <div class="chip-row">
+          <button class="btn btn-accent btn-block" id="downloadBtn" style="flex:1;"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#download"></use></svg> Download PNG</button>
+          <button class="btn btn-block" id="downloadWhiteBtn" style="flex:1;">Download on white</button>
+        </div>
+        <button class="btn" id="resetBtn" style="margin-top:10px;">Try another image</button>
       </div>
       <div class="trust-badge"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock"></use></svg> Your files never leave your device</div>
     </div>
     <aside class="sidebar"><div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div>
-      <div class="info-box"><h4>Tips</h4><ul><li>Works best on plain backgrounds</li><li>Increase tolerance for off-white walls</li><li><a href="/tools/image/govt-photo/">Govt Photo Resizer</a> adds a white background</li></ul></div>
+      <div class="info-box"><h4>How it works</h4><ul><li>A small AI segmentation model downloads once (cached after) and runs locally in your browser via WebAssembly</li><li>Your photo is never uploaded anywhere — inference happens entirely on your device</li><li>Works on complex, real-world backgrounds — not just solid colours</li><li>Drag the slider on the result to compare before/after</li></ul></div>
     </aside>
   </div>
   <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
+  <div class="content-section">
+    <h2>Free AI background remover — no signup</h2>
+    <p>Upload a photo and ToolShoppy's on-device AI finds the subject and removes the background automatically, exporting a transparent PNG. No account, no watermark, no upload to a server — the model runs in your browser.</p>
+  </div>
 </main>
 <div class="ad-slot ad-bottom"><span class="ad-label">Ad</span></div>
 <footer class="site-footer"><div class="container"><div class="footer-bottom">© 2026 ToolShoppy</div></div></footer>
@@ -60,33 +79,88 @@
 <script src="/assets/js/ga-config.js"></script><script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
 <script src="/assets/js/core.js"></script><script src="/assets/js/image-tools.js"></script><script src="/assets/js/ads.js?v=6"></script><script src="/assets/js/analytics.js"></script>
+<script src="/assets/libs/onnxruntime/ort.wasm.min.js"></script>
+<script src="/assets/js/bg-remove.js"></script>
 <script>
 (function () {
-  var file = null, blob = null;
   var dropZone = document.getElementById('dropZone'), fileInput = document.getElementById('fileInput');
-  var controls = document.getElementById('controls'), processBtn = document.getElementById('processBtn');
-  var progressBar = document.getElementById('progressBar'), progressFill = document.getElementById('progressFill');
-  var resultPanel = document.getElementById('resultPanel'), previewImg = document.getElementById('previewImg');
-  var tolerance = document.getElementById('tolerance'), tolVal = document.getElementById('tolVal');
-  tolerance.addEventListener('input', function () { tolVal.textContent = tolerance.value; });
-  TS.setupDropZone(dropZone, fileInput, function (files) { file = files[0]; if (file) controls.style.display = 'block'; });
-  processBtn.addEventListener('click', async function () {
+  var working = document.getElementById('working'), workingLabel = document.getElementById('workingLabel'), workingHint = document.getElementById('workingHint');
+  var progressFill = document.getElementById('progressFill');
+  var resultPanel = document.getElementById('resultPanel');
+  var beforeImg = document.getElementById('beforeImg'), afterImg = document.getElementById('afterImg');
+  var beforeWrap = document.getElementById('beforeWrap'), baSlider = document.getElementById('baSlider'), baDivider = document.getElementById('baDivider'), baHandle = document.getElementById('baHandle');
+  var feather = document.getElementById('feather'), featherVal = document.getElementById('featherVal');
+  var downloadBtn = document.getElementById('downloadBtn'), downloadWhiteBtn = document.getElementById('downloadWhiteBtn');
+  var resetBtn = document.getElementById('resetBtn');
+  var seg = null, blob = null, sourceUrl = null;
+
+  function setBaPosition(pct) {
+    beforeWrap.style.width = pct + '%';
+    baDivider.style.left = pct + '%';
+    baHandle.style.left = pct + '%';
+  }
+  baSlider.addEventListener('input', function () { setBaPosition(+baSlider.value); });
+
+  async function recompose() {
+    if (!seg) return;
+    var canvas = TSBgRemove.compose(seg, +feather.value);
+    blob = await new Promise(function (r) { canvas.toBlob(r, 'image/png'); });
+    afterImg.src = URL.createObjectURL(blob);
+  }
+  feather.addEventListener('input', function () {
+    featherVal.textContent = feather.value;
+    recompose();
+  });
+
+  function reset() {
+    resultPanel.classList.remove('active');
+    working.style.display = 'none';
+    dropZone.style.display = '';
+    seg = null; blob = null;
+    fileInput.value = '';
+  }
+  resetBtn.addEventListener('click', reset);
+
+  TS.setupDropZone(dropZone, fileInput, async function (files) {
+    var file = files[0];
     if (!file) return;
-    processBtn.disabled = true; progressBar.classList.add('active'); progressFill.style.width = '30%';
+    dropZone.style.display = 'none';
+    working.style.display = 'block';
+    workingLabel.textContent = 'Loading AI model…';
+    workingHint.textContent = 'First run only — cached after this.';
+    progressFill.style.width = '2%';
     try {
       var loaded = await TS.loadImage(file);
-      var canvas = TSImage.removeSolidBackground(loaded.img, { tolerance: +tolerance.value });
-      progressFill.style.width = '80%';
-      blob = await new Promise(function (r) { canvas.toBlob(r, 'image/png'); });
-      previewImg.src = URL.createObjectURL(blob);
+      beforeImg.src = loaded.url;
+      seg = await TSBgRemove.segment(loaded.img, function (pct) {
+        progressFill.style.width = pct + '%';
+        if (pct >= 60 && pct < 95) { workingLabel.textContent = 'Finding the subject…'; workingHint.textContent = ''; }
+      });
+      await recompose();
+      working.style.display = 'none';
       resultPanel.classList.add('active');
-      progressFill.style.width = '100%';
+      setBaPosition(50);
       if (window.TSAnalytics) TSAnalytics.track('tool_complete', { tool: 'background-remove' });
-    } catch (e) { alert('Could not process image.'); }
-    processBtn.disabled = false; progressBar.classList.remove('active');
-  });
-  document.getElementById('downloadBtn').addEventListener('click', function () {
+    } catch (e) {
+      alert(e && e.message ? e.message : 'Could not process image.');
+      reset();
+    }
+  }, { preview: false });
+
+  downloadBtn.addEventListener('click', function () {
     if (blob) TS.downloadBlob(blob, 'no-background.png');
+  });
+  downloadWhiteBtn.addEventListener('click', async function () {
+    if (!seg) return;
+    var canvas = TSBgRemove.compose(seg, +feather.value);
+    var flat = document.createElement('canvas');
+    flat.width = canvas.width; flat.height = canvas.height;
+    var fctx = flat.getContext('2d');
+    fctx.fillStyle = '#fff';
+    fctx.fillRect(0, 0, flat.width, flat.height);
+    fctx.drawImage(canvas, 0, 0);
+    var whiteBlob = await new Promise(function (r) { flat.toBlob(r, 'image/jpeg', 0.95); });
+    TS.downloadBlob(whiteBlob, 'white-background.jpg');
   });
 })();
 </script>
