@@ -1,4 +1,36 @@
 {
+  "trailingSlash": true,
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/search", "destination": "/search/", "type": 301 },
+
+    { "source": "/free-online-pdf-editor", "destination": "/tools/pdf/editor/", "type": 301 },
+    { "source": "/word-to-pdf-free", "destination": "/tools/pdf/word-to-pdf/", "type": 301 },
+    { "source": "/pdf-to-word-free", "destination": "/tools/pdf/pdf-to-word/", "type": 301 },
+    { "source": "/pdf-compression-online", "destination": "/tools/pdf/compress/", "type": 301 },
+    { "source": "/free-video-compressor", "destination": "/tools/video/compress/", "type": 301 },
+    { "source": "/image-compressor-free", "destination": "/tools/image/compress/", "type": 301 },
+    { "source": "/image-to-pdf-free", "destination": "/tools/pdf/image-to-pdf/", "type": 301 },
+    { "source": "/pdf-to-image-free", "destination": "/tools/pdf/pdf-to-image/", "type": 301 },
+    { "source": "/free-image-converter", "destination": "/tools/image/convert/", "type": 301 },
+    { "source": "/free-qr-code-generator", "destination": "/tools/misc/qr-generator/", "type": 301 },
+    { "source": "/remove-background-free", "destination": "/tools/image/background-remove/", "type": 301 },
+    { "source": "/aed-to-inr", "destination": "/tools/rates/currency-converter/aed-inr/", "type": 301 },
+    { "source": "/silver-rate-uae", "destination": "/tools/rates/silver-rate/uae/", "type": 301 },
+    { "source": "/uae-gold-rate", "destination": "/tools/rates/gold-rate/dubai/", "type": 301 },
+
+    { "source": "/tools/pdf/editor/free-online", "destination": "/tools/pdf/editor/", "type": 301 },
+    { "source": "/tools/pdf/word-to-pdf/free-online", "destination": "/tools/pdf/word-to-pdf/", "type": 301 },
+    { "source": "/tools/pdf/pdf-to-word/free-online", "destination": "/tools/pdf/pdf-to-word/", "type": 301 },
+    { "source": "/tools/pdf/compress/online", "destination": "/tools/pdf/compress/", "type": 301 },
+    { "source": "/tools/video/compress/free-online", "destination": "/tools/video/compress/", "type": 301 },
+    { "source": "/tools/image/compress/free-online", "destination": "/tools/image/compress/", "type": 301 },
+    { "source": "/tools/pdf/image-to-pdf/free-online", "destination": "/tools/pdf/image-to-pdf/", "type": 301 },
+    { "source": "/tools/pdf/pdf-to-image/free-online", "destination": "/tools/pdf/pdf-to-image/", "type": 301 },
+    { "source": "/tools/image/convert/free-online", "destination": "/tools/image/convert/", "type": 301 },
+    { "source": "/tools/misc/qr-generator/free-online", "destination": "/tools/misc/qr-generator/", "type": 301 },
+    { "source": "/tools/image/background-remove/free-online", "destination": "/tools/image/background-remove/", "type": 301 }
+  ],
   "headers": [
     {
       "source": "**/*.@(js|css)",

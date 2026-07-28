@@ -1756,17 +1756,17 @@
     }
   ],
   "landing": {
-    "pdf-editor-free": "/tools/pdf/editor/free-online/",
-    "word-to-pdf-free": "/tools/pdf/word-to-pdf/free-online/",
-    "pdf-to-word-free": "/tools/pdf/pdf-to-word/free-online/",
-    "pdf-compress-online": "/tools/pdf/compress/online/",
-    "video-compress-free": "/tools/video/compress/free-online/",
-    "image-compress-free": "/tools/image/compress/free-online/",
-    "image-to-pdf-free": "/tools/pdf/image-to-pdf/free-online/",
-    "pdf-to-image-free": "/tools/pdf/pdf-to-image/free-online/",
-    "image-converter-free": "/tools/image/convert/free-online/",
-    "qr-generator-free": "/tools/misc/qr-generator/free-online/",
-    "background-remove-free": "/tools/image/background-remove/free-online/",
+    "pdf-editor-free": "/tools/pdf/editor/",
+    "word-to-pdf-free": "/tools/pdf/word-to-pdf/",
+    "pdf-to-word-free": "/tools/pdf/pdf-to-word/",
+    "pdf-compress-online": "/tools/pdf/compress/",
+    "video-compress-free": "/tools/video/compress/",
+    "image-compress-free": "/tools/image/compress/",
+    "image-to-pdf-free": "/tools/pdf/image-to-pdf/",
+    "pdf-to-image-free": "/tools/pdf/pdf-to-image/",
+    "image-converter-free": "/tools/image/convert/",
+    "qr-generator-free": "/tools/misc/qr-generator/",
+    "background-remove-free": "/tools/image/background-remove/",
     "currency-aed-inr": "/tools/rates/currency-converter/aed-inr/",
     "silver-rate-uae": "/tools/rates/silver-rate/uae/",
     "gold-rate-uae": "/tools/rates/gold-rate/dubai/"
@@ -1774,47 +1774,47 @@
   "redirects": [
     {
       "from": "/free-online-pdf-editor",
-      "to": "/tools/pdf/editor/free-online/"
+      "to": "/tools/pdf/editor/"
     },
     {
       "from": "/word-to-pdf-free",
-      "to": "/tools/pdf/word-to-pdf/free-online/"
+      "to": "/tools/pdf/word-to-pdf/"
     },
     {
       "from": "/pdf-to-word-free",
-      "to": "/tools/pdf/pdf-to-word/free-online/"
+      "to": "/tools/pdf/pdf-to-word/"
     },
     {
       "from": "/pdf-compression-online",
-      "to": "/tools/pdf/compress/online/"
+      "to": "/tools/pdf/compress/"
     },
     {
       "from": "/free-video-compressor",
-      "to": "/tools/video/compress/free-online/"
+      "to": "/tools/video/compress/"
     },
     {
       "from": "/image-compressor-free",
-      "to": "/tools/image/compress/free-online/"
+      "to": "/tools/image/compress/"
     },
     {
       "from": "/image-to-pdf-free",
-      "to": "/tools/pdf/image-to-pdf/free-online/"
+      "to": "/tools/pdf/image-to-pdf/"
     },
     {
       "from": "/pdf-to-image-free",
-      "to": "/tools/pdf/pdf-to-image/free-online/"
+      "to": "/tools/pdf/pdf-to-image/"
     },
     {
       "from": "/free-image-converter",
-      "to": "/tools/image/convert/free-online/"
+      "to": "/tools/image/convert/"
     },
     {
       "from": "/free-qr-code-generator",
-      "to": "/tools/misc/qr-generator/free-online/"
+      "to": "/tools/misc/qr-generator/"
     },
     {
       "from": "/remove-background-free",
-      "to": "/tools/image/background-remove/free-online/"
+      "to": "/tools/image/background-remove/"
     },
     {
       "from": "/aed-to-inr",

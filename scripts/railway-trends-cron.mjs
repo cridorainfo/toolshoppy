@@ -45,10 +45,11 @@ function gitPathsToStage() {
     'assets/js/trends-data.js',
     'assets/js/trends-seo.js',
     'sitemap.xml',
-    '_redirects',
+    'serve.json',
     'index.html',
   ]);
   for (const page of LANDING_PAGES) {
+    if (page.redirectOnly) continue;
     paths.add(page.path.replace(/^\//, '').replace(/\/$/, '') + '/index.html');
   }
   return [...paths];
@@ -104,7 +105,7 @@ function commitAndPush(workDir, branch) {
   const date = new Date().toISOString().slice(0, 10);
   sh(`git commit -m ${JSON.stringify(`chore: automated monthly trends SEO sync (${date})`)}`, workDir, true);
   sh(`git push origin ${branch}`, workDir);
-  log('Pushed to GitHub. Cloudflare Pages will deploy automatically.');
+  log('Pushed to GitHub. Railway will redeploy the static site automatically.');
   return true;
 }
 

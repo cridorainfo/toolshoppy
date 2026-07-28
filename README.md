@@ -1,6 +1,6 @@
 # ToolShoppy — Development Master Plan
 > Your one-stop shop for every free tool on the internet.
-> **Domain:** toolshoppy.com | **Stack:** Static HTML/CSS/JS + Cloudflare Pages
+> **Domain:** toolshoppy.com | **Stack:** Static HTML/CSS/JS + Railway (behind Cloudflare DNS)
 
 ---
 
@@ -44,14 +44,14 @@ Analysis of a Google Trends export (8 keyword clusters, UAE-weighted search prof
 
 | Layer | Choice | Reason |
 |---|---|---|
-| Hosting | Cloudflare Pages (free) | Global CDN, zero cost, unlimited bandwidth |
+| Hosting | Railway (`serve`) + Cloudflare DNS/proxy | Static site via `npm start`; CDN/proxy at edge |
 | Frontend | Vanilla HTML5 + CSS3 + JS (ES6+) | No build step, instant load, SEO-friendly |
 | PDF Processing | pdf-lib.js + PDF.js (client-side) | Files never leave user device |
 | Image Processing | browser-image-compression + Canvas API | 100% client-side, no server needed |
 | Video/Audio | FFmpeg.wasm (client-side) | Local processing, no upload |
-| Rates Data | Cloudflare Worker (cron) → JSON | Fetches gold/fuel/currency rates daily |
-| SEO | Static HTML pages + structured data | No JS rendering needed for Google |
-| Analytics | Cloudflare Web Analytics (free) + GA4 | Privacy-friendly + full funnel |
+| Rates Data | Cloudflare Worker / API routes → JSON | Fetches gold/fuel/currency rates daily |
+| SEO | Static HTML pages + structured data | Redirects live in `serve.json` (not Netlify `_redirects`) |
+| Analytics | GA4 | Full funnel |
 | Ads | Google AdSense + Ezoic + Media.net | Layered for max RPM |
 
 ---
@@ -107,6 +107,9 @@ toolshoppy/
 ├── manifest.json               # PWA manifest
 ├── sw.js                       # Service Worker (offline support)
 ├── ads.txt                     # AdSense / Ezoic verification
+├── serve.json                  # Railway `serve` config — redirects, headers, trailingSlash
+├── railway.cron.toml           # Trends SEO cron service (NOT railway.toml — see file comments)
+├── package.json                # `npm start` → serve static site on $PORT
 ├── assets/
 │   ├── css/
 │   │   ├── main.css            # Global styles + CSS variables
@@ -447,7 +450,7 @@ Create location/variant pages automatically:
 - JS libraries loaded only on tool pages that need them
 - CSS critical path inlined in `<head>`
 - Service Worker caches tool pages for offline use
-- Cloudflare caches everything at edge
+- Cloudflare edge caches HTML via the DNS proxy; keep Cache-Control sensible in `serve.json`
 
 ---
 
@@ -515,22 +518,25 @@ Users can install ToolShoppy on their phone home screen:
 
 ## 🚀 Deployment
 
-### Cloudflare Pages Setup
+### Railway static site (production)
 ```bash
-# 1. Push to GitHub
-git init
-git add .
-git commit -m "Initial ToolShoppy build"
-git remote add origin https://github.com/yourusername/toolshoppy
-git push -u origin main
+# 1. Push to GitHub (cridorainfo/toolshoppy, branch master)
+git push origin master
 
-# 2. Connect to Cloudflare Pages
-# Dashboard → Pages → Create Project → Connect GitHub → Deploy
+# 2. Railway project "toolshoppy" auto-deploys the "toolshoppy" service
+#    startCommand: npm start  →  serve . -l $PORT
+#    Redirects/headers: serve.json (serve does NOT read Netlify-style _redirects)
 
 # 3. Custom domain
-# Add toolshoppy.com → DNS → CNAME → pages.dev
-# SSL is automatic
+#    toolshoppy.com + www.toolshoppy.com are attached in Railway
+#    DNS is proxied through Cloudflare (orange cloud) → Railway origin
 ```
+
+### Railway trends cron (monthly)
+Separate service `toolshoppy-trends-cron` reads `railway.cron.toml`
+(schedule `0 6 1 * *`). Config File Path must be set to `/railway.cron.toml`
+in that service's settings — never put a root `railway.toml` in this repo
+(it hijacks the static-site service start command).
 
 ### Cloudflare Worker (Rates Fetcher)
 ```javascript
@@ -642,7 +648,7 @@ python -m http.server 3000
 
 ## ✅ Launch Checklist
 
-- [ ] Homepage live on Cloudflare Pages
+- [ ] Homepage live on Railway (toolshoppy.com)
 - [ ] 5 core tools working (Phase 1)
 - [ ] 10 SEO blog articles published
 - [ ] Google Search Console verified
@@ -665,7 +671,8 @@ python -m http.server 3000
 
 | Resource | URL |
 |---|---|
-| Cloudflare Pages | pages.cloudflare.com |
+| Railway | railway.com |
+| Cloudflare (DNS/proxy) | dash.cloudflare.com |
 | Google Search Console | search.google.com/search-console |
 | Google AdSense | adsense.google.com |
 | Ezoic | ezoic.com |

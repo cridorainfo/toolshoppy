@@ -8,6 +8,11 @@ Goal: Beat them on UX, speed, privacy, and India/Gulf localisation.
 ## Folder
 `C:\Users\Lagari A\Desktop\IDEAS\toolshoppy`
 
+## Hosting (do not confuse with Cloudflare Pages)
+- **Production:** Railway service `toolshoppy` (`npm start` → `serve . -l $PORT`), domain behind Cloudflare DNS/proxy.
+- **Redirects:** live only in [`serve.json`](serve.json) — Netlify-style `_redirects` is ignored by `serve` and must not be reintroduced.
+- **Trends cron:** separate Railway service using [`railway.cron.toml`](railway.cron.toml) (never a root `railway.toml`).
+
 ## Core Rules for Every File You Build
 
 1. **Pure static HTML/CSS/JS** — no React, no Node, no build step
