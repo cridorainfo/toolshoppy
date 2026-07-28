@@ -347,10 +347,15 @@ function updateRedirects(landingPages) {
   const seen = new Set(redirects.map((r) => r.source));
 
   function add(source, destination) {
-    const src = source.replace(/\/$/, '') || '/';
-    if (seen.has(src)) return;
-    seen.add(src);
-    redirects.push({ source: src, destination, type: 301 });
+    const base = source.replace(/\/$/, '') || '/';
+    const variants = [base];
+    if (base !== '/') variants.push(base + '/');
+    for (const src of variants) {
+      if (seen.has(src)) continue;
+      if (src === destination || src + '/' === destination || src === destination.replace(/\/$/, '')) continue;
+      seen.add(src);
+      redirects.push({ source: src, destination, type: 301 });
+    }
   }
 
   for (const page of landingPages) {
@@ -360,7 +365,7 @@ function updateRedirects(landingPages) {
   }
 
   serve.redirects = redirects;
-  serve.trailingSlash = true;
+  delete serve.trailingSlash;
   serve.cleanUrls = true;
   fs.writeFileSync(servePath, JSON.stringify(serve, null, 2) + '\n');
   console.log('  serve.json redirects:', redirects.length, 'rules');
