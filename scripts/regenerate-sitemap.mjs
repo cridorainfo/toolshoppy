@@ -36,7 +36,13 @@ function lastmodFor(urlPath) {
   let rel;
   if (urlPath === '/') rel = 'index.html';
   else if (urlPath.endsWith('.html')) rel = urlPath.replace(/^\//, '');
-  else rel = urlPath.replace(/^\//, '').replace(/\/$/, '') + '/index.html';
+  else {
+    const clean = urlPath.replace(/^\//, '').replace(/\/$/, '');
+    // Root HTML pages served via cleanUrls: /about → about.html
+    const rootHtml = path.join(ROOT, `${clean}.html`);
+    if (fs.existsSync(rootHtml)) rel = `${clean}.html`;
+    else rel = `${clean}/index.html`;
+  }
   return gitLastmod(rel) || fileLastmod(path.join(ROOT, rel));
 }
 
@@ -59,14 +65,14 @@ function priorityFor(p) {
   if (p.startsWith('/tools/rates/')) return 0.9;
   if (p.startsWith('/tools/pdf/') || p.startsWith('/tools/video/')) return 0.9;
   if (p.startsWith('/tools/')) return 0.85;
-  if (['/privacy.html', '/terms.html', '/about.html', '/contact.html'].includes(p)) return 0.3;
+  if (['/privacy/', '/terms/', '/about/', '/contact/'].includes(p)) return 0.3;
   return 0.8;
 }
 
 function changefreqFor(p) {
   if (p.startsWith('/tools/rates/')) return 'daily';
   if (p === '/' || p === '/blog/') return 'weekly';
-  if (['/privacy.html', '/terms.html', '/about.html', '/contact.html'].includes(p)) return 'yearly';
+  if (['/privacy/', '/terms/', '/about/', '/contact/'].includes(p)) return 'yearly';
   return 'monthly';
 }
 
@@ -79,7 +85,10 @@ for (const abs of files) {
   let urlPath;
   if (rel === 'index.html') urlPath = '/';
   else if (rel.endsWith('/index.html')) urlPath = '/' + rel.slice(0, -'index.html'.length);
-  else urlPath = '/' + rel;
+  else if (rel.endsWith('.html') && !rel.includes('/')) {
+    // cleanUrls: about.html is served at /about/ — never list .html in sitemap
+    urlPath = '/' + rel.slice(0, -'.html'.length) + '/';
+  } else urlPath = '/' + rel;
   urls.push(urlPath);
 }
 
