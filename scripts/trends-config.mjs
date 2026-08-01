@@ -110,7 +110,7 @@ export const MAP_RULES = [
 /**
  * SEO landing / vanity redirect config.
  *
- * redirectOnly:true  — thin doorway URLs (*/free-online/, */online/). No HTML is
+ * redirectOnly:true  — thin doorway URLs (.../free-online/, .../online/). No HTML is
  *   generated; vanity slug + legacy path both 301 to TOOL_PATHS[tool].
  * redirectOnly:false — programmatic location pages that still get a landing HTML.
  */
