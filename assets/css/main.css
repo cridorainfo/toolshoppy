@@ -854,7 +854,7 @@ button { font-family: inherit; cursor: pointer; }
   font-size: 0.85rem;
 }
 .file-item .name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.file-item .remove { color: var(--danger); font-weight: 700; }
+.file-item .remove { color: var(--danger); font-weight: 700; cursor: pointer; padding: 2px 6px; }
 
 /* Short-link history rows (URL shortener) */
 .short-history-header {

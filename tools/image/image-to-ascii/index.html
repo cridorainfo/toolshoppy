@@ -576,6 +576,7 @@
   TS.setupDropZone(document.getElementById('dropZone'), document.getElementById('fileInput'), function (files) {
     var file = files[0];
     if (!file) return;
+    TS.renderFilePreview(TS.getOrCreatePreviewContainer(document.getElementById('dropZone')), [file]);
     TS.loadImage(file).then(function (loaded) {
       var box = detectCropBox(loaded.img);
       state.img = box ? cropToCanvas(loaded.img, box) : loaded.img;

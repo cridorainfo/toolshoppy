@@ -110,12 +110,13 @@
     <div class="tool-card-main">
       <div class="drop-zone" id="dropZone">
         <div class="icon"><span class="icon-tile icon-tile--sm icon-tile--teal"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#upload"></use></svg></span></div>
-        <div class="dz-cta">Select image</div>
-        <p>or drop an image here</p>
+        <div class="dz-cta">Select images</div>
+        <p>or drop here — multiple files supported</p>
         <p class="drop-zone-hint">JPG, PNG, WebP supported</p>
-        <input type="file" id="fileInput" accept="image/*">
+        <input type="file" id="fileInput" accept="image/*" multiple>
       </div>
       <div id="controls" style="display:none;margin-top:16px;">
+        <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:10px;" id="batchHint"></p>
         <div class="chip-row" id="modeRow">
           <button class="chip active" data-mode="pixels">By Pixels</button>
           <button class="chip" data-mode="percent">By Percent</button>
@@ -129,23 +130,24 @@
           <input type="range" id="percentSlider" min="5" max="150" value="100" style="width:100%;">
           <p style="font-size:0.85rem;color:var(--text-muted);">Scale: <strong id="percentValue">100%</strong> → <span id="percentDims"></span></p>
         </div>
-        <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:10px;">Original: <strong id="origDims">-</strong></p>
-        <button class="btn btn-primary btn-block" id="resizeBtn">Resize Image</button>
+        <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:10px;">First image: <strong id="origDims">-</strong></p>
+        <div class="file-list" id="fileList"></div>
+        <button class="btn btn-primary btn-block" id="resizeBtn">Resize Images</button>
         <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
       </div>
       <div class="result-panel" id="resultPanel">
         <div class="compare-row">
           <div class="compare-box">
-            <div class="label">New Size</div>
-            <div class="value" id="outDims">-</div>
+            <div class="label">Files</div>
+            <div class="value" id="outCount">-</div>
           </div>
           <div class="compare-box">
-            <div class="label">File Size</div>
+            <div class="label">Total Size</div>
             <div class="value" id="outFileSize">-</div>
           </div>
         </div>
-        <img id="previewImg" alt="Processed image preview" style="border-radius:8px;border:1px solid var(--border);max-height:280px;margin-bottom:16px;">
-        <button class="btn btn-accent btn-block" id="downloadBtn"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#download"></use></svg> Download Resized Image</button>
+        <div class="file-list" id="resultList"></div>
+        <button class="btn btn-accent btn-block" id="downloadBtn"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#download"></use></svg> <span id="downloadBtnLabel">Download All</span></button>
       </div>
       <div class="trust-badge"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock"></use></svg> Your files never leave your device</div>
     </div>
@@ -165,10 +167,10 @@
   <div class="content-section">
     <h2>How to resize an image online</h2>
     <ol>
-      <li>Upload your image — drag & drop or click to browse.</li>
-      <li>Choose By Pixels for an exact width/height, or By Percent for quick scaling.</li>
+      <li>Upload one or more images — drag & drop or click to browse.</li>
+      <li>Choose By Pixels for an exact width/height, or By Percent for quick scaling (settings apply to all).</li>
       <li>Lock aspect ratio to avoid stretching, if needed.</li>
-      <li>Click <strong>Resize Image</strong> and download the result.</li>
+      <li>Click <strong>Resize Images</strong> and download individually or as a ZIP.</li>
     </ol>
   </div>
   <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
@@ -246,22 +248,41 @@
   const percentValue = document.getElementById('percentValue');
   const percentDims = document.getElementById('percentDims');
   const origDims = document.getElementById('origDims');
+  const batchHint = document.getElementById('batchHint');
+  const fileList = document.getElementById('fileList');
   const resizeBtn = document.getElementById('resizeBtn');
   const progressBar = document.getElementById('progressBar');
   const progressFill = document.getElementById('progressFill');
   const resultPanel = document.getElementById('resultPanel');
-  const outDims = document.getElementById('outDims');
+  const outCount = document.getElementById('outCount');
   const outFileSize = document.getElementById('outFileSize');
-  const previewImg = document.getElementById('previewImg');
+  const resultList = document.getElementById('resultList');
   const downloadBtn = document.getElementById('downloadBtn');
-  let currentFile = null;
+  const downloadBtnLabel = document.getElementById('downloadBtnLabel');
+  let files = [];
   let naturalW = 0, naturalH = 0;
   let mode = 'pixels';
-  let resultBlob = null;
-  TS.setupDropZone(dropZone, fileInput, async (files) => {
-    currentFile = files[0];
-    if (!currentFile) return;
-    const { img, url } = await TS.loadImage(currentFile);
+  let results = [];
+  let lastEdited = 'width';
+
+  function renderFileList() {
+    TS.renderFilePreview(TS.getOrCreatePreviewContainer(dropZone), files, { maxFiles: 24 });
+    fileList.innerHTML = '';
+    files.forEach((f, i) => {
+      const row = document.createElement('div');
+      row.className = 'file-item';
+      row.innerHTML = '<span class="name">' + f.name + '</span><span>' + TS.formatBytes(f.size) + '</span><span class="remove" data-i="' + i + '" role="button" tabindex="0" aria-label="Remove">✕</span>';
+      fileList.appendChild(row);
+    });
+    batchHint.textContent = files.length > 1
+      ? files.length + ' images selected — same resize settings apply to all'
+      : '';
+    resizeBtn.textContent = files.length > 1 ? 'Resize ' + files.length + ' Images' : 'Resize Image';
+  }
+
+  async function setDimsFromFirst() {
+    if (!files.length) return;
+    const { img, url } = await TS.loadImage(files[0]);
     naturalW = img.naturalWidth;
     naturalH = img.naturalHeight;
     URL.revokeObjectURL(url);
@@ -269,9 +290,33 @@
     widthInput.value = naturalW;
     heightInput.value = naturalH;
     updatePercentDims();
+  }
+
+  TS.setupDropZone(dropZone, fileInput, async (newFiles) => {
+    const imgs = newFiles.filter((f) => !f.type || f.type.indexOf('image/') === 0);
+    if (!imgs.length) return;
+    const wasEmpty = !files.length;
+    files = files.concat(imgs);
     controls.style.display = 'block';
     resultPanel.classList.remove('active');
+    results = [];
+    renderFileList();
+    if (wasEmpty) await setDimsFromFirst();
+  }, { preview: false });
+
+  fileList.addEventListener('click', (e) => {
+    const rm = e.target.closest('.remove');
+    if (!rm) return;
+    files.splice(parseInt(rm.dataset.i, 10), 1);
+    renderFileList();
+    if (!files.length) {
+      controls.style.display = 'none';
+      resultPanel.classList.remove('active');
+    } else {
+      setDimsFromFirst();
+    }
   });
+
   modeRow.addEventListener('click', (e) => {
     const btn = e.target.closest('.chip');
     if (!btn) return;
@@ -282,11 +327,13 @@
     percentMode.style.display = mode === 'percent' ? 'block' : 'none';
   });
   widthInput.addEventListener('input', () => {
+    lastEdited = 'width';
     if (lockAspect.checked && naturalW) {
       heightInput.value = Math.round((parseInt(widthInput.value, 10) || 0) * naturalH / naturalW);
     }
   });
   heightInput.addEventListener('input', () => {
+    lastEdited = 'height';
     if (lockAspect.checked && naturalH) {
       widthInput.value = Math.round((parseInt(heightInput.value, 10) || 0) * naturalW / naturalH);
     }
@@ -299,49 +346,94 @@
     }
   }
   percentSlider.addEventListener('input', updatePercentDims);
+
+  function dimsForImage(nw, nh) {
+    if (mode === 'percent') {
+      const pct = parseInt(percentSlider.value, 10);
+      return { w: Math.round(nw * pct / 100), h: Math.round(nh * pct / 100) };
+    }
+    let w = parseInt(widthInput.value, 10) || nw;
+    let h = parseInt(heightInput.value, 10) || nh;
+    if (lockAspect.checked && nw && nh) {
+      if (lastEdited === 'width') h = Math.round(w * nh / nw);
+      else w = Math.round(h * nw / nh);
+    }
+    return { w: Math.max(1, w), h: Math.max(1, h) };
+  }
+
   resizeBtn.addEventListener('click', async () => {
-    if (!currentFile) return;
+    if (!files.length) return;
     resizeBtn.disabled = true;
     progressBar.classList.add('active');
-    progressFill.style.width = '40%';
+    results = [];
+    resultList.innerHTML = '';
+    let totalSize = 0;
     try {
-      const { img, url } = await TS.loadImage(currentFile);
-      let w, h;
-      if (mode === 'pixels') {
-        w = parseInt(widthInput.value, 10) || naturalW;
-        h = parseInt(heightInput.value, 10) || naturalH;
-      } else {
-        const pct = parseInt(percentSlider.value, 10);
-        w = Math.round(naturalW * pct / 100);
-        h = Math.round(naturalH * pct / 100);
+      for (let i = 0; i < files.length; i++) {
+        progressFill.style.width = Math.round((i / files.length) * 100) + '%';
+        const file = files[i];
+        try {
+          const { img, url } = await TS.loadImage(file);
+          const { w, h } = dimsForImage(img.naturalWidth, img.naturalHeight);
+          const canvas = document.createElement('canvas');
+          canvas.width = w;
+          canvas.height = h;
+          canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+          const mimeType = file.type && file.type.indexOf('image/') === 0 ? file.type : 'image/jpeg';
+          const blob = await new Promise((resolve) => canvas.toBlob(resolve, mimeType, 0.92));
+          URL.revokeObjectURL(url);
+          const baseName = (file.name || 'image').replace(/\.[^/.]+$/, '');
+          const ext = (file.name.match(/\.[^/.]+$/) || ['.jpg'])[0];
+          const outName = baseName + '-resized' + ext;
+          const previewUrl = URL.createObjectURL(blob);
+          totalSize += blob.size;
+          results.push({ name: outName, blob, previewUrl });
+          const row = document.createElement('div');
+          row.className = 'file-item';
+          row.innerHTML =
+            '<img src="' + previewUrl + '" alt="" style="width:48px;height:48px;object-fit:cover;border-radius:8px;border:1px solid var(--border);flex-shrink:0;">' +
+            '<span class="name">' + outName + '</span>' +
+            '<span>' + w + '×' + h + ' · ' + TS.formatBytes(blob.size) + '</span>' +
+            '<button type="button" class="btn" data-dl="' + (results.length - 1) + '" style="padding:6px 10px;font-size:0.8rem;">Download</button>';
+          resultList.appendChild(row);
+        } catch (err) {
+          const row = document.createElement('div');
+          row.className = 'file-item';
+          row.innerHTML = '<span class="name">❌ ' + file.name + ' — could not resize</span>';
+          resultList.appendChild(row);
+        }
       }
-      const canvas = document.createElement('canvas');
-      canvas.width = w;
-      canvas.height = h;
-      const ctx = canvas.getContext('2d');
-      ctx.drawImage(img, 0, 0, w, h);
-      progressFill.style.width = '80%';
-      const mimeType = currentFile.type && currentFile.type.startsWith('image/') ? currentFile.type : 'image/jpeg';
-      const blob = await new Promise((resolve) => canvas.toBlob(resolve, mimeType, 0.92));
-      resultBlob = blob;
       progressFill.style.width = '100%';
-      outDims.textContent = w + '×' + h + ' px';
-      outFileSize.textContent = TS.formatBytes(blob.size);
-      previewImg.src = URL.createObjectURL(blob);
+      outCount.textContent = String(results.length);
+      outFileSize.textContent = TS.formatBytes(totalSize);
+      downloadBtnLabel.textContent = results.length > 1 ? 'Download All (ZIP)' : 'Download Resized Image';
+      downloadBtn.style.display = results.length ? '' : 'none';
       resultPanel.classList.add('active');
-      URL.revokeObjectURL(url);
-    } catch (err) {
-      alert('Could not process this image. Try a different file.');
     } finally {
       resizeBtn.disabled = false;
       setTimeout(() => progressBar.classList.remove('active'), 500);
     }
   });
-  downloadBtn.addEventListener('click', () => {
-    if (!resultBlob) return;
-    const baseName = (currentFile.name || 'image').replace(/\.[^/.]+$/, '');
-    const ext = (currentFile.name.match(/\.[^/.]+$/) || ['.jpg'])[0];
-    TS.downloadBlob(resultBlob, baseName + '-resized' + ext);
+
+  resultList.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-dl]');
+    if (!btn) return;
+    const r = results[parseInt(btn.dataset.dl, 10)];
+    if (r) TS.downloadBlob(r.blob, r.name);
+  });
+
+  downloadBtn.addEventListener('click', async () => {
+    if (!results.length) return;
+    if (results.length === 1) {
+      TS.downloadBlob(results[0].blob, results[0].name);
+      return;
+    }
+    const entries = [];
+    for (const r of results) {
+      entries.push({ name: r.name, data: new Uint8Array(await r.blob.arrayBuffer()) });
+    }
+    const zip = TS.buildZip(entries);
+    TS.downloadBlob(new Blob([zip], { type: 'application/zip' }), 'resized-images.zip');
   });
 })();
 </script>

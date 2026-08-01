@@ -110,10 +110,10 @@
     <div class="tool-card-main">
       <div class="drop-zone" id="dropZone">
         <div class="icon"><span class="icon-tile icon-tile--sm icon-tile--indigo"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#upload"></use></svg></span></div>
-        <div class="dz-cta">Select image</div>
-        <p>or drop here — paste works too (Ctrl+V)</p>
+        <div class="dz-cta">Select images</div>
+        <p>or drop here — multiple files · paste works too (Ctrl+V)</p>
         <p class="drop-zone-hint">JPG, PNG, WebP supported</p>
-        <input type="file" id="fileInput" accept="image/*">
+        <input type="file" id="fileInput" accept="image/*" multiple>
       </div>
       <div id="controls" style="display:none;">
         <h3 style="margin-top:20px;font-size:1rem;">Target size</h3>
@@ -128,7 +128,8 @@
         <div id="customRow" style="display:none;margin-bottom:14px;">
           <input type="number" id="customKb" min="1" placeholder="Enter target KB" style="padding:10px;border:1px solid var(--border);border-radius:8px;width:160px;">
         </div>
-        <button class="btn btn-primary btn-block" id="compressBtn">Compress Image</button>
+        <div class="file-list" id="fileList"></div>
+        <button class="btn btn-primary btn-block" id="compressBtn">Compress Images</button>
         <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
       </div>
       <div class="result-panel" id="resultPanel">
@@ -146,13 +147,8 @@
             <div class="value" id="savedPercent">-</div>
           </div>
         </div>
-        <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px;">
-          <div style="flex:1;min-width:140px;">
-            <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:6px;">Preview</p>
-            <img id="previewImg" alt="Processed image preview" style="border-radius:8px;border:1px solid var(--border);max-height:260px;">
-          </div>
-        </div>
-        <button class="btn btn-accent btn-block" id="downloadBtn"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#download"></use></svg> Download Compressed Image</button>
+        <div class="file-list" id="resultList"></div>
+        <button class="btn btn-accent btn-block" id="downloadBtn"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#download"></use></svg> <span id="downloadBtnLabel">Download All</span></button>
       </div>
       <div class="trust-badge"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock"></use></svg> Your files never leave your device</div>
     </div>
@@ -181,10 +177,10 @@
   <div class="content-section">
     <h2>How to compress an image to an exact KB size</h2>
     <ol>
-      <li>Upload your photo — drag & drop, click to browse, or paste from clipboard.</li>
+      <li>Upload one or more photos — drag & drop, click to browse, or paste from clipboard.</li>
       <li>Pick a target size: 20KB, 50KB, 100KB, 200KB, 500KB, or enter a custom value.</li>
-      <li>Click <strong>Compress Image</strong> — your browser binary-searches JPEG quality until the file matches your target.</li>
-      <li>Compare the before/after size, then download the compressed photo.</li>
+      <li>Click <strong>Compress Images</strong> — your browser binary-searches JPEG quality until each file matches your target.</li>
+      <li>Compare before/after sizes, then download individually or as a ZIP.</li>
     </ol>
   </div>
   <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
@@ -255,6 +251,7 @@
   const presetRow = document.getElementById('presetRow');
   const customRow = document.getElementById('customRow');
   const customKb = document.getElementById('customKb');
+  const fileList = document.getElementById('fileList');
   const compressBtn = document.getElementById('compressBtn');
   const progressBar = document.getElementById('progressBar');
   const progressFill = document.getElementById('progressFill');
@@ -262,18 +259,46 @@
   const originalSize = document.getElementById('originalSize');
   const compressedSize = document.getElementById('compressedSize');
   const savedPercent = document.getElementById('savedPercent');
-  const previewImg = document.getElementById('previewImg');
+  const resultList = document.getElementById('resultList');
   const downloadBtn = document.getElementById('downloadBtn');
-  let currentFile = null;
+  const downloadBtnLabel = document.getElementById('downloadBtnLabel');
+  let files = [];
   let targetKb = 50;
-  let resultBlob = null;
-  TS.setupDropZone(dropZone, fileInput, (files) => {
-    currentFile = files[0];
-    if (!currentFile) return;
+  let results = [];
+
+  function renderFileList() {
+    TS.renderFilePreview(TS.getOrCreatePreviewContainer(dropZone), files, { maxFiles: 24 });
+    fileList.innerHTML = '';
+    files.forEach((f, i) => {
+      const row = document.createElement('div');
+      row.className = 'file-item';
+      row.innerHTML = '<span class="name">' + f.name + '</span><span>' + TS.formatBytes(f.size) + '</span><span class="remove" data-i="' + i + '" role="button" tabindex="0" aria-label="Remove">✕</span>';
+      fileList.appendChild(row);
+    });
+    compressBtn.textContent = files.length > 1 ? 'Compress ' + files.length + ' Images' : 'Compress Image';
+  }
+
+  TS.setupDropZone(dropZone, fileInput, (newFiles) => {
+    const imgs = newFiles.filter((f) => !f.type || f.type.indexOf('image/') === 0);
+    if (!imgs.length) return;
+    files = files.concat(imgs);
     controls.style.display = 'block';
     resultPanel.classList.remove('active');
-    originalSize.textContent = TS.formatBytes(currentFile.size);
+    results = [];
+    renderFileList();
+  }, { preview: false });
+
+  fileList.addEventListener('click', (e) => {
+    const rm = e.target.closest('.remove');
+    if (!rm) return;
+    files.splice(parseInt(rm.dataset.i, 10), 1);
+    renderFileList();
+    if (!files.length) {
+      controls.style.display = 'none';
+      resultPanel.classList.remove('active');
+    }
   });
+
   presetRow.addEventListener('click', (e) => {
     const btn = e.target.closest('.chip');
     if (!btn) return;
@@ -290,51 +315,100 @@
   customKb.addEventListener('input', () => {
     targetKb = parseInt(customKb.value, 10) || 50;
   });
+
+  async function compressOne(file, targetBytes) {
+    const { img, url } = await TS.loadImage(file);
+    const canvas = document.createElement('canvas');
+    canvas.width = img.naturalWidth;
+    canvas.height = img.naturalHeight;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0);
+    let blob = await TS.canvasToTargetSize(canvas, targetBytes, 'image/jpeg');
+    let scale = 1;
+    while (blob && blob.size > targetBytes * 1.5 && scale > 0.2) {
+      scale -= 0.15;
+      const w = Math.round(img.naturalWidth * scale);
+      const h = Math.round(img.naturalHeight * scale);
+      canvas.width = w;
+      canvas.height = h;
+      ctx.drawImage(img, 0, 0, w, h);
+      blob = await TS.canvasToTargetSize(canvas, targetBytes, 'image/jpeg');
+    }
+    URL.revokeObjectURL(url);
+    return blob;
+  }
+
   compressBtn.addEventListener('click', async () => {
-    if (!currentFile) return;
+    if (!files.length) return;
     compressBtn.disabled = true;
     progressBar.classList.add('active');
-    progressFill.style.width = '30%';
+    results = [];
+    resultList.innerHTML = '';
+    const targetBytes = targetKb * 1024;
+    let totalOrig = 0;
+    let totalOut = 0;
+    let ok = 0;
     try {
-      const { img, url } = await TS.loadImage(currentFile);
-      const canvas = document.createElement('canvas');
-      canvas.width = img.naturalWidth;
-      canvas.height = img.naturalHeight;
-      const ctx = canvas.getContext('2d');
-      ctx.drawImage(img, 0, 0);
-      progressFill.style.width = '60%';
-      const targetBytes = targetKb * 1024;
-      let blob = await TS.canvasToTargetSize(canvas, targetBytes, 'image/jpeg');
-      // If still too big (e.g. huge source image), progressively downscale.
-      let scale = 1;
-      while (blob && blob.size > targetBytes * 1.5 && scale > 0.2) {
-        scale -= 0.15;
-        const w = Math.round(img.naturalWidth * scale);
-        const h = Math.round(img.naturalHeight * scale);
-        canvas.width = w;
-        canvas.height = h;
-        ctx.drawImage(img, 0, 0, w, h);
-        blob = await TS.canvasToTargetSize(canvas, targetBytes, 'image/jpeg');
+      for (let i = 0; i < files.length; i++) {
+        progressFill.style.width = Math.round((i / files.length) * 100) + '%';
+        const file = files[i];
+        const baseName = (file.name || 'image').replace(/\.[^/.]+$/, '');
+        const outName = baseName + '-compressed-' + targetKb + 'kb.jpg';
+        try {
+          const blob = await compressOne(file, targetBytes);
+          if (!blob) throw new Error('empty');
+          totalOrig += file.size;
+          totalOut += blob.size;
+          ok++;
+          const previewUrl = URL.createObjectURL(blob);
+          results.push({ name: outName, blob, orig: file.size, previewUrl });
+          const row = document.createElement('div');
+          row.className = 'file-item';
+          row.innerHTML =
+            '<img src="' + previewUrl + '" alt="" style="width:48px;height:48px;object-fit:cover;border-radius:8px;border:1px solid var(--border);flex-shrink:0;">' +
+            '<span class="name">' + outName + '</span>' +
+            '<span>' + TS.formatBytes(file.size) + ' → ' + TS.formatBytes(blob.size) + ' (' + TS.percentSaved(file.size, blob.size) + '%)</span>' +
+            '<button type="button" class="btn" data-dl="' + (results.length - 1) + '" style="padding:6px 10px;font-size:0.8rem;">Download</button>';
+          resultList.appendChild(row);
+        } catch (err) {
+          const row = document.createElement('div');
+          row.className = 'file-item';
+          row.innerHTML = '<span class="name">❌ ' + file.name + ' — could not compress</span>';
+          resultList.appendChild(row);
+        }
       }
       progressFill.style.width = '100%';
-      resultBlob = blob;
-      originalSize.textContent = TS.formatBytes(currentFile.size);
-      compressedSize.textContent = TS.formatBytes(blob.size);
-      savedPercent.textContent = TS.percentSaved(currentFile.size, blob.size) + '%';
-      previewImg.src = URL.createObjectURL(blob);
+      originalSize.textContent = TS.formatBytes(totalOrig);
+      compressedSize.textContent = TS.formatBytes(totalOut);
+      savedPercent.textContent = ok ? TS.percentSaved(totalOrig, totalOut) + '%' : '-';
+      downloadBtnLabel.textContent = results.length > 1 ? 'Download All (ZIP)' : 'Download Compressed Image';
+      downloadBtn.style.display = results.length ? '' : 'none';
       resultPanel.classList.add('active');
-      URL.revokeObjectURL(url);
-    } catch (err) {
-      alert('Could not process this image. Try a different file.');
     } finally {
       compressBtn.disabled = false;
       setTimeout(() => progressBar.classList.remove('active'), 500);
     }
   });
-  downloadBtn.addEventListener('click', () => {
-    if (!resultBlob) return;
-    const baseName = (currentFile.name || 'image').replace(/\.[^/.]+$/, '');
-    TS.downloadBlob(resultBlob, baseName + '-compressed-' + targetKb + 'kb.jpg');
+
+  resultList.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-dl]');
+    if (!btn) return;
+    const r = results[parseInt(btn.dataset.dl, 10)];
+    if (r) TS.downloadBlob(r.blob, r.name);
+  });
+
+  downloadBtn.addEventListener('click', async () => {
+    if (!results.length) return;
+    if (results.length === 1) {
+      TS.downloadBlob(results[0].blob, results[0].name);
+      return;
+    }
+    const entries = [];
+    for (const r of results) {
+      entries.push({ name: r.name, data: new Uint8Array(await r.blob.arrayBuffer()) });
+    }
+    const zip = TS.buildZip(entries);
+    TS.downloadBlob(new Blob([zip], { type: 'application/zip' }), 'compressed-images-' + targetKb + 'kb.zip');
   });
 })();
 </script>

@@ -142,7 +142,13 @@
 <script>
 (function () {
   var file = null, blob = null, ext = 'webp';
-  TS.setupDropZone(document.getElementById('dropZone'), document.getElementById('fileInput'), function (f) { file = f[0]; if (file) document.getElementById('controls').style.display = 'block'; });
+  TS.setupDropZone(document.getElementById('dropZone'), document.getElementById('fileInput'), function (f) {
+    file = f[0];
+    if (!file) return;
+    TS.renderFilePreview(TS.getOrCreatePreviewContainer(document.getElementById('dropZone')), [file]);
+    document.getElementById('controls').style.display = 'block';
+    document.getElementById('resultPanel').classList.remove('active');
+  }, { preview: false });
   document.getElementById('makeBtn').addEventListener('click', async function () {
     if (!file) return;
     var btn = document.getElementById('makeBtn'); btn.disabled = true;

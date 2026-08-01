@@ -185,7 +185,13 @@
     document.getElementById('bgRow').querySelectorAll('.chip').forEach(function (x) { x.classList.remove('active'); });
     c.classList.add('active'); bg = c.dataset.bg;
   });
-  TS.setupDropZone(document.getElementById('dropZone'), document.getElementById('fileInput'), function (f) { file = f[0]; if (file) document.getElementById('controls').style.display = 'block'; });
+  TS.setupDropZone(document.getElementById('dropZone'), document.getElementById('fileInput'), function (f) {
+    file = f[0];
+    if (!file) return;
+    TS.renderFilePreview(TS.getOrCreatePreviewContainer(document.getElementById('dropZone')), [file]);
+    document.getElementById('controls').style.display = 'block';
+    document.getElementById('resultPanel').classList.remove('active');
+  }, { preview: false });
   document.getElementById('generateBtn').addEventListener('click', async function () {
     if (!file) return;
     var btn = document.getElementById('generateBtn'); btn.disabled = true;

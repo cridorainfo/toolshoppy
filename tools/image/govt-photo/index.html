@@ -307,9 +307,10 @@
   TS.setupDropZone(dropZone, fileInput, (files) => {
     currentFile = files[0];
     if (!currentFile) return;
+    TS.renderFilePreview(TS.getOrCreatePreviewContainer(dropZone), [currentFile]);
     controls.style.display = 'block';
     resultPanel.classList.remove('active');
-  });
+  }, { preview: false });
   generateBtn.addEventListener('click', async () => {
     if (!currentFile) return;
     generateBtn.disabled = true;
