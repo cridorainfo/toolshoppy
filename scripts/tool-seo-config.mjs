@@ -1,11 +1,11 @@
 /** Per-tool SEO copy for scripts/enrich-tool-seo.mjs */
 export const CATEGORY = {
-  image: { label: 'Image Tools', hash: 'image' },
-  pdf: { label: 'PDF Tools', hash: 'pdf' },
-  video: { label: 'Video Tools', hash: 'video' },
-  finance: { label: 'Finance', hash: 'finance' },
-  rates: { label: 'Rates', hash: 'rates' },
-  misc: { label: 'More Tools', hash: 'misc' },
+  image: { label: 'Image Tools', hash: 'image', hub: '/tools/image/' },
+  pdf: { label: 'PDF Tools', hash: 'pdf', hub: '/tools/pdf/' },
+  video: { label: 'Video Tools', hash: 'video', hub: '/tools/video/' },
+  finance: { label: 'Finance', hash: 'finance', hub: '/tools/finance/' },
+  rates: { label: 'Rates', hash: 'rates', hub: '/tools/rates/' },
+  misc: { label: 'More Tools', hash: 'misc', hub: '/tools/misc/' },
 };
 
 /** @type {Record<string, object>} */
@@ -656,7 +656,7 @@ export const TOOL_SEO = {
   'pdf/editor': {
     name: 'PDF Editor',
     title: 'Free Online PDF Editor | Annotate Sign Redact | ToolShoppy',
-    description: 'Free online PDF editor. Add text, signatures, highlights and redactionsactions — no signup, files never leave your device.',
+    description: 'Free online PDF editor. Add text, signatures, highlights and redactions — no signup, files never leave your device.',
     trust: 'files',
     howToTitle: 'How to edit a PDF online',
     howToSteps: [

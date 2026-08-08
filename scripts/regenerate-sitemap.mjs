@@ -59,14 +59,16 @@ function walkHtml(dir, out = []) {
 }
 
 function priorityFor(p) {
-  if (p === '/') return 1.0;
-  if (p.startsWith('/blog/')) return 0.75;
-  if (p === '/blog/') return 0.85;
-  if (p.startsWith('/tools/rates/')) return 0.9;
-  if (p.startsWith('/tools/pdf/') || p.startsWith('/tools/video/')) return 0.9;
-  if (p.startsWith('/tools/')) return 0.85;
+  // Tool pages outrank the homepage so search prefers deep links.
+  if (/^\/tools\/(image|pdf|video|finance|rates|misc)\/$/.test(p)) return 0.95;
+  if (p.startsWith('/tools/rates/')) return 0.92;
+  if (p.startsWith('/tools/pdf/') || p.startsWith('/tools/video/')) return 0.92;
+  if (p.startsWith('/tools/')) return 0.9;
+  if (p === '/') return 0.7;
+  if (p === '/blog/') return 0.75;
+  if (p.startsWith('/blog/')) return 0.7;
   if (['/privacy/', '/terms/', '/about/', '/contact/'].includes(p)) return 0.3;
-  return 0.8;
+  return 0.6;
 }
 
 function changefreqFor(p) {

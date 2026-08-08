@@ -8,7 +8,8 @@
     "sync:trends": "node scripts/sync-trends-seo.mjs",
     "cron:trends": "node scripts/railway-trends-cron.mjs",
     "sitemap": "node scripts/regenerate-sitemap.mjs",
-    "enrich:seo": "node scripts/enrich-tool-seo.mjs"
+    "enrich:seo": "node scripts/enrich-tool-seo.mjs",
+    "seo:landing": "node scripts/improve-tool-seo-landing.mjs && node scripts/regenerate-sitemap.mjs"
   },
   "dependencies": {
     "serve": "^14.2.6"

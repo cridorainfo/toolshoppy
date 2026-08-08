@@ -92,7 +92,7 @@ function buildSchemas(key, cfg, url) {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://toolshoppy.com/' },
-      { '@type': 'ListItem', position: 2, name: cat.label, item: `https://toolshoppy.com/#${cat.hash}` },
+      { '@type': 'ListItem', position: 2, name: cat.label, item: `https://toolshoppy.com${cat.hub || `/tools/${cat.hash}/`}` },
       { '@type': 'ListItem', position: 3, name: cfg.name, item: url },
     ],
   });
