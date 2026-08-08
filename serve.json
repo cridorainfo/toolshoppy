@@ -1,77 +1,648 @@
 {
   "cleanUrls": true,
   "redirects": [
-    { "source": "/search", "destination": "/search/", "type": 301 },
-
-    { "source": "/free-online-pdf-editor", "destination": "/tools/pdf/editor/", "type": 301 },
-    { "source": "/free-online-pdf-editor/", "destination": "/tools/pdf/editor/", "type": 301 },
-    { "source": "/word-to-pdf-free", "destination": "/tools/pdf/word-to-pdf/", "type": 301 },
-    { "source": "/word-to-pdf-free/", "destination": "/tools/pdf/word-to-pdf/", "type": 301 },
-    { "source": "/pdf-to-word-free", "destination": "/tools/pdf/pdf-to-word/", "type": 301 },
-    { "source": "/pdf-to-word-free/", "destination": "/tools/pdf/pdf-to-word/", "type": 301 },
-    { "source": "/pdf-compression-online", "destination": "/tools/pdf/compress/", "type": 301 },
-    { "source": "/pdf-compression-online/", "destination": "/tools/pdf/compress/", "type": 301 },
-    { "source": "/free-video-compressor", "destination": "/tools/video/compress/", "type": 301 },
-    { "source": "/free-video-compressor/", "destination": "/tools/video/compress/", "type": 301 },
-    { "source": "/image-compressor-free", "destination": "/tools/image/compress/", "type": 301 },
-    { "source": "/image-compressor-free/", "destination": "/tools/image/compress/", "type": 301 },
-    { "source": "/image-to-pdf-free", "destination": "/tools/pdf/image-to-pdf/", "type": 301 },
-    { "source": "/image-to-pdf-free/", "destination": "/tools/pdf/image-to-pdf/", "type": 301 },
-    { "source": "/pdf-to-image-free", "destination": "/tools/pdf/pdf-to-image/", "type": 301 },
-    { "source": "/pdf-to-image-free/", "destination": "/tools/pdf/pdf-to-image/", "type": 301 },
-    { "source": "/free-image-converter", "destination": "/tools/image/convert/", "type": 301 },
-    { "source": "/free-image-converter/", "destination": "/tools/image/convert/", "type": 301 },
-    { "source": "/free-qr-code-generator", "destination": "/tools/misc/qr-generator/", "type": 301 },
-    { "source": "/free-qr-code-generator/", "destination": "/tools/misc/qr-generator/", "type": 301 },
-    { "source": "/remove-background-free", "destination": "/tools/image/background-remove/", "type": 301 },
-    { "source": "/remove-background-free/", "destination": "/tools/image/background-remove/", "type": 301 },
-    { "source": "/aed-to-inr", "destination": "/tools/rates/currency-converter/aed-inr/", "type": 301 },
-    { "source": "/aed-to-inr/", "destination": "/tools/rates/currency-converter/aed-inr/", "type": 301 },
-    { "source": "/silver-rate-uae", "destination": "/tools/rates/silver-rate/uae/", "type": 301 },
-    { "source": "/silver-rate-uae/", "destination": "/tools/rates/silver-rate/uae/", "type": 301 },
-    { "source": "/uae-gold-rate", "destination": "/tools/rates/gold-rate/dubai/", "type": 301 },
-    { "source": "/uae-gold-rate/", "destination": "/tools/rates/gold-rate/dubai/", "type": 301 },
-
-    { "source": "/tools/pdf/editor/free-online", "destination": "/tools/pdf/editor/", "type": 301 },
-    { "source": "/tools/pdf/editor/free-online/", "destination": "/tools/pdf/editor/", "type": 301 },
-    { "source": "/tools/pdf/word-to-pdf/free-online", "destination": "/tools/pdf/word-to-pdf/", "type": 301 },
-    { "source": "/tools/pdf/word-to-pdf/free-online/", "destination": "/tools/pdf/word-to-pdf/", "type": 301 },
-    { "source": "/tools/pdf/pdf-to-word/free-online", "destination": "/tools/pdf/pdf-to-word/", "type": 301 },
-    { "source": "/tools/pdf/pdf-to-word/free-online/", "destination": "/tools/pdf/pdf-to-word/", "type": 301 },
-    { "source": "/tools/pdf/compress/online", "destination": "/tools/pdf/compress/", "type": 301 },
-    { "source": "/tools/pdf/compress/online/", "destination": "/tools/pdf/compress/", "type": 301 },
-    { "source": "/tools/video/compress/free-online", "destination": "/tools/video/compress/", "type": 301 },
-    { "source": "/tools/video/compress/free-online/", "destination": "/tools/video/compress/", "type": 301 },
-    { "source": "/tools/image/compress/free-online", "destination": "/tools/image/compress/", "type": 301 },
-    { "source": "/tools/image/compress/free-online/", "destination": "/tools/image/compress/", "type": 301 },
-    { "source": "/tools/pdf/image-to-pdf/free-online", "destination": "/tools/pdf/image-to-pdf/", "type": 301 },
-    { "source": "/tools/pdf/image-to-pdf/free-online/", "destination": "/tools/pdf/image-to-pdf/", "type": 301 },
-    { "source": "/tools/pdf/pdf-to-image/free-online", "destination": "/tools/pdf/pdf-to-image/", "type": 301 },
-    { "source": "/tools/pdf/pdf-to-image/free-online/", "destination": "/tools/pdf/pdf-to-image/", "type": 301 },
-    { "source": "/tools/image/convert/free-online", "destination": "/tools/image/convert/", "type": 301 },
-    { "source": "/tools/image/convert/free-online/", "destination": "/tools/image/convert/", "type": 301 },
-    { "source": "/tools/misc/qr-generator/free-online", "destination": "/tools/misc/qr-generator/", "type": 301 },
-    { "source": "/tools/misc/qr-generator/free-online/", "destination": "/tools/misc/qr-generator/", "type": 301 },
-    { "source": "/tools/image/background-remove/free-online", "destination": "/tools/image/background-remove/", "type": 301 },
-    { "source": "/tools/image/background-remove/free-online/", "destination": "/tools/image/background-remove/", "type": 301 }
+    {
+      "source": "/search",
+      "destination": "/search/",
+      "type": 301
+    },
+    {
+      "source": "/free-online-pdf-editor",
+      "destination": "/tools/pdf/editor/",
+      "type": 301
+    },
+    {
+      "source": "/free-online-pdf-editor/",
+      "destination": "/tools/pdf/editor/",
+      "type": 301
+    },
+    {
+      "source": "/tools/pdf/editor/free-online",
+      "destination": "/tools/pdf/editor/",
+      "type": 301
+    },
+    {
+      "source": "/tools/pdf/editor/free-online/",
+      "destination": "/tools/pdf/editor/",
+      "type": 301
+    },
+    {
+      "source": "/word-to-pdf-free",
+      "destination": "/tools/pdf/word-to-pdf/",
+      "type": 301
+    },
+    {
+      "source": "/word-to-pdf-free/",
+      "destination": "/tools/pdf/word-to-pdf/",
+      "type": 301
+    },
+    {
+      "source": "/tools/pdf/word-to-pdf/free-online",
+      "destination": "/tools/pdf/word-to-pdf/",
+      "type": 301
+    },
+    {
+      "source": "/tools/pdf/word-to-pdf/free-online/",
+      "destination": "/tools/pdf/word-to-pdf/",
+      "type": 301
+    },
+    {
+      "source": "/pdf-to-word-free",
+      "destination": "/tools/pdf/pdf-to-word/",
+      "type": 301
+    },
+    {
+      "source": "/pdf-to-word-free/",
+      "destination": "/tools/pdf/pdf-to-word/",
+      "type": 301
+    },
+    {
+      "source": "/tools/pdf/pdf-to-word/free-online",
+      "destination": "/tools/pdf/pdf-to-word/",
+      "type": 301
+    },
+    {
+      "source": "/tools/pdf/pdf-to-word/free-online/",
+      "destination": "/tools/pdf/pdf-to-word/",
+      "type": 301
+    },
+    {
+      "source": "/pdf-to-excel-free",
+      "destination": "/tools/pdf/pdf-to-excel/",
+      "type": 301
+    },
+    {
+      "source": "/pdf-to-excel-free/",
+      "destination": "/tools/pdf/pdf-to-excel/",
+      "type": 301
+    },
+    {
+      "source": "/pdf-to-excel",
+      "destination": "/tools/pdf/pdf-to-excel/",
+      "type": 301
+    },
+    {
+      "source": "/pdf-to-excel/",
+      "destination": "/tools/pdf/pdf-to-excel/",
+      "type": 301
+    },
+    {
+      "source": "/pdf-to-xlsx",
+      "destination": "/tools/pdf/pdf-to-excel/",
+      "type": 301
+    },
+    {
+      "source": "/pdf-to-xlsx/",
+      "destination": "/tools/pdf/pdf-to-excel/",
+      "type": 301
+    },
+    {
+      "source": "/convert-pdf-to-excel",
+      "destination": "/tools/pdf/pdf-to-excel/",
+      "type": 301
+    },
+    {
+      "source": "/convert-pdf-to-excel/",
+      "destination": "/tools/pdf/pdf-to-excel/",
+      "type": 301
+    },
+    {
+      "source": "/pdf-table-to-excel",
+      "destination": "/tools/pdf/pdf-to-excel/",
+      "type": 301
+    },
+    {
+      "source": "/pdf-table-to-excel/",
+      "destination": "/tools/pdf/pdf-to-excel/",
+      "type": 301
+    },
+    {
+      "source": "/tools/pdf/pdf-to-excel/free-online",
+      "destination": "/tools/pdf/pdf-to-excel/",
+      "type": 301
+    },
+    {
+      "source": "/tools/pdf/pdf-to-excel/free-online/",
+      "destination": "/tools/pdf/pdf-to-excel/",
+      "type": 301
+    },
+    {
+      "source": "/image-ocr-free",
+      "destination": "/tools/image/ocr/",
+      "type": 301
+    },
+    {
+      "source": "/image-ocr-free/",
+      "destination": "/tools/image/ocr/",
+      "type": 301
+    },
+    {
+      "source": "/ocr",
+      "destination": "/tools/image/ocr/",
+      "type": 301
+    },
+    {
+      "source": "/ocr/",
+      "destination": "/tools/image/ocr/",
+      "type": 301
+    },
+    {
+      "source": "/ocr-online",
+      "destination": "/tools/image/ocr/",
+      "type": 301
+    },
+    {
+      "source": "/ocr-online/",
+      "destination": "/tools/image/ocr/",
+      "type": 301
+    },
+    {
+      "source": "/ocr-free",
+      "destination": "/tools/image/ocr/",
+      "type": 301
+    },
+    {
+      "source": "/ocr-free/",
+      "destination": "/tools/image/ocr/",
+      "type": 301
+    },
+    {
+      "source": "/offline-ocr-free",
+      "destination": "/tools/image/ocr/",
+      "type": 301
+    },
+    {
+      "source": "/offline-ocr-free/",
+      "destination": "/tools/image/ocr/",
+      "type": 301
+    },
+    {
+      "source": "/offline-ocr",
+      "destination": "/tools/image/ocr/",
+      "type": 301
+    },
+    {
+      "source": "/offline-ocr/",
+      "destination": "/tools/image/ocr/",
+      "type": 301
+    },
+    {
+      "source": "/image-to-text",
+      "destination": "/tools/image/ocr/",
+      "type": 301
+    },
+    {
+      "source": "/image-to-text/",
+      "destination": "/tools/image/ocr/",
+      "type": 301
+    },
+    {
+      "source": "/photo-to-text",
+      "destination": "/tools/image/ocr/",
+      "type": 301
+    },
+    {
+      "source": "/photo-to-text/",
+      "destination": "/tools/image/ocr/",
+      "type": 301
+    },
+    {
+      "source": "/extract-text-from-image",
+      "destination": "/tools/image/ocr/",
+      "type": 301
+    },
+    {
+      "source": "/extract-text-from-image/",
+      "destination": "/tools/image/ocr/",
+      "type": 301
+    },
+    {
+      "source": "/image-ocr",
+      "destination": "/tools/image/ocr/",
+      "type": 301
+    },
+    {
+      "source": "/image-ocr/",
+      "destination": "/tools/image/ocr/",
+      "type": 301
+    },
+    {
+      "source": "/paddleocr",
+      "destination": "/tools/image/ocr/",
+      "type": 301
+    },
+    {
+      "source": "/paddleocr/",
+      "destination": "/tools/image/ocr/",
+      "type": 301
+    },
+    {
+      "source": "/receipt-ocr",
+      "destination": "/tools/image/ocr/",
+      "type": 301
+    },
+    {
+      "source": "/receipt-ocr/",
+      "destination": "/tools/image/ocr/",
+      "type": 301
+    },
+    {
+      "source": "/scan-to-text",
+      "destination": "/tools/image/ocr/",
+      "type": 301
+    },
+    {
+      "source": "/scan-to-text/",
+      "destination": "/tools/image/ocr/",
+      "type": 301
+    },
+    {
+      "source": "/picture-to-text",
+      "destination": "/tools/image/ocr/",
+      "type": 301
+    },
+    {
+      "source": "/picture-to-text/",
+      "destination": "/tools/image/ocr/",
+      "type": 301
+    },
+    {
+      "source": "/jpg-to-text",
+      "destination": "/tools/image/ocr/",
+      "type": 301
+    },
+    {
+      "source": "/jpg-to-text/",
+      "destination": "/tools/image/ocr/",
+      "type": 301
+    },
+    {
+      "source": "/tools/image/ocr/free-online",
+      "destination": "/tools/image/ocr/",
+      "type": 301
+    },
+    {
+      "source": "/tools/image/ocr/free-online/",
+      "destination": "/tools/image/ocr/",
+      "type": 301
+    },
+    {
+      "source": "/pdf-merge-free",
+      "destination": "/tools/pdf/merge/",
+      "type": 301
+    },
+    {
+      "source": "/pdf-merge-free/",
+      "destination": "/tools/pdf/merge/",
+      "type": 301
+    },
+    {
+      "source": "/pdf-merge",
+      "destination": "/tools/pdf/merge/",
+      "type": 301
+    },
+    {
+      "source": "/pdf-merge/",
+      "destination": "/tools/pdf/merge/",
+      "type": 301
+    },
+    {
+      "source": "/merge-pdf",
+      "destination": "/tools/pdf/merge/",
+      "type": 301
+    },
+    {
+      "source": "/merge-pdf/",
+      "destination": "/tools/pdf/merge/",
+      "type": 301
+    },
+    {
+      "source": "/merge-pdf-free",
+      "destination": "/tools/pdf/merge/",
+      "type": 301
+    },
+    {
+      "source": "/merge-pdf-free/",
+      "destination": "/tools/pdf/merge/",
+      "type": 301
+    },
+    {
+      "source": "/combine-pdf",
+      "destination": "/tools/pdf/merge/",
+      "type": 301
+    },
+    {
+      "source": "/combine-pdf/",
+      "destination": "/tools/pdf/merge/",
+      "type": 301
+    },
+    {
+      "source": "/combine-pdf-free",
+      "destination": "/tools/pdf/merge/",
+      "type": 301
+    },
+    {
+      "source": "/combine-pdf-free/",
+      "destination": "/tools/pdf/merge/",
+      "type": 301
+    },
+    {
+      "source": "/join-pdf",
+      "destination": "/tools/pdf/merge/",
+      "type": 301
+    },
+    {
+      "source": "/join-pdf/",
+      "destination": "/tools/pdf/merge/",
+      "type": 301
+    },
+    {
+      "source": "/pdf-merger",
+      "destination": "/tools/pdf/merge/",
+      "type": 301
+    },
+    {
+      "source": "/pdf-merger/",
+      "destination": "/tools/pdf/merge/",
+      "type": 301
+    },
+    {
+      "source": "/tools/pdf/merge/free-online",
+      "destination": "/tools/pdf/merge/",
+      "type": 301
+    },
+    {
+      "source": "/tools/pdf/merge/free-online/",
+      "destination": "/tools/pdf/merge/",
+      "type": 301
+    },
+    {
+      "source": "/pdf-split-free",
+      "destination": "/tools/pdf/split/",
+      "type": 301
+    },
+    {
+      "source": "/pdf-split-free/",
+      "destination": "/tools/pdf/split/",
+      "type": 301
+    },
+    {
+      "source": "/pdf-split",
+      "destination": "/tools/pdf/split/",
+      "type": 301
+    },
+    {
+      "source": "/pdf-split/",
+      "destination": "/tools/pdf/split/",
+      "type": 301
+    },
+    {
+      "source": "/split-pdf",
+      "destination": "/tools/pdf/split/",
+      "type": 301
+    },
+    {
+      "source": "/split-pdf/",
+      "destination": "/tools/pdf/split/",
+      "type": 301
+    },
+    {
+      "source": "/split-pdf-free",
+      "destination": "/tools/pdf/split/",
+      "type": 301
+    },
+    {
+      "source": "/split-pdf-free/",
+      "destination": "/tools/pdf/split/",
+      "type": 301
+    },
+    {
+      "source": "/tools/pdf/split/free-online",
+      "destination": "/tools/pdf/split/",
+      "type": 301
+    },
+    {
+      "source": "/tools/pdf/split/free-online/",
+      "destination": "/tools/pdf/split/",
+      "type": 301
+    },
+    {
+      "source": "/pdf-compression-online",
+      "destination": "/tools/pdf/compress/",
+      "type": 301
+    },
+    {
+      "source": "/pdf-compression-online/",
+      "destination": "/tools/pdf/compress/",
+      "type": 301
+    },
+    {
+      "source": "/tools/pdf/compress/online",
+      "destination": "/tools/pdf/compress/",
+      "type": 301
+    },
+    {
+      "source": "/tools/pdf/compress/online/",
+      "destination": "/tools/pdf/compress/",
+      "type": 301
+    },
+    {
+      "source": "/free-video-compressor",
+      "destination": "/tools/video/compress/",
+      "type": 301
+    },
+    {
+      "source": "/free-video-compressor/",
+      "destination": "/tools/video/compress/",
+      "type": 301
+    },
+    {
+      "source": "/tools/video/compress/free-online",
+      "destination": "/tools/video/compress/",
+      "type": 301
+    },
+    {
+      "source": "/tools/video/compress/free-online/",
+      "destination": "/tools/video/compress/",
+      "type": 301
+    },
+    {
+      "source": "/image-compressor-free",
+      "destination": "/tools/image/compress/",
+      "type": 301
+    },
+    {
+      "source": "/image-compressor-free/",
+      "destination": "/tools/image/compress/",
+      "type": 301
+    },
+    {
+      "source": "/tools/image/compress/free-online",
+      "destination": "/tools/image/compress/",
+      "type": 301
+    },
+    {
+      "source": "/tools/image/compress/free-online/",
+      "destination": "/tools/image/compress/",
+      "type": 301
+    },
+    {
+      "source": "/image-to-pdf-free",
+      "destination": "/tools/pdf/image-to-pdf/",
+      "type": 301
+    },
+    {
+      "source": "/image-to-pdf-free/",
+      "destination": "/tools/pdf/image-to-pdf/",
+      "type": 301
+    },
+    {
+      "source": "/tools/pdf/image-to-pdf/free-online",
+      "destination": "/tools/pdf/image-to-pdf/",
+      "type": 301
+    },
+    {
+      "source": "/tools/pdf/image-to-pdf/free-online/",
+      "destination": "/tools/pdf/image-to-pdf/",
+      "type": 301
+    },
+    {
+      "source": "/pdf-to-image-free",
+      "destination": "/tools/pdf/pdf-to-image/",
+      "type": 301
+    },
+    {
+      "source": "/pdf-to-image-free/",
+      "destination": "/tools/pdf/pdf-to-image/",
+      "type": 301
+    },
+    {
+      "source": "/tools/pdf/pdf-to-image/free-online",
+      "destination": "/tools/pdf/pdf-to-image/",
+      "type": 301
+    },
+    {
+      "source": "/tools/pdf/pdf-to-image/free-online/",
+      "destination": "/tools/pdf/pdf-to-image/",
+      "type": 301
+    },
+    {
+      "source": "/free-image-converter",
+      "destination": "/tools/image/convert/",
+      "type": 301
+    },
+    {
+      "source": "/free-image-converter/",
+      "destination": "/tools/image/convert/",
+      "type": 301
+    },
+    {
+      "source": "/tools/image/convert/free-online",
+      "destination": "/tools/image/convert/",
+      "type": 301
+    },
+    {
+      "source": "/tools/image/convert/free-online/",
+      "destination": "/tools/image/convert/",
+      "type": 301
+    },
+    {
+      "source": "/free-qr-code-generator",
+      "destination": "/tools/misc/qr-generator/",
+      "type": 301
+    },
+    {
+      "source": "/free-qr-code-generator/",
+      "destination": "/tools/misc/qr-generator/",
+      "type": 301
+    },
+    {
+      "source": "/tools/misc/qr-generator/free-online",
+      "destination": "/tools/misc/qr-generator/",
+      "type": 301
+    },
+    {
+      "source": "/tools/misc/qr-generator/free-online/",
+      "destination": "/tools/misc/qr-generator/",
+      "type": 301
+    },
+    {
+      "source": "/remove-background-free",
+      "destination": "/tools/image/background-remove/",
+      "type": 301
+    },
+    {
+      "source": "/remove-background-free/",
+      "destination": "/tools/image/background-remove/",
+      "type": 301
+    },
+    {
+      "source": "/tools/image/background-remove/free-online",
+      "destination": "/tools/image/background-remove/",
+      "type": 301
+    },
+    {
+      "source": "/tools/image/background-remove/free-online/",
+      "destination": "/tools/image/background-remove/",
+      "type": 301
+    },
+    {
+      "source": "/aed-to-inr",
+      "destination": "/tools/rates/currency-converter/aed-inr/",
+      "type": 301
+    },
+    {
+      "source": "/aed-to-inr/",
+      "destination": "/tools/rates/currency-converter/aed-inr/",
+      "type": 301
+    },
+    {
+      "source": "/silver-rate-uae",
+      "destination": "/tools/rates/silver-rate/uae/",
+      "type": 301
+    },
+    {
+      "source": "/silver-rate-uae/",
+      "destination": "/tools/rates/silver-rate/uae/",
+      "type": 301
+    },
+    {
+      "source": "/uae-gold-rate",
+      "destination": "/tools/rates/gold-rate/dubai/",
+      "type": 301
+    },
+    {
+      "source": "/uae-gold-rate/",
+      "destination": "/tools/rates/gold-rate/dubai/",
+      "type": 301
+    }
   ],
   "headers": [
     {
       "source": "**/*.@(js|css)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=300, must-revalidate" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=300, must-revalidate"
+        }
       ]
     },
     {
       "source": "**/*.@(html|json|xml|txt)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
       ]
     },
     {
       "source": "/favicon.ico",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=86400, must-revalidate" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400, must-revalidate"
+        }
       ]
     }
   ]

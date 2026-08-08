@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PNN1LM2D9Q"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-PNN1LM2D9Q');</script>
+<meta charset="UTF-8">
+<script>(function(){try{/* TEMP: dark mode disabled — restore prior boot to re-enable */document.documentElement.setAttribute('data-theme','light');localStorage.setItem('ts-theme','light');}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image OCR Free Online | Extract Text Offline | ToolShoppy</title>
+<meta name="description" content="Free image OCR online with PaddleOCR PP-OCRv5. Extract text from receipts, invoices &amp; photos in your browser — offline after model load, no signup.">
+<meta name="robots" content="index, follow">
+<meta name="keywords" content="image ocr free, ocr online, offline ocr, extract text from image, image to text, photo to text, receipt ocr, invoice ocr, paddleocr, pp-ocrv5, scan to text, jpg to text, screenshot to text, free ocr no signup">
+<link rel="canonical" href="https://toolshoppy.com/tools/image/ocr/">
+<meta property="og:title" content="Image OCR Free Online | Extract Text Offline | ToolShoppy">
+<meta property="og:description" content="On-device OCR powered by Baidu PaddleOCR PP-OCRv5. Your images never leave the browser.">
+<meta property="og:image" content="https://toolshoppy.com/assets/img/og-image.jpg">
+<meta property="og:url" content="https://toolshoppy.com/tools/image/ocr/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ToolShoppy">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Image OCR Free Online | ToolShoppy">
+<meta name="twitter:description" content="Extract text from images with PaddleOCR PP-OCRv5 — private, on-device.">
+<meta name="twitter:image" content="https://toolshoppy.com/assets/img/og-image.jpg">
+<link rel="icon" href="/favicon.ico?v=2" sizes="any">
+<link rel="icon" href="/assets/img/favicon.svg?v=2" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/icon-192.png?v=2">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#E11D48">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Image OCR","url":"https://toolshoppy.com/tools/image/ocr/","description":"Extract text from images with on-device PaddleOCR PP-OCRv5.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolshoppy.com/"},{"@type":"ListItem","position":2,"name":"Image Tools","item":"https://toolshoppy.com/#image"},{"@type":"ListItem","position":3,"name":"Image OCR","item":"https://toolshoppy.com/tools/image/ocr/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Which OCR model does this use?","acceptedAnswer":{"@type":"Answer","text":"Baidu PaddleOCR PP-OCRv5 running in your browser via ONNX Runtime. The model downloads once and is cached for offline reuse."}},{"@type":"Question","name":"Is my image uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. Recognition runs fully on your device. Only the open-source model weights are fetched (then cached)."}},{"@type":"Question","name":"What languages are supported?","acceptedAnswer":{"@type":"Answer","text":"PP-OCRv5 mobile recognizes Chinese and English well, and handles many Latin-script documents such as invoices and receipts."}}]}
+</script>
+<style>
+  .ocr-preview-wrap{position:relative;margin-top:12px;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--card);max-height:360px;}
+  .ocr-preview-wrap canvas,.ocr-preview-wrap img{display:block;width:100%;height:auto;max-height:360px;object-fit:contain;background:#0f172a0a;}
+  .ocr-boxes{position:absolute;inset:0;pointer-events:none;}
+  .ocr-box{position:absolute;border:1.5px solid #E11D48;background:rgba(225,29,72,.08);border-radius:2px;}
+  #ocrText{width:100%;min-height:180px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.9rem;line-height:1.45;padding:12px;border:1px solid var(--border);border-radius:12px;background:var(--card);color:var(--text);resize:vertical;}
+  .ocr-engine-badge{display:inline-flex;align-items:center;gap:6px;font-size:.75rem;color:var(--text-muted);margin-top:8px;}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo"><img src="/assets/img/logo.png?v=2" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
+    <div class="site-search"><input type="text" placeholder="Search tools…" onfocus="location.href='/'"></div>
+    <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode">
+      <svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg>
+      <svg class="icon-svg theme-icon-moon" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#moon"></use></svg>
+    </button>
+  </div>
+</header>
+<main class="tool-page container">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/"><svg class="icon-svg" width="16" height="16" aria-hidden="true"><use href="/assets/icons/sprite.svg#home"></use></svg> Home</a>
+    <svg class="icon-svg crumb-sep" width="14" height="14" aria-hidden="true"><use href="/assets/icons/sprite.svg#chevron-right"></use></svg>
+    <a href="/#image">Image Tools</a>
+    <svg class="icon-svg crumb-sep" width="14" height="14" aria-hidden="true"><use href="/assets/icons/sprite.svg#chevron-right"></use></svg>
+    <span class="crumb-current">Image OCR</span>
+  </nav>
+  <div class="tool-header">
+    <div class="icon-tile icon-tile--lg icon-tile--violet"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#scan"></use></svg></div>
+    <h1>Image OCR</h1>
+    <p>Extract text from receipts, invoices &amp; photos with on-device PaddleOCR PP-OCRv5.</p>
+  </div>
+  <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
+  <div class="tool-layout with-sidebar">
+    <div class="tool-card-main">
+      <div class="drop-zone" id="dropZone">
+        <div class="icon"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#upload"></use></svg></div>
+        <div class="dz-cta">Select image</div>
+        <p>or drop a receipt / screenshot / photo here</p>
+        <p class="drop-zone-hint">JPG, PNG, WebP. First run downloads the model (~20MB), then works offline from cache.</p>
+        <input type="file" id="fileInput" accept="image/*">
+      </div>
+      <div id="working" style="display:none;text-align:center;padding:24px 0;">
+        <p id="workingLabel" style="font-weight:600;color:var(--text);margin-bottom:10px;">Starting OCR…</p>
+        <div class="progress-bar active"><div class="progress-bar-fill" id="progressFill"></div></div>
+        <p id="workingHint" style="font-size:0.8rem;color:var(--text-muted);margin-top:8px;"></p>
+      </div>
+      <div class="result-panel" id="resultPanel">
+        <div class="ocr-preview-wrap" id="previewWrap">
+          <img id="previewImg" alt="Source">
+          <div class="ocr-boxes" id="ocrBoxes"></div>
+        </div>
+        <p class="ocr-engine-badge" id="engineBadge"></p>
+        <div class="calc-field" style="margin-top:12px;">
+          <label for="ocrText">Recognized text</label>
+          <textarea id="ocrText" spellcheck="false"></textarea>
+        </div>
+        <div class="chip-row" style="margin-top:12px;">
+          <button class="btn btn-accent btn-block" id="copyBtn" style="flex:1;">Copy text</button>
+          <button class="btn btn-block" id="downloadBtn" style="flex:1;"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#download"></use></svg> Download .txt</button>
+        </div>
+        <button class="btn" id="resetBtn" style="margin-top:10px;">Try another image</button>
+      </div>
+      <div class="trust-badge"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock"></use></svg> Your files never leave your device</div>
+    </div>
+    <aside class="sidebar">
+      <div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div>
+      <div class="info-box">
+        <h4>How it works</h4>
+        <ul>
+          <li>Uses <strong>Baidu PaddleOCR PP-OCRv5</strong> — open-source Chinese OCR, converted to ONNX for the browser</li>
+          <li>Inference runs locally via WebAssembly; your photo is never uploaded</li>
+          <li>Model caches after first download so later runs work offline</li>
+          <li>Great for receipts, invoices, ID cards, and screenshots</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+  <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
+  <div class="content-section">
+    <h2>Free offline image OCR — no signup</h2>
+    <p>Upload a photo and ToolShoppy runs <strong>PaddleOCR PP-OCRv5</strong> (Baidu’s open-source OCR) entirely in your browser. After the first model download, recognition can continue from cache without sending images to a server.</p>
+  </div>
+  <div class="content-section">
+    <h2>How to extract text from an image</h2>
+    <ol>
+      <li>Upload a clear photo or screenshot.</li>
+      <li>Wait for on-device detection &amp; recognition (first visit downloads the model).</li>
+      <li>Copy the text or download a <strong>.txt</strong> file.</li>
+    </ol>
+  </div>
+  <div class="content-section">
+    <h2>Related tools</h2>
+    <div class="related-tools">
+      <a href="/tools/pdf/pdf-to-excel/">
+        <span class="icon-tile icon-tile--sm icon-tile--emerald"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#file-spreadsheet"></use></svg></span>
+        PDF to Excel
+        <span class="related-desc">Convert statement PDFs to XLSX</span>
+      </a>
+      <a href="/tools/pdf/pdf-to-word/">
+        <span class="icon-tile icon-tile--sm icon-tile--green"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#file-word"></use></svg></span>
+        PDF to Word
+        <span class="related-desc">Extract selectable PDF text to Word</span>
+      </a>
+      <a href="/tools/image/compress/">
+        <span class="icon-tile icon-tile--sm icon-tile--indigo"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#arrows-minimize"></use></svg></span>
+        Image Compressor
+        <span class="related-desc">Shrink images to an exact KB size</span>
+      </a>
+      <a href="/tools/image/convert/">
+        <span class="icon-tile icon-tile--sm icon-tile--cyan"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#refresh"></use></svg></span>
+        Image Converter
+        <span class="related-desc">Convert HEIC, PNG, JPG, WebP</span>
+      </a>
+    </div>
+  </div>
+  <div class="content-section">
+    <h2>Frequently asked questions</h2>
+    <div class="faq-item"><h3>Which OCR model does this use?</h3><p>Baidu’s open-source <strong>PaddleOCR PP-OCRv5</strong>, running in-browser via ONNX Runtime.</p></div>
+    <div class="faq-item"><h3>Is my image uploaded?</h3><p>No. Only model weights are downloaded once and cached. Your image stays on-device.</p></div>
+    <div class="faq-item"><h3>What languages are supported?</h3><p>Chinese and English are strongest; many Latin-script invoices and receipts work well.</p></div>
+  </div>
+</main>
+<div class="ad-slot ad-bottom"><span class="ad-label">Ad</span></div>
+<footer class="site-footer"><div class="container"><div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div></div></footer>
+<div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
+<script src="/assets/js/ga-config.js"></script>
+<script src="/assets/js/adsterra-config.js?v=5"></script>
+<script src="/assets/js/ad-config.js"></script>
+<script src="/assets/js/core.js"></script>
+<script src="/assets/js/ads.js?v=6"></script>
+<script src="/assets/js/analytics.js"></script>
+<script src="/assets/js/paddle-ocr.js"></script>
+<script>
+(function () {
+  const dropZone = document.getElementById('dropZone');
+  const fileInput = document.getElementById('fileInput');
+  const working = document.getElementById('working');
+  const workingLabel = document.getElementById('workingLabel');
+  const workingHint = document.getElementById('workingHint');
+  const progressFill = document.getElementById('progressFill');
+  const resultPanel = document.getElementById('resultPanel');
+  const previewImg = document.getElementById('previewImg');
+  const ocrBoxes = document.getElementById('ocrBoxes');
+  const ocrText = document.getElementById('ocrText');
+  const engineBadge = document.getElementById('engineBadge');
+  const copyBtn = document.getElementById('copyBtn');
+  const downloadBtn = document.getElementById('downloadBtn');
+  const resetBtn = document.getElementById('resetBtn');
+  let currentFile = null;
+  let lastText = '';
+  let lastLines = [];
+
+  function setProgress(info) {
+    workingLabel.textContent = (info && info.label) || 'Working…';
+    progressFill.style.width = Math.max(4, (info && info.pct) || 4) + '%';
+    if (info && info.phase === 'recognizing' && info.total) {
+      workingHint.textContent = 'Line ' + (info.current || 0) + ' / ' + info.total;
+    } else if (info && (info.phase || '').indexOf('loading') === 0) {
+      workingHint.textContent = 'First-time download — cached for next visits';
+    } else {
+      workingHint.textContent = '';
+    }
+  }
+
+  function drawBoxes(lines, imgEl) {
+    ocrBoxes.innerHTML = '';
+    if (!lines || !lines.length || !imgEl.naturalWidth) return;
+    const scaleX = imgEl.clientWidth / imgEl.naturalWidth;
+    const scaleY = imgEl.clientHeight / imgEl.naturalHeight;
+    lines.forEach((line) => {
+      const box = line.box || line;
+      const pts = box.points || line.points || null;
+      if (!pts || pts.length < 4) return;
+      let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+      pts.forEach((p) => {
+        const x = Array.isArray(p) ? p[0] : p.x;
+        const y = Array.isArray(p) ? p[1] : p.y;
+        if (x < minX) minX = x;
+        if (y < minY) minY = y;
+        if (x > maxX) maxX = x;
+        if (y > maxY) maxY = y;
+      });
+      const el = document.createElement('div');
+      el.className = 'ocr-box';
+      el.style.left = (minX * scaleX) + 'px';
+      el.style.top = (minY * scaleY) + 'px';
+      el.style.width = Math.max(2, (maxX - minX) * scaleX) + 'px';
+      el.style.height = Math.max(2, (maxY - minY) * scaleY) + 'px';
+      el.title = line.text || '';
+      ocrBoxes.appendChild(el);
+    });
+  }
+
+  async function runOcr(file) {
+    currentFile = file;
+    dropZone.style.display = 'none';
+    resultPanel.classList.remove('active');
+    working.style.display = 'block';
+    setProgress({ label: 'Starting OCR…', pct: 3 });
+    try {
+      const url = URL.createObjectURL(file);
+      previewImg.onload = function () { URL.revokeObjectURL(url); };
+      previewImg.src = url;
+
+      const result = await TSPaddleOCR.recognize(file, { onProgress: setProgress });
+      lastText = result.text || '';
+      lastLines = result.lines || [];
+      ocrText.value = lastText || '(No text detected)';
+      engineBadge.textContent = result.engine + (result.runtime && result.runtime.provider ? ' · ' + result.runtime.provider : '');
+      working.style.display = 'none';
+      resultPanel.classList.add('active');
+      requestAnimationFrame(() => drawBoxes(lastLines, previewImg));
+      if (window.TSAnalytics) TSAnalytics.track('tool_complete', { tool: 'image-ocr' });
+    } catch (err) {
+      working.style.display = 'none';
+      dropZone.style.display = '';
+      alert(err.message || 'OCR failed. Try a clearer image or reload the page.');
+    }
+  }
+
+  TS.setupDropZone(dropZone, fileInput, (files) => {
+    const file = files[0];
+    if (!file) return;
+    if (!file.type.startsWith('image/')) {
+      alert('Please choose an image file.');
+      return;
+    }
+    runOcr(file);
+  }, { preview: false });
+
+  copyBtn.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(ocrText.value || '');
+      copyBtn.textContent = 'Copied!';
+      setTimeout(() => { copyBtn.textContent = 'Copy text'; }, 1200);
+    } catch (e) {
+      ocrText.select();
+      document.execCommand('copy');
+    }
+  });
+
+  downloadBtn.addEventListener('click', () => {
+    const base = (currentFile && currentFile.name ? currentFile.name.replace(/\.[^.]+$/, '') : 'ocr-text');
+    TS.downloadBlob(new Blob([ocrText.value || ''], { type: 'text/plain;charset=utf-8' }), base + '.txt');
+  });
+
+  resetBtn.addEventListener('click', () => {
+    currentFile = null;
+    lastText = '';
+    lastLines = [];
+    ocrText.value = '';
+    ocrBoxes.innerHTML = '';
+    previewImg.removeAttribute('src');
+    resultPanel.classList.remove('active');
+    dropZone.style.display = '';
+    fileInput.value = '';
+  });
+
+  window.addEventListener('resize', () => {
+    if (resultPanel.classList.contains('active') && previewImg.naturalWidth) {
+      drawBoxes(lastLines, previewImg);
+    }
+  });
+})();
+</script>
+</body>
+</html>

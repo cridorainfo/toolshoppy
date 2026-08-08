@@ -2006,3 +2006,6 @@ button { font-family: inherit; cursor: pointer; }
 .blog-card .blog-tag { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--primary); margin-bottom: 8px; display: block; }
 .seo-landing-cta { margin: 20px 0; }
 
+/* === TEMP: dark mode disabled (keep toggle markup; remove this block to re-enable) === */
+.theme-toggle { display: none !important; }
+

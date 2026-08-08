@@ -5,7 +5,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PNN1LM2D9Q"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-PNN1LM2D9Q');</script>
 <meta charset="UTF-8">
-<script>(function(){try{var t=localStorage.getItem('ts-theme');if(!t){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<script>(function(){try{/* TEMP: dark mode disabled — restore prior boot to re-enable */document.documentElement.setAttribute('data-theme','light');localStorage.setItem('ts-theme','light');}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ToolShoppy | Premium Free Online Tool Suite & Converter Hub</title>
 <meta name="description" content="Access 43+ free online PDF, Image, Video, and Finance tools. Gold rate, SIP calculator, video compressor, and more. Privacy-first, no signup.">
@@ -296,10 +296,12 @@
     { id: 'sticker-maker', href: '/tools/image/sticker-maker/', cat: 'image', name: 'whatsapp sticker maker 512', icon: 'sticker-2', tile: 'amber', title: 'Sticker Maker', desc: '512×512 WhatsApp sticker' },
     { id: 'image-upscale', href: '/tools/image/upscale/', cat: 'image', name: 'image upscaler hd enhancer', icon: 'zoom-in', tile: 'violet', title: 'Image Upscaler', desc: '2×, 3× or 4× HD enhance' },
     { id: 'image-to-ascii', href: '/tools/image/image-to-ascii/', cat: 'image', name: 'image to ascii art converter braille text art instagram whatsapp', icon: 'transform', tile: 'slate', title: 'Image to ASCII Art', desc: 'Text/Braille art for comments' },
+    { id: 'image-ocr', href: '/tools/image/ocr/', cat: 'image', name: 'image ocr extract text paddleocr receipt invoice scan offline', icon: 'scan', tile: 'violet', title: 'Image OCR', desc: 'PaddleOCR text from photos' },
     { id: 'pdf-password-protect', href: '/tools/pdf/protect/', cat: 'pdf', name: 'pdf password protect aadhaar pan voter id encrypt', icon: 'lock', tile: 'rose', title: 'PDF Password Protect', desc: 'Secure Aadhaar, PAN, Voter ID' },
     { id: 'pdf-merge', href: '/tools/pdf/merge/', cat: 'pdf', name: 'pdf merge combine', icon: 'link', tile: 'amber', title: 'PDF Merge', desc: 'Combine PDFs into one' },
     { id: 'word-to-pdf', href: '/tools/pdf/word-to-pdf/', cat: 'pdf', name: 'word to pdf docx convert', icon: 'file-export', tile: 'blue', title: 'Word to PDF', desc: 'DOCX to PDF free' },
     { id: 'pdf-to-word', href: '/tools/pdf/pdf-to-word/', cat: 'pdf', name: 'pdf to word docx convert', icon: 'file-word', tile: 'green', title: 'PDF to Word', desc: 'Extract text to DOCX' },
+    { id: 'pdf-to-excel', href: '/tools/pdf/pdf-to-excel/', cat: 'pdf', name: 'pdf to excel xlsx spreadsheet invoice statement ledger accounting', icon: 'file-spreadsheet', tile: 'emerald', title: 'PDF to Excel', desc: 'Tables to XLSX for accounting' },
     { id: 'pdf-compress', href: '/tools/pdf/compress/', cat: 'pdf', name: 'pdf compress reduce size', icon: 'file-zip', tile: 'orange', title: 'PDF Compress', desc: 'Reduce PDF file size' },
     { id: 'pdf-editor', href: '/tools/pdf/editor/', cat: 'pdf', name: 'pdf editor annotate free online', icon: 'file-pencil', tile: 'violet', title: 'PDF Editor', desc: 'Annotate, sign, redact' },
     { id: 'unlock-pdf', href: '/tools/pdf/unlock/', cat: 'pdf', name: 'unlock pdf remove password', icon: 'lock-open', tile: 'emerald', title: 'Unlock PDF', desc: 'Remove PDF password' },
@@ -396,19 +398,21 @@
   const qParam = params.get('q');
   if (qParam && typeof TSTrendsSEO !== 'undefined') {
     const match = TSTrendsSEO.resolveQuery(qParam);
-    if (match && match.redirect) {
+    if (match && match.href) {
       location.replace(match.href);
+    } else {
+      searchInput.value = qParam;
     }
   } else if (qParam) {
     searchInput.value = qParam;
   }
-  // Trending search pills (from Google Trends CSV)
+  // Trending search pills → deep-link straight to the matching tool
   const trendingPills = document.getElementById('trendingPills');
   if (trendingPills && typeof TSTrendsSEO !== 'undefined') {
     TSTrendsSEO.getTrendingQueries(12).forEach((item) => {
       const a = document.createElement('a');
       a.className = 'trend-pill';
-      a.href = '/search/?q=' + encodeURIComponent(item.q);
+      a.href = item.href || ('/search/?q=' + encodeURIComponent(item.q));
       a.title = 'Open tool for: ' + item.q;
       a.textContent = item.q;
       trendingPills.appendChild(a);
