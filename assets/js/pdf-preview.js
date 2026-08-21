@@ -104,11 +104,11 @@
       '<div class="pdf-tile-thumb">' +
         '<img alt="Preview of ' + escapeAttr(name) + '" src="' + (thumb && thumb.dataUrl ? thumb.dataUrl : '') + '">' +
         '<span class="pdf-tile-badge">PDF</span>' +
+        (actionsHtml ? '<div class="pdf-tile-actions" draggable="false">' + actionsHtml + '</div>' : '') +
       '</div>' +
       '<div class="pdf-tile-body">' +
         '<div class="pdf-tile-name" title="' + escapeAttr(name) + '">' + escapeHtml(name) + '</div>' +
         '<div class="pdf-tile-meta">' + escapeHtml([pages, size].filter(Boolean).join(' · ')) + '</div>' +
-        (actionsHtml ? '<div class="pdf-tile-actions" draggable="false">' + actionsHtml + '</div>' : '') +
       '</div>';
     return tile;
   }

@@ -501,6 +501,15 @@ button { font-family: inherit; cursor: pointer; }
     grid-template-columns: minmax(0, 1fr) 300px;
   }
 }
+/* Once a file is loaded, the "How it works" sidebar has done its job —
+   give that width back to the working canvas so thumbnail grids and the
+   editor stage get real room instead of being boxed into ~700px. */
+@media (min-width: 960px) {
+  .tool-layout.is-active.with-sidebar {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+.tool-layout.is-active .sidebar { display: none; }
 
 .tool-card-main {
   background: var(--card);
@@ -1280,31 +1289,55 @@ button { font-family: inherit; cursor: pointer; }
   color: var(--text-muted);
   margin-top: 2px;
 }
+/* Small circular icon buttons overlaid on the thumbnail (iLovePDF-style),
+   always visible — not hover-only — so touch devices get the same controls
+   as desktop. */
 .pdf-tile-actions {
+  position: absolute;
+  top: 8px;
+  right: 8px;
   display: flex;
-  gap: 4px;
-  margin-top: 8px;
+  gap: 6px;
+  z-index: 2;
 }
 .pdf-tile-actions button {
-  flex: 1;
-  border: 1px solid var(--border);
-  background: var(--bg);
-  border-radius: 6px;
-  padding: 6px 4px;
-  font-size: 0.75rem;
-  font-weight: 600;
+  flex: none;
+  width: 30px;
+  height: 30px;
+  min-height: 0;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.94);
   color: var(--text);
-  min-height: 32px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  box-shadow: 0 1px 4px rgba(15,23,42,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .12s, background .12s, color .12s;
+}
+:root[data-theme="dark"] .pdf-tile-actions button {
+  background: rgba(30,41,59,0.92);
+  color: var(--text);
 }
 .pdf-tile-actions button:hover {
-  border-color: var(--primary);
   color: var(--primary-dark);
-  background: var(--primary-tint);
+  background: #fff;
+  transform: scale(1.08);
 }
 .pdf-tile-actions button.is-danger { color: var(--danger); }
 .pdf-tile-actions button.is-danger:hover {
-  background: rgba(239,68,68,0.1);
-  border-color: rgba(239,68,68,0.35);
+  background: rgba(239,68,68,0.12);
+  color: var(--danger);
+}
+.pdf-tile-thumb {
+  /* rotation applied by JS via CSS var so the badge/actions overlay stays upright */
+}
+.pdf-tile-thumb img.is-rotated {
+  transform: rotate(var(--tile-rotate, 0deg));
+  transition: transform .2s ease;
 }
 
 .pdf-preview-single {
@@ -1397,6 +1430,134 @@ button { font-family: inherit; cursor: pointer; }
   accent-color: var(--primary);
   cursor: pointer;
 }
+
+/* Organize PDF — same page-tile base, plus drag/rotate/delete */
+.pdf-page-tile.is-organize {
+  cursor: grab;
+  padding-top: 4px;
+}
+.pdf-page-tile.is-organize.is-dragging { opacity: 0.4; cursor: grabbing; }
+.pdf-page-tile.is-organize.drag-over {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(225,29,72,0.25);
+}
+.pdf-page-tile.is-organize.is-removed { display: none; }
+.pdf-page-tile.is-organize img {
+  transform: rotate(var(--tile-rotate, 0deg));
+  transition: transform .2s ease;
+}
+.pdf-page-tile.is-organize .page-tile-actions {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  display: flex;
+  gap: 4px;
+  z-index: 2;
+}
+.pdf-page-tile.is-organize .page-tile-actions button {
+  width: 26px;
+  height: 26px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.94);
+  color: var(--text);
+  box-shadow: 0 1px 4px rgba(15,23,42,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.pdf-page-tile.is-organize .page-tile-actions button:hover { color: var(--primary-dark); }
+.pdf-page-tile.is-organize .page-tile-actions button.is-danger:hover { color: var(--danger); }
+.pdf-page-tile.is-organize .page-tile-actions .icon-svg { width: 15px; height: 15px; }
+
+/* Sticky primary-action bar — the CTA stays reachable while a long
+   thumbnail grid scrolls beneath it, mirroring iLovePDF's fixed action panel. */
+.sticky-cta-bar {
+  position: sticky;
+  bottom: 16px;
+  z-index: 5;
+  margin-top: 14px;
+  padding: 12px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-premium);
+}
+@media (max-width: 640px) {
+  .sticky-cta-bar { bottom: 78px; }
+}
+
+/* PDF Editor — page-thumbnail rail + zoom controls */
+.editor-workspace {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.editor-rail {
+  flex: none;
+  width: 84px;
+  max-height: 70vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 2px;
+}
+@media (max-width: 640px) {
+  .editor-rail { display: none; }
+}
+.editor-rail-item {
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--card);
+  transition: border-color .15s, box-shadow .15s;
+}
+.editor-rail-item.is-active {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px var(--primary-tint);
+}
+.editor-rail-item img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: contain;
+  background: #fff;
+  display: block;
+}
+.editor-rail-item .rail-num {
+  display: block;
+  text-align: center;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 3px;
+  color: var(--text-muted);
+  background: var(--bg);
+}
+.editor-rail-item.is-active .rail-num { color: var(--primary-dark); background: var(--primary-tint); }
+.editor-stage-col { flex: 1; min-width: 0; }
+.editor-zoom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.editor-zoom button {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  font-weight: 700;
+  cursor: pointer;
+}
+.editor-zoom button:hover { border-color: var(--primary); color: var(--primary-dark); }
+.editor-zoom-value { min-width: 44px; text-align: center; font-weight: 700; color: var(--text); }
 
 /* Rates & finance tools */
 .rate-updated {

@@ -2,11 +2,6 @@
   "cleanUrls": true,
   "redirects": [
     {
-      "source": "/search",
-      "destination": "/search/",
-      "type": 301
-    },
-    {
       "source": "/free-online-pdf-editor",
       "destination": "/tools/pdf/editor/",
       "type": 301

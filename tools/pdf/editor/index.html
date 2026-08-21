@@ -87,7 +87,7 @@
     <p>Annotate, highlight, redact, sign, and add images — free, no login.</p>
   </div>
   <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
-  <div class="tool-layout with-sidebar">
+  <div class="tool-layout with-sidebar" id="toolLayout">
     <div class="tool-card-main">
       <div class="drop-zone" id="dropZone">
         <div class="icon"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#upload"></use></svg></div>
@@ -114,15 +114,27 @@
           <button class="btn btn-sm" id="editTextBtn" type="button" hidden>Edit text</button>
           <button class="btn btn-sm is-danger" id="deleteObjBtn" type="button">Delete</button>
         </div>
-        <div class="editor-stage"><canvas id="editCanvas"></canvas></div>
-        <input type="file" id="imageInput" accept="image/*" hidden>
-        <div class="page-nav">
-          <button class="btn" id="prevPage" type="button">‹ Prev</button>
-          <span id="pageLabel">Page 1 / 1</span>
-          <button class="btn" id="nextPage" type="button">Next ›</button>
+        <div class="editor-workspace">
+          <div class="editor-rail" id="pageRail" aria-label="Page thumbnails"></div>
+          <div class="editor-stage-col">
+            <div class="editor-stage"><canvas id="editCanvas"></canvas></div>
+            <input type="file" id="imageInput" accept="image/*" hidden>
+            <div class="page-nav">
+              <button class="btn" id="prevPage" type="button">‹ Prev</button>
+              <span id="pageLabel">Page 1 / 1</span>
+              <button class="btn" id="nextPage" type="button">Next ›</button>
+            </div>
+            <div class="editor-zoom">
+              <button type="button" id="zoomOut" title="Zoom out">−</button>
+              <span class="editor-zoom-value" id="zoomValue">100%</span>
+              <button type="button" id="zoomIn" title="Zoom in">+</button>
+            </div>
+          </div>
         </div>
-        <button class="btn btn-primary btn-block" id="saveBtn" style="margin-top:14px;" type="button">Save Annotated PDF</button>
-        <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+        <div class="sticky-cta-bar">
+          <button class="btn btn-primary btn-block" id="saveBtn" type="button">Save Annotated PDF</button>
+          <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+        </div>
         <div class="result-panel" id="resultPanel">
           <button class="btn btn-accent btn-block" id="downloadBtn" type="button"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#download"></use></svg> Download Edited PDF</button>
         </div>
@@ -214,12 +226,18 @@
 <script src="/assets/js/analytics.js"></script>
 <script src="/assets/libs/pdf.min.js"></script>
 <script src="/assets/libs/pdf-lib.min.js"></script>
+<script src="/assets/js/pdf-preview.js"></script>
 <script>
 (function () {
   pdfjsLib.GlobalWorkerOptions.workerSrc = '/assets/libs/pdf.worker.min.js';
+  const toolLayout = document.getElementById('toolLayout');
   const dropZone = document.getElementById('dropZone');
   const fileInput = document.getElementById('fileInput');
   const editorUI = document.getElementById('editorUI');
+  const pageRail = document.getElementById('pageRail');
+  const zoomOutBtn = document.getElementById('zoomOut');
+  const zoomInBtn = document.getElementById('zoomIn');
+  const zoomValue = document.getElementById('zoomValue');
   const canvas = document.getElementById('editCanvas');
   const ctx = canvas.getContext('2d');
   const toolbar = document.getElementById('toolbar');
@@ -250,6 +268,7 @@
   const sigCancel = document.getElementById('sigCancel');
   let pdfDoc = null;
   let pageNum = 1;
+  let zoomMult = 1;
   let tool = 'select';
   let drawing = false;
   let lastX = 0;
@@ -421,6 +440,7 @@
     pageLabel.textContent = 'Page ' + num + ' / ' + pdfDoc.numPages;
     updateObjProps();
     updateCanvasCursor();
+    renderRail();
   }
   function addTextObject(x, y) {
     const text = prompt('Enter text:');
@@ -590,6 +610,49 @@
     sigCursor.classList.remove('is-drawing');
     addImageObject(dataUrl, 'signature');
   }
+  function applyZoom() {
+    canvas.style.transform = 'scale(' + zoomMult + ')';
+    canvas.style.transformOrigin = 'top center';
+    zoomValue.textContent = Math.round(zoomMult * 100) + '%';
+  }
+  zoomInBtn.addEventListener('click', () => {
+    zoomMult = Math.min(2.5, +(zoomMult + 0.1).toFixed(2));
+    applyZoom();
+  });
+  zoomOutBtn.addEventListener('click', () => {
+    zoomMult = Math.max(0.4, +(zoomMult - 0.1).toFixed(2));
+    applyZoom();
+  });
+  let railBuilt = false;
+  async function renderRail() {
+    if (railBuilt) { updateRailActive(); return; }
+    railBuilt = true;
+    pageRail.innerHTML = '';
+    for (let n = 1; n <= pdfDoc.numPages; n++) {
+      const item = document.createElement('div');
+      item.className = 'editor-rail-item' + (n === pageNum ? ' is-active' : '');
+      item.dataset.page = String(n);
+      item.innerHTML = '<img alt="Page ' + n + '" src=""><span class="rail-num">' + n + '</span>';
+      pageRail.appendChild(item);
+      TSPdfPreview.renderPdfPage(currentFile, n, { maxWidth: 84 }).then((res) => {
+        const img = item.querySelector('img');
+        if (img) img.src = res.dataUrl;
+      }).catch(() => {});
+    }
+  }
+  function updateRailActive() {
+    pageRail.querySelectorAll('.editor-rail-item').forEach((el) => {
+      el.classList.toggle('is-active', parseInt(el.dataset.page, 10) === pageNum);
+    });
+  }
+  pageRail.addEventListener('click', async (e) => {
+    const item = e.target.closest('.editor-rail-item');
+    if (!item) return;
+    const n = parseInt(item.dataset.page, 10);
+    if (n === pageNum) return;
+    pageNum = n;
+    await renderPage(pageNum);
+  });
   toolbar.addEventListener('click', (e) => {
     const chip = e.target.closest('.chip');
     if (!chip) return;
@@ -911,9 +974,13 @@
       pageNum = 1;
       pages = {};
       selectedId = null;
+      railBuilt = false;
+      zoomMult = 1;
       dropZone.style.display = 'none';
       editorUI.style.display = 'block';
+      toolLayout.classList.add('is-active');
       setTool('select');
+      applyZoom();
       await renderPage(1);
     } catch (err) {
       alert(err.message || 'Could not open PDF.');
