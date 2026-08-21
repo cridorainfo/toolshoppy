@@ -440,7 +440,7 @@
   // Trending search pills → deep-link straight to the matching tool
   const trendingPills = document.getElementById('trendingPills');
   if (trendingPills && typeof TSTrendsSEO !== 'undefined') {
-    TSTrendsSEO.getTrendingQueries(12).forEach((item) => {
+    TSTrendsSEO.getTrendingQueries(8).forEach((item) => {
       const a = document.createElement('a');
       a.className = 'trend-pill';
       a.href = item.href || ('/search/?q=' + encodeURIComponent(item.q));

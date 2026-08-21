@@ -389,13 +389,27 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 /* Trending searches strip (Google Trends) */
-.trending-section { margin-bottom: 8px; }
-.trending-section-sub { font-size: 0.85rem; color: var(--text-muted); margin: -4px 0 12px; }
-.trending-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+.trending-section { margin-bottom: 4px; }
+.trending-section-sub { font-size: 0.8rem; color: var(--text-muted); margin: -4px 0 10px; }
+/* Single scrollable row instead of wrapping to 3+ lines — keeps the tool
+   grid visible sooner on the landing page. */
+.trending-pills {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+  margin-bottom: 16px;
+  overflow-x: auto;
+  overflow-y: visible;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  padding: 2px 0 4px;
+}
+.trending-pills::-webkit-scrollbar { display: none; }
 .trend-pill {
   display: inline-flex; align-items: center; padding: 7px 14px; font-size: 0.78rem; font-weight: 600;
   color: var(--primary-dark); background: var(--primary-tint); border: 1px solid rgba(225, 29, 72, 0.2);
   border-radius: 999px; text-decoration: none; transition: background .2s ease, border-color .2s ease;
+  flex: 0 0 auto; white-space: nowrap;
 }
 .trend-pill:hover { background: var(--card); border-color: var(--primary); color: var(--primary); }
 :root[data-theme="dark"] .trend-pill { color: var(--primary); background: rgba(225, 29, 72, 0.1); }
