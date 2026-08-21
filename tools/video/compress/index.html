@@ -96,7 +96,7 @@
     <p>Reduce video file size — processed locally with FFmpeg.</p>
   </div>
   <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
-  <div class="tool-layout with-sidebar">
+  <div class="tool-layout with-sidebar" id="toolLayout">
     <div class="tool-card-main">
       <div class="chip-row" id="qualityRow">
         <button class="chip active" data-crf="23" type="button">High quality</button>
@@ -109,8 +109,10 @@
         <input type="file" id="fileInput" accept="video/*">
       </div>
       <p id="fileInfo" style="font-size:0.85rem;color:var(--text-muted);margin-top:8px;"></p>
-      <button class="btn btn-primary btn-block" id="compressBtn" style="margin-top:12px;display:none;">Compress Video</button>
-      <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+      <div class="sticky-cta-bar">
+        <button class="btn btn-primary btn-block" id="compressBtn" style="display:none;">Compress Video</button>
+        <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+      </div>
       <p id="statusText" style="font-size:0.85rem;color:var(--text-muted);margin-top:8px;"></p>
       <div class="result-panel" id="resultPanel">
         <button class="btn btn-accent btn-block" id="downloadBtn">Download Compressed Video</button>
@@ -186,6 +188,7 @@ TS.setupDropZone(document.getElementById('dropZone'), document.getElementById('f
   file = f[0]; if (!file) return;
   document.getElementById('fileInfo').textContent = file.name + ' · ' + TS.formatBytes(file.size);
   document.getElementById('compressBtn').style.display = 'block';
+  document.getElementById('toolLayout').classList.add('is-active');
 });
 document.getElementById('compressBtn').addEventListener('click', async function () {
   if (!file) return;

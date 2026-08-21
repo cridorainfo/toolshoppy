@@ -113,7 +113,7 @@
     <p>Turn any photo into text art you can paste straight into Instagram, WhatsApp, Facebook &amp; LinkedIn comments.</p>
   </div>
   <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
-  <div class="tool-layout with-sidebar">
+  <div class="tool-layout with-sidebar" id="toolLayout">
     <div class="tool-card-main">
       <div class="drop-zone" id="dropZone">
         <div class="dz-cta">Upload a photo</div>
@@ -606,6 +606,7 @@
       var box = detectCropBox(loaded.img);
       state.img = box ? cropToCanvas(loaded.img, box) : loaded.img;
       controls.style.display = 'block';
+      document.getElementById('toolLayout').classList.add('is-active');
       if (state.limit) state.cols = bestWidthForLimit(state.limit);
       syncWidthControl();
       generate();

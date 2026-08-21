@@ -64,7 +64,7 @@
     <p>Remove password protection when you already know the password.</p>
   </div>
   <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
-  <div class="tool-layout with-sidebar">
+  <div class="tool-layout with-sidebar" id="toolLayout">
     <div class="tool-card-main">
       <div class="drop-zone" id="dropZone">
         <div class="icon"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#upload"></use></svg></div>
@@ -78,8 +78,10 @@
         <label style="display:block;font-size:0.9rem;font-weight:600;margin:12px 0 6px;">PDF password</label>
         <input type="password" id="pw" placeholder="Enter the current password" style="width:100%;padding:12px;border:1px solid var(--border);border-radius:8px;margin-bottom:12px;">
         <p id="pwError" style="display:none;color:var(--danger);font-size:0.85rem;margin-bottom:10px;"></p>
-        <button class="btn btn-primary btn-block" id="unlockBtn">Unlock PDF</button>
-        <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+        <div class="sticky-cta-bar">
+          <button class="btn btn-primary btn-block" id="unlockBtn">Unlock PDF</button>
+          <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+        </div>
       </div>
       <div class="result-panel" id="resultPanel">
         <div class="compare-row">
@@ -157,6 +159,7 @@
 <script>
 (function () {
   pdfjsLib.GlobalWorkerOptions.workerSrc = '/assets/libs/pdf.worker.min.js';
+  const toolLayout = document.getElementById('toolLayout');
   const dropZone = document.getElementById('dropZone');
   const fileInput = document.getElementById('fileInput');
   const controls = document.getElementById('controls');
@@ -199,6 +202,7 @@
     }
     currentFile = file;
     controls.style.display = 'block';
+    toolLayout.classList.add('is-active');
     resultPanel.classList.remove('active');
     pwError.style.display = 'none';
     showPdfPreview(file);

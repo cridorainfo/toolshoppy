@@ -72,7 +72,7 @@
     <p>Extract text from receipts, invoices &amp; photos with on-device PaddleOCR PP-OCRv5.</p>
   </div>
   <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
-  <div class="tool-layout with-sidebar">
+  <div class="tool-layout with-sidebar" id="toolLayout">
     <div class="tool-card-main">
       <div class="drop-zone" id="dropZone">
         <div class="icon"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#upload"></use></svg></div>
@@ -174,6 +174,7 @@
 <script src="/assets/js/paddle-ocr.js"></script>
 <script>
 (function () {
+  const toolLayout = document.getElementById('toolLayout');
   const dropZone = document.getElementById('dropZone');
   const fileInput = document.getElementById('fileInput');
   const working = document.getElementById('working');
@@ -236,6 +237,7 @@
   async function runOcr(file) {
     currentFile = file;
     dropZone.style.display = 'none';
+    toolLayout.classList.add('is-active');
     resultPanel.classList.remove('active');
     working.style.display = 'block';
     setProgress({ label: 'Starting OCR…', pct: 3 });
@@ -295,6 +297,7 @@
     previewImg.removeAttribute('src');
     resultPanel.classList.remove('active');
     dropZone.style.display = '';
+    toolLayout.classList.remove('is-active');
     fileInput.value = '';
   });
 

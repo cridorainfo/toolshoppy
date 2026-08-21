@@ -88,7 +88,7 @@
     <p>Upscale 2×, 3× or 4× with sharpening — honest canvas enhancement.</p>
   </div>
   <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
-  <div class="tool-layout with-sidebar">
+  <div class="tool-layout with-sidebar" id="toolLayout">
     <div class="tool-card-main">
       <div class="chip-row" id="scaleRow">
         <button class="chip active" data-scale="2" type="button">2×</button>
@@ -100,8 +100,10 @@
         <input type="file" id="fileInput" accept="image/*">
       </div>
       <div id="controls" style="display:none;margin-top:16px;">
-        <button class="btn btn-primary btn-block" id="upscaleBtn">Enhance Image</button>
-        <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+        <div class="sticky-cta-bar">
+          <button class="btn btn-primary btn-block" id="upscaleBtn">Enhance Image</button>
+          <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+        </div>
       </div>
       <div class="result-panel" id="resultPanel">
         <div class="compare-row"><div class="compare-box"><div class="label">Output</div><div class="value" id="outDims">—</div></div><div class="compare-box"><div class="label">File</div><div class="value" id="outSize">—</div></div></div>
@@ -183,6 +185,7 @@
     if (!file) return;
     TS.renderFilePreview(TS.getOrCreatePreviewContainer(document.getElementById('dropZone')), [file]);
     document.getElementById('controls').style.display = 'block';
+    document.getElementById('toolLayout').classList.add('is-active');
     document.getElementById('resultPanel').classList.remove('active');
   }, { preview: false });
   document.getElementById('upscaleBtn').addEventListener('click', async function () {

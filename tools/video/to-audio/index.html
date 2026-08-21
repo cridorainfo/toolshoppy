@@ -88,15 +88,17 @@
     <p>Extract audio track from any video — MP3 download.</p>
   </div>
   <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
-  <div class="tool-layout with-sidebar">
+  <div class="tool-layout with-sidebar" id="toolLayout">
     <div class="tool-card-main">
       <div class="drop-zone" id="dropZone">
         <div class="dz-cta">Select video</div>
         <input type="file" id="fileInput" accept="video/*">
       </div>
       <p id="fileInfo" style="font-size:0.85rem;color:var(--text-muted);margin-top:8px;"></p>
-      <button class="btn btn-primary btn-block" id="convertBtn" style="margin-top:12px;display:none;">Extract MP3</button>
-      <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+      <div class="sticky-cta-bar">
+        <button class="btn btn-primary btn-block" id="convertBtn" style="display:none;">Extract MP3</button>
+        <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+      </div>
       <p id="statusText" style="font-size:0.85rem;color:var(--text-muted);"></p>
       <div class="result-panel" id="resultPanel">
         <button class="btn btn-accent btn-block" id="downloadBtn">Download MP3</button>
@@ -163,6 +165,7 @@ TS.setupDropZone(document.getElementById('dropZone'), document.getElementById('f
   file = f[0]; if (!file) return;
   document.getElementById('fileInfo').textContent = file.name + ' · ' + TS.formatBytes(file.size);
   document.getElementById('convertBtn').style.display = 'block';
+  document.getElementById('toolLayout').classList.add('is-active');
 });
 document.getElementById('convertBtn').addEventListener('click', async function () {
   if (!file) return;

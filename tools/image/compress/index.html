@@ -106,7 +106,7 @@
     <p>Shrink any photo to a precise file size. Perfect for PSC, UPSC, PAN, job portals.</p>
   </div>
   <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
-  <div class="tool-layout with-sidebar">
+  <div class="tool-layout with-sidebar" id="toolLayout">
     <div class="tool-card-main">
       <div class="drop-zone" id="dropZone">
         <div class="icon"><span class="icon-tile icon-tile--sm icon-tile--indigo"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#upload"></use></svg></span></div>
@@ -129,8 +129,10 @@
           <input type="number" id="customKb" min="1" placeholder="Enter target KB" style="padding:10px;border:1px solid var(--border);border-radius:8px;width:160px;">
         </div>
         <div class="file-list" id="fileList"></div>
-        <button class="btn btn-primary btn-block" id="compressBtn">Compress Images</button>
-        <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+        <div class="sticky-cta-bar">
+          <button class="btn btn-primary btn-block" id="compressBtn">Compress Images</button>
+          <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+        </div>
       </div>
       <div class="result-panel" id="resultPanel">
         <div class="compare-row">
@@ -245,6 +247,7 @@
 <script src="/assets/js/analytics.js"></script>
 <script>
 (function () {
+  const toolLayout = document.getElementById('toolLayout');
   const dropZone = document.getElementById('dropZone');
   const fileInput = document.getElementById('fileInput');
   const controls = document.getElementById('controls');
@@ -283,6 +286,7 @@
     if (!imgs.length) return;
     files = files.concat(imgs);
     controls.style.display = 'block';
+    toolLayout.classList.add('is-active');
     resultPanel.classList.remove('active');
     results = [];
     renderFileList();
@@ -295,6 +299,7 @@
     renderFileList();
     if (!files.length) {
       controls.style.display = 'none';
+      toolLayout.classList.remove('is-active');
       resultPanel.classList.remove('active');
     }
   });

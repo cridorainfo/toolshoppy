@@ -96,7 +96,7 @@
     <p>Cuts out the subject automatically — any background, not just plain colours. Exports a transparent PNG.</p>
   </div>
   <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
-  <div class="tool-layout with-sidebar">
+  <div class="tool-layout with-sidebar" id="toolLayout">
     <div class="tool-card-main">
       <div class="drop-zone" id="dropZone">
         <div class="icon"><span class="icon-tile icon-tile--sm icon-tile--pink"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#upload"></use></svg></span></div>
@@ -202,6 +202,7 @@
 <script src="/assets/js/bg-remove.js"></script>
 <script>
 (function () {
+  var toolLayout = document.getElementById('toolLayout');
   var dropZone = document.getElementById('dropZone'), fileInput = document.getElementById('fileInput');
   var working = document.getElementById('working'), workingLabel = document.getElementById('workingLabel'), workingHint = document.getElementById('workingHint');
   var progressFill = document.getElementById('progressFill');
@@ -235,6 +236,7 @@
     resultPanel.classList.remove('active');
     working.style.display = 'none';
     dropZone.style.display = '';
+    toolLayout.classList.remove('is-active');
     seg = null; blob = null;
     fileInput.value = '';
   }
@@ -244,6 +246,7 @@
     var file = files[0];
     if (!file) return;
     dropZone.style.display = 'none';
+    toolLayout.classList.add('is-active');
     working.style.display = 'block';
     workingLabel.textContent = 'Loading AI model…';
     workingHint.textContent = 'First run only — cached after this.';

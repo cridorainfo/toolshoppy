@@ -64,7 +64,7 @@
     <p>Turn JPG, PNG, and WebP photos into a single PDF — reorder pages before export.</p>
   </div>
   <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
-  <div class="tool-layout with-sidebar">
+  <div class="tool-layout with-sidebar" id="toolLayout">
     <div class="tool-card-main">
       <div class="drop-zone" id="dropZone">
         <div class="icon"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#upload"></use></svg></div>
@@ -88,11 +88,13 @@
           <button class="chip" data-orient="portrait" type="button">Portrait</button>
           <button class="chip" data-orient="landscape" type="button">Landscape</button>
         </div>
-        <div class="action-bar">
-          <button class="btn btn-primary" id="createBtn">Create PDF</button>
-          <button class="btn" id="addMoreBtn" type="button" style="background:var(--bg);border:1px solid var(--border);">+ Add more</button>
+        <div class="sticky-cta-bar">
+          <div class="action-bar">
+            <button class="btn btn-primary" id="createBtn">Create PDF</button>
+            <button class="btn" id="addMoreBtn" type="button" style="background:var(--bg);border:1px solid var(--border);">+ Add more</button>
+          </div>
+          <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
         </div>
-        <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
       </div>
       <div class="result-panel" id="resultPanel">
         <div class="compare-row">
@@ -169,6 +171,7 @@
     a4: [595.28, 841.89],
     letter: [612, 792],
   };
+  const toolLayout = document.getElementById('toolLayout');
   const dropZone = document.getElementById('dropZone');
   const dzCta = document.getElementById('dzCta');
   const fileInput = document.getElementById('fileInput');
@@ -196,6 +199,7 @@
     const hasFiles = files.length > 0;
     dropZone.classList.toggle('drop-zone--compact', hasFiles);
     dzCta.textContent = hasFiles ? '+ Add more images' : 'Select images';
+    toolLayout.classList.toggle('is-active', hasFiles);
   }
   TS.setupDropZone(dropZone, fileInput, (newFiles) => {
     const imgs = newFiles.filter(isImage);

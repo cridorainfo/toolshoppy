@@ -64,7 +64,7 @@
     <p>Extract PDF text into an editable Word document — free and private.</p>
   </div>
   <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
-  <div class="tool-layout with-sidebar">
+  <div class="tool-layout with-sidebar" id="toolLayout">
     <div class="tool-card-main">
       <div class="drop-zone" id="dropZone">
         <div class="icon"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#upload"></use></svg></div>
@@ -75,8 +75,10 @@
       </div>
       <div id="controls" style="display:none;margin-top:16px;">
         <div class="pdf-preview-single" id="pdfPreview" aria-live="polite"></div>
-        <button class="btn btn-primary btn-block" id="convertBtn">Convert to Word</button>
-        <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+        <div class="sticky-cta-bar">
+          <button class="btn btn-primary btn-block" id="convertBtn">Convert to Word</button>
+          <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+        </div>
       </div>
       <div class="result-panel" id="resultPanel">
         <div class="compare-row">
@@ -154,6 +156,7 @@
 <script>
 (function () {
   pdfjsLib.GlobalWorkerOptions.workerSrc = '/assets/libs/pdf.worker.min.js';
+  const toolLayout = document.getElementById('toolLayout');
   const dropZone = document.getElementById('dropZone');
   const fileInput = document.getElementById('fileInput');
   const controls = document.getElementById('controls');
@@ -198,6 +201,7 @@
     }
     currentFile = file;
     controls.style.display = 'block';
+    toolLayout.classList.add('is-active');
     resultPanel.classList.remove('active');
     showPdfPreview(file);
   }, { preview: false });

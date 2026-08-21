@@ -111,7 +111,7 @@
     <p>Add a password to any PDF — ideal for securing Aadhaar, PAN, Voter ID, and other personal documents before sharing.</p>
   </div>
   <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
-  <div class="tool-layout with-sidebar">
+  <div class="tool-layout with-sidebar" id="toolLayout">
     <div class="tool-card-main">
       <div class="drop-zone" id="dropZone">
         <div class="icon"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#upload"></use></svg></div>
@@ -126,8 +126,10 @@
         <input type="password" id="pw1" placeholder="Enter password" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;margin-bottom:10px;">
         <input type="password" id="pw2" placeholder="Confirm password" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;">
         <p id="pwError" style="display:none;color:var(--danger);font-size:0.8rem;margin-top:6px;"></p>
-        <button class="btn btn-primary btn-block" id="protectBtn" style="margin-top:14px;">Protect PDF</button>
-        <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+        <div class="sticky-cta-bar">
+          <button class="btn btn-primary btn-block" id="protectBtn">Protect PDF</button>
+          <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+        </div>
       </div>
       <div class="result-panel" id="resultPanel">
         <div class="compare-row">
@@ -247,6 +249,7 @@
 <script>
 (function () {
   pdfjsLib.GlobalWorkerOptions.workerSrc = '/assets/libs/pdf.worker.min.js';
+  const toolLayout = document.getElementById('toolLayout');
   const dropZone = document.getElementById('dropZone');
   const fileInput = document.getElementById('fileInput');
   const controls = document.getElementById('controls');
@@ -290,6 +293,7 @@
     }
     currentFile = file;
     controls.style.display = 'block';
+    toolLayout.classList.add('is-active');
     resultPanel.classList.remove('active');
     pwError.style.display = 'none';
     showPdfPreview(file);

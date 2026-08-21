@@ -88,7 +88,7 @@
     <p>512×512 sticker, optimised for WhatsApp (&lt;100KB).</p>
   </div>
   <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
-  <div class="tool-layout with-sidebar">
+  <div class="tool-layout with-sidebar" id="toolLayout">
     <div class="tool-card-main">
       <div class="drop-zone" id="dropZone">
         <div class="dz-cta">Upload image</div>
@@ -96,8 +96,10 @@
         <input type="file" id="fileInput" accept="image/*">
       </div>
       <div id="controls" style="display:none;margin-top:16px;">
-        <button class="btn btn-primary btn-block" id="makeBtn">Create Sticker</button>
-        <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+        <div class="sticky-cta-bar">
+          <button class="btn btn-primary btn-block" id="makeBtn">Create Sticker</button>
+          <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+        </div>
       </div>
       <div class="result-panel" id="resultPanel">
         <img id="previewImg" alt="Sticker preview" style="width:200px;height:200px;object-fit:contain;border-radius:8px;border:1px solid var(--border);margin-bottom:12px;">
@@ -172,6 +174,7 @@
     if (!file) return;
     TS.renderFilePreview(TS.getOrCreatePreviewContainer(document.getElementById('dropZone')), [file]);
     document.getElementById('controls').style.display = 'block';
+    document.getElementById('toolLayout').classList.add('is-active');
     document.getElementById('resultPanel').classList.remove('active');
   }, { preview: false });
   document.getElementById('makeBtn').addEventListener('click', async function () {

@@ -88,7 +88,7 @@
     <p>Split video into 30s status clips — 9:16 vertical, ready to post.</p>
   </div>
   <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
-  <div class="tool-layout with-sidebar">
+  <div class="tool-layout with-sidebar" id="toolLayout">
     <div class="tool-card-main">
       <div class="chip-row" id="modeRow">
         <button class="chip active" data-mode="video" type="button">Video</button>
@@ -99,8 +99,10 @@
         <input type="file" id="fileInput" accept="video/*,image/*">
       </div>
       <p id="fileInfo" style="font-size:0.85rem;color:var(--text-muted);margin-top:8px;"></p>
-      <button class="btn btn-primary btn-block" id="splitBtn" style="margin-top:12px;display:none;">Split for Status</button>
-      <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+      <div class="sticky-cta-bar">
+        <button class="btn btn-primary btn-block" id="splitBtn" style="display:none;">Split for Status</button>
+        <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+      </div>
       <p id="statusText" style="font-size:0.85rem;color:var(--text-muted);"></p>
       <div class="result-panel" id="resultPanel">
         <p id="partCount" style="margin-bottom:12px;font-weight:600;"></p>
@@ -178,6 +180,7 @@ TS.setupDropZone(document.getElementById('dropZone'), document.getElementById('f
   mode = file.type.startsWith('image/') ? 'image' : 'video';
   document.getElementById('fileInfo').textContent = file.name + ' · ' + TS.formatBytes(file.size);
   document.getElementById('splitBtn').style.display = 'block';
+  document.getElementById('toolLayout').classList.add('is-active');
 });
 async function splitImage() {
   var loaded = await TS.loadImage(file);

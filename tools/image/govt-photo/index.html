@@ -106,7 +106,7 @@
     <p>Auto-crop to the exact pixel size for PSC, UPSC, PAN, Aadhaar & Passport forms.</p>
   </div>
   <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
-  <div class="tool-layout with-sidebar">
+  <div class="tool-layout with-sidebar" id="toolLayout">
     <div class="tool-card-main">
       <h3 style="font-size:1rem;margin-bottom:10px;">1. Choose form type</h3>
       <div class="chip-row" id="presetRow"></div>
@@ -130,8 +130,10 @@
       </div>
       <canvas id="workCanvas" style="display:none;"></canvas>
       <div id="controls" style="display:none;margin-top:16px;">
-        <button class="btn btn-primary btn-block" id="generateBtn">Generate Photo</button>
-        <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+        <div class="sticky-cta-bar">
+          <button class="btn btn-primary btn-block" id="generateBtn">Generate Photo</button>
+          <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+        </div>
       </div>
       <div class="result-panel" id="resultPanel">
         <div class="compare-row">
@@ -252,6 +254,7 @@
   const presetRow = document.getElementById('presetRow');
   const presetInfo = document.getElementById('presetInfo');
   const bgRow = document.getElementById('bgRow');
+  const toolLayout = document.getElementById('toolLayout');
   const dropZone = document.getElementById('dropZone');
   const fileInput = document.getElementById('fileInput');
   const controls = document.getElementById('controls');
@@ -309,6 +312,7 @@
     if (!currentFile) return;
     TS.renderFilePreview(TS.getOrCreatePreviewContainer(dropZone), [currentFile]);
     controls.style.display = 'block';
+    toolLayout.classList.add('is-active');
     resultPanel.classList.remove('active');
   }, { preview: false });
   generateBtn.addEventListener('click', async () => {

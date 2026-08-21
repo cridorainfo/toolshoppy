@@ -64,7 +64,7 @@
     <p>Extract pages, split every page, or save custom ranges — all in your browser.</p>
   </div>
   <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
-  <div class="tool-layout with-sidebar">
+  <div class="tool-layout with-sidebar" id="toolLayout">
     <div class="tool-card-main">
       <div class="drop-zone" id="dropZone">
         <div class="icon"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#upload"></use></svg></div>
@@ -94,8 +94,10 @@
           <input type="text" id="rangeInput" placeholder="1-3, 5, 8-10" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:var(--card);color:var(--text);font-size:0.9rem;">
           <p style="font-size:0.78rem;color:var(--text-muted);margin-top:6px;">Each range becomes a separate PDF in the download ZIP.</p>
         </div>
-        <button class="btn btn-primary btn-block" id="splitBtn" style="margin-top:14px;">Split PDF</button>
-        <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+        <div class="sticky-cta-bar">
+          <button class="btn btn-primary btn-block" id="splitBtn">Split PDF</button>
+          <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+        </div>
       </div>
       <div class="result-panel" id="resultPanel">
         <div class="compare-row">
@@ -171,6 +173,7 @@
 <script>
 (function () {
   pdfjsLib.GlobalWorkerOptions.workerSrc = '/assets/libs/pdf.worker.min.js';
+  const toolLayout = document.getElementById('toolLayout');
   const dropZone = document.getElementById('dropZone');
   const fileInput = document.getElementById('fileInput');
   const controls = document.getElementById('controls');
@@ -201,6 +204,7 @@
     if (!f) { alert('Please choose a PDF file.'); return; }
     pdfFile = f;
     controls.style.display = 'block';
+    toolLayout.classList.add('is-active');
     dropZone.style.display = 'none';
     resultPanel.classList.remove('active');
     resultBlob = null;
@@ -222,6 +226,7 @@
     pageCount = 0;
     controls.style.display = 'none';
     dropZone.style.display = '';
+    toolLayout.classList.remove('is-active');
   }
   async function renderPreview() {
     pdfPreview.innerHTML = '';

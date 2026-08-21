@@ -106,7 +106,7 @@
     <p>Convert between JPG, PNG, WebP and HEIC — instantly, on your device.</p>
   </div>
   <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
-  <div class="tool-layout with-sidebar">
+  <div class="tool-layout with-sidebar" id="toolLayout">
     <div class="tool-card-main">
       <div class="drop-zone" id="dropZone">
         <div class="icon"><span class="icon-tile icon-tile--sm icon-tile--cyan"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#upload"></use></svg></span></div>
@@ -123,8 +123,10 @@
           <button class="chip" data-fmt="image/webp" data-ext="webp">WebP</button>
         </div>
         <div class="file-list" id="fileList"></div>
-        <button class="btn btn-primary btn-block" id="convertBtn" style="margin-top:10px;">Convert All</button>
-        <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+        <div class="sticky-cta-bar">
+          <button class="btn btn-primary btn-block" id="convertBtn">Convert All</button>
+          <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+        </div>
       </div>
       <div class="result-panel" id="resultPanel">
         <div class="file-list" id="resultList"></div>
@@ -216,6 +218,7 @@
 <script src="/assets/js/analytics.js"></script>
 <script>
 (function () {
+  const toolLayout = document.getElementById('toolLayout');
   const dropZone = document.getElementById('dropZone');
   const fileInput = document.getElementById('fileInput');
   const controls = document.getElementById('controls');
@@ -234,6 +237,7 @@
   TS.setupDropZone(dropZone, fileInput, (newFiles) => {
     files = files.concat(newFiles);
     controls.style.display = 'block';
+    toolLayout.classList.add('is-active');
     resultPanel.classList.remove('active');
     renderFileList();
   }, { preview: false });
