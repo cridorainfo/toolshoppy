@@ -18,7 +18,7 @@
   --radius: 16px;
   --radius-sm: 8px;
   --radius-lg: 24px;
-  --container: 1140px;
+  --container: 1320px;
   color-scheme: light;
 }
 
@@ -66,7 +66,10 @@ button { font-family: inherit; cursor: pointer; }
 .container {
   max-width: var(--container);
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 16px;
+}
+@media (min-width: 480px) {
+  .container { padding: 0 20px; }
 }
 
 /* Header */
