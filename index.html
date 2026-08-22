@@ -27,7 +27,7 @@
 <link rel="apple-touch-icon" href="/assets/img/icon-192.png?v=2">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#E11D48">
-<link rel="stylesheet" href="/assets/css/main.css?v=3">
+<link rel="stylesheet" href="/assets/css/main.css?v=4">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
 <script type="application/ld+json">
 {
@@ -122,8 +122,7 @@
 </div>
 <main>
   <section class="hero container">
-    <div class="hero-blob hero-blob--1"></div>
-    <div class="hero-blob hero-blob--2"></div>
+    <img src="/assets/img/logo.png?v=2" alt="" class="hero-logo-mark" aria-hidden="true">
     <span class="hero-badge"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sparkles"></use></svg> 100% private, zero signup</span>
     <h1>Your one-stop shop for <span class="hero-accent">every free tool</span></h1>
     <p>No signup. No login. No file ever leaves your device.</p>
@@ -142,6 +141,7 @@
       <button class="filter-chip filter-chip--finance" data-cat="finance"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#coin"></use></svg> Finance</button>
       <button class="filter-chip filter-chip--video" data-cat="video"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#movie"></use></svg> Video</button>
       <button class="filter-chip filter-chip--misc" data-cat="misc"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#puzzle"></use></svg> Generators</button>
+      <button class="filter-chip filter-chip--akshaya" data-cat="akshaya"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#id"></use></svg> Akshaya</button>
     </div>
   </nav>
   <nav class="container" aria-label="Browse tool categories" style="padding:8px 16px 0;display:flex;flex-wrap:wrap;gap:10px 14px;font-size:0.9rem;">
@@ -155,11 +155,6 @@
   </nav>
   <div class="container">
     <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
-    <section id="akshaya-section" aria-label="Akshaya Center Tools">
-      <h2 class="section-title"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#id"></use></svg> Akshaya Center Tools</h2>
-      <p style="color:var(--text-muted);font-size:0.85rem;margin:-6px 0 14px;">Photo sizing, document security, and e-filing tools trusted by Akshaya centres across Kerala.</p>
-      <div class="featured-grid" id="akshayaGrid"></div>
-    </section>
     <h2 id="available-section" class="section-title"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#circle-check"></use></svg> All Tools <span class="section-count-badge" id="toolCountBadge"></span></h2>
     <div class="featured-grid" id="featuredGrid"></div>
     <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
@@ -330,17 +325,17 @@
 <script>
   // ---- Data (Available Now = real, working tools; More Tools = coming soon) ----
   const liveTools = [
-    { id: 'image-compressor', href: '/tools/image/compress/', cat: 'image', name: 'image compressor compress kb', icon: 'arrows-minimize', tile: 'indigo', title: 'Image Compressor', desc: 'Compress to exact KB', badge: 'Popular' },
-    { id: 'govt-photo-resizer', href: '/tools/image/govt-photo/', cat: 'image', name: 'govt photo resizer psc upsc pan aadhaar passport', icon: 'id', tile: 'teal', title: 'Govt Photo Resizer', desc: 'PSC, UPSC, PAN, Aadhaar' },
+    { id: 'image-compressor', href: '/tools/image/compress/', cat: 'image', name: 'image compressor compress kb', icon: 'arrows-minimize', tile: 'indigo', title: 'Image Compressor', desc: 'Compress to exact KB', badge: 'Popular', akshaya: true },
+    { id: 'govt-photo-resizer', href: '/tools/image/govt-photo/', cat: 'image', name: 'govt photo resizer psc upsc pan aadhaar passport', icon: 'id', tile: 'teal', title: 'Govt Photo Resizer', desc: 'PSC, UPSC, PAN, Aadhaar', akshaya: true },
     { id: 'image-converter', href: '/tools/image/convert/', cat: 'image', name: 'image converter heic jpg png webp', icon: 'refresh', tile: 'cyan', title: 'Image Converter', desc: 'HEIC, PNG, JPG, WebP' },
     { id: 'image-resizer', href: '/tools/image/resize/', cat: 'image', name: 'image resizer resize dimensions', icon: 'ruler-2', tile: 'violet', title: 'Image Resizer', desc: 'Resize by size or %' },
     { id: 'background-remove', href: '/tools/image/background-remove/', cat: 'image', name: 'background remover transparent png', icon: 'background', tile: 'pink', title: 'Background Remover', desc: 'PNG with transparency' },
-    { id: 'passport-photo', href: '/tools/image/passport-photo/', cat: 'image', name: 'passport size photo maker india uae', icon: 'photo', tile: 'blue', title: 'Passport Photo Maker', desc: 'India, UAE, US & UK' },
+    { id: 'passport-photo', href: '/tools/image/passport-photo/', cat: 'image', name: 'passport size photo maker india uae', icon: 'photo', tile: 'blue', title: 'Passport Photo Maker', desc: 'India, UAE, US & UK', akshaya: true },
     { id: 'sticker-maker', href: '/tools/image/sticker-maker/', cat: 'image', name: 'whatsapp sticker maker 512', icon: 'sticker-2', tile: 'amber', title: 'Sticker Maker', desc: '512×512 WhatsApp sticker' },
     { id: 'image-upscale', href: '/tools/image/upscale/', cat: 'image', name: 'image upscaler hd enhancer', icon: 'zoom-in', tile: 'violet', title: 'Image Upscaler', desc: '2×, 3× or 4× HD enhance' },
     { id: 'image-to-ascii', href: '/tools/image/image-to-ascii/', cat: 'image', name: 'image to ascii art converter braille text art instagram whatsapp', icon: 'transform', tile: 'slate', title: 'Image to ASCII Art', desc: 'Text/Braille art for comments' },
     { id: 'image-ocr', href: '/tools/image/ocr/', cat: 'image', name: 'image ocr extract text paddleocr receipt invoice scan offline', icon: 'scan', tile: 'violet', title: 'Image OCR', desc: 'PaddleOCR text from photos' },
-    { id: 'pdf-password-protect', href: '/tools/pdf/protect/', cat: 'pdf', name: 'pdf password protect aadhaar pan voter id encrypt', icon: 'lock', tile: 'rose', title: 'PDF Password Protect', desc: 'Secure Aadhaar, PAN, Voter ID' },
+    { id: 'pdf-password-protect', href: '/tools/pdf/protect/', cat: 'pdf', name: 'pdf password protect aadhaar pan voter id encrypt', icon: 'lock', tile: 'rose', title: 'PDF Password Protect', desc: 'Secure Aadhaar, PAN, Voter ID', akshaya: true },
     { id: 'pdf-merge', href: '/tools/pdf/merge/', cat: 'pdf', name: 'pdf merge combine', icon: 'link', tile: 'amber', title: 'PDF Merge', desc: 'Combine PDFs into one', badge: 'Popular' },
     { id: 'pdf-organize', href: '/tools/pdf/organize/', cat: 'pdf', name: 'organize pdf reorder rotate delete pages', icon: 'stack-2', tile: 'sky', title: 'Organize PDF', desc: 'Reorder, rotate, delete pages' },
     { id: 'pdf-rotate', href: '/tools/pdf/rotate/', cat: 'pdf', name: 'rotate pdf pages sideways fix', icon: 'refresh', tile: 'cyan', title: 'Rotate PDF', desc: 'Fix sideways pages' },
@@ -353,11 +348,11 @@
     { id: 'word-to-pdf', href: '/tools/pdf/word-to-pdf/', cat: 'pdf', name: 'word to pdf docx convert', icon: 'file-export', tile: 'blue', title: 'Word to PDF', desc: 'DOCX to PDF free' },
     { id: 'pdf-to-word', href: '/tools/pdf/pdf-to-word/', cat: 'pdf', name: 'pdf to word docx convert', icon: 'file-word', tile: 'green', title: 'PDF to Word', desc: 'Extract text to DOCX' },
     { id: 'pdf-to-excel', href: '/tools/pdf/pdf-to-excel/', cat: 'pdf', name: 'pdf to excel xlsx spreadsheet invoice statement ledger accounting', icon: 'file-spreadsheet', tile: 'emerald', title: 'PDF to Excel', desc: 'Tables to XLSX for accounting' },
-    { id: 'pdf-compress', href: '/tools/pdf/compress/', cat: 'pdf', name: 'pdf compress reduce size', icon: 'file-zip', tile: 'orange', title: 'PDF Compress', desc: 'Reduce PDF file size' },
+    { id: 'pdf-compress', href: '/tools/pdf/compress/', cat: 'pdf', name: 'pdf compress reduce size', icon: 'file-zip', tile: 'orange', title: 'PDF Compress', desc: 'Reduce PDF file size', akshaya: true },
     { id: 'pdf-editor', href: '/tools/pdf/editor/', cat: 'pdf', name: 'pdf editor annotate free online', icon: 'file-pencil', tile: 'violet', title: 'PDF Editor', desc: 'Annotate, sign, redact' },
     { id: 'unlock-pdf', href: '/tools/pdf/unlock/', cat: 'pdf', name: 'unlock pdf remove password', icon: 'lock-open', tile: 'emerald', title: 'Unlock PDF', desc: 'Remove PDF password' },
     { id: 'pdf-split', href: '/tools/pdf/split/', cat: 'pdf', name: 'pdf split extract pages', icon: 'cut', tile: 'rose', title: 'PDF Split', desc: 'Extract or split pages' },
-    { id: 'image-to-pdf', href: '/tools/pdf/image-to-pdf/', cat: 'pdf', name: 'image to pdf jpg png', icon: 'photo-up', tile: 'cyan', title: 'Image to PDF', desc: 'Photos to one PDF' },
+    { id: 'image-to-pdf', href: '/tools/pdf/image-to-pdf/', cat: 'pdf', name: 'image to pdf jpg png', icon: 'photo-up', tile: 'cyan', title: 'Image to PDF', desc: 'Photos to one PDF', akshaya: true },
     { id: 'pdf-to-image', href: '/tools/pdf/pdf-to-image/', cat: 'pdf', name: 'pdf to image jpg png', icon: 'photo-down', tile: 'teal', title: 'PDF to Image', desc: 'PDF pages to JPG/PNG' },
     { id: 'gold-rate', href: '/tools/rates/gold-rate/', cat: 'finance', name: 'gold rate today kerala india dubai uae', icon: 'coin', tile: 'amber', title: 'Gold Rate Today', desc: 'Kerala, India & UAE' },
     { id: 'silver-rate', href: '/tools/rates/silver-rate/', cat: 'finance', name: 'silver rate today kerala india uae', icon: 'coin', tile: 'slate', title: 'Silver Rate', desc: 'Per gram & per kg' },
@@ -365,7 +360,7 @@
     { id: 'emi-calculator', href: '/tools/finance/emi-calculator/', cat: 'finance', name: 'emi calculator home loan personal', icon: 'building-bank', tile: 'blue', title: 'EMI Calculator', desc: 'Home & personal loan EMI' },
     { id: 'gst-calculator', href: '/tools/finance/gst-calculator/', cat: 'finance', name: 'gst calculator add remove cgst sgst', icon: 'calculator', tile: 'indigo', title: 'GST Calculator', desc: 'Add or remove GST' },
     { id: 'petrol-price', href: '/tools/rates/petrol-price/', cat: 'finance', name: 'petrol diesel price today india', icon: 'gas-station', tile: 'orange', title: 'Petrol Price', desc: 'State-wise petrol & diesel' },
-    { id: 'income-tax', href: '/tools/finance/income-tax/', cat: 'finance', name: 'income tax calculator india fy', icon: 'receipt', tile: 'slate', title: 'Income Tax Calculator', desc: 'New vs old regime FY 25-26' },
+    { id: 'income-tax', href: '/tools/finance/income-tax/', cat: 'finance', name: 'income tax calculator india fy', icon: 'receipt', tile: 'slate', title: 'Income Tax Calculator', desc: 'New vs old regime FY 25-26', akshaya: true },
     { id: 'salary-calculator', href: '/tools/finance/salary-calculator/', cat: 'finance', name: 'salary calculator in hand ctc', icon: 'cash', tile: 'emerald', title: 'Salary Calculator', desc: 'CTC to monthly in-hand' },
     { id: 'sip-calculator', href: '/tools/finance/sip-calculator/', cat: 'finance', name: 'sip calculator mutual fund returns', icon: 'coin', tile: 'green', title: 'SIP Calculator', desc: 'Mutual fund SIP returns' },
     { id: 'fd-calculator', href: '/tools/finance/fd-calculator/', cat: 'finance', name: 'fd rd calculator fixed deposit', icon: 'building-bank', tile: 'amber', title: 'FD / RD Calculator', desc: 'Fixed & recurring deposit' },
@@ -418,7 +413,7 @@
   function toolCardHTML(t) {
     const trendScore = (typeof TSTrendsSEO !== 'undefined') ? TSTrendsSEO.getToolScore(t.id) : 0;
     return `
-    <div class="tool-card" data-cat="${t.cat}" data-name="${t.name}" data-id="${t.id}" data-trend="${trendScore}">
+    <div class="tool-card" data-cat="${t.cat}" data-name="${t.name}" data-id="${t.id}" data-trend="${trendScore}" data-akshaya="${t.akshaya ? '1' : '0'}">
       <a href="${t.href}" class="tool-card-cover" aria-label="Open ${t.title}"></a>
       ${t.badge ? '<span class="tool-card-badge' + (t.badge === 'New' ? ' tool-card-badge--new' : '') + '">' + t.badge + '</span>' : ''}
       <button type="button" class="star-btn${favorites.includes(t.id) ? ' is-fav' : ''}" data-id="${t.id}" aria-label="Toggle favorite" onclick="toggleFavorite(event, this)">
@@ -430,13 +425,6 @@
     </div>`;
   }
   featuredGrid.innerHTML = liveTools.map(toolCardHTML).join('');
-  // ---- Akshaya Center Tools — curated for Kerala Akshaya e-service centres ----
-  const AKSHAYA_IDS = ['image-compressor', 'govt-photo-resizer', 'passport-photo', 'pdf-password-protect', 'image-to-pdf', 'pdf-compress', 'income-tax'];
-  const akshayaGrid = document.getElementById('akshayaGrid');
-  if (akshayaGrid) {
-    const akshayaTools = AKSHAYA_IDS.map((id) => liveTools.find((t) => t.id === id)).filter(Boolean);
-    akshayaGrid.innerHTML = akshayaTools.map(toolCardHTML).join('');
-  }
   toolGrid.innerHTML = comingTools.map((t) => `
     <div class="tool-card" data-cat="${t.cat}" data-name="${t.name}">
       <div class="icon"><span class="icon-tile icon-tile--${t.tile}"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#${t.icon}"></use></svg></span></div>
@@ -516,6 +504,7 @@
       let match = true;
       if (activeCat === 'favorites') match = favorites.includes(card.dataset.id);
       else if (activeCat === 'trending') match = (parseInt(card.dataset.trend, 10) || 0) > 0;
+      else if (activeCat === 'akshaya') match = card.dataset.akshaya === '1';
       else if (activeCat !== 'all') match = card.dataset.cat === activeCat;
       card.style.display = match ? '' : 'none';
       if (match) visibleLive++;
