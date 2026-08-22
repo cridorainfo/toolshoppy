@@ -19,6 +19,28 @@
   src: url('/assets/fonts/Inter-latin-ext.woff2') format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
+/* Self-hosted script fonts for typed e-signatures (PDF Sign tool) */
+@font-face {
+  font-family: 'TS Sig Caveat';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/assets/fonts/Caveat-latin.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'TS Sig Dancing';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/assets/fonts/DancingScript-latin.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'TS Sig Vibes';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts/GreatVibes-latin.woff2') format('woff2');
+}
 
 :root {
   --primary: #E11D48;

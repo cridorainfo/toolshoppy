@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PNN1LM2D9Q"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-PNN1LM2D9Q');</script>
+<meta charset="UTF-8">
+<script>(function(){try{/* TEMP: dark mode disabled — restore prior boot to re-enable */document.documentElement.setAttribute('data-theme','light');localStorage.setItem('ts-theme','light');}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign PDF Online Free — E-Signature, No Signup | ToolShoppy</title>
+<meta name="description" content="Sign a PDF online free. Draw, type, or upload your signature, add initials and a date, place them anywhere on any page. No signup, files never leave your device.">
+<meta name="robots" content="index, follow">
+<meta name="keywords" content="sign pdf online free, esignature pdf, add signature to pdf, pdf signature no signup, electronic signature">
+<link rel="canonical" href="https://toolshoppy.com/tools/pdf/sign/">
+<meta property="og:title" content="Sign PDF Online Free — E-Signature, No Signup | ToolShoppy">
+<meta property="og:description" content="Draw, type, or upload your signature and place it anywhere on a PDF. Free, private, no signup.">
+<meta property="og:image" content="https://toolshoppy.com/assets/img/og-image.jpg">
+<meta property="og:url" content="https://toolshoppy.com/tools/pdf/sign/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ToolShoppy">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sign PDF Online Free — E-Signature, No Signup | ToolShoppy">
+<meta name="twitter:description" content="Draw, type, or upload your signature and place it anywhere on a PDF. Free, private, no signup.">
+<meta name="twitter:image" content="https://toolshoppy.com/assets/img/og-image.jpg">
+<link rel="icon" href="/favicon.ico?v=2" sizes="any">
+<link rel="icon" href="/assets/img/favicon.svg?v=2" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/icon-192.png?v=2">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#E11D48">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+<style>
+.editor-toolbar{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0;}
+.editor-toolbar .chip.active{background:var(--primary);color:#fff;border-color:var(--primary);}
+.editor-props{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 10px;padding:10px 12px;background:var(--primary-tint);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:0.85rem;}
+.editor-props[hidden]{display:none!important;}
+.editor-props .obj-label{font-weight:600;color:var(--text);margin-right:4px;}
+.editor-props .btn-sm{padding:6px 12px;font-size:0.8rem;}
+.editor-props .btn-sm.is-danger{color:var(--danger);}
+.editor-stage{position:relative;overflow:auto;max-height:70vh;border:1px solid var(--border);border-radius:var(--radius-sm);background:#e2e8f0;padding:12px;text-align:center;touch-action:none;}
+.editor-stage canvas{display:block;margin:0 auto;max-width:100%;background:#fff;box-shadow:var(--shadow-md);touch-action:none;}
+.page-nav{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:10px;}
+.editor-modal{position:fixed;inset:0;z-index:1000;background:rgba(15,23,42,0.55);display:flex;align-items:center;justify-content:center;padding:16px;}
+.editor-modal[hidden]{display:none!important;}
+.editor-modal-panel{background:var(--card);border-radius:var(--radius);padding:20px;max-width:440px;width:100%;box-shadow:var(--shadow-premium);}
+.editor-modal-panel h3{margin:0 0 12px;font-size:1rem;}
+.sig-saved-banner{display:flex;align-items:center;gap:10px;padding:10px;border:1px solid var(--border);border-radius:10px;background:var(--bg);margin-bottom:12px;}
+.sig-saved-banner[hidden]{display:none!important;}
+.sig-saved-banner img{max-width:100px;max-height:44px;object-fit:contain;background:repeating-conic-gradient(#e2e8f0 0% 25%,#fff 0% 50%) 50%/10px 10px;border-radius:6px;padding:2px;}
+.sig-saved-banner .sig-saved-actions{margin-left:auto;display:flex;gap:6px;}
+.sig-tabs{display:flex;gap:6px;margin-bottom:12px;border-bottom:1px solid var(--border);}
+.sig-tab{flex:1;padding:8px 4px;text-align:center;font-size:0.82rem;font-weight:700;color:var(--text-muted);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;}
+.sig-tab.active{color:var(--primary-dark);border-bottom-color:var(--primary);}
+.sig-pane[hidden]{display:none!important;}
+.sig-pad-wrap{position:relative;width:100%;height:160px;border:1px dashed var(--border);border-radius:8px;background:repeating-conic-gradient(#e2e8f0 0% 25%,#fff 0% 50%) 50%/16px 16px;touch-action:none;cursor:none;overflow:hidden;}
+:root[data-theme="dark"] .sig-pad-wrap{background:repeating-conic-gradient(#334155 0% 25%,#1e293b 0% 50%) 50%/16px 16px;}
+#sigPad{display:block;width:100%;height:100%;background:transparent;cursor:none;touch-action:none;}
+.sig-cursor{position:absolute;width:10px;height:10px;border-radius:50%;background:var(--primary);border:2px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,0.18);pointer-events:none;z-index:2;transform:translate(-50%,-50%);left:0;top:0;}
+.sig-cursor.is-drawing{width:8px;height:8px;background:#1e293b;}
+.sig-cursor[hidden]{display:none!important;}
+.sig-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;align-items:center;}
+.sig-swatches{display:flex;gap:8px;margin:0 4px;}
+.sig-swatch{width:24px;height:24px;border-radius:50%;border:2px solid var(--border);cursor:pointer;}
+.sig-swatch.active{border-color:var(--primary);box-shadow:0 0 0 2px var(--primary-tint);}
+.sig-type-input{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:var(--card);color:var(--text);font-size:1.1rem;margin-bottom:10px;}
+.sig-font-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;}
+.sig-font-chip{padding:8px 14px;border:1px solid var(--border);border-radius:10px;background:var(--card);cursor:pointer;font-size:1.1rem;}
+.sig-font-chip.active{border-color:var(--primary);background:var(--primary-tint);}
+.sig-type-preview{min-height:70px;display:flex;align-items:center;justify-content:center;border:1px dashed var(--border);border-radius:8px;background:repeating-conic-gradient(#e2e8f0 0% 25%,#fff 0% 50%) 50%/16px 16px;margin-bottom:6px;}
+:root[data-theme="dark"] .sig-type-preview{background:repeating-conic-gradient(#334155 0% 25%,#1e293b 0% 50%) 50%/16px 16px;}
+.sig-type-preview img{max-width:90%;max-height:64px;}
+.sig-save-row{display:flex;align-items:center;gap:8px;font-size:0.82rem;color:var(--text-muted);margin-top:10px;}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Sign PDF","url":"https://toolshoppy.com/tools/pdf/sign/","description":"Draw, type, or upload a signature and place it anywhere on a PDF, free online.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolshoppy.com/"},{"@type":"ListItem","position":2,"name":"PDF Tools","item":"https://toolshoppy.com/tools/pdf/"},{"@type":"ListItem","position":3,"name":"Sign PDF","item":"https://toolshoppy.com/tools/pdf/sign/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I sign a PDF for free online?","acceptedAnswer":{"@type":"Answer","text":"Upload your PDF, click Signature, then draw, type, or upload your signature image. Drag it into place, resize if needed, then download the signed PDF."}},{"@type":"Question","name":"Is my signature saved anywhere?","acceptedAnswer":{"@type":"Answer","text":"Only in your own browser's local storage, if you check \"Save this signature\" — it never leaves your device or gets uploaded anywhere. You can clear it anytime."}},{"@type":"Question","name":"Does signing rasterize or blur my PDF?","acceptedAnswer":{"@type":"Answer","text":"No. Your original PDF content stays untouched and selectable — the signature, initials, and date are added on top using vector overlays, not a re-rendered image of the page."}},{"@type":"Question","name":"Is this a legally binding signature?","acceptedAnswer":{"@type":"Answer","text":"This creates a visual e-signature suitable for many everyday documents. For contracts requiring certified or notarized signatures, check your local legal requirements."}}]}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo"><img src="/assets/img/logo.png?v=2" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
+    <div class="site-search"><input type="text" placeholder="Search tools…" onfocus="location.href='/search/'"></div>
+    <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode">
+      <svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg>
+      <svg class="icon-svg theme-icon-moon" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#moon"></use></svg>
+    </button>
+  </div>
+</header>
+<main class="tool-page container">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/"><svg class="icon-svg" width="16" height="16" aria-hidden="true"><use href="/assets/icons/sprite.svg#home"></use></svg> Home</a>
+    <svg class="icon-svg crumb-sep" width="14" height="14" aria-hidden="true"><use href="/assets/icons/sprite.svg#chevron-right"></use></svg>
+    <a href="/tools/pdf/">PDF Tools</a>
+    <svg class="icon-svg crumb-sep" width="14" height="14" aria-hidden="true"><use href="/assets/icons/sprite.svg#chevron-right"></use></svg>
+    <span class="crumb-current">Sign PDF</span>
+  </nav>
+  <div class="tool-header">
+    <div class="icon-tile icon-tile--lg icon-tile--rose"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#signature"></use></svg></div>
+    <h1>Sign PDF</h1>
+    <p>Draw, type, or upload your signature — place it, initials, and a date anywhere. No signup.</p>
+  </div>
+  <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
+  <div class="tool-layout with-sidebar" id="toolLayout">
+    <div class="tool-card-main">
+      <div class="drop-zone" id="dropZone">
+        <div class="icon"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#upload"></use></svg></div>
+        <div class="dz-cta">Select PDF file</div>
+        <p>or drop a PDF here to sign</p>
+        <p class="drop-zone-hint">Your original PDF stays vector-quality — only the signature is overlaid.</p>
+        <input type="file" id="fileInput" accept="application/pdf,.pdf">
+      </div>
+      <div id="editorUI" style="display:none;">
+        <div class="editor-toolbar" id="toolbar">
+          <button class="chip active" data-tool="select" type="button">Select</button>
+          <button class="chip" data-tool="signature" type="button">Signature</button>
+          <button class="chip" data-tool="initials" type="button">Initials</button>
+          <button class="chip" data-tool="date" type="button">Date</button>
+          <button class="chip" data-tool="text" type="button">Text</button>
+        </div>
+        <div class="editor-props" id="objProps" hidden>
+          <span class="obj-label" id="objLabel">Object selected</span>
+          <button class="btn btn-sm" id="lockBtn" type="button">Lock</button>
+          <button class="btn btn-sm" id="unlockBtn" type="button" hidden>Unlock</button>
+          <button class="btn btn-sm" id="editTextBtn" type="button" hidden>Edit text</button>
+          <button class="btn btn-sm is-danger" id="deleteObjBtn" type="button">Delete</button>
+        </div>
+        <div class="editor-workspace">
+          <div class="editor-rail" id="pageRail" aria-label="Page thumbnails"></div>
+          <div class="editor-stage-col">
+            <div class="editor-stage"><canvas id="editCanvas"></canvas></div>
+            <div class="page-nav">
+              <button class="btn" id="prevPage" type="button">‹ Prev</button>
+              <span id="pageLabel">Page 1 / 1</span>
+              <button class="btn" id="nextPage" type="button">Next ›</button>
+            </div>
+            <div class="editor-zoom">
+              <button type="button" id="zoomOut" title="Zoom out">−</button>
+              <span class="editor-zoom-value" id="zoomValue">100%</span>
+              <button type="button" id="zoomIn" title="Zoom in">+</button>
+            </div>
+          </div>
+        </div>
+        <div class="sticky-cta-bar">
+          <button class="btn btn-primary btn-block" id="saveBtn" type="button">Save Signed PDF</button>
+          <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+        </div>
+        <div class="result-panel" id="resultPanel">
+          <div class="compare-row">
+            <div class="compare-box"><div class="label">Pages</div><div class="value" id="outPages">-</div></div>
+            <div class="compare-box"><div class="label">File Size</div><div class="value" id="outFileSize">-</div></div>
+          </div>
+          <button class="btn btn-accent btn-block" id="downloadBtn" type="button"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#download"></use></svg> Download Signed PDF</button>
+        </div>
+      </div>
+      <div class="editor-modal" id="sigModal" hidden>
+        <div class="editor-modal-panel">
+          <h3 id="sigModalTitle">Add your signature</h3>
+          <div class="sig-saved-banner" id="sigSavedBanner" hidden>
+            <img id="sigSavedThumb" alt="Saved signature">
+            <span>Saved signature</span>
+            <div class="sig-saved-actions">
+              <button class="btn btn-sm btn-primary" id="sigUseSaved" type="button">Use it</button>
+              <button class="btn btn-sm" id="sigClearSaved" type="button">Clear</button>
+            </div>
+          </div>
+          <div class="sig-tabs" id="sigTabs">
+            <button class="sig-tab active" data-tab="draw" type="button">Draw</button>
+            <button class="sig-tab" data-tab="type" type="button">Type</button>
+            <button class="sig-tab" data-tab="upload" type="button">Upload</button>
+          </div>
+          <div class="sig-pane" id="sigPaneDraw">
+            <div class="sig-pad-wrap" id="sigPadWrap">
+              <canvas id="sigPad" width="360" height="160"></canvas>
+              <span class="sig-cursor" id="sigCursor" hidden aria-hidden="true"></span>
+            </div>
+          </div>
+          <div class="sig-pane" id="sigPaneType" hidden>
+            <input type="text" class="sig-type-input" id="sigTypeInput" placeholder="Type your name" maxlength="60">
+            <div class="sig-font-row" id="sigFontRow"></div>
+            <div class="sig-type-preview" id="sigTypePreview"></div>
+          </div>
+          <div class="sig-pane" id="sigPaneUpload" hidden>
+            <div class="sig-pad-wrap" id="sigUploadPreviewWrap" style="cursor:pointer;">
+              <canvas id="sigUploadPreview" width="360" height="160"></canvas>
+            </div>
+            <input type="file" id="sigUploadInput" accept="image/*" hidden>
+          </div>
+          <div class="sig-actions">
+            <span style="font-size:0.8rem;font-weight:700;color:var(--text-muted);">Color</span>
+            <div class="sig-swatches" id="sigColorRow"></div>
+            <button class="btn btn-sm" id="sigClear" type="button">Clear</button>
+            <button class="btn btn-sm" id="sigUploadBtn" type="button" hidden>Choose image</button>
+          </div>
+          <label class="sig-save-row"><input type="checkbox" id="sigSaveToggle" checked> Save this signature on this device for next time</label>
+          <div class="sig-actions">
+            <button class="btn btn-primary btn-sm" id="sigApply" type="button">Add to page</button>
+            <button class="btn btn-sm" id="sigCancel" type="button">Cancel</button>
+          </div>
+        </div>
+      </div>
+      <div class="trust-badge"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock"></use></svg> Your files never leave your device</div>
+    </div>
+    <aside class="sidebar">
+      <div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div>
+      <div class="info-box">
+        <h4>How it works</h4>
+        <ul>
+          <li><strong>Signature</strong> — draw, type, or upload; reuse it on every page</li>
+          <li><strong>Initials &amp; Date</strong> — quick stamps you can drag anywhere</li>
+          <li><strong>Original PDF stays vector-quality</strong> — no page rasterizing</li>
+          <li>Everything runs in your browser — private &amp; free</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+  <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
+  <div class="content-section seo-howto">
+    <h2>How to sign a PDF online for free</h2>
+    <ol>
+      <li>Upload your PDF — it never leaves your device.</li>
+      <li>Click <strong>Signature</strong>, then draw, type, or upload it.</li>
+      <li>Drag it into place, add initials or a date if you need them.</li>
+      <li>Click <strong>Save Signed PDF</strong> and download.</li>
+    </ol>
+  </div>
+  <div class="content-section">
+    <h2>Related tools</h2>
+    <div class="related-tools">
+      <a href="/tools/pdf/editor/">
+        <span class="icon-tile icon-tile--sm icon-tile--violet"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#file-pencil"></use></svg></span>
+        PDF Editor
+        <span class="related-desc">Annotate, highlight, redact</span>
+      </a>
+      <a href="/tools/pdf/protect/">
+        <span class="icon-tile icon-tile--sm icon-tile--rose"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock"></use></svg></span>
+        Password Protect
+        <span class="related-desc">Encrypt Aadhaar, PAN, and contracts</span>
+      </a>
+      <a href="/tools/pdf/merge/">
+        <span class="icon-tile icon-tile--sm icon-tile--amber"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#link"></use></svg></span>
+        Merge PDF
+        <span class="related-desc">Combine multiple PDFs into one file</span>
+      </a>
+    </div>
+  </div>
+  <div class="content-section">
+    <h2>Frequently asked questions</h2>
+    <div class="faq-item"><h3>How do I sign a PDF for free online?</h3><p>Upload your PDF, click Signature, then draw, type, or upload your signature image. Drag it into place, resize if needed, then download the signed PDF.</p></div>
+    <div class="faq-item"><h3>Is my signature saved anywhere?</h3><p>Only in your own browser's local storage, if you check "Save this signature" — it never leaves your device or gets uploaded anywhere. You can clear it anytime.</p></div>
+    <div class="faq-item"><h3>Does signing rasterize or blur my PDF?</h3><p>No. Your original PDF content stays untouched and selectable — the signature, initials, and date are added on top using vector overlays, not a re-rendered image of the page.</p></div>
+    <div class="faq-item"><h3>Is this a legally binding signature?</h3><p>This creates a visual e-signature suitable for many everyday documents. For contracts requiring certified or notarized signatures, check your local legal requirements.</p></div>
+  </div>
+</main>
+<div class="ad-slot ad-bottom"><span class="ad-label">Ad</span></div>
+<footer class="site-footer">
+  <div class="container"><div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div></div>
+</footer>
+<div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
+<script src="/assets/js/ga-config.js"></script>
+<script src="/assets/js/adsterra-config.js?v=5"></script>
+<script src="/assets/js/ad-config.js"></script>
+<script src="/assets/js/core.js"></script>
+<script src="/assets/js/ads.js?v=6"></script>
+<script src="/assets/js/analytics.js"></script>
+<script src="/assets/libs/pdf.min.js"></script>
+<script src="/assets/libs/pdf-lib.min.js"></script>
+<script src="/assets/js/pdf-preview.js"></script>
+<script src="/assets/js/pdf-sign.js"></script>
+<script>
+(function () {
+  pdfjsLib.GlobalWorkerOptions.workerSrc = '/assets/libs/pdf.worker.min.js';
+  TSSign.fontsReady();
+  const toolLayout = document.getElementById('toolLayout');
+  const dropZone = document.getElementById('dropZone');
+  const fileInput = document.getElementById('fileInput');
+  const editorUI = document.getElementById('editorUI');
+  const pageRail = document.getElementById('pageRail');
+  const zoomOutBtn = document.getElementById('zoomOut');
+  const zoomInBtn = document.getElementById('zoomIn');
+  const zoomValue = document.getElementById('zoomValue');
+  const canvas = document.getElementById('editCanvas');
+  const ctx = canvas.getContext('2d');
+  const toolbar = document.getElementById('toolbar');
+  const objProps = document.getElementById('objProps');
+  const objLabel = document.getElementById('objLabel');
+  const lockBtn = document.getElementById('lockBtn');
+  const unlockBtn = document.getElementById('unlockBtn');
+  const editTextBtn = document.getElementById('editTextBtn');
+  const deleteObjBtn = document.getElementById('deleteObjBtn');
+  const pageLabel = document.getElementById('pageLabel');
+  const prevPage = document.getElementById('prevPage');
+  const nextPage = document.getElementById('nextPage');
+  const saveBtn = document.getElementById('saveBtn');
+  const progressBar = document.getElementById('progressBar');
+  const progressFill = document.getElementById('progressFill');
+  const resultPanel = document.getElementById('resultPanel');
+  const outPages = document.getElementById('outPages');
+  const outFileSize = document.getElementById('outFileSize');
+  const downloadBtn = document.getElementById('downloadBtn');
+
+  // Signature/initials modal
+  const sigModal = document.getElementById('sigModal');
+  const sigModalTitle = document.getElementById('sigModalTitle');
+  const sigSavedBanner = document.getElementById('sigSavedBanner');
+  const sigSavedThumb = document.getElementById('sigSavedThumb');
+  const sigUseSaved = document.getElementById('sigUseSaved');
+  const sigClearSaved = document.getElementById('sigClearSaved');
+  const sigTabs = document.getElementById('sigTabs');
+  const sigPaneDraw = document.getElementById('sigPaneDraw');
+  const sigPaneType = document.getElementById('sigPaneType');
+  const sigPaneUpload = document.getElementById('sigPaneUpload');
+  const sigPad = document.getElementById('sigPad');
+  const sigCursor = document.getElementById('sigCursor');
+  const sigTypeInput = document.getElementById('sigTypeInput');
+  const sigFontRow = document.getElementById('sigFontRow');
+  const sigTypePreview = document.getElementById('sigTypePreview');
+  const sigUploadPreview = document.getElementById('sigUploadPreview');
+  const sigUploadPreviewWrap = document.getElementById('sigUploadPreviewWrap');
+  const sigUploadInput = document.getElementById('sigUploadInput');
+  const sigColorRow = document.getElementById('sigColorRow');
+  const sigClear = document.getElementById('sigClear');
+  const sigUploadBtn = document.getElementById('sigUploadBtn');
+  const sigSaveToggle = document.getElementById('sigSaveToggle');
+  const sigApply = document.getElementById('sigApply');
+  const sigCancel = document.getElementById('sigCancel');
+
+  let pdfDoc = null;
+  let originalBytes = null;
+  let currentFile = null;
+  let pageNum = 1;
+  let zoomMult = 1;
+  let tool = 'select';
+  let pages = {};
+  let selectedId = null;
+  let drag = null;
+  let resultBlob = null;
+  const HANDLE = 8;
+
+  function uid() { return 'o' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
+  function getScale() { return Math.min(1.4, (window.innerWidth - 48) / 600); }
+  function pageState(num) {
+    if (!pages[num]) pages[num] = { base: null, objects: [], renderScale: 1, pageWidthPts: 612, pageHeightPts: 792 };
+    return pages[num];
+  }
+  function loadImageDataUrl(dataUrl) {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => resolve(img);
+      img.onerror = reject;
+      img.src = dataUrl;
+    });
+  }
+  function measureTextObj(text, fontSize) {
+    ctx.save();
+    ctx.font = fontSize + 'px sans-serif';
+    const w = ctx.measureText(text).width;
+    ctx.restore();
+    return { w: Math.max(40, w + 8), h: Math.max(24, fontSize + 12) };
+  }
+  function getSelectedObject() {
+    const st = pageState(pageNum);
+    return st.objects.find((o) => o.id === selectedId) || null;
+  }
+  function updateObjProps() {
+    const obj = getSelectedObject();
+    if (!obj) { objProps.hidden = true; return; }
+    objProps.hidden = false;
+    const labels = { signature: 'Signature', initials: 'Initials', date: 'Date', text: 'Text' };
+    objLabel.textContent = (labels[obj.type] || 'Object') + (obj.locked ? ' (locked)' : '');
+    lockBtn.hidden = obj.locked;
+    unlockBtn.hidden = !obj.locked;
+    editTextBtn.hidden = (obj.type !== 'text' && obj.type !== 'date');
+  }
+  function selectObject(id) { selectedId = id; updateObjProps(); composite(); }
+  function setTool(next) {
+    if (next === 'signature') { openSigModal('signature'); return; }
+    if (next === 'initials') { openSigModal('initials'); return; }
+    if (next === 'date') { addDateObject(); return; }
+    if (next === 'text') { addTextObject(); return; }
+    tool = next;
+    toolbar.querySelectorAll('.chip').forEach((c) => c.classList.toggle('active', c.dataset.tool === tool));
+    canvas.style.cursor = 'default';
+  }
+  function hitHandle(obj, x, y) {
+    if (obj.locked) return null;
+    const corners = { nw: [obj.x, obj.y], ne: [obj.x + obj.w, obj.y], se: [obj.x + obj.w, obj.y + obj.h], sw: [obj.x, obj.y + obj.h] };
+    for (const key of Object.keys(corners)) {
+      if (Math.abs(x - corners[key][0]) <= HANDLE && Math.abs(y - corners[key][1]) <= HANDLE) return key;
+    }
+    return null;
+  }
+  function hitObject(x, y) {
+    const st = pageState(pageNum);
+    for (let i = st.objects.length - 1; i >= 0; i--) {
+      const o = st.objects[i];
+      if (x >= o.x && x <= o.x + o.w && y >= o.y && y <= o.y + o.h) return o;
+    }
+    return null;
+  }
+  function drawObject(o) {
+    if (o.type === 'text' || o.type === 'date') {
+      ctx.fillStyle = o.color || '#1e293b';
+      ctx.font = o.fontSize + 'px sans-serif';
+      ctx.textBaseline = 'top';
+      ctx.fillText(o.text, o.x + 4, o.y + 4);
+    } else if (o.img) {
+      ctx.drawImage(o.img, o.x, o.y, o.w, o.h);
+    }
+  }
+  function drawSelection(obj) {
+    if (!obj) return;
+    ctx.save();
+    ctx.strokeStyle = obj.locked ? '#94a3b8' : '#E11D48';
+    ctx.lineWidth = 2;
+    ctx.setLineDash(obj.locked ? [6, 4] : []);
+    ctx.strokeRect(obj.x, obj.y, obj.w, obj.h);
+    ctx.setLineDash([]);
+    if (!obj.locked) {
+      ctx.fillStyle = '#E11D48';
+      [[obj.x, obj.y], [obj.x + obj.w, obj.y], [obj.x + obj.w, obj.y + obj.h], [obj.x, obj.y + obj.h]].forEach(([hx, hy]) => {
+        ctx.fillRect(hx - HANDLE / 2, hy - HANDLE / 2, HANDLE, HANDLE);
+      });
+    }
+    ctx.restore();
+  }
+  function composite() {
+    const st = pageState(pageNum);
+    if (!st.base) return;
+    ctx.putImageData(st.base, 0, 0);
+    st.objects.forEach(drawObject);
+    const sel = getSelectedObject();
+    if (sel && tool === 'select') drawSelection(sel);
+  }
+  async function renderPage(num) {
+    const page = await pdfDoc.getPage(num);
+    const nativeViewport = page.getViewport({ scale: 1 });
+    const scale = getScale();
+    const viewport = page.getViewport({ scale });
+    canvas.width = Math.floor(viewport.width);
+    canvas.height = Math.floor(viewport.height);
+    await page.render({ canvasContext: ctx, viewport }).promise;
+    const st = pageState(num);
+    st.renderScale = scale;
+    st.pageWidthPts = nativeViewport.width;
+    st.pageHeightPts = nativeViewport.height;
+    if (!st.base) st.base = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    composite();
+    pageLabel.textContent = 'Page ' + num + ' / ' + pdfDoc.numPages;
+    updateObjProps();
+    renderRail();
+  }
+  function addTextObject() {
+    const text = prompt('Enter text:');
+    if (!text) return;
+    const fontSize = Math.max(16, Math.round(canvas.width * 0.028));
+    const size = measureTextObj(text, fontSize);
+    const st = pageState(pageNum);
+    const obj = { id: uid(), type: 'text', x: (canvas.width - size.w) / 2, y: (canvas.height - size.h) / 2, w: size.w, h: size.h, text: text, fontSize: fontSize, color: '#1e293b', locked: false };
+    st.objects.push(obj);
+    selectObject(obj.id);
+    tool = 'select';
+    toolbar.querySelectorAll('.chip').forEach((c) => c.classList.toggle('active', c.dataset.tool === 'select'));
+  }
+  function addDateObject() {
+    const text = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+    const fontSize = Math.max(15, Math.round(canvas.width * 0.026));
+    const size = measureTextObj(text, fontSize);
+    const st = pageState(pageNum);
+    const obj = { id: uid(), type: 'date', x: (canvas.width - size.w) / 2, y: (canvas.height - size.h) / 2, w: size.w, h: size.h, text: text, fontSize: fontSize, color: '#1e293b', locked: false };
+    st.objects.push(obj);
+    selectObject(obj.id);
+    tool = 'select';
+    toolbar.querySelectorAll('.chip').forEach((c) => c.classList.toggle('active', c.dataset.tool === 'select'));
+  }
+  async function addImageObject(dataUrl, type) {
+    const img = await loadImageDataUrl(dataUrl);
+    const maxW = canvas.width * 0.35;
+    const scale = Math.min(1, maxW / img.width);
+    const w = img.width * scale;
+    const h = img.height * scale;
+    const st = pageState(pageNum);
+    const obj = { id: uid(), type: type, x: (canvas.width - w) / 2, y: (canvas.height - h) / 2, w: w, h: h, dataUrl: dataUrl, img: img, locked: false };
+    st.objects.push(obj);
+    selectObject(obj.id);
+    tool = 'select';
+    toolbar.querySelectorAll('.chip').forEach((c) => c.classList.toggle('active', c.dataset.tool === 'select'));
+  }
+  function editSelectedText() {
+    const obj = getSelectedObject();
+    if (!obj || (obj.type !== 'text' && obj.type !== 'date') || obj.locked) return;
+    const next = prompt('Edit text:', obj.text);
+    if (next === null || !next.trim()) return;
+    obj.text = next;
+    const size = measureTextObj(obj.text, obj.fontSize);
+    obj.w = size.w;
+    obj.h = size.h;
+    composite();
+  }
+  function deleteSelectedObject() {
+    const st = pageState(pageNum);
+    st.objects = st.objects.filter((o) => o.id !== selectedId);
+    selectedId = null;
+    updateObjProps();
+    composite();
+  }
+  function toggleLock(locked) {
+    const obj = getSelectedObject();
+    if (!obj) return;
+    obj.locked = locked;
+    updateObjProps();
+    composite();
+  }
+
+  // ---- Signature / initials modal ----
+  let sigMode = 'signature'; // 'signature' | 'initials'
+  let sigActiveTab = 'draw';
+  let sigColor = TSSign.COLORS[0].hex;
+  let sigFont = TSSign.FONTS[0].key;
+  let sigUploadDataUrl = null;
+  const pad = TSSign.attachPad(sigPad, { cursor: sigCursor, color: sigColor });
+
+  function buildFontRow() {
+    sigFontRow.innerHTML = '';
+    TSSign.FONTS.forEach((f) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'sig-font-chip' + (f.key === sigFont ? ' active' : '');
+      btn.dataset.font = f.key;
+      btn.style.fontFamily = f.family;
+      btn.textContent = f.label;
+      sigFontRow.appendChild(btn);
+    });
+  }
+  function buildColorRow() {
+    sigColorRow.innerHTML = '';
+    TSSign.COLORS.forEach((c) => {
+      const sw = document.createElement('span');
+      sw.className = 'sig-swatch' + (c.hex === sigColor ? ' active' : '');
+      sw.dataset.color = c.hex;
+      sw.style.background = c.hex;
+      sigColorRow.appendChild(sw);
+    });
+  }
+  function updateTypePreview() {
+    const text = sigTypeInput.value.trim();
+    sigTypePreview.innerHTML = '';
+    if (!text) return;
+    const res = TSSign.renderTyped(text, sigFont, sigColor, 56);
+    const img = document.createElement('img');
+    img.src = res.dataUrl;
+    sigTypePreview.appendChild(img);
+  }
+  function refreshSavedBanner() {
+    const saved = sigMode === 'signature' ? TSSign.loadSignature() : TSSign.loadInitials();
+    if (saved && saved.dataUrl) {
+      sigSavedBanner.hidden = false;
+      sigSavedThumb.src = saved.dataUrl;
+    } else {
+      sigSavedBanner.hidden = true;
+    }
+  }
+  function switchSigTab(tabName) {
+    sigActiveTab = tabName;
+    sigTabs.querySelectorAll('.sig-tab').forEach((t) => t.classList.toggle('active', t.dataset.tab === tabName));
+    sigPaneDraw.hidden = tabName !== 'draw';
+    sigPaneType.hidden = tabName !== 'type';
+    sigPaneUpload.hidden = tabName !== 'upload';
+    sigUploadBtn.hidden = tabName !== 'upload';
+  }
+  function openSigModal(mode) {
+    sigMode = mode;
+    sigModalTitle.textContent = mode === 'signature' ? 'Add your signature' : 'Add your initials';
+    sigModal.hidden = false;
+    pad.clear();
+    pad.setColor(sigColor);
+    sigTypeInput.value = '';
+    sigUploadDataUrl = null;
+    sigUploadPreview.getContext('2d').clearRect(0, 0, sigUploadPreview.width, sigUploadPreview.height);
+    buildFontRow();
+    buildColorRow();
+    updateTypePreview();
+    refreshSavedBanner();
+    switchSigTab('draw');
+    sigCursor.hidden = true;
+  }
+  function closeSigModal() {
+    sigModal.hidden = true;
+    sigCursor.hidden = true;
+  }
+  function applySignature() {
+    let dataUrl = null;
+    if (sigActiveTab === 'type') {
+      const text = sigTypeInput.value.trim();
+      if (!text) { alert('Type your name first.'); return; }
+      dataUrl = TSSign.renderTyped(text, sigFont, sigColor, 56).dataUrl;
+    } else if (sigActiveTab === 'upload') {
+      if (!sigUploadDataUrl) { alert('Choose an image first.'); return; }
+      dataUrl = sigUploadDataUrl;
+    } else {
+      dataUrl = pad.exportPng(10);
+      if (!dataUrl) { alert('Draw ' + (sigMode === 'signature' ? 'your signature' : 'your initials') + ' first.'); return; }
+    }
+    if (sigSaveToggle.checked) {
+      if (sigMode === 'signature') TSSign.saveSignature(dataUrl, { source: sigActiveTab });
+      else TSSign.saveInitials(dataUrl, { source: sigActiveTab });
+    }
+    closeSigModal();
+    addImageObject(dataUrl, sigMode);
+  }
+  sigTabs.addEventListener('click', (e) => {
+    const t = e.target.closest('.sig-tab');
+    if (!t) return;
+    switchSigTab(t.dataset.tab);
+  });
+  sigFontRow.addEventListener('click', (e) => {
+    const chip = e.target.closest('.sig-font-chip');
+    if (!chip) return;
+    sigFont = chip.dataset.font;
+    sigFontRow.querySelectorAll('.sig-font-chip').forEach((c) => c.classList.toggle('active', c === chip));
+    updateTypePreview();
+  });
+  sigColorRow.addEventListener('click', (e) => {
+    const sw = e.target.closest('.sig-swatch');
+    if (!sw) return;
+    sigColor = sw.dataset.color;
+    sigColorRow.querySelectorAll('.sig-swatch').forEach((s) => s.classList.toggle('active', s === sw));
+    pad.setColor(sigColor);
+    updateTypePreview();
+  });
+  sigTypeInput.addEventListener('input', updateTypePreview);
+  sigClear.addEventListener('click', () => {
+    if (sigActiveTab === 'draw') pad.clear();
+    else if (sigActiveTab === 'upload') { sigUploadDataUrl = null; sigUploadPreview.getContext('2d').clearRect(0, 0, sigUploadPreview.width, sigUploadPreview.height); }
+    else { sigTypeInput.value = ''; updateTypePreview(); }
+  });
+  sigUploadBtn.addEventListener('click', () => sigUploadInput.click());
+  sigUploadPreviewWrap.addEventListener('click', () => { if (sigActiveTab === 'upload') sigUploadInput.click(); });
+  sigUploadInput.addEventListener('change', async (e) => {
+    const file = e.target.files && e.target.files[0];
+    e.target.value = '';
+    if (!file) return;
+    try {
+      const dataUrl = await new Promise((res, rej) => {
+        const r = new FileReader();
+        r.onload = () => res(r.result);
+        r.onerror = rej;
+        r.readAsDataURL(file);
+      });
+      const img = await loadImageDataUrl(dataUrl);
+      const pctx = sigUploadPreview.getContext('2d');
+      pctx.clearRect(0, 0, sigUploadPreview.width, sigUploadPreview.height);
+      const scale = Math.min(sigUploadPreview.width / img.width, sigUploadPreview.height / img.height, 1);
+      const w = img.width * scale, h = img.height * scale;
+      pctx.drawImage(img, (sigUploadPreview.width - w) / 2, (sigUploadPreview.height - h) / 2, w, h);
+      sigUploadDataUrl = dataUrl;
+    } catch (err) {
+      alert('Could not load this image.');
+    }
+  });
+  sigUseSaved.addEventListener('click', () => {
+    const saved = sigMode === 'signature' ? TSSign.loadSignature() : TSSign.loadInitials();
+    if (!saved || !saved.dataUrl) return;
+    closeSigModal();
+    addImageObject(saved.dataUrl, sigMode);
+  });
+  sigClearSaved.addEventListener('click', () => {
+    if (sigMode === 'signature') TSSign.clearSignature(); else TSSign.clearInitials();
+    refreshSavedBanner();
+  });
+  sigApply.addEventListener('click', applySignature);
+  sigCancel.addEventListener('click', closeSigModal);
+  sigModal.addEventListener('click', (e) => { if (e.target === sigModal) closeSigModal(); });
+
+  // ---- Canvas select/move/resize ----
+  function pos(e) {
+    const r = canvas.getBoundingClientRect();
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    return { x: (clientX - r.left) * (canvas.width / r.width), y: (clientY - r.top) * (canvas.height / r.height) };
+  }
+  function resizeObject(obj, handle, x, y, start) {
+    let nx = obj.x, ny = obj.y, nw = obj.w, nh = obj.h;
+    if (handle === 'se') { nw = Math.max(24, start.ow + (x - start.mx)); nh = Math.max(24, start.oh + (y - start.my)); }
+    else if (handle === 'sw') { nw = Math.max(24, start.ow - (x - start.mx)); nh = Math.max(24, start.oh + (y - start.my)); nx = start.ox + (start.ow - nw); }
+    else if (handle === 'ne') { nw = Math.max(24, start.ow + (x - start.mx)); nh = Math.max(24, start.oh - (y - start.my)); ny = start.oy + (start.oh - nh); }
+    else if (handle === 'nw') { nw = Math.max(24, start.ow - (x - start.mx)); nh = Math.max(24, start.oh - (y - start.my)); nx = start.ox + (start.ow - nw); ny = start.oy + (start.oh - nh); }
+    if (obj.type === 'text' || obj.type === 'date') {
+      const ratio = nw / start.ow;
+      obj.fontSize = Math.max(10, Math.round(start.fontSize * ratio));
+      const size = measureTextObj(obj.text, obj.fontSize);
+      obj.w = size.w; obj.h = size.h;
+      if (handle === 'nw') { obj.x = start.ox + start.ow - obj.w; obj.y = start.oy + start.oh - obj.h; }
+      else if (handle === 'ne') { obj.x = start.ox; obj.y = start.oy + start.oh - obj.h; }
+      else if (handle === 'sw') { obj.x = start.ox + start.ow - obj.w; obj.y = start.oy; }
+      else { obj.x = start.ox; obj.y = start.oy; }
+    } else {
+      obj.x = nx; obj.y = ny; obj.w = nw; obj.h = nh;
+    }
+  }
+  function startDraw(e) {
+    if (tool !== 'select') return;
+    e.preventDefault();
+    const p = pos(e);
+    const sel = getSelectedObject();
+    if (sel && !sel.locked) {
+      const handle = hitHandle(sel, p.x, p.y);
+      if (handle) { drag = { mode: 'resize', handle: handle, mx: p.x, my: p.y, ox: sel.x, oy: sel.y, ow: sel.w, oh: sel.h, fontSize: sel.fontSize }; return; }
+    }
+    const hit = hitObject(p.x, p.y);
+    if (hit) {
+      if (hit.locked) { selectObject(hit.id); return; }
+      selectObject(hit.id);
+      drag = { mode: 'move', mx: p.x, my: p.y, ox: hit.x, oy: hit.y };
+      canvas.style.cursor = 'grabbing';
+      return;
+    }
+    selectedId = null;
+    updateObjProps();
+    composite();
+  }
+  function moveDraw(e) {
+    if (!drag) {
+      if (tool === 'select') {
+        const p = pos(e);
+        const sel = getSelectedObject();
+        if (sel && !sel.locked && hitHandle(sel, p.x, p.y)) { canvas.style.cursor = 'nwse-resize'; return; }
+        const hit = hitObject(p.x, p.y);
+        if (hit && !hit.locked) { canvas.style.cursor = 'grab'; return; }
+        canvas.style.cursor = 'default';
+      }
+      return;
+    }
+    e.preventDefault();
+    const p = pos(e);
+    const obj = getSelectedObject();
+    if (!obj || obj.locked) return;
+    if (drag.mode === 'move') { obj.x = drag.ox + (p.x - drag.mx); obj.y = drag.oy + (p.y - drag.my); }
+    else if (drag.mode === 'resize') resizeObject(obj, drag.handle, p.x, p.y, drag);
+    composite();
+  }
+  function endDraw() { drag = null; canvas.style.cursor = 'default'; }
+  canvas.addEventListener('mousedown', startDraw);
+  canvas.addEventListener('mousemove', moveDraw);
+  window.addEventListener('mouseup', endDraw);
+  canvas.addEventListener('touchstart', startDraw, { passive: false });
+  canvas.addEventListener('touchmove', moveDraw, { passive: false });
+  canvas.addEventListener('touchend', endDraw);
+  canvas.addEventListener('dblclick', (e) => {
+    if (tool !== 'select') return;
+    const p = pos(e);
+    const hit = hitObject(p.x, p.y);
+    if (hit && (hit.type === 'text' || hit.type === 'date') && !hit.locked) { selectObject(hit.id); editSelectedText(); }
+  });
+
+  function applyZoom() {
+    canvas.style.transform = 'scale(' + zoomMult + ')';
+    canvas.style.transformOrigin = 'top center';
+    zoomValue.textContent = Math.round(zoomMult * 100) + '%';
+  }
+  zoomInBtn.addEventListener('click', () => { zoomMult = Math.min(2.5, +(zoomMult + 0.1).toFixed(2)); applyZoom(); });
+  zoomOutBtn.addEventListener('click', () => { zoomMult = Math.max(0.4, +(zoomMult - 0.1).toFixed(2)); applyZoom(); });
+
+  let railBuilt = false;
+  async function renderRail() {
+    if (railBuilt) { updateRailActive(); return; }
+    railBuilt = true;
+    pageRail.innerHTML = '';
+    for (let n = 1; n <= pdfDoc.numPages; n++) {
+      const item = document.createElement('div');
+      item.className = 'editor-rail-item' + (n === pageNum ? ' is-active' : '');
+      item.dataset.page = String(n);
+      item.innerHTML = '<img alt="Page ' + n + '" src=""><span class="rail-num">' + n + '</span>';
+      pageRail.appendChild(item);
+      TSPdfPreview.renderPdfPage(currentFile, n, { maxWidth: 84 }).then((res) => {
+        const img = item.querySelector('img');
+        if (img) img.src = res.dataUrl;
+      }).catch(() => {});
+    }
+  }
+  function updateRailActive() {
+    pageRail.querySelectorAll('.editor-rail-item').forEach((el) => {
+      el.classList.toggle('is-active', parseInt(el.dataset.page, 10) === pageNum);
+    });
+  }
+  pageRail.addEventListener('click', async (e) => {
+    const item = e.target.closest('.editor-rail-item');
+    if (!item) return;
+    const n = parseInt(item.dataset.page, 10);
+    if (n === pageNum) return;
+    pageNum = n;
+    await renderPage(pageNum);
+  });
+  prevPage.addEventListener('click', async () => { if (pageNum <= 1) return; pageNum--; await renderPage(pageNum); });
+  nextPage.addEventListener('click', async () => { if (!pdfDoc || pageNum >= pdfDoc.numPages) return; pageNum++; await renderPage(pageNum); });
+  toolbar.addEventListener('click', (e) => {
+    const chip = e.target.closest('.chip');
+    if (!chip) return;
+    setTool(chip.dataset.tool);
+  });
+  lockBtn.addEventListener('click', () => toggleLock(true));
+  unlockBtn.addEventListener('click', () => toggleLock(false));
+  editTextBtn.addEventListener('click', editSelectedText);
+  deleteObjBtn.addEventListener('click', deleteSelectedObject);
+
+  TS.setupDropZone(dropZone, fileInput, async (files) => {
+    const file = files.find((x) => x.type === 'application/pdf' || x.name.toLowerCase().endsWith('.pdf'));
+    if (!file) { alert('Please choose a PDF file.'); return; }
+    currentFile = file;
+    try {
+      originalBytes = new Uint8Array(await file.arrayBuffer());
+      pdfDoc = await pdfjsLib.getDocument({ data: originalBytes.slice() }).promise;
+      pageNum = 1;
+      pages = {};
+      selectedId = null;
+      railBuilt = false;
+      zoomMult = 1;
+      dropZone.style.display = 'none';
+      editorUI.style.display = 'block';
+      toolLayout.classList.add('is-active');
+      resultPanel.classList.remove('active');
+      resultBlob = null;
+      tool = 'select';
+      toolbar.querySelectorAll('.chip').forEach((c) => c.classList.toggle('active', c.dataset.tool === 'select'));
+      applyZoom();
+      await renderPage(1);
+    } catch (err) {
+      alert('Could not open this PDF. It may be password-protected.');
+    }
+  }, { preview: false });
+
+  function hexToRgb01(hex) {
+    const n = parseInt(hex.replace('#', ''), 16);
+    return { r: ((n >> 16) & 255) / 255, g: ((n >> 8) & 255) / 255, b: (n & 255) / 255 };
+  }
+
+  saveBtn.addEventListener('click', async () => {
+    if (!originalBytes) return;
+    saveBtn.disabled = true;
+    progressBar.classList.add('active');
+    progressFill.style.width = '10%';
+    try {
+      const { PDFDocument, StandardFonts, rgb } = PDFLib;
+      const doc = await PDFDocument.load(originalBytes, { ignoreEncryption: true });
+      const font = await doc.embedFont(StandardFonts.Helvetica);
+      const pdfPages = doc.getPages();
+      const pageNums = Object.keys(pages).map((k) => parseInt(k, 10)).filter((n) => pages[n].objects.length);
+      const imgCache = new Map();
+      for (let idx = 0; idx < pageNums.length; idx++) {
+        const num = pageNums[idx];
+        const st = pages[num];
+        const page = pdfPages[num - 1];
+        if (!page) continue;
+        const S = st.renderScale || 1;
+        const H = st.pageHeightPts;
+        for (const o of st.objects) {
+          if (o.type === 'signature' || o.type === 'initials') {
+            let embedded = imgCache.get(o.dataUrl);
+            if (!embedded) {
+              embedded = await doc.embedPng(o.dataUrl);
+              imgCache.set(o.dataUrl, embedded);
+            }
+            const pdfW = o.w / S, pdfH = o.h / S;
+            const pdfX = o.x / S;
+            const pdfY = H - (o.y + o.h) / S;
+            page.drawImage(embedded, { x: pdfX, y: pdfY, width: pdfW, height: pdfH });
+          } else {
+            const sizePts = o.fontSize / S;
+            const { r, g, b } = hexToRgb01(o.color || '#1e293b');
+            const pdfX = (o.x + 4) / S;
+            const baselineY = H - (o.y + 4 + o.fontSize * 0.78) / S;
+            page.drawText(o.text, { x: pdfX, y: baselineY, size: sizePts, font: font, color: rgb(r, g, b) });
+          }
+        }
+        progressFill.style.width = (10 + ((idx + 1) / Math.max(1, pageNums.length)) * 80) + '%';
+      }
+      const bytes = await doc.save();
+      resultBlob = new Blob([bytes], { type: 'application/pdf' });
+      outPages.textContent = String(pdfPages.length);
+      outFileSize.textContent = TS.formatBytes(resultBlob.size);
+      resultPanel.classList.add('active');
+      progressFill.style.width = '100%';
+      if (window.TSAnalytics) TSAnalytics.track('tool_complete', { tool: 'pdf-sign' });
+    } catch (err) {
+      alert(err.message || 'Could not save the signed PDF.');
+    } finally {
+      saveBtn.disabled = false;
+      setTimeout(() => progressBar.classList.remove('active'), 400);
+    }
+  });
+  downloadBtn.addEventListener('click', () => {
+    if (!resultBlob) return;
+    const base = (currentFile && currentFile.name || 'document').replace(/\.pdf$/i, '');
+    TS.downloadBlob(resultBlob, base + '-signed.pdf');
+  });
+})();
+</script>
+</body>
+</html>
