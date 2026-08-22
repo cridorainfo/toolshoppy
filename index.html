@@ -27,7 +27,7 @@
 <link rel="apple-touch-icon" href="/assets/img/icon-192.png?v=2">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#E11D48">
-<link rel="stylesheet" href="/assets/css/main.css?v=2">
+<link rel="stylesheet" href="/assets/css/main.css?v=3">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
 <script type="application/ld+json">
 {
@@ -141,7 +141,7 @@
       <button class="filter-chip filter-chip--pdf" data-cat="pdf"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#file-type-pdf"></use></svg> PDF</button>
       <button class="filter-chip filter-chip--finance" data-cat="finance"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#coin"></use></svg> Finance</button>
       <button class="filter-chip filter-chip--video" data-cat="video"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#movie"></use></svg> Video</button>
-      <button class="filter-chip filter-chip--misc" data-cat="misc"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#puzzle"></use></svg> Misc</button>
+      <button class="filter-chip filter-chip--misc" data-cat="misc"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#puzzle"></use></svg> Generators</button>
     </div>
   </nav>
   <nav class="container" aria-label="Browse tool categories" style="padding:8px 16px 0;display:flex;flex-wrap:wrap;gap:10px 14px;font-size:0.9rem;">
@@ -155,6 +155,11 @@
   </nav>
   <div class="container">
     <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
+    <section id="akshaya-section" aria-label="Akshaya Center Tools">
+      <h2 class="section-title"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#id"></use></svg> Akshaya Center Tools</h2>
+      <p style="color:var(--text-muted);font-size:0.85rem;margin:-6px 0 14px;">Photo sizing, document security, and e-filing tools trusted by Akshaya centres across Kerala.</p>
+      <div class="featured-grid" id="akshayaGrid"></div>
+    </section>
     <h2 id="available-section" class="section-title"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#circle-check"></use></svg> All Tools <span class="section-count-badge" id="toolCountBadge"></span></h2>
     <div class="featured-grid" id="featuredGrid"></div>
     <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
@@ -410,7 +415,7 @@
   const toolGrid = document.getElementById('toolGrid');
   const toolCountBadge = document.getElementById('toolCountBadge');
   if (toolCountBadge) toolCountBadge.textContent = liveTools.length + ' tools';
-  featuredGrid.innerHTML = liveTools.map((t) => {
+  function toolCardHTML(t) {
     const trendScore = (typeof TSTrendsSEO !== 'undefined') ? TSTrendsSEO.getToolScore(t.id) : 0;
     return `
     <div class="tool-card" data-cat="${t.cat}" data-name="${t.name}" data-id="${t.id}" data-trend="${trendScore}">
@@ -423,7 +428,15 @@
       <h3>${t.title}</h3>
       <p>${t.desc}</p>
     </div>`;
-  }).join('');
+  }
+  featuredGrid.innerHTML = liveTools.map(toolCardHTML).join('');
+  // ---- Akshaya Center Tools — curated for Kerala Akshaya e-service centres ----
+  const AKSHAYA_IDS = ['image-compressor', 'govt-photo-resizer', 'passport-photo', 'pdf-password-protect', 'image-to-pdf', 'pdf-compress', 'income-tax'];
+  const akshayaGrid = document.getElementById('akshayaGrid');
+  if (akshayaGrid) {
+    const akshayaTools = AKSHAYA_IDS.map((id) => liveTools.find((t) => t.id === id)).filter(Boolean);
+    akshayaGrid.innerHTML = akshayaTools.map(toolCardHTML).join('');
+  }
   toolGrid.innerHTML = comingTools.map((t) => `
     <div class="tool-card" data-cat="${t.cat}" data-name="${t.name}">
       <div class="icon"><span class="icon-tile icon-tile--${t.tile}"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#${t.icon}"></use></svg></span></div>
