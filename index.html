@@ -27,7 +27,7 @@
 <link rel="apple-touch-icon" href="/assets/img/icon-192.png?v=2">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#E11D48">
-<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="/assets/css/main.css?v=2">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
 <script type="application/ld+json">
 {
@@ -127,20 +127,9 @@
     <span class="hero-badge"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sparkles"></use></svg> 100% private, zero signup</span>
     <h1>Your one-stop shop for <span class="hero-accent">every free tool</span></h1>
     <p>No signup. No login. No file ever leaves your device.</p>
-    <div class="hero-search" id="heroSearch">
-      <svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#search"></use></svg>
-      <input type="text" id="toolSearch" placeholder="Search tools… e.g. compress image, gold rate" aria-label="Search tools">
-      <button type="button" class="hero-search-clear" id="heroSearchClear" aria-label="Clear search">
-        <svg class="icon-svg hero-search-clear-icon" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#x"></use></svg>
-      </button>
-    </div>
-    <div class="hero-cta-row">
-      <a href="/tools/image/compress/" class="hero-cta hero-cta--solid">
-        <svg class="icon-svg" width="20" height="20" aria-hidden="true"><use href="/assets/icons/sprite.svg#bolt"></use></svg> Compress an Image
-      </a>
-      <a href="/tools/pdf/merge/" class="hero-cta hero-cta--ghost">
-        <svg class="icon-svg" width="20" height="20" aria-hidden="true"><use href="/assets/icons/sprite.svg#link"></use></svg> Merge a PDF
-      </a>
+    <div class="hero-quick-wrap">
+      <span class="hero-quick-label" id="heroQuickLabel">Popular</span>
+      <div class="hero-quick-row" id="heroQuickRow"></div>
     </div>
   </section>
   <nav class="filter-bar" aria-label="Filter tools on this page">
@@ -165,18 +154,13 @@
     <a href="/tools/misc/" style="font-weight:600;color:var(--primary-dark);">More tools</a>
   </nav>
   <div class="container">
-    <section class="trending-section" id="trending-section" aria-label="Trending tools">
-      <h2 class="section-title"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#bolt"></use></svg> Trending Searches</h2>
-      <p class="trending-section-sub">Popular tools from Google Trends — tap to open instantly.</p>
-      <div class="trending-pills" id="trendingPills"></div>
-    </section>
     <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
     <h2 id="available-section" class="section-title"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#circle-check"></use></svg> All Tools <span class="section-count-badge" id="toolCountBadge"></span></h2>
     <div class="featured-grid" id="featuredGrid"></div>
     <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
     <h2 id="coming-section" class="section-title" style="display:none;"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#clock"></use></svg> More Tools</h2>
     <div class="tool-grid" id="toolGrid" style="display:none;"></div>
-    <p id="noResults" style="display:none;text-align:center;color:var(--text-muted);padding:30px 0;">No tools match your search.</p>
+    <p id="noResults" style="display:none;text-align:center;color:var(--text-muted);padding:30px 0;">No tools in this category yet.</p>
   </div>
   <section id="about-section" class="container" style="padding:48px 0 8px;">
     <div style="text-align:center;max-width:640px;margin:0 auto 28px;">
@@ -448,10 +432,10 @@
       <span class="soon">SOON</span>
     </div>
   `).join('');
-  // ---- Search + category filter (incl. Favorites) ----
-  const searchInput = document.getElementById('toolSearch');
-  const heroSearch = document.getElementById('heroSearch');
-  const heroSearchClear = document.getElementById('heroSearchClear');
+  // ---- Category filter (incl. Favorites) ----
+  // Free-text search lives only in the Ctrl+K command palette (see below) —
+  // no separate inline search box, so a stray "?q=" deep-link resolves
+  // straight to its tool or falls back to the dedicated /search/ page.
   const featuredCards = Array.from(featuredGrid.querySelectorAll('.tool-card'));
   const gridCards = Array.from(toolGrid.querySelectorAll('.tool-card'));
   const noResults = document.getElementById('noResults');
@@ -461,31 +445,50 @@
   let activeCat = 'all';
   const params = new URLSearchParams(location.search);
   const qParam = params.get('q');
-  if (qParam && typeof TSTrendsSEO !== 'undefined') {
-    const match = TSTrendsSEO.resolveQuery(qParam);
-    if (match && match.href) {
-      location.replace(match.href);
+  if (qParam) {
+    const match = (typeof TSTrendsSEO !== 'undefined') ? TSTrendsSEO.resolveQuery(qParam) : null;
+    location.replace(match && match.href ? match.href : ('/search/?q=' + encodeURIComponent(qParam)));
+  }
+  // ---- Hero quick-access row: recently used tools, falling back to most-searched ----
+  const RECENT_KEY = 'ts-recent-tools';
+  function getRecentIds() {
+    try { return JSON.parse(localStorage.getItem(RECENT_KEY)) || []; } catch (e) { return []; }
+  }
+  function recordRecent(id) {
+    if (!id) return;
+    try {
+      let recents = getRecentIds().filter((x) => x !== id);
+      recents.unshift(id);
+      localStorage.setItem(RECENT_KEY, JSON.stringify(recents.slice(0, 6)));
+    } catch (e) { /* private mode */ }
+  }
+  document.addEventListener('click', (e) => {
+    const card = e.target.closest('.tool-card[data-id]');
+    const quick = e.target.closest('[data-recent-id]');
+    recordRecent(card ? card.dataset.id : (quick ? quick.dataset.recentId : null));
+  });
+  function renderHeroQuick() {
+    const row = document.getElementById('heroQuickRow');
+    const label = document.getElementById('heroQuickLabel');
+    if (!row) return;
+    const byId = (id) => liveTools.find((t) => t.id === id);
+    let items = getRecentIds().map(byId).filter(Boolean).slice(0, 4);
+    if (items.length) {
+      label.textContent = 'Continue where you left off';
     } else {
-      searchInput.value = qParam;
+      label.textContent = 'Most searched right now';
+      if (typeof TSTrendsSEO !== 'undefined') {
+        items = TSTrendsSEO.getTrendingTools(8).map((tr) => byId(tr.toolId)).filter(Boolean).slice(0, 4);
+      }
+      if (!items.length) items = liveTools.filter((t) => t.badge === 'Popular').slice(0, 4);
     }
-  } else if (qParam) {
-    searchInput.value = qParam;
+    row.innerHTML = items.map((t) => `
+      <a href="${t.href}" class="hero-quick-btn" data-recent-id="${t.id}">
+        <svg class="icon-svg" width="16" height="16" aria-hidden="true"><use href="/assets/icons/sprite.svg#${t.icon}"></use></svg> ${t.title}
+      </a>`).join('');
   }
-  // Trending search pills → deep-link straight to the matching tool
-  const trendingPills = document.getElementById('trendingPills');
-  if (trendingPills && typeof TSTrendsSEO !== 'undefined') {
-    TSTrendsSEO.getTrendingQueries(8).forEach((item) => {
-      const a = document.createElement('a');
-      a.className = 'trend-pill';
-      a.href = item.href || ('/search/?q=' + encodeURIComponent(item.q));
-      a.title = 'Open tool for: ' + item.q;
-      a.textContent = item.q;
-      trendingPills.appendChild(a);
-    });
-  }
+  renderHeroQuick();
   function applyFilters() {
-    const q = searchInput.value.trim().toLowerCase();
-    heroSearch.classList.toggle('has-value', q.length > 0);
     let visibleLive = 0;
     let visibleSoon = 0;
     if (activeCat === 'trending') {
@@ -497,19 +500,15 @@
       });
     }
     featuredCards.forEach((card) => {
-      const matchQ = !q || (card.dataset.name || '').includes(q) || card.textContent.toLowerCase().includes(q);
-      let matchCat = true;
-      if (activeCat === 'favorites') matchCat = favorites.includes(card.dataset.id);
-      else if (activeCat === 'trending') matchCat = (parseInt(card.dataset.trend, 10) || 0) > 0;
-      else if (activeCat !== 'all') matchCat = card.dataset.cat === activeCat;
-      const match = matchQ && matchCat;
+      let match = true;
+      if (activeCat === 'favorites') match = favorites.includes(card.dataset.id);
+      else if (activeCat === 'trending') match = (parseInt(card.dataset.trend, 10) || 0) > 0;
+      else if (activeCat !== 'all') match = card.dataset.cat === activeCat;
       card.style.display = match ? '' : 'none';
       if (match) visibleLive++;
     });
     gridCards.forEach((card) => {
-      const matchQ = !q || (card.dataset.name || '').includes(q) || card.textContent.toLowerCase().includes(q);
-      const matchCat = activeCat === 'all' || (activeCat === 'favorites' ? false : card.dataset.cat === activeCat);
-      const match = matchQ && matchCat;
+      const match = activeCat === 'all' || (activeCat === 'favorites' ? false : card.dataset.cat === activeCat);
       card.style.display = match ? '' : 'none';
       if (match) visibleSoon++;
     });
@@ -519,26 +518,6 @@
     toolGrid.style.display = visibleSoon === 0 ? 'none' : '';
     noResults.style.display = (visibleLive + visibleSoon) === 0 ? 'block' : 'none';
   }
-  searchInput.addEventListener('keydown', (e) => {
-    if (e.key !== 'Enter') return;
-    const q = searchInput.value.trim();
-    if (!q) return;
-    e.preventDefault();
-    if (typeof TSTrendsSEO !== 'undefined') {
-      const match = TSTrendsSEO.resolveQuery(q);
-      if (match && match.href) {
-        location.href = match.href;
-        return;
-      }
-    }
-    location.href = '/search/?q=' + encodeURIComponent(q);
-  });
-  searchInput.addEventListener('input', applyFilters);
-  heroSearchClear.addEventListener('click', () => {
-    searchInput.value = '';
-    searchInput.focus();
-    applyFilters();
-  });
   filterChips.forEach((chip) => {
     chip.addEventListener('click', () => {
       filterChips.forEach((c) => c.classList.remove('active'));

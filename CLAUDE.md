@@ -26,14 +26,14 @@ Goal: Beat them on UX, speed, privacy, and India/Gulf localisation.
 
 ## Design System
 
-Premium crimson/rose-gold palette (switched from the original indigo scheme in Jul 2026). Full source of truth is [`assets/css/main.css`](assets/css/main.css) `:root` — copy from there, not from this snippet, if the two ever drift.
+Premium true-red palette (switched from crimson/rose-gold to a true-red brand-600 family in Aug 2026, matching the reference redesign). Full source of truth is [`assets/css/main.css`](assets/css/main.css) `:root` — copy from there, not from this snippet, if the two ever drift.
 
 ```css
 :root {
-  --primary: #E11D48;
-  --primary-dark: #BE123C;
-  --primary-darker: #9F1239;
-  --primary-tint: #FFF1F2;
+  --primary: #DC2626;
+  --primary-dark: #B91C1C;
+  --primary-darker: #991B1B;
+  --primary-tint: #FEF2F2;
   --accent: #F59E0B;
   --success: #10B981;
   --bg: #FAF9FA;
