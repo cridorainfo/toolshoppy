@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PNN1LM2D9Q"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-PNN1LM2D9Q');</script>
+<meta charset="UTF-8">
+<script>(function(){try{/* TEMP: dark mode disabled — restore prior boot to re-enable */document.documentElement.setAttribute('data-theme','light');localStorage.setItem('ts-theme','light');}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OCR PDF Free Online — Make Scanned PDFs Searchable | ToolShoppy</title>
+<meta name="description" content="Run OCR on a scanned PDF free online. Get a searchable, selectable PDF plus extracted text — no signup, everything runs on your device.">
+<meta name="robots" content="index, follow">
+<meta name="keywords" content="ocr pdf online free, searchable pdf, scanned pdf to text, pdf ocr no signup, extract text from scanned pdf">
+<link rel="canonical" href="https://toolshoppy.com/tools/pdf/ocr-pdf/">
+<meta property="og:title" content="OCR PDF Free Online — Make Scanned PDFs Searchable | ToolShoppy">
+<meta property="og:description" content="Run OCR on a scanned PDF free online. Get a searchable, selectable PDF plus extracted text — no signup, everything runs on your device.">
+<meta property="og:image" content="https://toolshoppy.com/assets/img/og-image.jpg">
+<meta property="og:url" content="https://toolshoppy.com/tools/pdf/ocr-pdf/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ToolShoppy">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="OCR PDF Free Online — Make Scanned PDFs Searchable | ToolShoppy">
+<meta name="twitter:description" content="Run OCR on a scanned PDF free online. Get a searchable, selectable PDF plus extracted text — no signup, everything runs on your device.">
+<meta name="twitter:image" content="https://toolshoppy.com/assets/img/og-image.jpg">
+<link rel="icon" href="/favicon.ico?v=2" sizes="any">
+<link rel="icon" href="/assets/img/favicon.svg?v=2" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/icon-192.png?v=2">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#E11D48">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+<style>
+.ocrpdf-pages { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; margin: 14px 0; }
+.ocrpdf-page-tile { position: relative; border: 2px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--card); }
+.ocrpdf-page-tile img { width: 100%; aspect-ratio: 3/4; object-fit: contain; background: #fff; display: block; }
+.ocrpdf-page-tile .status { display: block; text-align: center; font-size: 0.7rem; font-weight: 700; padding: 5px 4px; color: var(--text-muted); background: var(--bg); }
+.ocrpdf-page-tile.is-done { border-color: var(--success); }
+.ocrpdf-page-tile.is-done .status { color: var(--success); background: rgba(16,185,129,0.1); }
+.ocrpdf-page-tile.is-active { border-color: var(--primary); box-shadow: 0 0 0 2px var(--primary-tint); }
+#ocrTextOut {
+  width: 100%; min-height: 180px; max-height: 360px; overflow-y: auto; margin-top: 10px;
+  padding: 12px 14px; border: 1px solid var(--border); border-radius: var(--radius-sm);
+  background: var(--bg); color: var(--text); font-family: 'SF Mono', Consolas, monospace; font-size: 0.8rem; line-height: 1.6; white-space: pre-wrap;
+}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"OCR PDF","url":"https://toolshoppy.com/tools/pdf/ocr-pdf/","description":"Run on-device OCR on a scanned PDF to produce a searchable PDF and extracted text.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolshoppy.com/"},{"@type":"ListItem","position":2,"name":"PDF Tools","item":"https://toolshoppy.com/tools/pdf/"},{"@type":"ListItem","position":3,"name":"OCR PDF","item":"https://toolshoppy.com/tools/pdf/ocr-pdf/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What does OCR PDF actually produce?","acceptedAnswer":{"@type":"Answer","text":"A new PDF that looks identical to your scan but has an invisible text layer behind it, so you can select, copy, and search the text in any PDF reader. You also get the raw extracted text as a .txt file."}},{"@type":"Question","name":"How long does OCR take?","acceptedAnswer":{"@type":"Answer","text":"The first run downloads a small on-device OCR model (about 20MB) once, then it's cached. Each page takes a few seconds to process, so large PDFs take longer — progress is shown per page."}},{"@type":"Question","name":"Is my PDF uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. OCR runs fully on-device using PaddleOCR compiled to WebAssembly — your file and its content never leave your browser."}}]}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo"><img src="/assets/img/logo.png?v=2" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
+    <div class="site-search"><input type="text" placeholder="Search tools…" onfocus="location.href='/search/'"></div>
+    <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode">
+      <svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg>
+      <svg class="icon-svg theme-icon-moon" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#moon"></use></svg>
+    </button>
+  </div>
+</header>
+<main class="tool-page container">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/"><svg class="icon-svg" width="16" height="16" aria-hidden="true"><use href="/assets/icons/sprite.svg#home"></use></svg> Home</a>
+    <svg class="icon-svg crumb-sep" width="14" height="14" aria-hidden="true"><use href="/assets/icons/sprite.svg#chevron-right"></use></svg>
+    <a href="/tools/pdf/">PDF Tools</a>
+    <svg class="icon-svg crumb-sep" width="14" height="14" aria-hidden="true"><use href="/assets/icons/sprite.svg#chevron-right"></use></svg>
+    <span class="crumb-current">OCR PDF</span>
+  </nav>
+  <div class="tool-header">
+    <div class="icon-tile icon-tile--violet"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#scan"></use></svg></div>
+    <h1>OCR PDF</h1>
+    <p>Turn a scanned PDF into a searchable, selectable PDF — plus extracted text.</p>
+  </div>
+  <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
+  <div class="tool-layout with-sidebar" id="toolLayout">
+    <div class="tool-card-main">
+      <div class="drop-zone" id="dropZone">
+        <div class="icon"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#upload"></use></svg></div>
+        <div class="dz-cta">Select PDF file</div>
+        <p>or drop a PDF here</p>
+        <p class="drop-zone-hint">First run downloads a small OCR model (~20MB), then works offline from cache.</p>
+        <input type="file" id="fileInput" accept="application/pdf,.pdf">
+      </div>
+      <div id="controls" style="display:none;">
+        <div id="pageSummary" style="font-size:0.85rem;color:var(--text-muted);font-weight:600;margin-bottom:6px;"></div>
+        <div class="ocrpdf-pages" id="pageGrid"></div>
+        <p id="statusText" style="font-size:0.85rem;color:var(--text-muted);"></p>
+        <div class="sticky-cta-bar">
+          <button class="btn btn-primary btn-block" id="startBtn">Run OCR</button>
+          <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+        </div>
+      </div>
+      <div class="result-panel" id="resultPanel">
+        <div class="compare-row">
+          <div class="compare-box"><div class="label">Pages</div><div class="value" id="outPages">-</div></div>
+          <div class="compare-box"><div class="label">Words found</div><div class="value" id="outWords">-</div></div>
+        </div>
+        <div class="chip-row" style="margin-top:10px;">
+          <button class="btn btn-accent" id="downloadPdfBtn" style="flex:1;min-width:180px;"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#download"></use></svg> Download Searchable PDF</button>
+          <button class="btn" id="downloadTxtBtn" style="flex:1;min-width:160px;background:var(--card);border:1px solid var(--border);">Download .txt</button>
+        </div>
+        <details style="margin-top:12px;">
+          <summary style="cursor:pointer;font-size:0.85rem;font-weight:700;color:var(--text-muted);">Preview extracted text</summary>
+          <div id="ocrTextOut"></div>
+        </details>
+      </div>
+      <div class="trust-badge"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock"></use></svg> Your files never leave your device</div>
+    </div>
+    <aside class="sidebar">
+      <div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div>
+      <div class="info-box">
+        <h4>How it works</h4>
+        <ul>
+          <li>Each page is scanned with on-device OCR (PaddleOCR)</li>
+          <li>Output PDF looks the same but text is now selectable</li>
+          <li>Everything runs in your browser — private &amp; free</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+  <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
+  <div class="content-section">
+    <h2>How to OCR a scanned PDF</h2>
+    <ol>
+      <li>Upload your scanned PDF.</li>
+      <li>Click <strong>Run OCR</strong> — each page is recognized in turn.</li>
+      <li>Download the searchable PDF, or just the extracted text.</li>
+    </ol>
+  </div>
+  <div class="content-section">
+    <h2>Related tools</h2>
+    <div class="related-tools">
+      <a href="/tools/pdf/pdf-to-markdown/">
+        <span class="icon-tile icon-tile--sm icon-tile--slate"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#file-text"></use></svg></span>
+        PDF to Markdown
+        <span class="related-desc">Extract text-based PDFs to Markdown</span>
+      </a>
+      <a href="/tools/image/ocr/">
+        <span class="icon-tile icon-tile--sm icon-tile--violet"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#scan"></use></svg></span>
+        Image OCR
+        <span class="related-desc">Extract text from a single photo</span>
+      </a>
+      <a href="/tools/pdf/compress/">
+        <span class="icon-tile icon-tile--sm icon-tile--orange"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#file-zip"></use></svg></span>
+        PDF Compress
+        <span class="related-desc">Shrink PDF file size</span>
+      </a>
+    </div>
+  </div>
+  <div class="content-section">
+    <h2>Frequently asked questions</h2>
+    <div class="faq-item"><h3>What does OCR PDF actually produce?</h3><p>A new PDF that looks identical to your scan but has an invisible text layer behind it, so you can select, copy, and search the text in any PDF reader. You also get the raw extracted text as a <code>.txt</code> file.</p></div>
+    <div class="faq-item"><h3>How long does OCR take?</h3><p>The first run downloads a small on-device OCR model (about 20MB) once, then it's cached. Each page takes a few seconds to process, so large PDFs take longer — progress is shown per page.</p></div>
+    <div class="faq-item"><h3>Is my PDF uploaded to a server?</h3><p>No. OCR runs fully on-device using PaddleOCR compiled to WebAssembly — your file and its content never leave your browser.</p></div>
+  </div>
+</main>
+<div class="ad-slot ad-bottom"><span class="ad-label">Ad</span></div>
+<footer class="site-footer">
+  <div class="container"><div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div></div>
+</footer>
+<div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
+<script src="/assets/js/ga-config.js"></script>
+<script src="/assets/js/adsterra-config.js?v=5"></script>
+<script src="/assets/js/ad-config.js"></script>
+<script src="/assets/js/core.js"></script>
+<script src="/assets/js/ads.js?v=6"></script>
+<script src="/assets/js/analytics.js"></script>
+<script src="/assets/libs/pdf.min.js"></script>
+<script src="/assets/libs/pdf-lib.min.js"></script>
+<script src="/assets/js/paddle-ocr.js"></script>
+<script>
+(function () {
+  pdfjsLib.GlobalWorkerOptions.workerSrc = '/assets/libs/pdf.worker.min.js';
+  const toolLayout = document.getElementById('toolLayout');
+  const dropZone = document.getElementById('dropZone');
+  const fileInput = document.getElementById('fileInput');
+  const controls = document.getElementById('controls');
+  const pageSummary = document.getElementById('pageSummary');
+  const pageGrid = document.getElementById('pageGrid');
+  const statusText = document.getElementById('statusText');
+  const startBtn = document.getElementById('startBtn');
+  const progressBar = document.getElementById('progressBar');
+  const progressFill = document.getElementById('progressFill');
+  const resultPanel = document.getElementById('resultPanel');
+  const outPages = document.getElementById('outPages');
+  const outWords = document.getElementById('outWords');
+  const ocrTextOut = document.getElementById('ocrTextOut');
+  const downloadPdfBtn = document.getElementById('downloadPdfBtn');
+  const downloadTxtBtn = document.getElementById('downloadTxtBtn');
+  const RENDER_SCALE = 1.8;
+  let pdfFile = null;
+  let pageCount = 0;
+  let pages = []; // { canvas, widthPt, heightPt, lines, text, done }
+  let searchablePdfBlob = null;
+  let combinedText = '';
+
+  TS.setupDropZone(dropZone, fileInput, async (files) => {
+    const f = files.find((x) => x.type === 'application/pdf' || x.name.toLowerCase().endsWith('.pdf'));
+    if (!f) { alert('Please choose a PDF file.'); return; }
+    pdfFile = f;
+    resultPanel.classList.remove('active');
+    searchablePdfBlob = null;
+    try {
+      const data = new Uint8Array(await f.arrayBuffer());
+      const pdf = await pdfjsLib.getDocument({ data }).promise;
+      pageCount = pdf.numPages;
+      pages = [];
+      pageGrid.innerHTML = '';
+      for (let i = 1; i <= pageCount; i++) {
+        const page = await pdf.getPage(i);
+        const viewport = page.getViewport({ scale: RENDER_SCALE });
+        const canvas = document.createElement('canvas');
+        canvas.width = Math.floor(viewport.width);
+        canvas.height = Math.floor(viewport.height);
+        await page.render({ canvasContext: canvas.getContext('2d'), viewport }).promise;
+        const basePt = page.getViewport({ scale: 1 });
+        pages.push({ canvas: canvas, widthPt: basePt.width, heightPt: basePt.height, lines: [], text: '', done: false });
+        const tile = document.createElement('div');
+        tile.className = 'ocrpdf-page-tile';
+        tile.dataset.index = String(i - 1);
+        tile.innerHTML = '<img alt="Page ' + i + '" src="' + canvas.toDataURL('image/jpeg', 0.7) + '"><span class="status">Page ' + i + '</span>';
+        pageGrid.appendChild(tile);
+      }
+      pageSummary.textContent = pageCount + ' page' + (pageCount === 1 ? '' : 's') + ' ready';
+      controls.style.display = 'block';
+      toolLayout.classList.add('is-active');
+    } catch (e) {
+      alert('Could not read this PDF. It may be password-protected.');
+      resetAll();
+    }
+  }, { preview: false });
+
+  function resetAll() {
+    pdfFile = null;
+    pageCount = 0;
+    pages = [];
+    controls.style.display = 'none';
+    dropZone.style.display = '';
+    toolLayout.classList.remove('is-active');
+  }
+
+  function canvasToFile(canvas, name) {
+    return new Promise((resolve) => {
+      canvas.toBlob((blob) => resolve(new File([blob], name, { type: 'image/png' })), 'image/png');
+    });
+  }
+
+  startBtn.addEventListener('click', async () => {
+    if (!pages.length) return;
+    startBtn.disabled = true;
+    progressBar.classList.add('active');
+    progressFill.style.width = '3%';
+    try {
+      for (let i = 0; i < pages.length; i++) {
+        const tile = pageGrid.querySelector('[data-index="' + i + '"]');
+        if (tile) tile.classList.add('is-active');
+        statusText.textContent = 'Loading OCR engine for page ' + (i + 1) + ' of ' + pages.length + '…';
+        const file = await canvasToFile(pages[i].canvas, 'page-' + (i + 1) + '.png');
+        const result = await TSPaddleOCR.recognize(file, {
+          onProgress: (info) => {
+            const base = (i / pages.length) * 100;
+            const span = 100 / pages.length;
+            const local = Math.min(98, info.pct || 0);
+            progressFill.style.width = Math.min(99, base + (local / 100) * span) + '%';
+            statusText.textContent = (info.label || 'Working…') + ' — page ' + (i + 1) + ' of ' + pages.length;
+          },
+        });
+        pages[i].lines = result.lines || [];
+        pages[i].text = result.text || '';
+        pages[i].done = true;
+        if (tile) {
+          tile.classList.remove('is-active');
+          tile.classList.add('is-done');
+          const st = tile.querySelector('.status');
+          if (st) st.textContent = 'Page ' + (i + 1) + ' ✓';
+        }
+      }
+
+      // Build the searchable PDF: page image + invisible text layer.
+      statusText.textContent = 'Building searchable PDF…';
+      const { PDFDocument, StandardFonts, rgb } = PDFLib;
+      const outDoc = await PDFDocument.create();
+      const font = await outDoc.embedFont(StandardFonts.Helvetica);
+      for (let i = 0; i < pages.length; i++) {
+        const p = pages[i];
+        const jpgDataUrl = p.canvas.toDataURL('image/jpeg', 0.82);
+        const jpgBytes = Uint8Array.from(atob(jpgDataUrl.split(',')[1]), (c) => c.charCodeAt(0));
+        const img = await outDoc.embedJpg(jpgBytes);
+        const pdfPage = outDoc.addPage([p.widthPt, p.heightPt]);
+        pdfPage.drawImage(img, { x: 0, y: 0, width: p.widthPt, height: p.heightPt });
+        p.lines.forEach((line) => {
+          const box = line.box || line;
+          const pts = box.points || line.points || null;
+          if (!pts || pts.length < 4 || !line.text) return;
+          let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+          pts.forEach((pt) => {
+            const x = Array.isArray(pt) ? pt[0] : pt.x;
+            const y = Array.isArray(pt) ? pt[1] : pt.y;
+            if (x < minX) minX = x;
+            if (y < minY) minY = y;
+            if (x > maxX) maxX = x;
+            if (y > maxY) maxY = y;
+          });
+          const xPt = minX / RENDER_SCALE;
+          const boxHeightPt = Math.max(4, (maxY - minY) / RENDER_SCALE);
+          const boxWidthPt = Math.max(4, (maxX - minX) / RENDER_SCALE);
+          const yBaselinePt = p.heightPt - (maxY / RENDER_SCALE);
+          const naturalWidth = font.widthOfTextAtSize(line.text, boxHeightPt) || 1;
+          const size = Math.max(4, Math.min(boxHeightPt, boxHeightPt * (boxWidthPt / naturalWidth)));
+          try {
+            pdfPage.drawText(line.text, { x: xPt, y: yBaselinePt, size: size, font: font, color: rgb(0, 0, 0), opacity: 0 });
+          } catch (e) { /* skip glyphs the base font can't encode */ }
+        });
+      }
+      const outBytes = await outDoc.save();
+      searchablePdfBlob = new Blob([outBytes], { type: 'application/pdf' });
+      combinedText = pages.map((p, idx) => '--- Page ' + (idx + 1) + ' ---\n' + (p.text || '').trim()).join('\n\n');
+      ocrTextOut.textContent = combinedText || '(No text detected.)';
+      outPages.textContent = String(pages.length);
+      outWords.textContent = ((combinedText.match(/\S+/g) || []).length).toLocaleString();
+      resultPanel.classList.add('active');
+      progressFill.style.width = '100%';
+      statusText.textContent = 'Done.';
+      if (window.TSAnalytics) TSAnalytics.track('tool_complete', { tool: 'ocr-pdf' });
+    } catch (err) {
+      alert(err.message || 'OCR failed. Try a smaller PDF or reload the page.');
+    } finally {
+      startBtn.disabled = false;
+      setTimeout(() => progressBar.classList.remove('active'), 400);
+    }
+  });
+
+  downloadPdfBtn.addEventListener('click', () => {
+    if (!searchablePdfBlob) return;
+    const base = (pdfFile && pdfFile.name || 'document').replace(/\.pdf$/i, '');
+    TS.downloadBlob(searchablePdfBlob, base + '-searchable.pdf');
+  });
+  downloadTxtBtn.addEventListener('click', () => {
+    if (!combinedText) return;
+    const base = (pdfFile && pdfFile.name || 'document').replace(/\.pdf$/i, '');
+    TS.downloadBlob(new Blob([combinedText], { type: 'text/plain;charset=utf-8' }), base + '-ocr.txt');
+  });
+})();
+</script>
+</body>
+</html>
