@@ -88,18 +88,10 @@ html { scroll-behavior: smooth; }
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background: var(--bg);
-  background-image:
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(225,29,72,0.06), transparent),
-    radial-gradient(ellipse 60% 40% at 100% 0%, rgba(245,158,11,0.05), transparent);
   color: var(--text);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   transition: background-color .2s ease, color .2s ease;
-}
-:root[data-theme="dark"] body {
-  background-image:
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(225,29,72,0.12), transparent),
-    radial-gradient(ellipse 60% 40% at 100% 0%, rgba(159,18,57,0.08), transparent);
 }
 
 img { max-width: 100%; display: block; }
@@ -278,12 +270,12 @@ button { font-family: inherit; cursor: pointer; }
 /* Hero: gradient banner card (crimson → rose-gold), like a premium app's
    dashboard header — replaces the old plain-text hero on a light page bg. */
 .hero {
-  text-align: center;
+  text-align: left;
   padding: 48px 24px 44px;
   position: relative;
   margin-top: 20px;
   border-radius: var(--radius-lg);
-  background: linear-gradient(135deg, var(--primary-darker) 0%, var(--primary) 55%, var(--accent) 145%);
+  background: linear-gradient(135deg, var(--primary-darker) 0%, var(--primary) 70%);
   box-shadow: var(--shadow-premium);
 }
 @media (min-width: 640px) {
@@ -321,7 +313,7 @@ button { font-family: inherit; cursor: pointer; }
   color: rgba(255,255,255,0.88);
   font-size: 1.02rem;
   max-width: 560px;
-  margin: 0 auto;
+  margin: 0;
 }
 
 /* Sticky category filter bar */
@@ -361,7 +353,8 @@ button { font-family: inherit; cursor: pointer; }
   max-height: 2.5rem;
   transition: background .15s ease, border-color .15s ease, box-shadow .15s ease;
 }
-.filter-chip:hover { border-color: var(--primary); box-shadow: 0 2px 8px rgba(225,29,72,0.12); }
+.filter-chip:hover { border-color: var(--primary); color: var(--primary-dark); box-shadow: 0 2px 8px rgba(225,29,72,0.12); }
+:root[data-theme="dark"] .filter-chip:hover { color: var(--primary); }
 .filter-chip.active { background: var(--primary); border-color: var(--primary); color: #fff; box-shadow: var(--shadow-premium); }
 .filter-chip--favorites { color: #B45309; background: rgba(217,119,6,0.08); }
 .filter-chip--favorites .icon-svg { fill: currentColor; }
@@ -419,11 +412,11 @@ button { font-family: inherit; cursor: pointer; }
   margin-bottom: 8px;
 }
 .featured-grid .tool-card {
-  border-color: rgba(225,29,72,0.25);
-  background: linear-gradient(180deg, var(--primary-tint) 0%, var(--card) 55%);
+  border-color: var(--border);
+  background: var(--card);
 }
 :root[data-theme="dark"] .featured-grid .tool-card {
-  background: linear-gradient(180deg, rgba(225,29,72,0.10) 0%, var(--card) 55%);
+  background: var(--card);
 }
 
 @keyframes livePulse {
@@ -468,14 +461,14 @@ button { font-family: inherit; cursor: pointer; }
 .tool-card {
   background: var(--card);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 18px 16px 14px;
+  border-radius: var(--radius-lg);
+  padding: 22px 20px 18px;
   text-align: left;
   box-shadow: var(--shadow);
   transition: border-color .2s ease, background-color .2s ease, box-shadow .2s ease, transform .2s ease;
   display: flex;
   flex-direction: column;
-  min-height: 148px;
+  min-height: 156px;
 }
 .tool-card:hover {
   border-color: var(--primary);
@@ -506,26 +499,36 @@ button { font-family: inherit; cursor: pointer; }
   max-width: 1.5rem;
   max-height: 1.5rem;
 }
+/* Uniform brand-rose icon tile on tool cards — overrides the per-category
+   icon-tile--* color used elsewhere (related-tools, tool-header, hubs). */
+.tool-card .icon .icon-tile {
+  background: var(--primary-tint);
+  color: var(--primary);
+}
+:root[data-theme="dark"] .tool-card .icon .icon-tile {
+  background: rgba(225, 29, 72, 0.16);
+  color: #FDA4AF;
+}
 .tool-card h3 {
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 700;
-  margin-bottom: 3px;
+  margin-bottom: 4px;
   line-height: 1.3;
 }
 .tool-card p {
-  font-size: 0.76rem;
+  font-size: 0.82rem;
   color: var(--text-muted);
-  line-height: 1.4;
+  line-height: 1.5;
   flex: 1;
 }
 /* "Launch Tool →" footer — a CSS-only pseudo-element so it appears on every
    .tool-card everywhere (homepage grid + every static category hub page)
    without needing to edit each page's markup. */
 .tool-card::after {
-  content: 'Open tool →';
+  content: 'Launch Tool →';
   display: block;
-  margin-top: 10px;
-  font-size: 0.72rem;
+  margin-top: 12px;
+  font-size: 0.78rem;
   font-weight: 800;
   color: var(--primary-dark);
   transition: transform .2s ease;
@@ -589,7 +592,7 @@ button { font-family: inherit; cursor: pointer; }
 .tool-page {
   padding: 24px 0 60px;
 }
-.tool-header { text-align: center; margin-bottom: 20px; }
+.tool-header { text-align: left; margin-bottom: 20px; }
 .tool-header h1 { font-size: clamp(1.4rem, 3.5vw, 2rem); font-weight: 800; }
 .tool-header p { color: var(--text-muted); margin-top: 6px; }
 
@@ -1966,7 +1969,7 @@ button { font-family: inherit; cursor: pointer; }
 .state-card .fuel-line span:last-child { font-weight: 700; color: var(--text); }
 
 
-.tool-header .icon-tile { margin: 0 auto 12px; }
+.tool-header .icon-tile { margin: 0 0 12px; }
 
 /* Tool page SEO content: How it works + FAQ */
 .content-section {
@@ -2107,7 +2110,7 @@ button { font-family: inherit; cursor: pointer; }
 /* Hero: elegant premium search box */
 .hero-search {
   max-width: 560px;
-  margin: 26px auto 0;
+  margin: 26px 0 0;
   position: relative;
 }
 .hero-search .icon-svg {
@@ -2154,7 +2157,7 @@ button { font-family: inherit; cursor: pointer; }
 .hero-cta-row {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 12px;
   margin-top: 20px;
 }
@@ -2328,18 +2331,18 @@ button { font-family: inherit; cursor: pointer; }
   right: 44px;
   z-index: 2;
   font-size: 0.62rem;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  padding: 3px 8px;
+  padding: 3px 10px;
   border-radius: 999px;
-  background: var(--primary-tint);
-  color: var(--primary-dark);
-  border: 1px solid rgba(225,29,72,0.18);
+  background: var(--bg);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
 }
-.tool-card-badge--new { background: rgba(16,185,129,0.12); color: var(--success); border-color: rgba(16,185,129,0.25); }
-:root[data-theme="dark"] .tool-card-badge { color: var(--primary); }
-:root[data-theme="dark"] .tool-card-badge--new { color: var(--success); }
+.tool-card-badge--new { background: var(--bg); color: var(--text-muted); border-color: var(--border); }
+:root[data-theme="dark"] .tool-card-badge { background: rgba(148,163,184,0.14); color: var(--text-muted); border-color: var(--border); }
+:root[data-theme="dark"] .tool-card-badge--new { background: rgba(148,163,184,0.14); color: var(--text-muted); border-color: var(--border); }
 
 .featured-grid .tool-card:hover {
   border-color: var(--primary);
