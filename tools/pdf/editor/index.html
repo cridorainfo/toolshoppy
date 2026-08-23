@@ -51,6 +51,10 @@
 .sig-cursor.is-drawing{width:8px;height:8px;background:#1e293b;}
 .sig-cursor[hidden]{display:none!important;}
 .sig-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+.shape-swatches{display:flex;gap:6px;}
+.shape-swatch{width:22px;height:22px;border-radius:50%;border:2px solid var(--border);cursor:pointer;}
+.shape-swatch.active{border-color:var(--primary);box-shadow:0 0 0 2px var(--primary-tint);}
+.shape-fill-toggle{display:flex;align-items:center;gap:6px;font-size:0.8rem;font-weight:600;color:var(--text);cursor:pointer;}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"PDF Editor","url":"https://toolshoppy.com/tools/pdf/editor/","description":"Annotate and edit PDFs free online, 100% client-side.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
@@ -84,7 +88,7 @@
   <div class="tool-header">
     <div class="icon-tile icon-tile--lg icon-tile--violet"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#file-pencil"></use></svg></div>
     <h1>PDF Editor</h1>
-    <p>Annotate, highlight, redact, sign, and add images — free, no login.</p>
+    <p>Annotate, highlight, redact, sign, add images, and drop colored shapes — free, no login.</p>
   </div>
   <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
   <div class="tool-layout with-sidebar" id="toolLayout">
@@ -104,8 +108,25 @@
           <button class="chip" data-tool="text" type="button">Text</button>
           <button class="chip" data-tool="image" type="button">Image</button>
           <button class="chip" data-tool="signature" type="button">Signature</button>
+          <button class="chip" data-tool="shape" type="button">Shapes</button>
           <button class="chip" data-tool="redact" type="button">Redact</button>
           <button class="chip" data-tool="erase" type="button">Erase</button>
+        </div>
+        <div class="editor-props" id="shapeProps" hidden>
+          <span class="obj-label">Shape</span>
+          <div class="chip-row" id="shapeTypeRow">
+            <button class="chip active" data-shape="rect" type="button">Rectangle</button>
+            <button class="chip" data-shape="ellipse" type="button">Ellipse</button>
+            <button class="chip" data-shape="line" type="button">Line</button>
+          </div>
+          <div class="shape-swatches" id="shapeColorRow">
+            <span class="shape-swatch active" data-color="#E11D48" style="background:#E11D48;"></span>
+            <span class="shape-swatch" data-color="#2563EB" style="background:#2563EB;"></span>
+            <span class="shape-swatch" data-color="#16A34A" style="background:#16A34A;"></span>
+            <span class="shape-swatch" data-color="#F59E0B" style="background:#F59E0B;"></span>
+            <span class="shape-swatch" data-color="#000000" style="background:#000000;"></span>
+          </div>
+          <label class="shape-fill-toggle"><input type="checkbox" id="shapeFillToggle"> Fill</label>
         </div>
         <div class="editor-props" id="objProps" hidden>
           <span class="obj-label" id="objLabel">Object selected</span>
@@ -164,6 +185,7 @@
         <ul>
           <li><strong>Select</strong> — move, resize, lock, or delete items</li>
           <li><strong>Text / Image / Signature</strong> — add elements you can reposition</li>
+          <li><strong>Shapes</strong> — drag out a rectangle, ellipse, or line in any color, then resize freely</li>
           <li><strong>Draw &amp; Highlight</strong> — freehand ink on the page</li>
           <li><strong>Redact</strong> — solid black whiteout</li>
         </ul>
@@ -271,6 +293,15 @@
   const sigUploadInput = document.getElementById('sigUploadInput');
   const sigApply = document.getElementById('sigApply');
   const sigCancel = document.getElementById('sigCancel');
+  const shapeProps = document.getElementById('shapeProps');
+  const shapeTypeRow = document.getElementById('shapeTypeRow');
+  const shapeColorRow = document.getElementById('shapeColorRow');
+  const shapeFillToggle = document.getElementById('shapeFillToggle');
+  let shapeType = 'rect';
+  let shapeColor = '#E11D48';
+  let shapeFilled = false;
+  let shapeStart = null;
+  let lastPointerPos = { x: 0, y: 0 };
   let pdfDoc = null;
   let pageNum = 1;
   let zoomMult = 1;
@@ -341,7 +372,7 @@
       return;
     }
     objProps.hidden = false;
-    const labels = { text: 'Text', image: 'Image', signature: 'Signature' };
+    const labels = { text: 'Text', image: 'Image', signature: 'Signature', shape: 'Shape' };
     objLabel.textContent = (labels[obj.type] || 'Object') + (obj.locked ? ' (locked)' : '');
     lockBtn.hidden = obj.locked;
     unlockBtn.hidden = !obj.locked;
@@ -359,6 +390,7 @@
     });
     if (tool === 'image') imageInput.click();
     if (tool === 'signature') openSigModal();
+    shapeProps.hidden = tool !== 'shape';
     updateCanvasCursor();
   }
   function updateCanvasCursor() {
@@ -371,6 +403,7 @@
       erase: 'crosshair',
       image: 'copy',
       signature: 'copy',
+      shape: 'crosshair',
     };
     canvas.style.cursor = cursors[tool] || 'default';
   }
@@ -397,12 +430,43 @@
     }
     return null;
   }
+  function traceShapePath(targetCtx, o) {
+    const { shape, x, y, w, h } = o;
+    targetCtx.beginPath();
+    if (shape === 'ellipse') {
+      targetCtx.ellipse(x + w / 2, y + h / 2, Math.max(1, w / 2), Math.max(1, h / 2), 0, 0, Math.PI * 2);
+    } else if (shape === 'line') {
+      targetCtx.moveTo(x, y);
+      targetCtx.lineTo(x + w, y + h);
+    } else {
+      targetCtx.rect(x, y, w, h);
+    }
+  }
+  function drawShapeObject(targetCtx, o, scale) {
+    const s = scale || 1;
+    const scaled = { shape: o.shape, x: o.x * s, y: o.y * s, w: o.w * s, h: o.h * s };
+    targetCtx.save();
+    targetCtx.strokeStyle = o.color;
+    targetCtx.fillStyle = o.color;
+    targetCtx.lineWidth = (o.strokeWidth || 3) * s;
+    targetCtx.lineCap = 'round';
+    traceShapePath(targetCtx, scaled);
+    if (o.shape === 'line') {
+      targetCtx.stroke();
+    } else {
+      if (o.filled) targetCtx.fill();
+      targetCtx.stroke();
+    }
+    targetCtx.restore();
+  }
   function drawObject(o) {
     if (o.type === 'text') {
       ctx.fillStyle = o.color || '#1e293b';
       ctx.font = o.fontSize + 'px sans-serif';
       ctx.textBaseline = 'top';
       ctx.fillText(o.text, o.x + 4, o.y + 4);
+    } else if (o.type === 'shape') {
+      drawShapeObject(ctx, o);
     } else if ((o.type === 'image' || o.type === 'signature') && o.img) {
       ctx.drawImage(o.img, o.x, o.y, o.w, o.h);
     }
@@ -485,6 +549,37 @@
       h: h,
       dataUrl: dataUrl,
       img: img,
+      locked: false,
+    };
+    st.objects.push(obj);
+    selectObject(obj.id);
+    setTool('select');
+  }
+  function finalizeShape(a, b) {
+    let x = Math.min(a.x, b.x);
+    let y = Math.min(a.y, b.y);
+    let w = Math.abs(b.x - a.x);
+    let h = Math.abs(b.y - a.y);
+    if (w < 8 && h < 8) {
+      const dw = 140;
+      const dh = shapeType === 'line' ? 2 : 90;
+      x = a.x - dw / 2;
+      y = a.y - dh / 2;
+      w = dw;
+      h = dh;
+    }
+    const st = pageState(pageNum);
+    const obj = {
+      id: uid(),
+      type: 'shape',
+      shape: shapeType,
+      x: x,
+      y: y,
+      w: Math.max(4, w),
+      h: Math.max(4, h),
+      color: shapeColor,
+      filled: shapeFilled,
+      strokeWidth: 3,
       locked: false,
     };
     st.objects.push(obj);
@@ -662,6 +757,21 @@
     const chip = e.target.closest('.chip');
     if (!chip) return;
     setTool(chip.dataset.tool);
+  });
+  shapeTypeRow.addEventListener('click', (e) => {
+    const chip = e.target.closest('.chip');
+    if (!chip) return;
+    shapeType = chip.dataset.shape;
+    shapeTypeRow.querySelectorAll('.chip').forEach((c) => c.classList.toggle('active', c === chip));
+  });
+  shapeColorRow.addEventListener('click', (e) => {
+    const sw = e.target.closest('.shape-swatch');
+    if (!sw) return;
+    shapeColor = sw.dataset.color;
+    shapeColorRow.querySelectorAll('.shape-swatch').forEach((s) => s.classList.toggle('active', s === sw));
+  });
+  shapeFillToggle.addEventListener('change', () => {
+    shapeFilled = shapeFillToggle.checked;
   });
   lockBtn.addEventListener('click', () => toggleLock(true));
   unlockBtn.addEventListener('click', () => toggleLock(false));
@@ -867,6 +977,11 @@
       addTextObject(p.x, p.y);
       return;
     }
+    if (tool === 'shape') {
+      shapeStart = p;
+      lastPointerPos = p;
+      return;
+    }
     if (tool === 'image' || tool === 'signature') return;
     drawing = true;
     lastX = p.x;
@@ -874,6 +989,17 @@
   }
   function moveDraw(e) {
     const p = pos(e);
+    if (shapeStart) {
+      e.preventDefault();
+      lastPointerPos = p;
+      composite();
+      const x = Math.min(shapeStart.x, p.x);
+      const y = Math.min(shapeStart.y, p.y);
+      const w = Math.abs(p.x - shapeStart.x);
+      const h = Math.abs(p.y - shapeStart.y);
+      drawShapeObject(ctx, { shape: shapeType, x: x, y: y, w: w, h: h, color: shapeColor, filled: shapeFilled, strokeWidth: 3 });
+      return;
+    }
     if (drag) {
       e.preventDefault();
       const obj = getSelectedObject();
@@ -937,6 +1063,12 @@
     composite();
   }
   function endDraw() {
+    if (shapeStart) {
+      const start = shapeStart;
+      shapeStart = null;
+      finalizeShape(start, lastPointerPos);
+      return;
+    }
     if (drag) {
       drag = null;
       updateCanvasCursor();
@@ -1016,6 +1148,8 @@
         tctx.font = (o.fontSize * ratio) + 'px sans-serif';
         tctx.textBaseline = 'top';
         tctx.fillText(o.text, (o.x + 4) * ratio, (o.y + 4) * ratio);
+      } else if (o.type === 'shape') {
+        drawShapeObject(tctx, o, ratio);
       } else if (o.img) {
         tctx.drawImage(o.img, o.x * ratio, o.y * ratio, o.w * ratio, o.h * ratio);
       }
