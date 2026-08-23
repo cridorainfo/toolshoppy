@@ -63,7 +63,7 @@
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolshoppy.com/"},{"@type":"ListItem","position":2,"name":"PDF Tools","item":"https://toolshoppy.com/tools/pdf/"},{"@type":"ListItem","position":3,"name":"PDF Editor","item":"https://toolshoppy.com/tools/pdf/editor/"}]}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I edit PDF text online for free?","acceptedAnswer":{"@type":"Answer","text":"ToolShoppy’s free PDF editor lets you annotate: add text boxes, highlight, whiteout/redact, and draw. Full reflow of existing PDF text is not supported client-side."}},{"@type":"Question","name":"Do I need to create an account?","acceptedAnswer":{"@type":"Answer","text":"No. Editing runs in your browser with no signup."}}]}
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I edit PDF text online for free?","acceptedAnswer":{"@type":"Answer","text":"Yes — use Replace Text: click any line of existing text and type a replacement. It whites out the original and places your new wording in the same spot and size. It's not true reflowing text editing, but it looks seamless for typos, names, dates, and short edits."}},{"@type":"Question","name":"Do I need to create an account?","acceptedAnswer":{"@type":"Answer","text":"No. Editing runs in your browser with no signup."}}]}
 </script>
 </head>
 <body>
@@ -88,7 +88,7 @@
   <div class="tool-header">
     <div class="icon-tile icon-tile--lg icon-tile--violet"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#file-pencil"></use></svg></div>
     <h1>PDF Editor</h1>
-    <p>Annotate, highlight, redact, sign, add images, and drop colored shapes — free, no login.</p>
+    <p>Annotate, highlight, redact, sign, add images and shapes, and replace existing text — free, no login.</p>
   </div>
   <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
   <div class="tool-layout with-sidebar" id="toolLayout">
@@ -106,6 +106,7 @@
           <button class="chip" data-tool="pen" type="button">Draw</button>
           <button class="chip" data-tool="highlighter" type="button">Highlight</button>
           <button class="chip" data-tool="text" type="button">Text</button>
+          <button class="chip" data-tool="edittext" type="button">Replace Text</button>
           <button class="chip" data-tool="image" type="button">Image</button>
           <button class="chip" data-tool="signature" type="button">Signature</button>
           <button class="chip" data-tool="shape" type="button">Shapes</button>
@@ -185,6 +186,7 @@
         <ul>
           <li><strong>Select</strong> — move, resize, lock, or delete items</li>
           <li><strong>Text / Image / Signature</strong> — add elements you can reposition</li>
+          <li><strong>Replace Text</strong> — click any line of existing text, type the replacement; it whites out the original and drops your new wording in the same spot</li>
           <li><strong>Shapes</strong> — drag out a rectangle, ellipse, or line in any color, then resize freely</li>
           <li><strong>Draw &amp; Highlight</strong> — freehand ink on the page</li>
           <li><strong>Redact</strong> — solid black whiteout</li>
@@ -230,7 +232,7 @@
   <div class="content-section">
     <h2>Frequently asked questions</h2>
     <div class="faq-item"><h3>Can I move text and signatures after placing them?</h3><p>Yes. Use the <strong>Select</strong> tool to drag text, images, and signatures. Corner handles resize them; Lock prevents accidental edits. Double-click text to edit the wording.</p></div>
-    <div class="faq-item"><h3>Can I edit existing PDF text?</h3><p>This editor adds annotations on top of pages (text, draw, highlight, redact). Full reflow editing of native PDF text isn’t available client-side.</p></div>
+    <div class="faq-item"><h3>Can I edit existing PDF text?</h3><p>Use <strong>Replace Text</strong>: click any line of existing text and type a replacement — it whites out the original and places your new wording in the same spot and size. This isn't true reflowing text editing (PDFs don't store text as an editable paragraph the way Word does), but it looks seamless for fixing typos, names, dates, and short edits.</p></div>
     <div class="faq-item"><h3>Do I need an account?</h3><p>No — never.</p></div>
   </div>
   <div class="content-section seo-howto">
@@ -331,6 +333,7 @@
         base: null,
         strokes: null,
         objects: [],
+        textItems: null,
       };
     }
     return pages[num];
@@ -352,6 +355,74 @@
     const w = ctx.measureText(text).width;
     ctx.restore();
     return { w: Math.max(40, w + 8), h: Math.max(24, fontSize + 12) };
+  }
+  function buildTextItems(textContent, viewport) {
+    const scale = viewport.scale;
+    return textContent.items
+      .filter((it) => it.str && it.str.trim())
+      .map((item) => {
+        const tx = pdfjsLib.Util.transform(viewport.transform, item.transform);
+        const fontH = Math.hypot(tx[2], tx[3]) || Math.abs(tx[3]) || 10;
+        const w = Math.abs(item.width * scale) || fontH * item.str.length * 0.5;
+        const x = tx[4];
+        const yTop = tx[5] - fontH;
+        return { str: item.str, x: x, y: yTop, w: w, h: fontH * 1.15, fontSize: fontH };
+      });
+  }
+  function findTextItemAt(num, x, y) {
+    const st = pageState(num);
+    const items = st.textItems || [];
+    let best = null;
+    for (const it of items) {
+      if (x >= it.x && x <= it.x + it.w && y >= it.y && y <= it.y + it.h) {
+        if (!best || it.w * it.h < best.w * best.h) best = it;
+      }
+    }
+    return best;
+  }
+  function replaceTextAt(x, y) {
+    const item = findTextItemAt(pageNum, x, y);
+    if (!item) {
+      alert('No text found there. Click directly on a line of existing text.');
+      return;
+    }
+    const next = prompt('Replace this text with:', item.str);
+    if (next === null) return;
+    const st = pageState(pageNum);
+    const pad = 2;
+    st.objects.push({
+      id: uid(),
+      type: 'shape',
+      shape: 'rect',
+      filled: true,
+      color: '#ffffff',
+      strokeWidth: 0,
+      x: item.x - pad,
+      y: item.y - pad,
+      w: item.w + pad * 2,
+      h: item.h + pad * 2,
+      locked: true,
+    });
+    if (next.trim()) {
+      const fontSize = Math.max(8, Math.round(item.fontSize));
+      const size = measureTextObj(next, fontSize);
+      const obj = {
+        id: uid(),
+        type: 'text',
+        x: item.x,
+        y: item.y + (item.h - size.h) / 2,
+        w: size.w,
+        h: size.h,
+        text: next,
+        fontSize: fontSize,
+        color: '#1e293b',
+        locked: false,
+      };
+      st.objects.push(obj);
+      selectObject(obj.id);
+    } else {
+      composite();
+    }
   }
   function loadImageDataUrl(dataUrl) {
     return new Promise((resolve, reject) => {
@@ -399,6 +470,7 @@
       pen: 'crosshair',
       highlighter: 'crosshair',
       text: 'text',
+      edittext: 'text',
       redact: 'crosshair',
       erase: 'crosshair',
       image: 'copy',
@@ -505,6 +577,14 @@
     const st = pageState(num);
     if (!st.base) st.base = ctx.getImageData(0, 0, canvas.width, canvas.height);
     ensureStrokeCanvas(num);
+    if (!st.textItems) {
+      try {
+        const textContent = await page.getTextContent();
+        st.textItems = buildTextItems(textContent, viewport);
+      } catch (e) {
+        st.textItems = [];
+      }
+    }
     composite();
     pageLabel.textContent = 'Page ' + num + ' / ' + pdfDoc.numPages;
     updateObjProps();
@@ -975,6 +1055,10 @@
     }
     if (tool === 'text') {
       addTextObject(p.x, p.y);
+      return;
+    }
+    if (tool === 'edittext') {
+      replaceTextAt(p.x, p.y);
       return;
     }
     if (tool === 'shape') {
