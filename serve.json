@@ -2,6 +2,11 @@
   "cleanUrls": true,
   "redirects": [
     {
+      "source": "/search",
+      "destination": "/search/",
+      "type": 301
+    },
+    {
       "source": "/free-online-pdf-editor",
       "destination": "/tools/pdf/editor/",
       "type": 301
@@ -609,56 +614,6 @@
     {
       "source": "/uae-gold-rate/",
       "destination": "/tools/rates/gold-rate/dubai/",
-      "type": 301
-    },
-    {
-      "source": "/pdf-tools",
-      "destination": "/tools/pdf/",
-      "type": 301
-    },
-    {
-      "source": "/pdf-tools/",
-      "destination": "/tools/pdf/",
-      "type": 301
-    },
-    {
-      "source": "/image-tools",
-      "destination": "/tools/image/",
-      "type": 301
-    },
-    {
-      "source": "/image-tools/",
-      "destination": "/tools/image/",
-      "type": 301
-    },
-    {
-      "source": "/video-tools",
-      "destination": "/tools/video/",
-      "type": 301
-    },
-    {
-      "source": "/video-tools/",
-      "destination": "/tools/video/",
-      "type": 301
-    },
-    {
-      "source": "/finance-calculators",
-      "destination": "/tools/finance/",
-      "type": 301
-    },
-    {
-      "source": "/finance-calculators/",
-      "destination": "/tools/finance/",
-      "type": 301
-    },
-    {
-      "source": "/free-pdf-tools",
-      "destination": "/tools/pdf/",
-      "type": 301
-    },
-    {
-      "source": "/free-pdf-tools/",
-      "destination": "/tools/pdf/",
       "type": 301
     }
   ],

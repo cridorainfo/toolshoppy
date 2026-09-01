@@ -104,6 +104,7 @@
     var n = normalize(raw);
     if (!n) return null;
 
+    // Rule match first — send users straight to the tool page
     var ruleTool = resolveByRules(n);
     if (ruleTool && TOOL_PATHS[ruleTool]) {
       return {
@@ -138,6 +139,7 @@
       href: hrefForTool(best.tool),
       query: best.q,
       score: bestScore,
+      // Any confident match should deep-link to the tool (not the homepage)
       redirect: true,
     };
   }
