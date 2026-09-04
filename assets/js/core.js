@@ -440,6 +440,75 @@
     return out;
   }
 
+  // ---- PWA: service worker + "Install ToolShoppy" prompt ----
+  // A registered SW is required by Chrome/Android/desktop before the browser
+  // will ever fire `beforeinstallprompt` — so this also makes the site
+  // installable, not just offline-capable. iOS Safari has no install event
+  // (it uses Share → Add to Home Screen instead), so this banner only shows
+  // on browsers that actually support it.
+  if ('serviceWorker' in global.navigator) {
+    global.addEventListener('load', function () {
+      global.navigator.serviceWorker.register('/sw.js').catch(function () { /* ignore — SW is a progressive enhancement */ });
+    });
+  }
+
+  (function initInstallPrompt() {
+    var DISMISS_KEY = 'ts-install-dismissed';
+    var deferredPrompt = null;
+    var banner = null;
+
+    function dismissed() {
+      try { return localStorage.getItem(DISMISS_KEY) === '1'; } catch (e) { return false; }
+    }
+    function setDismissed() {
+      try { localStorage.setItem(DISMISS_KEY, '1'); } catch (e) { /* private mode */ }
+    }
+
+    function showBanner() {
+      if (banner || dismissed() || !deferredPrompt) return;
+      banner = document.createElement('div');
+      banner.className = 'ts-install-banner';
+      banner.innerHTML =
+        '<span class="ts-install-banner-text">Install ToolShoppy for one-tap access to gold rates &amp; tools</span>' +
+        '<button type="button" class="ts-install-banner-btn" id="tsInstallBtn">Install</button>' +
+        '<button type="button" class="ts-install-banner-close" id="tsInstallClose" aria-label="Dismiss">&times;</button>';
+      document.body.appendChild(banner);
+      requestAnimationFrame(function () { banner.classList.add('is-visible'); });
+
+      document.getElementById('tsInstallBtn').addEventListener('click', function () {
+        if (!deferredPrompt) return;
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.finally(function () {
+          deferredPrompt = null;
+          hideBanner();
+          setDismissed();
+        });
+      });
+      document.getElementById('tsInstallClose').addEventListener('click', function () {
+        hideBanner();
+        setDismissed();
+      });
+    }
+
+    function hideBanner() {
+      if (!banner) return;
+      banner.classList.remove('is-visible');
+      var el = banner;
+      banner = null;
+      setTimeout(function () { el.remove(); }, 250);
+    }
+
+    global.addEventListener('beforeinstallprompt', function (e) {
+      e.preventDefault();
+      deferredPrompt = e;
+      setTimeout(showBanner, 2500); // let the page settle before asking
+    });
+    global.addEventListener('appinstalled', function () {
+      setDismissed();
+      hideBanner();
+    });
+  })();
+
   global.TS = {
     formatBytes,
     percentSaved,
