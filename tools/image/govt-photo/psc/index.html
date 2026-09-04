@@ -79,15 +79,54 @@
     <p>276×354 px · max 50KB · white background — exact PSC portal requirements.</p>
   </div>
   <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
-  <div class="tool-layout with-sidebar">
+  <div class="tool-layout with-sidebar" id="toolLayout">
     <div class="tool-card-main">
-      <div class="content-section" style="margin:0;padding:0;border:none;">
+      <div class="content-section" style="margin:0 0 20px;padding:0;border:none;">
         <h2>PSC photo specifications</h2>
         <p style="color:var(--text-muted);font-size:0.92rem;line-height:1.7;margin-bottom:12px;">Kerala Public Service Commission (PSC) online applications require a passport-style photograph with strict dimensions. The standard size is <strong>3.5 cm × 4.5 cm</strong> (approximately <strong>276 × 354 pixels</strong> at 200 DPI) with a maximum file size of <strong>50 KB</strong> in JPEG format on a plain white background.</p>
-        <p style="color:var(--text-muted);font-size:0.92rem;line-height:1.7;margin-bottom:12px;">Common rejection reasons include wrong dimensions, file size over 50KB, coloured or patterned backgrounds, and blurry or side-profile photos. The photo must show a clear, front-facing view with both ears visible and no sunglasses or headwear (except religious).</p>
-        <p style="color:var(--text-muted);font-size:0.92rem;line-height:1.7;margin-bottom:20px;">Our free Govt Photo Resizer auto-crops your photo to the exact PSC pixel dimensions, pads it onto a white background, and compresses to under 50KB — all on your device without uploading to any server.</p>
+        <p style="color:var(--text-muted);font-size:0.92rem;line-height:1.7;margin-bottom:12px;">Common rejection reasons include wrong dimensions, file size over 50KB, coloured or patterned backgrounds, and blurry or side-profile photos. The photo must show a clear, front-facing view with both ears visible and no sunglasses or headwear (except religious). The Kerala PSC preset below is already selected — just upload your photo.</p>
       </div>
-      <a href="/tools/image/govt-photo/?preset=psc" class="btn btn-primary btn-block">Resize Your PSC Photo — Free</a>
+      <h3 style="font-size:1rem;margin-bottom:10px;">Form type</h3>
+      <div class="chip-row" id="presetRow"></div>
+      <p id="presetInfo" style="font-size:0.82rem;color:var(--text-muted);margin-bottom:14px;"></p>
+      <h3 style="font-size:1rem;margin-bottom:10px;">Background</h3>
+      <div class="chip-row" id="bgRow">
+        <button class="chip active" data-bg="#FFFFFF" type="button">White</button>
+        <button class="chip" data-bg="#EAF2FA" type="button">Light Blue</button>
+        <button class="chip" data-bg="#F3EAEA" type="button">Light Red</button>
+      </div>
+      <p class="govt-bg-hint" style="font-size:0.82rem;color:var(--text-muted);margin:-4px 0 14px;line-height:1.5;">
+        Use with <a href="/tools/image/background-remove/">Background Remover</a> if your photo isn't already on a plain backdrop.
+      </p>
+      <h3 style="font-size:1rem;margin:16px 0 10px;">Upload photo</h3>
+      <div class="drop-zone" id="dropZone">
+        <div class="icon"><span class="icon-tile icon-tile--sm icon-tile--pink"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#upload"></use></svg></span></div>
+        <div class="dz-cta">Select photo</div>
+        <p>or drop a clear, front-facing photo here</p>
+        <p class="drop-zone-hint">Processed entirely on your device</p>
+        <input type="file" id="fileInput" accept="image/*">
+      </div>
+      <canvas id="workCanvas" style="display:none;"></canvas>
+      <div id="controls" style="display:none;margin-top:16px;">
+        <div class="sticky-cta-bar">
+          <button class="btn btn-primary btn-block" id="generateBtn">Generate Photo</button>
+          <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
+        </div>
+      </div>
+      <div class="result-panel" id="resultPanel">
+        <div class="compare-row">
+          <div class="compare-box">
+            <div class="label">Output Size</div>
+            <div class="value" id="outDims">-</div>
+          </div>
+          <div class="compare-box">
+            <div class="label">File Size</div>
+            <div class="value" id="outFileSize">-</div>
+          </div>
+        </div>
+        <img id="previewImg" alt="Processed image preview" style="border-radius:8px;border:1px solid var(--border);max-height:280px;margin-bottom:16px;">
+        <button class="btn btn-accent btn-block" id="downloadBtn"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#download"></use></svg> Download Photo</button>
+      </div>
       <div class="trust-badge" style="margin-top:16px;"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock"></use></svg> Your files never leave your device</div>
     </div>
     <aside class="sidebar">
@@ -97,6 +136,7 @@
         <ul>
           <li><a href="/tools/image/govt-photo/upsc/">UPSC photo size →</a></li>
           <li><a href="/tools/image/govt-photo/pan-card/">PAN card photo →</a></li>
+          <li><a href="/tools/image/govt-photo/aadhaar/">Aadhaar photo →</a></li>
           <li><a href="/tools/image/passport-photo/india/">Passport photo India →</a></li>
         </ul>
       </div>
@@ -153,5 +193,129 @@
 <script src="/assets/js/core.js"></script>
 <script src="/assets/js/ads.js?v=6"></script>
 <script src="/assets/js/analytics.js"></script>
+<script>
+(function () {
+  const PRESETS = [
+    { id: 'psc', label: 'Kerala PSC', w: 276, h: 354, maxKb: 50, bg: '#FFFFFF', note: '3.5cm × 4.5cm, max 50KB · white background' },
+    { id: 'upsc', label: 'UPSC', w: 200, h: 230, maxKb: 300, bg: '#FFFFFF', note: '200×230 px, max 300KB · white or light background' },
+    { id: 'ssc', label: 'SSC', w: 200, h: 230, maxKb: 50, bg: '#FFFFFF', note: '200×230 px, max 50KB · white background' },
+    { id: 'pan', label: 'PAN Card', w: 213, h: 213, maxKb: 100, bg: '#FFFFFF', note: '2.5cm × 3.5cm square-ish, max 100KB · white background' },
+    { id: 'aadhaar', label: 'Aadhaar', w: 200, h: 230, maxKb: 100, bg: '#FFFFFF', note: '200×230 px, max 100KB · white background' },
+    { id: 'passport-in', label: 'Passport (India)', w: 350, h: 350, maxKb: 200, bg: '#FFFFFF', note: '2×2 inch, max 200KB · white background' },
+    { id: 'emirates-id', label: 'UAE Emirates ID', w: 413, h: 531, maxKb: 300, bg: '#FFFFFF', note: '35mm × 45mm, max 300KB · white background' },
+    { id: 'passport-uk', label: 'Passport (UK)', w: 413, h: 531, maxKb: 300, bg: '#FFFFFF', note: '35mm × 45mm, max 300KB · white background' },
+    { id: 'passport-us', label: 'Passport (US)', w: 600, h: 600, maxKb: 300, bg: '#FFFFFF', note: '2×2 inch, max 300KB · white background' },
+  ];
+  const DEFAULT_ID = 'psc';
+  const presetRow = document.getElementById('presetRow');
+  const presetInfo = document.getElementById('presetInfo');
+  const bgRow = document.getElementById('bgRow');
+  const toolLayout = document.getElementById('toolLayout');
+  const dropZone = document.getElementById('dropZone');
+  const fileInput = document.getElementById('fileInput');
+  const controls = document.getElementById('controls');
+  const generateBtn = document.getElementById('generateBtn');
+  const progressBar = document.getElementById('progressBar');
+  const progressFill = document.getElementById('progressFill');
+  const resultPanel = document.getElementById('resultPanel');
+  const outDims = document.getElementById('outDims');
+  const outFileSize = document.getElementById('outFileSize');
+  const previewImg = document.getElementById('previewImg');
+  const downloadBtn = document.getElementById('downloadBtn');
+  let activePreset = PRESETS.find((p) => p.id === DEFAULT_ID) || PRESETS[0];
+  let bgColor = activePreset.bg;
+  let currentFile = null;
+  let resultBlob = null;
+  function setBackground(color) {
+    bgColor = color;
+    bgRow.querySelectorAll('.chip').forEach((c) => {
+      c.classList.toggle('active', c.dataset.bg === color);
+    });
+  }
+  function selectPreset(p) {
+    activePreset = p;
+    presetInfo.textContent = p.note;
+    if (p.bg) setBackground(p.bg);
+  }
+  PRESETS.forEach((p) => {
+    const btn = document.createElement('button');
+    btn.className = 'chip' + (p.id === DEFAULT_ID ? ' active' : '');
+    btn.type = 'button';
+    btn.textContent = p.label;
+    btn.dataset.id = p.id;
+    btn.addEventListener('click', () => {
+      presetRow.querySelectorAll('.chip').forEach((c) => c.classList.remove('active'));
+      btn.classList.add('active');
+      selectPreset(p);
+    });
+    presetRow.appendChild(btn);
+  });
+  selectPreset(activePreset);
+  bgRow.addEventListener('click', (e) => {
+    const btn = e.target.closest('.chip');
+    if (!btn) return;
+    bgRow.querySelectorAll('.chip').forEach((c) => c.classList.remove('active'));
+    btn.classList.add('active');
+    bgColor = btn.dataset.bg;
+  });
+  TS.setupDropZone(dropZone, fileInput, (files) => {
+    currentFile = files[0];
+    if (!currentFile) return;
+    TS.renderFilePreview(TS.getOrCreatePreviewContainer(dropZone), [currentFile]);
+    controls.style.display = 'block';
+    toolLayout.classList.add('is-active');
+    resultPanel.classList.remove('active');
+  }, { preview: false });
+  generateBtn.addEventListener('click', async () => {
+    if (!currentFile) return;
+    generateBtn.disabled = true;
+    progressBar.classList.add('active');
+    progressFill.style.width = '40%';
+    try {
+      const { img, url } = await TS.loadImage(currentFile);
+      const canvas = document.createElement('canvas');
+      canvas.width = activePreset.w;
+      canvas.height = activePreset.h;
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = bgColor;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      const targetRatio = activePreset.w / activePreset.h;
+      const srcRatio = img.naturalWidth / img.naturalHeight;
+      let sx, sy, sw, sh;
+      if (srcRatio > targetRatio) {
+        sh = img.naturalHeight;
+        sw = sh * targetRatio;
+        sx = (img.naturalWidth - sw) / 2;
+        sy = 0;
+      } else {
+        sw = img.naturalWidth;
+        sh = sw / targetRatio;
+        sx = 0;
+        sy = (img.naturalHeight - sh) / 2;
+      }
+      ctx.drawImage(img, sx, sy, sw, sh, 0, 0, canvas.width, canvas.height);
+      progressFill.style.width = '70%';
+      const targetBytes = activePreset.maxKb * 1024;
+      let blob = await TS.canvasToTargetSize(canvas, targetBytes, 'image/jpeg');
+      progressFill.style.width = '100%';
+      resultBlob = blob;
+      outDims.textContent = activePreset.w + '×' + activePreset.h + ' px';
+      outFileSize.textContent = TS.formatBytes(blob.size);
+      previewImg.src = URL.createObjectURL(blob);
+      resultPanel.classList.add('active');
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      alert('Could not process this image. Try a different file.');
+    } finally {
+      generateBtn.disabled = false;
+      setTimeout(() => progressBar.classList.remove('active'), 500);
+    }
+  });
+  downloadBtn.addEventListener('click', () => {
+    if (!resultBlob) return;
+    TS.downloadBlob(resultBlob, activePreset.id + '-photo.jpg');
+  });
+})();
+</script>
 </body>
 </html>
