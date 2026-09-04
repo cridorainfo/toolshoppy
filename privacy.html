@@ -8,18 +8,18 @@
 <script>(function(){try{/* TEMP: dark mode disabled — restore prior boot to re-enable */document.documentElement.setAttribute('data-theme','light');localStorage.setItem('ts-theme','light');}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Privacy Policy | ToolShoppy</title>
-<meta name="description" content="ToolShoppy privacy policy — your files are processed entirely in your browser and never touch our servers.">
+<meta name="description" content="ToolShoppy privacy policy — how local file processing, cookies, Google Analytics and Google AdSense advertising work, what data we do and don't collect, and your choices.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://toolshoppy.com/privacy/">
 <meta property="og:title" content="Privacy Policy — ToolShoppy">
-<meta property="og:description" content="Your files are processed entirely in your browser and never touch our servers.">
+<meta property="og:description" content="How local file processing, cookies and advertising work on ToolShoppy, and your choices.">
 <meta property="og:image" content="https://toolshoppy.com/assets/img/og-image.jpg">
 <meta property="og:url" content="https://toolshoppy.com/privacy/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ToolShoppy">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Privacy Policy — ToolShoppy">
-<meta name="twitter:description" content="Your files are processed entirely in your browser and never touch our servers.">
+<meta name="twitter:description" content="How local file processing, cookies and advertising work on ToolShoppy, and your choices.">
 <meta name="twitter:image" content="https://toolshoppy.com/assets/img/og-image.jpg">
 <link rel="icon" href="/favicon.ico?v=2" sizes="any">
 <link rel="icon" href="/assets/img/favicon.svg?v=2" type="image/svg+xml">
@@ -29,7 +29,7 @@
 <meta name="theme-color" content="#E11D48">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","name":"Privacy Policy — ToolShoppy","url":"https://toolshoppy.com/privacy/","description":"Your files are processed entirely in your browser and never touch our servers.","isPartOf":{"@type":"WebSite","name":"ToolShoppy","url":"https://toolshoppy.com/"}}
+{"@context":"https://schema.org","@type":"WebPage","name":"Privacy Policy — ToolShoppy","url":"https://toolshoppy.com/privacy/","description":"How local file processing, cookies and advertising work on ToolShoppy, and your choices.","isPartOf":{"@type":"WebSite","name":"ToolShoppy","url":"https://toolshoppy.com/"}}
 </script>
 </head>
 <body>
@@ -44,19 +44,52 @@
 </header>
 <main class="container" style="max-width:760px;padding:40px 20px;">
   <h1 style="margin-bottom:16px;">Privacy Policy</h1>
-  <p style="color:var(--text-muted);margin-bottom:20px;">Last updated: July 2026</p>
+  <p style="color:var(--text-muted);margin-bottom:20px;">Last updated: September 2026</p>
   <div class="trust-badge" style="justify-content:flex-start;"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock"></use></svg> Your files are processed entirely in your browser</div>
   <div class="ad-slot ad-top" style="margin-top:16px;"><span class="ad-label">Ad</span></div>
-  <h3 style="margin:20px 0 8px;">Your files</h3>
-  <p>Every tool on ToolShoppy runs 100% client-side using your browser's Canvas API and JavaScript. Your files, images, and documents are never uploaded to our servers — we don't store, read, or share them, because they never leave your device.</p>
-  <h3 style="margin:20px 0 8px;">Analytics</h3>
-  <p>We use privacy-friendly analytics (e.g. Google Analytics 4) to understand anonymous traffic patterns — which pages are visited and how often. This data does not include the contents of any file you process.</p>
-  <h3 style="margin:20px 0 8px;">Cookies & Ads</h3>
-  <p>We may show ads via Google AdSense and similar networks to keep ToolShoppy free. These networks may use cookies to serve relevant ads. You can control ad personalization via your browser or Google Ads Settings.</p>
-  <h3 style="margin:20px 0 8px;">No accounts</h3>
-  <p>ToolShoppy requires no signup, login, or email address. We do not collect personal information to use any tool.</p>
-  <h3 style="margin:20px 0 8px;">Contact</h3>
-  <p>Questions about this policy? <a href="/contact/" style="color:var(--primary-dark);">Contact us</a>.</p>
+
+  <h3 style="margin:20px 0 8px;">1. The short version</h3>
+  <p>ToolShoppy (toolshoppy.com) is a set of free browser-based tools. We do not require an account, we do not see the contents of any file you open in a tool, and we do not sell personal data — there is essentially none for us to sell. What follows is the long version, covering local file processing, cookies, analytics, and the advertising that keeps the site free.</p>
+
+  <h3 style="margin:20px 0 8px;">2. Your files never leave your device</h3>
+  <p style="margin-bottom:10px;">Every ToolShoppy tool — PDF, image, video, or otherwise — runs with in-browser technology (the HTML5 File API, Canvas, WebAssembly, and JavaScript libraries loaded into your own browser tab). When you "upload" a file into a tool, it is read from disk directly into your browser's memory; it is never transmitted to a ToolShoppy server or any server we control. This is true for every category on the site:</p>
+  <ul style="padding-left:20px;color:var(--text-muted);font-size:0.92rem;line-height:1.8;margin-bottom:4px;">
+    <li><strong>PDF tools</strong> (merge, split, compress, editor, password protect/unlock, convert): processed with client-side libraries such as pdf.js and pdf-lib running inside your browser.</li>
+    <li><strong>Image tools</strong> (compress, resize, convert, background remover, upscaler): processed with the Canvas API and, for background removal, a machine-learning model that also runs locally in your browser — the image is never sent to a remote inference server.</li>
+    <li><strong>Video/audio tools</strong> (compress, trim, extract audio): processed with in-browser WebAssembly encoders.</li>
+  </ul>
+  <p>Because processing happens locally, we have no visibility into what you open, edit, or export, and nothing is stored on our infrastructure after your session — there is nothing to delete because nothing was ever uploaded.</p>
+
+  <h3 style="margin:20px 0 8px;">3. Rate and reference data</h3>
+  <p>A small number of tools (Gold Rate, Silver Rate, Currency Converter) display third-party market data rather than processing a file. These pages fetch publicly available rate figures to display to you; no file or personal input is sent anywhere for this purpose, and sourcing is credited on the relevant page.</p>
+
+  <h3 style="margin:20px 0 8px;">4. Cookies &amp; local storage</h3>
+  <p>ToolShoppy uses your browser's <code>localStorage</code> to remember small preferences on your device only — for example, your light/dark theme choice and a shortcut back to tools you've recently opened ("Continue where you left off" on the homepage). This data stays on your device, is never transmitted to us, and is cleared if you clear your browser's site data. Separately, Google Analytics and Google AdSense (see below) set their own cookies, described in their respective sections.</p>
+
+  <h3 style="margin:20px 0 8px;">5. Analytics</h3>
+  <p>We use Google Analytics 4 to understand anonymous, aggregated traffic patterns — which pages are visited, how often, and from roughly which region — so we know which tools to improve or build next. This data is tied to a browser-generated identifier, not to your name or email (we don't collect either), and it never includes the contents of any file you process in a tool. You can opt out of Google Analytics tracking site-wide using the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener" style="color:var(--primary-dark);">Google Analytics Opt-out Browser Add-on</a>.</p>
+
+  <h3 style="margin:20px 0 8px;">6. Advertising</h3>
+  <p style="margin-bottom:10px;">ToolShoppy is free to use, with no paywalls or usage limits, and is supported by advertising rather than subscriptions. We show ads via Google AdSense around — never inside — the tools themselves. Google and its advertising partners may use cookies and similar technologies to serve ads based on your prior visits to this and other websites (personalized advertising), or, where required, non-personalized ads.</p>
+  <p style="margin-bottom:10px;">You have control over ad personalization:</p>
+  <ul style="padding-left:20px;color:var(--text-muted);font-size:0.92rem;line-height:1.8;margin-bottom:4px;">
+    <li>Manage how Google personalizes ads for you at <a href="https://adssettings.google.com/" target="_blank" rel="noopener" style="color:var(--primary-dark);">Google Ads Settings</a>.</li>
+    <li>Opt out of interest-based ads from participating networks at <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener" style="color:var(--primary-dark);">aboutads.info</a> (US) or <a href="https://www.youronlinechoices.eu/" target="_blank" rel="noopener" style="color:var(--primary-dark);">youronlinechoices.eu</a> (EU).</li>
+    <li>Block ad cookies entirely through your browser's cookie settings, though this may affect ad relevance rather than whether ads appear at all.</li>
+  </ul>
+
+  <h3 style="margin:20px 0 8px;">7. No accounts, no forms</h3>
+  <p>ToolShoppy requires no signup, login, or email address to use any tool, and there is no contact form, comment section, or file upload area that transmits data to us. The only way you can voluntarily send us information is by emailing us directly (see Contact below), in which case we only use your message and reply address to respond to you.</p>
+
+  <h3 style="margin:20px 0 8px;">8. Children's privacy</h3>
+  <p>ToolShoppy is not directed at children under 13, does not knowingly collect personal information from children, and — since no signup or personal-data form exists anywhere on the site — has no mechanism to collect it even incidentally.</p>
+
+  <h3 style="margin:20px 0 8px;">9. Changes to this policy</h3>
+  <p>We may update this policy as tools or third-party services change. Material changes will update the "Last updated" date above; continued use of the site after an update means you accept the revised policy.</p>
+
+  <h3 style="margin:20px 0 8px;">10. Contact</h3>
+  <p>Questions about this policy or how a specific tool handles your file? <a href="/contact/" style="color:var(--primary-dark);">Contact us</a> — see our <a href="/terms/" style="color:var(--primary-dark);">Terms of Service</a> for the rules of using ToolShoppy.</p>
+
   <div class="ad-slot ad-bottom"><span class="ad-label">Ad</span></div>
 </main>
 <footer class="site-footer">

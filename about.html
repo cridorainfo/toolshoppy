@@ -7,19 +7,19 @@
 <meta charset="UTF-8">
 <script>(function(){try{/* TEMP: dark mode disabled — restore prior boot to re-enable */document.documentElement.setAttribute('data-theme','light');localStorage.setItem('ts-theme','light');}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About | ToolShoppy</title>
-<meta name="description" content="ToolShoppy is a free, private, client-side utility platform built for global users with an India & Gulf focus.">
+<title>About ToolShoppy — Free, Private, Client-Side Tools</title>
+<meta name="description" content="ToolShoppy is a free, private, client-side utility platform with 55+ PDF, image, video and finance tools built for a global audience with a special focus on India and the Gulf.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://toolshoppy.com/about/">
 <meta property="og:title" content="About ToolShoppy">
-<meta property="og:description" content="A free, private, client-side utility platform built for global users.">
+<meta property="og:description" content="Why ToolShoppy exists, how the client-side engine works, and who we build it for.">
 <meta property="og:image" content="https://toolshoppy.com/assets/img/og-image.jpg">
 <meta property="og:url" content="https://toolshoppy.com/about/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ToolShoppy">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="About ToolShoppy">
-<meta name="twitter:description" content="A free, private, client-side utility platform built for global users.">
+<meta name="twitter:description" content="Why ToolShoppy exists, how the client-side engine works, and who we build it for.">
 <meta name="twitter:image" content="https://toolshoppy.com/assets/img/og-image.jpg">
 <link rel="icon" href="/favicon.ico?v=2" sizes="any">
 <link rel="icon" href="/assets/img/favicon.svg?v=2" type="image/svg+xml">
@@ -29,7 +29,7 @@
 <meta name="theme-color" content="#E11D48">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"AboutPage","name":"About ToolShoppy","url":"https://toolshoppy.com/about/","description":"A free, private, client-side utility platform built for global users.","isPartOf":{"@type":"WebSite","name":"ToolShoppy","url":"https://toolshoppy.com/"}}
+{"@context":"https://schema.org","@type":"AboutPage","name":"About ToolShoppy","url":"https://toolshoppy.com/about/","description":"ToolShoppy is a free, private, client-side utility platform with 55+ PDF, image, video and finance tools built for a global audience with a special focus on India and the Gulf.","isPartOf":{"@type":"WebSite","name":"ToolShoppy","url":"https://toolshoppy.com/"}}
 </script>
 </head>
 <body>
@@ -45,9 +45,37 @@
 <main class="container" style="max-width:760px;padding:40px 20px;">
   <h1 style="margin-bottom:16px;">About ToolShoppy</h1>
   <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
-  <p style="margin-bottom:14px;">ToolShoppy is your one-stop shop for every free online tool — image compression, government form photo resizing, PDF utilities, currency and gold rates, and more. Every tool runs entirely in your browser: your files are never uploaded to a server.</p>
-  <p style="margin-bottom:14px;">We're built with a global audience in mind, with a special focus on India and the Gulf — including presets for PSC, UPSC, PAN and Aadhaar photo requirements, and daily gold rate tracking for Kerala, India and the UAE.</p>
-  <p>No signup. No login. No email. Just free tools that respect your privacy.</p>
+
+  <p style="margin-bottom:14px;">ToolShoppy is a free online tools hub: 55+ single-purpose utilities for PDFs, images, video and everyday finance math, each living on its own dedicated page instead of being buried behind a paywall or a signup wall. Every tool runs entirely inside your browser tab — there is no upload step, no server-side processing queue, and no account to create. Open the tool, do the task, close the tab.</p>
+
+  <div class="content-section">
+    <h2>Why we built it this way</h2>
+    <p style="margin-bottom:14px;">Most "free" online tool sites quietly upload your file to a server to process it, then delete it later (or claim to). That means your Aadhaar card, salary slip, exam admit card, or a client's contract passes through a stranger's infrastructure before you get the result back. We think that's the wrong default for something as routine as compressing a photo or merging two PDFs, so ToolShoppy is built the other way around: every tool uses your browser's own File API, Canvas, and WebAssembly libraries to do the work on your device. Nothing you open in a ToolShoppy tool is ever transmitted anywhere — we couldn't read it even if we wanted to, because it never reaches a server we control.</p>
+    <p>The trade-off is that ToolShoppy can't offer things that genuinely require a server (cloud storage, team collaboration on a shared file, OCR trained on proprietary datasets). What it can offer is speed — there's no upload queue or network round-trip, so a 20 MB PDF merges in the time it takes to click twice — and a straightforward privacy answer: your files stay on your device, full stop.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>What's on ToolShoppy</h2>
+    <p style="margin-bottom:10px;">Tools are grouped into five categories, each with its own hub page:</p>
+    <ul style="padding-left:20px;color:var(--text-muted);font-size:0.92rem;line-height:1.8;margin-bottom:4px;">
+      <li><strong>PDF tools</strong> — merge, split, compress, organize, rotate, watermark, password-protect and unlock, add page numbers, convert Word/Excel/images to and from PDF, sign, redact and annotate with the built-in PDF Editor.</li>
+      <li><strong>Image tools</strong> — compress to an exact KB target, resize, convert between HEIC/PNG/JPG/WebP, remove backgrounds, upscale, generate passport and sticker photos, and produce government-form photos with ready-made presets for PSC, UPSC, PAN and Aadhaar.</li>
+      <li><strong>Video &amp; audio tools</strong> — compress and trim video, extract audio, cut ringtones, and split long clips into WhatsApp-status-length pieces.</li>
+      <li><strong>Finance calculators</strong> — EMI, SIP, FD/RD, GST, income tax (new vs. old regime), salary/CTC, and UAE VAT.</li>
+      <li><strong>Rates</strong> — daily gold and silver rates for Kerala, India and the UAE, plus a currency converter tuned for AED/SAR/USD-to-INR conversions.</li>
+    </ul>
+  </div>
+
+  <div class="content-section">
+    <h2>Built with India and the Gulf in mind</h2>
+    <p>ToolShoppy started as a way to solve small, specific, recurring problems for people in India and the Gulf — the exact PAN card photo dimensions a government form demands, today's gold rate in Kerala versus Dubai, or GST-inclusive pricing for a small business invoice. That focus shows up throughout the product: government-photo presets matched to real exam and ID-card specs, rate trackers pulled from regional sources with attribution, and finance calculators built around India's tax slabs and the UAE's 5% VAT rather than a generic US template. The tools work for anyone, anywhere, but the edge cases are tuned for this audience first.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>Who's behind it</h2>
+    <p>ToolShoppy is an independently built and maintained project — not a venture-funded startup, not a rebrand of an existing SaaS. It is free to use with no tool locked behind a paywall, no daily usage caps, and no forced signup; the site is supported by advertising, which is why you'll see ad placements around (never inside) the tools. New tools ship regularly based on what people actually search for and ask about — see the <a href="/contact/">contact page</a> to request one.</p>
+  </div>
+
   <div class="ad-slot ad-bottom"><span class="ad-label">Ad</span></div>
 </main>
 <footer class="site-footer">
