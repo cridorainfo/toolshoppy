@@ -2210,12 +2210,15 @@ button { font-family: inherit; cursor: pointer; }
 
 /* Favorites star button on live tool cards */
 .featured-grid .tool-card { position: relative; }
-.tool-card-cover {
+.tool-card-link { color: inherit; text-decoration: none; }
+.tool-card-link::after {
+  content: '';
   position: absolute;
   inset: 0;
   z-index: 1;
   border-radius: inherit;
 }
+.tool-card-link:focus-visible::after { outline: 3px solid var(--primary); outline-offset: 3px; }
 .star-btn {
   position: absolute;
   top: 12px;

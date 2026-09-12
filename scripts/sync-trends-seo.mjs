@@ -17,6 +17,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { execFileSync } from 'node:child_process';
 import {
   TOOL_PATHS,
   NOISE_PATTERNS,
@@ -340,35 +341,14 @@ function writeLandingPages(queries) {
   }
 }
 
-function stripDoorwayFromSitemap(xml) {
-  // Drop any leftover */free-online/ or */online/ URL entries.
-  return xml.replace(
-    /  <url><loc>https:\/\/toolshoppy\.com\/tools\/[^<]*(?:\/free-online\/|\/online\/)<\/loc>.*?<\/url>\n?/g,
-    ''
-  );
-}
-
-function updateSitemap(landingPages, date) {
-  const sitemapPath = path.join(ROOT, 'sitemap.xml');
-  let xml = stripDoorwayFromSitemap(fs.readFileSync(sitemapPath, 'utf8'));
-  const base = 'https://toolshoppy.com';
-
-  for (const page of landingPages) {
-    if (page.redirectOnly) continue;
-    const loc = base + page.path;
-    if (xml.includes(loc)) continue;
-    const entry = `  <url><loc>${loc}</loc><lastmod>${date}</lastmod><changefreq>weekly</changefreq><priority>${page.priority || 0.85}</priority></url>\n`;
-    xml = xml.replace('</urlset>', entry + '</urlset>');
-    console.log('  sitemap +', page.path);
-  }
-
-  fs.writeFileSync(sitemapPath, xml);
+function updateSitemap() {
+  execFileSync(process.execPath, [path.join(ROOT, 'scripts/regenerate-sitemap.mjs')], { cwd: ROOT, stdio: 'inherit' });
 }
 
 /** Static vanity + doorway consolidations managed outside the trends block. */
-const SERVE_STATIC_REDIRECTS = [
-  { source: '/search', destination: '/search/', type: 301 },
-];
+// serve-handler matches an optional trailing slash: redirecting /search to
+// /search/ also matches /search/ itself and creates a permanent redirect loop.
+const SERVE_STATIC_REDIRECTS = [];
 
 function updateRedirects(landingPages) {
   const servePath = path.join(ROOT, 'serve.json');
@@ -442,7 +422,7 @@ async function main() {
   console.log('Generating landing pages…');
   writeLandingPages(queries);
 
-  updateSitemap(LANDING_PAGES, generatedAt);
+  updateSitemap();
   updateRedirects(LANDING_PAGES);
   updateIndexKeywords(queries);
 

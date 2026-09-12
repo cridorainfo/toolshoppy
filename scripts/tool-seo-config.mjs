@@ -1,4 +1,5 @@
 /** Per-tool SEO copy for scripts/enrich-tool-seo.mjs */
+import { SERVICE_SEARCH_CONTENT } from './service-search-content.mjs';
 export const CATEGORY = {
   image: { label: 'Image Tools', hash: 'image', hub: '/tools/image/' },
   pdf: { label: 'PDF Tools', hash: 'pdf', hub: '/tools/pdf/' },
@@ -736,3 +737,8 @@ export const TOOL_SEO = {
     description: 'Resize photos for PSC, UPSC, PAN and Aadhaar forms free online. Exact size and KB — no signup, private.',
   },
 };
+
+// Keep regenerated metadata aligned with the reviewed service landing pages.
+for (const [key, { name, title, description }] of Object.entries(SERVICE_SEARCH_CONTENT)) {
+  TOOL_SEO[key] = { ...TOOL_SEO[key], name, title, description };
+}

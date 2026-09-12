@@ -42,9 +42,13 @@ Analysis of a Google Trends export (8 keyword clusters, UAE-weighted search prof
 
 ## 🏗️ Tech Stack
 
+Run `npm ci` and `npm start` for the production routing behavior (Node 22 or newer; `PORT` defaults to 3000). Railway must use `npm start`, which runs `server.mjs`. The runtime serves static files and normalizes each page to its existing canonical URL; file processing remains in the browser.
+
+After editing the homepage catalog or reviewed service copy, run `npm run seo:services`, then `npm run check:seo`. This regenerates the five priority service pages, six category hubs, static homepage cards and sitemap. Reviewed copy lives in `scripts/service-search-content.mjs`. For deployment and Search Console follow-up, see [the search visibility audit](docs/seo-audit-2026-09-12.md).
+
 | Layer | Choice | Reason |
 |---|---|---|
-| Hosting | Railway (`serve`) + Cloudflare DNS/proxy | Static site via `npm start`; CDN/proxy at edge |
+| Hosting | Railway (`server.mjs` + `serve-handler`) + Cloudflare DNS/proxy | Static site via `npm start`; one-hop canonical redirects; CDN/proxy at edge |
 | Frontend | Vanilla HTML5 + CSS3 + JS (ES6+) | No build step, instant load, SEO-friendly |
 | PDF Processing | pdf-lib.js + PDF.js (client-side) | Files never leave user device |
 | Image Processing | browser-image-compression + Canvas API | 100% client-side, no server needed |
@@ -107,9 +111,9 @@ toolshoppy/
 ├── manifest.json               # PWA manifest
 ├── sw.js                       # Service Worker (offline support)
 ├── ads.txt                     # AdSense / Ezoic verification
-├── serve.json                  # Railway `serve` config — redirects, headers, trailingSlash
+├── serve.json                  # Legacy redirects and static response headers
 ├── railway.cron.toml           # Trends SEO cron service (NOT railway.toml — see file comments)
-├── package.json                # `npm start` → serve static site on $PORT
+├── package.json                # `npm start` → node server.mjs on $PORT
 ├── assets/
 │   ├── css/
 │   │   ├── main.css            # Global styles + CSS variables
@@ -524,8 +528,8 @@ Users can install ToolShoppy on their phone home screen:
 git push origin master
 
 # 2. Railway project "toolshoppy" auto-deploys the "toolshoppy" service
-#    startCommand: npm start  →  serve . -l $PORT
-#    Redirects/headers: serve.json (serve does NOT read Netlify-style _redirects)
+#    startCommand: npm start  →  node server.mjs (reads PORT)
+#    Redirects/headers: server.mjs + serve.json; Netlify-style _redirects is ignored
 
 # 3. Custom domain
 #    toolshoppy.com + www.toolshoppy.com are attached in Railway

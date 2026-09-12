@@ -246,7 +246,8 @@ function enrichFile(abs) {
   return false;
 }
 
-const files = walk(TOOLS);
+// Category hubs describe collections, not individual software applications.
+const files = walk(TOOLS).filter(file => keyFromFile(file).includes('/'));
 let changed = 0;
 for (const f of files) {
   if (enrichFile(f)) {

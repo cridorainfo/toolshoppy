@@ -9,8 +9,8 @@ Goal: Beat them on UX, speed, privacy, and India/Gulf localisation.
 `C:\Users\Lagari A\Desktop\IDEAS\toolshoppy`
 
 ## Hosting (do not confuse with Cloudflare Pages)
-- **Production:** Railway service `toolshoppy` (`npm start` → `serve . -l $PORT`), domain behind Cloudflare DNS/proxy.
-- **Redirects:** live only in [`serve.json`](serve.json) — Netlify-style `_redirects` is ignored by `serve` and must not be reintroduced.
+- **Production:** Railway service `toolshoppy` (`npm start` → `node server.mjs`, listens on `PORT`), domain behind Cloudflare DNS/proxy. The runtime serves static files; tool processing remains in the browser.
+- **Redirects:** legacy aliases and headers are in [`serve.json`](serve.json). `server.mjs` also reads each HTML canonical to normalize slash, index and HTML variants in one hop, preserving query strings. Netlify-style `_redirects` is ignored and must not be reintroduced.
 - **Trends cron:** separate Railway service using [`railway.cron.toml`](railway.cron.toml) (never a root `railway.toml`).
 
 ## Core Rules for Every File You Build

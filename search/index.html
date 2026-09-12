@@ -19,9 +19,9 @@
 (function () {
   var params = new URLSearchParams(location.search);
   var q = params.get('q') || params.get('query') || '';
-  var dest = '/';
-  if (q && globalThis.TSTrendsSEO) {
-    var match = TSTrendsSEO.resolveQuery(q);
+  var dest = '/?search=1';
+  if (q) {
+    var match = globalThis.TSTrendsSEO ? TSTrendsSEO.resolveQuery(q) : null;
     if (match && match.href) dest = match.href;
     else dest = '/?q=' + encodeURIComponent(q);
   }

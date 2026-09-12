@@ -6,15 +6,19 @@
  */
 import fs from 'fs';
 import path from 'path';
-import { execSync } from 'child_process';
+import { execFileSync } from 'child_process';
 import { fileURLToPath } from 'url';
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const BASE = 'https://toolshoppy.com';
+let modified = new Set();
+try {
+  modified = new Set(execFileSync('git', ['diff', '--name-only', 'HEAD'], { cwd: ROOT, encoding: 'utf8' }).trim().split(/\r?\n/));
+} catch { /* Exported checkouts may not include git history. */ }
 
 function gitLastmod(relPath) {
   try {
-    const out = execSync(`git log -1 --format=%cs -- ${JSON.stringify(relPath)}`, {
+    const out = execFileSync('git', ['log', '-1', '--format=%cs', '--', relPath], {
       cwd: ROOT,
       encoding: 'utf8',
     }).trim();
@@ -43,12 +47,12 @@ function lastmodFor(urlPath) {
     if (fs.existsSync(rootHtml)) rel = `${clean}.html`;
     else rel = `${clean}/index.html`;
   }
-  return gitLastmod(rel) || fileLastmod(path.join(ROOT, rel));
+  return (!modified.has(rel) && gitLastmod(rel)) || fileLastmod(path.join(ROOT, rel));
 }
 
 function walkHtml(dir, out = []) {
   for (const ent of fs.readdirSync(dir, { withFileTypes: true })) {
-    if (['node_modules', '.git', 'assets', 'scripts', 'worker', 'functions', 'libs'].includes(ent.name)) continue;
+    if (ent.name.startsWith('.') || ['node_modules', 'assets', 'scripts', 'docs', 'api', '_workers', 'worker', 'functions', 'libs'].includes(ent.name)) continue;
     const full = path.join(dir, ent.name);
     if (ent.isDirectory()) walkHtml(full, out);
     else if (ent.name === 'index.html' || (ent.name.endsWith('.html') && ent.name !== '404.html')) {
@@ -58,39 +62,27 @@ function walkHtml(dir, out = []) {
   return out;
 }
 
-function priorityFor(p) {
-  // Tool pages outrank the homepage so search prefers deep links.
-  if (/^\/tools\/(image|pdf|video|finance|rates|misc)\/$/.test(p)) return 0.95;
-  if (p.startsWith('/tools/rates/')) return 0.92;
-  if (p.startsWith('/tools/pdf/') || p.startsWith('/tools/video/')) return 0.92;
-  if (p.startsWith('/tools/')) return 0.9;
-  if (p === '/') return 0.7;
-  if (p === '/blog/') return 0.75;
-  if (p.startsWith('/blog/')) return 0.7;
-  if (['/privacy/', '/terms/', '/about/', '/contact/'].includes(p)) return 0.3;
-  return 0.6;
-}
-
-function changefreqFor(p) {
-  if (p.startsWith('/tools/rates/')) return 'daily';
-  if (p === '/' || p === '/blog/') return 'weekly';
-  if (['/privacy/', '/terms/', '/about/', '/contact/'].includes(p)) return 'yearly';
-  return 'monthly';
-}
-
 const files = walkHtml(ROOT);
 const urls = [];
 for (const abs of files) {
   const rel = path.relative(ROOT, abs).split(path.sep).join('/');
   if (rel.includes('/free-online/') || /\/online\//.test(rel) || rel.endsWith('/online/index.html')) continue;
   if (rel === 'search/index.html') continue;
+  const html = fs.readFileSync(abs, 'utf8').replace(/<!--[\s\S]*?-->/g, '');
+  const attributes = tag => Object.fromEntries([...tag.matchAll(/([\w:-]+)\s*=\s*(?:"([^"]*)"|'([^']*)')/g)].map(m => [m[1].toLowerCase(), m[2] ?? m[3]]));
+  const metas = [...html.matchAll(/<meta\b[^>]*>/gi)].map(m => attributes(m[0]));
+  if (metas.some(m => /^(robots|googlebot)$/i.test(m.name || '') && /\b(noindex|none)\b/i.test(m.content || ''))) continue;
   let urlPath;
   if (rel === 'index.html') urlPath = '/';
   else if (rel.endsWith('/index.html')) urlPath = '/' + rel.slice(0, -'index.html'.length);
   else if (rel.endsWith('.html') && !rel.includes('/')) {
-    // cleanUrls: about.html is served at /about/ — never list .html in sitemap
+    // Match the self-canonical used on root HTML pages.
     urlPath = '/' + rel.slice(0, -'.html'.length) + '/';
   } else urlPath = '/' + rel;
+  const canonicals = [...html.matchAll(/<link\b[^>]*>/gi)].map(m => attributes(m[0])).filter(t => t.rel?.toLowerCase() === 'canonical');
+  if (canonicals.length !== 1) throw new Error(`Expected one canonical in ${rel}`);
+  // A page canonicalized elsewhere is not a separate sitemap entry.
+  if (canonicals[0].href !== BASE + urlPath) continue;
   urls.push(urlPath);
 }
 
@@ -108,7 +100,8 @@ urls.sort((a, b) => {
 let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
 xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
 for (const p of urls) {
-  xml += `  <url><loc>${BASE}${p}</loc><lastmod>${lastmodFor(p)}</lastmod><changefreq>${changefreqFor(p)}</changefreq><priority>${priorityFor(p)}</priority></url>\n`;
+  // Google ignores priority/changefreq. Neither can make a tool outrank Home.
+  xml += `  <url><loc>${BASE}${p}</loc><lastmod>${lastmodFor(p)}</lastmod></url>\n`;
 }
 xml += '</urlset>\n';
 fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), xml);

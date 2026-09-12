@@ -9,67 +9,21 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { CATEGORY, TOOL_SEO } from './tool-seo-config.mjs';
+import { CATEGORY } from './tool-seo-config.mjs';
+import { readToolCatalog } from './site-catalog.mjs';
+import { HUB_GUIDES } from './service-search-content.mjs';
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const TOOLS = path.join(ROOT, 'tools');
 const TODAY = new Date().toISOString().slice(0, 10);
 
 /** Top-level tools shown on hubs + related blocks (path key → meta). */
-const CATALOG = [
-  { key: 'image/compress', title: 'Image Compressor', desc: 'Compress to exact KB', icon: 'arrows-minimize', tile: 'indigo' },
-  { key: 'image/govt-photo', title: 'Govt Photo Resizer', desc: 'PSC, UPSC, PAN, Aadhaar', icon: 'id', tile: 'teal' },
-  { key: 'image/convert', title: 'Image Converter', desc: 'HEIC, PNG, JPG, WebP', icon: 'refresh', tile: 'cyan' },
-  { key: 'image/resize', title: 'Image Resizer', desc: 'Resize by size or %', icon: 'ruler-2', tile: 'violet' },
-  { key: 'image/background-remove', title: 'Background Remover', desc: 'PNG with transparency', icon: 'background', tile: 'pink' },
-  { key: 'image/passport-photo', title: 'Passport Photo Maker', desc: 'India, UAE, US & UK', icon: 'photo', tile: 'blue' },
-  { key: 'image/sticker-maker', title: 'Sticker Maker', desc: '512×512 WhatsApp sticker', icon: 'sticker-2', tile: 'amber' },
-  { key: 'image/upscale', title: 'Image Upscaler', desc: '2×, 3× or 4× HD enhance', icon: 'zoom-in', tile: 'violet' },
-  { key: 'image/image-to-ascii', title: 'Image to ASCII Art', desc: 'Text/Braille art for comments', icon: 'transform', tile: 'slate' },
-  { key: 'image/ocr', title: 'Image OCR', desc: 'Extract text from photos', icon: 'scan', tile: 'violet' },
-  { key: 'pdf/protect', title: 'PDF Password Protect', desc: 'Encrypt Aadhaar, PAN, IDs', icon: 'lock', tile: 'rose' },
-  { key: 'pdf/merge', title: 'PDF Merge', desc: 'Combine PDFs into one', icon: 'link', tile: 'amber' },
-  { key: 'pdf/word-to-pdf', title: 'Word to PDF', desc: 'DOCX to PDF free', icon: 'file-export', tile: 'blue' },
-  { key: 'pdf/pdf-to-word', title: 'PDF to Word', desc: 'Extract text to DOCX', icon: 'file-word', tile: 'green' },
-  { key: 'pdf/pdf-to-excel', title: 'PDF to Excel', desc: 'Tables to XLSX', icon: 'file-spreadsheet', tile: 'emerald' },
-  { key: 'pdf/compress', title: 'PDF Compress', desc: 'Reduce PDF file size', icon: 'file-zip', tile: 'orange' },
-  { key: 'pdf/editor', title: 'PDF Editor', desc: 'Annotate, sign, redact', icon: 'file-pencil', tile: 'violet' },
-  { key: 'pdf/unlock', title: 'Unlock PDF', desc: 'Remove PDF password', icon: 'lock-open', tile: 'emerald' },
-  { key: 'pdf/split', title: 'PDF Split', desc: 'Extract or split pages', icon: 'cut', tile: 'rose' },
-  { key: 'pdf/image-to-pdf', title: 'Image to PDF', desc: 'Photos to one PDF', icon: 'photo-up', tile: 'cyan' },
-  { key: 'pdf/pdf-to-image', title: 'PDF to Image', desc: 'PDF pages to JPG/PNG', icon: 'photo-down', tile: 'teal' },
-  { key: 'rates/gold-rate', title: 'Gold Rate Today', desc: 'Kerala, India & UAE', icon: 'coin', tile: 'amber' },
-  { key: 'rates/silver-rate', title: 'Silver Rate', desc: 'Per gram & per kg', icon: 'coin', tile: 'slate' },
-  { key: 'rates/currency-converter', title: 'Currency Converter', desc: 'AED, SAR, USD to INR', icon: 'currency-dollar', tile: 'green' },
-  { key: 'rates/petrol-price', title: 'Petrol Price', desc: 'State-wise petrol & diesel', icon: 'gas-station', tile: 'orange' },
-  { key: 'finance/emi-calculator', title: 'EMI Calculator', desc: 'Home & personal loan EMI', icon: 'building-bank', tile: 'blue' },
-  { key: 'finance/gst-calculator', title: 'GST Calculator', desc: 'Add or remove GST', icon: 'calculator', tile: 'indigo' },
-  { key: 'finance/income-tax', title: 'Income Tax Calculator', desc: 'New vs old regime', icon: 'receipt', tile: 'slate' },
-  { key: 'finance/salary-calculator', title: 'Salary Calculator', desc: 'CTC to monthly in-hand', icon: 'cash', tile: 'emerald' },
-  { key: 'finance/sip-calculator', title: 'SIP Calculator', desc: 'Mutual fund SIP returns', icon: 'coin', tile: 'green' },
-  { key: 'finance/fd-calculator', title: 'FD / RD Calculator', desc: 'Fixed & recurring deposit', icon: 'building-bank', tile: 'amber' },
-  { key: 'finance/uae-vat', title: 'UAE VAT Calculator', desc: 'Add or remove 5% VAT', icon: 'calculator', tile: 'teal' },
-  { key: 'misc/qr-generator', title: 'QR Generator', desc: 'Text, WiFi, vCard, bulk ZIP', icon: 'qrcode', tile: 'sky' },
-  { key: 'misc/url-shortener', title: 'URL Shortener', desc: 'Short permanent links', icon: 'link', tile: 'blue' },
-  { key: 'misc/word-counter', title: 'Word Counter', desc: 'Words, chars & reading time', icon: 'abc', tile: 'indigo' },
-  { key: 'misc/age-calculator', title: 'Age Calculator', desc: 'DOB to exact age', icon: 'cake', tile: 'pink' },
-  { key: 'misc/font-styler', title: 'Font Styler', desc: 'Stylish Unicode text', icon: 'sparkles', tile: 'amber' },
-  { key: 'misc/whatsapp-link', title: 'WhatsApp Link', desc: 'wa.me link with message', icon: 'brand-whatsapp', tile: 'green' },
-  { key: 'misc/bmi-calculator', title: 'BMI Calculator', desc: 'Metric or imperial BMI', icon: 'scale', tile: 'teal' },
-  { key: 'misc/yt-thumbnail', title: 'YT Thumbnail', desc: 'HD YouTube thumbnails', icon: 'movie', tile: 'rose' },
-  { key: 'misc/audio-cutter', title: 'Audio Cutter', desc: 'Trim MP3 ringtones', icon: 'music', tile: 'violet' },
-  { key: 'misc/text-handwriting', title: 'Text to Handwriting', desc: 'Handwritten PNG export', icon: 'file-pencil', tile: 'amber' },
-  { key: 'misc/timezone-converter', title: 'Time Zone Converter', desc: 'IST, GST, EST & more', icon: 'world', tile: 'cyan' },
-  { key: 'video/compress', title: 'Video Compressor', desc: 'Reduce MP4 file size', icon: 'video', tile: 'rose' },
-  { key: 'video/trim', title: 'Video Trimmer', desc: 'Cut by start & end time', icon: 'scissors', tile: 'pink' },
-  { key: 'video/to-audio', title: 'Video to MP3', desc: 'Extract audio track', icon: 'music', tile: 'violet' },
-  { key: 'video/status-splitter', title: 'Status Splitter', desc: '30s WhatsApp status clips', icon: 'device-mobile', tile: 'sky' },
-];
+const CATALOG = readToolCatalog();
 
 const HUB_COPY = {
   image: {
     title: 'Free Image Tools Online — Compress, Convert, Resize | ToolShoppy',
-    description: 'Free image tools: compress to exact KB, convert HEIC/JPG/PNG, govt photo resize, OCR, background remove. No signup — files stay on your device.',
+    description: 'Free image tools: compress images, convert HEIC/JPG/PNG, govt photo resize, OCR, background remove. No signup — files stay on your device.',
     h1: 'Free Image Tools',
     sub: 'Compress, convert, resize, and edit photos in your browser — private and free.',
   },
@@ -231,7 +185,7 @@ function hubPageHtml(cat, tools) {
 <link rel="apple-touch-icon" href="/assets/img/icon-192.png?v=2">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#E11D48">
-<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="/assets/css/main.css?v=5">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
 <script type="application/ld+json">
 ${JSON.stringify(schema, null, 2)}
@@ -270,6 +224,10 @@ ${JSON.stringify(crumb, null, 2)}
   </div>
   <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
   <div class="trust-badge"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock"></use></svg> Private · Free · No signup — pick a tool below</div>
+  <section class="content-section">
+    <h2>${esc(HUB_GUIDES[cat][0])}</h2>
+    ${HUB_GUIDES[cat][1]}
+  </section>
   <div class="featured-grid" style="margin-top:20px;">
 ${cards}
   </div>
@@ -408,9 +366,6 @@ function patchEnrichConfig() {
 
 console.log('Writing category hubs…');
 const hubs = writeHubs();
-console.log('Enriching tool pages…');
-const tools = enrichToolPages();
-patchEnrichConfig();
+const tools = process.argv.includes('--hubs-only') ? 0 : enrichToolPages();
+if (!process.argv.includes('--hubs-only')) patchEnrichConfig();
 console.log(`\nDone. Hubs: ${hubs}. Tool pages updated: ${tools}. (${TODAY})`);
-// Silence unused import lint if bundlers complain — TOOL_SEO reserved for future overrides
-void TOOL_SEO;
