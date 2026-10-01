@@ -215,7 +215,7 @@
 <script src="/assets/js/ga-config.js"></script>
 <script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/core.js?v=2"></script>
+<script src="/assets/js/core.js?v=4"></script>
 <script src="/assets/js/ads.js?v=6"></script>
 <script src="/assets/js/analytics.js"></script>
 <script>
@@ -336,19 +336,24 @@
   }
   function shortenViaGd(base, longUrl, alias) {
     var api = base + '/create.php?format=json&url=' + encodeURIComponent(longUrl) + (alias ? '&shorturl=' + encodeURIComponent(alias) : '');
-    return fetch(api).then(function (res) { return res.json(); }).then(function (data) {
+    return fetch(api, { signal: AbortSignal.timeout(12000) }).then(function (res) {
+      if (!res.ok) throw new Error('Shortening service unavailable.');
+      return res.json();
+    }).then(function (data) {
       if (data.errorcode) {
         var err = new Error(data.errormessage || 'Could not shorten this URL.');
         err.code = data.errorcode;
         throw err;
       }
+      if (!/^https?:\/\//.test(data.shorturl || '')) throw new Error('The service did not return a valid short link.');
       return data.shorturl;
     });
   }
   // Independent third provider (different operator/infra) used only as a last
   // resort if both is.gd and v.gd are down — doesn't support a custom alias.
   function shortenViaClck(longUrl) {
-    return fetch('https://clck.ru/--?url=' + encodeURIComponent(longUrl)).then(function (res) {
+    return fetch('https://clck.ru/--?url=' + encodeURIComponent(longUrl), { signal: AbortSignal.timeout(12000) }).then(function (res) {
+      if (!res.ok) throw new Error('Shortening service unavailable.');
       return res.text();
     }).then(function (text) {
       text = (text || '').trim();

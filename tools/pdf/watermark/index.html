@@ -203,7 +203,7 @@
 <script src="/assets/js/ga-config.js"></script>
 <script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/core.js?v=2"></script>
+<script src="/assets/js/core.js?v=4"></script>
 <script src="/assets/js/ads.js?v=6"></script>
 <script src="/assets/js/analytics.js"></script>
 <script src="/assets/libs/pdf.min.js"></script>
@@ -309,7 +309,7 @@
     progressFill.style.width = '15%';
     try {
       const { PDFDocument, StandardFonts, rgb, degrees } = PDFLib;
-      const doc = await PDFDocument.load(pdfBytes, { ignoreEncryption: true });
+      const doc = await PDFDocument.load(pdfBytes);
       const font = await doc.embedFont(StandardFonts.HelveticaBold);
       const size = Math.max(8, parseInt(wmSize.value, 10) || 48);
       const opacity = Math.max(0.05, parseInt(wmOpacity.value, 10) / 100);

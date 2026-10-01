@@ -127,6 +127,7 @@
       <div class="info-box"><h4>BMI categories</h4><ul><li>Under 18.5 — Underweight</li><li>18.5–24.9 — Normal</li><li>25–29.9 — Overweight</li><li>30+ — Obese</li></ul></div>
     </aside>
   </div>
+  <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
   <div class="content-section seo-howto">
     <h2>How to calculate BMI</h2>
     <ol>
@@ -181,7 +182,7 @@
 <div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
 <script src="/assets/js/ga-config.js"></script><script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/core.js?v=2"></script><script src="/assets/js/ads.js?v=6"></script><script src="/assets/js/analytics.js"></script>
+<script src="/assets/js/core.js?v=4"></script><script src="/assets/js/ads.js?v=6"></script><script src="/assets/js/analytics.js"></script>
 <script>
 (function () {
   var unit = 'metric';
@@ -203,8 +204,8 @@
       var inches = (parseFloat(document.getElementById('heightFt').value) || 0) * 12 + (parseFloat(document.getElementById('heightIn').value) || 0);
       bmi = inches > 0 ? (703 * lb) / (inches * inches) : 0;
     }
-    document.getElementById('bmiValue').textContent = bmi ? bmi.toFixed(1) : '—';
-    document.getElementById('bmiCat').textContent = bmi ? category(bmi) : '—';
+    document.getElementById('bmiValue').textContent = Number.isFinite(bmi) && bmi > 0 ? bmi.toFixed(1) : '—';
+    document.getElementById('bmiCat').textContent = Number.isFinite(bmi) && bmi > 0 ? category(bmi) : '—';
   }
   document.getElementById('unitRow').addEventListener('click', function (e) {
     var chip = e.target.closest('[data-unit]'); if (!chip) return;

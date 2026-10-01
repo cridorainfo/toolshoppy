@@ -115,8 +115,8 @@
   <div class="tool-layout with-sidebar">
     <div class="tool-card-main">
       <div class="calc-form">
-        <div class="calc-field"><label for="income">Annual income (₹)</label><input type="number" id="income" value="1500000" min="0" step="10000"></div>
-        <div class="calc-field" id="deductWrap" style="display:none;"><label for="deductions">Deductions — 80C etc. (₹, old regime)</label><input type="number" id="deductions" value="150000" min="0" max="500000" step="5000"></div>
+        <div class="calc-field"><label for="income">Annual gross salary (₹)</label><input type="number" id="income" value="1500000" min="0" step="10000"></div>
+        <div class="calc-field" id="deductWrap"><label for="deductions">Deductions — 80C etc. (₹, old regime)</label><input type="number" id="deductions" value="150000" min="0" max="500000" step="5000"></div>
       </div>
       <div class="chip-row" id="regimeRow">
         <button class="chip active" data-regime="compare" type="button">Compare both</button>
@@ -128,12 +128,13 @@
         <div class="compare-box"><div class="label">Old regime tax</div><div class="value" id="taxOld">—</div></div>
         <div class="compare-box saved"><div class="label">Better option</div><div class="value" id="better">—</div></div>
       </div>
-      <p class="rate-disclaimer">FY 2025-26 slabs with standard deduction (₹75k new / ₹50k old). Includes 4% cess. For planning only — consult a CA for final filing.</p>
+      <p class="rate-disclaimer">FY 2025-26 / AY 2026-27 estimate for resident salaried individuals under 60 with ordinary salary income. Includes standard deduction, rebate, marginal relief, surcharge and 4% cess. Excludes capital gains and other special-rate income. <a href="https://www.incometax.gov.in/iec/foportal/help/individual/return-applicable-1" target="_blank" rel="noopener">Official tax rules</a>.</p>
     </div>
     <aside class="sidebar"><div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div>
       <div class="info-box"><h4>New regime slabs</h4><p style="font-size:0.8rem;color:var(--text-muted);line-height:1.6;">Up to ₹4L nil · 5% · 10% · 15% · 20% · 25% · 30%. Rebate u/s 87A makes tax zero up to ₹12L income.</p></div>
     </aside>
   </div>
+  <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
   <div class="content-section seo-howto">
     <h2>How to use the income tax calculator</h2>
     <ol>
@@ -192,35 +193,22 @@
 <div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
 <script src="/assets/js/ga-config.js"></script><script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/core.js?v=2"></script><script src="/assets/js/ads.js?v=6"></script><script src="/assets/js/analytics.js"></script>
+<script src="/assets/js/core.js?v=4"></script><script src="/assets/js/ads.js?v=6"></script><script src="/assets/js/analytics.js"></script>
+<script src="/assets/js/income-tax.js?v=1"></script>
 <script>
 (function () {
   var mode = 'compare';
-  function calcNew(inc) {
-    var sd = 75000, ti = Math.max(0, inc - sd), tax = 0, rem = ti, prev = 0;
-    var slabs = [[400000,0],[400000,0.05],[400000,0.10],[400000,0.15],[400000,0.20],[400000,0.25],[Infinity,0.30]];
-    for (var i = 0; i < slabs.length && rem > 0; i++) {
-      var w = Math.min(rem, slabs[i][0] - prev); tax += w * slabs[i][1]; rem -= w; prev = slabs[i][0];
-    }
-    if (ti <= 1200000) tax = 0;
-    return Math.round(tax * 1.04);
-  }
-  function calcOld(inc, ded) {
-    var ti = Math.max(0, inc - 50000 - (ded || 0)), tax = 0;
-    if (ti > 1000000) tax = 112500 + (ti - 1000000) * 0.30;
-    else if (ti > 500000) tax = 12500 + (ti - 500000) * 0.20;
-    else if (ti > 250000) tax = (ti - 250000) * 0.05;
-    return Math.round(tax * 1.04);
-  }
   function fmt(n) { return '₹' + n.toLocaleString('en-IN'); }
   function run() {
     var inc = parseFloat(document.getElementById('income').value) || 0;
     var ded = parseFloat(document.getElementById('deductions').value) || 0;
-    var tn = calcNew(inc), to = calcOld(inc, ded);
+    var tn = TSIncomeTax.salaryTax(inc, 'new'), to = TSIncomeTax.salaryTax(inc, 'old', ded);
     document.getElementById('taxNew').textContent = fmt(tn);
     document.getElementById('taxOld').textContent = fmt(to);
-    document.getElementById('better').textContent = tn <= to ? 'New (' + fmt(tn - to) + ' saved)' : 'Old (' + fmt(to - tn) + ' saved)';
-    document.getElementById('resultRow').style.display = '';
+    document.getElementById('better').textContent = tn <= to ? 'New (' + fmt(to - tn) + ' saved)' : 'Old (' + fmt(tn - to) + ' saved)';
+    document.getElementById('taxNew').parentElement.hidden = mode === 'old';
+    document.getElementById('taxOld').parentElement.hidden = mode === 'new';
+    document.getElementById('better').parentElement.hidden = mode !== 'compare';
   }
   document.getElementById('income').addEventListener('input', run);
   document.getElementById('deductions').addEventListener('input', run);
@@ -229,7 +217,7 @@
     document.getElementById('regimeRow').querySelectorAll('.chip').forEach(function (c) { c.classList.remove('active'); });
     chip.classList.add('active');
     mode = chip.dataset.regime;
-    document.getElementById('deductWrap').style.display = mode === 'old' ? '' : 'none';
+    document.getElementById('deductWrap').style.display = mode !== 'new' ? '' : 'none';
     run();
   });
   run();

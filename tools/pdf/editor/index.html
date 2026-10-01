@@ -250,7 +250,7 @@
 <script src="/assets/js/ga-config.js"></script>
 <script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/core.js?v=2"></script>
+<script src="/assets/js/core.js?v=4"></script>
 <script src="/assets/js/ads.js?v=6"></script>
 <script src="/assets/js/analytics.js"></script>
 <script src="/assets/libs/pdf.min.js"></script>
@@ -1252,8 +1252,10 @@
         const tmp = await renderPageForExport(i);
         const jpg = await new Promise((res) => tmp.toBlob(async (b) => res(new Uint8Array(await b.arrayBuffer())), 'image/jpeg', 0.95));
         const embedded = await outDoc.embedJpg(jpg);
-        const pg = outDoc.addPage([embedded.width, embedded.height]);
-        pg.drawImage(embedded, { x: 0, y: 0, width: embedded.width, height: embedded.height });
+        const originalPage = await pdfDoc.getPage(i);
+        const originalSize = originalPage.getViewport({ scale: 1 });
+        const pg = outDoc.addPage([originalSize.width, originalSize.height]);
+        pg.drawImage(embedded, { x: 0, y: 0, width: originalSize.width, height: originalSize.height });
         progressFill.style.width = (10 + (i / pdfDoc.numPages) * 85) + '%';
       }
       const bytes = await outDoc.save();

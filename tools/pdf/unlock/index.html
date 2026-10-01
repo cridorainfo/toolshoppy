@@ -98,6 +98,7 @@
         <h4>Important</h4>
         <ul>
           <li>You must know the password</li>
+          <li>Exports a flattened image PDF; text, links and forms are not preserved as editable content</li>
           <li>We do not crack unknown passwords</li>
           <li>Pairs with <a href="/tools/pdf/protect/">PDF Password Protect</a></li>
         </ul>
@@ -150,7 +151,7 @@
 <script src="/assets/js/ga-config.js"></script>
 <script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/core.js?v=2"></script>
+<script src="/assets/js/core.js?v=4"></script>
 <script src="/assets/js/ads.js?v=6"></script>
 <script src="/assets/js/analytics.js"></script>
 <script src="/assets/libs/pdf.min.js"></script>
@@ -242,8 +243,9 @@
         await page.render({ canvasContext: canvas.getContext('2d'), viewport }).promise;
         const jpg = await new Promise((res) => canvas.toBlob(async (b) => res(new Uint8Array(await b.arrayBuffer())), 'image/jpeg', 0.92));
         const img = await outDoc.embedJpg(jpg);
-        const pg = outDoc.addPage([img.width, img.height]);
-        pg.drawImage(img, { x: 0, y: 0, width: img.width, height: img.height });
+        const originalSize = page.getViewport({ scale: 1 });
+        const pg = outDoc.addPage([originalSize.width, originalSize.height]);
+        pg.drawImage(img, { x: 0, y: 0, width: originalSize.width, height: originalSize.height });
         progressFill.style.width = (15 + (i / pdf.numPages) * 80) + '%';
       }
       const bytes = await outDoc.save({ useObjectStreams: false });

@@ -118,12 +118,14 @@
         <div class="compare-box"><div class="label">PF (employee)</div><div class="value" id="pf">—</div></div>
         <div class="compare-box"><div class="label">Monthly gross</div><div class="value" id="gross">—</div></div>
       </div>
-      <p class="rate-disclaimer">Simplified estimate for salaried employees. Actual payslip may include HRA, bonuses, ESI, professional tax, and employer-specific components.</p>
+      <div class="trust-badge"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock"></use></svg> Calculations stay on your device</div>
+      <p class="rate-disclaimer">FY 2025-26 estimate for resident salaried employees under 60. Assumes CTC equals cash gross salary, capped employee PF, ₹2,400 annual professional tax, and ₹1.5 lakh total old-regime deductions (including PF). Employer PF, gratuity and benefits are not deducted from CTC here; actual take-home may be lower.</p>
     </div>
     <aside class="sidebar"><div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div>
       <div class="info-box"><h4>Related</h4><ul><li><a href="/tools/finance/income-tax/">Income tax calculator →</a></li><li><a href="/tools/finance/emi-calculator/">EMI calculator →</a></li></ul></div>
     </aside>
   </div>
+  <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
   <div class="content-section seo-howto">
     <h2>How to estimate in-hand salary</h2>
     <ol>
@@ -178,42 +180,20 @@
 <div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
 <script src="/assets/js/ga-config.js"></script><script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/core.js?v=2"></script><script src="/assets/js/rates.js"></script><script src="/assets/js/ads.js?v=6"></script><script src="/assets/js/analytics.js"></script>
+<script src="/assets/js/core.js?v=4"></script><script src="/assets/js/rates.js?v=2"></script><script src="/assets/js/ads.js?v=6"></script><script src="/assets/js/analytics.js"></script>
+<script src="/assets/js/income-tax.js?v=1"></script>
 <script>
 (function () {
-  function taxNew(taxable) {
-    var sd = 75000;
-    var ti = Math.max(0, taxable - sd);
-    var tax = 0;
-    var slabs = [[400000,0],[400000,0.05],[400000,0.10],[400000,0.15],[400000,0.20],[400000,0.25],[Infinity,0.30]];
-    var rem = ti, prev = 0;
-    for (var i = 0; i < slabs.length && rem > 0; i++) {
-      var width = Math.min(rem, slabs[i][0] - prev);
-      tax += width * slabs[i][1];
-      rem -= width;
-      prev = slabs[i][0];
-    }
-    if (ti <= 1200000) tax = 0;
-    return Math.round(tax * 1.04);
-  }
-  function taxOld(taxable) {
-    var ti = Math.max(0, taxable - 50000 - 150000);
-    var tax = 0;
-    if (ti > 1000000) tax = 112500 + (ti - 1000000) * 0.30;
-    else if (ti > 500000) tax = 12500 + (ti - 500000) * 0.20;
-    else if (ti > 250000) tax = (ti - 250000) * 0.05;
-    return Math.round(tax * 1.04);
-  }
   function calc() {
     var ctc = parseFloat(document.getElementById('ctc').value) || 0;
     var basicPct = (parseFloat(document.getElementById('basicPct').value) || 40) / 100;
     var regime = document.getElementById('regime').value;
     var basic = ctc * basicPct;
     var pf = Math.min(basic * 0.12, 21600);
-    var profTax = 2400;
-    var taxable = ctc - pf;
-    var tax = regime === 'new' ? taxNew(taxable) : taxOld(taxable);
-    var netAnnual = ctc - pf - profTax - tax;
+    var profTax = Math.min(Math.max(0, ctc - pf), 2400);
+    var taxable = Math.max(0, ctc);
+    var tax = TSIncomeTax.salaryTax(taxable, regime, 150000 + profTax);
+    var netAnnual = Math.max(0, ctc - pf - profTax - tax);
     var monthly = netAnnual / 12;
     var fmt = function (n) { return '₹' + Math.round(n).toLocaleString('en-IN'); };
     document.getElementById('inHand').textContent = fmt(monthly);

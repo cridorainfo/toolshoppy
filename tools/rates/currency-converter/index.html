@@ -229,8 +229,8 @@
 <script src="/assets/js/ga-config.js"></script>
 <script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/core.js?v=2"></script>
-<script src="/assets/js/rates.js"></script>
+<script src="/assets/js/core.js?v=4"></script>
+<script src="/assets/js/rates.js?v=2"></script>
 <script src="/assets/js/ads.js?v=6"></script>
 <script src="/assets/js/analytics.js"></script>
 <script>
@@ -298,7 +298,7 @@
   });
   TSRates.fetchRates().then(function (d) {
     ratesData = d;
-    updatedLine.innerHTML = 'Rates as of: <strong>' + TSRates.formatUpdatedAt(d.currency.updated_at || d.updated_at) + '</strong>';
+    updatedLine.innerHTML = (d.live ? 'Rates as of: ' : 'Cached reference rates (not live): ') + '<strong>' + TSRates.formatUpdatedAt(d.currency.updated_at || d.updated_at) + '</strong>';
     fillSelects();
     document.getElementById('sideAed').textContent = d.currency.inr_per_unit.AED.toFixed(2);
     document.getElementById('sideSar').textContent = d.currency.inr_per_unit.SAR.toFixed(2);

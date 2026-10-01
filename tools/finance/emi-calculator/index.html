@@ -232,8 +232,8 @@
 <script src="/assets/js/ga-config.js"></script>
 <script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/core.js?v=2"></script>
-<script src="/assets/js/rates.js"></script>
+<script src="/assets/js/core.js?v=4"></script>
+<script src="/assets/js/rates.js?v=2"></script>
 <script src="/assets/js/ads.js?v=6"></script>
 <script src="/assets/js/analytics.js"></script>
 <script>
@@ -249,8 +249,10 @@
     var P = parseFloat(principal.value) || 0;
     var annual = parseFloat(rate.value) || 0;
     var years = parseFloat(tenure.value) || 0;
-    if (P <= 0 || years <= 0) {
+    if (P <= 0 || years <= 0 || annual < 0 || Math.round(years * 12) < 1) {
       emiValue.textContent = '—';
+      totalInterest.textContent = '—';
+      totalPayment.textContent = '—';
       return;
     }
     var n = Math.round(years * 12);

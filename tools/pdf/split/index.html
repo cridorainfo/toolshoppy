@@ -164,7 +164,7 @@
 <script src="/assets/js/ga-config.js"></script>
 <script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/core.js?v=2"></script>
+<script src="/assets/js/core.js?v=4"></script>
 <script src="/assets/js/ads.js?v=6"></script>
 <script src="/assets/js/analytics.js"></script>
 <script src="/assets/libs/pdf.min.js"></script>
@@ -278,14 +278,7 @@
     }
     updateSelCount();
   });
-  pageGrid.addEventListener('click', (e) => {
-    if (e.target.tagName === 'INPUT') return;
-    const tile = e.target.closest('.pdf-page-tile');
-    if (!tile) return;
-    const cb = tile.querySelector('input');
-    cb.checked = !cb.checked;
-    cb.dispatchEvent(new Event('change', { bubbles: true }));
-  });
+  // Native label activation toggles its checkbox once, including touch/keyboard.
   document.getElementById('selectAllBtn').addEventListener('click', () => {
     selected = new Set(Array.from({ length: pageCount }, (_, i) => i));
     pageGrid.querySelectorAll('.pdf-page-tile').forEach((t) => {
@@ -316,6 +309,8 @@
   });
   function parseRanges(str, max) {
     const groups = [];
+    if (!str.trim() || str.split(',').some((part) => !/^\s*\d+\s*(?:-\s*\d+\s*)?$/.test(part))) return [];
+    if (str.match(/\d+/g).some((n) => Number(n) < 1 || Number(n) > max)) return [];
     str.split(',').forEach((part) => {
       part = part.trim();
       if (!part) return;
@@ -343,12 +338,14 @@
   }
   splitBtn.addEventListener('click', async () => {
     if (!pdfBytes) return;
+    resultPanel.classList.remove('active');
+    resultBlob = null;
     splitBtn.disabled = true;
     progressBar.classList.add('active');
     progressFill.style.width = '10%';
     try {
       const { PDFDocument } = PDFLib;
-      const srcDoc = await PDFDocument.load(pdfBytes, { ignoreEncryption: true });
+      const srcDoc = await PDFDocument.load(pdfBytes);
       const baseName = pdfFile.name.replace(/\.pdf$/i, '') || 'document';
       let outputs = [];
       if (mode === 'extract') {
@@ -371,7 +368,7 @@
           const doc = await buildPdfFromPages(srcDoc, groups[g]);
           const bytes = await doc.save();
           const label = groups[g].map((x) => x + 1).join('-');
-          outputs.push({ name: baseName + '-pages-' + label + '.pdf', data: new Uint8Array(bytes) });
+          outputs.push({ name: baseName + '-range-' + (g + 1) + '-pages-' + label + '.pdf', data: new Uint8Array(bytes) });
           progressFill.style.width = (10 + ((g + 1) / groups.length) * 80) + '%';
         }
       }

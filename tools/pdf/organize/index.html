@@ -157,7 +157,7 @@
 <script src="/assets/js/ga-config.js"></script>
 <script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/core.js?v=2"></script>
+<script src="/assets/js/core.js?v=4"></script>
 <script src="/assets/js/ads.js?v=6"></script>
 <script src="/assets/js/analytics.js"></script>
 <script src="/assets/libs/pdf.min.js"></script>
@@ -291,12 +291,18 @@
       return;
     }
     if (act === 'up' && i > 0) {
-      TS.moveItem(pages, i, i - 1);
+      let target = i - 1;
+      while (target >= 0 && pages[target].removed) target--;
+      if (target < 0) return;
+      TS.moveItem(pages, i, target);
       renderGrid();
       return;
     }
     if (act === 'down' && i < pages.length - 1) {
-      TS.moveItem(pages, i, i + 1);
+      let target = i + 1;
+      while (target < pages.length && pages[target].removed) target++;
+      if (target >= pages.length) return;
+      TS.moveItem(pages, i, target);
       renderGrid();
     }
   });
@@ -314,7 +320,7 @@
     progressFill.style.width = '15%';
     try {
       const { PDFDocument, degrees } = PDFLib;
-      const srcDoc = await PDFDocument.load(pdfBytes, { ignoreEncryption: true });
+      const srcDoc = await PDFDocument.load(pdfBytes);
       const out = await PDFDocument.create();
       for (let i = 0; i < kept.length; i++) {
         const [copied] = await out.copyPages(srcDoc, [kept[i].orig]);

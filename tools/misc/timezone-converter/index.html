@@ -175,7 +175,7 @@
 <div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
 <script src="/assets/js/ga-config.js"></script><script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/core.js?v=2"></script><script src="/assets/js/ads.js?v=6"></script><script src="/assets/js/analytics.js"></script>
+<script src="/assets/js/core.js?v=4"></script><script src="/assets/js/ads.js?v=6"></script><script src="/assets/js/analytics.js"></script>
 <script>
 (function () {
   var ZONES = [
@@ -209,20 +209,34 @@
   }
   function convert() {
     var raw = document.getElementById('dtInput').value;
-    if (!raw) return;
-    var local = new Date(raw);
-    var src = partsInZone(local, fromTz.value);
-    var utcGuess = Date.UTC(src.y, src.m - 1, src.d, src.h, src.min);
-    var corrected = utcGuess - (partsInZone(new Date(utcGuess), fromTz.value).h - src.h) * 3600000;
-    var result = new Date(corrected);
+    var output = document.getElementById('resultOut');
+    if (!raw) { output.textContent = 'Choose a date and time.'; return; }
+    var fields = raw.split(/[-T:]/).map(Number);
+    var wallTime = Date.UTC(fields[0], fields[1] - 1, fields[2], fields[3], fields[4]);
+    function stamp(p) { return Date.UTC(p.y, p.m - 1, p.d, p.h, p.min); }
+    // Try the offsets on both sides of a DST transition. Include the full date
+    // and minutes, so half-hour offsets and midnight crossings are preserved.
+    var candidates = [];
+    [-36, 0, 36].forEach(function (hours) {
+      var probe = wallTime + hours * 3600000;
+      var offset = stamp(partsInZone(new Date(probe), fromTz.value)) - probe;
+      var instant = wallTime - offset;
+      if (stamp(partsInZone(new Date(instant), fromTz.value)) === wallTime && candidates.indexOf(instant) === -1) candidates.push(instant);
+    });
+    if (!candidates.length) { output.textContent = 'This time does not exist because the clocks move forward. Choose another time.'; return; }
+    candidates.sort(function (a, b) { return a - b; });
+    var result = new Date(candidates[0]);
     var fmt = new Intl.DateTimeFormat('en-IN', { timeZone: toTz.value, weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
-    document.getElementById('resultOut').textContent = fmt.format(result);
-    var offFrom = -new Date().toLocaleString('en-US', { timeZone: fromTz.value }).length;
+    output.textContent = fmt.format(result) + (candidates.length > 1 ? ' (first occurrence before clocks move back)' : '');
     document.getElementById('diffOut').textContent = fromTz.options[fromTz.selectedIndex].text + ' → ' + toTz.options[toTz.selectedIndex].text;
   }
-  document.getElementById('dtInput').value = toLocalInput(new Date());
+  function setNow() {
+    var p = partsInZone(new Date(), fromTz.value);
+    document.getElementById('dtInput').value = p.y + '-' + pad(p.m) + '-' + pad(p.d) + 'T' + pad(p.h) + ':' + pad(p.min);
+  }
+  setNow();
   ['fromTz', 'toTz', 'dtInput'].forEach(function (id) { document.getElementById(id).addEventListener('change', convert); document.getElementById(id).addEventListener('input', convert); });
-  document.getElementById('nowBtn').addEventListener('click', function () { document.getElementById('dtInput').value = toLocalInput(new Date()); convert(); });
+  document.getElementById('nowBtn').addEventListener('click', function () { setNow(); convert(); });
   convert();
 })();
 </script>

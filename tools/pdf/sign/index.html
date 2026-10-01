@@ -265,7 +265,7 @@
 <script src="/assets/js/ga-config.js"></script>
 <script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/core.js?v=2"></script>
+<script src="/assets/js/core.js?v=4"></script>
 <script src="/assets/js/ads.js?v=6"></script>
 <script src="/assets/js/analytics.js"></script>
 <script src="/assets/libs/pdf.min.js"></script>
@@ -846,7 +846,7 @@
     progressFill.style.width = '10%';
     try {
       const { PDFDocument, StandardFonts, rgb } = PDFLib;
-      const doc = await PDFDocument.load(originalBytes, { ignoreEncryption: true });
+      const doc = await PDFDocument.load(originalBytes);
       const font = await doc.embedFont(StandardFonts.Helvetica);
       const pdfPages = doc.getPages();
       const pageNums = Object.keys(pages).map((k) => parseInt(k, 10)).filter((n) => pages[n].objects.length);

@@ -118,6 +118,7 @@
     </div>
     <aside class="sidebar"><div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div></aside>
   </div>
+  <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
   <div class="content-section seo-howto">
     <h2>How to calculate age online</h2>
     <ol>
@@ -172,28 +173,36 @@
 <div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
 <script src="/assets/js/ga-config.js"></script><script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/core.js?v=2"></script><script src="/assets/js/ads.js?v=6"></script><script src="/assets/js/analytics.js"></script>
+<script src="/assets/js/core.js?v=4"></script><script src="/assets/js/ads.js?v=6"></script><script src="/assets/js/analytics.js"></script>
 <script>
 (function () {
   var asOf = document.getElementById('asOf');
-  asOf.value = new Date().toISOString().slice(0, 10);
+  var today = new Date();
+  asOf.value = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0');
+  function anniversary(date, months) {
+    var first = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth() + months, 1));
+    var lastDay = new Date(Date.UTC(first.getUTCFullYear(), first.getUTCMonth() + 1, 0)).getUTCDate();
+    first.setUTCDate(Math.min(date.getUTCDate(), lastDay));
+    return first;
+  }
   function diff(d1, d2) {
-    var y = d2.getFullYear() - d1.getFullYear();
-    var m = d2.getMonth() - d1.getMonth();
-    var d = d2.getDate() - d1.getDate();
-    if (d < 0) { m--; d += new Date(d2.getFullYear(), d2.getMonth(), 0).getDate(); }
-    if (m < 0) { y--; m += 12; }
-    return { y: y, m: m, d: d };
+    var months = (d2.getUTCFullYear() - d1.getUTCFullYear()) * 12 + d2.getUTCMonth() - d1.getUTCMonth();
+    if (anniversary(d1, months) > d2) months--;
+    return { y: Math.floor(months / 12), m: months % 12, d: Math.round((d2 - anniversary(d1, months)) / 86400000) };
   }
   function run() {
     var dob = new Date(document.getElementById('dob').value);
     var end = new Date(asOf.value);
-    if (isNaN(dob) || isNaN(end) || dob > end) { document.getElementById('ageValue').textContent = '—'; return; }
+    if (isNaN(dob) || isNaN(end) || dob > end) {
+      ['ageValue', 'totalDays', 'nextBday'].forEach(function (id) { document.getElementById(id).textContent = '—'; });
+      return;
+    }
     var a = diff(dob, end);
     document.getElementById('ageValue').textContent = a.y + 'y ' + a.m + 'm ' + a.d + 'd';
     document.getElementById('totalDays').textContent = Math.floor((end - dob) / 86400000).toLocaleString('en-IN');
-    var next = new Date(end.getFullYear(), dob.getMonth(), dob.getDate());
-    if (next <= end) next.setFullYear(next.getFullYear() + 1);
+    var years = end.getUTCFullYear() - dob.getUTCFullYear();
+    var next = anniversary(dob, years * 12);
+    if (next < end) next = anniversary(dob, (years + 1) * 12);
     document.getElementById('nextBday').textContent = Math.ceil((next - end) / 86400000) + ' days';
   }
   document.getElementById('dob').addEventListener('change', run);

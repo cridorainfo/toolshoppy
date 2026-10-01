@@ -91,6 +91,7 @@
         <div id="pageSummary" style="font-size:0.85rem;color:var(--text-muted);font-weight:600;margin-bottom:6px;"></div>
         <div class="ocrpdf-pages" id="pageGrid"></div>
         <p id="statusText" style="font-size:0.85rem;color:var(--text-muted);"></p>
+        <p>The searchable PDF text layer supports Latin characters. Text in other scripts is preserved in the separate text download.</p>
         <div class="sticky-cta-bar">
           <button class="btn btn-primary btn-block" id="startBtn">Run OCR</button>
           <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
@@ -168,7 +169,7 @@
 <script src="/assets/js/ga-config.js"></script>
 <script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/core.js?v=2"></script>
+<script src="/assets/js/core.js?v=4"></script>
 <script src="/assets/js/ads.js?v=6"></script>
 <script src="/assets/js/analytics.js"></script>
 <script src="/assets/libs/pdf.min.js"></script>
@@ -311,9 +312,9 @@
           const boxHeightPt = Math.max(4, (maxY - minY) / RENDER_SCALE);
           const boxWidthPt = Math.max(4, (maxX - minX) / RENDER_SCALE);
           const yBaselinePt = p.heightPt - (maxY / RENDER_SCALE);
-          const naturalWidth = font.widthOfTextAtSize(line.text, boxHeightPt) || 1;
-          const size = Math.max(4, Math.min(boxHeightPt, boxHeightPt * (boxWidthPt / naturalWidth)));
           try {
+            const naturalWidth = font.widthOfTextAtSize(line.text, boxHeightPt) || 1;
+            const size = Math.max(4, Math.min(boxHeightPt, boxHeightPt * (boxWidthPt / naturalWidth)));
             pdfPage.drawText(line.text, { x: xPt, y: yBaselinePt, size: size, font: font, color: rgb(0, 0, 0), opacity: 0 });
           } catch (e) { /* skip glyphs the base font can't encode */ }
         });

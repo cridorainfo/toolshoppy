@@ -176,9 +176,9 @@
 <div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
 <script src="/assets/js/ga-config.js"></script><script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/core.js?v=2"></script><script src="/assets/js/ads.js?v=6"></script><script src="/assets/js/analytics.js"></script>
+<script src="/assets/js/core.js?v=4"></script><script src="/assets/js/ads.js?v=6"></script><script src="/assets/js/analytics.js"></script>
 <script type="module">
-import { runFFmpeg } from '/assets/js/ffmpeg-loader.mjs';
+import { runFFmpeg } from '/assets/js/ffmpeg-loader.mjs?v=2';
 var file = null, blob = null, outName = 'ringtone.mp3';
 var preview = document.getElementById('preview');
 TS.setupDropZone(document.getElementById('dropZone'), document.getElementById('fileInput'), function (f) {
@@ -208,8 +208,17 @@ document.getElementById('cutBtn').addEventListener('click', async function () {
     });
     blob = new Blob([blob], { type: 'audio/mpeg' }); outName = 'ringtone.mp3';
   } catch (e) {
-    blob = await runFFmpeg(file, 'input.' + ext, 'output.m4a', ['-ss', String(start), '-t', String(end - start), '-acodec', 'aac'], function () {});
-    blob = new Blob([blob], { type: 'audio/mp4' }); outName = 'ringtone.m4a';
+    try {
+      blob = await runFFmpeg(file, 'input.' + ext, 'output.m4a', ['-ss', String(start), '-t', String(end - start), '-acodec', 'aac'], function () {});
+      blob = new Blob([blob], { type: 'audio/mp4' }); outName = 'ringtone.m4a';
+    } catch (fallbackError) {
+      blob = null;
+      document.getElementById('resultPanel').classList.remove('active');
+      document.getElementById('statusText').textContent = 'Could not cut this audio. Check the file and time range, then try again.';
+      return;
+    }
+  } finally {
+    btn.disabled = false; document.getElementById('progressBar').classList.remove('active');
   }
   document.getElementById('resultPanel').classList.add('active');
   document.getElementById('statusText').textContent = 'Done · ' + TS.formatBytes(blob.size);

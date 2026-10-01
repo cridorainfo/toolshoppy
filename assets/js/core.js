@@ -179,13 +179,18 @@
     function handleFiles(files) {
       const list = Array.from(files || []);
       if (!list.length) return;
+      // A new input invalidates the previous download, even when decoding fails.
+      const layout = zoneEl.closest('.tool-layout');
+      if (layout) layout.querySelectorAll('.result-panel').forEach((panel) => panel.classList.remove('active'));
       if (previewEnabled && previewContainer) {
         renderFilePreview(previewContainer, list, opts);
       }
       onFiles(list);
     }
 
-    zoneEl.addEventListener('click', () => inputEl.click());
+    zoneEl.addEventListener('click', (event) => {
+      if (event.target !== inputEl) inputEl.click();
+    });
 
     inputEl.addEventListener('change', (e) => {
       if (e.target.files && e.target.files.length) handleFiles(Array.from(e.target.files));
@@ -392,24 +397,26 @@
       const data = entry.data instanceof Uint8Array ? entry.data : new Uint8Array(entry.data);
       const checksum = crc32(data);
       const local = new Uint8Array([
-        0x50, 0x4B, 0x03, 0x04, 0x14, 0x00, 0x00, 0x00, 0x00, 0x00,
+        0x50, 0x4B, 0x03, 0x04, 0x14, 0x00, 0x00, 0x08, 0x00, 0x00,
+        // DOS time/date (1980-01-01), required even for stored entries.
+        0x00, 0x00, 0x21, 0x00,
         ...u32(checksum),
         ...u32(data.length),
         ...u32(data.length),
         ...u16(nameBytes.length),
         0x00, 0x00,
         ...nameBytes,
-        ...data,
       ]);
-      parts.push(local);
+      parts.push(local, data);
       central.push({ nameBytes, data, checksum, offset });
-      offset += local.length;
+      offset += local.length + data.length;
     });
 
     const centralStart = offset;
     central.forEach((c) => {
       const cd = new Uint8Array([
-        0x50, 0x4B, 0x01, 0x02, 0x14, 0x00, 0x14, 0x00, 0x00, 0x00, 0x00, 0x00,
+        0x50, 0x4B, 0x01, 0x02, 0x14, 0x00, 0x14, 0x00, 0x00, 0x08, 0x00, 0x00,
+        0x00, 0x00, 0x21, 0x00,
         ...u32(c.checksum),
         ...u32(c.data.length),
         ...u32(c.data.length),

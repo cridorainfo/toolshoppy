@@ -246,11 +246,12 @@
 <script src="/assets/js/ga-config.js"></script>
 <script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/core.js?v=2"></script>
+<script src="/assets/js/core.js?v=4"></script>
 <script src="/assets/js/ads.js?v=6"></script>
 <script src="/assets/js/analytics.js"></script>
 <script>
 (function () {
+  function escapeFileName(value) { return String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
   const toolLayout = document.getElementById('toolLayout');
   const dropZone = document.getElementById('dropZone');
   const fileInput = document.getElementById('fileInput');
@@ -288,7 +289,7 @@
     files.forEach((f, i) => {
       const row = document.createElement('div');
       row.className = 'file-item';
-      row.innerHTML = '<span class="name">' + f.name + '</span><span>' + TS.formatBytes(f.size) + '</span><span class="remove" data-i="' + i + '" role="button" tabindex="0" aria-label="Remove">✕</span>';
+      row.innerHTML = '<span class="name">' + escapeFileName(f.name) + '</span><span>' + TS.formatBytes(f.size) + '</span><span class="remove" data-i="' + i + '" role="button" tabindex="0" aria-label="Remove">✕</span>';
       fileList.appendChild(row);
     });
     batchHint.textContent = files.length > 1
@@ -411,14 +412,14 @@
           row.className = 'file-item';
           row.innerHTML =
             '<img src="' + previewUrl + '" alt="" style="width:48px;height:48px;object-fit:cover;border-radius:8px;border:1px solid var(--border);flex-shrink:0;">' +
-            '<span class="name">' + outName + '</span>' +
+            '<span class="name">' + escapeFileName(outName) + '</span>' +
             '<span>' + w + '×' + h + ' · ' + TS.formatBytes(blob.size) + '</span>' +
             '<button type="button" class="btn" data-dl="' + (results.length - 1) + '" style="padding:6px 10px;font-size:0.8rem;">Download</button>';
           resultList.appendChild(row);
         } catch (err) {
           const row = document.createElement('div');
           row.className = 'file-item';
-          row.innerHTML = '<span class="name">❌ ' + file.name + ' — could not resize</span>';
+          row.innerHTML = '<span class="name">❌ ' + escapeFileName(file.name) + ' — could not resize</span>';
           resultList.appendChild(row);
         }
       }

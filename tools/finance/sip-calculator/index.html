@@ -176,7 +176,7 @@
 <div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
 <script src="/assets/js/ga-config.js"></script><script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/core.js?v=2"></script><script src="/assets/js/ads.js?v=6"></script><script src="/assets/js/analytics.js"></script>
+<script src="/assets/js/core.js?v=4"></script><script src="/assets/js/ads.js?v=6"></script><script src="/assets/js/analytics.js"></script>
 <script>
 (function () {
   function fmt(n) { return '₹' + Math.round(n).toLocaleString('en-IN'); }
@@ -184,6 +184,10 @@
     var P = parseFloat(document.getElementById('monthly').value) || 0;
     var annual = parseFloat(document.getElementById('rate').value) || 0;
     var years = parseFloat(document.getElementById('years').value) || 0;
+    if (P < 0 || annual < 0 || years <= 0 || !Number.isFinite(P + annual + years)) {
+      ['maturity', 'invested', 'gained'].forEach(function (id) { document.getElementById(id).textContent = '—'; });
+      return;
+    }
     var n = years * 12, r = annual / 12 / 100;
     var fv = r > 0 ? P * ((Math.pow(1 + r, n) - 1) / r) * (1 + r) : P * n;
     var invested = P * n;

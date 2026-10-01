@@ -708,18 +708,18 @@ export const TOOL_SEO = {
   },
   'image/compress': {
     name: 'Image Compressor',
-    title: 'Compress Image to Exact KB Online Free | No Upload | ToolShoppy',
-    description: 'Compress any image to an exact KB size (20KB, 50KB, 100KB, 200KB) free online. No signup, files never leave your device. Perfect for PSC, UPSC, PAN, Aadhaar.',
+    title: 'Compress Image Online Free | Reduce Image Size to Exact KB | ToolShoppy',
+    description: 'Compress image online free to an exact KB size (20KB, 50KB, 100KB, 200KB). Works for forms, email, and uploads. No signup. Files stay on your device.',
   },
   'pdf/merge': {
     name: 'PDF Merge',
-    title: 'Merge PDF Files Online Free | Combine PDFs in Browser | ToolShoppy',
-    description: 'Merge PDF files online free. Combine, reorder and download in your browser — no signup, files never leave your device.',
+    title: 'Merge PDF Online Free | Combine PDF Files | ToolShoppy',
+    description: 'Merge PDF online free. Combine PDF files in your browser, reorder, then download. No signup. Files stay on your device.',
   },
   'pdf/compress': {
     name: 'PDF Compress',
-    title: 'Compress PDF Free Online | Reduce PDF Size No Upload | ToolShoppy',
-    description: 'Compress PDF free online to reduce file size for email and forms. No signup — files never leave your device.',
+    title: 'Compress PDF Online Free | Reduce PDF Size | ToolShoppy',
+    description: 'Compress PDF online free. Reduce PDF size for email and uploads in your browser. No signup, no upload to a server.',
   },
   'pdf/word-to-pdf': {
     name: 'Word to PDF',

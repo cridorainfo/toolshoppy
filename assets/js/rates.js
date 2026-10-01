@@ -6,6 +6,9 @@
   var cacheTime = 0;
   var TTL = 5 * 60 * 1000;
   var TROY_OZ_GRAMS = 31.1034768;
+  function timedFetch(url, options) {
+    return fetch(url, Object.assign({}, options || {}, { signal: AbortSignal.timeout(8000) }));
+  }
 
   var GR_HEADERS = {
     Accept: '*/*',
@@ -27,7 +30,7 @@
 
   function fetchJson(url, extraHeaders) {
     var headers = Object.assign({}, GR_HEADERS, extraHeaders || {});
-    return fetch(url, { headers: headers })
+    return timedFetch(url, { headers: headers })
       .then(function (res) {
         if (!res.ok) throw new Error('HTTP ' + res.status);
         return res.text();
@@ -135,18 +138,19 @@
   function fetchLiveRatesClient() {
     var day = todayIso();
     return Promise.all([
-      fetch('https://dahabpulse.com/api/widget-prices').then(function (r) { return r.json(); }),
+      timedFetch('https://dahabpulse.com/api/widget-prices').then(function (r) { return r.json(); }),
       fetchGoodreturnsGold('kerala', day).catch(function () { return null; }),
       fetchGoodreturnsSilver(day).catch(function () { return null; }),
-      fetch('https://api.gold-api.com/price/XAG').then(function (r) { return r.json(); }).catch(function () { return null; }),
-      fetch('https://api.frankfurter.dev/v1/latest?from=USD&to=INR').then(function (r) { return r.json(); }).catch(function () { return null; }),
+      timedFetch('https://api.gold-api.com/price/XAG').then(function (r) { return r.json(); }).catch(function () { return null; }),
+      timedFetch('https://api.frankfurter.dev/v1/latest?from=USD&to=INR').then(function (r) { return r.json(); }).catch(function () { return null; }),
     ]).then(function (parts) {
       var dahab = parts[0];
       var keralaGold = parts[1];
       var keralaSilver = parts[2];
       var xag = parts[3];
       var forex = parts[4];
-      var inrPerUsd = forex && forex.rates ? forex.rates.INR : 86;
+      var inrPerUsd = forex && forex.rates ? forex.rates.INR : null;
+      if (!Number.isFinite(inrPerUsd) || inrPerUsd <= 0) throw new Error('Exchange rates unavailable');
       if (!dahab || !dahab.perGramUsd) throw new Error('DahabPulse unavailable');
 
       function indiaFromSpot() {
@@ -202,7 +206,7 @@
       return data;
     }
 
-    return fetch('/api/rates', { cache: 'no-cache' })
+    return timedFetch('/api/rates', { cache: 'no-cache' })
       .then(function (res) {
         if (res.ok) return res.json();
         throw new Error('API ' + res.status);
@@ -212,7 +216,7 @@
         return fetchLiveRatesClient().then(store);
       })
       .catch(function () {
-        return fetch('/api/rates.json', { cache: 'no-cache' })
+        return timedFetch('/api/rates.json', { cache: 'no-cache' })
           .then(function (res) {
             if (!res.ok) throw new Error('Static fallback unavailable');
             return res.json();
