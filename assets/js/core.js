@@ -352,7 +352,7 @@
   // Theme is applied pre-paint by an inline <head> script (see page <head>);
   // this just flips + persists it after the toggle button is clicked.
   // TEMP: dark mode disabled — set THEME_DISABLED to false to re-enable.
-  var THEME_DISABLED = true;
+  var THEME_DISABLED = !document.documentElement.hasAttribute('data-theme-enabled');
   if (THEME_DISABLED) {
     try {
       document.documentElement.setAttribute('data-theme', 'light');

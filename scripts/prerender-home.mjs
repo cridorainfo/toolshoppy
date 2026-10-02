@@ -14,11 +14,15 @@ const catalog = readToolCatalog(html);
 const renderer = html.match(/function toolCardHTML\(t\) \{[\s\S]*?\n  \}/)?.[0];
 if (!renderer) throw new Error('Homepage renderer changed; update prerender-home.mjs.');
 // Only execute these two known sections of our checked-in page, never remote HTML.
+const directorySetup = html.slice(html.indexOf('  const groups = ['), html.indexOf('  function toolCardHTML'));
+const directoryRenderer = html.slice(html.indexOf('  function directoryHTML'), html.indexOf('  const featuredGrid ='));
 const { cards, count } = vm.runInNewContext(`
   const liveTools = ${JSON.stringify(catalog)};
   const favorites = [];
+  ${directorySetup}
   ${renderer}
-  ({ cards: liveTools.map(toolCardHTML).join(''), count: liveTools.length });
+  ${directoryRenderer}
+  ({ cards: directoryHTML(liveTools, true), count: liveTools.length });
 `, {}, { timeout: 1000 });
 const marker = '<div class="featured-grid" id="featuredGrid">';
 const start = html.indexOf(marker);
