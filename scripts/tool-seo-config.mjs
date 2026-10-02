@@ -467,7 +467,7 @@ export const TOOL_SEO = {
   'misc/yt-thumbnail': {
     name: 'YouTube Thumbnail Grabber',
     title: 'YouTube Thumbnail Downloader Free Online | ToolShoppy',
-    description: 'Download YouTube video thumbnails free online. Paste URL — no signup.',
+    description: 'Download YouTube video thumbnails free online in every available size. Paste the video URL and save the image — no signup, no software to install.',
     trust: 'browser',
     howToTitle: 'How to download a YouTube thumbnail',
     howToSteps: [
@@ -554,7 +554,7 @@ export const TOOL_SEO = {
   'rates/silver-rate/uae': {
     name: 'UAE Silver Rate',
     title: 'UAE Silver Rate Today | Per Gram Free | ToolShoppy',
-    description: 'UAE silver rate today per gram. Free indicative price — no signup.',
+    description: 'UAE silver rate today per gram in AED. Free indicative price with the 1 kg and 10 g rates, updated through the day — no signup.',
     trust: 'browser',
     howToTitle: 'How to check UAE silver rate',
     howToSteps: [

@@ -10,6 +10,8 @@ Goal: Beat them on UX, speed, privacy, and India/Gulf localisation.
 
 ## Hosting (do not confuse with Cloudflare Pages)
 - **Production:** Railway service `toolshoppy` (`npm start` → `node server.mjs`, listens on `PORT`), domain behind Cloudflare DNS/proxy. The runtime serves static files; tool processing remains in the browser.
+- **Live data API:** `server.mjs` also serves `/api/rates` and `/api/fuel` from [`lib/`](lib/) (Goodreturns, DahabPulse, gold-api, Frankfurter), cached in memory and refreshed every 5 min. The Cloudflare code in `functions/` and `worker/` is legacy and not deployed. `api/*.json` are only the offline fallback snapshots the pages use if the API is down. If Goodreturns changes its markup, `scripts/live-api.test.mjs` and the 502 path make it fail visibly instead of showing wrong prices.
+- **Asset cache-busting:** the service worker serves `?v=` assets cache-first, so bump the `?v=N` on every page whenever you change a shipped `.js`/`.css` (and bump `CACHE_NAME` in `sw.js` for shell changes).
 - **Redirects:** legacy aliases and headers are in [`serve.json`](serve.json). `server.mjs` also reads each HTML canonical to normalize slash, index and HTML variants in one hop, preserving query strings. Netlify-style `_redirects` is ignored and must not be reintroduced.
 - **Trends cron:** separate Railway service using [`railway.cron.toml`](railway.cron.toml) (never a root `railway.toml`).
 

@@ -7,6 +7,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { promisify } from 'node:util';
 import serve from 'serve-handler';
 import compression from 'compression';
+import { handleLiveApi, startLiveApiRefresh } from './lib/live-api.mjs';
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
 const ORIGIN = 'https://toolshoppy.com';
@@ -44,13 +45,25 @@ export function createSiteServer({ root = ROOT } = {}) {
       }
       let pathname;
       try { pathname = decodeURIComponent(url.pathname); } catch { res.writeHead(400); res.end(); return; }
+      const api = await handleLiveApi(pathname, url.searchParams);
+      if (api) {
+        const body = JSON.stringify(api.body);
+        res.writeHead(api.status, {
+          'Content-Type': 'application/json; charset=utf-8',
+          'Content-Length': Buffer.byteLength(body),
+          'Cache-Control': api.maxAge ? `public, max-age=${api.maxAge}` : 'no-store',
+          'Access-Control-Allow-Origin': '*',
+          'X-Robots-Tag': 'noindex',
+        });
+        res.end(req.method === 'HEAD' ? undefined : body); return;
+      }
       const target = canonicalPaths.get(pathname);
       if (target && (pathname !== target || url.pathname !== target)) {
         res.writeHead(301, { Location: target + url.search, 'Cache-Control': 'public, max-age=300' });
         res.end(); return;
       }
       if (files.has(pathname)) req.url = files.get(pathname) + url.search;
-      if (/^\/(scripts|docs|functions|worker|_workers|node_modules)(\/|$)|^\/[^/]+\.(md|mjs)$/i.test(pathname)) res.setHeader('X-Robots-Tag', 'noindex');
+      if (/^\/(scripts|docs|functions|lib|worker|_workers|node_modules)(\/|$)|^\/[^/]+\.(md|mjs)$/i.test(pathname)) res.setHeader('X-Robots-Tag', 'noindex');
       await compress(req, res);
       await serve(req, res, { ...config, public: root, cleanUrls: false, redirects: [], directoryListing: false });
     } catch (error) {
@@ -63,5 +76,8 @@ export function createSiteServer({ root = ROOT } = {}) {
 
 if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {
   const port = Number(process.env.PORT || 3000);
-  createSiteServer().listen(port, '0.0.0.0', () => console.log(`ToolShoppy listening on port ${port}`));
+  createSiteServer().listen(port, '0.0.0.0', () => {
+    console.log(`ToolShoppy listening on port ${port}`);
+    startLiveApiRefresh();
+  });
 }

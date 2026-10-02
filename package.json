@@ -11,7 +11,7 @@
     "prerender:home": "node scripts/prerender-home.mjs",
     "seo:services": "node scripts/update-service-search.mjs && node scripts/improve-tool-seo-landing.mjs --hubs-only && node scripts/prerender-home.mjs && node scripts/regenerate-sitemap.mjs",
     "audit:seo": "node scripts/audit-seo.mjs",
-    "check:seo": "node scripts/prerender-home.mjs --check && node scripts/audit-seo.mjs && node --test scripts/seo-routing.test.mjs",
+    "check:seo": "node scripts/prerender-home.mjs --check && node scripts/audit-seo.mjs && node --test scripts/seo-routing.test.mjs scripts/live-api.test.mjs",
     "enrich:seo": "node scripts/enrich-tool-seo.mjs",
     "seo:landing": "node scripts/improve-tool-seo-landing.mjs && node scripts/regenerate-sitemap.mjs"
   },

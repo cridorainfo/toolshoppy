@@ -1,72 +1,122 @@
 {
   "_fallback": true,
-  "updated_at": "2026-07-15T06:00:00+05:30",
-  "source_note": "Offline fallback only — deploy Cloudflare Pages Functions for live rates at /api/rates",
+  "updated_at": "2026-10-02T17:39:59.144Z",
+  "source_note": "Cached snapshot — live feed temporarily unavailable",
   "live": false,
   "gold": {
     "kerala": {
       "label": "Kerala",
       "currency": "INR",
-      "per_gram": { "24k": 14357, "22k": 13160, "18k": 10767 },
-      "per_sovereign_8g": { "22k": 105280 },
-      "per_10g": { "24k": 143570, "22k": 131600 }
+      "per_gram": {
+        "24k": 15028,
+        "22k": 13775,
+        "18k": 11271
+      },
+      "per_10g": {
+        "24k": 150280,
+        "22k": 137750
+      },
+      "per_sovereign_8g": {
+        "22k": 110200
+      }
     },
     "india": {
       "label": "India",
       "currency": "INR",
-      "per_gram": { "24k": 14357, "22k": 13160, "18k": 10767 },
-      "per_sovereign_8g": { "22k": 105280 },
-      "per_10g": { "24k": 143570, "22k": 131600 }
+      "per_gram": {
+        "24k": 15028,
+        "22k": 13775,
+        "18k": 11271
+      },
+      "per_10g": {
+        "24k": 150280,
+        "22k": 137750
+      },
+      "per_sovereign_8g": {
+        "22k": 110200
+      }
     },
     "uae": {
       "label": "UAE (Dubai)",
       "currency": "AED",
-      "per_gram": { "24k": 476.15, "22k": 436.55, "18k": 356.15 },
-      "per_tola_11_664g": { "24k": 5554, "22k": 5092 },
-      "per_10g": { "24k": 4762, "22k": 4366 }
+      "per_gram": {
+        "24k": 488.45,
+        "22k": 447.76,
+        "18k": 366.34
+      },
+      "per_10g": {
+        "24k": 4885,
+        "22k": 4478
+      },
+      "per_tola_11_664g": {
+        "24k": 5697,
+        "22k": 5223
+      }
     }
   },
   "silver": {
     "kerala": {
       "label": "Kerala",
       "currency": "INR",
-      "per_gram": 240,
-      "per_kg": 240000,
-      "per_10g": 2400
+      "per_gram": 245,
+      "per_10g": 2450,
+      "per_kg": 245000
     },
     "india": {
       "label": "India",
       "currency": "INR",
-      "per_gram": 240,
-      "per_kg": 240000,
-      "per_10g": 2400
+      "per_gram": 245,
+      "per_10g": 2450,
+      "per_kg": 245000
     },
     "uae": {
       "label": "UAE (Dubai)",
       "currency": "AED",
-      "per_gram": 6.85,
-      "per_kg": 6850,
-      "per_10g": 68.50
+      "per_gram": 7.12,
+      "per_10g": 71.2,
+      "per_kg": 7120
     }
   },
   "history": {
-    "gold_22k_inr": [13080, 13100, 13120, 13140, 13150, 13155, 13160],
-    "silver_inr": [232, 234, 236, 237, 238, 239, 240],
-    "dates": ["2026-07-09", "2026-07-10", "2026-07-11", "2026-07-12", "2026-07-13", "2026-07-14", "2026-07-15"]
+    "dates": [
+      "2026-09-26",
+      "2026-09-27",
+      "2026-09-28",
+      "2026-09-29",
+      "2026-09-30",
+      "2026-10-01",
+      "2026-10-02"
+    ],
+    "gold_22k_inr": [
+      13995,
+      13995,
+      13765,
+      13640,
+      13710,
+      13680,
+      13775
+    ],
+    "silver_inr": [
+      250,
+      250,
+      245,
+      240,
+      245,
+      240,
+      245
+    ]
   },
   "currency": {
-    "updated_at": "2026-07-15T06:00:00+05:30",
+    "updated_at": "2026-10-02T17:43:55.948Z",
     "inr_per_unit": {
       "INR": 1,
-      "AED": 26.18,
-      "SAR": 25.65,
-      "USD": 96.2,
-      "KWD": 311.0,
-      "OMR": 250.2,
-      "EUR": 103.5,
-      "GBP": 121.0,
-      "QAR": 26.4,
-      "BHD": 255.8
+      "USD": 96.32,
+      "AED": 26.23,
+      "SAR": 25.69,
+      "QAR": 26.46,
+      "KWD": 311.91,
+      "OMR": 250.51,
+      "BHD": 256.17
     },
     "symbols": {
       "INR": "₹",

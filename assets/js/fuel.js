@@ -29,7 +29,7 @@
           .then(function (res) { return res.json(); })
           .then(function (data) {
             data.live = false;
-            data.source_note = (data.source_note || '') + ' (cached fallback)';
+            data.source_note = data.source_note || 'Cached snapshot — live feed temporarily unavailable';
             if (state && data.states && data.states[state]) {
               return { state: Object.assign({ key: state }, data.states[state]), live: false, source_note: data.source_note };
             }

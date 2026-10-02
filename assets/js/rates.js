@@ -222,7 +222,7 @@
             return res.json();
           })
           .then(function (data) {
-            data.source_note = (data.source_note || '') + ' (cached fallback — deploy /api/rates for live)';
+            data.source_note = data.source_note || 'Cached snapshot — live feed temporarily unavailable';
             data.live = false;
             return store(data);
           });

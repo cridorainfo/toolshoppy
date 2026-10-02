@@ -119,7 +119,7 @@ test('priority service metadata and FAQ schemas match the visible reviewed copy'
 });
 
 test('HEAD and asset responses retain the expected status and content types', async () => {
-  for (const route of ['/', '/tools/image/compress/', '/robots.txt', '/sitemap.xml', '/assets/css/main.css?v=5', '/assets/js/core.js?v=2']) {
+  for (const route of ['/', '/tools/image/compress/', '/robots.txt', '/sitemap.xml', '/assets/css/main.css?v=5', '/assets/js/core.js?v=5']) {
     const get = await fetch(origin + route, { redirect: 'manual' });
     const head = await fetch(origin + route, { method: 'HEAD', redirect: 'manual' });
     assert.equal(get.status, 200, route);
