@@ -31,7 +31,7 @@ const HUB_COPY = {
     title: 'Free PDF Tools Online — Merge, Compress, Convert | ToolShoppy',
     description: 'Free PDF tools: merge, split, compress, Word↔PDF, editor, unlock, protect. No signup — PDFs never leave your device.',
     h1: 'Free PDF Tools',
-    sub: 'Merge, compress, convert, and edit PDFs privately in your browser.',
+    sub: 'Merge, compress, convert, and edit PDFs privately in your browser. Editing and downloads are free—no signup or watermark.',
   },
   video: {
     title: 'Free Video Tools Online — Compress, Trim, MP3 | ToolShoppy',

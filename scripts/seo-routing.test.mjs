@@ -61,11 +61,13 @@ test('missing pages and source directories do not become indexable directory lis
   }
 });
 
-test('homepage provides all 55 tool cards and the merge link before JavaScript executes', async () => {
+test('homepage provides every unique tool and the merge link before JavaScript executes', async () => {
   const res = await fetch(origin);
   const html = (await res.text()).replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '');
   const grid = html.slice(html.indexOf('id="featuredGrid"'), html.indexOf('<div class="ad-slot ad-incontent">'));
-  assert.equal([...grid.matchAll(/class="tool-card"/g)].length, 55);
+  // Start-here shortcuts and cross-category conversions intentionally repeat links.
+  const ids = new Set([...grid.matchAll(/class="tool-card"[^>]*data-id="([^"]+)"/g)].map(m => m[1]));
+  assert.equal(ids.size, readToolCatalog().length);
   assert.ok(grid.includes('href="/tools/pdf/merge/"'));
   for (const tool of readToolCatalog()) {
     assert.ok(grid.includes(`<a href="${tool.href}" class="tool-card-link">${tool.title}</a>`), tool.href);
@@ -132,4 +134,20 @@ test('HEAD and asset responses retain the expected status and content types', as
   const compressed = await fetch(origin + '/tools/image/compress/', { headers: { 'Accept-Encoding': 'gzip' } });
   assert.equal(compressed.headers.get('content-encoding'), 'gzip');
   assert.match(await compressed.text(), /Image Compressor — Reduce Image Size Online/);
+});
+
+test('native PDF editor modules and engine are served with executable MIME types', async () => {
+  for (const [route, type] of [
+    ['/assets/js/pdf-editor.mjs?v=1', /javascript/],
+    ['/assets/js/pdf-editor-worker.mjs?v=1', /javascript/],
+    ['/assets/js/pdf-edit-engine.mjs', /javascript/],
+    ['/assets/libs/pdfium/pdfium.mjs', /javascript/],
+    ['/assets/libs/pdfium/pdfium.wasm', /application\/wasm/],
+    ['/assets/examples/pdf-editor-demo.pdf', /application\/pdf/],
+    ['/llms.txt', /text\/plain/],
+  ]) {
+    const response = await fetch(origin + route, { method: 'HEAD' });
+    assert.equal(response.status, 200, route);
+    assert.match(response.headers.get('content-type'), type, route);
+  }
 });

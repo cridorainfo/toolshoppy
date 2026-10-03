@@ -1,0 +1,20 @@
+# ToolShoppy
+
+> Free online utility tools. No signup, login or email required. File-processing tools run on the user's device.
+
+## PDF editor
+
+- [Free PDF Editor](https://toolshoppy.com/tools/pdf/editor/): Edit supported existing PDF text, add text, images and highlights, move or delete selected objects, rotate pages, and download the edited PDF.
+- Editing and downloading are both free. No payment at export, subscription, trial expiry, credit card or added watermark.
+- Processing is client-side. PDF, font and image files are not uploaded.
+- The original PDF font is reused when character coverage is verified. Missing characters require a user-provided full TTF font or an explicitly selected replacement.
+- Limits: PDFs up to 40 MB and 1,000 pages; bounded undo history. Scanned-text reconstruction, complex-script shaping, grouped-text editing and automatic paragraph reflow are not supported.
+- This is not a secure document-redaction or sanitization tool. Shapes and highlights do not remove underlying content.
+- This service does not claim feature parity with commercial desktop PDF editors or that every competing editor charges for downloads.
+
+## Browse
+
+- [All tools](https://toolshoppy.com/)
+- [PDF tools](https://toolshoppy.com/tools/pdf/)
+- [Image tools](https://toolshoppy.com/tools/image/)
+- [Privacy](https://toolshoppy.com/privacy/)
