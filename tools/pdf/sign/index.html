@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PNN1LM2D9Q"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-PNN1LM2D9Q');</script>
 <meta charset="UTF-8">
 <script>(function(){try{/* TEMP: dark mode disabled — restore prior boot to re-enable */document.documentElement.setAttribute('data-theme','light');localStorage.setItem('ts-theme','light');}catch(e){}})();</script>
@@ -25,10 +24,9 @@
 <link rel="icon" href="/favicon.ico?v=2" sizes="any">
 <link rel="icon" href="/assets/img/favicon.svg?v=2" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/img/icon-192.png?v=2">
-<link rel="stylesheet" href="/assets/css/main.css?v=5">
+<link rel="stylesheet" href="/assets/css/main.css?v=9">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#DC2626">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
 <style>
 .editor-toolbar{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0;}
 .editor-toolbar .chip.active{background:var(--primary);color:#fff;border-color:var(--primary);}
@@ -80,11 +78,14 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I sign a PDF for free online?","acceptedAnswer":{"@type":"Answer","text":"Upload your PDF, click Signature, then draw, type, or upload your signature image. Drag it into place, resize if needed, then download the signed PDF."}},{"@type":"Question","name":"Is my signature saved anywhere?","acceptedAnswer":{"@type":"Answer","text":"Only in your own browser's local storage, if you check \"Save this signature\" — it never leaves your device or gets uploaded anywhere. You can clear it anytime."}},{"@type":"Question","name":"Does signing rasterize or blur my PDF?","acceptedAnswer":{"@type":"Answer","text":"No. Your original PDF content stays untouched and selectable — the signature, initials, and date are added on top using vector overlays, not a re-rendered image of the page."}},{"@type":"Question","name":"Is this a legally binding signature?","acceptedAnswer":{"@type":"Answer","text":"This creates a visual e-signature suitable for many everyday documents. For contracts requiring certified or notarized signatures, check your local legal requirements."}}]}
 </script>
+<meta name="google-adsense-account" content="ca-pub-1180208702657280">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+<script defer src="/assets/js/third-party.js?v=1"></script>
 </head>
 <body>
 <header class="site-header">
   <div class="container">
-    <a href="/" class="logo"><img src="/assets/img/logo.png?v=2" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
+    <a href="/" class="logo"><img src="/assets/img/logo.webp?v=3" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
     <div class="site-search"><input type="text" placeholder="Search tools…" onfocus="location.href='/search/'"></div>
     <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode">
       <svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg>
@@ -160,9 +161,9 @@
       </div>
       <div class="editor-modal" id="sigModal" hidden>
         <div class="editor-modal-panel">
-          <h3 id="sigModalTitle">Add your signature</h3>
+          <h2 id="sigModalTitle" class="seo-heading-3">Add your signature</h2>
           <div class="sig-saved-banner" id="sigSavedBanner" hidden>
-            <img id="sigSavedThumb" alt="Saved signature">
+            <img width="320" height="240" id="sigSavedThumb" alt="Saved signature">
             <span>Saved signature</span>
             <div class="sig-saved-actions">
               <button class="btn btn-sm btn-primary" id="sigUseSaved" type="button">Use it</button>
@@ -209,7 +210,7 @@
     <aside class="sidebar">
       <div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div>
       <div class="info-box">
-        <h4>How it works</h4>
+        <h3 class="seo-heading-4">How it works</h3>
         <ul>
           <li><strong>Signature</strong> — draw, type, or upload; reuse it on every page</li>
           <li><strong>Initials &amp; Date</strong> — quick stamps you can drag anywhere</li>
@@ -229,6 +230,44 @@
       <li>Click <strong>Save Signed PDF</strong> and download.</li>
     </ol>
   </div>
+  <!-- tool-guide:start -->
+    <div class="content-section tool-guide">
+      <h2>How Sign PDF works</h2>
+      <p>You open a PDF, choose Signature, and draw it, type it or upload an image of your signature. You then drag the signature to the right place on any page, resize it, and add initials, a date or extra text if needed.</p>
+      <p>The signature is placed on top of the page as an overlay, so the original PDF content is not rasterized and stays sharp and selectable. If you tick “Save this signature”, a copy stays in your own browser’s local storage for next time. It is not uploaded.</p>
+    </div>
+    <div class="content-section tool-guide">
+      <h2>Benefits of using Sign PDF on ToolShoppy</h2>
+      <ul class="guide-list">
+        <li>Sign forms, offer letters and rental agreements from your phone without printing.</li>
+        <li>Draw, type or upload, and reuse the same signature on every page.</li>
+        <li>The original document is not blurred or re-rendered.</li>
+        <li>No account and no watermark.</li>
+      </ul>
+    </div>
+    <div class="content-section tool-guide">
+      <h2>ToolShoppy vs iLovePDF, Smallpdf and desktop software</h2>
+      <div class="tool-guide-table-wrap"><table>
+  <thead><tr><th scope="col">What matters</th><th scope="col">ToolShoppy</th><th scope="col">Server-based online tools (e.g. iLovePDF, Smallpdf)</th><th scope="col">Desktop software (e.g. Adobe Acrobat)</th></tr></thead>
+  <tbody>
+  <tr><th scope="row">Where your file is processed</th><td>In your browser. The file is not uploaded to ToolShoppy.</td><td>Uploaded to the provider’s servers, then deleted later under their stated policy.</td><td>On your own computer.</td></tr>
+  <tr><th scope="row">Account and cost</th><td>No signup, no email. Free to use.</td><td>Free use is often capped by file size, tasks per day or features; some features need an account or paid plan (varies by provider).</td><td>Needs installing; advanced features usually need a paid licence (varies).</td></tr>
+  <tr><th scope="row">Type of signature</th><td>A visual signature placed on the page. It is not a certificate-based digital signature.</td><td>Many also offer simple visual signing; certificate-based signing is a separate, often paid, service.</td><td>Desktop PDF software can create certificate-based digital signatures.</td></tr>
+  </tbody></table></div>
+      <p class="guide-note">This compares general approaches, not every product. Other services change their features, limits and pricing, so check their current terms before deciding.</p>
+      <p class="guide-verdict"><strong>When something else is the better choice:</strong> the other side requires a certificate-based or legally certified e-signature, an audit trail, or signatures from several people. A dedicated e-signature service handles those workflows.</p>
+    </div>
+    <div class="content-section tool-guide">
+      <h2>Tips and common mistakes</h2>
+      <ul class="guide-list">
+        <li>Draw your signature with a stylus or finger on a large screen so it looks natural.</li>
+        <li>Use the Date and Text tools instead of editing the PDF text, so the original stays untouched.</li>
+        <li>Check the requirements of the recipient. Many everyday documents accept a visual signature; some contracts do not.</li>
+        <li>Clear the saved signature from the signature panel if you are on a shared device.</li>
+      </ul>
+      <p class="guide-note">Guide reviewed October 2026. Next steps: <a href="/tools/pdf/editor/">Edit text in the PDF</a> · <a href="/tools/pdf/protect/">Password protect the signed file</a> · <a href="/tools/pdf/merge/">Merge pages</a></p>
+    </div>
+    <!-- tool-guide:end -->
   <div class="content-section">
     <h2>Related tools</h2>
     <div class="related-tools">
@@ -259,15 +298,24 @@
 </main>
 <div class="ad-slot ad-bottom"><span class="ad-label">Ad</span></div>
 <footer class="site-footer">
-  <div class="container"><div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div></div>
+  <div class="container">
+    <nav class="footer-links" aria-label="Footer">
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="/privacy/">Privacy Policy</a>
+      <a href="/terms/">Terms of Service</a>
+      <a href="/blog/">Blog &amp; Guides</a>
+      <a href="/">All tools</a>
+    </nav>
+    <div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div>
+  </div>
 </footer>
 <div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
 <script src="/assets/js/ga-config.js"></script>
-<script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/core.js?v=5"></script>
-<script src="/assets/js/ads.js?v=6"></script>
-<script src="/assets/js/analytics.js"></script>
+<script src="/assets/js/core.js?v=7"></script>
+<script defer src="/assets/js/ads.js?v=7"></script>
+<script defer src="/assets/js/analytics.js"></script>
 <script src="/assets/libs/pdf.min.js"></script>
 <script src="/assets/libs/pdf-lib.min.js"></script>
 <script src="/assets/js/pdf-preview.js"></script>
@@ -775,7 +823,7 @@
       const item = document.createElement('div');
       item.className = 'editor-rail-item' + (n === pageNum ? ' is-active' : '');
       item.dataset.page = String(n);
-      item.innerHTML = '<img alt="Page ' + n + '" src=""><span class="rail-num">' + n + '</span>';
+      item.innerHTML = '<img width="160" height="220" alt="Page ' + n + '" src=""><span class="rail-num">' + n + '</span>';
       pageRail.appendChild(item);
       TSPdfPreview.renderPdfPage(currentFile, n, { maxWidth: 84 }).then((res) => {
         const img = item.querySelector('img');

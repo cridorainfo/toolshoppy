@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PNN1LM2D9Q"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-PNN1LM2D9Q');</script>
 <meta charset="UTF-8">
 <script>(function(){try{/* TEMP: dark mode disabled — restore prior boot to re-enable */document.documentElement.setAttribute('data-theme','light');localStorage.setItem('ts-theme','light');}catch(e){}})();</script>
@@ -25,10 +24,9 @@
 <link rel="icon" href="/favicon.ico?v=2" sizes="any">
 <link rel="icon" href="/assets/img/favicon.svg?v=2" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/img/icon-192.png?v=2">
-<link rel="stylesheet" href="/assets/css/main.css?v=5">
+<link rel="stylesheet" href="/assets/css/main.css?v=9">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#DC2626">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
 <style>
 .wm-field { margin-bottom: 14px; }
 .wm-field label { display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 6px; color: var(--text); }
@@ -59,11 +57,14 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I add a watermark to every page at once?","acceptedAnswer":{"@type":"Answer","text":"Yes. The watermark text, color, opacity, and angle you set apply to every page of the PDF automatically."}},{"@type":"Question","name":"Can I control how visible the watermark is?","acceptedAnswer":{"@type":"Answer","text":"Yes, use the opacity slider — low values create a subtle background stamp, higher values make it bold and obvious."}},{"@type":"Question","name":"Is my PDF uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. Watermarking uses pdf-lib entirely inside your browser — your file never leaves your device."}}]}
 </script>
+<meta name="google-adsense-account" content="ca-pub-1180208702657280">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+<script defer src="/assets/js/third-party.js?v=1"></script>
 </head>
 <body>
 <header class="site-header">
   <div class="container">
-    <a href="/" class="logo"><img src="/assets/img/logo.png?v=2" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
+    <a href="/" class="logo"><img src="/assets/img/logo.webp?v=3" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
     <div class="site-search"><input type="text" placeholder="Search tools…" onfocus="location.href='/search/'"></div>
     <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode">
       <svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg>
@@ -96,7 +97,7 @@
       </div>
       <div id="controls" style="display:none;">
         <div class="wm-preview-wrap" id="previewWrap">
-          <img id="previewImg" alt="First page preview">
+          <img width="320" height="240" id="previewImg" alt="First page preview">
           <div class="wm-preview-overlay" id="previewOverlay">WATERMARK</div>
         </div>
         <div class="wm-field">
@@ -150,7 +151,7 @@
     <aside class="sidebar">
       <div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div>
       <div class="info-box">
-        <h4>How it works</h4>
+        <h2 class="seo-heading-4">How it works</h2>
         <ul>
           <li>Preview updates live as you change text, color, or angle</li>
           <li>Applies the same watermark to every page</li>
@@ -168,6 +169,44 @@
       <li>Click <strong>Apply Watermark</strong> and download the stamped PDF.</li>
     </ol>
   </div>
+  <!-- tool-guide:start -->
+    <div class="content-section tool-guide">
+      <h2>How Watermark PDF works</h2>
+      <p>You type the watermark text and choose size, opacity, angle (horizontal or diagonal) and colour. A live preview shows how it will look.</p>
+      <p>When you apply it, the same text is stamped on every page with pdf-lib in your browser and a new PDF is saved. The watermark sits on top of the page content. It is a visible deterrent, not tamper-proof: someone with PDF editing tools may be able to remove it, so keep the original and share the stamped copy.</p>
+    </div>
+    <div class="content-section tool-guide">
+      <h2>Benefits of using Watermark PDF on ToolShoppy</h2>
+      <ul class="guide-list">
+        <li>Mark a draft, “CONFIDENTIAL” or “COPY” on every page at once.</li>
+        <li>Control opacity so the page stays readable.</li>
+        <li>Private: your document is never uploaded.</li>
+        <li>Free, with no signup.</li>
+      </ul>
+    </div>
+    <div class="content-section tool-guide">
+      <h2>ToolShoppy vs iLovePDF, Smallpdf and desktop software</h2>
+      <div class="tool-guide-table-wrap"><table>
+  <thead><tr><th scope="col">What matters</th><th scope="col">ToolShoppy</th><th scope="col">Server-based online tools (e.g. iLovePDF, Smallpdf)</th><th scope="col">Desktop software (e.g. Adobe Acrobat)</th></tr></thead>
+  <tbody>
+  <tr><th scope="row">Where your file is processed</th><td>In your browser. The file is not uploaded to ToolShoppy.</td><td>Uploaded to the provider’s servers, then deleted later under their stated policy.</td><td>On your own computer.</td></tr>
+  <tr><th scope="row">Account and cost</th><td>No signup, no email. Free to use.</td><td>Free use is often capped by file size, tasks per day or features; some features need an account or paid plan (varies by provider).</td><td>Needs installing; advanced features usually need a paid licence (varies).</td></tr>
+  <tr><th scope="row">Watermark type</th><td>Text watermark on all pages, with size, opacity, angle and colour.</td><td>Many also support image watermarks and page ranges (varies).</td><td>Full control, including images and specific pages.</td></tr>
+  </tbody></table></div>
+      <p class="guide-note">This compares general approaches, not every product. Other services change their features, limits and pricing, so check their current terms before deciding.</p>
+      <p class="guide-verdict"><strong>When something else is the better choice:</strong> you need an image or logo watermark, a different watermark on each page, or a watermark that is hard to remove. Use desktop PDF software or flatten the pages to images first.</p>
+    </div>
+    <div class="content-section tool-guide">
+      <h2>Tips and common mistakes</h2>
+      <ul class="guide-list">
+        <li>Start with around 20 to 30 percent opacity. Higher values can hide text.</li>
+        <li>A diagonal watermark is harder to crop out than one in a corner.</li>
+        <li>Add the watermark last, after merging and organizing pages.</li>
+        <li>Never watermark your only copy. Keep a clean original.</li>
+      </ul>
+      <p class="guide-note">Guide reviewed October 2026. Next steps: <a href="/tools/pdf/page-numbers/">Add page numbers</a> · <a href="/tools/pdf/protect/">Password protect</a> · <a href="/tools/pdf/merge/">Merge PDFs</a></p>
+    </div>
+    <!-- tool-guide:end -->
   <div class="content-section">
     <h2>Related tools</h2>
     <div class="related-tools">
@@ -197,15 +236,24 @@
 </main>
 <div class="ad-slot ad-bottom"><span class="ad-label">Ad</span></div>
 <footer class="site-footer">
-  <div class="container"><div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div></div>
+  <div class="container">
+    <nav class="footer-links" aria-label="Footer">
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="/privacy/">Privacy Policy</a>
+      <a href="/terms/">Terms of Service</a>
+      <a href="/blog/">Blog &amp; Guides</a>
+      <a href="/">All tools</a>
+    </nav>
+    <div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div>
+  </div>
 </footer>
 <div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
 <script src="/assets/js/ga-config.js"></script>
-<script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/core.js?v=5"></script>
-<script src="/assets/js/ads.js?v=6"></script>
-<script src="/assets/js/analytics.js"></script>
+<script src="/assets/js/core.js?v=7"></script>
+<script defer src="/assets/js/ads.js?v=7"></script>
+<script defer src="/assets/js/analytics.js"></script>
 <script src="/assets/libs/pdf.min.js"></script>
 <script src="/assets/libs/pdf-lib.min.js"></script>
 <script src="/assets/js/pdf-preview.js"></script>

@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PNN1LM2D9Q"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-PNN1LM2D9Q');</script>
 <meta charset="UTF-8">
 <script>(function(){try{/* TEMP: dark mode disabled — restore prior boot to re-enable */document.documentElement.setAttribute('data-theme','light');localStorage.setItem('ts-theme','light');}catch(e){}})();</script>
@@ -25,10 +24,9 @@
 <link rel="icon" href="/favicon.ico?v=2" sizes="any">
 <link rel="icon" href="/assets/img/favicon.svg?v=2" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/img/icon-192.png?v=2">
-<link rel="stylesheet" href="/assets/css/main.css?v=5">
+<link rel="stylesheet" href="/assets/css/main.css?v=9">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#DC2626">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -104,11 +102,14 @@
   ]
 }
 </script>
+<meta name="google-adsense-account" content="ca-pub-1180208702657280">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+<script defer src="/assets/js/third-party.js?v=1"></script>
 </head>
 <body>
 <header class="site-header">
   <div class="container">
-    <a href="/" class="logo"><img src="/assets/img/logo.png?v=2" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
+    <a href="/" class="logo"><img src="/assets/img/logo.webp?v=3" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
     <div class="site-search"><input type="text" placeholder="Search tools…" onfocus="location.href='/search/'"></div>
     <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode">
       <svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg>
@@ -140,7 +141,7 @@
         <input type="file" id="fileInput" accept="image/*" multiple>
       </div>
       <div id="controls" style="display:none;">
-        <h3 style="margin-top:20px;font-size:1rem;">Target size</h3>
+        <h2 style="margin-top:20px;font-size:1rem;" class="seo-heading-3">Target size</h2>
         <div class="chip-row" id="presetRow">
           <button class="chip" data-kb="20">20 KB</button>
           <button class="chip active" data-kb="50">50 KB</button>
@@ -181,7 +182,7 @@
     <aside class="sidebar">
       <div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div>
       <div class="info-box">
-        <h4>How it works</h4>
+        <h3 class="seo-heading-4">How it works</h3>
         <ul>
           <li>Pick a target size (20KB–500KB) or enter a custom value</li>
           <li>We binary-search JPEG quality in your browser until the size matches</li>
@@ -214,6 +215,13 @@
     <p>Read the form’s file type, pixel dimensions and file-size limit separately. The <a href="/tools/image/govt-photo/">application photo resizer</a> provides common starting presets; the current instructions on your particular form take precedence. After compression, compare the result with those requirements before uploading it to the application website.</p><p>For a worked walkthrough, see <a href="/blog/compress-image-to-20kb-free/">how to compress an image to a 20 KB target</a>.</p>
   </section>
   <!-- service-search:end -->
+  <!-- size-links:start -->
+  <section class="content-section">
+    <h2>Compress to a specific size</h2>
+    <p>Many upload forms set a hard limit. These pages open the same compressor with the target already chosen, and explain what to expect at each size.</p>
+    <ul class="guide-list"><li><a href="/tools/image/compress/20kb/">Compress image to 20 KB</a></li><li><a href="/tools/image/compress/50kb/">Compress image to 50 KB</a></li><li><a href="/tools/image/compress/100kb/">Compress image to 100 KB</a></li><li><a href="/tools/image/compress/200kb/">Compress image to 200 KB</a></li></ul>
+  </section>
+  <!-- size-links:end -->
   <div class="content-section">
     <h2>How to compress an image to an exact KB size</h2>
     <ol>
@@ -224,6 +232,45 @@
     </ol>
   </div>
   <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
+  <!-- tool-guide:start -->
+    <div class="content-section tool-guide">
+      <h2>How Image Compressor works</h2>
+      <p>You choose a target size such as 20, 50, 100, 200 or 500 KB, or type your own. For each image the tool encodes a JPEG and adjusts the quality up and down, a binary search, until the file lands as close to your target as it can without going over. For very small targets it can also reduce pixel dimensions.</p>
+      <p>All of this uses the canvas in your browser, so nothing is uploaded. The result is always a JPEG, which means transparency and animation are not kept. The target is not a guarantee of an exact byte count, so check the size shown after compression.</p>
+    </div>
+    <div class="content-section tool-guide">
+      <h2>Benefits of using Image Compressor on ToolShoppy</h2>
+      <ul class="guide-list">
+        <li>Hit a form’s “under 50 KB” or “under 100 KB” limit without guessing at quality sliders.</li>
+        <li>Compress several photos at once and download them as a ZIP.</li>
+        <li>See original and compressed sizes side by side.</li>
+        <li>Photos stay on your device, which matters for ID and exam photos.</li>
+      </ul>
+    </div>
+    <div class="content-section tool-guide">
+      <h2>ToolShoppy vs server-based image tools and desktop editors</h2>
+      <div class="tool-guide-table-wrap"><table>
+  <thead><tr><th scope="col">What matters</th><th scope="col">ToolShoppy</th><th scope="col">Server-based image tools</th><th scope="col">Desktop editors (e.g. Photoshop, GIMP)</th></tr></thead>
+  <tbody>
+  <tr><th scope="row">Where your photo is processed</th><td>In your browser. The photo is not uploaded to ToolShoppy.</td><td>Uploaded to the provider’s servers, then deleted later under their stated policy.</td><td>On your own computer.</td></tr>
+  <tr><th scope="row">Account and cost</th><td>No signup, no email. Free to use.</td><td>Often free with limits on size, batch count or quality; some require an account (varies).</td><td>Needs installing and some learning; some editors are paid.</td></tr>
+  <tr><th scope="row">Target size</th><td>Pick a KB target and the tool searches for the best quality that fits.</td><td>Most use a quality slider or a fixed “smart” level, so you may need several tries.</td><td>You adjust quality and re-export by hand until it fits.</td></tr>
+  <tr><th scope="row">Transparency</th><td>Output is JPEG. Transparency is not preserved.</td><td>Many keep PNG transparency by quantising colours.</td><td>Full control of format and transparency.</td></tr>
+  </tbody></table></div>
+      <p class="guide-note">This compares general approaches, not every product. Other services change their features, limits and pricing, so check their current terms before deciding.</p>
+      <p class="guide-verdict"><strong>When something else is the better choice:</strong> you need to keep PNG transparency, a specific colour profile, or the best possible quality for printing. A desktop editor, or the Image Converter for PNG or WebP output, fits better.</p>
+    </div>
+    <div class="content-section tool-guide">
+      <h2>Tips and common mistakes</h2>
+      <ul class="guide-list">
+        <li>Start from the largest, clearest original you have. Compressing an already-small photo hurts quality faster.</li>
+        <li>Check the dimensions required by the form too. Compression does not guarantee them.</li>
+        <li>Look at faces and text at 100 percent zoom before uploading.</li>
+        <li>If a form needs exact pixel size and a KB limit, resize first, then compress.</li>
+      </ul>
+      <p class="guide-note">Guide reviewed October 2026. Next steps: <a href="/tools/image/resize/">Resize to exact pixels</a> · <a href="/tools/image/govt-photo/">Government photo presets</a> · <a href="/blog/compress-image-to-20kb-free/">Compress to 20 KB guide</a></p>
+    </div>
+    <!-- tool-guide:end -->
   <div class="content-section">
     <h2>Related tools</h2>
     <div class="related-tools">
@@ -262,16 +309,23 @@
 <div class="ad-slot ad-bottom"><span class="ad-label">Ad</span></div>
 <footer class="site-footer">
   <div class="container">
+    <nav class="footer-links" aria-label="Footer">
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="/privacy/">Privacy Policy</a>
+      <a href="/terms/">Terms of Service</a>
+      <a href="/blog/">Blog &amp; Guides</a>
+      <a href="/">All tools</a>
+    </nav>
     <div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div>
   </div>
 </footer>
 <div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
 <script src="/assets/js/ga-config.js"></script>
-<script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/core.js?v=5"></script>
-<script src="/assets/js/ads.js?v=6"></script>
-<script src="/assets/js/analytics.js"></script>
+<script src="/assets/js/core.js?v=7"></script>
+<script defer src="/assets/js/ads.js?v=7"></script>
+<script defer src="/assets/js/analytics.js"></script>
 <script>
 (function () {
   function escapeFileName(value) { return String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
@@ -358,10 +412,14 @@
     ctx.drawImage(img, 0, 0);
     let blob = await TS.canvasToTargetSize(canvas, targetBytes, 'image/jpeg');
     let scale = 1;
-    while (blob && blob.size > targetBytes * 1.5 && scale > 0.2) {
-      scale -= 0.15;
-      const w = Math.round(img.naturalWidth * scale);
-      const h = Math.round(img.naturalHeight * scale);
+    // Still over the limit at the lowest quality: shrink the pixels until it fits. JPEG size
+    // falls roughly with area, so step by the square root of the overshoot (with a floor/ceiling
+    // on each step) instead of a fixed amount.
+    for (let i = 0; blob && blob.size > targetBytes && i < 12; i++) {
+      scale *= Math.max(0.6, Math.min(0.92, Math.sqrt(targetBytes / blob.size) * 0.97));
+      const w = Math.max(16, Math.round(img.naturalWidth * scale));
+      const h = Math.max(16, Math.round(img.naturalHeight * scale));
+      if (w === canvas.width && h === canvas.height) break;
       canvas.width = w;
       canvas.height = h;
       ctx.drawImage(img, 0, 0, w, h);
@@ -398,7 +456,7 @@
           const row = document.createElement('div');
           row.className = 'file-item';
           row.innerHTML =
-            '<img src="' + previewUrl + '" alt="" style="width:48px;height:48px;object-fit:cover;border-radius:8px;border:1px solid var(--border);flex-shrink:0;">' +
+            '<img width="48" height="48" src="' + previewUrl + '" alt="Selected image preview" style="width:48px;height:48px;object-fit:cover;border-radius:8px;border:1px solid var(--border);flex-shrink:0;">' +
             '<span class="name">' + escapeFileName(outName) + '</span>' +
             '<span>' + TS.formatBytes(file.size) + ' → ' + TS.formatBytes(blob.size) + ' (' + TS.percentSaved(file.size, blob.size) + '%)</span>' +
             '<button type="button" class="btn" data-dl="' + (results.length - 1) + '" style="padding:6px 10px;font-size:0.8rem;">Download</button>';

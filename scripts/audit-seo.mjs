@@ -4,6 +4,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { isThinPage } from './lib/page-policy.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const canonicalOrigin = 'https://toolshoppy.com';
@@ -22,8 +23,9 @@ function inspect(html) {
   const meta = tags(html, 'meta');
   const body = visibleSource(html).split(/<body\b[^>]*>/i)[1] || '';
   const jsonErrors = [];
+  const schemas = [];
   for (const m of html.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)) {
-    try { JSON.parse(m[1]); } catch (e) { jsonErrors.push(e.message); }
+    try { const parsed = JSON.parse(m[1]); schemas.push(...(Array.isArray(parsed) ? parsed : parsed['@graph'] || [parsed])); } catch (e) { jsonErrors.push(e.message); }
   }
   return {
     title: textOnly(html.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1] || ''),
@@ -35,6 +37,11 @@ function inspect(html) {
     links: tags(body, 'a').map(t => t.href).filter(Boolean),
     assets: [...tags(html.replace(/(<script\b[^>]*>)[\s\S]*?<\/script>/gi, '$1</script>'), 'script').map(t => t.src), ...tags(visibleSource(html), 'img').map(t => t.src), ...tags(visibleSource(html), 'link').filter(t => /stylesheet|icon/.test(t.rel || '')).map(t => t.href)].filter(Boolean),
     jsonErrors,
+    schemas,
+    headings: [...body.matchAll(/<h([1-6])\b/gi)].map(m => Number(m[1])),
+    images: tags(body, 'img'),
+    breadcrumbUI: /<nav\b[^>]*aria-label=["']Breadcrumb["']/i.test(body),
+    authorBio: /class=["'][^"']*author-bio/.test(body),
   };
 }
 function walk(dir) {
@@ -56,6 +63,12 @@ const redirectSources = new Set(redirects.map(r => r.source.replace(/\/$/, '')))
 const errors = [];
 const pages = files.map(file => ({ file, path: route(file), ...inspect(read(file)) }));
 const indexable = pages.filter(p => !/noindex|\bnone\b/i.test(p.robots) && p.file !== '404.html');
+for (const p of pages) {
+  if (!['404.html', 'search/index.html'].includes(p.file) && !isThinPage(p.file) && /noindex|\bnone\b/i.test(p.robots)) errors.push({ type: 'unexpected-noindex', file: p.file });
+  // Thin district pages must stay noindex: they repeat the statewide rate (scripts/lib/page-policy.mjs).
+  if (isThinPage(p.file) && !/noindex/i.test(p.robots)) errors.push({ type: 'thin-page-indexable', file: p.file });
+}
+if (!/User-agent:\s*\*[\s\S]*Allow:\s*\//i.test(read('robots.txt')) || /Disallow:\s*\S+/i.test(read('robots.txt')) || !read('robots.txt').includes(`Sitemap: ${canonicalOrigin}/sitemap.xml`)) errors.push({ type: 'robots-policy' });
 for (const p of indexable) {
   if (!p.title) errors.push({ type: 'missing-title', file: p.file });
   if (p.descriptions.length !== 1) errors.push({ type: 'description-count', file: p.file, count: p.descriptions.length });
@@ -63,6 +76,19 @@ for (const p of indexable) {
   if (p.canonicals.length !== 1 || p.canonicals[0] !== canonicalOrigin + p.path) errors.push({ type: 'canonical-mismatch', file: p.file, canonical: p.canonicals });
   if (!sitemapSet.has(canonicalOrigin + p.path)) errors.push({ type: 'missing-from-sitemap', file: p.file });
   p.jsonErrors.forEach(error => errors.push({ type: 'invalid-json-ld', file: p.file, error }));
+  if (!p.schemas.length) errors.push({ type: 'missing-schema', file: p.file });
+  if (p.headings.some((level, i) => level > 4 || (i > 0 && level > p.headings[i - 1] + 1))) errors.push({ type: 'heading-order', file: p.file });
+  for (const img of p.images) {
+    if (!Object.hasOwn(img, 'alt') || !(Number(img.width) > 0 && Number(img.height) > 0)) errors.push({ type: 'image-accessibility-or-dimensions', file: p.file, image: img.src || img.id });
+  }
+  const breadcrumb = p.schemas.find(s => s['@type'] === 'BreadcrumbList');
+  if (p.path !== '/' && (!breadcrumb || !p.breadcrumbUI)) errors.push({ type: 'missing-breadcrumb', file: p.file });
+  if (breadcrumb && (!Array.isArray(breadcrumb.itemListElement) || breadcrumb.itemListElement.some((item, i) => item.position !== i + 1 || !item.name || !item.item?.startsWith(canonicalOrigin + '/')))) errors.push({ type: 'invalid-breadcrumb', file: p.file });
+  const article = p.schemas.find(s => ['Article', 'BlogPosting'].includes(s['@type']));
+  if (article && (!p.authorBio || !article.author?.name || !article.author?.url)) errors.push({ type: 'missing-article-attribution', file: p.file });
+}
+for (const rule of redirects) {
+  if (redirects.some(next => next.source === rule.destination) || !indexable.some(p => p.path === rule.destination)) errors.push({ type: 'redirect-chain-or-invalid-destination', source: rule.source, destination: rule.destination });
 }
 for (const p of pages) {
   for (const [kind, values] of [['link', p.links], ['asset', p.assets]]) {
@@ -103,6 +129,10 @@ const report = {
   duplicateTitles: duplicates('title'), duplicateDescriptions: duplicates('description'),
   pages,
 };
+for (const field of ['orphanPages', 'duplicateTitles', 'duplicateDescriptions']) {
+  for (const value of report[field]) errors.push({ type: field, value });
+}
+report.summary.errorCount = errors.length;
 
 async function fetchChain(url, userAgent = 'ToolShoppy-SEO-Audit/1.0') {
   const chain = [], seen = new Set();
@@ -140,7 +170,11 @@ if (liveOrigin) {
   report.summary.liveChecked = responses.length;
   report.summary.liveErrors = responses.filter(r => r.error || (r.chain.at(-1)?.status !== 200 && r.path !== '/audit-missing-page-20260912')).map(r => ({ path: r.path, error: r.error, status: r.chain.at(-1)?.status }));
   report.summary.liveIndexabilityErrors = responses.filter(r => sitemapSet.has(canonicalOrigin + r.path) && (r.page?.canonicals?.[0] !== canonicalOrigin + r.path || /noindex|\bnone\b/i.test(r.page?.robots || '') || /noindex|\bnone\b/i.test(r.chain.at(-1)?.headers['x-robots-tag'] || '') || r.page?.jsonErrors?.length)).map(r => r.path);
+  report.live.originVariants = new URL(liveOrigin).origin === canonicalOrigin
+    ? await Promise.all(['http://toolshoppy.com/', 'https://www.toolshoppy.com/', 'http://www.toolshoppy.com/tools/pdf/merge'].map(async url => ({ url, ...await fetchChain(url) })))
+    : [];
+  report.summary.liveRedirectChainErrors = [...responses, ...report.live.originVariants].filter(r => r.chain.length > 2).map(r => ({ path: r.path || r.url, hops: r.chain.length - 1 }));
 }
 if (output) fs.writeFileSync(path.resolve(output), JSON.stringify(report, null, 2) + '\n');
 console.log(JSON.stringify({ ...report.summary, orphanPages: report.orphanPages, duplicateTitles: report.duplicateTitles, duplicateDescriptions: report.duplicateDescriptions, errors: report.errors, output }, null, 2));
-process.exitCode = errors.length || report.summary.liveErrors?.length || report.summary.liveIndexabilityErrors?.length ? 1 : 0;
+process.exitCode = errors.length || report.summary.liveErrors?.length || report.summary.liveIndexabilityErrors?.length || report.summary.liveRedirectChainErrors?.length ? 1 : 0;

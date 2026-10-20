@@ -161,7 +161,6 @@ function hubPageHtml(cat, tools) {
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PNN1LM2D9Q"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-PNN1LM2D9Q');</script>
 <meta charset="UTF-8">
 <script>(function(){try{document.documentElement.setAttribute('data-theme','light');localStorage.setItem('ts-theme','light');}catch(e){}})();</script>
@@ -185,8 +184,9 @@ function hubPageHtml(cat, tools) {
 <link rel="apple-touch-icon" href="/assets/img/icon-192.png?v=2">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#DC2626">
-<link rel="stylesheet" href="/assets/css/main.css?v=5">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/assets/css/main.css?v=9">
+<meta name="google-adsense-account" content="ca-pub-1180208702657280">
+<script defer src="/assets/js/third-party.js?v=1"></script>
 <script type="application/ld+json">
 ${JSON.stringify(schema, null, 2)}
 </script>
@@ -197,7 +197,7 @@ ${JSON.stringify(crumb, null, 2)}
 <body>
 <header class="site-header">
   <div class="container">
-    <a href="/" class="logo"><img src="/assets/img/logo.png?v=2" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
+    <a href="/" class="logo"><img src="/assets/img/logo.webp?v=3" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
     <nav class="site-nav">
       <a href="/tools/pdf/">PDF</a>
       <a href="/tools/image/">Image</a>
@@ -228,6 +228,7 @@ ${JSON.stringify(crumb, null, 2)}
     <h2>${esc(HUB_GUIDES[cat][0])}</h2>
     ${HUB_GUIDES[cat][1]}
   </section>
+  <h2 class="section-heading">Choose a tool</h2>
   <div class="featured-grid" style="margin-top:20px;">
 ${cards}
   </div>
@@ -243,10 +244,9 @@ ${cards}
 </footer>
 <div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
 <script src="/assets/js/ga-config.js"></script>
-<script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/core.js"></script>
-<script src="/assets/js/ads.js?v=6"></script>
+<script src="/assets/js/core.js?v=7"></script>
+<script src="/assets/js/ads.js?v=7"></script>
 <script src="/assets/js/analytics.js"></script>
 </body>
 </html>

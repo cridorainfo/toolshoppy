@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PNN1LM2D9Q"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-PNN1LM2D9Q');</script>
 <meta charset="UTF-8">
 <script>(function(){try{/* TEMP: dark mode disabled — restore prior boot to re-enable */document.documentElement.setAttribute('data-theme','light');localStorage.setItem('ts-theme','light');}catch(e){}})();</script>
@@ -25,10 +24,9 @@
 <link rel="icon" href="/favicon.ico?v=2" sizes="any">
 <link rel="icon" href="/assets/img/favicon.svg?v=2" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/img/icon-192.png?v=2">
-<link rel="stylesheet" href="/assets/css/main.css?v=5">
+<link rel="stylesheet" href="/assets/css/main.css?v=9">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#DC2626">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"PDF to Excel","url":"https://toolshoppy.com/tools/pdf/pdf-to-excel/","description":"Convert PDF tables and statements to Excel XLSX free online, 100% client-side.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
 </script>
@@ -38,11 +36,14 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I convert PDF to Excel for free?","acceptedAnswer":{"@type":"Answer","text":"Upload a text-based PDF (invoice, statement, or ledger), choose Auto tables or Line-by-line, click Convert, then download the .xlsx file."}},{"@type":"Question","name":"Is this good for accounting PDFs?","acceptedAnswer":{"@type":"Answer","text":"Yes. Auto mode rebuilds columns from text positions so invoices, bank statements, and trial balances land in spreadsheet cells. Amounts are coerced to numbers when possible."}},{"@type":"Question","name":"Is my PDF uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. Extraction and Excel generation run entirely in your browser."}}]}
 </script>
+<meta name="google-adsense-account" content="ca-pub-1180208702657280">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+<script defer src="/assets/js/third-party.js?v=1"></script>
 </head>
 <body>
 <header class="site-header">
   <div class="container">
-    <a href="/" class="logo"><img src="/assets/img/logo.png?v=2" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
+    <a href="/" class="logo"><img src="/assets/img/logo.webp?v=3" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
     <div class="site-search"><input type="text" placeholder="Search tools…" onfocus="location.href='/search/'"></div>
     <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode">
       <svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg>
@@ -104,7 +105,7 @@
     <aside class="sidebar">
       <div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div>
       <div class="info-box">
-        <h4>Built for accountants</h4>
+        <h2 class="seo-heading-4">Built for accountants</h2>
         <ul>
           <li>Auto mode rebuilds columns from text positions (invoices, trial balances, GST reports)</li>
           <li>Amounts like 1,250.00 or ₹500 become real Excel numbers</li>
@@ -123,6 +124,45 @@
       <li>Click Convert, then download the <strong>.xlsx</strong> file for Excel, Google Sheets, or LibreOffice.</li>
     </ol>
   </div>
+  <!-- tool-guide:start -->
+    <div class="content-section tool-guide">
+      <h2>How PDF to Excel works</h2>
+      <p>PDF.js extracts every piece of text on a page together with its position. In Auto tables mode the tool groups text that lines up into rows and columns, so an invoice or statement becomes cells. Line-by-line mode simply puts each line in its own row.</p>
+      <p>Amounts like 1,250.00 or ₹500 are converted to real Excel numbers where the format is clear. You get an .xlsx file with one sheet per page, or all pages combined on one sheet. This works on text-based PDFs; scanned pages have no text, so run OCR first. Column detection is based on spacing, so irregular layouts can need a quick manual fix.</p>
+    </div>
+    <div class="content-section tool-guide">
+      <h2>Benefits of using PDF to Excel on ToolShoppy</h2>
+      <ul class="guide-list">
+        <li>Move invoice, statement and ledger data into Excel or Google Sheets without retyping.</li>
+        <li>Numbers arrive as numbers, so you can add them up straight away.</li>
+        <li>Choose Auto tables for columns or Line-by-line for narrative documents.</li>
+        <li>Private: financial documents stay on your device.</li>
+      </ul>
+    </div>
+    <div class="content-section tool-guide">
+      <h2>ToolShoppy vs iLovePDF, Smallpdf and desktop software</h2>
+      <div class="tool-guide-table-wrap"><table>
+  <thead><tr><th scope="col">What matters</th><th scope="col">ToolShoppy</th><th scope="col">Server-based online tools (e.g. iLovePDF, Smallpdf)</th><th scope="col">Desktop software (e.g. Adobe Acrobat)</th></tr></thead>
+  <tbody>
+  <tr><th scope="row">Where your file is processed</th><td>In your browser. The file is not uploaded to ToolShoppy.</td><td>Uploaded to the provider’s servers, then deleted later under their stated policy.</td><td>On your own computer.</td></tr>
+  <tr><th scope="row">Account and cost</th><td>No signup, no email. Free to use.</td><td>Free use is often capped by file size, tasks per day or features; some features need an account or paid plan (varies by provider).</td><td>Needs installing; advanced features usually need a paid licence (varies).</td></tr>
+  <tr><th scope="row">Table detection</th><td>Position-based column grouping on text PDFs; may need cleanup on irregular layouts.</td><td>Some use more advanced table detection and OCR (varies).</td><td>Acrobat and Excel can import some PDF tables directly.</td></tr>
+  <tr><th scope="row">Scanned statements</th><td>Needs OCR first.</td><td>Often includes OCR as an option.</td><td>OCR in paid editions.</td></tr>
+  </tbody></table></div>
+      <p class="guide-note">This compares general approaches, not every product. Other services change their features, limits and pricing, so check their current terms before deciding.</p>
+      <p class="guide-verdict"><strong>When something else is the better choice:</strong> your PDF has complex nested tables, merged cells or is a scan with skewed columns. Excel’s own Get Data from PDF, or a converter with table-recognition OCR, may give cleaner results.</p>
+    </div>
+    <div class="content-section tool-guide">
+      <h2>Tips and common mistakes</h2>
+      <ul class="guide-list">
+        <li>Try both layout modes and keep the one with cleaner columns.</li>
+        <li>Check totals against the PDF after converting, especially negative numbers and brackets.</li>
+        <li>For multi-page statements, use “Combine all pages into one sheet”.</li>
+        <li>Scanned statement? Run Image OCR or OCR PDF first.</li>
+      </ul>
+      <p class="guide-note">Guide reviewed October 2026. Next steps: <a href="/tools/pdf/ocr-pdf/">OCR scanned PDFs</a> · <a href="/tools/pdf/pdf-to-word/">PDF to Word</a> · <a href="/tools/finance/gst-calculator/">GST calculator</a></p>
+    </div>
+    <!-- tool-guide:end -->
   <div class="content-section">
     <h2>Related tools</h2>
     <div class="related-tools">
@@ -156,14 +196,25 @@
   </div>
 </main>
 <div class="ad-slot ad-bottom"><span class="ad-label">Ad</span></div>
-<footer class="site-footer"><div class="container"><div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div></div></footer>
+<footer class="site-footer">
+  <div class="container">
+    <nav class="footer-links" aria-label="Footer">
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="/privacy/">Privacy Policy</a>
+      <a href="/terms/">Terms of Service</a>
+      <a href="/blog/">Blog &amp; Guides</a>
+      <a href="/">All tools</a>
+    </nav>
+    <div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div>
+  </div>
+</footer>
 <div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
 <script src="/assets/js/ga-config.js"></script>
-<script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/core.js?v=5"></script>
-<script src="/assets/js/ads.js?v=6"></script>
-<script src="/assets/js/analytics.js"></script>
+<script src="/assets/js/core.js?v=7"></script>
+<script defer src="/assets/js/ads.js?v=7"></script>
+<script defer src="/assets/js/analytics.js"></script>
 <script src="/assets/libs/pdf.min.js"></script>
 <script src="/assets/libs/xlsx.full.min.js"></script>
 <script src="/assets/js/pdf-preview.js"></script>

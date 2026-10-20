@@ -7,7 +7,8 @@
   font-family: 'Inter';
   font-style: normal;
   font-weight: 100 900;
-  font-display: swap;
+  /* Avoid late line-wrap changes in mobile headings and breadcrumbs. */
+  font-display: optional;
   src: url('/assets/fonts/Inter-latin.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
@@ -15,9 +16,9 @@
   font-family: 'Inter';
   font-style: normal;
   font-weight: 100 900;
-  font-display: swap;
+  font-display: optional;
   src: url('/assets/fonts/Inter-latin-ext.woff2') format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20B8, U+20BA-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 /* Self-hosted script fonts for typed e-signatures (PDF Sign tool) */
 @font-face {
@@ -486,14 +487,14 @@ button { font-family: inherit; cursor: pointer; }
   background: rgba(220,38,38, 0.16);
   color: #FDA4AF;
 }
-.tool-card h3 {
+.tool-card :is(h3, .seo-heading-3) {
   font-size: 1rem;
   font-weight: 700;
   margin-bottom: 4px;
   line-height: 1.3;
   transition: color .2s ease;
 }
-.tool-card:hover h3 { color: var(--primary); }
+.tool-card:hover :is(h3, .seo-heading-3) { color: var(--primary); }
 .tool-card p {
   font-size: 0.82rem;
   color: var(--text-muted);
@@ -564,7 +565,7 @@ button { font-family: inherit; cursor: pointer; }
   box-shadow: var(--shadow);
 }
 .feature-card .icon-tile { margin-bottom: 14px; }
-.feature-card h3 { font-size: 0.98rem; font-weight: 800; margin-bottom: 6px; }
+.feature-card :is(h3, .seo-heading-3) { font-size: 0.98rem; font-weight: 800; margin-bottom: 6px; }
 .feature-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; }
 
 /* Tool page layout */
@@ -970,7 +971,7 @@ button { font-family: inherit; cursor: pointer; }
   justify-content: space-between;
   margin: 22px 0 10px;
 }
-.short-history-header h3 { font-size: 1rem; margin: 0; }
+.short-history-header :is(h3, .seo-heading-3) { font-size: 1rem; margin: 0; }
 .short-history-header button {
   background: none;
   border: none;
@@ -1037,8 +1038,9 @@ button { font-family: inherit; cursor: pointer; }
   font-size: 0.85rem;
   color: var(--text-muted);
 }
-.info-box h4 { font-size: 0.9rem; color: var(--text); margin-bottom: 8px; }
+.info-box :is(h4, .seo-heading-4) { font-size: 0.9rem; color: var(--text); margin-bottom: 8px; }
 .info-box ul { padding-left: 18px; margin-top: 6px; }
+.info-box ul a { display: inline-block; min-height: 24px; padding: 3px 0; }
 
 /* Ads — reserved heights for CLS; real units injected by ads.js when slot IDs exist */
 .ad-slot {
@@ -1059,7 +1061,12 @@ button { font-family: inherit; cursor: pointer; }
   border-style: solid;
   border-color: transparent;
 }
-.ad-slot .ad-label { opacity: 0.55; letter-spacing: 0.04em; text-transform: uppercase; }
+.ad-slot .ad-label { letter-spacing: 0.04em; text-transform: uppercase; }
+/* .ad-slot is a flex container, which shrinks an empty <ins> to 0px wide; AdSense then
+   rejects it ("No slot size for availableWidth=0") and responsive units never fill. */
+.ad-slot > ins.adsbygoogle { flex: 1 1 100%; width: 100%; min-width: 0; }
+/* A slot AdSense could not fill is removed, so neither visitors nor reviewers see empty "Ad" boxes. */
+.ad-slot:has(> ins.adsbygoogle[data-ad-status="unfilled"]) { display: none; }
 .ad-top { margin: 16px 0; min-height: 90px; }
 .ad-sidebar { min-height: 250px; }
 .ad-incontent { margin: 24px 0; min-height: 90px; }
@@ -1075,7 +1082,8 @@ button { font-family: inherit; cursor: pointer; }
 }
 @media (max-width: 640px) {
   .ad-sticky-footer { display: flex; }
-  body { padding-bottom: 70px; }
+  /* Only reserve room for the sticky ad on pages that actually have one. */
+  body:has(.ad-sticky-footer) { padding-bottom: 70px; }
 }
 
 /* Footer */
@@ -1091,11 +1099,26 @@ button { font-family: inherit; cursor: pointer; }
   gap: 24px;
   margin-bottom: 24px;
 }
-.footer-grid h4 { font-size: 0.85rem; margin-bottom: 10px; }
+.footer-grid :is(h4, .seo-heading-4) { font-size: 0.85rem; margin-bottom: 10px; }
 .footer-grid ul { list-style: none; }
 .footer-grid li { margin-bottom: 6px; }
 .footer-grid a { font-size: 0.85rem; color: var(--text-muted); }
 .footer-grid a:hover { color: var(--primary); }
+/* Trust-page links on every page: About / Contact / Privacy / Terms. */
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px 20px;
+  margin-bottom: 20px;
+}
+.footer-links a {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  padding: 6px 2px;
+  min-height: 24px;
+}
+.footer-links a:hover { color: var(--primary); }
 .footer-bottom {
   text-align: center;
   font-size: 0.8rem;
@@ -1459,7 +1482,7 @@ button { font-family: inherit; cursor: pointer; }
   flex: 1;
   min-width: 180px;
 }
-.pdf-preview-single .pdf-preview-info h3 {
+.pdf-preview-single .pdf-preview-info :is(h3, .seo-heading-3) {
   font-size: 0.95rem;
   margin-bottom: 4px;
   word-break: break-word;
@@ -1664,8 +1687,24 @@ button { font-family: inherit; cursor: pointer; }
   font-size: 0.82rem;
   color: var(--text-muted);
   margin: 8px 0 16px;
+  /* Reserve the line before rates.js fills it in, so the hero below doesn't jump. */
+  min-height: 1.4em;
 }
+/* The source note can wrap to two lines on phones once it is filled in. */
+#sourceLine { min-height: 2.8em; }
 .rate-updated strong { color: var(--text); }
+/* Server-rendered current rates (lib/rate-snapshot.mjs): readable by crawlers before any script runs. */
+.rate-snapshot {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--primary);
+  border-radius: var(--radius-sm, 10px);
+  padding: 14px 16px;
+  margin: 16px 0;
+}
+.rate-snapshot-title { font-weight: 700; margin-bottom: 6px; }
+.rate-snapshot ul { list-style: none; display: flex; flex-wrap: wrap; gap: 4px 18px; padding: 0; margin: 0 0 6px; font-weight: 600; }
+.rate-snapshot-meta { font-size: 0.78rem; color: var(--text-muted); margin: 0; }
 .rate-hero {
   background: linear-gradient(135deg, var(--primary-tint) 0%, var(--card) 100%);
   border: 1px solid rgba(220,38,38,0.15);
@@ -1697,6 +1736,7 @@ button { font-family: inherit; cursor: pointer; }
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   gap: 12px;
   margin: 16px 0;
+  min-height: 92px;
 }
 .rate-card {
   background: var(--card);
@@ -1730,7 +1770,7 @@ button { font-family: inherit; cursor: pointer; }
   border: 1px solid var(--border);
   border-radius: var(--radius);
 }
-.rate-trend-wrap h3 {
+.rate-trend-wrap :is(h3, .seo-heading-3) {
   font-size: 0.9rem;
   font-weight: 700;
   margin-bottom: 10px;
@@ -1937,7 +1977,7 @@ button { font-family: inherit; cursor: pointer; }
   border-color: var(--primary);
   box-shadow: 0 0 0 2px var(--primary-tint);
 }
-.state-card h4 { font-size: 0.85rem; margin-bottom: 8px; }
+.state-card :is(h4, .seo-heading-4) { font-size: 0.85rem; margin-bottom: 8px; }
 .state-card .fuel-line {
   display: flex;
   justify-content: space-between;
@@ -1973,7 +2013,7 @@ button { font-family: inherit; cursor: pointer; }
   padding: 14px 0;
 }
 .faq-item:last-child { border-bottom: none; }
-.faq-item h3 {
+.faq-item :is(h3, .seo-heading-3) {
   font-size: 0.95rem;
   font-weight: 700;
   margin-bottom: 6px;
@@ -2402,7 +2442,7 @@ button { font-family: inherit; cursor: pointer; }
 @media (min-width: 640px) { .blog-index-grid { grid-template-columns: repeat(2, 1fr); } }
 .blog-card { display: block; padding: 18px; border-radius: var(--radius); border: 1px solid var(--border); background: var(--card); text-decoration: none; color: inherit; transition: box-shadow .2s, border-color .2s; }
 .blog-card:hover { border-color: var(--primary); box-shadow: var(--shadow-premium); }
-.blog-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+.blog-card :is(h3, .seo-heading-3) { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
 .blog-card p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; margin: 0; }
 .blog-card .blog-tag { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--primary); margin-bottom: 8px; display: block; }
 .seo-landing-cta { margin: 20px 0; }
@@ -2443,13 +2483,13 @@ button { font-family: inherit; cursor: pointer; }
 .home-directory .featured-grid { display: block; }
 .directory-group { margin-bottom: 32px; }
 .directory-group-title { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin: 14px 0; }
-.directory-group-title h3 { font-size: .95rem; font-weight: 750; }
+.directory-group-title :is(h3, .seo-heading-3) { font-size: .95rem; font-weight: 750; }
 .directory-group-title p { font-size: .78rem; color: var(--text-muted); }
 .directory-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
 .home-directory .tool-card { position: relative; min-height: 144px; padding: 16px 12px; border-radius: 12px; box-shadow: none; }
 .home-directory .tool-card::after { content: none; }
 .home-directory .tool-card .icon { justify-content: flex-start; margin: 0 0 12px; }
-.home-directory .tool-card h3 { font-size: .9rem; letter-spacing: -.02em; }
+.home-directory .tool-card :is(h3, .seo-heading-3) { font-size: .9rem; letter-spacing: -.02em; }
 .home-directory .tool-card p { font-size: .75rem; }
 .home-directory .tool-card .icon-tile { width: 32px; height: 32px; border-radius: 8px; box-shadow: none; }
 .home-directory .tool-card .icon .icon-svg { width: 20px; height: 20px; min-width: 20px; min-height: 20px; }
@@ -2462,7 +2502,7 @@ button { font-family: inherit; cursor: pointer; }
   .directory-intro { grid-template-columns: 1fr 1fr; align-items: center; gap: 60px; padding-top: 36px; padding-bottom: 30px; }
   .directory-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
   .home-directory .tool-card { padding: 18px 20px; min-height: 148px; }
-  .home-directory .tool-card h3 { font-size: 1rem; }
+  .home-directory .tool-card :is(h3, .seo-heading-3) { font-size: 1rem; }
 }
 @media (max-width: 480px) {
   .directory-header-search { display: none; }
@@ -2586,4 +2626,58 @@ button { font-family: inherit; cursor: pointer; }
   .pdf-stage { padding: 12px; }
   .pdf-editor-intro { gap: 14px; }
   .pdf-edit-toolbar { padding: 10px; }
+}
+
+/* Semantic headings retain their previous scale; bios use theme tokens. */
+.seo-heading-3 { font-size: 1.17em; }
+.seo-heading-4 { font-size: 1em; }
+.section-heading { font-size: 1.2rem; margin: 24px 0 12px; }
+.author-bio { margin-top: 28px; padding: 20px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--card); }
+.author-bio h2 { font-size: 1.1rem; margin-bottom: 8px; }
+.author-bio p + p { margin-top: 8px; }
+
+/* Tool guide sections: how it works, benefits, comparison, tips (scripts/inject-tool-guides.mjs) */
+.tool-guide p {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 10px;
+}
+.tool-guide .guide-list {
+  padding-left: 20px;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+.tool-guide .guide-list li { margin-bottom: 6px; }
+.tool-guide a { color: var(--primary-dark); text-decoration: underline; text-underline-offset: 2px; }
+.tool-guide-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 12px 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--card);
+}
+.tool-guide table { width: 100%; min-width: 560px; border-collapse: collapse; font-size: 0.86rem; }
+.tool-guide th,
+.tool-guide td {
+  text-align: left;
+  vertical-align: top;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+.tool-guide thead th { color: var(--text); font-weight: 700; background: var(--bg); }
+.tool-guide tbody th { color: var(--text); font-weight: 600; width: 22%; }
+.tool-guide tbody tr:last-child th,
+.tool-guide tbody tr:last-child td { border-bottom: none; }
+.tool-guide .guide-note { font-size: 0.8rem; color: var(--text-muted); }
+.tool-guide .guide-verdict {
+  border-left: 3px solid var(--primary);
+  background: var(--primary-tint);
+  padding: 10px 14px;
+  border-radius: 0 10px 10px 0;
+  color: var(--text);
 }

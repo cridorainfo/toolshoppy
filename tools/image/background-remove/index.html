@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PNN1LM2D9Q"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-PNN1LM2D9Q');</script>
 <meta charset="UTF-8">
 <script>(function(){try{/* TEMP: dark mode disabled — restore prior boot to re-enable */document.documentElement.setAttribute('data-theme','light');localStorage.setItem('ts-theme','light');}catch(e){}})();</script>
@@ -24,10 +23,9 @@
 <link rel="icon" href="/favicon.ico?v=2" sizes="any">
 <link rel="icon" href="/assets/img/favicon.svg?v=2" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/img/icon-192.png?v=2">
-<link rel="stylesheet" href="/assets/css/main.css?v=5">
+<link rel="stylesheet" href="/assets/css/main.css?v=9">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#DC2626">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Background Remover","url":"https://toolshoppy.com/tools/image/background-remove/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","description":"AI-powered background remover that runs on-device — no upload, no signup.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
 <script type="application/ld+json">
 {
@@ -95,14 +93,17 @@
   ]
 }
 </script>
+<meta name="google-adsense-account" content="ca-pub-1180208702657280">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+<script defer src="/assets/js/third-party.js?v=1"></script>
 </head>
 <body>
 <header class="site-header"><div class="container">
-  <a href="/" class="logo"><img src="/assets/img/logo.png?v=2" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
+  <a href="/" class="logo"><img src="/assets/img/logo.webp?v=3" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
   <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode"><svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg><svg class="icon-svg theme-icon-moon" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#moon"></use></svg></button>
 </div></header>
 <main class="tool-page container">
-  <nav class="breadcrumb"><a href="/">Home</a> › <a href="/tools/image/">Image</a> › <span class="crumb-current">Background Remover</span></nav>
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/image/">Image</a> › <span class="crumb-current">Background Remover</span></nav>
   <div class="tool-header">
     <div class="icon-tile icon-tile--lg icon-tile--pink"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#background"></use></svg></div>
     <h1>AI Background Remover</h1>
@@ -124,8 +125,8 @@
       </div>
       <div class="result-panel" id="resultPanel">
         <div class="ba-compare" id="baCompare">
-          <img id="afterImg" alt="Background removed">
-          <div class="ba-before-wrap" id="beforeWrap"><img id="beforeImg" alt="Original"></div>
+          <img width="320" height="240" id="afterImg" alt="Background removed">
+          <div class="ba-before-wrap" id="beforeWrap"><img width="320" height="240" id="beforeImg" alt="Original"></div>
           <div class="ba-divider" id="baDivider"></div>
           <div class="ba-handle" id="baHandle">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="8 7 3 12 8 17"></polyline><polyline points="16 7 21 12 16 17"></polyline></svg>
@@ -144,7 +145,7 @@
       <div class="trust-badge"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock"></use></svg> Your files never leave your device</div>
     </div>
     <aside class="sidebar"><div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div>
-      <div class="info-box"><h4>How it works</h4><ul><li>A small AI segmentation model downloads once (cached after) and runs locally in your browser via WebAssembly</li><li>Your photo is never uploaded anywhere — inference happens entirely on your device</li><li>Works on complex, real-world backgrounds — not just solid colours</li><li>Drag the slider on the result to compare before/after</li></ul></div>
+      <div class="info-box"><h2 class="seo-heading-4">How it works</h2><ul><li>A small AI segmentation model downloads once (cached after) and runs locally in your browser via WebAssembly</li><li>Your photo is never uploaded anywhere — inference happens entirely on your device</li><li>Works on complex, real-world backgrounds — not just solid colours</li><li>Drag the slider on the result to compare before/after</li></ul></div>
     </aside>
   </div>
   <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
@@ -160,6 +161,45 @@
       <li>Download a transparent PNG or white-background version.</li>
     </ol>
   </div>
+    <!-- tool-guide:start -->
+      <div class="content-section tool-guide">
+        <h2>How Background Remover works</h2>
+        <p>The first time you use it, the page downloads a small neural network (U²-Net-P) once and stores it in your browser. For each photo it runs that model locally through ONNX Runtime and WebAssembly to estimate which pixels belong to the main subject.</p>
+        <p>The result is a transparent PNG with an edge-softness control, or a version placed on a white background. Because the model finds the most prominent subject, clear photos with a distinct person or object work best, while cluttered scenes may need a cleaner source image. The photo itself is never uploaded.</p>
+      </div>
+      <div class="content-section tool-guide">
+        <h2>Benefits of using Background Remover on ToolShoppy</h2>
+        <ul class="guide-list">
+          <li>Make a passport, ID or product photo with a clean background.</li>
+          <li>Transparent PNG or white-background download.</li>
+          <li>Compare before and after with a slider.</li>
+          <li>Runs on your device, so personal photos stay private.</li>
+        </ul>
+      </div>
+      <div class="content-section tool-guide">
+        <h2>ToolShoppy vs server-based image tools and desktop editors</h2>
+        <div class="tool-guide-table-wrap"><table>
+    <thead><tr><th scope="col">What matters</th><th scope="col">ToolShoppy</th><th scope="col">Server-based image tools</th><th scope="col">Desktop editors (e.g. Photoshop, GIMP)</th></tr></thead>
+    <tbody>
+    <tr><th scope="row">Where your photo is processed</th><td>In your browser. The photo is not uploaded to ToolShoppy.</td><td>Uploaded to the provider’s servers, then deleted later under their stated policy.</td><td>On your own computer.</td></tr>
+    <tr><th scope="row">Account and cost</th><td>No signup, no email. Free to use.</td><td>Often free with limits on size, batch count or quality; some require an account (varies).</td><td>Needs installing and some learning; some editors are paid.</td></tr>
+    <tr><th scope="row">Where the model runs</th><td>On your device. Only the model file is downloaded.</td><td>On the provider’s servers after upload.</td><td>On your computer, often with manual selection tools.</td></tr>
+    <tr><th scope="row">Fine detail (hair, glass)</th><td>A compact model handles everyday photos; very fine detail can look rough.</td><td>Larger server-side models may handle hair and glass better.</td><td>Best with manual refinement.</td></tr>
+    </tbody></table></div>
+        <p class="guide-note">This compares general approaches, not every product. Other services change their features, limits and pricing, so check their current terms before deciding.</p>
+        <p class="guide-verdict"><strong>When something else is the better choice:</strong> you need hair-level precision, glass or transparent objects, or batch product photography at scale. A server-side model or desktop editor will give better edges.</p>
+      </div>
+      <div class="content-section tool-guide">
+        <h2>Tips and common mistakes</h2>
+        <ul class="guide-list">
+          <li>Use even lighting and a subject that contrasts with the background.</li>
+          <li>Increase edge softness slightly if edges look jagged.</li>
+          <li>For forms that need a white background, download the white version.</li>
+          <li>Then use the government photo or passport tool to set the exact size.</li>
+        </ul>
+        <p class="guide-note">Guide reviewed October 2026. Next steps: <a href="/tools/image/govt-photo/">Resize for government forms</a> · <a href="/tools/image/passport-photo/">Passport photo</a> · <a href="/tools/image/sticker-maker/">Make a sticker</a></p>
+      </div>
+      <!-- tool-guide:end -->
     <div class="content-section seo-related">
     <h2>Related tools</h2>
     <div class="related-tools">
@@ -206,11 +246,22 @@
   </div>
 </main>
 <div class="ad-slot ad-bottom"><span class="ad-label">Ad</span></div>
-<footer class="site-footer"><div class="container"><div class="footer-bottom">© 2026 ToolShoppy</div></div></footer>
+<footer class="site-footer">
+  <div class="container">
+    <nav class="footer-links" aria-label="Footer">
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="/privacy/">Privacy Policy</a>
+      <a href="/terms/">Terms of Service</a>
+      <a href="/blog/">Blog &amp; Guides</a>
+      <a href="/">All tools</a>
+    </nav>
+    <div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div>
+  </div>
+</footer>
 <div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
-<script src="/assets/js/ga-config.js"></script><script src="/assets/js/adsterra-config.js?v=5"></script>
-<script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/core.js?v=5"></script><script src="/assets/js/image-tools.js"></script><script src="/assets/js/ads.js?v=6"></script><script src="/assets/js/analytics.js"></script>
+<script src="/assets/js/ga-config.js"></script><script src="/assets/js/ad-config.js"></script>
+<script src="/assets/js/core.js?v=7"></script><script src="/assets/js/image-tools.js"></script><script defer src="/assets/js/ads.js?v=7"></script><script defer src="/assets/js/analytics.js"></script>
 <script src="/assets/libs/onnxruntime/ort.wasm.min.js"></script>
 <script src="/assets/js/bg-remove.js"></script>
 <script>

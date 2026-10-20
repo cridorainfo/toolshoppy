@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PNN1LM2D9Q"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-PNN1LM2D9Q');</script>
 <meta charset="UTF-8">
 <script>(function(){try{/* TEMP: dark mode disabled — restore prior boot to re-enable */document.documentElement.setAttribute('data-theme','light');localStorage.setItem('ts-theme','light');}catch(e){}})();</script>
@@ -24,10 +23,9 @@
 <link rel="icon" href="/favicon.ico?v=2" sizes="any">
 <link rel="icon" href="/assets/img/favicon.svg?v=2" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/img/icon-192.png?v=2">
-<link rel="stylesheet" href="/assets/css/main.css?v=5">
+<link rel="stylesheet" href="/assets/css/main.css?v=9">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#DC2626">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Video Trimmer","url":"https://toolshoppy.com/tools/video/trim/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
 <script type="application/ld+json">
 {
@@ -87,14 +85,17 @@
   ]
 }
 </script>
+<meta name="google-adsense-account" content="ca-pub-1180208702657280">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+<script defer src="/assets/js/third-party.js?v=1"></script>
 </head>
 <body>
 <header class="site-header"><div class="container">
-  <a href="/" class="logo"><img src="/assets/img/logo.png?v=2" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
+  <a href="/" class="logo"><img src="/assets/img/logo.webp?v=3" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
   <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode"><svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg><svg class="icon-svg theme-icon-moon" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#moon"></use></svg></button>
 </div></header>
 <main class="tool-page container">
-  <nav class="breadcrumb"><a href="/">Home</a> › <a href="/tools/video/">Video</a> › <span class="crumb-current">Video Trimmer</span></nav>
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/video/">Video</a> › <span class="crumb-current">Video Trimmer</span></nav>
   <div class="tool-header">
     <div class="icon-tile icon-tile--lg icon-tile--pink"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#scissors"></use></svg></div>
     <h1>Video Trimmer</h1>
@@ -127,7 +128,8 @@
     <aside class="sidebar"><div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div></aside>
   </div>
   <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
-  <div class="content-section seo-howto">
+  <section class="content-section usage-notes"><h2>Choose and verify your clip boundaries</h2><p>Set the start and end points, then preview the result before sharing. Check the first and last few seconds as well as the audio: a timeline value alone does not confirm that the exported clip starts on the frame you intended.</p><p>Keep the source video until the output has been checked. Processing time and memory use increase with video duration and resolution. If an export fails on a phone, try a shorter segment or a desktop browser; supported media formats depend on the browser’s decoding capabilities.</p></section>
+<div class="content-section seo-howto">
     <h2>How to trim a video</h2>
     <ol>
       <li>Upload your video.</li>
@@ -135,6 +137,44 @@
       <li>Download the trimmed clip.</li>
     </ol>
   </div>
+    <!-- tool-guide:start -->
+      <div class="content-section tool-guide">
+        <h2>How Video Trimmer works</h2>
+        <p>You choose a video, set a start and end time in seconds and the page cuts that section with FFmpeg in your browser. It first tries a fast “stream copy” that does not re-encode, which keeps quality and is quick. Because of how video is stored, a copy cut starts on the nearest keyframe, so the start can be slightly off.</p>
+        <p>If that fails, it falls back to re-encoding with H.264, which cuts at the exact time but takes longer. As with other browser-based video tools, long or high-resolution files need more memory.</p>
+      </div>
+      <div class="content-section tool-guide">
+        <h2>Benefits of using Video Trimmer on ToolShoppy</h2>
+        <ul class="guide-list">
+          <li>Cut a clip to share without installing an editor.</li>
+          <li>Fast copy mode keeps the original quality when it works.</li>
+          <li>Private: the video is not uploaded.</li>
+          <li>Free, with no signup.</li>
+        </ul>
+      </div>
+      <div class="content-section tool-guide">
+        <h2>ToolShoppy vs server-based video tools and desktop apps</h2>
+        <div class="tool-guide-table-wrap"><table>
+    <thead><tr><th scope="col">What matters</th><th scope="col">ToolShoppy</th><th scope="col">Server-based video tools</th><th scope="col">Desktop and phone apps (e.g. HandBrake, VLC, CapCut)</th></tr></thead>
+    <tbody>
+    <tr><th scope="row">Where your video is processed</th><td>In your browser, so the video is not uploaded. It does use your device’s memory and processor.</td><td>Uploaded to a server, which can take a long time for large files, then processed there.</td><td>On your own device, usually with full access to its hardware.</td></tr>
+    <tr><th scope="row">Account and cost</th><td>No signup, no email. Free to use.</td><td>Often free with file-size, length or watermark limits (varies).</td><td>Needs installing; some are paid or add watermarks on free plans.</td></tr>
+    <tr><th scope="row">Cutting method</th><td>Stream copy first (fast, keyframe-aligned), then re-encode as a fallback.</td><td>Usually re-encodes after upload.</td><td>Frame-accurate cutting with a timeline.</td></tr>
+    </tbody></table></div>
+        <p class="guide-note">This compares general approaches, not every product. Other services change their features, limits and pricing, so check their current terms before deciding.</p>
+        <p class="guide-verdict"><strong>When something else is the better choice:</strong> you need frame-accurate cuts, transitions or multiple clips on a timeline. A video editor is the right tool for that.</p>
+      </div>
+      <div class="content-section tool-guide">
+        <h2>Tips and common mistakes</h2>
+        <ul class="guide-list">
+          <li>Preview the first and last seconds of the output before you share it.</li>
+          <li>Allow a second of margin on either side if the start looks a little early.</li>
+          <li>Trim before compressing so you only compress what you need.</li>
+          <li>Keep the original video until you have checked the clip.</li>
+        </ul>
+        <p class="guide-note">Guide reviewed October 2026. Next steps: <a href="/tools/video/compress/">Compress the clip</a> · <a href="/tools/video/status-splitter/">Split for Status</a> · <a href="/tools/video/to-audio/">Extract audio</a></p>
+      </div>
+      <!-- tool-guide:end -->
     <div class="content-section seo-related">
     <h2>Related tools</h2>
     <div class="related-tools">
@@ -172,11 +212,22 @@
   </div>
 </main>
 <div class="ad-slot ad-bottom"><span class="ad-label">Ad</span></div>
-<footer class="site-footer"><div class="container"><div class="footer-bottom">© 2026 ToolShoppy</div></div></footer>
+<footer class="site-footer">
+  <div class="container">
+    <nav class="footer-links" aria-label="Footer">
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="/privacy/">Privacy Policy</a>
+      <a href="/terms/">Terms of Service</a>
+      <a href="/blog/">Blog &amp; Guides</a>
+      <a href="/">All tools</a>
+    </nav>
+    <div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div>
+  </div>
+</footer>
 <div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
-<script src="/assets/js/ga-config.js"></script><script src="/assets/js/adsterra-config.js?v=5"></script>
-<script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/core.js?v=5"></script><script src="/assets/js/ads.js?v=6"></script><script src="/assets/js/analytics.js"></script>
+<script src="/assets/js/ga-config.js"></script><script src="/assets/js/ad-config.js"></script>
+<script src="/assets/js/core.js?v=7"></script><script defer src="/assets/js/ads.js?v=7"></script><script defer src="/assets/js/analytics.js"></script>
 <script type="module">
 import { runFFmpeg } from '/assets/js/ffmpeg-loader.mjs?v=3';
   var file = null, blob = null, url = null;

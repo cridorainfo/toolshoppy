@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PNN1LM2D9Q"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-PNN1LM2D9Q');</script>
 <meta charset="UTF-8">
 <script>(function(){try{/* TEMP: dark mode disabled — restore prior boot to re-enable */document.documentElement.setAttribute('data-theme','light');localStorage.setItem('ts-theme','light');}catch(e){}})();</script>
@@ -22,10 +21,9 @@
 <link rel="icon" href="/favicon.ico?v=2" sizes="any">
 <link rel="icon" href="/assets/img/favicon.svg?v=2" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/img/icon-192.png?v=2">
-<link rel="stylesheet" href="/assets/css/main.css?v=5">
+<link rel="stylesheet" href="/assets/css/main.css?v=9">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#DC2626">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"Currency Converter","url":"https://toolshoppy.com/tools/rates/currency-converter/","description":"Convert AED, SAR, USD to INR free online.","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
 </script>
@@ -87,11 +85,14 @@
   ]
 }
 </script>
+<meta name="google-adsense-account" content="ca-pub-1180208702657280">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+<script defer src="/assets/js/third-party.js?v=1"></script>
 </head>
 <body>
 <header class="site-header">
   <div class="container">
-    <a href="/" class="logo"><img src="/assets/img/logo.png?v=2" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
+    <a href="/" class="logo"><img src="/assets/img/logo.webp?v=3" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
     <div class="site-search"><input type="text" placeholder="Search tools…" onfocus="location.href='/search/'"></div>
     <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode">
       <svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg>
@@ -117,7 +118,7 @@
   <div class="tool-layout with-sidebar">
     <div class="tool-card-main">
       <p class="rate-updated" id="updatedLine">Loading rates…</p>
-      <h3 style="font-size:0.95rem;margin-bottom:8px;">Gulf → India presets</h3>
+      <h2 style="font-size:0.95rem;margin-bottom:8px;" class="seo-heading-3">Gulf → India presets</h2>
       <div class="chip-row" id="presetRow">
         <button class="chip active" data-from="AED" data-to="INR" type="button">AED → INR</button>
         <button class="chip" data-from="SAR" data-to="INR" type="button">SAR → INR</button>
@@ -155,7 +156,7 @@
     <aside class="sidebar">
       <div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div>
       <div class="info-box">
-        <h4>Popular pairs</h4>
+        <h3 class="seo-heading-4">Popular pairs</h3>
         <ul>
           <li>1 AED ≈ <span id="sideAed">—</span> INR</li>
           <li>1 SAR ≈ <span id="sideSar">—</span> INR</li>
@@ -185,6 +186,45 @@
       <li>Read the indicative converted value.</li>
     </ol>
   </div>
+    <!-- tool-guide:start -->
+      <div class="content-section tool-guide">
+        <h2>How Currency Converter works</h2>
+        <p>The converter uses indicative market exchange rates, with USD/INR from Frankfurter, and converts between Gulf currencies (AED, SAR, KWD, OMR), USD and INR. You type an amount, pick the pair or use a preset such as AED to INR, and see the result and the unit rate. A reverse button swaps the pair.</p>
+        <p>These are mid-market style rates for estimation. Banks and exchange houses use their own buy and sell rates and add fees, so the amount you receive when you send money will be different. Compare the final amount you would receive across your options, not only the headline rate.</p>
+      </div>
+      <div class="content-section tool-guide">
+        <h2>Benefits of using Currency Converter on ToolShoppy</h2>
+        <ul class="guide-list">
+          <li>One-tap presets for AED, SAR, KWD, OMR and USD to INR.</li>
+          <li>Quickly estimate remittances before you send money home.</li>
+          <li>Reverse the pair with one click.</li>
+          <li>Free, with no signup.</li>
+        </ul>
+      </div>
+      <div class="content-section tool-guide">
+        <h2>ToolShoppy vs jeweller, news and exchange-house sources</h2>
+        <div class="tool-guide-table-wrap"><table>
+    <thead><tr><th scope="col">What matters</th><th scope="col">ToolShoppy</th><th scope="col">Jeweller, news and rate websites</th><th scope="col">Bank or exchange house / pump or shop</th></tr></thead>
+    <tbody>
+    <tr><th scope="row">What the number means</th><td>An indicative reference rate, labelled as such, with a link back to the tool’s assumptions.</td><td>Can be a retail or association rate that already includes shop-specific spreads or charges.</td><td>The rate you would actually transact at on the day.</td></tr>
+    <tr><th scope="row">Account and cost</th><td>No signup, no email. Free to read.</td><td>Usually free; some sites add pop-ups or ask for sign-up.</td><td>Free to ask, but you must visit or call.</td></tr>
+    <tr><th scope="row">Rate type</th><td>Indicative mid-market style rate for estimating.</td><td>Banks and exchange houses show buy and sell rates with a spread.</td><td>The rate and fees you actually get when you send.</td></tr>
+    <tr><th scope="row">Fees</th><td>Not included.</td><td>Shown separately or built into the rate.</td><td>Quoted at the time of transfer.</td></tr>
+    </tbody></table></div>
+        <p class="guide-note">This compares general approaches, not every product. Other services change their features, limits and pricing, so check their current terms before deciding.</p>
+        <p class="guide-verdict"><strong>When something else is the better choice:</strong> you are about to send money. Compare the total amount received after fees and spread from your bank, exchange house and remittance apps.</p>
+      </div>
+      <div class="content-section tool-guide">
+        <h2>Tips and common mistakes</h2>
+        <ul class="guide-list">
+          <li>Compare “amount received” in rupees, not the exchange rate alone.</li>
+          <li>Check the transfer fee and any minimum amount.</li>
+          <li>Rates move through the day, so do not rely on a screenshot from yesterday.</li>
+          <li>Use the gold rate page to compare Dubai and Kerala gold prices in rupees.</li>
+        </ul>
+        <p class="guide-note">Guide reviewed October 2026. Next steps: <a href="/tools/rates/currency-converter/aed-inr/">AED to INR</a> · <a href="/tools/rates/gold-rate/dubai/">Dubai gold rate</a> · <a href="/tools/finance/uae-vat/">UAE VAT calculator</a></p>
+      </div>
+      <!-- tool-guide:end -->
     <div class="content-section seo-related">
     <h2>Related tools</h2>
     <div class="related-tools">
@@ -223,16 +263,25 @@
 </main>
 <div class="ad-slot ad-bottom"><span class="ad-label">Ad</span></div>
 <footer class="site-footer">
-  <div class="container"><div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div></div>
+  <div class="container">
+    <nav class="footer-links" aria-label="Footer">
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="/privacy/">Privacy Policy</a>
+      <a href="/terms/">Terms of Service</a>
+      <a href="/blog/">Blog &amp; Guides</a>
+      <a href="/">All tools</a>
+    </nav>
+    <div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div>
+  </div>
 </footer>
 <div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
 <script src="/assets/js/ga-config.js"></script>
-<script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/core.js?v=5"></script>
+<script src="/assets/js/core.js?v=7"></script>
 <script src="/assets/js/rates.js?v=3"></script>
-<script src="/assets/js/ads.js?v=6"></script>
-<script src="/assets/js/analytics.js"></script>
+<script defer src="/assets/js/ads.js?v=7"></script>
+<script defer src="/assets/js/analytics.js"></script>
 <script>
 (function () {
   var ratesData = null;

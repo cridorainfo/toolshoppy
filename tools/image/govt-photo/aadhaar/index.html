@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PNN1LM2D9Q"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-PNN1LM2D9Q');</script>
 <meta charset="UTF-8">
 <script>(function(){try{/* TEMP: dark mode disabled — restore prior boot to re-enable */document.documentElement.setAttribute('data-theme','light');localStorage.setItem('ts-theme','light');}catch(e){}})();</script>
@@ -21,10 +20,9 @@
 <link rel="icon" href="/favicon.ico?v=2" sizes="any">
 <link rel="icon" href="/assets/img/favicon.svg?v=2" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/img/icon-192.png?v=2">
-<link rel="stylesheet" href="/assets/css/main.css?v=5">
+<link rel="stylesheet" href="/assets/css/main.css?v=9">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#DC2626">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"Aadhaar Photo Resizer","url":"https://toolshoppy.com/tools/image/govt-photo/aadhaar/","description":"Resize your photo to the exact Aadhaar enrollment/update size (200×230px, max 100KB) free online — no signup, private.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
 </script>
@@ -34,11 +32,14 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the exact Aadhaar photo size?","acceptedAnswer":{"@type":"Answer","text":"200×230 pixels, under 100KB, on a plain white background."}},{"@type":"Question","name":"Is this for new Aadhaar enrollment or updates?","acceptedAnswer":{"@type":"Answer","text":"The same size requirement applies to both new enrollment and photo-update requests through UIDAI."}},{"@type":"Question","name":"Do I need to visit an Aadhaar center with this photo?","acceptedAnswer":{"@type":"Answer","text":"For most updates you can upload the photo online via the UIDAI portal; for biometric enrollment you still need to visit a center in person, but a correctly sized photo prepared in advance speeds up the process."}}]}
 </script>
+<meta name="google-adsense-account" content="ca-pub-1180208702657280">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+<script defer src="/assets/js/third-party.js?v=1"></script>
 </head>
 <body>
 <header class="site-header">
   <div class="container">
-    <a href="/" class="logo"><img src="/assets/img/logo.png?v=2" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
+    <a href="/" class="logo"><img src="/assets/img/logo.webp?v=3" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
     <div class="site-search"><input type="text" placeholder="Search tools…" onfocus="location.href='/search/'"></div>
     <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode">
       <svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg>
@@ -64,7 +65,7 @@
   <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
   <div class="tool-layout with-sidebar" id="toolLayout">
     <div class="tool-card-main">
-      <h3 style="font-size:1rem;margin-bottom:10px;">1. Form type</h3>
+      <h2 style="font-size:1rem;margin-bottom:10px;" class="seo-heading-3">1. Form type</h2>
       <div class="chip-row" id="presetRow"></div>
       <p id="presetInfo" style="font-size:0.82rem;color:var(--text-muted);margin-bottom:14px;"></p>
       <h3 style="font-size:1rem;margin-bottom:10px;">2. Background</h3>
@@ -102,7 +103,7 @@
             <div class="value" id="outFileSize">-</div>
           </div>
         </div>
-        <img id="previewImg" alt="Processed image preview" style="border-radius:8px;border:1px solid var(--border);max-height:280px;margin-bottom:16px;">
+        <img width="320" height="240" id="previewImg" alt="Processed image preview" style="object-fit:contain;border-radius:8px;border:1px solid var(--border);max-height:280px;margin-bottom:16px;">
         <button class="btn btn-accent btn-block" id="downloadBtn"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#download"></use></svg> Download Photo</button>
       </div>
       <div class="trust-badge"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock"></use></svg> Your files never leave your device</div>
@@ -123,6 +124,44 @@
     <h2>Aadhaar Photo Resizer</h2>
     <p style="color:var(--text-muted);font-size:0.92rem;line-height:1.7;">UIDAI's Aadhaar enrollment and update forms ask for a photo of <strong>200×230 pixels</strong>, under <strong>100KB</strong>, on a plain white background. This page pre-selects the Aadhaar preset so your photo matches the spec used for both new enrollment and address/photo update requests.</p>
   </div>
+  <!-- tool-guide:start -->
+    <div class="content-section tool-guide">
+      <h2>How Aadhaar Photo Resizer works</h2>
+      <p>The Aadhaar preset is selected on arrival. You upload a recent photo and the tool crops, pads and scales it to the pixel size shown at the top of the page, then compresses it to the stated size limit on a white background.</p>
+      <p>It runs in your browser, so the photo is never uploaded. Aadhaar enrolment itself involves biometric capture at a centre, so a prepared photo mainly helps with forms and update requests that accept an uploaded image.</p>
+    </div>
+    <div class="content-section tool-guide">
+      <h2>Benefits of using Aadhaar Photo Resizer on ToolShoppy</h2>
+      <ul class="guide-list">
+        <li>Ready-to-upload photo for Aadhaar update forms.</li>
+        <li>Spec and file limit applied automatically.</li>
+        <li>Private processing on your device.</li>
+        <li>Free, with no signup.</li>
+      </ul>
+    </div>
+    <div class="content-section tool-guide">
+      <h2>ToolShoppy vs server-based image tools and desktop editors</h2>
+      <div class="tool-guide-table-wrap"><table>
+  <thead><tr><th scope="col">What matters</th><th scope="col">ToolShoppy</th><th scope="col">Server-based image tools</th><th scope="col">Desktop editors (e.g. Photoshop, GIMP)</th></tr></thead>
+  <tbody>
+  <tr><th scope="row">Where your photo is processed</th><td>In your browser. The photo is not uploaded to ToolShoppy.</td><td>Uploaded to the provider’s servers, then deleted later under their stated policy.</td><td>On your own computer.</td></tr>
+  <tr><th scope="row">Account and cost</th><td>No signup, no email. Free to use.</td><td>Often free with limits on size, batch count or quality; some require an account (varies).</td><td>Needs installing and some learning; some editors are paid.</td></tr>
+  <tr><th scope="row">Specific to this form</th><td>Preset selected on arrival with the spec visible.</td><td>Generic tools need manual numbers.</td><td>Manual setup.</td></tr>
+  </tbody></table></div>
+      <p class="guide-note">This compares general approaches, not every product. Other services change their features, limits and pricing, so check their current terms before deciding.</p>
+      <p class="guide-verdict"><strong>When something else is the better choice:</strong> your request needs in-person biometric capture or a photo taken at the enrolment centre. In that case follow the centre’s process; this tool prepares images for uploads only.</p>
+    </div>
+    <div class="content-section tool-guide">
+      <h2>Tips and common mistakes</h2>
+      <ul class="guide-list">
+        <li>Use a recent, front-facing photo with a plain background.</li>
+        <li>Do not upload photos with heavy filters.</li>
+        <li>Always check the issuing authority’s current notification before you submit. Specifications change, and the preset is a starting point.</li>
+        <li>Protect any Aadhaar PDF you email with the password protect tool.</li>
+      </ul>
+      <p class="guide-note">Guide reviewed October 2026. Next steps: <a href="/blog/aadhaar-photo-size-online/">Aadhaar photo guide</a> · <a href="/tools/pdf/protect/">Password protect a PDF</a> · <a href="/tools/image/govt-photo/">All presets</a></p>
+    </div>
+    <!-- tool-guide:end -->
   <div class="content-section">
     <h2>Related tools</h2>
     <div class="related-tools">
@@ -165,15 +204,24 @@
 </main>
 <div class="ad-slot ad-bottom"><span class="ad-label">Ad</span></div>
 <footer class="site-footer">
-  <div class="container"><div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div></div>
+  <div class="container">
+    <nav class="footer-links" aria-label="Footer">
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="/privacy/">Privacy Policy</a>
+      <a href="/terms/">Terms of Service</a>
+      <a href="/blog/">Blog &amp; Guides</a>
+      <a href="/">All tools</a>
+    </nav>
+    <div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div>
+  </div>
 </footer>
 <div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
 <script src="/assets/js/ga-config.js"></script>
-<script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/core.js?v=5"></script>
-<script src="/assets/js/ads.js?v=6"></script>
-<script src="/assets/js/analytics.js"></script>
+<script src="/assets/js/core.js?v=7"></script>
+<script defer src="/assets/js/ads.js?v=7"></script>
+<script defer src="/assets/js/analytics.js"></script>
 <script>
 (function () {
   const PRESETS = [

@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PNN1LM2D9Q"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-PNN1LM2D9Q');</script>
 <meta charset="UTF-8">
 <script>(function(){try{/* TEMP: dark mode disabled — restore prior boot to re-enable */document.documentElement.setAttribute('data-theme','light');localStorage.setItem('ts-theme','light');}catch(e){}})();</script>
@@ -25,10 +24,9 @@
 <link rel="icon" href="/favicon.ico?v=2" sizes="any">
 <link rel="icon" href="/assets/img/favicon.svg?v=2" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/img/icon-192.png?v=2">
-<link rel="stylesheet" href="/assets/css/main.css?v=5">
+<link rel="stylesheet" href="/assets/css/main.css?v=9">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#DC2626">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"Image OCR","url":"https://toolshoppy.com/tools/image/ocr/","description":"Extract text from images with on-device PaddleOCR PP-OCRv5.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
 </script>
@@ -46,11 +44,14 @@
   #ocrText{width:100%;min-height:180px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.9rem;line-height:1.45;padding:12px;border:1px solid var(--border);border-radius:12px;background:var(--card);color:var(--text);resize:vertical;}
   .ocr-engine-badge{display:inline-flex;align-items:center;gap:6px;font-size:.75rem;color:var(--text-muted);margin-top:8px;}
 </style>
+<meta name="google-adsense-account" content="ca-pub-1180208702657280">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+<script defer src="/assets/js/third-party.js?v=1"></script>
 </head>
 <body>
 <header class="site-header">
   <div class="container">
-    <a href="/" class="logo"><img src="/assets/img/logo.png?v=2" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
+    <a href="/" class="logo"><img src="/assets/img/logo.webp?v=3" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
     <div class="site-search"><input type="text" placeholder="Search tools…" onfocus="location.href='/search/'"></div>
     <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode">
       <svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg>
@@ -88,7 +89,7 @@
       </div>
       <div class="result-panel" id="resultPanel">
         <div class="ocr-preview-wrap" id="previewWrap">
-          <img id="previewImg" alt="Source">
+          <img width="320" height="240" id="previewImg" alt="Source">
           <div class="ocr-boxes" id="ocrBoxes"></div>
         </div>
         <p class="ocr-engine-badge" id="engineBadge"></p>
@@ -107,7 +108,7 @@
     <aside class="sidebar">
       <div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div>
       <div class="info-box">
-        <h4>How it works</h4>
+        <h2 class="seo-heading-4">How it works</h2>
         <ul>
           <li>Uses <strong>Baidu PaddleOCR PP-OCRv5</strong> — open-source Chinese OCR, converted to ONNX for the browser</li>
           <li>Inference runs locally via WebAssembly; your photo is never uploaded</li>
@@ -130,6 +131,45 @@
       <li>Copy the text or download a <strong>.txt</strong> file.</li>
     </ol>
   </div>
+  <!-- tool-guide:start -->
+    <div class="content-section tool-guide">
+      <h2>How Image OCR works</h2>
+      <p>OCR (optical character recognition) reads text from a picture. The page runs Baidu’s open-source PaddleOCR PP-OCRv5 model, converted to ONNX, in your browser through WebAssembly. It first finds where the text is in the image, then recognises the characters.</p>
+      <p>The first visit downloads a model of about 20 MB, which is cached so later runs can work offline. The image itself is never uploaded. Chinese and English are the strongest; many Latin-script receipts and invoices work well. Clear, straight photos give the best accuracy.</p>
+    </div>
+    <div class="content-section tool-guide">
+      <h2>Benefits of using Image OCR on ToolShoppy</h2>
+      <ul class="guide-list">
+        <li>Copy text from a receipt, screenshot or document photo instead of retyping.</li>
+        <li>Download the result as a .txt file.</li>
+        <li>On-device: private enough for ID cards and invoices.</li>
+        <li>Free, with no signup.</li>
+      </ul>
+    </div>
+    <div class="content-section tool-guide">
+      <h2>ToolShoppy vs server-based image tools and desktop editors</h2>
+      <div class="tool-guide-table-wrap"><table>
+  <thead><tr><th scope="col">What matters</th><th scope="col">ToolShoppy</th><th scope="col">Server-based image tools</th><th scope="col">Desktop editors (e.g. Photoshop, GIMP)</th></tr></thead>
+  <tbody>
+  <tr><th scope="row">Where your photo is processed</th><td>In your browser. The photo is not uploaded to ToolShoppy.</td><td>Uploaded to the provider’s servers, then deleted later under their stated policy.</td><td>On your own computer.</td></tr>
+  <tr><th scope="row">Account and cost</th><td>No signup, no email. Free to use.</td><td>Often free with limits on size, batch count or quality; some require an account (varies).</td><td>Needs installing and some learning; some editors are paid.</td></tr>
+  <tr><th scope="row">Where recognition runs</th><td>On your device with PaddleOCR.</td><td>On the provider’s servers.</td><td>On your computer.</td></tr>
+  <tr><th scope="row">Language coverage</th><td>Strongest in Chinese and English; many Latin-script documents work.</td><td>Large services cover many languages.</td><td>Depends on installed language packs.</td></tr>
+  </tbody></table></div>
+      <p class="guide-note">This compares general approaches, not every product. Other services change their features, limits and pricing, so check their current terms before deciding.</p>
+      <p class="guide-verdict"><strong>When something else is the better choice:</strong> you need handwriting, Indian-language scripts, or high-volume batch OCR. A cloud OCR service or specialised desktop software will usually do better on those.</p>
+    </div>
+    <div class="content-section tool-guide">
+      <h2>Tips and common mistakes</h2>
+      <ul class="guide-list">
+        <li>Photograph documents flat, in even light, without glare.</li>
+        <li>Crop away extra background before running OCR.</li>
+        <li>Proofread numbers, dates and names. OCR can misread similar characters.</li>
+        <li>For a whole scanned PDF, use OCR PDF instead.</li>
+      </ul>
+      <p class="guide-note">Guide reviewed October 2026. Next steps: <a href="/tools/pdf/ocr-pdf/">OCR a scanned PDF</a> · <a href="/tools/pdf/pdf-to-excel/">PDF to Excel</a> · <a href="/tools/image/compress/">Compress</a></p>
+    </div>
+    <!-- tool-guide:end -->
   <div class="content-section">
     <h2>Related tools</h2>
     <div class="related-tools">
@@ -163,14 +203,25 @@
   </div>
 </main>
 <div class="ad-slot ad-bottom"><span class="ad-label">Ad</span></div>
-<footer class="site-footer"><div class="container"><div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div></div></footer>
+<footer class="site-footer">
+  <div class="container">
+    <nav class="footer-links" aria-label="Footer">
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="/privacy/">Privacy Policy</a>
+      <a href="/terms/">Terms of Service</a>
+      <a href="/blog/">Blog &amp; Guides</a>
+      <a href="/">All tools</a>
+    </nav>
+    <div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div>
+  </div>
+</footer>
 <div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
 <script src="/assets/js/ga-config.js"></script>
-<script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/core.js?v=5"></script>
-<script src="/assets/js/ads.js?v=6"></script>
-<script src="/assets/js/analytics.js"></script>
+<script src="/assets/js/core.js?v=7"></script>
+<script defer src="/assets/js/ads.js?v=7"></script>
+<script defer src="/assets/js/analytics.js"></script>
 <script src="/assets/js/paddle-ocr.js"></script>
 <script>
 (function () {

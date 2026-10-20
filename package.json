@@ -8,17 +8,24 @@
     "sync:trends": "node scripts/sync-trends-seo.mjs",
     "cron:trends": "node scripts/railway-trends-cron.mjs",
     "sitemap": "node scripts/regenerate-sitemap.mjs",
+    "sitemap:submit": "node scripts/submit-sitemap.mjs",
     "prerender:home": "node scripts/prerender-home.mjs",
     "seo:services": "node scripts/update-service-search.mjs && node scripts/improve-tool-seo-landing.mjs --hubs-only && node scripts/prerender-home.mjs && node scripts/regenerate-sitemap.mjs",
     "audit:seo": "node scripts/audit-seo.mjs",
     "check:seo": "node scripts/prerender-home.mjs --check && node scripts/audit-seo.mjs && node --test scripts/seo-routing.test.mjs scripts/live-api.test.mjs",
     "enrich:seo": "node scripts/enrich-tool-seo.mjs",
-    "seo:landing": "node scripts/improve-tool-seo-landing.mjs && node scripts/regenerate-sitemap.mjs"
+    "seo:landing": "node scripts/improve-tool-seo-landing.mjs && node scripts/regenerate-sitemap.mjs",
+    "build:tools": "node scripts/build-new-tools.mjs && node scripts/build-compress-size-pages.mjs && node scripts/improve-tool-seo-landing.mjs --hubs-only && node scripts/prerender-home.mjs && node scripts/apply-page-policy.mjs && node scripts/regenerate-sitemap.mjs",
+    "audit:adsense": "node scripts/audit-adsense.mjs",
+    "policy:apply": "node scripts/apply-page-policy.mjs",
+    "test:tools": "node --test scripts/tools-lib.test.mjs scripts/target-size.test.mjs"
   },
   "dependencies": {
     "compression": "^1.8.1",
     "serve": "^14.2.6",
     "serve-handler": "^6.1.6"
   },
-  "engines": { "node": ">=22" }
+  "engines": {
+    "node": ">=22"
+  }
 }

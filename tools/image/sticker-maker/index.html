@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PNN1LM2D9Q"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-PNN1LM2D9Q');</script>
 <meta charset="UTF-8">
 <script>(function(){try{/* TEMP: dark mode disabled — restore prior boot to re-enable */document.documentElement.setAttribute('data-theme','light');localStorage.setItem('ts-theme','light');}catch(e){}})();</script>
@@ -24,10 +23,9 @@
 <link rel="icon" href="/favicon.ico?v=2" sizes="any">
 <link rel="icon" href="/assets/img/favicon.svg?v=2" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/img/icon-192.png?v=2">
-<link rel="stylesheet" href="/assets/css/main.css?v=5">
+<link rel="stylesheet" href="/assets/css/main.css?v=9">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#DC2626">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"WhatsApp Sticker Maker","url":"https://toolshoppy.com/tools/image/sticker-maker/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
 <script type="application/ld+json">
 {
@@ -87,14 +85,17 @@
   ]
 }
 </script>
+<meta name="google-adsense-account" content="ca-pub-1180208702657280">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+<script defer src="/assets/js/third-party.js?v=1"></script>
 </head>
 <body>
 <header class="site-header"><div class="container">
-  <a href="/" class="logo"><img src="/assets/img/logo.png?v=2" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
+  <a href="/" class="logo"><img src="/assets/img/logo.webp?v=3" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
   <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode"><svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg><svg class="icon-svg theme-icon-moon" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#moon"></use></svg></button>
 </div></header>
 <main class="tool-page container">
-  <nav class="breadcrumb"><a href="/">Home</a> › <a href="/tools/image/">Image</a> › <span class="crumb-current">Sticker Maker</span></nav>
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/image/">Image</a> › <span class="crumb-current">Sticker Maker</span></nav>
   <div class="tool-header">
     <div class="icon-tile icon-tile--lg icon-tile--amber"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sticker-2"></use></svg></div>
     <h1>WhatsApp Sticker Maker</h1>
@@ -115,7 +116,7 @@
         </div>
       </div>
       <div class="result-panel" id="resultPanel">
-        <img id="previewImg" alt="Sticker preview" style="width:200px;height:200px;object-fit:contain;border-radius:8px;border:1px solid var(--border);margin-bottom:12px;">
+        <img width="200" height="200" id="previewImg" alt="Sticker preview" style="object-fit:contain;width:200px;height:200px;object-fit:contain;border-radius:8px;border:1px solid var(--border);margin-bottom:12px;">
         <p id="sizeInfo" style="font-size:0.85rem;color:var(--text-muted);"></p>
         <button class="btn btn-accent btn-block" id="downloadBtn">Download Sticker</button>
       </div>
@@ -124,7 +125,8 @@
     <aside class="sidebar"><div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div></aside>
   </div>
   <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
-  <div class="content-section seo-howto">
+  <section class="content-section usage-notes"><h2>Prepare a clear sticker</h2><p>Choose an image with a recognizable subject and enough space around its edges. The tool creates a 512 × 512 image, with WebP output when supported and PNG as a fallback. Review the preview and actual downloaded file size before importing it into a messaging app.</p><p>Creating an image does not automatically add a sticker pack to WhatsApp. Use the messaging app’s supported import workflow. If you need a transparent subject, remove the background first with the <a href="/tools/image/background-remove/">background remover</a> and check edges against both light and dark backgrounds.</p></section>
+<div class="content-section seo-howto">
     <h2>How to make WhatsApp stickers</h2>
     <ol>
       <li>Upload a photo or graphic.</li>
@@ -132,6 +134,44 @@
       <li>Download the sticker-ready image for WhatsApp.</li>
     </ol>
   </div>
+    <!-- tool-guide:start -->
+      <div class="content-section tool-guide">
+        <h2>How WhatsApp Sticker Maker works</h2>
+        <p>You upload a picture and the tool crops it to a centred square, scales it to 512 × 512 pixels and encodes it as WebP when your browser supports it, or PNG otherwise. It tries to keep the file under about 100 KB, the size WhatsApp expects for static stickers.</p>
+        <p>The tool creates the sticker image only. It does not add stickers to WhatsApp for you; you still need an app or the messaging app’s own import flow to bundle images into a sticker pack. A transparent subject looks best, so remove the background first when needed.</p>
+      </div>
+      <div class="content-section tool-guide">
+        <h2>Benefits of using WhatsApp Sticker Maker on ToolShoppy</h2>
+        <ul class="guide-list">
+          <li>Turn a photo, logo or drawing into a sticker-sized image in seconds.</li>
+          <li>Correct 512 × 512 size and a small file for chat apps.</li>
+          <li>Private: the picture stays on your device.</li>
+          <li>Free, with no signup.</li>
+        </ul>
+      </div>
+      <div class="content-section tool-guide">
+        <h2>ToolShoppy vs server-based image tools and desktop editors</h2>
+        <div class="tool-guide-table-wrap"><table>
+    <thead><tr><th scope="col">What matters</th><th scope="col">ToolShoppy</th><th scope="col">Server-based image tools</th><th scope="col">Desktop editors (e.g. Photoshop, GIMP)</th></tr></thead>
+    <tbody>
+    <tr><th scope="row">Where your photo is processed</th><td>In your browser. The photo is not uploaded to ToolShoppy.</td><td>Uploaded to the provider’s servers, then deleted later under their stated policy.</td><td>On your own computer.</td></tr>
+    <tr><th scope="row">Account and cost</th><td>No signup, no email. Free to use.</td><td>Often free with limits on size, batch count or quality; some require an account (varies).</td><td>Needs installing and some learning; some editors are paid.</td></tr>
+    <tr><th scope="row">Output</th><td>A 512 × 512 sticker image, WebP or PNG. You import it using a sticker app.</td><td>Some are full sticker-pack apps that add the pack for you.</td><td>Manual export from an editor.</td></tr>
+    </tbody></table></div>
+        <p class="guide-note">This compares general approaches, not every product. Other services change their features, limits and pricing, so check their current terms before deciding.</p>
+        <p class="guide-verdict"><strong>When something else is the better choice:</strong> you want to build full sticker packs with names, trays and one-tap adding into WhatsApp. A dedicated sticker-pack app handles packaging and import.</p>
+      </div>
+      <div class="content-section tool-guide">
+        <h2>Tips and common mistakes</h2>
+        <ul class="guide-list">
+          <li>Choose a subject with space around it so it does not get cropped.</li>
+          <li>Remove the background first for the clean cut-out look.</li>
+          <li>Check the sticker on both light and dark chat backgrounds.</li>
+          <li>Keep the original so you can recrop it later.</li>
+        </ul>
+        <p class="guide-note">Guide reviewed October 2026. Next steps: <a href="/tools/image/background-remove/">Remove the background</a> · <a href="/tools/misc/whatsapp-link/">WhatsApp link maker</a> · <a href="/tools/image/compress/">Compress</a></p>
+      </div>
+      <!-- tool-guide:end -->
     <div class="content-section seo-related">
     <h2>Related tools</h2>
     <div class="related-tools">
@@ -174,11 +214,22 @@
   </div>
 </main>
 <div class="ad-slot ad-bottom"><span class="ad-label">Ad</span></div>
-<footer class="site-footer"><div class="container"><div class="footer-bottom">© 2026 ToolShoppy</div></div></footer>
+<footer class="site-footer">
+  <div class="container">
+    <nav class="footer-links" aria-label="Footer">
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="/privacy/">Privacy Policy</a>
+      <a href="/terms/">Terms of Service</a>
+      <a href="/blog/">Blog &amp; Guides</a>
+      <a href="/">All tools</a>
+    </nav>
+    <div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div>
+  </div>
+</footer>
 <div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
-<script src="/assets/js/ga-config.js"></script><script src="/assets/js/adsterra-config.js?v=5"></script>
-<script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/core.js?v=5"></script><script src="/assets/js/image-tools.js"></script><script src="/assets/js/ads.js?v=6"></script><script src="/assets/js/analytics.js"></script>
+<script src="/assets/js/ga-config.js"></script><script src="/assets/js/ad-config.js"></script>
+<script src="/assets/js/core.js?v=7"></script><script src="/assets/js/image-tools.js"></script><script defer src="/assets/js/ads.js?v=7"></script><script defer src="/assets/js/analytics.js"></script>
 <script>
 (function () {
   var file = null, blob = null, ext = 'webp';

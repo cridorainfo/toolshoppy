@@ -76,6 +76,11 @@
     ins.setAttribute('data-ad-slot', slotId);
     if (format === 'rectangle') {
       ins.setAttribute('data-ad-format', 'rectangle');
+    } else if (format === 'horizontal') {
+      // Banner strip (about 90–100px tall). A fully responsive "auto" unit can return a
+      // 250–400px block on phones, which shifts the page and pushes the tool down the screen.
+      ins.setAttribute('data-ad-format', 'horizontal');
+      ins.setAttribute('data-full-width-responsive', 'false');
     } else {
       ins.setAttribute('data-ad-format', 'auto');
       ins.setAttribute('data-full-width-responsive', 'true');
@@ -129,7 +134,10 @@
     if (network === 'adsense') {
       var res = getAdsenseSlot(configKey);
       if (!res) return false;
-      var format = configKey === 'sidebar' ? 'rectangle' : 'auto';
+      var placement = placementKey(slot);
+      var format = configKey === 'sidebar' ? 'rectangle'
+        : (placement === 'top' || placement === 'bottom' || placement === 'stickyFooterMobile') ? 'horizontal'
+        : 'auto';
       renderRealAd(slot, res.client, res.slotId, format);
       return true;
     }
@@ -138,6 +146,10 @@
 
   function loadSlot(slot) {
     if (slot.dataset.loaded === 'true') return;
+    // A hidden slot (e.g. the mobile-only sticky footer on desktop) has no width, and
+    // AdSense rejects it with "No slot size for availableWidth=0". Leave it unloaded;
+    // the IntersectionObserver fires if it becomes visible later.
+    if (!slot.offsetWidth) return;
     slot.dataset.loaded = 'true';
 
     var key = placementKey(slot);
@@ -155,9 +167,59 @@
     ensurePlaceholder(slot);
   }
 
+  // AdSense policy: ads must not outweigh publisher content, and pages with little
+  // original content ("screens without publisher content", link hubs, short legal pages)
+  // must not carry ads at all. Cap the number of live slots by how much real text the
+  // page has, keeping the highest-value placements first, and collapse the rest so no
+  // empty "Ad" boxes are left behind. Counts <main> text excluding ads, nav and sidebar.
+  var PLACEMENT_PRIORITY = ['top', 'incontent', 'sidebar', 'bottom', 'stickyFooterMobile'];
+
+  function mainWordCount() {
+    var main = document.querySelector('main');
+    if (!main) return 0;
+    var clone = main.cloneNode(true);
+    var drop = clone.querySelectorAll('.ad-slot, script, style, nav, aside');
+    for (var i = 0; i < drop.length; i++) drop[i].remove();
+    var text = (clone.textContent || '').trim();
+    return text ? text.split(/\s+/).length : 0;
+  }
+
+  function maxSlotsFor(words) {
+    if (words < 200) return 0;
+    if (words < 450) return 2;
+    if (words < 700) return 3;
+    if (words < 1000) return 4;
+    return 5;
+  }
+
+  function applyContentBalance(slots) {
+    var limit = maxSlotsFor(mainWordCount());
+    var visible = Array.prototype.filter.call(slots, function (s) { return s.offsetWidth > 0; });
+    visible.sort(function (a, b) {
+      var pa = PLACEMENT_PRIORITY.indexOf(placementKey(a));
+      var pb = PLACEMENT_PRIORITY.indexOf(placementKey(b));
+      return (pa < 0 ? 99 : pa) - (pb < 0 ? 99 : pb);
+    });
+    var drop = visible.slice(limit);
+    drop.forEach(function (s) {
+      s.dataset.loaded = 'skipped';
+      s.style.display = 'none';
+    });
+    return Array.prototype.filter.call(slots, function (s) { return s.dataset.loaded !== 'skipped'; });
+  }
+
   function initAds() {
     var slots = document.querySelectorAll('.ad-slot');
     if (!slots.length) return;
+
+    // Hubs, legal pages, error pages and noindex pages never carry ads (see
+    // scripts/lib/page-policy.mjs). The build removes their slots; this guards the rest.
+    var robots = document.querySelector('meta[name="robots"]');
+    if (document.querySelector('meta[name="ts-ads"][content="off"]') ||
+        (robots && /noindex/i.test(robots.getAttribute('content') || ''))) {
+      for (var k = 0; k < slots.length; k++) slots[k].style.display = 'none';
+      return;
+    }
 
     // Assign each slot its occurrence index within its placement type, in DOM order,
     // before any lazy-loading happens — keeps the pool assignment deterministic
@@ -170,6 +232,9 @@
       counters[key] = idx + 1;
     });
 
+    slots = applyContentBalance(slots);
+    if (!slots.length) return;
+
     if (!('IntersectionObserver' in window)) {
       slots.forEach(loadSlot);
       return;
@@ -179,7 +244,7 @@
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
           loadSlot(entry.target);
-          observer.unobserve(entry.target);
+          if (entry.target.dataset.loaded === 'true') observer.unobserve(entry.target);
         }
       });
     }, { rootMargin: '200px' });
@@ -192,7 +257,7 @@
       setTimeout(function () {
         if (slot.dataset.loaded !== 'true') {
           loadSlot(slot);
-          observer.unobserve(slot);
+          if (slot.dataset.loaded === 'true') observer.unobserve(slot);
         }
       }, 4000);
     });

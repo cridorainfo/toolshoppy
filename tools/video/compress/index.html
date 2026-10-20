@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PNN1LM2D9Q"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-PNN1LM2D9Q');</script>
 <meta charset="UTF-8">
 <script>(function(){try{/* TEMP: dark mode disabled — restore prior boot to re-enable */document.documentElement.setAttribute('data-theme','light');localStorage.setItem('ts-theme','light');}catch(e){}})();</script>
@@ -24,10 +23,9 @@
 <link rel="icon" href="/favicon.ico?v=2" sizes="any">
 <link rel="icon" href="/assets/img/favicon.svg?v=2" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/img/icon-192.png?v=2">
-<link rel="stylesheet" href="/assets/css/main.css?v=5">
+<link rel="stylesheet" href="/assets/css/main.css?v=9">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#DC2626">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Video Compressor","url":"https://toolshoppy.com/tools/video/compress/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
 <script type="application/ld+json">
 {
@@ -95,14 +93,17 @@
   ]
 }
 </script>
+<meta name="google-adsense-account" content="ca-pub-1180208702657280">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+<script defer src="/assets/js/third-party.js?v=1"></script>
 </head>
 <body>
 <header class="site-header"><div class="container">
-  <a href="/" class="logo"><img src="/assets/img/logo.png?v=2" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
+  <a href="/" class="logo"><img src="/assets/img/logo.webp?v=3" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
   <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode"><svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg><svg class="icon-svg theme-icon-moon" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#moon"></use></svg></button>
 </div></header>
 <main class="tool-page container">
-  <nav class="breadcrumb"><a href="/">Home</a> › <a href="/tools/video/">Video</a> › <span class="crumb-current">Video Compressor</span></nav>
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/video/">Video</a> › <span class="crumb-current">Video Compressor</span></nav>
   <div class="tool-header">
     <div class="icon-tile icon-tile--lg icon-tile--rose"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#video"></use></svg></div>
     <h1>Video Compressor</h1>
@@ -143,6 +144,45 @@
       <li>Download the smaller file when processing finishes.</li>
     </ol>
   </div>
+    <!-- tool-guide:start -->
+      <div class="content-section tool-guide">
+        <h2>How Video Compressor works</h2>
+        <p>You pick a preset (High quality, Balanced or Smallest) and a video. The page loads FFmpeg compiled to WebAssembly, a download of about 30 MB the first time, and re-encodes the video with H.264 at a constant rate factor of 23, 28 or 32 and AAC audio. A higher number means a smaller file and lower quality.</p>
+        <p>Everything is done on your device, so there is no upload wait, but encoding speed and memory depend on your phone or computer. Very long or high-resolution videos can be slow or fail on weak devices.</p>
+      </div>
+      <div class="content-section tool-guide">
+        <h2>Benefits of using Video Compressor on ToolShoppy</h2>
+        <ul class="guide-list">
+          <li>Shrink a video so it can be sent on WhatsApp, email or an upload form.</li>
+          <li>Three presets so you do not need to understand codecs.</li>
+          <li>The video stays on your device.</li>
+          <li>Free, with no signup and no watermark.</li>
+        </ul>
+      </div>
+      <div class="content-section tool-guide">
+        <h2>ToolShoppy vs server-based video tools and desktop apps</h2>
+        <div class="tool-guide-table-wrap"><table>
+    <thead><tr><th scope="col">What matters</th><th scope="col">ToolShoppy</th><th scope="col">Server-based video tools</th><th scope="col">Desktop and phone apps (e.g. HandBrake, VLC, CapCut)</th></tr></thead>
+    <tbody>
+    <tr><th scope="row">Where your video is processed</th><td>In your browser, so the video is not uploaded. It does use your device’s memory and processor.</td><td>Uploaded to a server, which can take a long time for large files, then processed there.</td><td>On your own device, usually with full access to its hardware.</td></tr>
+    <tr><th scope="row">Account and cost</th><td>No signup, no email. Free to use.</td><td>Often free with file-size, length or watermark limits (varies).</td><td>Needs installing; some are paid or add watermarks on free plans.</td></tr>
+    <tr><th scope="row">Time to start</th><td>No upload. The first run downloads the engine, then processing starts.</td><td>Uploading a large video can take longer than the compression.</td><td>Starts immediately with full hardware acceleration.</td></tr>
+    <tr><th scope="row">Size limits</th><td>Limited by your device’s memory.</td><td>File-size or length limits on free plans are common.</td><td>Limited only by disk space.</td></tr>
+    </tbody></table></div>
+        <p class="guide-note">This compares general approaches, not every product. Other services change their features, limits and pricing, so check their current terms before deciding.</p>
+        <p class="guide-verdict"><strong>When something else is the better choice:</strong> you need to compress hours of footage, choose exact bitrates, or use hardware acceleration. HandBrake or your editing software is much faster for large files.</p>
+      </div>
+      <div class="content-section tool-guide">
+        <h2>Tips and common mistakes</h2>
+        <ul class="guide-list">
+          <li>Start with Balanced and watch the result before trying Smallest.</li>
+          <li>Close other tabs on phones to free memory.</li>
+          <li>Trim unnecessary sections first with the Video Trimmer.</li>
+          <li>Keep the original until you have checked the compressed file.</li>
+        </ul>
+        <p class="guide-note">Guide reviewed October 2026. Next steps: <a href="/tools/video/trim/">Trim first</a> · <a href="/tools/video/status-splitter/">Split for WhatsApp Status</a> · <a href="/tools/video/to-audio/">Extract audio</a></p>
+      </div>
+      <!-- tool-guide:end -->
     <div class="content-section seo-related">
     <h2>Related tools</h2>
     <div class="related-tools">
@@ -184,11 +224,22 @@
   </div>
 </main>
 <div class="ad-slot ad-bottom"><span class="ad-label">Ad</span></div>
-<footer class="site-footer"><div class="container"><div class="footer-bottom">© 2026 ToolShoppy</div></div></footer>
+<footer class="site-footer">
+  <div class="container">
+    <nav class="footer-links" aria-label="Footer">
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="/privacy/">Privacy Policy</a>
+      <a href="/terms/">Terms of Service</a>
+      <a href="/blog/">Blog &amp; Guides</a>
+      <a href="/">All tools</a>
+    </nav>
+    <div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div>
+  </div>
+</footer>
 <div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
-<script src="/assets/js/ga-config.js"></script><script src="/assets/js/adsterra-config.js?v=5"></script>
-<script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/core.js?v=5"></script><script src="/assets/js/ads.js?v=6"></script><script src="/assets/js/analytics.js"></script>
+<script src="/assets/js/ga-config.js"></script><script src="/assets/js/ad-config.js"></script>
+<script src="/assets/js/core.js?v=7"></script><script defer src="/assets/js/ads.js?v=7"></script><script defer src="/assets/js/analytics.js"></script>
 <script type="module">
 import { runFFmpeg } from '/assets/js/ffmpeg-loader.mjs?v=3';
 var file = null, blob = null, crf = '23';

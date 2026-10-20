@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PNN1LM2D9Q"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-PNN1LM2D9Q');</script>
 <meta charset="UTF-8">
 <script>(function(){try{/* TEMP: dark mode disabled — restore prior boot to re-enable */document.documentElement.setAttribute('data-theme','light');localStorage.setItem('ts-theme','light');}catch(e){}})();</script>
@@ -22,10 +21,9 @@
 <link rel="icon" href="/favicon.ico?v=2" sizes="any">
 <link rel="icon" href="/assets/img/favicon.svg?v=2" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/img/icon-192.png?v=2">
-<link rel="stylesheet" href="/assets/css/main.css?v=5">
+<link rel="stylesheet" href="/assets/css/main.css?v=9">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#DC2626">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"GST Calculator","url":"https://toolshoppy.com/tools/finance/gst-calculator/","description":"Add or remove GST free online.","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
 </script>
@@ -87,11 +85,14 @@
   ]
 }
 </script>
+<meta name="google-adsense-account" content="ca-pub-1180208702657280">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+<script defer src="/assets/js/third-party.js?v=1"></script>
 </head>
 <body>
 <header class="site-header">
   <div class="container">
-    <a href="/" class="logo"><img src="/assets/img/logo.png?v=2" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
+    <a href="/" class="logo"><img src="/assets/img/logo.webp?v=3" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
     <div class="site-search"><input type="text" placeholder="Search tools…" onfocus="location.href='/search/'"></div>
     <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode">
       <svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg>
@@ -145,7 +146,7 @@
     <aside class="sidebar">
       <div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div>
       <div class="info-box">
-        <h4>GST slabs (India)</h4>
+        <h2 class="seo-heading-4">GST slabs (India)</h2>
         <ul>
           <li>5% — essentials, some food</li>
           <li>12% — processed food, business services</li>
@@ -154,7 +155,7 @@
         </ul>
       </div>
       <div class="info-box" style="margin-top:12px;">
-        <h4>Related</h4>
+        <h3 class="seo-heading-4">Related</h3>
         <ul>
           <li><a href="/tools/finance/emi-calculator/">EMI calculator →</a></li>
         </ul>
@@ -170,6 +171,44 @@
       <li>See net amount, GST component, and gross total instantly.</li>
     </ol>
   </div>
+    <!-- tool-guide:start -->
+      <div class="content-section tool-guide">
+        <h2>How GST Calculator works</h2>
+        <p>In Add GST mode you enter a price without tax and a rate, and the page adds GST to give the total. In Remove GST mode you enter a price that already includes GST and the page works backwards to the base price and the GST amount. It also shows the CGST and SGST split, each half of the total GST for transactions within a state.</p>
+        <p>The formulas are simple: tax-exclusive price × rate gives GST, and a tax-inclusive price ÷ (1 + rate) gives the base. Use the rate shown on your invoice or the current GST notification for your item, because rates change. Inter-state supplies use IGST instead of the CGST and SGST split.</p>
+      </div>
+      <div class="content-section tool-guide">
+        <h2>Benefits of using GST Calculator on ToolShoppy</h2>
+        <ul class="guide-list">
+          <li>Add or remove GST in one step for invoices and quotes.</li>
+          <li>See the CGST and SGST halves for intra-state billing.</li>
+          <li>No spreadsheet or formulas to maintain.</li>
+          <li>Invoice amounts are not stored or uploaded.</li>
+        </ul>
+      </div>
+      <div class="content-section tool-guide">
+        <h2>ToolShoppy vs bank calculators and spreadsheets</h2>
+        <div class="tool-guide-table-wrap"><table>
+    <thead><tr><th scope="col">What matters</th><th scope="col">ToolShoppy</th><th scope="col">Bank, fintech and portal calculators</th><th scope="col">Spreadsheet (Excel, Google Sheets)</th></tr></thead>
+    <tbody>
+    <tr><th scope="row">Your figures</th><td>Calculated in your browser and not stored by ToolShoppy.</td><td>Some ask for contact details or an account before showing results (varies).</td><td>Stay in your own file.</td></tr>
+    <tr><th scope="row">Setup effort</th><td>Open the page and type. Results update as you change inputs.</td><td>Open the page; the assumptions may be hidden or tied to one product.</td><td>You build and check the formulas yourself.</td></tr>
+    <tr><th scope="row">Direction</th><td>Add GST or remove GST from a gross amount.</td><td>Many only add GST.</td><td>Possible, but you maintain the formulas.</td></tr>
+    </tbody></table></div>
+        <p class="guide-note">This compares general approaches, not every product. Other services change their features, limits and pricing, so check their current terms before deciding.</p>
+        <p class="guide-verdict"><strong>When something else is the better choice:</strong> you need a full GST invoice, HSN rate lookups, input-tax credit or filing support. Accounting software or the GST portal handles those.</p>
+      </div>
+      <div class="content-section tool-guide">
+        <h2>Tips and common mistakes</h2>
+        <ul class="guide-list">
+          <li>Check whether the price you were quoted already includes GST before choosing Add or Remove.</li>
+          <li>Always confirm the rate for your item against the current GST schedule.</li>
+          <li>Round at the end of the invoice, not on each line, unless your invoicing rule says otherwise.</li>
+          <li>For UAE transactions, use the UAE VAT calculator instead.</li>
+        </ul>
+        <p class="guide-note">Guide reviewed October 2026. Next steps: <a href="/tools/finance/uae-vat/">UAE VAT calculator</a> · <a href="/tools/pdf/pdf-to-excel/">Invoices to Excel</a> · <a href="/tools/finance/emi-calculator/">EMI calculator</a></p>
+      </div>
+      <!-- tool-guide:end -->
     <div class="content-section seo-related">
     <h2>Related tools</h2>
     <div class="related-tools">
@@ -213,16 +252,25 @@
 </main>
 <div class="ad-slot ad-bottom"><span class="ad-label">Ad</span></div>
 <footer class="site-footer">
-  <div class="container"><div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div></div>
+  <div class="container">
+    <nav class="footer-links" aria-label="Footer">
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="/privacy/">Privacy Policy</a>
+      <a href="/terms/">Terms of Service</a>
+      <a href="/blog/">Blog &amp; Guides</a>
+      <a href="/">All tools</a>
+    </nav>
+    <div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div>
+  </div>
 </footer>
 <div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
 <script src="/assets/js/ga-config.js"></script>
-<script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/core.js?v=5"></script>
+<script src="/assets/js/core.js?v=7"></script>
 <script src="/assets/js/rates.js?v=3"></script>
-<script src="/assets/js/ads.js?v=6"></script>
-<script src="/assets/js/analytics.js"></script>
+<script defer src="/assets/js/ads.js?v=7"></script>
+<script defer src="/assets/js/analytics.js"></script>
 <script>
 (function () {
   var mode = 'add';

@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PNN1LM2D9Q"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-PNN1LM2D9Q');</script>
 <meta charset="UTF-8">
 <script>(function(){try{/* TEMP: dark mode disabled — restore prior boot to re-enable */document.documentElement.setAttribute('data-theme','light');localStorage.setItem('ts-theme','light');}catch(e){}})();</script>
@@ -25,10 +24,9 @@
 <link rel="icon" href="/favicon.ico?v=2" sizes="any">
 <link rel="icon" href="/assets/img/favicon.svg?v=2" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/img/icon-192.png?v=2">
-<link rel="stylesheet" href="/assets/css/main.css?v=5">
+<link rel="stylesheet" href="/assets/css/main.css?v=9">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#DC2626">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"Rotate PDF","url":"https://toolshoppy.com/tools/pdf/rotate/","description":"Rotate PDF pages free online, individually or all at once.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
 </script>
@@ -38,11 +36,14 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I rotate just one page instead of the whole PDF?","acceptedAnswer":{"@type":"Answer","text":"Yes. Rotate the whole document at once with Rotate all, or tap the rotate button on any individual page thumbnail."}},{"@type":"Question","name":"Does rotating reduce PDF quality?","acceptedAnswer":{"@type":"Answer","text":"No. Rotation only changes the page orientation metadata — the underlying content is untouched, so there's no quality loss."}},{"@type":"Question","name":"Is my PDF uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. Rotating uses pdf-lib and PDF.js entirely inside your browser — your file never leaves your device."}}]}
 </script>
+<meta name="google-adsense-account" content="ca-pub-1180208702657280">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+<script defer src="/assets/js/third-party.js?v=1"></script>
 </head>
 <body>
 <header class="site-header">
   <div class="container">
-    <a href="/" class="logo"><img src="/assets/img/logo.png?v=2" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
+    <a href="/" class="logo"><img src="/assets/img/logo.webp?v=3" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
     <div class="site-search"><input type="text" placeholder="Search tools…" onfocus="location.href='/search/'"></div>
     <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode">
       <svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg>
@@ -102,7 +103,7 @@
     <aside class="sidebar">
       <div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div>
       <div class="info-box">
-        <h4>How it works</h4>
+        <h2 class="seo-heading-4">How it works</h2>
         <ul>
           <li><strong>Rotate all</strong> turns every page 90° at once</li>
           <li>Tap a page's ↻ to rotate just that page</li>
@@ -120,6 +121,44 @@
       <li>Click <strong>Save Rotated PDF</strong> and download the result.</li>
     </ol>
   </div>
+  <!-- tool-guide:start -->
+    <div class="content-section tool-guide">
+      <h2>How Rotate PDF works</h2>
+      <p>Each page appears as a thumbnail. You can rotate the whole document left or right in 90-degree steps, or tap the rotate button on a single page.</p>
+      <p>Rotation is stored as a page-orientation setting in the PDF, written with pdf-lib. The page content is not redrawn, so there is no quality loss. Saving gives you a new PDF with the orientation fixed for any reader.</p>
+    </div>
+    <div class="content-section tool-guide">
+      <h2>Benefits of using Rotate PDF on ToolShoppy</h2>
+      <ul class="guide-list">
+        <li>Fix a sideways scan from a phone or scanner in a few taps.</li>
+        <li>Rotate only the pages that need it, leaving the rest unchanged.</li>
+        <li>No quality loss because the pixels are not re-rendered.</li>
+        <li>Private and free, with no signup.</li>
+      </ul>
+    </div>
+    <div class="content-section tool-guide">
+      <h2>ToolShoppy vs iLovePDF, Smallpdf and desktop software</h2>
+      <div class="tool-guide-table-wrap"><table>
+  <thead><tr><th scope="col">What matters</th><th scope="col">ToolShoppy</th><th scope="col">Server-based online tools (e.g. iLovePDF, Smallpdf)</th><th scope="col">Desktop software (e.g. Adobe Acrobat)</th></tr></thead>
+  <tbody>
+  <tr><th scope="row">Where your file is processed</th><td>In your browser. The file is not uploaded to ToolShoppy.</td><td>Uploaded to the provider’s servers, then deleted later under their stated policy.</td><td>On your own computer.</td></tr>
+  <tr><th scope="row">Account and cost</th><td>No signup, no email. Free to use.</td><td>Free use is often capped by file size, tasks per day or features; some features need an account or paid plan (varies by provider).</td><td>Needs installing; advanced features usually need a paid licence (varies).</td></tr>
+  <tr><th scope="row">Quality</th><td>No re-rendering. Orientation metadata changes.</td><td>Typically the same.</td><td>Same.</td></tr>
+  </tbody></table></div>
+      <p class="guide-note">This compares general approaches, not every product. Other services change their features, limits and pricing, so check their current terms before deciding.</p>
+      <p class="guide-verdict"><strong>When something else is the better choice:</strong> you need to straighten a slightly tilted scan by a few degrees, or crop the page. That needs an image or PDF editor with deskew and crop tools.</p>
+    </div>
+    <div class="content-section tool-guide">
+      <h2>Tips and common mistakes</h2>
+      <ul class="guide-list">
+        <li>Rotate before merging so every part of the final document has the correct orientation.</li>
+        <li>If only some pages are sideways, rotate those pages individually.</li>
+        <li>Open the saved file and scroll through it. Some viewers cache the old orientation.</li>
+        <li>If you also need to reorder or delete pages, Organize PDF does all three together.</li>
+      </ul>
+      <p class="guide-note">Guide reviewed October 2026. Next steps: <a href="/tools/pdf/organize/">Organize pages</a> · <a href="/tools/pdf/merge/">Merge PDFs</a> · <a href="/tools/pdf/image-to-pdf/">Images to PDF</a></p>
+    </div>
+    <!-- tool-guide:end -->
   <div class="content-section">
     <h2>Related tools</h2>
     <div class="related-tools">
@@ -149,15 +188,24 @@
 </main>
 <div class="ad-slot ad-bottom"><span class="ad-label">Ad</span></div>
 <footer class="site-footer">
-  <div class="container"><div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div></div>
+  <div class="container">
+    <nav class="footer-links" aria-label="Footer">
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="/privacy/">Privacy Policy</a>
+      <a href="/terms/">Terms of Service</a>
+      <a href="/blog/">Blog &amp; Guides</a>
+      <a href="/">All tools</a>
+    </nav>
+    <div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div>
+  </div>
 </footer>
 <div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
 <script src="/assets/js/ga-config.js"></script>
-<script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/core.js?v=5"></script>
-<script src="/assets/js/ads.js?v=6"></script>
-<script src="/assets/js/analytics.js"></script>
+<script src="/assets/js/core.js?v=7"></script>
+<script defer src="/assets/js/ads.js?v=7"></script>
+<script defer src="/assets/js/analytics.js"></script>
 <script src="/assets/libs/pdf.min.js"></script>
 <script src="/assets/libs/pdf-lib.min.js"></script>
 <script src="/assets/js/pdf-preview.js"></script>
@@ -250,7 +298,7 @@
         '<div class="page-tile-actions" draggable="false">' +
           '<button type="button" data-act="rotate" title="Rotate 90°"><svg class="icon-svg" width="15" height="15" aria-hidden="true"><use href="/assets/icons/sprite.svg#refresh"></use></svg></button>' +
         '</div>' +
-        '<img alt="Page ' + (i + 1) + '" src="' + (thumbs[i] || '') + '">' +
+        '<img width="160" height="220" alt="Page ' + (i + 1) + '" src="' + (thumbs[i] || '') + '">' +
         '<span class="page-num">Page ' + (i + 1) + '</span>';
       pageGrid.appendChild(tile);
     }

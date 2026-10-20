@@ -62,7 +62,12 @@ function walkHtml(dir, out = []) {
   return out;
 }
 
-const files = walkHtml(ROOT);
+// Only published route trees belong in the sitemap. Local reports, downloaded
+// packages and test fixtures can also contain HTML and must never be indexed.
+const files = [
+  ...fs.readdirSync(ROOT).filter(f => f.endsWith('.html') && f !== '404.html').map(f => path.join(ROOT, f)),
+  ...['tools', 'blog', 'search'].flatMap(dir => walkHtml(path.join(ROOT, dir))),
+];
 const urls = [];
 for (const abs of files) {
   const rel = path.relative(ROOT, abs).split(path.sep).join('/');

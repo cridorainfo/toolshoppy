@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PNN1LM2D9Q"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-PNN1LM2D9Q');</script>
 <meta charset="UTF-8">
 <script>(function(){try{/* TEMP: dark mode disabled — restore prior boot to re-enable */document.documentElement.setAttribute('data-theme','light');localStorage.setItem('ts-theme','light');}catch(e){}})();</script>
@@ -25,10 +24,9 @@
 <link rel="icon" href="/favicon.ico?v=2" sizes="any">
 <link rel="icon" href="/assets/img/favicon.svg?v=2" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/img/icon-192.png?v=2">
-<link rel="stylesheet" href="/assets/css/main.css?v=5">
+<link rel="stylesheet" href="/assets/css/main.css?v=9">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#DC2626">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"PDF to Image","url":"https://toolshoppy.com/tools/pdf/pdf-to-image/","description":"Convert PDF pages to JPG or PNG free online. 100% client-side.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
 </script>
@@ -38,11 +36,14 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I convert PDF to JPG for free?","acceptedAnswer":{"@type":"Answer","text":"Upload your PDF, choose JPG or PNG, pick a quality preset, and click Convert. Download a single image or a ZIP for multi-page PDFs."}},{"@type":"Question","name":"What image quality can I expect?","acceptedAnswer":{"@type":"Answer","text":"Pages are rendered with PDF.js at up to 2× scale. High quality is best for printing; Medium works well for sharing on WhatsApp."}},{"@type":"Question","name":"Is my PDF uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. Conversion runs entirely in your browser — your document never leaves your device."}}]}
 </script>
+<meta name="google-adsense-account" content="ca-pub-1180208702657280">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+<script defer src="/assets/js/third-party.js?v=1"></script>
 </head>
 <body>
 <header class="site-header">
   <div class="container">
-    <a href="/" class="logo"><img src="/assets/img/logo.png?v=2" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
+    <a href="/" class="logo"><img src="/assets/img/logo.webp?v=3" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
     <div class="site-search"><input type="text" placeholder="Search tools…" onfocus="location.href='/search/'"></div>
     <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode">
       <svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg>
@@ -75,7 +76,7 @@
       </div>
       <div id="controls" style="display:none;">
         <div class="pdf-preview-single" id="pdfPreview" aria-live="polite"></div>
-        <h3 style="margin:14px 0 8px;font-size:0.95rem;">Output format</h3>
+        <h2 style="margin:14px 0 8px;font-size:0.95rem;" class="seo-heading-3">Output format</h2>
         <div class="chip-row" id="formatRow">
           <button class="chip active" data-fmt="jpg" type="button">JPG</button>
           <button class="chip" data-fmt="png" type="button">PNG</button>
@@ -121,6 +122,44 @@
       <li>Click <strong>Convert to Images</strong> and download.</li>
     </ol>
   </div>
+  <!-- tool-guide:start -->
+    <div class="content-section tool-guide">
+      <h2>How PDF to Image works</h2>
+      <p>PDF.js renders each page of your PDF onto a canvas in your browser, at up to twice the normal scale. You pick JPG or PNG and a quality level (High, Medium or Low).</p>
+      <p>Each page is exported as an image. A multi-page PDF is bundled in a ZIP. JPG is smaller and suits photos and sharing; PNG is lossless and better for text and graphics.</p>
+    </div>
+    <div class="content-section tool-guide">
+      <h2>Benefits of using PDF to Image on ToolShoppy</h2>
+      <ul class="guide-list">
+        <li>Share a single page as an image on WhatsApp or in a chat.</li>
+        <li>Use PDF pages in slides, posts or documents that only take images.</li>
+        <li>Pick JPG for small size or PNG for crisp text.</li>
+        <li>No upload, no signup and no watermark.</li>
+      </ul>
+    </div>
+    <div class="content-section tool-guide">
+      <h2>ToolShoppy vs iLovePDF, Smallpdf and desktop software</h2>
+      <div class="tool-guide-table-wrap"><table>
+  <thead><tr><th scope="col">What matters</th><th scope="col">ToolShoppy</th><th scope="col">Server-based online tools (e.g. iLovePDF, Smallpdf)</th><th scope="col">Desktop software (e.g. Adobe Acrobat)</th></tr></thead>
+  <tbody>
+  <tr><th scope="row">Where your file is processed</th><td>In your browser. The file is not uploaded to ToolShoppy.</td><td>Uploaded to the provider’s servers, then deleted later under their stated policy.</td><td>On your own computer.</td></tr>
+  <tr><th scope="row">Account and cost</th><td>No signup, no email. Free to use.</td><td>Free use is often capped by file size, tasks per day or features; some features need an account or paid plan (varies by provider).</td><td>Needs installing; advanced features usually need a paid licence (varies).</td></tr>
+  <tr><th scope="row">Image quality</th><td>Rendered at up to 2× scale with JPG or PNG output.</td><td>Often offers resolution options; some limit pages.</td><td>Fine control over DPI and colour profiles.</td></tr>
+  </tbody></table></div>
+      <p class="guide-note">This compares general approaches, not every product. Other services change their features, limits and pricing, so check their current terms before deciding.</p>
+      <p class="guide-verdict"><strong>When something else is the better choice:</strong> you need a very high DPI for print, or colour-managed output. A desktop PDF or design application gives exact DPI control.</p>
+    </div>
+    <div class="content-section tool-guide">
+      <h2>Tips and common mistakes</h2>
+      <ul class="guide-list">
+        <li>Choose PNG for text-heavy pages and JPG for photos.</li>
+        <li>High quality creates larger files. Use Medium when sharing over mobile data.</li>
+        <li>If the images are too big to upload, run them through the image compressor.</li>
+        <li>To extract the pictures from a PDF rather than render pages, you need dedicated software.</li>
+      </ul>
+      <p class="guide-note">Guide reviewed October 2026. Next steps: <a href="/tools/image/compress/">Compress the images</a> · <a href="/tools/pdf/image-to-pdf/">Images to PDF</a> · <a href="/tools/pdf/split/">Extract pages first</a></p>
+    </div>
+    <!-- tool-guide:end -->
   <div class="content-section">
     <h2>Related tools</h2>
     <div class="related-tools">
@@ -150,15 +189,24 @@
 </main>
 <div class="ad-slot ad-bottom"><span class="ad-label">Ad</span></div>
 <footer class="site-footer">
-  <div class="container"><div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div></div>
+  <div class="container">
+    <nav class="footer-links" aria-label="Footer">
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="/privacy/">Privacy Policy</a>
+      <a href="/terms/">Terms of Service</a>
+      <a href="/blog/">Blog &amp; Guides</a>
+      <a href="/">All tools</a>
+    </nav>
+    <div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div>
+  </div>
 </footer>
 <div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
 <script src="/assets/js/ga-config.js"></script>
-<script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/core.js?v=5"></script>
-<script src="/assets/js/ads.js?v=6"></script>
-<script src="/assets/js/analytics.js"></script>
+<script src="/assets/js/core.js?v=7"></script>
+<script defer src="/assets/js/ads.js?v=7"></script>
+<script defer src="/assets/js/analytics.js"></script>
 <script src="/assets/libs/pdf.min.js"></script>
 <script src="/assets/js/pdf-preview.js"></script>
 <script>

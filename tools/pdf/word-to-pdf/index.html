@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PNN1LM2D9Q"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-PNN1LM2D9Q');</script>
 <meta charset="UTF-8">
 <script>(function(){try{/* TEMP: dark mode disabled — restore prior boot to re-enable */document.documentElement.setAttribute('data-theme','light');localStorage.setItem('ts-theme','light');}catch(e){}})();</script>
@@ -25,10 +24,9 @@
 <link rel="icon" href="/favicon.ico?v=2" sizes="any">
 <link rel="icon" href="/assets/img/favicon.svg?v=2" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/img/icon-192.png?v=2">
-<link rel="stylesheet" href="/assets/css/main.css?v=5">
+<link rel="stylesheet" href="/assets/css/main.css?v=9">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#DC2626">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"Word to PDF","url":"https://toolshoppy.com/tools/pdf/word-to-pdf/","description":"Convert Word DOCX to PDF free online, 100% client-side.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
 </script>
@@ -38,11 +36,14 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I convert Word to PDF for free?","acceptedAnswer":{"@type":"Answer","text":"Upload your .docx file, click Convert to PDF, then download. Conversion runs entirely in your browser."}},{"@type":"Question","name":"Does ToolShoppy upload my Word document?","acceptedAnswer":{"@type":"Answer","text":"No. The document is processed locally with mammoth.js and jsPDF — nothing is uploaded."}},{"@type":"Question","name":"Are complex layouts preserved?","acceptedAnswer":{"@type":"Answer","text":"Basic formatting (headings, paragraphs, lists, tables as text) is preserved. Very complex layouts may differ slightly from Microsoft Word print layout."}}]}
 </script>
+<meta name="google-adsense-account" content="ca-pub-1180208702657280">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+<script defer src="/assets/js/third-party.js?v=1"></script>
 </head>
 <body>
 <header class="site-header">
   <div class="container">
-    <a href="/" class="logo"><img src="/assets/img/logo.png?v=2" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
+    <a href="/" class="logo"><img src="/assets/img/logo.webp?v=3" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
     <div class="site-search"><input type="text" placeholder="Search tools…" onfocus="location.href='/search/'"></div>
     <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode">
       <svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg>
@@ -93,7 +94,7 @@
     <aside class="sidebar">
       <div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div>
       <div class="info-box">
-        <h4>How it works</h4>
+        <h2 class="seo-heading-4">How it works</h2>
         <ul>
           <li>DOCX is parsed in your browser (mammoth.js)</li>
           <li>Pages are rendered and saved as PDF (jsPDF)</li>
@@ -111,6 +112,45 @@
       <li>Download the PDF — processing stays on your device.</li>
     </ol>
   </div>
+  <!-- tool-guide:start -->
+    <div class="content-section tool-guide">
+      <h2>How Word to PDF works</h2>
+      <p>A .docx file is a zip of XML. The converter reads it in your browser with mammoth.js, which turns the document into clean HTML based on its structure: headings, paragraphs, lists, tables and images.</p>
+      <p>That HTML is then drawn to a canvas and placed onto PDF pages with jsPDF. Because mammoth focuses on structure, not exact print layout, fonts, margins, headers, footers and unusual formatting may not match Word. The pages are also images of the document, so the text in the PDF is not selectable and the file can be larger than one saved from Word.</p>
+    </div>
+    <div class="content-section tool-guide">
+      <h2>Benefits of using Word to PDF on ToolShoppy</h2>
+      <ul class="guide-list">
+        <li>Turn a CV, letter or assignment into a PDF on any device, including a phone with no Word installed.</li>
+        <li>No upload, so confidential documents stay with you.</li>
+        <li>No signup and no watermark.</li>
+        <li>Good for plain documents with headings, lists and tables.</li>
+      </ul>
+    </div>
+    <div class="content-section tool-guide">
+      <h2>ToolShoppy vs iLovePDF, Smallpdf and desktop software</h2>
+      <div class="tool-guide-table-wrap"><table>
+  <thead><tr><th scope="col">What matters</th><th scope="col">ToolShoppy</th><th scope="col">Server-based online tools (e.g. iLovePDF, Smallpdf)</th><th scope="col">Desktop software (e.g. Adobe Acrobat)</th></tr></thead>
+  <tbody>
+  <tr><th scope="row">Where your file is processed</th><td>In your browser. The file is not uploaded to ToolShoppy.</td><td>Uploaded to the provider’s servers, then deleted later under their stated policy.</td><td>On your own computer.</td></tr>
+  <tr><th scope="row">Account and cost</th><td>No signup, no email. Free to use.</td><td>Free use is often capped by file size, tasks per day or features; some features need an account or paid plan (varies by provider).</td><td>Needs installing; advanced features usually need a paid licence (varies).</td></tr>
+  <tr><th scope="row">Layout accuracy</th><td>Structure is kept; exact fonts, margins and headers may differ.</td><td>Server converters with a full rendering engine usually match layout more closely.</td><td>Word’s own Save as PDF matches the layout exactly.</td></tr>
+  <tr><th scope="row">Text in the result</th><td>Pages are images, so text is not selectable.</td><td>Typically a real text PDF.</td><td>Real text PDF with links and bookmarks.</td></tr>
+  </tbody></table></div>
+      <p class="guide-note">This compares general approaches, not every product. Other services change their features, limits and pricing, so check their current terms before deciding.</p>
+      <p class="guide-verdict"><strong>When something else is the better choice:</strong> the document must look identical to Word, with headers, footers or complex columns, or you need selectable text. If you have Word, use File, then Save As, then PDF. If you only have a phone, use this for simple documents and check the result.</p>
+    </div>
+    <div class="content-section tool-guide">
+      <h2>Tips and common mistakes</h2>
+      <ul class="guide-list">
+        <li>Convert only .docx files. Save older .doc files as .docx in Word first.</li>
+        <li>Open the PDF and check page breaks, tables and images before sending.</li>
+        <li>For a smaller file, run the PDF through PDF Compress, but note that text is already image-based.</li>
+        <li>Use PDF Protect afterwards if the document contains personal details.</li>
+      </ul>
+      <p class="guide-note">Guide reviewed October 2026. Next steps: <a href="/tools/pdf/pdf-to-word/">PDF to Word</a> · <a href="/tools/pdf/protect/">Password protect</a> · <a href="/blog/word-to-pdf-free-no-upload/">Why no upload matters</a></p>
+    </div>
+    <!-- tool-guide:end -->
   <div class="content-section">
     <h2>Related tools</h2>
     <div class="related-tools">
@@ -144,14 +184,25 @@
   </div>
 </main>
 <div class="ad-slot ad-bottom"><span class="ad-label">Ad</span></div>
-<footer class="site-footer"><div class="container"><div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div></div></footer>
+<footer class="site-footer">
+  <div class="container">
+    <nav class="footer-links" aria-label="Footer">
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="/privacy/">Privacy Policy</a>
+      <a href="/terms/">Terms of Service</a>
+      <a href="/blog/">Blog &amp; Guides</a>
+      <a href="/">All tools</a>
+    </nav>
+    <div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div>
+  </div>
+</footer>
 <div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
 <script src="/assets/js/ga-config.js"></script>
-<script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/core.js?v=5"></script>
-<script src="/assets/js/ads.js?v=6"></script>
-<script src="/assets/js/analytics.js"></script>
+<script src="/assets/js/core.js?v=7"></script>
+<script defer src="/assets/js/ads.js?v=7"></script>
+<script defer src="/assets/js/analytics.js"></script>
 <script src="/assets/libs/mammoth.browser.min.js"></script>
 <script src="/assets/libs/html2canvas.min.js"></script>
 <script src="/assets/libs/jspdf.umd.min.js"></script>

@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PNN1LM2D9Q"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-PNN1LM2D9Q');</script>
 <meta charset="UTF-8">
 <script>(function(){try{/* TEMP: dark mode disabled — restore prior boot to re-enable */document.documentElement.setAttribute('data-theme','light');localStorage.setItem('ts-theme','light');}catch(e){}})();</script>
@@ -25,10 +24,9 @@
 <link rel="icon" href="/favicon.ico?v=2" sizes="any">
 <link rel="icon" href="/assets/img/favicon.svg?v=2" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/img/icon-192.png?v=2">
-<link rel="stylesheet" href="/assets/css/main.css?v=5">
+<link rel="stylesheet" href="/assets/css/main.css?v=9">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#DC2626">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
 <style>
 .htp-tabs { display: flex; gap: 8px; margin-bottom: 10px; }
 .htp-tabs button {
@@ -55,11 +53,14 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I convert a live webpage URL?","acceptedAnswer":{"@type":"Answer","text":"No — since everything runs in your browser with no server, ToolShoppy can't fetch another site's URL (browsers block that for security). Paste the page's HTML source instead, or upload an .html file."}},{"@type":"Question","name":"Does it support CSS styling?","acceptedAnswer":{"@type":"Answer","text":"Yes. Include a <style> block or inline styles in your HTML — the preview and PDF both render your CSS."}},{"@type":"Question","name":"Is my content uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. Rendering and PDF generation happen entirely inside your browser using html2canvas and jsPDF."}}]}
 </script>
+<meta name="google-adsense-account" content="ca-pub-1180208702657280">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+<script defer src="/assets/js/third-party.js?v=1"></script>
 </head>
 <body>
 <header class="site-header">
   <div class="container">
-    <a href="/" class="logo"><img src="/assets/img/logo.png?v=2" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
+    <a href="/" class="logo"><img src="/assets/img/logo.webp?v=3" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
     <div class="site-search"><input type="text" placeholder="Search tools…" onfocus="location.href='/search/'"></div>
     <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode">
       <svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg>
@@ -129,7 +130,7 @@
     <aside class="sidebar">
       <div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div>
       <div class="info-box">
-        <h4>How it works</h4>
+        <h2 class="seo-heading-4">How it works</h2>
         <ul>
           <li>Paste HTML/CSS or upload an .html file</li>
           <li>Preview renders in an isolated sandbox</li>
@@ -147,6 +148,45 @@
       <li>Download the generated PDF.</li>
     </ol>
   </div>
+  <!-- tool-guide:start -->
+    <div class="content-section tool-guide">
+      <h2>How HTML to PDF works</h2>
+      <p>You paste HTML or upload an .html file, and the page renders it inside an isolated preview frame so you can check how it looks. You then choose A4 or Letter.</p>
+      <p>To make the PDF, the tool draws the rendered preview with html2canvas and places it onto pages with jsPDF. Tall content is split across pages automatically. Because the pages are made from an image of the render, the text in the PDF is not selectable. It cannot fetch a live web address, because browsers block reading other sites; paste the HTML source instead.</p>
+    </div>
+    <div class="content-section tool-guide">
+      <h2>Benefits of using HTML to PDF on ToolShoppy</h2>
+      <ul class="guide-list">
+        <li>Turn a hand-written invoice, resume or report in HTML into a PDF without a server.</li>
+        <li>See a preview before exporting, so you catch layout issues early.</li>
+        <li>Inline styles and style blocks are supported.</li>
+        <li>Private and free, with no signup.</li>
+      </ul>
+    </div>
+    <div class="content-section tool-guide">
+      <h2>ToolShoppy vs iLovePDF, Smallpdf and desktop software</h2>
+      <div class="tool-guide-table-wrap"><table>
+  <thead><tr><th scope="col">What matters</th><th scope="col">ToolShoppy</th><th scope="col">Server-based online tools (e.g. iLovePDF, Smallpdf)</th><th scope="col">Desktop software (e.g. Adobe Acrobat)</th></tr></thead>
+  <tbody>
+  <tr><th scope="row">Where your file is processed</th><td>In your browser. The file is not uploaded to ToolShoppy.</td><td>Uploaded to the provider’s servers, then deleted later under their stated policy.</td><td>On your own computer.</td></tr>
+  <tr><th scope="row">Account and cost</th><td>No signup, no email. Free to use.</td><td>Free use is often capped by file size, tasks per day or features; some features need an account or paid plan (varies by provider).</td><td>Needs installing; advanced features usually need a paid licence (varies).</td></tr>
+  <tr><th scope="row">Output</th><td>Image-based pages. Text is not selectable.</td><td>Server renderers often produce real text PDFs.</td><td>Browser Print to PDF produces real text PDFs.</td></tr>
+  <tr><th scope="row">Web addresses</th><td>Not supported; paste the HTML source.</td><td>Many can fetch a URL.</td><td>Browser print works on any open page.</td></tr>
+  </tbody></table></div>
+      <p class="guide-note">This compares general approaches, not every product. Other services change their features, limits and pricing, so check their current terms before deciding.</p>
+      <p class="guide-verdict"><strong>When something else is the better choice:</strong> you need selectable, searchable text or want to convert a live web page. Use your browser’s Print, then Save as PDF, which creates a text PDF directly.</p>
+    </div>
+    <div class="content-section tool-guide">
+      <h2>Tips and common mistakes</h2>
+      <ul class="guide-list">
+        <li>Use absolute sizes in your CSS (px, mm) so the preview matches the page.</li>
+        <li>Embed images as data URLs if they do not load in the sandbox.</li>
+        <li>Keep page-width content inside A4 width to avoid cut-off edges.</li>
+        <li>Check long pages for text split at a page boundary.</li>
+      </ul>
+      <p class="guide-note">Guide reviewed October 2026. Next steps: <a href="/tools/pdf/word-to-pdf/">Word to PDF</a> · <a href="/tools/pdf/merge/">Merge PDFs</a> · <a href="/tools/pdf/compress/">Compress PDF</a></p>
+    </div>
+    <!-- tool-guide:end -->
   <div class="content-section">
     <h2>Related tools</h2>
     <div class="related-tools">
@@ -176,15 +216,24 @@
 </main>
 <div class="ad-slot ad-bottom"><span class="ad-label">Ad</span></div>
 <footer class="site-footer">
-  <div class="container"><div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div></div>
+  <div class="container">
+    <nav class="footer-links" aria-label="Footer">
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="/privacy/">Privacy Policy</a>
+      <a href="/terms/">Terms of Service</a>
+      <a href="/blog/">Blog &amp; Guides</a>
+      <a href="/">All tools</a>
+    </nav>
+    <div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div>
+  </div>
 </footer>
 <div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
 <script src="/assets/js/ga-config.js"></script>
-<script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/core.js?v=5"></script>
-<script src="/assets/js/ads.js?v=6"></script>
-<script src="/assets/js/analytics.js"></script>
+<script src="/assets/js/core.js?v=7"></script>
+<script defer src="/assets/js/ads.js?v=7"></script>
+<script defer src="/assets/js/analytics.js"></script>
 <script src="/assets/libs/html2canvas.min.js"></script>
 <script src="/assets/libs/jspdf.umd.min.js"></script>
 <script>

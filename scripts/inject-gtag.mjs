@@ -1,15 +1,15 @@
 #!/usr/bin/env node
-/** Inject GA4 gtag snippet into <head> of all HTML pages (once). */
+/** Inject the GA4 dataLayer stub (gtag.js itself is loaded by /assets/js/third-party.js) into <head> of all HTML pages (once). */
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const GA_ID = 'G-PNN1LM2D9Q';
-const MARKER = 'googletagmanager.com/gtag/js';
+const MARKER = "function gtag()";
 const SNIPPET = `
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=${GA_ID}"></script>
+<!-- Google tag (gtag.js) — loaded later by /assets/js/third-party.js -->
+<script defer src="/assets/js/third-party.js?v=1"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_ID}');</script>`;
 
 function walk(dir, out = []) {

@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PNN1LM2D9Q"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-PNN1LM2D9Q');</script>
 <meta charset="UTF-8">
 <script>(function(){try{/* TEMP: dark mode disabled — restore prior boot to re-enable */document.documentElement.setAttribute('data-theme','light');localStorage.setItem('ts-theme','light');}catch(e){}})();</script>
@@ -25,10 +24,9 @@
 <link rel="icon" href="/favicon.ico?v=2" sizes="any">
 <link rel="icon" href="/assets/img/favicon.svg?v=2" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/img/icon-192.png?v=2">
-<link rel="stylesheet" href="/assets/css/main.css?v=5">
+<link rel="stylesheet" href="/assets/css/main.css?v=9">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#DC2626">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -84,11 +82,14 @@
   ]
 }
 </script>
+<meta name="google-adsense-account" content="ca-pub-1180208702657280">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+<script defer src="/assets/js/third-party.js?v=1"></script>
 </head>
 <body>
 <header class="site-header">
   <div class="container">
-    <a href="/" class="logo"><img src="/assets/img/logo.png?v=2" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
+    <a href="/" class="logo"><img src="/assets/img/logo.webp?v=3" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
     <div class="site-search"><input type="text" placeholder="Search tools…" onfocus="location.href='/search/'"></div>
     <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode">
       <svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg>
@@ -120,7 +121,7 @@
         <input type="file" id="fileInput" accept="image/*" multiple>
       </div>
       <div id="controls" style="display:none;margin-top:16px;">
-        <h3 style="font-size:1rem;margin-bottom:10px;">Convert to</h3>
+        <h2 style="font-size:1rem;margin-bottom:10px;" class="seo-heading-3">Convert to</h2>
         <div class="chip-row" id="formatRow">
           <button class="chip active" data-fmt="image/jpeg" data-ext="jpg">JPG</button>
           <button class="chip" data-fmt="image/png" data-ext="png">PNG</button>
@@ -141,7 +142,7 @@
     <aside class="sidebar">
       <div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div>
       <div class="info-box">
-        <h4>Note on HEIC (iPhone photos)</h4>
+        <h3 class="seo-heading-4">Note on HEIC (iPhone photos)</h3>
         <ul>
           <li>HEIC decoding depends on your browser/OS support</li>
           <li>Works out of the box on Safari / recent Chrome on Mac & Windows 11</li>
@@ -171,6 +172,44 @@
     </ol>
   </div>
   <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
+  <!-- tool-guide:start -->
+    <div class="content-section tool-guide">
+      <h2>How Image Converter works</h2>
+      <p>You add images and choose JPG, PNG or WebP as the output. Each file is decoded by your browser and re-encoded in the new format with the canvas, then offered for download individually or as a ZIP.</p>
+      <p>JPG is smaller and good for photos but has no transparency. PNG is lossless and keeps transparency, so files are larger. WebP is usually smaller than both. HEIC photos from iPhones can be opened only when your browser and operating system can decode them; if one fails, export it as JPG from the Photos app first.</p>
+    </div>
+    <div class="content-section tool-guide">
+      <h2>Benefits of using Image Converter on ToolShoppy</h2>
+      <ul class="guide-list">
+        <li>Convert iPhone HEIC photos to JPG so any website will accept them.</li>
+        <li>Switch between JPG, PNG and WebP in one step.</li>
+        <li>Batch convert and download everything in a ZIP.</li>
+        <li>No upload, no signup and no watermark.</li>
+      </ul>
+    </div>
+    <div class="content-section tool-guide">
+      <h2>ToolShoppy vs server-based image tools and desktop editors</h2>
+      <div class="tool-guide-table-wrap"><table>
+  <thead><tr><th scope="col">What matters</th><th scope="col">ToolShoppy</th><th scope="col">Server-based image tools</th><th scope="col">Desktop editors (e.g. Photoshop, GIMP)</th></tr></thead>
+  <tbody>
+  <tr><th scope="row">Where your photo is processed</th><td>In your browser. The photo is not uploaded to ToolShoppy.</td><td>Uploaded to the provider’s servers, then deleted later under their stated policy.</td><td>On your own computer.</td></tr>
+  <tr><th scope="row">Account and cost</th><td>No signup, no email. Free to use.</td><td>Often free with limits on size, batch count or quality; some require an account (varies).</td><td>Needs installing and some learning; some editors are paid.</td></tr>
+  <tr><th scope="row">HEIC support</th><td>Works when your browser and device can decode HEIC.</td><td>Servers can decode HEIC regardless of your device after upload.</td><td>Needs codecs or a plugin on some systems.</td></tr>
+  </tbody></table></div>
+      <p class="guide-note">This compares general approaches, not every product. Other services change their features, limits and pricing, so check their current terms before deciding.</p>
+      <p class="guide-verdict"><strong>When something else is the better choice:</strong> your browser cannot decode a HEIC or RAW file, or you need exact colour management. A server-based converter or a desktop tool handles unusual formats reliably.</p>
+    </div>
+    <div class="content-section tool-guide">
+      <h2>Tips and common mistakes</h2>
+      <ul class="guide-list">
+        <li>Converting a low-quality JPG to PNG does not restore lost detail. It only makes the file larger.</li>
+        <li>Keep your original. Re-encoding a JPG repeatedly lowers quality each time.</li>
+        <li>After converting, check the file size. Format change alone does not hit a KB limit.</li>
+        <li>Use the compressor afterwards if a portal has a size limit.</li>
+      </ul>
+      <p class="guide-note">Guide reviewed October 2026. Next steps: <a href="/tools/image/compress/">Compress to a KB target</a> · <a href="/tools/image/resize/">Resize</a> · <a href="/blog/heic-to-jpg-iphone-india/">HEIC to JPG guide</a></p>
+    </div>
+    <!-- tool-guide:end -->
   <div class="content-section">
     <h2>Related tools</h2>
     <div class="related-tools">
@@ -220,16 +259,23 @@
 <div class="ad-slot ad-bottom"><span class="ad-label">Ad</span></div>
 <footer class="site-footer">
   <div class="container">
+    <nav class="footer-links" aria-label="Footer">
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="/privacy/">Privacy Policy</a>
+      <a href="/terms/">Terms of Service</a>
+      <a href="/blog/">Blog &amp; Guides</a>
+      <a href="/">All tools</a>
+    </nav>
     <div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div>
   </div>
 </footer>
 <div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
 <script src="/assets/js/ga-config.js"></script>
-<script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/core.js?v=5"></script>
-<script src="/assets/js/ads.js?v=6"></script>
-<script src="/assets/js/analytics.js"></script>
+<script src="/assets/js/core.js?v=7"></script>
+<script defer src="/assets/js/ads.js?v=7"></script>
+<script defer src="/assets/js/analytics.js"></script>
 <script>
 (function () {
   function escapeFileName(value) { return String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
@@ -309,7 +355,7 @@
         const row = document.createElement('div');
         row.className = 'file-item';
         row.innerHTML =
-          '<img src="' + previewUrl + '" alt="" style="width:48px;height:48px;object-fit:cover;border-radius:8px;border:1px solid var(--border);flex-shrink:0;">' +
+          '<img width="48" height="48" src="' + previewUrl + '" alt="Selected image preview" style="width:48px;height:48px;object-fit:cover;border-radius:8px;border:1px solid var(--border);flex-shrink:0;">' +
           '<span class="name">✅ ' + escapeFileName(outName) + '</span><span>' + TS.formatBytes(blob.size) + '</span>' +
           '<button type="button" class="btn" data-dl="' + (results.length - 1) + '" style="padding:6px 10px;font-size:0.8rem;">Download</button>';
         resultList.appendChild(row);

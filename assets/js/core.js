@@ -85,6 +85,8 @@
         container._tsPreviewUrls.push(url);
         img.src = url;
         img.alt = file.name;
+        img.width = 96;
+        img.height = 96;
         img.loading = 'lazy';
         mediaWrap.appendChild(img);
       } else if (kind === 'video') {
@@ -113,6 +115,8 @@
           const img = document.createElement('img');
           img.src = t.dataUrl;
           img.alt = 'PDF preview — ' + file.name;
+          img.width = 96;
+          img.height = 96;
           ph.replaceWith(img);
         }).catch(() => {
           const fallback = document.createElement('div');
@@ -319,29 +323,41 @@
   }
 
   // Binary-search JPEG quality to hit a target byte size.
+  // Returns the LARGEST encoding that is still <= targetBytes (highest quality that fits).
+  // Forms reject files over their limit, so a result slightly over is worse than one a
+  // little under. If even the lowest quality is over the target, returns the smallest
+  // blob found so the caller can shrink the pixel dimensions and try again.
   function canvasToTargetSize(canvas, targetBytes, mime) {
     mime = mime || 'image/jpeg';
+    const FLOOR = 0.05;
     return new Promise((resolve) => {
-      let lo = 0.05, hi = 0.95, best = null;
+      let lo = FLOOR, hi = 0.95;
+      let under = null;    // largest blob with size <= target
+      let smallest = null; // fallback when nothing fits
       let attempts = 0;
-      const maxAttempts = 8;
+      const maxAttempts = 10;
+
+      function finish() {
+        if (under) return resolve(under);
+        // Nothing fit during the search: check the quality floor once before giving up.
+        canvas.toBlob((blob) => {
+          if (blob && (!smallest || blob.size < smallest.size)) smallest = blob;
+          resolve(smallest);
+        }, mime, FLOOR);
+      }
 
       function tryQuality(q) {
         canvas.toBlob((blob) => {
           attempts++;
-          if (!blob) return resolve(best);
-          if (best === null || Math.abs(blob.size - targetBytes) < Math.abs(best.size - targetBytes)) {
-            best = blob;
-          }
-          if (attempts >= maxAttempts) {
-            resolve(best);
-            return;
-          }
-          if (blob.size > targetBytes) {
-            hi = q;
-          } else {
+          if (!blob) return resolve(under || smallest);
+          if (blob.size <= targetBytes) {
+            if (!under || blob.size > under.size) under = blob;
             lo = q;
+          } else {
+            if (!smallest || blob.size < smallest.size) smallest = blob;
+            hi = q;
           }
+          if (attempts >= maxAttempts) return finish();
           tryQuality((lo + hi) / 2);
         }, mime, q);
       }

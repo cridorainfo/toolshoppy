@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PNN1LM2D9Q"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-PNN1LM2D9Q');</script>
 <meta charset="UTF-8">
 <script>(function(){try{/* TEMP: dark mode disabled — restore prior boot to re-enable */document.documentElement.setAttribute('data-theme','light');localStorage.setItem('ts-theme','light');}catch(e){}})();</script>
@@ -25,10 +24,9 @@
 <link rel="icon" href="/favicon.ico?v=2" sizes="any">
 <link rel="icon" href="/assets/img/favicon.svg?v=2" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/img/icon-192.png?v=2">
-<link rel="stylesheet" href="/assets/css/main.css?v=5">
+<link rel="stylesheet" href="/assets/css/main.css?v=9">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#DC2626">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -51,11 +49,14 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I compress a PDF for free?","acceptedAnswer":{"@type":"Answer","text":"Select your PDF, pick a quality preset (High / Medium / Low), click Compress, then download the smaller file."}},{"@type":"Question","name":"How do I reduce PDF size for email?","acceptedAnswer":{"@type":"Answer","text":"Start with Medium quality. If the attachment is still too large, use Low and compress again. Keep the original until you confirm the download opens."}},{"@type":"Question","name":"Will compression reduce quality?","acceptedAnswer":{"@type":"Answer","text":"Pages are re-rendered as optimized images. Lower quality presets shrink more but look softer. Text stays readable at Medium for most form uploads."}},{"@type":"Question","name":"Is my PDF uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. Compression runs in your browser with PDF.js and pdf-lib."}}]}
 </script>
+<meta name="google-adsense-account" content="ca-pub-1180208702657280">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+<script defer src="/assets/js/third-party.js?v=1"></script>
 </head>
 <body>
 <header class="site-header">
   <div class="container">
-    <a href="/" class="logo"><img src="/assets/img/logo.png?v=2" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
+    <a href="/" class="logo"><img src="/assets/img/logo.webp?v=3" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
     <div class="site-search"><input type="text" placeholder="Search tools…" onfocus="location.href='/search/'"></div>
     <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode">
       <svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg>
@@ -88,7 +89,7 @@
       </div>
       <div id="controls" style="display:none;margin-top:16px;">
         <div class="pdf-preview-single" id="pdfPreview" aria-live="polite"></div>
-        <h3 style="margin:14px 0 8px;font-size:0.95rem;">Quality</h3>
+        <h2 style="margin:14px 0 8px;font-size:0.95rem;" class="seo-heading-3">Quality</h2>
         <div class="chip-row" id="qualityRow">
           <button class="chip" data-q="0.92" data-scale="1.5">High</button>
           <button class="chip active" data-q="0.72" data-scale="1.2">Medium</button>
@@ -113,7 +114,7 @@
     <aside class="sidebar">
       <div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div>
       <div class="info-box">
-        <h4>Tips</h4>
+        <h3 class="seo-heading-4">Tips</h3>
         <ul>
           <li>Use Medium for most government / email limits</li>
           <li>Use Low when you need the smallest size</li>
@@ -150,6 +151,45 @@
     <h2>Is PDF compression safe?</h2>
     <p>ToolShoppy compresses PDFs in your browser. Files are not uploaded to our servers. Keep your original file until you confirm the compressed download opens correctly.</p>
   </div>
+  <!-- tool-guide:start -->
+    <div class="content-section tool-guide">
+      <h2>How Compress PDF works</h2>
+      <p>This compressor works by re-rendering each page as an image at a lower resolution and JPEG quality, then rebuilding a PDF from those images. You choose High, Medium or Low quality. Lower quality gives a smaller file and softer detail.</p>
+      <p>That method is simple and works well on scans and photo-heavy PDFs, because those are already images. The trade-off is real: the output no longer has selectable text, clickable links or fillable form fields. A PDF that is mostly text may even grow in size. Keep your original, compare the sizes, and only use the compressed copy when it is clearly smaller and still readable.</p>
+    </div>
+    <div class="content-section tool-guide">
+      <h2>Benefits of using Compress PDF on ToolShoppy</h2>
+      <ul class="guide-list">
+        <li>Get a scanned PDF under a form or email size limit without installing anything.</li>
+        <li>Three presets: Medium is usually the right start, Low when a hard limit like 1 MB applies.</li>
+        <li>Compare original and compressed sizes on screen before you download.</li>
+        <li>Private: Aadhaar scans, bank statements and contracts are never uploaded.</li>
+      </ul>
+    </div>
+    <div class="content-section tool-guide">
+      <h2>ToolShoppy vs iLovePDF, Smallpdf and desktop software</h2>
+      <div class="tool-guide-table-wrap"><table>
+  <thead><tr><th scope="col">What matters</th><th scope="col">ToolShoppy</th><th scope="col">Server-based online tools (e.g. iLovePDF, Smallpdf)</th><th scope="col">Desktop software (e.g. Adobe Acrobat)</th></tr></thead>
+  <tbody>
+  <tr><th scope="row">Where your file is processed</th><td>In your browser. The file is not uploaded to ToolShoppy.</td><td>Uploaded to the provider’s servers, then deleted later under their stated policy.</td><td>On your own computer.</td></tr>
+  <tr><th scope="row">Account and cost</th><td>No signup, no email. Free to use.</td><td>Free use is often capped by file size, tasks per day or features; some features need an account or paid plan (varies by provider).</td><td>Needs installing; advanced features usually need a paid licence (varies).</td></tr>
+  <tr><th scope="row">What survives compression</th><td>Pages become images. Text, links and form fields are not kept.</td><td>Many keep text and only recompress images, so searchability is often preserved.</td><td>Acrobat’s optimiser can keep text and fonts while shrinking images.</td></tr>
+  <tr><th scope="row">Hitting an exact size</th><td>Presets only. No setting guarantees an exact KB or MB result.</td><td>Some offer levels; exact targets are rare.</td><td>Offers detailed controls, but also no guaranteed size.</td></tr>
+  </tbody></table></div>
+      <p class="guide-note">This compares general approaches, not every product. Other services change their features, limits and pricing, so check their current terms before deciding.</p>
+      <p class="guide-verdict"><strong>When something else is the better choice:</strong> you need to keep selectable text, links or fillable fields in the smaller file. Use a tool that recompresses images only, or an optimiser in desktop PDF software. For scans headed to a government upload, this tool is usually enough.</p>
+    </div>
+    <div class="content-section tool-guide">
+      <h2>Tips and common mistakes</h2>
+      <ul class="guide-list">
+        <li>Try Medium first. Switch to Low only if the file is still over the limit, then check the text is still readable.</li>
+        <li>Compress after merging, not before, so you check the final size once.</li>
+        <li>Zoom into small print, stamps and signatures on the result before you submit it.</li>
+        <li>If the file got bigger, it was probably text-only. Send the original instead.</li>
+      </ul>
+      <p class="guide-note">Guide reviewed October 2026. Next steps: <a href="/tools/pdf/merge/">Merge PDFs first</a> · <a href="/tools/pdf/split/">Extract only the pages you need</a> · <a href="/tools/image/compress/">Compress an image to an exact KB</a></p>
+    </div>
+    <!-- tool-guide:end -->
   <div class="content-section">
     <h2>Related tools</h2>
     <div class="related-tools">
@@ -184,14 +224,25 @@
   </div>
 </main>
 <div class="ad-slot ad-bottom"><span class="ad-label">Ad</span></div>
-<footer class="site-footer"><div class="container"><div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div></div></footer>
+<footer class="site-footer">
+  <div class="container">
+    <nav class="footer-links" aria-label="Footer">
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="/privacy/">Privacy Policy</a>
+      <a href="/terms/">Terms of Service</a>
+      <a href="/blog/">Blog &amp; Guides</a>
+      <a href="/">All tools</a>
+    </nav>
+    <div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div>
+  </div>
+</footer>
 <div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
 <script src="/assets/js/ga-config.js"></script>
-<script src="/assets/js/adsterra-config.js?v=5"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/core.js?v=5"></script>
-<script src="/assets/js/ads.js?v=6"></script>
-<script src="/assets/js/analytics.js"></script>
+<script src="/assets/js/core.js?v=7"></script>
+<script defer src="/assets/js/ads.js?v=7"></script>
+<script defer src="/assets/js/analytics.js"></script>
 <script src="/assets/libs/pdf.min.js"></script>
 <script src="/assets/libs/pdf-lib.min.js"></script>
 <script src="/assets/js/pdf-preview.js"></script>

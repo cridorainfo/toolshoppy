@@ -9,7 +9,7 @@ export function readToolCatalog(html = fs.readFileSync(new URL('../index.html', 
   const tools = vm.runInNewContext(`(${source})`, {}, { timeout: 1000 });
   const paths = new Set();
   for (const tool of tools) {
-    if (!/^\/tools\/[a-z-]+\/[a-z-]+\/$/.test(tool.href) || paths.has(tool.href)) throw new Error(`Invalid or duplicate tool: ${tool.href}`);
+    if (!/^\/tools\/[a-z-]+\/[a-z0-9-]+\/$/.test(tool.href) || paths.has(tool.href)) throw new Error(`Invalid or duplicate tool: ${tool.href}`);
     paths.add(tool.href);
   }
   return tools.map(tool => ({ ...tool, key: tool.href.replace(/^\/tools\/|\/$/g, '') }));

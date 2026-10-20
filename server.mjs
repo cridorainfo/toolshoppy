@@ -7,7 +7,8 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { promisify } from 'node:util';
 import serve from 'serve-handler';
 import compression from 'compression';
-import { handleLiveApi, startLiveApiRefresh } from './lib/live-api.mjs';
+import { handleLiveApi, startLiveApiRefresh, peekRates, peekFuel } from './lib/live-api.mjs';
+import { snapshotTarget, renderRateSnapshot, SNAPSHOT_PLACEHOLDER } from './lib/rate-snapshot.mjs';
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
 const ORIGIN = 'https://toolshoppy.com';
@@ -61,6 +62,23 @@ export function createSiteServer({ root = ROOT } = {}) {
       if (target && (pathname !== target || url.pathname !== target)) {
         res.writeHead(301, { Location: target + url.search, 'Cache-Control': 'public, max-age=300' });
         res.end(); return;
+      }
+      // Rate pages: put today's figures into the HTML itself (crawlers do not run the page's
+      // JavaScript). Renders nothing unless the cached data is live and fresh.
+      const snapshot = files.has(pathname) ? snapshotTarget(pathname) : null;
+      let template = snapshot ? fs.readFileSync(path.join(root, files.get(pathname)), 'utf8') : null;
+      if (template && !template.includes(SNAPSHOT_PLACEHOLDER)) template = null;
+      if (template) {
+        const block = renderRateSnapshot(pathname, { rates: peekRates(), fuel: snapshot.kind === 'fuel' ? peekFuel(snapshot.state) : null });
+        const body = template.replace(SNAPSHOT_PLACEHOLDER, block);
+        await compress(req, res);
+        res.writeHead(200, {
+          'Content-Type': 'text/html; charset=utf-8',
+          'Cache-Control': 'public, max-age=0, must-revalidate',
+          'X-Content-Type-Options': 'nosniff',
+          'Referrer-Policy': 'strict-origin-when-cross-origin',
+        });
+        res.end(req.method === 'HEAD' ? undefined : body); return;
       }
       if (files.has(pathname)) req.url = files.get(pathname) + url.search;
       if (/^\/(scripts|docs|functions|lib|worker|_workers|node_modules)(\/|$)|^\/[^/]+\.(md|mjs)$/i.test(pathname)) res.setHeader('X-Robots-Tag', 'noindex');

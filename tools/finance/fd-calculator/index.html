@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PNN1LM2D9Q"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-PNN1LM2D9Q');</script>
 <meta charset="UTF-8">
 <script>(function(){try{/* TEMP: dark mode disabled — restore prior boot to re-enable */document.documentElement.setAttribute('data-theme','light');localStorage.setItem('ts-theme','light');}catch(e){}})();</script>
@@ -24,10 +23,9 @@
 <link rel="icon" href="/favicon.ico?v=2" sizes="any">
 <link rel="icon" href="/assets/img/favicon.svg?v=2" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/img/icon-192.png?v=2">
-<link rel="stylesheet" href="/assets/css/main.css?v=5">
+<link rel="stylesheet" href="/assets/css/main.css?v=9">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#DC2626">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"FD and RD Calculator","url":"https://toolshoppy.com/tools/finance/fd-calculator/","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
 <script type="application/ld+json">
 {
@@ -87,14 +85,17 @@
   ]
 }
 </script>
+<meta name="google-adsense-account" content="ca-pub-1180208702657280">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
+<script defer src="/assets/js/third-party.js?v=1"></script>
 </head>
 <body>
 <header class="site-header"><div class="container">
-  <a href="/" class="logo"><img src="/assets/img/logo.png?v=2" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
+  <a href="/" class="logo"><img src="/assets/img/logo.webp?v=3" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
   <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode"><svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg><svg class="icon-svg theme-icon-moon" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#moon"></use></svg></button>
 </div></header>
 <main class="tool-page container">
-  <nav class="breadcrumb"><a href="/">Home</a> › <a href="/tools/finance/">Finance</a> › <span class="crumb-current">FD / RD Calculator</span></nav>
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/finance/">Finance</a> › <span class="crumb-current">FD / RD Calculator</span></nav>
   <div class="tool-header">
     <div class="icon-tile icon-tile--lg icon-tile--amber"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#building-bank"></use></svg></div>
     <h1>FD &amp; RD Calculator</h1>
@@ -124,7 +125,8 @@
     <aside class="sidebar"><div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div></aside>
   </div>
   <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
-  <div class="content-section seo-howto">
+  <section class="content-section usage-notes"><h2>Understand the deposit calculation</h2><p>In fixed-deposit mode, the principal is a single initial deposit and interest compounds quarterly. In recurring-deposit mode, the input is a monthly contribution made at the beginning of each month, with a monthly growth factor derived from quarterly compounding.</p><p>The result uses a constant annual rate for the entire term. It does not model changes in deposit rates, missed contributions, tax deductions, or early-withdrawal charges. Compare the assumptions and maturity amount with the terms of the specific deposit product.</p></section>
+<div class="content-section seo-howto">
     <h2>How to calculate FD maturity</h2>
     <ol>
       <li>Enter the deposit amount, interest rate, and tenure.</li>
@@ -132,6 +134,44 @@
       <li>View estimated maturity value and interest earned instantly.</li>
     </ol>
   </div>
+    <!-- tool-guide:start -->
+      <div class="content-section tool-guide">
+        <h2>How FD and RD Calculator works</h2>
+        <p>In fixed deposit mode you enter a single deposit, a rate and a tenure. Interest compounds quarterly, and the page shows the maturity amount and the interest earned. In recurring deposit mode you enter a monthly contribution made at the start of each month, with growth derived from quarterly compounding.</p>
+        <p>The rate is held constant for the whole term. The calculator does not model changing rates, missed instalments, tax deducted at source, income tax on interest or early-withdrawal penalties. Use it to compare offers, then check the bank’s own terms.</p>
+      </div>
+      <div class="content-section tool-guide">
+        <h2>Benefits of using FD and RD Calculator on ToolShoppy</h2>
+        <ul class="guide-list">
+          <li>Estimate maturity for FD and RD with the same tool.</li>
+          <li>Compare banks by typing different interest rates.</li>
+          <li>See deposited amount and interest earned separately.</li>
+          <li>Your deposit details are not stored.</li>
+        </ul>
+      </div>
+      <div class="content-section tool-guide">
+        <h2>ToolShoppy vs bank calculators and spreadsheets</h2>
+        <div class="tool-guide-table-wrap"><table>
+    <thead><tr><th scope="col">What matters</th><th scope="col">ToolShoppy</th><th scope="col">Bank, fintech and portal calculators</th><th scope="col">Spreadsheet (Excel, Google Sheets)</th></tr></thead>
+    <tbody>
+    <tr><th scope="row">Your figures</th><td>Calculated in your browser and not stored by ToolShoppy.</td><td>Some ask for contact details or an account before showing results (varies).</td><td>Stay in your own file.</td></tr>
+    <tr><th scope="row">Setup effort</th><td>Open the page and type. Results update as you change inputs.</td><td>Open the page; the assumptions may be hidden or tied to one product.</td><td>You build and check the formulas yourself.</td></tr>
+    <tr><th scope="row">Compounding</th><td>Quarterly compounding, stated clearly.</td><td>Varies by bank and product.</td><td>You must set the formula.</td></tr>
+    </tbody></table></div>
+        <p class="guide-note">This compares general approaches, not every product. Other services change their features, limits and pricing, so check their current terms before deciding.</p>
+        <p class="guide-verdict"><strong>When something else is the better choice:</strong> you need the exact maturity value for a specific bank product, including payout frequency, senior-citizen rates, TDS and penalties. The bank’s own calculator or deposit certificate is the reference.</p>
+      </div>
+      <div class="content-section tool-guide">
+        <h2>Tips and common mistakes</h2>
+        <ul class="guide-list">
+          <li>Use the rate printed for the exact tenure you plan to book.</li>
+          <li>Remember interest is taxable, so your post-tax return is lower.</li>
+          <li>For RD, enter the monthly amount you will actually be able to pay.</li>
+          <li>Compare with a SIP projection only if you understand the risk difference.</li>
+        </ul>
+        <p class="guide-note">Guide reviewed October 2026. Next steps: <a href="/tools/finance/sip-calculator/">SIP calculator</a> · <a href="/tools/finance/emi-calculator/">EMI calculator</a> · <a href="/tools/finance/income-tax/">Income tax calculator</a></p>
+      </div>
+      <!-- tool-guide:end -->
     <div class="content-section seo-related">
     <h2>Related tools</h2>
     <div class="related-tools">
@@ -174,11 +214,22 @@
   </div>
 </main>
 <div class="ad-slot ad-bottom"><span class="ad-label">Ad</span></div>
-<footer class="site-footer"><div class="container"><div class="footer-bottom">© 2026 ToolShoppy</div></div></footer>
+<footer class="site-footer">
+  <div class="container">
+    <nav class="footer-links" aria-label="Footer">
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="/privacy/">Privacy Policy</a>
+      <a href="/terms/">Terms of Service</a>
+      <a href="/blog/">Blog &amp; Guides</a>
+      <a href="/">All tools</a>
+    </nav>
+    <div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div>
+  </div>
+</footer>
 <div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
-<script src="/assets/js/ga-config.js"></script><script src="/assets/js/adsterra-config.js?v=5"></script>
-<script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/core.js?v=5"></script><script src="/assets/js/ads.js?v=6"></script><script src="/assets/js/analytics.js"></script>
+<script src="/assets/js/ga-config.js"></script><script src="/assets/js/ad-config.js"></script>
+<script src="/assets/js/core.js?v=7"></script><script defer src="/assets/js/ads.js?v=7"></script><script defer src="/assets/js/analytics.js"></script>
 <script>
 (function () {
   var type = 'fd';

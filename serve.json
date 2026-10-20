@@ -615,6 +615,12 @@
   ],
   "headers": [
     {
+      "source": "**/*.@(woff2|webp|avif|svg)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400, must-revalidate" }
+      ]
+    },
+    {
       "source": "**",
       "headers": [
         { "key": "X-Content-Type-Options", "value": "nosniff" },
