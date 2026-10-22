@@ -29,7 +29,7 @@ export const MISC = {
       'Use a short link for dense content, because simpler codes scan more reliably.',
       'Choose a larger size when printing on posters or packaging.',
     ],
-    links: [['/tools/misc/whatsapp-link/', 'WhatsApp link generator'], ['/tools/misc/url-shortener/', 'Shorten a URL first'], ['/tools/pdf/merge/', 'PDF tools']],
+    links: [['/tools/misc/whatsapp-link/', 'WhatsApp link generator'], ['/tools/pdf/merge/', 'PDF tools']],
   },
 
   'misc/word-counter': {
@@ -188,33 +188,6 @@ export const MISC = {
     links: [['/tools/misc/age-calculator/', 'Age calculator'], ['/tools/rates/currency-converter/', 'Currency converter'], ['/tools/rates/gold-rate/dubai/', 'Dubai gold rate']],
   },
 
-  'misc/url-shortener': {
-    name: 'URL Shortener',
-    kind: 'misc',
-    how: [
-      'You paste a long link and optionally choose a custom alias of 5 to 30 letters, numbers or underscores. Your browser sends the link to the is.gd shortening service (with v.gd as a backup), which creates a short redirect and returns it. ToolShoppy itself has no backend for this tool and does not store your links.',
-      'Your recent links are kept only in your own browser’s local storage, so clearing browser data removes them. Short links created through the service are intended to be permanent, but they depend on that third-party service continuing to run.',
-    ],
-    benefits: [
-      'Shorter links for WhatsApp, SMS and bios.',
-      'Optional custom alias for readable links.',
-      'No account; history stays in your browser.',
-      'Pairs with the QR generator.',
-    ],
-    rows: [
-      ['Who handles the redirect', 'A third-party shortener (is.gd, with v.gd as a backup). ToolShoppy does not store the link.', 'The provider’s own service, often with accounts.', 'You run your own redirect on your domain.'],
-      ['Analytics', 'None.', 'Click statistics are common, sometimes paid.', 'You can add your own.'],
-    ],
-    better: 'you need click analytics, branded links on your own domain, or the ability to edit destinations later. A branded link service or your own redirect is better for campaigns.',
-    tips: [
-      'Open the short link yourself before you share it.',
-      'Do not shorten private links that contain tokens or personal data.',
-      'Pick an alias that is easy to read aloud.',
-      'Turn the short link into a QR code for print.',
-    ],
-    links: [['/tools/misc/qr-generator/', 'QR generator'], ['/tools/misc/whatsapp-link/', 'WhatsApp link'], ['/tools/misc/word-counter/', 'Word counter']],
-  },
-
   'misc/whatsapp-link': {
     name: 'WhatsApp Link Generator',
     kind: 'misc',
@@ -238,33 +211,7 @@ export const MISC = {
       'Avoid private details in the pre-filled message.',
       'Make a QR code of the link for flyers and shop counters.',
     ],
-    links: [['/tools/misc/qr-generator/', 'QR generator'], ['/tools/misc/url-shortener/', 'URL shortener'], ['/tools/image/sticker-maker/', 'Sticker maker']],
-  },
-
-  'misc/yt-thumbnail': {
-    name: 'YouTube Thumbnail Grabber',
-    kind: 'misc',
-    how: [
-      'You paste a YouTube link or video ID and the page works out the video ID, then requests the public thumbnail images that YouTube’s image service offers in several sizes. It shows the sizes that exist and lets you download one.',
-      'It does not download the video. Not every video has every size, so a missing size does not mean the link is wrong. Thumbnails belong to their owners, so reuse needs permission or a valid licence.',
-    ],
-    benefits: [
-      'Save a thumbnail as a reference or for your own video’s analytics.',
-      'See every available size and pick the largest.',
-      'Works from a link or an ID.',
-      'Free, with no signup.',
-    ],
-    rows: [
-      ['What you get', 'The public thumbnail images only, never the video.', 'Similar; some also try to download videos, which can break terms of service.', 'Browser developer tools can find the same image URLs.'],
-    ],
-    better: 'you need the video itself or a licence to reuse a thumbnail. Ask the creator, or use your own artwork.',
-    tips: [
-      'Use the largest available size for design work.',
-      'Keep the original aspect ratio to avoid stretching.',
-      'Do not republish other creators’ thumbnails without permission.',
-      'Private or removed videos have no public thumbnail.',
-    ],
-    links: [['/tools/image/resize/', 'Resize an image'], ['/tools/image/compress/', 'Compress an image'], ['/tools/video/trim/', 'Trim a video']],
+    links: [['/tools/misc/qr-generator/', 'QR generator'], ['/tools/image/sticker-maker/', 'Sticker maker']],
   },
 
   'misc/audio-cutter': {

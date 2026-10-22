@@ -60,7 +60,7 @@ for (const file of files) {
 
   // 1. footer with trust-page links (the homepage already has a full footer)
   const footer = html.match(/<footer class="site-footer">[\s\S]*?<\/footer>/);
-  if (footer && !/href="\/privacy\/?"/.test(footer[0])) {
+  if (footer && !['privacy', 'about', 'contact', 'terms'].every((p) => new RegExp(`href="/${p}/?"`).test(footer[0]))) {
     html = html.replace(footer[0], siteFooter(2026));
     stats.footer++;
   }

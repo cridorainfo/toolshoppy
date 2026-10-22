@@ -22,20 +22,6 @@ const { PDFDocument } = require('../assets/libs/pdf-lib.min.js');
     console.log(JSON.stringify(results.at(-1))); await p.close();
   }
   try {
-    await test('misc/yt-thumbnail', async p => {
-      await p.locator('#ytUrl').fill('https://www.youtube.com/watch?feature=shared&v=dQw4w9WgXcQ');
-      await p.locator('#fetchBtn').click();
-      assert.equal(await p.locator('#results img').count(), 4);
-      assert.match(await p.locator('#results img').first().getAttribute('src'), /dQw4w9WgXcQ/);
-    });
-    await test('misc/url-shortener', async p => {
-      // Test provider failover without publishing a real short link.
-      await p.route('https://is.gd/**', r => r.fulfill({ status: 503, body: '{}' }));
-      await p.route('https://v.gd/**', r => r.fulfill({ contentType: 'application/json', body: '{"shorturl":"https://v.gd/audit123"}' }));
-      await p.locator('#longUrl').fill('https://example.com/audit');
-      await p.locator('#shortenBtn').click();
-      await p.waitForFunction(() => document.body.innerText.includes('https://v.gd/audit123'));
-    });
     for (const tool of ['rates/gold-rate', 'rates/silver-rate', 'rates/currency-converter', 'rates/petrol-price']) await test(tool, async p => {
       await p.waitForFunction(() => !/Loading/.test(document.getElementById('updatedLine').textContent), { timeout: 30000 });
       assert.doesNotMatch(await p.locator('#updatedLine').innerText(), /Could not/);

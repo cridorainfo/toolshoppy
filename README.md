@@ -233,7 +233,6 @@ toolshoppy/
 | 21 | WhatsApp Sticker Maker | /tools/image/sticker-maker/ |
 | 22 | Passport Photo Maker | /tools/image/passport-photo/ |
 | 23 | Fancy Font Generator | /tools/misc/font-styler/ |
-| 24 | YouTube Thumbnail Grabber | /tools/misc/yt-thumbnail/ |
 | 25 | WhatsApp Status Splitter | /tools/video/status-splitter/ |
 | 26 | Background Remover | /tools/image/background-remove/ |
 

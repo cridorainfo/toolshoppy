@@ -464,23 +464,6 @@ export const TOOL_SEO = {
       { q: 'Does it count spaces?', a: 'Character counts typically include spaces unless the UI shows a separate “without spaces” figure.' },
     ],
   },
-  'misc/yt-thumbnail': {
-    name: 'YouTube Thumbnail Grabber',
-    title: 'YouTube Thumbnail Downloader Free Online | ToolShoppy',
-    description: 'Download YouTube video thumbnails free online in every available size. Paste the video URL and save the image — no signup, no software to install.',
-    trust: 'browser',
-    howToTitle: 'How to download a YouTube thumbnail',
-    howToSteps: [
-      'Paste the YouTube video URL.',
-      'Choose available thumbnail resolutions.',
-      'Download the image.',
-    ],
-    faqs: [
-      { q: 'Do you download the video?', a: 'No. This tool only fetches publicly available thumbnail images, not the video file.' },
-      { q: 'Is it free?', a: 'Yes.' },
-      { q: 'Copyright?', a: 'Thumbnails remain the rights holder’s property — use them fairly.' },
-    ],
-  },
   'rates/currency-converter': {
     name: 'Currency Converter',
     title: 'Currency Converter Free Online | AED SAR USD to INR | ToolShoppy',

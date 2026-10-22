@@ -611,20 +611,49 @@
       "source": "/uae-gold-rate/",
       "destination": "/tools/rates/gold-rate/dubai/",
       "type": 301
+    },
+    {
+      "source": "/tools/misc/url-shortener",
+      "destination": "/tools/misc/",
+      "type": 301
+    },
+    {
+      "source": "/tools/misc/url-shortener/",
+      "destination": "/tools/misc/",
+      "type": 301
+    },
+    {
+      "source": "/tools/misc/yt-thumbnail",
+      "destination": "/tools/misc/",
+      "type": 301
+    },
+    {
+      "source": "/tools/misc/yt-thumbnail/",
+      "destination": "/tools/misc/",
+      "type": 301
     }
   ],
   "headers": [
     {
       "source": "**/*.@(woff2|webp|avif|svg)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=86400, must-revalidate" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400, must-revalidate"
+        }
       ]
     },
     {
       "source": "**",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
       ]
     },
     {
