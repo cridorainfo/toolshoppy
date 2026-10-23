@@ -79,11 +79,11 @@
       </div>
       <div class="rate-grid" id="rateGrid"></div>
       <div class="rate-trend-wrap" id="trendWrap" style="display:none;">
-        <h2 class="seo-heading-3">7-day trend (22K India)</h2>
+        <h2 class="seo-heading-3">7-day trend (22K Kerala)</h2>
         <div class="rate-trend-bars" id="trendBars"></div>
         <div class="rate-trend-labels" id="trendLabels"></div>
       </div>
-      <p class="rate-disclaimer">Rates are indicative and sourced from MCX / UAE market benchmarks. Actual jeweller prices may include making charges, GST, and vary by city. Not financial advice.</p>
+      <p class="rate-disclaimer">Rates are indicative and sourced from Goodreturns retail boards (India) and the Dubai retail rate (UAE). Actual jeweller prices may include making charges, GST, and vary by city. Not financial advice.</p>
       <div class="trust-badge" style="margin-top:16px;"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#world"></use></svg> Rates updated daily — bookmark for quick checks</div>
     </div>
     <aside class="sidebar">
@@ -132,8 +132,8 @@
   <!-- tool-guide:start -->
     <div class="content-section tool-guide">
       <h2>How Gold Rate Today works</h2>
-      <p>ToolShoppy’s server reads gold prices for Kerala and India from Goodreturns and UAE prices from DahabPulse, refreshes them in the background every few minutes, and keeps the last good value if a source is briefly unavailable. The page shows 24K, 22K and 18K per gram, a 7-day trend, and, for the UAE, per-tola figures (a tola is about 11.664 g).</p>
-      <p>Lower carats are derived from 24K by purity: 22K is 22/24 of the 24K price. A jeweller’s price adds making charges, GST and its own margin on top of the gold value, so the number you pay in a shop is higher than the reference rate. Treat the page as an indicative benchmark for planning, and confirm the board rate with your jeweller before buying.</p>
+      <p>ToolShoppy’s server reads retail gold rates from Goodreturns: the Kerala board for Kerala, the Mumbai board for India, and the Dubai rate for the UAE. It refreshes them in the background every few minutes. Each Dubai figure is checked against the international spot price from DahabPulse, and if it fails that check the page shows spot and says so instead. The page shows 24K, 22K and 18K per gram, a 7-day trend, and, for the UAE, per-tola figures (a tola is about 11.664 g).</p>
+      <p>These are retail base rates, the board price before a jeweller adds making charges, GST or VAT and its own margin, so the number you pay in a shop is higher. Treat the page as an indicative benchmark for planning, and confirm the board rate with your jeweller before buying. The full source list and how we check it is on the <a href="/tools/rates/methodology/">rates methodology page</a>.</p>
     </div>
     <div class="content-section tool-guide">
       <h2>Benefits of using Gold Rate Today on ToolShoppy</h2>
@@ -165,7 +165,7 @@
         <li>For hallmarked jewellery, check the hallmark and the purity stamped on the piece.</li>
         <li>Compare gold in AED with the Currency Converter if you are buying in Dubai for India.</li>
       </ul>
-      <p class="guide-note">Guide reviewed October 2026. Next steps: <a href="/tools/rates/gold-rate/kerala/">Kerala gold rate</a> · <a href="/tools/rates/gold-rate/dubai/">Dubai gold rate</a> · <a href="/tools/rates/currency-converter/aed-inr/">AED to INR</a> · <a href="/blog/kerala-gold-rate-today-explained/">Gold rate explained</a></p>
+      <p class="guide-note">Guide reviewed October 2026. Next steps: <a href="/tools/rates/gold-rate/kerala/">Kerala gold rate</a> · <a href="/tools/rates/gold-rate/dubai/">Dubai gold rate</a> · <a href="/tools/rates/currency-converter/aed-inr/">AED to INR</a> · <a href="/blog/kerala-gold-rate-today-explained/">Gold rate explained</a> · <a href="/tools/rates/methodology/">Rates methodology</a></p>
     </div>
     <!-- tool-guide:end -->
   <div class="content-section">
@@ -221,7 +221,7 @@
 <script src="/assets/js/ga-config.js"></script>
 <script src="/assets/js/ad-config.js"></script>
 <script src="/assets/js/core.js?v=7"></script>
-<script src="/assets/js/rates.js?v=3"></script>
+<script src="/assets/js/rates.js?v=4"></script>
 <script defer src="/assets/js/ads.js?v=7"></script>
 <script defer src="/assets/js/analytics.js"></script>
 <script>
@@ -246,6 +246,7 @@
     }
     region = key;
     var g = data.gold[key];
+    if (sourceLine && g.basis_note) sourceLine.textContent = (data.live ? '● Live' : '○ Cached') + ' · ' + g.basis_note;
     var fmt = g.currency === 'INR' ? TSRates.formatINR : TSRates.formatAED;
     heroValue.textContent = fmt(g.per_gram['22k'], g.currency === 'AED' ? 2 : 0);
     heroSub.textContent = '22 Carat · per gram · ' + g.label;

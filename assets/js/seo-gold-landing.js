@@ -22,6 +22,7 @@
         heroSub.textContent = 'Rate unavailable';
         return;
       }
+      if (sourceLine && g.basis_note) sourceLine.textContent = (d.live ? '● Live' : '○ Cached') + ' · ' + g.basis_note;
       heroValue.textContent = fmtVal(g, '22k');
       heroSub.textContent = '22 Carat · per gram · ' + g.label;
       var cards = [

@@ -94,6 +94,8 @@
       per_gram: { '24k': g24, '22k': g22, '18k': g18 },
       per_10g: { '24k': Math.round(g24 * 10), '22k': Math.round(g22 * 10) },
       per_tola_11_664g: { '24k': Math.round(g24 * tola), '22k': Math.round(g22 * tola) },
+      basis: 'spot',
+      basis_note: 'International spot price converted to AED (estimate). Shop prices in Dubai are higher.',
     };
   }
 
@@ -106,6 +108,8 @@
       per_gram: perGram,
       per_10g: Math.round(perGram * 10 * 100) / 100,
       per_kg: Math.round(perGram * 1000),
+      basis: 'spot',
+      basis_note: 'International spot price converted to AED. Dubai shops add a premium and making charges.',
     };
   }
 
@@ -163,15 +167,20 @@
           per_gram: { '24k': g24, '22k': g22, '18k': g18 },
           per_10g: { '24k': g24 * 10, '22k': g22 * 10 },
           per_sovereign_8g: { '22k': g22 * 8 },
+          basis: 'spot',
+          basis_note: 'Estimate from international spot price (retail board unavailable). Shop prices are higher.',
         };
       }
 
       var indiaGold = keralaGold || indiaFromSpot();
-      var indiaSilver = keralaSilver || (xag && xag.price ? {
+      var silverSpotInr = xag && xag.price ? {
         per_gram: Math.round((xag.price / TROY_OZ_GRAMS) * inrPerUsd),
         per_10g: Math.round((xag.price / TROY_OZ_GRAMS) * inrPerUsd * 10),
         per_kg: Math.round((xag.price / TROY_OZ_GRAMS) * inrPerUsd * 1000),
-      } : null);
+        basis: 'spot',
+        basis_note: 'Estimate from international spot price (retail board unavailable). Shop prices are higher.',
+      } : null;
+      var indiaSilver = keralaSilver || silverSpotInr;
 
       return {
         updated_at: dahab.updatedAt || new Date().toISOString(),
@@ -181,12 +190,12 @@
         live: true,
         gold: {
           kerala: { label: 'Kerala', currency: 'INR', label_note: keralaGold ? 'Goodreturns' : 'Spot estimate', ...indiaGold },
-          india: { label: 'India', currency: 'INR', ...indiaGold },
+          india: { label: 'India', currency: 'INR', ...indiaFromSpot() },
           uae: buildUaeGold(dahab),
         },
         silver: {
           kerala: indiaSilver ? { label: 'Kerala', currency: 'INR', ...indiaSilver } : null,
-          india: indiaSilver ? { label: 'India', currency: 'INR', ...indiaSilver } : null,
+          india: silverSpotInr ? { label: 'India', currency: 'INR', ...silverSpotInr } : null,
           uae: xag && xag.price ? buildUaeSilver(xag.price, dahab.currencies.AED) : null,
         },
         history: null,

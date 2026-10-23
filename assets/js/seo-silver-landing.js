@@ -17,6 +17,7 @@
         heroSub.textContent = 'Rate unavailable';
         return;
       }
+      if (sourceLine && s.basis_note) sourceLine.textContent = (d.live ? '● Live' : '○ Cached') + ' · ' + s.basis_note;
       var fmt = s.currency === 'INR' ? TSRates.formatINR : TSRates.formatAED;
       var dec = s.currency === 'AED' ? 2 : 0;
       heroValue.textContent = fmt(s.per_gram, dec);

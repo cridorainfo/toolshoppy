@@ -109,7 +109,7 @@
       </div>
       <div class="rate-grid" id="rateGrid"></div>
       <div class="rate-trend-wrap" id="trendWrap" style="display:none;">
-        <h2 class="seo-heading-3">7-day trend (India per gram)</h2>
+        <h2 class="seo-heading-3">7-day trend (Kerala per gram)</h2>
         <div class="rate-trend-bars" id="trendBars"></div>
         <div class="rate-trend-labels" id="trendLabels"></div>
       </div>
@@ -150,7 +150,7 @@
   <!-- tool-guide:start -->
     <div class="content-section tool-guide">
       <h2>How Silver Rate Today works</h2>
-      <p>The Kerala and India silver rate is read from Goodreturns and the UAE reference comes from the international silver price from gold-api.com converted with a current exchange rate. The values refresh every few minutes through ToolShoppy’s rates endpoint, and the page shows per-gram and per-kg figures with a 7-day trend.</p>
+      <p>The Kerala silver rate is the Goodreturns Kerala retail board and the India rate is the Goodreturns Mumbai board (Kerala is usually a few rupees per gram higher). The UAE figure is different: no verifiable retail source exists for UAE silver, so it is the international silver spot price from gold-api.com converted to dirhams and is labelled as spot. The values refresh every few minutes through ToolShoppy’s rates endpoint, and the page shows per-gram and per-kg figures with a 7-day trend.</p>
       <p>Silver in a shop carries making charges, GST and a dealer margin, and coin or bar premiums vary. The figure here is an indicative reference to see where the market is, not a price you can transact at.</p>
     </div>
     <div class="content-section tool-guide">
@@ -182,7 +182,7 @@
         <li>For coins and bars, ask about the premium over the metal value.</li>
         <li>Compare with the gold rate for a sense of the gold-silver ratio.</li>
       </ul>
-      <p class="guide-note">Guide reviewed October 2026. Next steps: <a href="/tools/rates/gold-rate/">Gold rate today</a> · <a href="/tools/rates/silver-rate/uae/">UAE silver rate</a> · <a href="/tools/rates/currency-converter/">Currency converter</a></p>
+      <p class="guide-note">Guide reviewed October 2026. Next steps: <a href="/tools/rates/gold-rate/">Gold rate today</a> · <a href="/tools/rates/silver-rate/uae/">UAE silver rate</a> · <a href="/tools/rates/currency-converter/">Currency converter</a> · <a href="/tools/rates/methodology/">Rates methodology</a></p>
     </div>
     <!-- tool-guide:end -->
   <div class="content-section">
@@ -242,7 +242,7 @@
 <script src="/assets/js/ga-config.js"></script>
 <script src="/assets/js/ad-config.js"></script>
 <script src="/assets/js/core.js?v=7"></script>
-<script src="/assets/js/rates.js?v=3"></script>
+<script src="/assets/js/rates.js?v=4"></script>
 <script defer src="/assets/js/ads.js?v=7"></script>
 <script defer src="/assets/js/analytics.js"></script>
 <script>
@@ -265,6 +265,7 @@
       return;
     }
     var s = data.silver[key];
+    if (sourceLine && s.basis_note) sourceLine.textContent = (data.live ? '● Live' : '○ Cached') + ' · ' + s.basis_note;
     var fmt = s.currency === 'INR' ? TSRates.formatINR : TSRates.formatAED;
     var dec = s.currency === 'AED' ? 2 : 0;
     heroValue.textContent = fmt(s.per_gram, dec);

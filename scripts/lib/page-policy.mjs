@@ -23,7 +23,7 @@ export const isThinPage = rel => THIN_DISTRICT.test(rel);
 // Navigational and legal pages: no ads. Link hubs and short policy pages have little
 // publisher content of their own ("screens without publisher content"), and ads there add
 // risk for almost no revenue.
-const AD_FREE_FILES = new Set(['about.html', 'contact.html', 'privacy.html', 'terms.html', '404.html', 'search/index.html', 'blog/index.html']);
+const AD_FREE_FILES = new Set(['about.html', 'contact.html', 'privacy.html', 'terms.html', '404.html', 'search/index.html', 'blog/index.html', 'tools/rates/methodology/index.html']);
 export const isAdFree = rel => isThinPage(rel) || AD_FREE_FILES.has(rel) || /^tools\/(image|pdf|video|finance|misc|rates)\/index\.html$/.test(rel);
 
 export const FOOTER_LINKS = [

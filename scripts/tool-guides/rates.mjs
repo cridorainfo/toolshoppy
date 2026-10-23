@@ -1,7 +1,8 @@
 /**
  * Rates guides. Data sources match lib/rates-api.mjs and lib/fuel-api.mjs:
- * Goodreturns (India/Kerala gold, Kerala silver, fuel), DahabPulse (UAE gold),
- * gold-api.com (silver spot) and Frankfurter (USD/INR). Rates refresh in the
+ * Goodreturns retail boards (Kerala and Mumbai gold and silver, Dubai gold, fuel),
+ * DahabPulse (international gold spot, used to sanity-check the Dubai retail rate),
+ * gold-api.com (silver spot, the only UAE silver source) and Frankfurter (USD/INR). Rates refresh in the
  * background every few minutes, fuel every few hours. If a source changes its
  * markup the API fails visibly rather than showing a wrong number.
  */
@@ -10,8 +11,8 @@ export const RATES = {
     name: 'Gold Rate Today',
     kind: 'rates',
     how: [
-      'ToolShoppy’s server reads gold prices for Kerala and India from Goodreturns and UAE prices from DahabPulse, refreshes them in the background every few minutes, and keeps the last good value if a source is briefly unavailable. The page shows 24K, 22K and 18K per gram, a 7-day trend, and, for the UAE, per-tola figures (a tola is about 11.664 g).',
-      'Lower carats are derived from 24K by purity: 22K is 22/24 of the 24K price. A jeweller’s price adds making charges, GST and its own margin on top of the gold value, so the number you pay in a shop is higher than the reference rate. Treat the page as an indicative benchmark for planning, and confirm the board rate with your jeweller before buying.',
+      'ToolShoppy’s server reads retail gold rates from Goodreturns: the Kerala board for Kerala, the Mumbai board for India, and the Dubai rate for the UAE. It refreshes them in the background every few minutes. Each Dubai figure is checked against the international spot price from DahabPulse, and if it fails that check the page shows spot and says so instead. The page shows 24K, 22K and 18K per gram, a 7-day trend, and, for the UAE, per-tola figures (a tola is about 11.664 g).',
+      'These are retail base rates, the board price before a jeweller adds making charges, GST or VAT and its own margin, so the number you pay in a shop is higher. Treat the page as an indicative benchmark for planning, and confirm the board rate with your jeweller before buying. The full source list and how we check it is on the <a href="/tools/rates/methodology/">rates methodology page</a>.',
     ],
     benefits: [
       'Check Kerala, India and Dubai gold in one place, in rupees or dirhams.',
@@ -30,14 +31,14 @@ export const RATES = {
       'For hallmarked jewellery, check the hallmark and the purity stamped on the piece.',
       'Compare gold in AED with the Currency Converter if you are buying in Dubai for India.',
     ],
-    links: [['/tools/rates/gold-rate/kerala/', 'Kerala gold rate'], ['/tools/rates/gold-rate/dubai/', 'Dubai gold rate'], ['/tools/rates/currency-converter/aed-inr/', 'AED to INR'], ['/blog/kerala-gold-rate-today-explained/', 'Gold rate explained']],
+    links: [['/tools/rates/gold-rate/kerala/', 'Kerala gold rate'], ['/tools/rates/gold-rate/dubai/', 'Dubai gold rate'], ['/tools/rates/currency-converter/aed-inr/', 'AED to INR'], ['/blog/kerala-gold-rate-today-explained/', 'Gold rate explained'], ['/tools/rates/methodology/', 'Rates methodology']],
   },
 
   'rates/gold-rate/dubai': {
     name: 'Dubai Gold Rate',
     kind: 'rates',
     how: [
-      'The Dubai page reads UAE spot-based prices in dirhams from DahabPulse through ToolShoppy’s rates endpoint, refreshed every few minutes. It shows 24K, 22K and 18K per gram and per tola, where a tola is about 11.664 g.',
+      'The Dubai page shows the retail gold rate in dirhams from Goodreturns through ToolShoppy’s rates endpoint, refreshed every few minutes, with the international spot price alongside so you can see the retail premium (usually a few percent). It shows 24K, 22K and 18K per gram and per tola, where a tola is about 11.664 g. If the retail feed is unavailable the page falls back to spot and labels it.',
       'Shop prices in the Gold Souk or at a jeweller include making charges and VAT on the making charge, and are negotiable, so the figure here is a reference, not an offer. If you are sending or carrying gold to India, remember that import rules, duty and allowances apply; check the customs guidance for your situation.',
     ],
     benefits: [
@@ -47,7 +48,7 @@ export const RATES = {
       'Free, with no signup.',
     ],
     rows: [
-      ['Price type', 'Indicative reference rate per gram and per tola.', 'Shop and association rates that may already include margins.', 'The shop’s quoted price including making charges.'],
+      ['Price type', 'Indicative retail rate per gram and per tola, shown with the spot reference.', 'Shop and association rates that may already include margins.', 'The shop’s quoted price including making charges.'],
     ],
     better: 'you are buying: ask each shop for a written price breakdown with the gold rate used, making charges and VAT. For import to India, check customs rules from an official source.',
     tips: [
@@ -56,14 +57,14 @@ export const RATES = {
       'Keep invoices and certificates for any gold you plan to carry.',
       'Check the AED to INR rate on the day for a rupee estimate.',
     ],
-    links: [['/tools/rates/gold-rate/', 'Gold rate today'], ['/tools/rates/currency-converter/aed-inr/', 'AED to INR'], ['/tools/rates/silver-rate/uae/', 'UAE silver rate']],
+    links: [['/tools/rates/gold-rate/', 'Gold rate today'], ['/tools/rates/currency-converter/aed-inr/', 'AED to INR'], ['/tools/rates/silver-rate/uae/', 'UAE silver rate'], ['/tools/rates/methodology/', 'Rates methodology']],
   },
 
   'rates/silver-rate': {
     name: 'Silver Rate Today',
     kind: 'rates',
     how: [
-      'The Kerala and India silver rate is read from Goodreturns and the UAE reference comes from the international silver price from gold-api.com converted with a current exchange rate. The values refresh every few minutes through ToolShoppy’s rates endpoint, and the page shows per-gram and per-kg figures with a 7-day trend.',
+      'The Kerala silver rate is the Goodreturns Kerala retail board and the India rate is the Goodreturns Mumbai board (Kerala is usually a few rupees per gram higher). The UAE figure is different: no verifiable retail source exists for UAE silver, so it is the international silver spot price from gold-api.com converted to dirhams and is labelled as spot. The values refresh every few minutes through ToolShoppy’s rates endpoint, and the page shows per-gram and per-kg figures with a 7-day trend.',
       'Silver in a shop carries making charges, GST and a dealer margin, and coin or bar premiums vary. The figure here is an indicative reference to see where the market is, not a price you can transact at.',
     ],
     benefits: [
@@ -82,7 +83,7 @@ export const RATES = {
       'For coins and bars, ask about the premium over the metal value.',
       'Compare with the gold rate for a sense of the gold-silver ratio.',
     ],
-    links: [['/tools/rates/gold-rate/', 'Gold rate today'], ['/tools/rates/silver-rate/uae/', 'UAE silver rate'], ['/tools/rates/currency-converter/', 'Currency converter']],
+    links: [['/tools/rates/gold-rate/', 'Gold rate today'], ['/tools/rates/silver-rate/uae/', 'UAE silver rate'], ['/tools/rates/currency-converter/', 'Currency converter'], ['/tools/rates/methodology/', 'Rates methodology']],
   },
 
   'rates/silver-rate/uae': {
@@ -108,7 +109,7 @@ export const RATES = {
       'Check the exchange rate if you are comparing with INR prices.',
       'Remember VAT can apply to the making charge or the item.',
     ],
-    links: [['/tools/rates/silver-rate/', 'Silver rate today'], ['/tools/rates/gold-rate/dubai/', 'Dubai gold rate'], ['/tools/rates/currency-converter/aed-inr/', 'AED to INR']],
+    links: [['/tools/rates/silver-rate/', 'Silver rate today'], ['/tools/rates/gold-rate/dubai/', 'Dubai gold rate'], ['/tools/rates/currency-converter/aed-inr/', 'AED to INR'], ['/tools/rates/methodology/', 'Rates methodology']],
   },
 
   'rates/petrol-price': {

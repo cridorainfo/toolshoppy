@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-PNN1LM2D9Q');</script>
+<meta charset="UTF-8">
+<script>(function(){try{/* TEMP: dark mode disabled — restore prior boot to re-enable */document.documentElement.setAttribute('data-theme','light');localStorage.setItem('ts-theme','light');}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gold &amp; Silver Rates: Sources and Methodology | ToolShoppy</title>
+<meta name="description" content="How ToolShoppy's gold and silver rates for Kerala, India and Dubai are sourced, checked and updated: retail versus spot, what is excluded, and how to use the free rates API with attribution.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://toolshoppy.com/tools/rates/methodology/">
+<meta property="og:title" content="Gold &amp; Silver Rates: Sources and Methodology — ToolShoppy">
+<meta property="og:description" content="Where ToolShoppy's gold and silver rates come from, how they are checked, and how to cite them.">
+<meta property="og:image" content="https://toolshoppy.com/assets/img/og-image.jpg">
+<meta property="og:url" content="https://toolshoppy.com/tools/rates/methodology/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ToolShoppy">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico?v=2" sizes="any">
+<link rel="icon" href="/assets/img/favicon.svg?v=2" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/icon-192.png?v=2">
+<link rel="stylesheet" href="/assets/css/main.css?v=9">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#DC2626">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Gold and silver rates: sources and methodology","url":"https://toolshoppy.com/tools/rates/methodology/","description":"How ToolShoppy's gold and silver rates for Kerala, India and Dubai are sourced, checked and updated.","dateModified":"2026-10-23","author":{"@type":"Organization","@id":"https://toolshoppy.com/about/#editorial-team","name":"ToolShoppy","url":"https://toolshoppy.com/about/#editorial-team"},"publisher":{"@type":"Organization","name":"ToolShoppy","url":"https://toolshoppy.com/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolshoppy.com/"},{"@type":"ListItem","position":2,"name":"Rates","item":"https://toolshoppy.com/tools/rates/"},{"@type":"ListItem","position":3,"name":"Methodology","item":"https://toolshoppy.com/tools/rates/methodology/"}]}</script>
+<meta name="google-adsense-account" content="ca-pub-1180208702657280">
+<script defer src="/assets/js/third-party.js?v=1"></script>
+<meta name="ts-ads" content="off">
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo"><img src="/assets/img/logo.webp?v=3" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
+    <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode">
+      <svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg>
+      <svg class="icon-svg theme-icon-moon" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#moon"></use></svg>
+    </button>
+  </div>
+</header>
+<main class="container" style="max-width:820px;padding:40px 20px;">
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true"> / </span><a href="/tools/rates/">Rates</a><span aria-hidden="true"> / </span><span aria-current="page">Methodology</span></nav>
+  <h1 style="margin-bottom:12px;">Gold &amp; silver rates: sources and methodology</h1>
+  <p style="color:var(--text-muted);margin-bottom:20px;">Last reviewed: 23 October 2026</p>
+
+  <p style="margin-bottom:14px;">ToolShoppy publishes daily gold and silver reference rates for Kerala, India and Dubai (UAE). The rates are compiled from named third-party sources, checked against each other, and shown with the basis they are quoted on, so you can tell a <strong>retail rate</strong> (what a jeweller's board shows before extras) from a <strong>spot price</strong> (the international wholesale price). They are indicative reference figures, not a trading price and not an offer to buy or sell.</p>
+
+  <div class="content-section">
+    <h2>What each rate is, and where it comes from</h2>
+    <div style="overflow-x:auto;">
+    <table style="width:100%;border-collapse:collapse;font-size:0.9rem;line-height:1.5;">
+      <thead><tr><th scope="col" style="text-align:left;padding:8px;border-bottom:2px solid var(--border);">Market</th><th scope="col" style="text-align:left;padding:8px;border-bottom:2px solid var(--border);">Basis</th><th scope="col" style="text-align:left;padding:8px;border-bottom:2px solid var(--border);">Source</th></tr></thead>
+      <tbody>
+        <tr><th scope="row" style="text-align:left;padding:8px;border-bottom:1px solid var(--border);">Kerala gold &amp; silver</th><td style="padding:8px;border-bottom:1px solid var(--border);">Retail board rate, INR per gram</td><td style="padding:8px;border-bottom:1px solid var(--border);">Goodreturns, Kerala page</td></tr>
+        <tr><th scope="row" style="text-align:left;padding:8px;border-bottom:1px solid var(--border);">India gold &amp; silver</th><td style="padding:8px;border-bottom:1px solid var(--border);">Retail board rate, INR per gram, Mumbai benchmark</td><td style="padding:8px;border-bottom:1px solid var(--border);">Goodreturns, Mumbai page</td></tr>
+        <tr><th scope="row" style="text-align:left;padding:8px;border-bottom:1px solid var(--border);">Dubai gold</th><td style="padding:8px;border-bottom:1px solid var(--border);">Retail rate, AED per gram (24K, 22K, 18K)</td><td style="padding:8px;border-bottom:1px solid var(--border);">Goodreturns, Dubai page, checked against international spot from DahabPulse</td></tr>
+        <tr><th scope="row" style="text-align:left;padding:8px;border-bottom:1px solid var(--border);">UAE silver</th><td style="padding:8px;border-bottom:1px solid var(--border);"><strong>Spot</strong> price in AED, not retail</td><td style="padding:8px;border-bottom:1px solid var(--border);">International silver price from gold-api.com, converted with the AED peg</td></tr>
+        <tr><th scope="row" style="text-align:left;padding:8px;">Currency conversion</th><td style="padding:8px;">USD to INR and gulf currencies</td><td style="padding:8px;">Frankfurter (European Central Bank reference rates) and DahabPulse currency table</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p style="margin-top:12px;color:var(--text-muted);font-size:0.92rem;line-height:1.7;">India is the Mumbai bullion market because there is no single national board. Kerala is shown separately because it can differ: today's silver, for example, is usually a few rupees per gram higher in Kerala than in Mumbai. We do not substitute one for the other when a source is down; the missing region is simply not shown.</p>
+    <p style="color:var(--text-muted);font-size:0.92rem;line-height:1.7;">UAE silver is shown as spot because we found no verifiable retail source for it. Dubai shops add a premium and making charges, so a shop's silver price will be higher than the figure on our page, and the page says so.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>How the rates are checked</h2>
+    <ul style="padding-left:20px;color:var(--text-muted);font-size:0.92rem;line-height:1.8;">
+      <li>The Dubai retail rate is accepted only if it is plausible against international spot: the 24K rate must sit between about 1% below and 10% above spot, and the 22K and 18K rates must keep their expected proportions to 24K. A typical retail premium is a few percent. If a value fails these checks, the page shows the spot price instead and labels it "spot", never "retail".</li>
+      <li>Every region carries its basis, source and the source's own date in the data, so the label travels with the number.</li>
+      <li>No hard-coded fallback prices or exchange rates are used. If the exchange rate is unavailable, the rates service refuses to answer rather than guess.</li>
+      <li>Rates refresh in the background about every ten minutes. If a source fails, the last good value is served for up to 24 hours, and the update time shows its age.</li>
+      <li>Rates written into the page HTML for search engines are rendered only from live data under 36 hours old.</li>
+    </ul>
+  </div>
+
+  <div class="content-section">
+    <h2>What the rates do not include</h2>
+    <p style="color:var(--text-muted);font-size:0.92rem;line-height:1.7;">The figures exclude making charges, GST, VAT, TCS and other levies, dealer margins, and buy-back spreads. What you pay or receive at a shop is different. Use the rates to follow the market and to ask better questions of a seller, and always confirm the board rate and a written breakdown with the seller. ToolShoppy is not a broker, bullion dealer or financial adviser, and nothing here is investment advice.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>Using the rates in your own site or app</h2>
+    <p style="margin-bottom:10px;color:var(--text-muted);font-size:0.92rem;line-height:1.7;">The same data that powers these pages is available as JSON at <code>https://toolshoppy.com/api/rates</code>. It is free, needs no key, and allows requests from other websites (CORS). Please:</p>
+    <ul style="padding-left:20px;color:var(--text-muted);font-size:0.92rem;line-height:1.8;margin-bottom:12px;">
+      <li><strong>Credit the source.</strong> Show "Rates via ToolShoppy" with a link to <a href="https://toolshoppy.com/tools/rates/">toolshoppy.com/tools/rates</a>. The JSON includes a ready-made <code>provider.attribution</code> line.</li>
+      <li><strong>Show the basis.</strong> Pass on each region's <code>basis</code> ("retail" or "spot") and its <code>basis_note</code>, so your visitors are not told a spot price is a shop price.</li>
+      <li><strong>Cache for at least five minutes</strong> instead of calling on every page view.</li>
+      <li><strong>Do not use it to price or settle transactions.</strong> It is an indicative reference without an uptime or accuracy guarantee. Use your own contracted price source for anything binding.</li>
+    </ul>
+    <pre style="overflow-x:auto;padding:12px;border:1px solid var(--border);border-radius:var(--radius-sm,8px);background:var(--bg);font-size:0.8rem;line-height:1.5;"><code>{
+  "updated_at": "2026-10-23T18:05:05Z",
+  "provider": { "name": "ToolShoppy", "attribution": "Rates via ToolShoppy (toolshoppy.com)", ... },
+  "gold": {
+    "uae": {
+      "currency": "AED",
+      "per_gram": { "24k": 489.5, "22k": 453.25, "18k": 370.8 },
+      "basis": "retail",
+      "retail_source": "Goodreturns (Dubai)",
+      "spot_per_gram": { "24k": 472.18, "22k": 432.85, "18k": 354.14 },
+      "premium_vs_spot_pct": 3.67
+    },
+    "india": { "currency": "INR", "per_gram": { "24k": 14248, "22k": 13060, "18k": 10686 }, "basis": "retail", "retail_source": "Goodreturns (Mumbai)" }
+  },
+  "silver": {
+    "india": { "currency": "INR", "per_gram": 220, "basis": "retail" },
+    "uae": { "currency": "AED", "per_gram": 6.39, "basis": "spot" }
+  }
+}</code></pre>
+    <p style="color:var(--text-muted);font-size:0.85rem;">Example values from 23 October 2026; the live response also includes Kerala, a 7-day history and a currency table.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>Independence and third-party sources</h2>
+    <p style="color:var(--text-muted);font-size:0.92rem;line-height:1.7;">ToolShoppy does not set, own or guarantee these rates. Goodreturns, DahabPulse, gold-api.com and Frankfurter are independent services and their names belong to their owners; ToolShoppy is not affiliated with them or with the Dubai Gold &amp; Jewellery Group. If a source changes its format or stops publishing, the affected region will disappear or fall back to a labelled spot price rather than show a wrong number. To report a wrong rate, <a href="/contact/">contact us</a> with the page, the time and the figure you expected.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>Change log</h2>
+    <ul style="padding-left:20px;color:var(--text-muted);font-size:0.92rem;line-height:1.8;">
+      <li><strong>23 Oct 2026:</strong> Dubai gold switched from converted spot to the retail rate, with spot shown beside it. India now uses the Mumbai benchmark instead of silently reusing Kerala. Every region now states its basis.</li>
+    </ul>
+  </div>
+  <aside class="author-bio" aria-label="About the author"><h2>About the author</h2><p>By <a href="/about/#editorial-team" rel="author">ToolShoppy</a>, the independent project behind these browser-based utilities. We compile and publish the rates and describe how they are checked.</p><p>Found a wrong rate or an error in this page? <a href="/contact/">Send a correction</a>.</p></aside>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <nav class="footer-links" aria-label="Footer">
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="/privacy/">Privacy Policy</a>
+      <a href="/terms/">Terms of Service</a>
+      <a href="/blog/">Blog &amp; Guides</a>
+      <a href="/">All tools</a>
+    </nav>
+    <div class="footer-bottom">© 2026 ToolShoppy. Global reach. Indian soul.</div>
+  </div>
+</footer>
+<script src="/assets/js/ad-config.js"></script>
+<script src="/assets/js/core.js?v=7"></script>
+<script defer src="/assets/js/ads.js?v=7"></script>
+</body>
+</html>
