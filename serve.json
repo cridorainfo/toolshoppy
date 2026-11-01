@@ -611,26 +611,6 @@
       "source": "/uae-gold-rate/",
       "destination": "/tools/rates/gold-rate/dubai/",
       "type": 301
-    },
-    {
-      "source": "/tools/misc/url-shortener",
-      "destination": "/tools/misc/",
-      "type": 301
-    },
-    {
-      "source": "/tools/misc/url-shortener/",
-      "destination": "/tools/misc/",
-      "type": 301
-    },
-    {
-      "source": "/tools/misc/yt-thumbnail",
-      "destination": "/tools/misc/",
-      "type": 301
-    },
-    {
-      "source": "/tools/misc/yt-thumbnail/",
-      "destination": "/tools/misc/",
-      "type": 301
     }
   ],
   "headers": [
