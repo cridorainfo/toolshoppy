@@ -121,7 +121,7 @@ ${json(breadcrumb)}
 ${json(faq)}
 </script>
 <meta name="google-adsense-account" content="ca-pub-1180208702657280">
-<script defer src="/assets/js/third-party.js?v=1"></script>
+<script defer src="/assets/js/third-party.js?v=2"></script>
 </head>
 <body>
 <header class="site-header">
@@ -176,7 +176,7 @@ ${siteFooter(year)}
 <script src="/assets/js/ga-config.js"></script>
 <script src="/assets/js/ad-config.js"></script>
 <script src="/assets/js/core.js?v=7"></script>
-<script defer src="/assets/js/ads.js?v=7"></script>
+<script defer src="/assets/js/ads.js?v=8"></script>
 <script defer src="/assets/js/analytics.js"></script>
 ${(p.scripts || []).join('\n')}${p.scripts?.length ? '\n' : ''}<script>
 ${p.inlineScript}

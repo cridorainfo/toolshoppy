@@ -322,6 +322,12 @@ function writeLandingPages(queries) {
       }
       continue;
     }
+    if (page.handcrafted) {
+      // Hand-written pages with a real working widget (live rates, converter). The monthly
+      // bot used to overwrite these with the click-through template, which is a doorway page.
+      console.log('  kept handcrafted', page.path);
+      continue;
+    }
     const toolHref = TOOL_PATHS[page.tool] || '/';
     const keywords = keywordsForTool(queries, page.tool) || page.h1.toLowerCase();
     const html = tpl
@@ -348,7 +354,14 @@ function updateSitemap() {
 /** Static vanity + doorway consolidations managed outside the trends block. */
 // serve-handler matches an optional trailing slash: redirecting /search to
 // /search/ also matches /search/ itself and creates a permanent redirect loop.
-const SERVE_STATIC_REDIRECTS = [];
+const SERVE_STATIC_REDIRECTS = [
+  // Tools removed ahead of the AdSense re-review. serve.json is rebuilt from scratch on every
+  // run, so these must live here or the old URLs start returning 404 again.
+  { source: '/tools/misc/url-shortener', destination: '/tools/misc/', type: 301 },
+  { source: '/tools/misc/url-shortener/', destination: '/tools/misc/', type: 301 },
+  { source: '/tools/misc/yt-thumbnail', destination: '/tools/misc/', type: 301 },
+  { source: '/tools/misc/yt-thumbnail/', destination: '/tools/misc/', type: 301 },
+];
 
 function updateRedirects(landingPages) {
   const servePath = path.join(ROOT, 'serve.json');

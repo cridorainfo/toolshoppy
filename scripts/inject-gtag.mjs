@@ -9,7 +9,7 @@ const GA_ID = 'G-PNN1LM2D9Q';
 const MARKER = "function gtag()";
 const SNIPPET = `
 <!-- Google tag (gtag.js) — loaded later by /assets/js/third-party.js -->
-<script defer src="/assets/js/third-party.js?v=1"></script>
+<script defer src="/assets/js/third-party.js?v=2"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_ID}');</script>`;
 
 function walk(dir, out = []) {

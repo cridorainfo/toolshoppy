@@ -186,7 +186,7 @@ function hubPageHtml(cat, tools) {
 <meta name="theme-color" content="#DC2626">
 <link rel="stylesheet" href="/assets/css/main.css?v=9">
 <meta name="google-adsense-account" content="ca-pub-1180208702657280">
-<script defer src="/assets/js/third-party.js?v=1"></script>
+<script defer src="/assets/js/third-party.js?v=2"></script>
 <script type="application/ld+json">
 ${JSON.stringify(schema, null, 2)}
 </script>
@@ -246,7 +246,7 @@ ${cards}
 <script src="/assets/js/ga-config.js"></script>
 <script src="/assets/js/ad-config.js"></script>
 <script src="/assets/js/core.js?v=7"></script>
-<script src="/assets/js/ads.js?v=7"></script>
+<script src="/assets/js/ads.js?v=8"></script>
 <script src="/assets/js/analytics.js"></script>
 </body>
 </html>

@@ -234,6 +234,7 @@ export const LANDING_PAGES = [
   },
   {
     id: 'currency-aed-inr',
+    handcrafted: true, // real widget page: the sync must never regenerate it from the doorway template
     path: '/tools/rates/currency-converter/aed-inr/',
     tool: 'currency-converter',
     icon: 'currency-dollar',
@@ -247,6 +248,7 @@ export const LANDING_PAGES = [
   },
   {
     id: 'silver-rate-uae',
+    handcrafted: true, // real widget page: the sync must never regenerate it from the doorway template
     path: '/tools/rates/silver-rate/uae/',
     tool: 'silver-rate',
     icon: 'coin',
@@ -260,6 +262,7 @@ export const LANDING_PAGES = [
   },
   {
     id: 'gold-rate-uae',
+    handcrafted: true, // real widget page: the sync must never regenerate it from the doorway template
     path: '/tools/rates/gold-rate/dubai/',
     tool: 'gold-rate',
     icon: 'coin',

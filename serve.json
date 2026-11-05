@@ -611,6 +611,26 @@
       "source": "/uae-gold-rate/",
       "destination": "/tools/rates/gold-rate/dubai/",
       "type": 301
+    },
+    {
+      "source": "/tools/misc/url-shortener",
+      "destination": "/tools/misc/",
+      "type": 301
+    },
+    {
+      "source": "/tools/misc/url-shortener/",
+      "destination": "/tools/misc/",
+      "type": 301
+    },
+    {
+      "source": "/tools/misc/yt-thumbnail",
+      "destination": "/tools/misc/",
+      "type": 301
+    },
+    {
+      "source": "/tools/misc/yt-thumbnail/",
+      "destination": "/tools/misc/",
+      "type": 301
     }
   ],
   "headers": [
@@ -660,6 +680,24 @@
         {
           "key": "Cache-Control",
           "value": "public, max-age=86400, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "**/*.woff2",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "assets/libs/**",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000"
         }
       ]
     }

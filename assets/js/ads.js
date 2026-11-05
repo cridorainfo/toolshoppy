@@ -185,7 +185,7 @@
   }
 
   function maxSlotsFor(words) {
-    if (words < 200) return 0;
+    if (words < 300) return 0;
     if (words < 450) return 2;
     if (words < 700) return 3;
     if (words < 1000) return 4;

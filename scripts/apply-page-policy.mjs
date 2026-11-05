@@ -48,7 +48,7 @@ const ADSENSE_TAG_RE = /<script async src="https:\/\/pagead2\.googlesyndication\
 const THIRD_PARTY_RE = /<script defer src="\/assets\/js\/third-party\.js[^"]*"><\/script>/;
 
 let changed = 0;
-const stats = { footer: 0, adFree: 0, noindex: 0, adsenseTag: 0, snapshot: 0 };
+const stats = { footer: 0, adFree: 0, noindex: 0, adsenseTag: 0, snapshot: 0, fontPreload: 0 };
 for (const file of files) {
   const rel = path.relative(ROOT, file).split(path.sep).join('/');
   const before = fs.readFileSync(file, 'utf8');
@@ -92,6 +92,17 @@ for (const file of files) {
   if (mode === 'static' && !adFree && THIRD_PARTY_RE.test(html)) {
     html = html.replace(THIRD_PARTY_RE, m => `${ADSENSE_TAG}\n${m}`);
     stats.adsenseTag++;
+  }
+
+  // 5. preload the body font so it downloads in parallel with main.css instead of after it
+  //    (main.css -> font was a serial chain; the font uses font-display: optional, so a late
+  //    font is dropped for that page view and the fallback face is used instead).
+  if (!html.includes('Inter-latin.woff2') || !/rel="preload"[^>]*Inter-latin\.woff2/.test(html)) {
+    const css = html.match(/^[ \t]*<link rel="stylesheet" href="\/assets\/css\/main\.css[^>]*>/m);
+    if (css && !/rel="preload"[^>]*Inter-latin\.woff2/.test(html)) {
+      html = html.replace(css[0], `<link rel="preload" href="/assets/fonts/Inter-latin.woff2" as="font" type="font/woff2" crossorigin>\n${css[0]}`);
+      stats.fontPreload++;
+    }
   }
 
   const out = hasCRLF && !mixed ? html.replace(/\n/g, '\r\n') : html;
