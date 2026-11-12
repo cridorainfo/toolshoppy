@@ -1,0 +1,479 @@
+{
+  "buckets": {
+    "edges": []
+  },
+  "deletedAt": null,
+  "environments": {
+    "edges": [
+      {
+        "node": {
+          "canAccess": true,
+          "deletedAt": null,
+          "id": "590bedab-57f2-49d2-9beb-6f43a593c396",
+          "name": "production",
+          "serviceInstances": {
+            "edges": [
+              {
+                "node": {
+                  "activeDeployments": [
+                    {
+                      "createdAt": "2026-10-03T18:42:07.185Z",
+                      "deploymentStopped": true,
+                      "id": "ce1bc0f3-a334-4b41-97f7-2da81c926d86",
+                      "instances": [],
+                      "meta": {
+                        "buildOnly": false,
+                        "cliAgentSessionId": "toolshoppy-seo-deploy-20261003",
+                        "cliCaller": "skill:use-railway@1.3.7",
+                        "cliMessage": "Deploy SEO audit and crawlability improvements",
+                        "fileServiceManifest": {},
+                        "logsV2": true,
+                        "nixpacksProviders": [],
+                        "propertyFileMapping": {},
+                        "reason": "deploy",
+                        "rootDirectory": null,
+                        "runtime": "V2",
+                        "serviceManifest": {
+                          "build": {
+                            "buildCommand": null,
+                            "buildEnvironment": "V3",
+                            "builder": "RAILPACK",
+                            "dockerfilePath": null,
+                            "nixpacksConfigPath": null,
+                            "nixpacksPlan": null,
+                            "watchPatterns": []
+                          },
+                          "deploy": {
+                            "cronSchedule": null,
+                            "drainingSeconds": null,
+                            "healthcheckPath": null,
+                            "healthcheckTimeout": null,
+                            "ipv6EgressEnabled": false,
+                            "limitOverride": null,
+                            "multiRegionConfig": {
+                              "iad": {
+                                "numReplicas": 1
+                              }
+                            },
+                            "numReplicas": 1,
+                            "overlapSeconds": null,
+                            "preDeployCommand": null,
+                            "preDeployTimeoutSeconds": null,
+                            "region": null,
+                            "registryCredentials": null,
+                            "requiredMountPath": null,
+                            "restartPolicyMaxRetries": 10,
+                            "restartPolicyType": "ON_FAILURE",
+                            "runtime": "V2",
+                            "sleepApplication": false,
+                            "startCommand": null,
+                            "useLegacyStacker": false
+                          }
+                        },
+                        "volumeMounts": []
+                      },
+                      "status": "INITIALIZING"
+                    },
+                    {
+                      "createdAt": "2026-10-03T06:32:29.656Z",
+                      "deploymentStopped": false,
+                      "id": "9b155fee-8588-40a8-9ec2-ab761778f73c",
+                      "instances": [
+                        {
+                          "id": "5a8ece98-3e3e-492f-a581-16e6b76f031a",
+                          "status": "RUNNING"
+                        }
+                      ],
+                      "meta": {
+                        "branch": "master",
+                        "buildOnly": false,
+                        "commitAuthor": "cridorainfo",
+                        "commitHash": "85688e462d7755bc54dbd3e8ecfcba62b3a6e26a",
+                        "commitMessage": "Add native PDF text editing and free-download SEO",
+                        "fileServiceManifest": {},
+                        "imageDigest": "sha256:8ad5ba0b8b0646598496993ccbbb2c01cfe471976b4af78f0dc4de86e0a4c37b",
+                        "logsV2": true,
+                        "nixpacksProviders": [],
+                        "plan": "hobby",
+                        "propertyFileMapping": {},
+                        "railpackInfo": {
+                          "detectedProviders": [
+                            "node"
+                          ],
+                          "metadata": {
+                            "nodePackageManager": "npm",
+                            "nodeRuntime": "node",
+                            "providers": "node"
+                          },
+                          "railpackVersion": "0.40.1",
+                          "resolvedPackages": {
+                            "node": {
+                              "requestedVersion": ">=22",
+                              "resolvedVersion": "22.23.2"
+                            }
+                          }
+                        },
+                        "reason": "deploy",
+                        "repo": "cridorainfo/toolshoppy",
+                        "rootDirectory": null,
+                        "runtime": "V2",
+                        "serviceManifest": {
+                          "build": {
+                            "buildCommand": null,
+                            "buildEnvironment": "V3",
+                            "builder": "RAILPACK",
+                            "dockerfilePath": null,
+                            "nixpacksConfigPath": null,
+                            "nixpacksPlan": null,
+                            "watchPatterns": []
+                          },
+                          "deploy": {
+                            "cronSchedule": null,
+                            "drainingSeconds": null,
+                            "healthcheckPath": null,
+                            "healthcheckTimeout": null,
+                            "ipv6EgressEnabled": false,
+                            "limitOverride": null,
+                            "multiRegionConfig": {
+                              "iad": {
+                                "numReplicas": 1
+                              }
+                            },
+                            "numReplicas": 1,
+                            "overlapSeconds": null,
+                            "preDeployCommand": null,
+                            "preDeployTimeoutSeconds": null,
+                            "region": null,
+                            "registryCredentials": null,
+                            "requiredMountPath": null,
+                            "restartPolicyMaxRetries": 10,
+                            "restartPolicyType": "ON_FAILURE",
+                            "runtime": "V2",
+                            "sleepApplication": false,
+                            "startCommand": null,
+                            "useLegacyStacker": false
+                          }
+                        },
+                        "volumeMounts": []
+                      },
+                      "status": "SUCCESS"
+                    }
+                  ],
+                  "cronSchedule": null,
+                  "domains": {
+                    "customDomains": [
+                      {
+                        "domain": "toolshoppy.com",
+                        "id": "e516ad2f-91e4-4ee4-8027-87fbe53e357d",
+                        "targetPort": 8080
+                      },
+                      {
+                        "domain": "www.toolshoppy.com",
+                        "id": "b9a94867-42b5-4a61-b81f-192163757369",
+                        "targetPort": 8080
+                      }
+                    ],
+                    "serviceDomains": [
+                      {
+                        "domain": "toolshoppy-production.up.railway.app",
+                        "id": "dc1c7df0-3c57-400c-adc6-838d63e9a4ca",
+                        "targetPort": null
+                      }
+                    ]
+                  },
+                  "environmentId": "590bedab-57f2-49d2-9beb-6f43a593c396",
+                  "id": "03b79b2d-a2c4-419f-832c-5938b1d51419",
+                  "latestDeployment": {
+                    "canRedeploy": false,
+                    "createdAt": "2026-10-03T18:42:07.185Z",
+                    "deploymentStopped": true,
+                    "id": "ce1bc0f3-a334-4b41-97f7-2da81c926d86",
+                    "instances": [],
+                    "meta": {
+                      "buildOnly": false,
+                      "cliAgentSessionId": "toolshoppy-seo-deploy-20261003",
+                      "cliCaller": "skill:use-railway@1.3.7",
+                      "cliMessage": "Deploy SEO audit and crawlability improvements",
+                      "fileServiceManifest": {},
+                      "logsV2": true,
+                      "nixpacksProviders": [],
+                      "propertyFileMapping": {},
+                      "reason": "deploy",
+                      "rootDirectory": null,
+                      "runtime": "V2",
+                      "serviceManifest": {
+                        "build": {
+                          "buildCommand": null,
+                          "buildEnvironment": "V3",
+                          "builder": "RAILPACK",
+                          "dockerfilePath": null,
+                          "nixpacksConfigPath": null,
+                          "nixpacksPlan": null,
+                          "watchPatterns": []
+                        },
+                        "deploy": {
+                          "cronSchedule": null,
+                          "drainingSeconds": null,
+                          "healthcheckPath": null,
+                          "healthcheckTimeout": null,
+                          "ipv6EgressEnabled": false,
+                          "limitOverride": null,
+                          "multiRegionConfig": {
+                            "iad": {
+                              "numReplicas": 1
+                            }
+                          },
+                          "numReplicas": 1,
+                          "overlapSeconds": null,
+                          "preDeployCommand": null,
+                          "preDeployTimeoutSeconds": null,
+                          "region": null,
+                          "registryCredentials": null,
+                          "requiredMountPath": null,
+                          "restartPolicyMaxRetries": 10,
+                          "restartPolicyType": "ON_FAILURE",
+                          "runtime": "V2",
+                          "sleepApplication": false,
+                          "startCommand": null,
+                          "useLegacyStacker": false
+                        }
+                      },
+                      "volumeMounts": []
+                    },
+                    "status": "INITIALIZING"
+                  },
+                  "nextCronRunAt": null,
+                  "numReplicas": null,
+                  "serviceId": "f0c83b52-4b28-4ca8-9151-b89ede00df08",
+                  "serviceName": "toolshoppy",
+                  "source": {
+                    "image": null,
+                    "repo": "cridorainfo/toolshoppy"
+                  },
+                  "startCommand": null
+                }
+              },
+              {
+                "node": {
+                  "activeDeployments": [
+                    {
+                      "createdAt": "2026-10-03T06:32:29.656Z",
+                      "deploymentStopped": false,
+                      "id": "f7de1f46-a26a-4eb5-b0be-70a56840fe01",
+                      "instances": [
+                        {
+                          "id": "b8046ca9-afa4-48ba-abaa-b05523b50c76",
+                          "status": "CREATED"
+                        }
+                      ],
+                      "meta": {
+                        "branch": "master",
+                        "buildOnly": true,
+                        "commitAuthor": "cridorainfo",
+                        "commitHash": "85688e462d7755bc54dbd3e8ecfcba62b3a6e26a",
+                        "commitMessage": "Add native PDF text editing and free-download SEO",
+                        "configFile": "/railway.cron.toml",
+                        "fileServiceManifest": {
+                          "build": {
+                            "builder": "NIXPACKS"
+                          },
+                          "deploy": {
+                            "cronSchedule": "0 6 1 * *",
+                            "restartPolicyMaxRetries": 3,
+                            "restartPolicyType": "ON_FAILURE",
+                            "startCommand": "node scripts/railway-trends-cron.mjs"
+                          }
+                        },
+                        "imageDigest": "sha256:1b0c2b260db37b9735feeca5023d87a3582d11b1e8853d58445d31f7dddfdac1",
+                        "logsV2": true,
+                        "nixpacksProviders": [],
+                        "plan": "hobby",
+                        "propertyFileMapping": {
+                          "build.builder": "$.build.builder",
+                          "deploy.cronSchedule": "$.deploy.cronSchedule",
+                          "deploy.restartPolicyMaxRetries": "$.deploy.restartPolicyMaxRetries",
+                          "deploy.restartPolicyType": "$.deploy.restartPolicyType",
+                          "deploy.startCommand": "$.deploy.startCommand"
+                        },
+                        "reason": "deploy",
+                        "repo": "cridorainfo/toolshoppy",
+                        "rootDirectory": null,
+                        "runtime": "V2",
+                        "serviceManifest": {
+                          "build": {
+                            "buildCommand": null,
+                            "buildEnvironment": "V3",
+                            "builder": "NIXPACKS",
+                            "dockerfilePath": null,
+                            "nixpacksConfigPath": null,
+                            "nixpacksPlan": null,
+                            "watchPatterns": []
+                          },
+                          "deploy": {
+                            "cronSchedule": "0 6 1 * *",
+                            "drainingSeconds": null,
+                            "healthcheckPath": null,
+                            "healthcheckTimeout": null,
+                            "ipv6EgressEnabled": false,
+                            "limitOverride": null,
+                            "multiRegionConfig": {
+                              "iad": {
+                                "numReplicas": 1
+                              }
+                            },
+                            "numReplicas": 1,
+                            "overlapSeconds": null,
+                            "preDeployCommand": null,
+                            "preDeployTimeoutSeconds": null,
+                            "region": null,
+                            "registryCredentials": null,
+                            "requiredMountPath": null,
+                            "restartPolicyMaxRetries": null,
+                            "restartPolicyType": "NEVER",
+                            "runtime": "V2",
+                            "sleepApplication": false,
+                            "startCommand": "node scripts/railway-trends-cron.mjs",
+                            "useLegacyStacker": false
+                          }
+                        },
+                        "volumeMounts": []
+                      },
+                      "status": "SUCCESS"
+                    }
+                  ],
+                  "cronSchedule": null,
+                  "domains": {
+                    "customDomains": [],
+                    "serviceDomains": []
+                  },
+                  "environmentId": "590bedab-57f2-49d2-9beb-6f43a593c396",
+                  "id": "1ede1fd5-b516-4ddf-a4b2-3a1e25e819a1",
+                  "latestDeployment": {
+                    "canRedeploy": true,
+                    "createdAt": "2026-10-03T06:32:29.656Z",
+                    "deploymentStopped": false,
+                    "id": "f7de1f46-a26a-4eb5-b0be-70a56840fe01",
+                    "instances": [
+                      {
+                        "id": "b8046ca9-afa4-48ba-abaa-b05523b50c76",
+                        "status": "CREATED"
+                      }
+                    ],
+                    "meta": {
+                      "branch": "master",
+                      "buildOnly": true,
+                      "commitAuthor": "cridorainfo",
+                      "commitHash": "85688e462d7755bc54dbd3e8ecfcba62b3a6e26a",
+                      "commitMessage": "Add native PDF text editing and free-download SEO",
+                      "configFile": "/railway.cron.toml",
+                      "fileServiceManifest": {
+                        "build": {
+                          "builder": "NIXPACKS"
+                        },
+                        "deploy": {
+                          "cronSchedule": "0 6 1 * *",
+                          "restartPolicyMaxRetries": 3,
+                          "restartPolicyType": "ON_FAILURE",
+                          "startCommand": "node scripts/railway-trends-cron.mjs"
+                        }
+                      },
+                      "imageDigest": "sha256:1b0c2b260db37b9735feeca5023d87a3582d11b1e8853d58445d31f7dddfdac1",
+                      "logsV2": true,
+                      "nixpacksProviders": [],
+                      "plan": "hobby",
+                      "propertyFileMapping": {
+                        "build.builder": "$.build.builder",
+                        "deploy.cronSchedule": "$.deploy.cronSchedule",
+                        "deploy.restartPolicyMaxRetries": "$.deploy.restartPolicyMaxRetries",
+                        "deploy.restartPolicyType": "$.deploy.restartPolicyType",
+                        "deploy.startCommand": "$.deploy.startCommand"
+                      },
+                      "reason": "deploy",
+                      "repo": "cridorainfo/toolshoppy",
+                      "rootDirectory": null,
+                      "runtime": "V2",
+                      "serviceManifest": {
+                        "build": {
+                          "buildCommand": null,
+                          "buildEnvironment": "V3",
+                          "builder": "NIXPACKS",
+                          "dockerfilePath": null,
+                          "nixpacksConfigPath": null,
+                          "nixpacksPlan": null,
+                          "watchPatterns": []
+                        },
+                        "deploy": {
+                          "cronSchedule": "0 6 1 * *",
+                          "drainingSeconds": null,
+                          "healthcheckPath": null,
+                          "healthcheckTimeout": null,
+                          "ipv6EgressEnabled": false,
+                          "limitOverride": null,
+                          "multiRegionConfig": {
+                            "iad": {
+                              "numReplicas": 1
+                            }
+                          },
+                          "numReplicas": 1,
+                          "overlapSeconds": null,
+                          "preDeployCommand": null,
+                          "preDeployTimeoutSeconds": null,
+                          "region": null,
+                          "registryCredentials": null,
+                          "requiredMountPath": null,
+                          "restartPolicyMaxRetries": null,
+                          "restartPolicyType": "NEVER",
+                          "runtime": "V2",
+                          "sleepApplication": false,
+                          "startCommand": "node scripts/railway-trends-cron.mjs",
+                          "useLegacyStacker": false
+                        }
+                      },
+                      "volumeMounts": []
+                    },
+                    "status": "SUCCESS"
+                  },
+                  "nextCronRunAt": null,
+                  "numReplicas": null,
+                  "serviceId": "0872d906-095a-4072-ae47-69e920955aaa",
+                  "serviceName": "toolshoppy-trends-cron",
+                  "source": {
+                    "image": null,
+                    "repo": "cridorainfo/toolshoppy"
+                  },
+                  "startCommand": null
+                }
+              }
+            ]
+          },
+          "unmergedChangesCount": null,
+          "volumeInstances": {
+            "edges": []
+          }
+        }
+      }
+    ]
+  },
+  "id": "1f80e6ed-e708-41b3-ba38-9d13fe9796c6",
+  "name": "toolshoppy",
+  "services": {
+    "edges": [
+      {
+        "node": {
+          "id": "0872d906-095a-4072-ae47-69e920955aaa",
+          "name": "toolshoppy-trends-cron"
+        }
+      },
+      {
+        "node": {
+          "id": "f0c83b52-4b28-4ca8-9151-b89ede00df08",
+          "name": "toolshoppy"
+        }
+      }
+    ]
+  },
+  "workspace": {
+    "name": "cridorainfo's Projects"
+  },
+  "workspaceId": "1da9588f-b3c5-4fc0-b36e-c697f5915f08"
+}

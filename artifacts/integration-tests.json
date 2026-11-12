@@ -1,0 +1,42 @@
+[
+  {
+    "tool": "misc/yt-thumbnail",
+    "status": "PASS",
+    "requests": []
+  },
+  {
+    "tool": "misc/url-shortener",
+    "status": "PASS",
+    "requests": []
+  },
+  {
+    "tool": "rates/gold-rate",
+    "status": "PASS",
+    "requests": []
+  },
+  {
+    "tool": "rates/silver-rate",
+    "status": "PASS",
+    "requests": []
+  },
+  {
+    "tool": "rates/currency-converter",
+    "status": "PASS",
+    "requests": []
+  },
+  {
+    "tool": "rates/petrol-price",
+    "status": "PASS",
+    "requests": []
+  },
+  {
+    "tool": "image/ocr",
+    "status": "PASS",
+    "requests": []
+  },
+  {
+    "tool": "pdf/ocr-pdf",
+    "status": "PASS",
+    "requests": []
+  }
+]

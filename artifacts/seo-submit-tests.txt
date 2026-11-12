@@ -1,0 +1,11 @@
+✔ submits the canonical sitemap with scoped OAuth authentication (167.6866ms)
+✔ missing credentials fail before any network request (19.3943ms)
+✔ Google authentication and authorization failures are surfaced without secrets (4.4793ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 551.6106

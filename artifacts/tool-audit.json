@@ -1,0 +1,5227 @@
+[
+  {
+    "url": "/tools/finance/emi-calculator/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Home ₹50L",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Car ₹10L",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Personal ₹3L",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "principal",
+        "type": "number",
+        "text": "",
+        "value": "5000000"
+      },
+      {
+        "tag": "INPUT",
+        "id": "rate",
+        "type": "number",
+        "text": "",
+        "value": "8.5"
+      },
+      {
+        "tag": "INPUT",
+        "id": "tenure",
+        "type": "number",
+        "text": "",
+        "value": "20"
+      }
+    ]
+  },
+  {
+    "url": "/tools/finance/fd-calculator/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Fixed Deposit (FD)",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Recurring Deposit (RD)",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "principal",
+        "type": "number",
+        "text": "",
+        "value": "100000"
+      },
+      {
+        "tag": "INPUT",
+        "id": "rate",
+        "type": "number",
+        "text": "",
+        "value": "7"
+      },
+      {
+        "tag": "INPUT",
+        "id": "years",
+        "type": "number",
+        "text": "",
+        "value": "5"
+      }
+    ]
+  },
+  {
+    "url": "/tools/finance/gst-calculator/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Add GST",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Remove GST",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "5%",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "12%",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "18%",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "28%",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "amount",
+        "type": "number",
+        "text": "",
+        "value": "10000"
+      }
+    ]
+  },
+  {
+    "url": "/tools/finance/income-tax/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "INPUT",
+        "id": "income",
+        "type": "number",
+        "text": "",
+        "value": "1500000"
+      },
+      {
+        "tag": "INPUT",
+        "id": "deductions",
+        "type": "number",
+        "text": "",
+        "value": "150000"
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Compare both",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "New regime",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Old regime",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/finance/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/finance/salary-calculator/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "INPUT",
+        "id": "ctc",
+        "type": "number",
+        "text": "",
+        "value": "1200000"
+      },
+      {
+        "tag": "INPUT",
+        "id": "basicPct",
+        "type": "number",
+        "text": "",
+        "value": "40"
+      },
+      {
+        "tag": "SELECT",
+        "id": "regime",
+        "type": "select-one",
+        "text": "",
+        "value": "new"
+      }
+    ]
+  },
+  {
+    "url": "/tools/finance/sip-calculator/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "INPUT",
+        "id": "monthly",
+        "type": "number",
+        "text": "",
+        "value": "5000"
+      },
+      {
+        "tag": "INPUT",
+        "id": "rate",
+        "type": "number",
+        "text": "",
+        "value": "12"
+      },
+      {
+        "tag": "INPUT",
+        "id": "years",
+        "type": "number",
+        "text": "",
+        "value": "10"
+      }
+    ]
+  },
+  {
+    "url": "/tools/finance/uae-vat/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Add VAT (5%)",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Remove VAT",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "amount",
+        "type": "number",
+        "text": "",
+        "value": "1000"
+      }
+    ]
+  },
+  {
+    "url": "/tools/image/background-remove/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "INPUT",
+        "id": "fileInput",
+        "type": "file",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "baSlider",
+        "type": "range",
+        "text": "",
+        "value": "50"
+      },
+      {
+        "tag": "INPUT",
+        "id": "feather",
+        "type": "range",
+        "text": "",
+        "value": "2"
+      },
+      {
+        "tag": "BUTTON",
+        "id": "downloadBtn",
+        "type": "submit",
+        "text": "Download PNG",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "downloadWhiteBtn",
+        "type": "submit",
+        "text": "Download on white",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "resetBtn",
+        "type": "submit",
+        "text": "Try another image",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/image/compress/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "INPUT",
+        "id": "fileInput",
+        "type": "file",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "submit",
+        "text": "20 KB",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "submit",
+        "text": "50 KB",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "submit",
+        "text": "100 KB",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "submit",
+        "text": "200 KB",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "submit",
+        "text": "500 KB",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "submit",
+        "text": "Custom",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "customKb",
+        "type": "number",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "compressBtn",
+        "type": "submit",
+        "text": "Compress Images",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "downloadBtn",
+        "type": "submit",
+        "text": "Download All",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/image/convert/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "INPUT",
+        "id": "fileInput",
+        "type": "file",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "submit",
+        "text": "JPG",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "submit",
+        "text": "PNG",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "submit",
+        "text": "WebP",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "convertBtn",
+        "type": "submit",
+        "text": "Convert All",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "downloadAllBtn",
+        "type": "submit",
+        "text": "Download All (ZIP)",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/image/govt-photo/aadhaar/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Kerala PSC",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "UPSC",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "SSC",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "PAN Card",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Aadhaar",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Passport (India)",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "UAE Emirates ID",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Passport (UK)",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Passport (US)",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "White",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Light Blue",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Light Red",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "fileInput",
+        "type": "file",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "generateBtn",
+        "type": "submit",
+        "text": "Generate Photo",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "downloadBtn",
+        "type": "submit",
+        "text": "Download Photo",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/image/govt-photo/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Kerala PSC",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "UPSC",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "SSC",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "PAN Card",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Aadhaar",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Passport (India)",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "UAE Emirates ID",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Passport (UK)",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Passport (US)",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "White",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Light Blue",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Light Red",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "fileInput",
+        "type": "file",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "generateBtn",
+        "type": "submit",
+        "text": "Generate Photo",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "downloadBtn",
+        "type": "submit",
+        "text": "Download Photo",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/image/govt-photo/pan-card/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Kerala PSC",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "UPSC",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "SSC",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "PAN Card",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Aadhaar",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Passport (India)",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "UAE Emirates ID",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Passport (UK)",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Passport (US)",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "White",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Light Blue",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Light Red",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "fileInput",
+        "type": "file",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "generateBtn",
+        "type": "submit",
+        "text": "Generate Photo",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "downloadBtn",
+        "type": "submit",
+        "text": "Download Photo",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/image/govt-photo/psc/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Kerala PSC",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "UPSC",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "SSC",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "PAN Card",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Aadhaar",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Passport (India)",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "UAE Emirates ID",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Passport (UK)",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Passport (US)",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "White",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Light Blue",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Light Red",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "fileInput",
+        "type": "file",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "generateBtn",
+        "type": "submit",
+        "text": "Generate Photo",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "downloadBtn",
+        "type": "submit",
+        "text": "Download Photo",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/image/govt-photo/ssc/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Kerala PSC",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "UPSC",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "SSC",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "PAN Card",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Aadhaar",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Passport (India)",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "UAE Emirates ID",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Passport (UK)",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Passport (US)",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "White",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Light Blue",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Light Red",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "fileInput",
+        "type": "file",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "generateBtn",
+        "type": "submit",
+        "text": "Generate Photo",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "downloadBtn",
+        "type": "submit",
+        "text": "Download Photo",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/image/govt-photo/upsc/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Kerala PSC",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "UPSC",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "SSC",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "PAN Card",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Aadhaar",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Passport (India)",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "UAE Emirates ID",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Passport (UK)",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Passport (US)",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "White",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Light Blue",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Light Red",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "fileInput",
+        "type": "file",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "generateBtn",
+        "type": "submit",
+        "text": "Generate Photo",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "downloadBtn",
+        "type": "submit",
+        "text": "Download Photo",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/image/image-to-ascii/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "INPUT",
+        "id": "fileInput",
+        "type": "file",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Braille — best for comments",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Blocks",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Classic ASCII",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "outlineToggle",
+        "type": "checkbox",
+        "text": "",
+        "value": "on"
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Instagram Comment · 2,200",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "WhatsApp Status · 700",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Facebook Comment · 8,000",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "LinkedIn Comment · 1,250",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "X / Twitter · 280",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "No limit",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Light (Instagram, Facebook, LinkedIn)",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Dark (WhatsApp, terminal)",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "widthRange",
+        "type": "range",
+        "text": "",
+        "value": "26"
+      },
+      {
+        "tag": "BUTTON",
+        "id": "fitBtn",
+        "type": "button",
+        "text": "Shrink to fit ↓",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "copyBtn",
+        "type": "button",
+        "text": "Copy Text",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "downloadPngBtn",
+        "type": "button",
+        "text": "Download as Image",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "downloadTxtBtn",
+        "type": "button",
+        "text": "Download .txt",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "creditToggle",
+        "type": "checkbox",
+        "text": "",
+        "value": "on"
+      }
+    ]
+  },
+  {
+    "url": "/tools/image/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/image/ocr/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "INPUT",
+        "id": "fileInput",
+        "type": "file",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "TEXTAREA",
+        "id": "ocrText",
+        "type": "textarea",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "copyBtn",
+        "type": "submit",
+        "text": "Copy text",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "downloadBtn",
+        "type": "submit",
+        "text": "Download .txt",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "resetBtn",
+        "type": "submit",
+        "text": "Try another image",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/image/passport-photo/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "India",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "UAE",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "US",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "UK",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "White",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Light Blue",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "fileInput",
+        "type": "file",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "generateBtn",
+        "type": "submit",
+        "text": "Generate Passport Photo",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "downloadBtn",
+        "type": "submit",
+        "text": "Download Photo",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/image/passport-photo/india/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/image/passport-photo/uae/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/image/passport-photo/us/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/image/resize/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "INPUT",
+        "id": "fileInput",
+        "type": "file",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "submit",
+        "text": "By Pixels",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "submit",
+        "text": "By Percent",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "widthInput",
+        "type": "number",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "heightInput",
+        "type": "number",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "lockAspect",
+        "type": "checkbox",
+        "text": "",
+        "value": "on"
+      },
+      {
+        "tag": "INPUT",
+        "id": "percentSlider",
+        "type": "range",
+        "text": "",
+        "value": "100"
+      },
+      {
+        "tag": "BUTTON",
+        "id": "resizeBtn",
+        "type": "submit",
+        "text": "Resize Images",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "downloadBtn",
+        "type": "submit",
+        "text": "Download All",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/image/sticker-maker/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "INPUT",
+        "id": "fileInput",
+        "type": "file",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "makeBtn",
+        "type": "submit",
+        "text": "Create Sticker",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "downloadBtn",
+        "type": "submit",
+        "text": "Download Sticker",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/image/upscale/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "2×",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "3×",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "4×",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "fileInput",
+        "type": "file",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "upscaleBtn",
+        "type": "submit",
+        "text": "Enhance Image",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "downloadBtn",
+        "type": "submit",
+        "text": "Download",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/misc/age-calculator/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "INPUT",
+        "id": "dob",
+        "type": "date",
+        "text": "",
+        "value": "1995-06-15"
+      },
+      {
+        "tag": "INPUT",
+        "id": "asOf",
+        "type": "date",
+        "text": "",
+        "value": "2026-10-02"
+      }
+    ]
+  },
+  {
+    "url": "/tools/misc/audio-cutter/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "INPUT",
+        "id": "fileInput",
+        "type": "file",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "startSec",
+        "type": "number",
+        "text": "",
+        "value": "0"
+      },
+      {
+        "tag": "INPUT",
+        "id": "endSec",
+        "type": "number",
+        "text": "",
+        "value": "30"
+      },
+      {
+        "tag": "BUTTON",
+        "id": "cutBtn",
+        "type": "submit",
+        "text": "Cut Audio",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "downloadBtn",
+        "type": "submit",
+        "text": "Download Clip",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/misc/bmi-calculator/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Metric (kg, cm)",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Imperial (lb, ft)",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "weightKg",
+        "type": "number",
+        "text": "",
+        "value": "70"
+      },
+      {
+        "tag": "INPUT",
+        "id": "heightCm",
+        "type": "number",
+        "text": "",
+        "value": "170"
+      },
+      {
+        "tag": "INPUT",
+        "id": "weightLb",
+        "type": "number",
+        "text": "",
+        "value": "154"
+      },
+      {
+        "tag": "INPUT",
+        "id": "heightFt",
+        "type": "number",
+        "text": "",
+        "value": "5"
+      },
+      {
+        "tag": "INPUT",
+        "id": "heightIn",
+        "type": "number",
+        "text": "",
+        "value": "7"
+      }
+    ]
+  },
+  {
+    "url": "/tools/misc/font-styler/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "INPUT",
+        "id": "inputText",
+        "type": "text",
+        "text": "",
+        "value": "ToolShoppy"
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Copy",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Copy",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Copy",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Copy",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Copy",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Copy",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/misc/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/misc/qr-generator/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Text / URL",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "WiFi",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "vCard",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "WhatsApp",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Bulk",
+        "value": ""
+      },
+      {
+        "tag": "TEXTAREA",
+        "id": "qrText",
+        "type": "textarea",
+        "text": "",
+        "value": "https://toolshoppy.com"
+      },
+      {
+        "tag": "INPUT",
+        "id": "wifiSsid",
+        "type": "text",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "wifiPass",
+        "type": "text",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "SELECT",
+        "id": "wifiEnc",
+        "type": "select-one",
+        "text": "",
+        "value": "WPA"
+      },
+      {
+        "tag": "INPUT",
+        "id": "vcName",
+        "type": "text",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "vcPhone",
+        "type": "tel",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "vcEmail",
+        "type": "email",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "vcOrg",
+        "type": "text",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "vcUrl",
+        "type": "url",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "waPhone",
+        "type": "tel",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "TEXTAREA",
+        "id": "waMsg",
+        "type": "textarea",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "TEXTAREA",
+        "id": "bulkLines",
+        "type": "textarea",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "submit",
+        "text": "200px",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "submit",
+        "text": "300px",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "submit",
+        "text": "400px",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "submit",
+        "text": "500px",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "downloadBtn",
+        "type": "submit",
+        "text": "Download PNG",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "bulkBtn",
+        "type": "submit",
+        "text": "Download ZIP of QR codes",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/misc/text-handwriting/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "TEXTAREA",
+        "id": "inputText",
+        "type": "textarea",
+        "text": "",
+        "value": "Dear Teacher,\nPlease find my assignment attached.\nThank you."
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Casual",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Neat",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Cursive",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "White",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Blue ruled",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Cream",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "downloadBtn",
+        "type": "button",
+        "text": "Download PNG",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/misc/timezone-converter/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "SELECT",
+        "id": "fromTz",
+        "type": "select-one",
+        "text": "",
+        "value": "Asia/Kolkata"
+      },
+      {
+        "tag": "SELECT",
+        "id": "toTz",
+        "type": "select-one",
+        "text": "",
+        "value": "Asia/Dubai"
+      },
+      {
+        "tag": "INPUT",
+        "id": "dtInput",
+        "type": "datetime-local",
+        "text": "",
+        "value": "2026-10-02T23:16"
+      },
+      {
+        "tag": "BUTTON",
+        "id": "nowBtn",
+        "type": "button",
+        "text": "Use current time",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/misc/url-shortener/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "INPUT",
+        "id": "longUrl",
+        "type": "url",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "alias",
+        "type": "text",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "shortenBtn",
+        "type": "button",
+        "text": "Shorten URL",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "copyBtn",
+        "type": "button",
+        "text": "Copy link",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "clearHistoryBtn",
+        "type": "button",
+        "text": "Clear all",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/misc/whatsapp-link/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "INPUT",
+        "id": "phone",
+        "type": "tel",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "TEXTAREA",
+        "id": "message",
+        "type": "textarea",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "copyBtn",
+        "type": "button",
+        "text": "Copy link",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/misc/word-counter/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "TEXTAREA",
+        "id": "textIn",
+        "type": "textarea",
+        "text": "",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/misc/yt-thumbnail/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "INPUT",
+        "id": "ytUrl",
+        "type": "url",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "fetchBtn",
+        "type": "button",
+        "text": "Get Thumbnails",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/pdf/compress/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "INPUT",
+        "id": "fileInput",
+        "type": "file",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "submit",
+        "text": "High",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "submit",
+        "text": "Medium",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "submit",
+        "text": "Low",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "compressBtn",
+        "type": "submit",
+        "text": "Compress PDF",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "downloadBtn",
+        "type": "submit",
+        "text": "Download Compressed PDF",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/pdf/editor/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "INPUT",
+        "id": "fileInput",
+        "type": "file",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Select",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Draw",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Highlight",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Text",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Replace Text",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Image",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Signature",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Shapes",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Redact",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Erase",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Rectangle",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Ellipse",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Line",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "shapeFillToggle",
+        "type": "checkbox",
+        "text": "",
+        "value": "on"
+      },
+      {
+        "tag": "BUTTON",
+        "id": "lockBtn",
+        "type": "button",
+        "text": "Lock",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "unlockBtn",
+        "type": "button",
+        "text": "Unlock",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "editTextBtn",
+        "type": "button",
+        "text": "Edit text",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "deleteObjBtn",
+        "type": "button",
+        "text": "Delete",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "imageInput",
+        "type": "file",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "prevPage",
+        "type": "button",
+        "text": "‹ Prev",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "nextPage",
+        "type": "button",
+        "text": "Next ›",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "zoomOut",
+        "type": "button",
+        "text": "−",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "zoomIn",
+        "type": "button",
+        "text": "+",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "saveBtn",
+        "type": "button",
+        "text": "Save Annotated PDF",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "downloadBtn",
+        "type": "button",
+        "text": "Download Edited PDF",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "sigClear",
+        "type": "button",
+        "text": "Clear",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "sigUpload",
+        "type": "button",
+        "text": "Upload image",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "sigUploadInput",
+        "type": "file",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "sigApply",
+        "type": "button",
+        "text": "Add to page",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "sigCancel",
+        "type": "button",
+        "text": "Cancel",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/pdf/html-to-pdf/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "BUTTON",
+        "id": "tabPaste",
+        "type": "button",
+        "text": "Paste HTML",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "tabUpload",
+        "type": "button",
+        "text": "Upload .html file",
+        "value": ""
+      },
+      {
+        "tag": "TEXTAREA",
+        "id": "htpCode",
+        "type": "textarea",
+        "text": "",
+        "value": "<h1 style=\"color:#E11D48;font-family:sans-serif;\">Sample Document</h1>\n<p style=\"font-family:sans-serif;line-height:1.6;\">Edit this HTML, or paste your own, then click Render Preview.</p>\n<ul style=\"font-family:sans-serif;\">\n  <li>Works with inline styles and &lt;style&gt; blocks</li>\n  <li>Multi-page content paginates automatically</li>\n</ul>"
+      },
+      {
+        "tag": "INPUT",
+        "id": "fileInput",
+        "type": "file",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "renderBtn",
+        "type": "button",
+        "text": "Render Preview",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "A4",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Letter",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "exportBtn",
+        "type": "submit",
+        "text": "Export PDF",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "downloadBtn",
+        "type": "submit",
+        "text": "Download PDF",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/pdf/image-to-pdf/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "INPUT",
+        "id": "fileInput",
+        "type": "file",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "A4",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Letter",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Fit to image",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Auto",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Portrait",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Landscape",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "createBtn",
+        "type": "submit",
+        "text": "Create PDF",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "addMoreBtn",
+        "type": "button",
+        "text": "+ Add more",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "downloadBtn",
+        "type": "submit",
+        "text": "Download PDF",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/pdf/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/pdf/merge/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "INPUT",
+        "id": "fileInput",
+        "type": "file",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "mergeBtn",
+        "type": "submit",
+        "text": "Merge PDFs",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "addMoreBtn",
+        "type": "button",
+        "text": "+ Add more",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "downloadBtn",
+        "type": "submit",
+        "text": "Download Merged PDF",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/pdf/ocr-pdf/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "INPUT",
+        "id": "fileInput",
+        "type": "file",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "startBtn",
+        "type": "submit",
+        "text": "Run OCR",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "downloadPdfBtn",
+        "type": "submit",
+        "text": "Download Searchable PDF",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "downloadTxtBtn",
+        "type": "submit",
+        "text": "Download .txt",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/pdf/organize/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "INPUT",
+        "id": "fileInput",
+        "type": "file",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "resetBtn",
+        "type": "button",
+        "text": "Reset order",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "saveBtn",
+        "type": "submit",
+        "text": "Save Organized PDF",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "downloadBtn",
+        "type": "submit",
+        "text": "Download Organized PDF",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/pdf/page-numbers/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "INPUT",
+        "id": "fileInput",
+        "type": "file",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Bottom left",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Bottom center",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Bottom right",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Top right",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "1",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Page 1",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "1 / N",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Page 1 of N",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "startNum",
+        "type": "number",
+        "text": "",
+        "value": "1"
+      },
+      {
+        "tag": "INPUT",
+        "id": "fontSize",
+        "type": "number",
+        "text": "",
+        "value": "11"
+      },
+      {
+        "tag": "BUTTON",
+        "id": "applyBtn",
+        "type": "submit",
+        "text": "Add Page Numbers",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "downloadBtn",
+        "type": "submit",
+        "text": "Download Numbered PDF",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/pdf/pdf-to-excel/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "INPUT",
+        "id": "fileInput",
+        "type": "file",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Auto tables",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Line-by-line",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "oneSheet",
+        "type": "checkbox",
+        "text": "",
+        "value": "on"
+      },
+      {
+        "tag": "BUTTON",
+        "id": "convertBtn",
+        "type": "submit",
+        "text": "Convert to Excel",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "downloadBtn",
+        "type": "submit",
+        "text": "Download Excel (.xlsx)",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/pdf/pdf-to-image/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "INPUT",
+        "id": "fileInput",
+        "type": "file",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "JPG",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "PNG",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "High",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Medium",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Low",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "convertBtn",
+        "type": "submit",
+        "text": "Convert to Images",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "downloadBtn",
+        "type": "submit",
+        "text": "Download",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/pdf/pdf-to-markdown/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "INPUT",
+        "id": "fileInput",
+        "type": "file",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "pageBreaks",
+        "type": "checkbox",
+        "text": "",
+        "value": "on"
+      },
+      {
+        "tag": "BUTTON",
+        "id": "convertBtn",
+        "type": "submit",
+        "text": "Convert to Markdown",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "copyBtn",
+        "type": "button",
+        "text": "Copy",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "downloadBtn",
+        "type": "submit",
+        "text": "Download .md",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/pdf/pdf-to-word/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "INPUT",
+        "id": "fileInput",
+        "type": "file",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "convertBtn",
+        "type": "submit",
+        "text": "Convert to Word",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "downloadBtn",
+        "type": "submit",
+        "text": "Download Word (.doc)",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/pdf/protect/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "INPUT",
+        "id": "fileInput",
+        "type": "file",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "pw1",
+        "type": "password",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "pw2",
+        "type": "password",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "protectBtn",
+        "type": "submit",
+        "text": "Protect PDF",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "downloadBtn",
+        "type": "submit",
+        "text": "Download Protected PDF",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/pdf/rotate/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "INPUT",
+        "id": "fileInput",
+        "type": "file",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "rotateAllLeft",
+        "type": "button",
+        "text": "↺ Rotate all left",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "rotateAllRight",
+        "type": "button",
+        "text": "↻ Rotate all right",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "saveBtn",
+        "type": "submit",
+        "text": "Save Rotated PDF",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "downloadBtn",
+        "type": "submit",
+        "text": "Download Rotated PDF",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/pdf/sign/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "INPUT",
+        "id": "fileInput",
+        "type": "file",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Select",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Signature",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Initials",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Date",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Text",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "lockBtn",
+        "type": "button",
+        "text": "Lock",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "unlockBtn",
+        "type": "button",
+        "text": "Unlock",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "editTextBtn",
+        "type": "button",
+        "text": "Edit text",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "deleteObjBtn",
+        "type": "button",
+        "text": "Delete",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "prevPage",
+        "type": "button",
+        "text": "‹ Prev",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "nextPage",
+        "type": "button",
+        "text": "Next ›",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "zoomOut",
+        "type": "button",
+        "text": "−",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "zoomIn",
+        "type": "button",
+        "text": "+",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "saveBtn",
+        "type": "button",
+        "text": "Save Signed PDF",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "downloadBtn",
+        "type": "button",
+        "text": "Download Signed PDF",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "sigUseSaved",
+        "type": "button",
+        "text": "Use it",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "sigClearSaved",
+        "type": "button",
+        "text": "Clear",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Draw",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Type",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Upload",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "sigTypeInput",
+        "type": "text",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "sigUploadInput",
+        "type": "file",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "sigClear",
+        "type": "button",
+        "text": "Clear",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "sigUploadBtn",
+        "type": "button",
+        "text": "Choose image",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "sigSaveToggle",
+        "type": "checkbox",
+        "text": "",
+        "value": "on"
+      },
+      {
+        "tag": "BUTTON",
+        "id": "sigApply",
+        "type": "button",
+        "text": "Add to page",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "sigCancel",
+        "type": "button",
+        "text": "Cancel",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/pdf/split/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "INPUT",
+        "id": "fileInput",
+        "type": "file",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Extract selected",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Every page",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Page ranges",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "selectAllBtn",
+        "type": "button",
+        "text": "Select all",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "clearSelBtn",
+        "type": "button",
+        "text": "Clear",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "rangeInput",
+        "type": "text",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "splitBtn",
+        "type": "submit",
+        "text": "Split PDF",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "downloadBtn",
+        "type": "submit",
+        "text": "Download",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/pdf/unlock/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "INPUT",
+        "id": "fileInput",
+        "type": "file",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "pw",
+        "type": "password",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "unlockBtn",
+        "type": "submit",
+        "text": "Unlock PDF",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "downloadBtn",
+        "type": "submit",
+        "text": "Download Unlocked PDF",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/pdf/watermark/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "INPUT",
+        "id": "fileInput",
+        "type": "file",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "wmText",
+        "type": "text",
+        "text": "",
+        "value": "CONFIDENTIAL"
+      },
+      {
+        "tag": "INPUT",
+        "id": "wmSize",
+        "type": "number",
+        "text": "",
+        "value": "48"
+      },
+      {
+        "tag": "INPUT",
+        "id": "wmOpacity",
+        "type": "range",
+        "text": "",
+        "value": "30"
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Horizontal",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Diagonal ↗",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Diagonal ↘",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "applyBtn",
+        "type": "submit",
+        "text": "Apply Watermark",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "downloadBtn",
+        "type": "submit",
+        "text": "Download Watermarked PDF",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/pdf/word-to-pdf/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "INPUT",
+        "id": "fileInput",
+        "type": "file",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "convertBtn",
+        "type": "submit",
+        "text": "Convert to PDF",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "downloadBtn",
+        "type": "submit",
+        "text": "Download PDF",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/rates/currency-converter/aed-inr/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/currency-converter/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "AED → INR",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "SAR → INR",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "KWD → INR",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "OMR → INR",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "USD → INR",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "amountIn",
+        "type": "number",
+        "text": "",
+        "value": "1000"
+      },
+      {
+        "tag": "BUTTON",
+        "id": "swapBtn",
+        "type": "button",
+        "text": "⇄",
+        "value": ""
+      },
+      {
+        "tag": "SELECT",
+        "id": "fromCur",
+        "type": "select-one",
+        "text": "",
+        "value": "AED"
+      },
+      {
+        "tag": "SELECT",
+        "id": "toCur",
+        "type": "select-one",
+        "text": "",
+        "value": "INR"
+      }
+    ]
+  },
+  {
+    "url": "/tools/rates/gold-rate/alappuzha/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/gold-rate/dubai/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/gold-rate/ernakulam/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/gold-rate/idukki/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/gold-rate/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Kerala",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "India",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "UAE (Dubai)",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/rates/gold-rate/kannur/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/gold-rate/kasaragod/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/gold-rate/kerala/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/gold-rate/kollam/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/gold-rate/kottayam/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/gold-rate/kozhikode/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/gold-rate/malappuram/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/gold-rate/mumbai/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/gold-rate/palakkad/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/gold-rate/pathanamthitta/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/gold-rate/thiruvananthapuram/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/gold-rate/thrissur/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/gold-rate/wayanad/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/petrol-price/andhra-pradesh/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/petrol-price/delhi/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/petrol-price/gujarat/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/petrol-price/haryana/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/petrol-price/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "KeralaPetrol₹115.49/LDiesel₹104.40/L",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Tamil NaduPetrol₹107.76/LDiesel₹99.55/L",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "KarnatakaPetrol₹111.68/LDiesel₹99.56/L",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "MaharashtraPetrol₹111.21/LDiesel₹97.83/L",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "DelhiPetrol₹102.12/LDiesel₹95.20/L",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "GujaratPetrol₹102.01/LDiesel₹98.13/L",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Andhra PradeshPetrol₹118.10/LDiesel₹105.70/L",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "TelanganaPetrol₹116.15/LDiesel₹104.23/L",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Uttar PradeshPetrol₹101.86/LDiesel₹95.36/L",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "West BengalPetrol₹113.51/LDiesel₹99.82/L",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "RajasthanPetrol₹113.19/LDiesel₹98.25/L",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "PunjabPetrol₹105.56/LDiesel₹95.47/L",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "HaryanaPetrol₹103.35/LDiesel₹96.01/L",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/rates/petrol-price/karnataka/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/petrol-price/kerala/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/petrol-price/maharashtra/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/petrol-price/punjab/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/petrol-price/rajasthan/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/petrol-price/tamil-nadu/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/petrol-price/telangana/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/petrol-price/uttar-pradesh/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/petrol-price/west-bengal/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/silver-rate/alappuzha/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/silver-rate/ernakulam/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/silver-rate/idukki/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/silver-rate/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Kerala",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "India",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "UAE (Dubai)",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/rates/silver-rate/kannur/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/silver-rate/kasaragod/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/silver-rate/kollam/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/silver-rate/kottayam/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/silver-rate/kozhikode/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/silver-rate/malappuram/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/silver-rate/palakkad/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/silver-rate/pathanamthitta/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/silver-rate/thiruvananthapuram/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/silver-rate/thrissur/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/silver-rate/uae/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/rates/silver-rate/wayanad/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/video/compress/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "High quality",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Balanced",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Smallest",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "fileInput",
+        "type": "file",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "compressBtn",
+        "type": "submit",
+        "text": "Compress Video",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "downloadBtn",
+        "type": "submit",
+        "text": "Download Compressed Video",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/video/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": []
+  },
+  {
+    "url": "/tools/video/status-splitter/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Video",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "type": "button",
+        "text": "Long image",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "fileInput",
+        "type": "file",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "splitBtn",
+        "type": "submit",
+        "text": "Split for Status",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "downloadBtn",
+        "type": "submit",
+        "text": "Download ZIP of Parts",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/video/to-audio/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "INPUT",
+        "id": "fileInput",
+        "type": "file",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "convertBtn",
+        "type": "submit",
+        "text": "Extract MP3",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "downloadBtn",
+        "type": "submit",
+        "text": "Download MP3",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "url": "/tools/video/trim/",
+    "errors": [],
+    "missing": [],
+    "widths": {
+      "375": {
+        "overflow": false,
+        "offenders": []
+      },
+      "1440": {
+        "overflow": false,
+        "offenders": []
+      }
+    },
+    "controls": [
+      {
+        "tag": "INPUT",
+        "id": "fileInput",
+        "type": "file",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "INPUT",
+        "id": "startSec",
+        "type": "number",
+        "text": "",
+        "value": "0"
+      },
+      {
+        "tag": "INPUT",
+        "id": "endSec",
+        "type": "number",
+        "text": "",
+        "value": "10"
+      },
+      {
+        "tag": "BUTTON",
+        "id": "trimBtn",
+        "type": "submit",
+        "text": "Trim Video",
+        "value": ""
+      },
+      {
+        "tag": "BUTTON",
+        "id": "downloadBtn",
+        "type": "submit",
+        "text": "Download Trimmed Clip",
+        "value": ""
+      }
+    ]
+  }
+]

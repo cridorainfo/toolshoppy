@@ -1,0 +1,42 @@
+
+> toolshoppy@1.0.0 check:seo
+> node scripts/prerender-home.mjs --check && node scripts/audit-seo.mjs && node --test scripts/seo-routing.test.mjs scripts/live-api.test.mjs
+
+Homepage contains 55 static tool cards.
+{
+  "htmlPages": 134,
+  "indexablePages": 132,
+  "sitemapUrls": 132,
+  "errorCount": 0,
+  "orphanPages": [],
+  "duplicateTitles": [],
+  "duplicateDescriptions": [],
+  "errors": []
+}
+fuel:punjab refresh failed: Fuel data unavailable
+/api/fuel failed: Fuel data unavailable
+rates refresh failed: Exchange rate unavailable
+/api/rates failed: Exchange rate unavailable
+✔ only /api/rates and /api/fuel are handled (2.7554ms)
+✔ unknown fuel states return 404 without touching upstream (4.6268ms)
+✔ fuel prices are parsed from the page intro for either wording (111.1727ms)
+✔ an unparseable fuel page yields 502 so the client falls back to its cached snapshot (3.7878ms)
+✔ rates are refused instead of guessing when USD/INR is unavailable (17.1464ms)
+✔ search pages return HTML without a self-redirect, including query strings (109.861ms)
+✔ all sitemap URLs directly return their self-canonical, indexable page (798.7518ms)
+✔ every configured legacy alias reaches its destination without looping (1175.9001ms)
+✔ missing pages and source directories do not become indexable directory listings (27.491ms)
+✔ homepage provides every unique tool and the merge link before JavaScript executes (30.4594ms)
+✔ all HTML variants redirect once to the canonical URL and preserve query strings (564.7143ms)
+✔ every catalog tool has a descriptive static link from its own category hub (34.6008ms)
+✔ priority service metadata and FAQ schemas match the visible reviewed copy (6.4267ms)
+✔ HEAD and asset responses retain the expected status and content types (126.134ms)
+✔ native PDF editor modules and engine are served with executable MIME types (96.3235ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4415.0509

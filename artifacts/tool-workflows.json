@@ -1,0 +1,237 @@
+[
+  {
+    "tool": "pdf/rotate",
+    "name": "valid PDF download preserves pages and dimensions",
+    "status": "PASS"
+  },
+  {
+    "tool": "pdf/organize",
+    "name": "valid PDF download preserves pages and dimensions",
+    "status": "PASS"
+  },
+  {
+    "tool": "pdf/page-numbers",
+    "name": "valid PDF download preserves pages and dimensions",
+    "status": "PASS"
+  },
+  {
+    "tool": "pdf/watermark",
+    "name": "valid PDF download preserves pages and dimensions",
+    "status": "PASS"
+  },
+  {
+    "tool": "pdf/compress",
+    "name": "valid PDF download preserves pages and dimensions",
+    "status": "PASS"
+  },
+  {
+    "tool": "pdf/editor",
+    "name": "valid PDF download preserves pages and dimensions",
+    "status": "PASS"
+  },
+  {
+    "tool": "pdf/sign",
+    "name": "valid PDF download preserves pages and dimensions",
+    "status": "PASS"
+  },
+  {
+    "tool": "pdf/split",
+    "name": "thumbnail selection toggles once",
+    "status": "PASS"
+  },
+  {
+    "tool": "pdf/split",
+    "name": "all download",
+    "status": "PASS"
+  },
+  {
+    "tool": "pdf/split",
+    "name": "range download",
+    "status": "PASS"
+  },
+  {
+    "tool": "pdf/split",
+    "name": "extract download",
+    "status": "PASS"
+  },
+  {
+    "tool": "pdf/pdf-to-word",
+    "name": "conversion download",
+    "status": "PASS"
+  },
+  {
+    "tool": "pdf/pdf-to-markdown",
+    "name": "conversion download",
+    "status": "PASS"
+  },
+  {
+    "tool": "pdf/pdf-to-excel",
+    "name": "conversion download",
+    "status": "PASS"
+  },
+  {
+    "tool": "pdf/pdf-to-image",
+    "name": "conversion download",
+    "status": "PASS"
+  },
+  {
+    "tool": "pdf/merge",
+    "name": "merge two PDFs",
+    "status": "PASS"
+  },
+  {
+    "tool": "misc/timezone-converter",
+    "name": "India noon to Dubai independent of browser timezone",
+    "status": "PASS"
+  },
+  {
+    "tool": "misc/age-calculator",
+    "name": "month end does not produce negative days",
+    "status": "PASS"
+  },
+  {
+    "tool": "image/upscale",
+    "name": "image processing",
+    "status": "PASS"
+  },
+  {
+    "tool": "image/convert",
+    "name": "image processing",
+    "status": "PASS"
+  },
+  {
+    "tool": "image/resize",
+    "name": "image processing",
+    "status": "PASS"
+  },
+  {
+    "tool": "image/compress",
+    "name": "image processing",
+    "status": "PASS"
+  },
+  {
+    "tool": "image/govt-photo",
+    "name": "image processing",
+    "status": "PASS"
+  },
+  {
+    "tool": "image/passport-photo",
+    "name": "image processing",
+    "status": "PASS"
+  },
+  {
+    "tool": "image/sticker-maker",
+    "name": "image processing",
+    "status": "PASS"
+  },
+  {
+    "tool": "pdf/image-to-pdf",
+    "name": "image becomes a readable PDF",
+    "status": "PASS"
+  },
+  {
+    "tool": "image/image-to-ascii",
+    "name": "ASCII text download",
+    "status": "PASS"
+  },
+  {
+    "tool": "image/background-remove",
+    "name": "background removal PNG download",
+    "status": "PASS"
+  },
+  {
+    "tool": "pdf/protect",
+    "name": "password protection and unlock round trip",
+    "status": "PASS"
+  },
+  {
+    "tool": "pdf/html-to-pdf",
+    "name": "HTML export",
+    "status": "PASS"
+  },
+  {
+    "tool": "pdf/word-to-pdf",
+    "name": "DOCX conversion",
+    "status": "PASS"
+  },
+  {
+    "tool": "misc/font-styler",
+    "name": "text generation",
+    "status": "PASS"
+  },
+  {
+    "tool": "misc/text-handwriting",
+    "name": "text generation",
+    "status": "PASS"
+  },
+  {
+    "tool": "misc/word-counter",
+    "name": "word and character counts",
+    "status": "PASS"
+  },
+  {
+    "tool": "misc/whatsapp-link",
+    "name": "URL encoding",
+    "status": "PASS"
+  },
+  {
+    "tool": "misc/qr-generator",
+    "name": "PNG and bulk ZIP",
+    "status": "PASS"
+  },
+  {
+    "tool": "video/status-splitter",
+    "name": "image status ZIP",
+    "status": "PASS"
+  },
+  {
+    "tool": "video/compress",
+    "name": "media processing download",
+    "status": "PASS"
+  },
+  {
+    "tool": "video/trim",
+    "name": "media processing download",
+    "status": "PASS"
+  },
+  {
+    "tool": "video/to-audio",
+    "name": "media processing download",
+    "status": "PASS"
+  },
+  {
+    "tool": "misc/audio-cutter",
+    "name": "media processing download",
+    "status": "PASS"
+  },
+  {
+    "tool": "video/status-splitter",
+    "name": "media processing download",
+    "status": "PASS"
+  },
+  {
+    "tool": "pdf/organize",
+    "name": "regression move past deleted pages",
+    "status": "PASS"
+  },
+  {
+    "tool": "pdf/rotate",
+    "name": "regression rotation changes output",
+    "status": "PASS"
+  },
+  {
+    "tool": "pdf/split",
+    "name": "regression invalid ranges clear previous result",
+    "status": "PASS"
+  },
+  {
+    "tool": "image/convert",
+    "name": "regression filenames remain plain text",
+    "status": "PASS"
+  },
+  {
+    "tool": "misc/audio-cutter",
+    "name": "regression bad media restores controls",
+    "status": "PASS"
+  }
+]

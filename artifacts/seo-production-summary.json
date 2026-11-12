@@ -1,0 +1,20 @@
+{
+  "htmlPages": 134,
+  "indexablePages": 132,
+  "sitemapUrls": 132,
+  "errorCount": 0,
+  "liveChecked": 141,
+  "liveErrors": [],
+  "liveIndexabilityErrors": [],
+  "liveRedirectChainErrors": [
+    {
+      "path": "http://www.toolshoppy.com/tools/pdf/merge",
+      "hops": 3
+    }
+  ],
+  "orphanPages": [],
+  "duplicateTitles": [],
+  "duplicateDescriptions": [],
+  "errors": [],
+  "output": "artifacts/seo-production.json"
+}

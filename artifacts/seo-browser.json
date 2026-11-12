@@ -1,0 +1,144 @@
+[
+  {
+    "width": 375,
+    "route": "/",
+    "h1": 1,
+    "overflow": false,
+    "cls": 0,
+    "domContentLoaded": 627.4000000357628,
+    "logoLoaded": true,
+    "errors": []
+  },
+  {
+    "width": 375,
+    "route": "/about/",
+    "h1": 1,
+    "overflow": false,
+    "cls": 0,
+    "domContentLoaded": 260.5999999642372,
+    "logoLoaded": true,
+    "errors": []
+  },
+  {
+    "width": 375,
+    "route": "/blog/how-to-merge-pdf-free/",
+    "h1": 1,
+    "overflow": false,
+    "cls": 0,
+    "domContentLoaded": 335.9000000357628,
+    "logoLoaded": true,
+    "errors": []
+  },
+  {
+    "width": 375,
+    "route": "/tools/image/compress/",
+    "h1": 1,
+    "overflow": false,
+    "cls": 0,
+    "domContentLoaded": 294,
+    "logoLoaded": true,
+    "errors": []
+  },
+  {
+    "width": 375,
+    "route": "/tools/image/upscale/",
+    "h1": 1,
+    "overflow": false,
+    "cls": 0,
+    "domContentLoaded": 253.69999998807907,
+    "logoLoaded": true,
+    "errors": []
+  },
+  {
+    "width": 375,
+    "route": "/tools/misc/word-counter/",
+    "h1": 1,
+    "overflow": false,
+    "cls": 0,
+    "domContentLoaded": 242.89999997615814,
+    "logoLoaded": true,
+    "counter": "3",
+    "errors": []
+  },
+  {
+    "width": 375,
+    "route": "/tools/finance/",
+    "h1": 1,
+    "overflow": false,
+    "cls": 0,
+    "domContentLoaded": 215.89999997615814,
+    "logoLoaded": true,
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "route": "/",
+    "h1": 1,
+    "overflow": false,
+    "cls": 0,
+    "domContentLoaded": 481.5,
+    "logoLoaded": true,
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "route": "/about/",
+    "h1": 1,
+    "overflow": false,
+    "cls": 0,
+    "domContentLoaded": 145.19999998807907,
+    "logoLoaded": true,
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "route": "/blog/how-to-merge-pdf-free/",
+    "h1": 1,
+    "overflow": false,
+    "cls": 0,
+    "domContentLoaded": 264.5999999642372,
+    "logoLoaded": true,
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "route": "/tools/image/compress/",
+    "h1": 1,
+    "overflow": false,
+    "cls": 0,
+    "domContentLoaded": 297.4000000357628,
+    "logoLoaded": true,
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "route": "/tools/image/upscale/",
+    "h1": 1,
+    "overflow": false,
+    "cls": 0,
+    "domContentLoaded": 401.9000000357628,
+    "logoLoaded": true,
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "route": "/tools/misc/word-counter/",
+    "h1": 1,
+    "overflow": false,
+    "cls": 0,
+    "domContentLoaded": 312.0999999642372,
+    "logoLoaded": true,
+    "counter": "3",
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "route": "/tools/finance/",
+    "h1": 1,
+    "overflow": false,
+    "cls": 0,
+    "domContentLoaded": 263.30000001192093,
+    "logoLoaded": true,
+    "errors": []
+  }
+]

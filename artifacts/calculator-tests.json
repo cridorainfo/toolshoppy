@@ -1,0 +1,42 @@
+[
+  {
+    "tool": "finance/emi-calculator",
+    "status": "PASS"
+  },
+  {
+    "tool": "finance/fd-calculator",
+    "status": "PASS"
+  },
+  {
+    "tool": "finance/sip-calculator",
+    "status": "PASS"
+  },
+  {
+    "tool": "finance/gst-calculator",
+    "status": "PASS"
+  },
+  {
+    "tool": "finance/uae-vat",
+    "status": "PASS"
+  },
+  {
+    "tool": "finance/income-tax",
+    "status": "PASS"
+  },
+  {
+    "tool": "finance/salary-calculator",
+    "status": "PASS"
+  },
+  {
+    "tool": "misc/bmi-calculator",
+    "status": "PASS"
+  },
+  {
+    "tool": "misc/timezone-converter",
+    "status": "PASS"
+  },
+  {
+    "tool": "misc/age-calculator",
+    "status": "PASS"
+  }
+]
