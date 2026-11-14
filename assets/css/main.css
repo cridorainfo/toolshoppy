@@ -1072,9 +1072,10 @@ button { font-family: inherit; cursor: pointer; }
 .ad-incontent { margin: 24px 0; min-height: 90px; }
 .ad-bottom { margin: 28px 0 20px; min-height: 90px; }
 .ad-sticky-footer {
-  position: fixed;
-  left: 0; right: 0; bottom: 0;
-  z-index: 90;
+  /* Legacy class name: this is now an in-flow mobile footer placement.
+     Use Google's Auto ads anchors for any floating mobile ad experience. */
+  position: static;
+  margin: 24px 16px;
   min-height: 60px;
   border-radius: 0;
   border-left: none; border-right: none; border-bottom: none;
@@ -1082,8 +1083,6 @@ button { font-family: inherit; cursor: pointer; }
 }
 @media (max-width: 640px) {
   .ad-sticky-footer { display: flex; }
-  /* Only reserve room for the sticky ad on pages that actually have one. */
-  body:has(.ad-sticky-footer) { padding-bottom: 70px; }
 }
 
 /* Footer */

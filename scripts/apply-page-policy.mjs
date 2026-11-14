@@ -58,6 +58,16 @@ for (const file of files) {
   const mixed = hasCRLF && /(^|[^\r])\n/.test(before);
   let html = mixed ? before : before.replace(/\r\n/g, '\n');
 
+  // Establish denied defaults before any queued GA config/events. The published
+  // Google CMP updates these signals; third-party.js also gates the GA download.
+  const consentDefault = "gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});";
+  if (html.includes("gtag('js',new Date())") && !html.includes("gtag('consent','default'")) {
+    html = html.replace("gtag('js',new Date())", consentDefault + "gtag('js',new Date())");
+  }
+  html = html.replace(/third-party\.js\?v=\d+/g, 'third-party.js?v=3');
+  html = html.replace(/main\.css\?v=\d+/g, 'main.css?v=10');
+  html = html.replace(/ads\.js\?v=\d+/g, 'ads.js?v=9');
+
   // 1. footer with trust-page links (the homepage already has a full footer)
   const footer = html.match(/<footer class="site-footer">[\s\S]*?<\/footer>/);
   if (footer && !['privacy', 'about', 'contact', 'terms'].every((p) => new RegExp(`href="/${p}/?"`).test(footer[0]))) {

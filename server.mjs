@@ -17,6 +17,10 @@ export function createSiteServer({ root = ROOT } = {}) {
   const config = JSON.parse(fs.readFileSync(path.join(root, 'serve.json'), 'utf8'));
   const canonicalPaths = new Map();
   const files = new Map();
+  const snapshotTemplates = new Map();
+  const notFoundPage = fs.readFileSync(path.join(root, '404.html'));
+  const adsTxt = fs.readFileSync(path.join(root, 'ads.txt'));
+  const publicRootFiles = new Set(['/ads.txt', '/robots.txt', '/sitemap.xml', '/manifest.json', '/sw.js', '/favicon.ico', '/llms.txt', '/404.html']);
   function addFile(file) {
     if (!file.endsWith('.html') || file === '404.html') return;
     const html = fs.readFileSync(path.join(root, file), 'utf8');
@@ -37,6 +41,12 @@ export function createSiteServer({ root = ROOT } = {}) {
   }
   fs.readdirSync(root).filter(f => f.endsWith('.html')).forEach(addFile);
   ['tools', 'blog', 'search'].forEach(walk);
+  // Templates are immutable for a deployment. Avoid blocking disk reads per visitor.
+  for (const [route, file] of files) {
+    if (!snapshotTarget(route)) continue;
+    const template = fs.readFileSync(path.join(root, file), 'utf8');
+    if (template.includes(SNAPSHOT_PLACEHOLDER)) snapshotTemplates.set(route, template);
+  }
   for (const rule of config.redirects || []) canonicalPaths.set(rule.source, rule.destination);
   return http.createServer(async (req, res) => {
     try {
@@ -46,6 +56,11 @@ export function createSiteServer({ root = ROOT } = {}) {
       }
       let pathname;
       try { pathname = decodeURIComponent(url.pathname); } catch { res.writeHead(400); res.end(); return; }
+      // The repository is not a public document root. Reject hidden paths, Windows
+      // separators, and encoded traversal before passing anything to serve-handler.
+      if (pathname.includes('\\') || pathname.includes('\0') || pathname.split('/').some(part => part.startsWith('.'))) {
+        res.writeHead(404, { 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex' }); res.end(); return;
+      }
       const api = await handleLiveApi(pathname, url.searchParams);
       if (api) {
         const body = JSON.stringify(api.body);
@@ -59,6 +74,16 @@ export function createSiteServer({ root = ROOT } = {}) {
         res.end(req.method === 'HEAD' ? undefined : body); return;
       }
       const target = canonicalPaths.get(pathname);
+      // Serve the publisher record independently of clean-URL/static routing.
+      // Short shared TTL prevents an old missing-file response lingering at the edge.
+      if (pathname === '/ads.txt') {
+        res.writeHead(200, {
+          'Content-Type': 'text/plain; charset=utf-8',
+          'Cache-Control': 'public, max-age=300, s-maxage=300',
+          'X-Content-Type-Options': 'nosniff',
+        });
+        res.end(req.method === 'HEAD' ? undefined : adsTxt); return;
+      }
       if (target && (pathname !== target || url.pathname !== target)) {
         res.writeHead(301, { Location: target + url.search, 'Cache-Control': 'public, max-age=300' });
         res.end(); return;
@@ -66,8 +91,7 @@ export function createSiteServer({ root = ROOT } = {}) {
       // Rate pages: put today's figures into the HTML itself (crawlers do not run the page's
       // JavaScript). Renders nothing unless the cached data is live and fresh.
       const snapshot = files.has(pathname) ? snapshotTarget(pathname) : null;
-      let template = snapshot ? fs.readFileSync(path.join(root, files.get(pathname)), 'utf8') : null;
-      if (template && !template.includes(SNAPSHOT_PLACEHOLDER)) template = null;
+      const template = snapshotTemplates.get(pathname);
       if (template) {
         const block = renderRateSnapshot(pathname, { rates: peekRates(), fuel: snapshot.kind === 'fuel' ? peekFuel(snapshot.state) : null });
         const body = template.replace(SNAPSHOT_PLACEHOLDER, block);
@@ -80,8 +104,12 @@ export function createSiteServer({ root = ROOT } = {}) {
         });
         res.end(req.method === 'HEAD' ? undefined : body); return;
       }
+      const publicAsset = pathname.startsWith('/assets/') && /\.(?:css|js|mjs|wasm|onnx|pdfium|woff2?|svg|png|jpe?g|webp|avif|ico|json|csv|pdf)$/i.test(pathname);
+      if (!files.has(pathname) && !publicRootFiles.has(pathname) && !publicAsset) {
+        res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex' });
+        res.end(req.method === 'HEAD' ? undefined : notFoundPage); return;
+      }
       if (files.has(pathname)) req.url = files.get(pathname) + url.search;
-      if (/^\/(scripts|docs|functions|lib|worker|_workers|node_modules)(\/|$)|^\/[^/]+\.(md|mjs)$/i.test(pathname)) res.setHeader('X-Robots-Tag', 'noindex');
       await compress(req, res);
       await serve(req, res, { ...config, public: root, cleanUrls: false, redirects: [], directoryListing: false });
     } catch (error) {

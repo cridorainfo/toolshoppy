@@ -167,9 +167,9 @@
     ensurePlaceholder(slot);
   }
 
-  // AdSense policy: ads must not outweigh publisher content, and pages with little
-  // original content ("screens without publisher content", link hubs, short legal pages)
-  // must not carry ads at all. Cap the number of live slots by how much real text the
+  // Internal density heuristic, NOT a Google word-count requirement or approval test.
+  // Auto ads are controlled separately in AdSense and are not capped here.
+  // Cap the number of manual slots by how much real text the
   // page has, keeping the highest-value placements first, and collapse the rest so no
   // empty "Ad" boxes are left behind. Counts <main> text excluding ads, nav and sidebar.
   var PLACEMENT_PRIORITY = ['top', 'incontent', 'sidebar', 'bottom', 'stickyFooterMobile'];
@@ -200,7 +200,9 @@
       var pb = PLACEMENT_PRIORITY.indexOf(placementKey(b));
       return (pa < 0 ? 99 : pa) - (pb < 0 ? 99 : pb);
     });
-    var drop = visible.slice(limit);
+    var selected = visible.slice(0, limit);
+    // Hidden placements must not bypass the budget after a viewport resize.
+    var drop = Array.prototype.filter.call(slots, function (s) { return selected.indexOf(s) === -1; });
     drop.forEach(function (s) {
       s.dataset.loaded = 'skipped';
       s.style.display = 'none';
@@ -251,15 +253,6 @@
 
     slots.forEach(function (slot) {
       observer.observe(slot);
-      // Fallback: if IntersectionObserver never fires for this slot (seen in some
-      // embedded webviews/preview environments), force-load it anyway so ads don't
-      // silently stay blank with no error.
-      setTimeout(function () {
-        if (slot.dataset.loaded !== 'true') {
-          loadSlot(slot);
-          if (slot.dataset.loaded === 'true') observer.unobserve(slot);
-        }
-      }, 4000);
     });
   }
 

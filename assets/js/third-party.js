@@ -2,8 +2,8 @@
 // GA4 (gtag.js) and AdSense used to load from <head> on every page. Together they cost
 // ~400 KB and ~1s of main-thread time, which dominated Total Blocking Time and LCP on
 // mobile. They now load after the page is usable:
-//   - GA4: shortly after the load event (or on first interaction), so short visits
-//     still count.
+//   - GA4: only after Google CMP permits analytics for this visitor. Ad-free
+//     pages without a CMP signal do not load analytics.
 //   - AdSense: on first interaction (scroll, tap, key) or a few seconds after load,
 //     whichever comes first. ads.js queues its slots on window.adsbygoogle meanwhile,
 //     and Auto ads start as soon as the library arrives.
@@ -18,6 +18,39 @@
   var ADS_DELAY_MS = 6000;
   var gaStarted = false;
   var adsStarted = false;
+  var analyticsAllowed = false;
+
+  // Google CMP publishes this signal only after resolving the visitor's region
+  // and (where required) their choice. A timeout or interaction is not consent.
+  window.googlefc = window.googlefc || {};
+  window.googlefc.callbackQueue = window.googlefc.callbackQueue || [];
+  window.googlefc.callbackQueue.push({ CONSENT_MODE_DATA_READY: function () {
+    var fc = window.googlefc;
+    if (!fc.getGoogleConsentModeValues || !fc.ConsentModePurposeStatusEnum) return;
+    var consent = fc.getGoogleConsentModeValues();
+    if (!consent) return;
+    var status = consent.analyticsStoragePurposeConsentStatus;
+    var values = fc.ConsentModePurposeStatusEnum;
+    analyticsAllowed = status === values.CONSENT_MODE_PURPOSE_STATUS_GRANTED ||
+      status === values.CONSENT_MODE_PURPOSE_STATUS_NOT_APPLICABLE;
+    if (analyticsAllowed) startGA();
+  } });
+
+  // Keep withdrawal reachable on monetized pages without inventing a second CMP.
+  window.googlefc.callbackQueue.push({ CONSENT_API_READY: function () {
+    if (typeof window.googlefc.showRevocationMessage !== 'function') return;
+    var footer = document.querySelector('.footer-links') || document.querySelector('.site-footer .footer-bottom');
+    if (!footer || document.querySelector('.ts-privacy-settings')) return;
+    var link = document.createElement('a');
+    link.className = 'ts-privacy-settings';
+    link.href = '#privacy-settings';
+    link.textContent = 'Privacy & cookie settings';
+    link.addEventListener('click', function (event) {
+      event.preventDefault();
+      window.googlefc.showRevocationMessage();
+    });
+    footer.appendChild(link);
+  } });
 
   function addScript(src, crossOrigin) {
     var s = document.createElement('script');
@@ -28,7 +61,7 @@
   }
 
   function startGA() {
-    if (gaStarted) return;
+    if (gaStarted || !analyticsAllowed) return;
     gaStarted = true;
     addScript('https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(GA_ID));
   }

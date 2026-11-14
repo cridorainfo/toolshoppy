@@ -44,7 +44,8 @@ for (const f of files) {
   rows.push({ rel, kind, words: main ? main.split(' ').length : 0, policyLinks, adSlots: (html.match(/class="ad-slot/g) || []).length });
 }
 
-const out = { pages: rows.length, byKind: {}, thin: [], missingFooterLinks: 0 };
+const out = { pages: rows.length, byKind: {}, thin: [], missingFooterLinks: 0,
+  caveat: 'Word counts are an internal editorial heuristic, not a Google minimum or proof of AdSense eligibility. Account review, CMP, Auto ads and real viewport density require separate checks.' };
 for (const r of rows) (out.byKind[r.kind] ||= []).push(r);
 for (const [k, rs] of Object.entries(out.byKind)) {
   const w = rs.map(r => r.words).sort((a, b) => a - b);
@@ -78,6 +79,7 @@ out.adsTxt = read('ads.txt').trim();
 if (process.argv.includes('--json')) console.log(JSON.stringify(out, null, 2));
 else {
   console.log(`Indexable pages: ${out.pages}`);
+  console.log(out.caveat);
   console.log('\nPublisher content (words in <main>, excluding ads/nav/sidebar):');
   for (const [k, v] of Object.entries(out.byKind)) console.log(`  ${k.padEnd(8)} pages ${String(v.pages).padStart(3)}  median ${String(v.medianWords).padStart(4)}  min ${String(v.minWords).padStart(4)}  under 300: ${v.under300}`);
   console.log(`\nPages under 300 words (${out.thin.length}):`); out.thin.slice(0, 25).forEach(t => console.log('  ' + t));

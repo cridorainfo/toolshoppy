@@ -20,6 +20,17 @@ after(async () => {
   await new Promise(resolve => server.close(resolve));
 });
 
+test('ads.txt is a plain publisher record for GET and HEAD without redirects', async () => {
+  for (const method of ['GET', 'HEAD']) {
+    const res = await fetch(origin + '/ads.txt', { method, redirect: 'manual' });
+    assert.equal(res.status, 200);
+    assert.match(res.headers.get('content-type'), /^text\/plain/);
+    assert.match(res.headers.get('cache-control'), /s-maxage=300/);
+    assert.equal(res.headers.get('location'), null);
+    assert.equal((await res.text()).replace(/\r\n/g, '\n'), method === 'HEAD' ? '' : 'google.com, pub-1180208702657280, DIRECT, f08c47fec0942fa0\n');
+  }
+});
+
 test('search pages return HTML without a self-redirect, including query strings', async () => {
   for (const route of ['/search/', '/search/?q=pdfmerge', '/search/?q=no-such-tool']) {
     const res = await fetch(origin + route, { redirect: 'manual' });
@@ -58,6 +69,26 @@ test('missing pages and source directories do not become indexable directory lis
   for (const route of ['/audit-missing-page-20260912', '/scripts/', '/docs/', '/assets/']) {
     const res = await fetch(origin + route, { redirect: 'manual' });
     assert.equal(res.status, 404, route);
+    await res.text();
+  }
+});
+
+test('deployment internals and encoded paths cannot be downloaded', async () => {
+  for (const route of ['/server.mjs', '/package.json', '/package-lock.json', '/serve.json', '/AGENTS.md',
+    '/scripts/audit-adsense.mjs', '/lib/live-api.mjs', '/node_modules/serve-handler/package.json',
+    '/.git/config', '/%2eenv', '/assets/%2e%2e%2fserver.mjs', '/assets/%2e%2e%5cserver.mjs',
+    '/toolshoppy.com-Coverage-2026-08-21/', '/assets/templates/seo-trend-landing.html']) {
+    const res = await fetch(origin + route, { redirect: 'manual' });
+    assert.equal(res.status, 404, route);
+    assert.equal(res.headers.get('cache-control'), 'no-store', route);
+    await res.text();
+  }
+});
+
+test('public verification files and browser modules remain available', async () => {
+  for (const route of ['/ads.txt', '/robots.txt', '/sw.js', '/manifest.json', '/assets/js/ffmpeg-loader.mjs', '/assets/css/main.css']) {
+    const res = await fetch(origin + route);
+    assert.equal(res.status, 200, route);
     await res.text();
   }
 });

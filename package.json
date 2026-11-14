@@ -17,6 +17,9 @@
     "seo:landing": "node scripts/improve-tool-seo-landing.mjs && node scripts/regenerate-sitemap.mjs",
     "build:tools": "node scripts/build-new-tools.mjs && node scripts/build-compress-size-pages.mjs && node scripts/improve-tool-seo-landing.mjs --hubs-only && node scripts/prerender-home.mjs && node scripts/apply-page-policy.mjs && node scripts/regenerate-sitemap.mjs",
     "audit:adsense": "node scripts/audit-adsense.mjs",
+    "test:ads": "node --test scripts/ads.test.mjs",
+    "test:consent": "node --test scripts/consent.test.mjs",
+    "benchmark:local": "node scripts/benchmark-local.mjs",
     "policy:apply": "node scripts/apply-page-policy.mjs",
     "test:tools": "node --test scripts/tools-lib.test.mjs scripts/target-size.test.mjs"
   },
