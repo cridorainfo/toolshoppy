@@ -2,6 +2,21 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
+import { CONSENT_TAG } from './lib/page-policy.mjs';
+
+test('standalone CMP forwards only the explicit GDPR preview parameters', () => {
+  const loader = CONSENT_TAG.match(/<script data-ts-consent>([\s\S]*?)<\/script>/)[1];
+  for (const search of ['', '?secret=private', '?fc=alwaysshow&fctype=gdpr&secret=private', '?fc=alwaysshow&fctype=other']) {
+    const scripts = [];
+    vm.runInNewContext(loader, { URLSearchParams, window: { location: { search } }, document: {
+      createElement: () => ({}), head: { appendChild: s => scripts.push(s) }
+    } });
+    assert.equal(scripts.length, 1);
+    assert.equal(scripts[0].async, true);
+    assert.equal(scripts[0].src, 'https://fundingchoicesmessages.google.com/i/pub-1180208702657280?ers=1' +
+      (search.includes('fctype=gdpr') ? '&fc=alwaysshow&fctype=gdpr' : ''));
+  }
+});
 
 const source = fs.readFileSync(new URL('../assets/js/third-party.js', import.meta.url), 'utf8');
 function harness(status) {
