@@ -14,6 +14,12 @@ export const ADSENSE_MODE = 'static';
 export const ADSENSE_CLIENT = 'ca-pub-1180208702657280';
 export const ADSENSE_TAG = `<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}" crossorigin="anonymous"></script>`;
 
+// Account-supplied Privacy & messaging tag. Load independently of ad serving so
+// consent and withdrawal also work on ad-free pages and before ad approval.
+// Retrieved from AdSense > Privacy & messaging > Ad blocking recovery > Tagging.
+// No ad-blocking recovery message is published; this boots the same Google CMP.
+export const CONSENT_TAG = `<script async src="https://fundingchoicesmessages.google.com/i/pub-1180208702657280?ers=1"></script><script>(function() {function signalGooglefcPresent() {if (!window.frames['googlefcPresent']) {if (document.body) {const iframe = document.createElement('iframe'); iframe.style = 'width: 0; height: 0; border: none; z-index: -1000; left: -1000px; top: -1000px;'; iframe.style.display = 'none'; iframe.name = 'googlefcPresent'; document.body.appendChild(iframe);} else {setTimeout(signalGooglefcPresent, 0);}}}signalGooglefcPresent();})();</script>`;
+
 // Kerala district pages repeat the statewide rate (their own FAQ says so) and share ~90% of
 // their words with each other. They stay available to visitors but are not indexed or monetised.
 const KERALA_DISTRICTS = 'alappuzha|ernakulam|idukki|kannur|kasaragod|kollam|kottayam|kozhikode|malappuram|palakkad|pathanamthitta|thiruvananthapuram|thrissur|wayanad';

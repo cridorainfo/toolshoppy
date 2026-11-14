@@ -31,5 +31,7 @@ test('consent defaults precede GA configuration in generated HTML', () => {
     const html = fs.readFileSync(new URL('../' + file, import.meta.url), 'utf8');
     assert.ok(html.indexOf("gtag('consent','default'") < html.indexOf("gtag('config'"));
     assert.ok(html.includes("analytics_storage:'denied'"));
+    assert.equal((html.match(/https:\/\/fundingchoicesmessages\.google\.com\/i\//g) || []).length, 1);
+    assert.ok(html.indexOf("gtag('consent','default'") < html.indexOf('https://fundingchoicesmessages.google.com/i/'));
   }
 });

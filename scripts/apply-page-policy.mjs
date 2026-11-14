@@ -14,7 +14,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { ADSENSE_MODE, ADSENSE_TAG, isAdFree, isThinPage, siteFooter } from './lib/page-policy.mjs';
+import { ADSENSE_MODE, ADSENSE_TAG, CONSENT_TAG, isAdFree, isThinPage, siteFooter } from './lib/page-policy.mjs';
 import { snapshotTarget, SNAPSHOT_PLACEHOLDER } from '../lib/rate-snapshot.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -67,6 +67,9 @@ for (const file of files) {
   html = html.replace(/third-party\.js\?v=\d+/g, 'third-party.js?v=3');
   html = html.replace(/main\.css\?v=\d+/g, 'main.css?v=10');
   html = html.replace(/ads\.js\?v=\d+/g, 'ads.js?v=9');
+  if (THIRD_PARTY_RE.test(html) && !html.includes('https://fundingchoicesmessages.google.com/i/')) {
+    html = html.replace(THIRD_PARTY_RE, m => `${CONSENT_TAG}\n${m}`);
+  }
 
   // 1. footer with trust-page links (the homepage already has a full footer)
   const footer = html.match(/<footer class="site-footer">[\s\S]*?<\/footer>/);
