@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme-enabled>
 <head>
 <!-- Google tag (gtag.js) -->
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});gtag('js',new Date());gtag('config','G-PNN1LM2D9Q');</script>
 <meta charset="UTF-8">
-<script>(function(){try{/* TEMP: dark mode disabled — restore prior boot to re-enable */document.documentElement.setAttribute('data-theme','light');localStorage.setItem('ts-theme','light');}catch(e){}})();</script>
+<script>(function(){try{document.documentElement.setAttribute('data-theme',localStorage.getItem('ts-theme')==='dark'?'dark':'light');}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FD Calculator Online Free | Fixed Deposit Maturity India | ToolShoppy</title>
 <meta name="description" content="Free fixed deposit calculator. Estimate FD maturity amount and interest for Indian banks — no signup, runs in your browser.">
@@ -24,7 +24,7 @@
 <link rel="icon" href="/assets/img/favicon.svg?v=2" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/img/icon-192.png?v=2">
 <link rel="preload" href="/assets/fonts/Inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/main.css?v=10">
+<link rel="stylesheet" href="/assets/css/main.css?v=12">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#DC2626">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"FD and RD Calculator","url":"https://toolshoppy.com/tools/finance/fd-calculator/","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
@@ -91,7 +91,7 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
 <script defer src="/assets/js/third-party.js?v=3"></script>
 </head>
-<body>
+<body class="tool-experience">
 <header class="site-header"><div class="container">
   <a href="/" class="logo"><img src="/assets/img/logo.webp?v=3" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
   <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode"><svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg><svg class="icon-svg theme-icon-moon" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#moon"></use></svg></button>
@@ -103,8 +103,7 @@
     <h1>FD &amp; RD Calculator</h1>
     <p>Fixed deposit &amp; recurring deposit maturity — quarterly compounding.</p>
   </div>
-  <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
-  <div class="tool-layout with-sidebar">
+<div class="tool-layout with-sidebar">
     <div class="tool-card-main">
       <div class="chip-row" id="typeRow">
         <button class="chip active" data-type="fd" type="button">Fixed Deposit (FD)</button>
@@ -126,6 +125,7 @@
     </div>
     <aside class="sidebar"><div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div></aside>
   </div>
+  <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
   <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
   <section class="content-section usage-notes"><h2>Understand the deposit calculation</h2><p>In fixed-deposit mode, the principal is a single initial deposit and interest compounds quarterly. In recurring-deposit mode, the input is a monthly contribution made at the beginning of each month, with a monthly growth factor derived from quarterly compounding.</p><p>The result uses a constant annual rate for the entire term. It does not model changes in deposit rates, missed contributions, tax deductions, or early-withdrawal charges. Compare the assumptions and maturity amount with the terms of the specific deposit product.</p></section>
 <div class="content-section seo-howto">
@@ -231,7 +231,7 @@
 </footer>
 <div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
 <script src="/assets/js/ga-config.js"></script><script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/core.js?v=7"></script><script defer src="/assets/js/ads.js?v=9"></script><script defer src="/assets/js/analytics.js"></script>
+<script src="/assets/js/core.js?v=9"></script><script defer src="/assets/js/ads.js?v=9"></script><script defer src="/assets/js/analytics.js"></script>
 <script>
 (function () {
   var type = 'fd';

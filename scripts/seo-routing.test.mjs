@@ -165,7 +165,7 @@ test('HEAD and asset responses retain the expected status and content types', as
   }
   const compressed = await fetch(origin + '/tools/image/compress/', { headers: { 'Accept-Encoding': 'gzip' } });
   assert.equal(compressed.headers.get('content-encoding'), 'gzip');
-  assert.match(await compressed.text(), /Image Compressor — Reduce Image Size Online/);
+  assert.match(await compressed.text(), /<h1>Compress Image<\/h1>/);
 });
 
 test('native PDF editor modules and engine are served with executable MIME types', async () => {

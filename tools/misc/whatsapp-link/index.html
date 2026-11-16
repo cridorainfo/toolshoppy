@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme-enabled>
 <head>
 <!-- Google tag (gtag.js) -->
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});gtag('js',new Date());gtag('config','G-PNN1LM2D9Q');</script>
 <meta charset="UTF-8">
-<script>(function(){try{/* TEMP: dark mode disabled — restore prior boot to re-enable */document.documentElement.setAttribute('data-theme','light');localStorage.setItem('ts-theme','light');}catch(e){}})();</script>
+<script>(function(){try{document.documentElement.setAttribute('data-theme',localStorage.getItem('ts-theme')==='dark'?'dark':'light');}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WhatsApp Click to Chat Link Generator Free | ToolShoppy</title>
 <meta name="description" content="Create wa.me click-to-chat links free online. Pre-fill message — no signup.">
@@ -24,7 +24,7 @@
 <link rel="icon" href="/assets/img/favicon.svg?v=2" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/img/icon-192.png?v=2">
 <link rel="preload" href="/assets/fonts/Inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/main.css?v=10">
+<link rel="stylesheet" href="/assets/css/main.css?v=12">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#DC2626">
 <script type="application/ld+json">
@@ -93,7 +93,7 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
 <script defer src="/assets/js/third-party.js?v=3"></script>
 </head>
-<body>
+<body class="tool-experience">
 <header class="site-header"><div class="container">
   <a href="/" class="logo"><img src="/assets/img/logo.webp?v=3" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
   <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode"><svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg><svg class="icon-svg theme-icon-moon" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#moon"></use></svg></button>
@@ -106,8 +106,7 @@
     <h1>WhatsApp Link Generator</h1>
     <p>Create a wa.me link with optional pre-filled message.</p>
   </div>
-  <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
-  <div class="tool-layout with-sidebar">
+<div class="tool-layout with-sidebar">
     <div class="tool-card-main">
       <div class="calc-form">
         <div class="calc-field"><label for="phone">Phone number (with country code, no +)</label><input type="tel" id="phone" placeholder="e.g. 919876543210" inputmode="numeric"></div>
@@ -125,6 +124,7 @@
     </div>
     <aside class="sidebar"><div class="ad-slot ad-sidebar"><span class="ad-label">Ad</span></div></aside>
   </div>
+  <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
   <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
   <section class="content-section usage-notes"><h2>Check your click-to-chat link</h2><p>Enter the destination number with its country code and review the generated link before sharing it. Open the link yourself to confirm that the intended recipient and prefilled message appear. Creating a link does not send a message automatically.</p><p>Anyone who can view the link can read the number and any message included in its URL. Avoid including private customer details in the prefilled text. If you are printing the link, create a <a href="/tools/misc/qr-generator/">QR code</a> and test a sample scan before printing a batch.</p></section>
 <div class="content-section seo-howto">
@@ -225,7 +225,7 @@
 </footer>
 <div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
 <script src="/assets/js/ga-config.js"></script><script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/core.js?v=7"></script><script defer src="/assets/js/ads.js?v=9"></script><script defer src="/assets/js/analytics.js"></script>
+<script src="/assets/js/core.js?v=9"></script><script defer src="/assets/js/ads.js?v=9"></script><script defer src="/assets/js/analytics.js"></script>
 <script>
 (function () {
   var phone = document.getElementById('phone');

@@ -5,8 +5,8 @@ export const SERVICE_SEARCH_CONTENT = {
     name: 'Image Compressor',
     title: 'Image Compressor Online Free – Reduce Image Size | ToolShoppy',
     description: 'Free online image compression for JPG, PNG and WebP. Choose a KB target, reduce photo file size and download JPEGs. No signup or server upload.',
-    h1: 'Image Compressor — Reduce Image Size Online',
-    intro: 'Compress JPG, PNG and WebP images for forms, email and sharing. Choose a target size in KB and download smaller JPEG files, directly in your browser.',
+    h1: 'Compress Image',
+    intro: 'Make your photos smaller. Choose a target size, then download.',
     sections: [
       ['Image compression for photos and upload limits', '<p>Use image compression when a photo takes too long to send or a website rejects its file size. Choose 20 KB, 50 KB, 100 KB, 200 KB or 500 KB, or enter a custom target. You can select several images and download the results together as a ZIP.</p><p>For example, if a form asks for a photo below 100 KB, select the 100 KB preset and check the actual output size before submitting. A target is not a guarantee of an exact byte count. Fine details and small text can become less clear at lower sizes, so inspect the downloaded photo too.</p>'],
       ['Compress an image, resize it, or change its format?', '<p>File size is measured in KB or MB; dimensions are measured in pixels. If an upload requires a specific width and height, use the <a href="/tools/image/resize/">image resizer</a>. If it requires a different file type, use the <a href="/tools/image/convert/">JPG, PNG and WebP converter</a>. Compression here adjusts JPEG quality and may reduce dimensions to approach a small target.</p><p>This compressor exports JPEG. It does not preserve PNG transparency or animation. Use the converter for a PNG or WebP output, and keep your original image if you need an editable or transparent version.</p>'],
@@ -24,8 +24,8 @@ export const SERVICE_SEARCH_CONTENT = {
     name: 'Merge PDF',
     title: 'Merge PDF Online Free – Combine PDF Files | ToolShoppy',
     description: 'Merge PDF files online for free. Add PDFs, arrange their order and combine them into one document in your browser. No signup or server upload.',
-    h1: 'Merge PDF — Combine PDF Files Online',
-    intro: 'Combine several PDF files into one document. Add your files, arrange their order, and download the merged PDF without uploading your documents to a server.',
+    h1: 'Merge PDF',
+    intro: 'Put your PDFs together, in the order you want.',
     sections: [
       ['Combine documents into one PDF', '<p>A PDF merger is useful when a form accepts one attachment but your documents are in separate files. For example, add a cover letter, CV and supporting certificate, place them in that order, and merge them into a single application document. You can also combine invoice PDFs or separate scanned chapters.</p><p>The order of files in the list determines the order of the output. Every page from the first file comes before every page from the second. To remove or rearrange individual pages, use <a href="/tools/pdf/organize/">Organize PDF</a>; to keep just a page range, use <a href="/tools/pdf/split/">Split PDF</a>.</p>'],
       ['Merging scanned PDFs and large files', '<p>Scanned PDFs can be combined, but merging does not recognize the words inside scanned images. Use <a href="/tools/pdf/ocr-pdf/">PDF OCR</a> if you need a searchable document. Merging also does not set a final file-size limit. Check the result before attaching it to a form or email.</p><p>Files are processed in your browser, so available device memory limits the size of a batch. If a large batch fails, try fewer PDFs at a time. For a password-protected document, first open it with the correct password and save an authorized unlocked copy using <a href="/tools/pdf/unlock/">Unlock PDF</a>.</p>'],

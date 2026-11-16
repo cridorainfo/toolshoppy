@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme-enabled>
 <head>
 <!-- Google tag (gtag.js) -->
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});gtag('js',new Date());gtag('config','G-PNN1LM2D9Q');</script>
 <meta charset="UTF-8">
-<script>(function(){try{/* TEMP: dark mode disabled — restore prior boot to re-enable */document.documentElement.setAttribute('data-theme','light');localStorage.setItem('ts-theme','light');}catch(e){}})();</script>
+<script>(function(){try{document.documentElement.setAttribute('data-theme',localStorage.getItem('ts-theme')==='dark'?'dark':'light');}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Merge PDF Online Free – Combine PDF Files | ToolShoppy</title>
 <meta name="description" content="Merge PDF files online for free. Add PDFs, arrange their order and combine them into one document in your browser. No signup or server upload.">
@@ -25,7 +25,7 @@
 <link rel="icon" href="/assets/img/favicon.svg?v=2" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/img/icon-192.png?v=2">
 <link rel="preload" href="/assets/fonts/Inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/main.css?v=10">
+<link rel="stylesheet" href="/assets/css/main.css?v=12">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#DC2626">
 <script type="application/ld+json">
@@ -100,11 +100,11 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1180208702657280" crossorigin="anonymous"></script>
 <script defer src="/assets/js/third-party.js?v=3"></script>
 </head>
-<body>
+<body class="tool-experience">
 <header class="site-header">
   <div class="container">
     <a href="/" class="logo"><img src="/assets/img/logo.webp?v=3" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
-    <div class="site-search"><input type="text" placeholder="Search tools…" onfocus="location.href='/search/'"></div>
+    <form class="site-search tool-search" action="/search/" role="search"><input type="search" name="q" placeholder="Find a tool…" aria-label="Search tools"><button type="submit" aria-label="Find tools"><svg class="icon-svg" width="20" height="20" aria-hidden="true"><use href="/assets/icons/sprite.svg#search"></use></svg></button></form>
     <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode">
       <svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg>
       <svg class="icon-svg theme-icon-moon" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#moon"></use></svg>
@@ -121,12 +121,13 @@
   </nav>
   <div class="tool-header">
     <div class="icon-tile icon-tile--lg icon-tile--amber"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#link"></use></svg></div>
-    <h1>Merge PDF — Combine PDF Files Online</h1>
-    <p>Combine several PDF files into one document. Add your files, arrange their order, and download the merged PDF without uploading your documents to a server.</p>
+    <h1>Merge PDF</h1>
+    <p>Put your PDFs together, in the order you want.</p>
   </div>
-  <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
-  <div class="tool-layout with-sidebar" id="toolLayout">
+<ol class="tool-steps" aria-label="Progress"><li aria-current="step"><span>1</span> Choose files</li><li><span>2</span> Arrange &amp; merge</li><li><span>3</span> Download</li></ol>
+  <div class="tool-layout with-sidebar" id="toolLayout" data-workflow>
     <div class="tool-card-main">
+      <p id="mergeStatus" class="tool-status" role="status" aria-live="polite" hidden></p>
       <div class="drop-zone" id="dropZone">
         <div class="icon"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#upload"></use></svg></div>
         <div class="dz-cta" id="dzCta">Select PDF files</div>
@@ -145,12 +146,14 @@
           <div class="progress-bar" id="progressBar"><div class="progress-bar-fill" id="progressFill"></div></div>
         </div>
       </div>
-      <div class="result-panel" id="resultPanel">
+      <div class="result-panel" id="resultPanel" tabindex="-1">
+        <h2 class="result-title">Your PDF is ready</h2>
         <div class="compare-row">
           <div class="compare-box"><div class="label">Pages</div><div class="value" id="outPages">-</div></div>
           <div class="compare-box"><div class="label">File Size</div><div class="value" id="outFileSize">-</div></div>
         </div>
         <button class="btn btn-accent btn-block" id="downloadBtn"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#download"></use></svg> Download Merged PDF</button>
+        <div class="tool-next-actions"><button class="btn" type="button" id="resetMerge">Merge another PDF</button><a href="/tools/pdf/compress/">Need a smaller file? Compress PDF</a></div>
       </div>
       <div class="trust-badge"><svg class="icon-svg" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#lock"></use></svg> Your files never leave your device</div>
     </div>
@@ -166,6 +169,7 @@
       </div>
     </aside>
   </div>
+  <div class="ad-slot ad-top"><span class="ad-label">Ad</span></div>
   <div class="ad-slot ad-incontent"><span class="ad-label">Ad</span></div>
   <!-- service-search:start -->
   <section class="content-section">
@@ -279,7 +283,7 @@
 <div class="ad-slot ad-sticky-footer"><span class="ad-label">Ad</span></div>
 <script src="/assets/js/ga-config.js"></script>
 <script src="/assets/js/ad-config.js"></script>
-<script src="/assets/js/core.js?v=7"></script>
+<script src="/assets/js/core.js?v=9"></script>
 <script defer src="/assets/js/ads.js?v=9"></script>
 <script defer src="/assets/js/analytics.js"></script>
 <script src="/assets/libs/pdf.min.js"></script>
@@ -306,6 +310,17 @@
   let thumbs = [];
   let resultBlob = null;
   let rendering = false;
+  let merging = false;
+  const mergeStatus = document.getElementById('mergeStatus');
+  function showStatus(message) {
+    mergeStatus.textContent = message;
+    mergeStatus.hidden = !message;
+  }
+  function invalidateResult() {
+    resultBlob = null;
+    resultPanel.classList.remove('active');
+    showStatus('');
+  }
   function syncDropZoneUI() {
     const hasFiles = files.length > 0;
     dropZone.classList.toggle('drop-zone--compact', hasFiles);
@@ -313,12 +328,15 @@
     toolLayout.classList.toggle('is-active', hasFiles);
   }
   TS.setupDropZone(dropZone, fileInput, (newFiles) => {
+    if (merging) return;
     const pdfFiles = newFiles.filter((f) => f.type === 'application/pdf' || f.name.toLowerCase().endsWith('.pdf'));
     if (!pdfFiles.length) {
-      alert('Please choose PDF files.');
+      showStatus('Please choose PDF files. Images and Word documents need converting to PDF first.');
       return;
     }
     files = files.concat(pdfFiles);
+    showStatus('');
+    invalidateResult();
     thumbs = thumbs.concat(pdfFiles.map(() => null));
     controls.style.display = 'block';
     syncDropZoneUI();
@@ -330,6 +348,8 @@
   addMoreBtn.addEventListener('click', () => fileInput.click());
   TS.enableDragReorder(fileList, {
     onReorder: (from, to) => {
+      if (merging) return;
+      invalidateResult();
       TS.moveItem(files, from, to);
       TS.moveItem(thumbs, from, to);
       renderFileList();
@@ -358,6 +378,11 @@
         '<button type="button" class="is-danger" data-act="remove" data-i="' + i + '" title="Remove">✕</button>';
       const thumb = thumbs[i] || TSPdfPreview.placeholderThumb('…');
       const tile = TSPdfPreview.createPdfTile(f, thumb, actions, i);
+      tile.querySelectorAll('[data-act]').forEach(button => {
+        const action = button.dataset.act;
+        button.setAttribute('aria-label', (action === 'remove' ? 'Remove ' : 'Move ' + (action === 'up' ? 'up: ' : 'down: ')) + f.name);
+        button.disabled = merging || (action === 'up' && i === 0) || (action === 'down' && i === files.length - 1);
+      });
       tile.draggable = true;
       if (!thumbs[i]) {
         const img = tile.querySelector('img');
@@ -367,10 +392,12 @@
     });
   }
   fileList.addEventListener('click', (e) => {
+    if (merging) return;
     const el = e.target.closest('[data-act]');
     if (!el) return;
     const i = parseInt(el.dataset.i, 10);
     const act = el.dataset.act;
+    invalidateResult();
     if (act === 'remove') {
       files.splice(i, 1);
       thumbs.splice(i, 1);
@@ -391,10 +418,16 @@
   });
   mergeBtn.addEventListener('click', async () => {
     if (files.length < 2) {
-      alert('Add at least 2 PDF files to merge.');
+      showStatus('Add at least two PDF files to merge. Use “Add more” to choose another document.');
       return;
     }
     mergeBtn.disabled = true;
+    merging = true;
+    addMoreBtn.disabled = true;
+    fileInput.disabled = true;
+    dropZone.setAttribute('aria-disabled', 'true');
+    renderFileList();
+    showStatus('Merging your PDFs on this device…');
     progressBar.classList.add('active');
     progressFill.style.width = '20%';
     try {
@@ -412,11 +445,18 @@
       outPages.textContent = String(merged.getPageCount());
       outFileSize.textContent = TS.formatBytes(resultBlob.size);
       resultPanel.classList.add('active');
+      showStatus('Your merged PDF is ready to download.');
       progressFill.style.width = '100%';
       if (window.TSAnalytics) TSAnalytics.track('tool_complete', { tool: 'pdf-merge' });
     } catch (err) {
-      alert(err.message || 'Could not merge these PDFs. One may be password-protected.');
+      invalidateResult();
+      showStatus('Could not merge these PDFs. Check that each file opens correctly. If a file is password-protected, unlock it with its password first, then try again.');
     } finally {
+      merging = false;
+      addMoreBtn.disabled = false;
+      fileInput.disabled = false;
+      dropZone.removeAttribute('aria-disabled');
+      renderFileList();
       mergeBtn.disabled = false;
       setTimeout(() => progressBar.classList.remove('active'), 400);
     }
@@ -424,6 +464,12 @@
   downloadBtn.addEventListener('click', () => {
     if (!resultBlob) return;
     TS.downloadBlob(resultBlob, 'merged.pdf');
+  });
+  document.getElementById('resetMerge').addEventListener('click', () => {
+    files = []; thumbs = []; fileInput.value = '';
+    controls.style.display = 'none';
+    invalidateResult(); showStatus(''); syncDropZoneUI(); renderFileList();
+    dropZone.focus();
   });
 })();
 </script>

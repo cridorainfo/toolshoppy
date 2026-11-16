@@ -196,6 +196,19 @@
       if (event.target !== inputEl) inputEl.click();
     });
 
+    // The visual picker must also be reachable without a mouse.
+    if (!zoneEl.hasAttribute('tabindex')) zoneEl.tabIndex = 0;
+    zoneEl.setAttribute('role', 'button');
+    if (!zoneEl.hasAttribute('aria-label')) {
+      zoneEl.setAttribute('aria-label', zoneEl.querySelector('.dz-cta')?.textContent.trim() || 'Choose files');
+    }
+    zoneEl.addEventListener('keydown', (event) => {
+      if (event.target === zoneEl && (event.key === 'Enter' || event.key === ' ')) {
+        event.preventDefault();
+        inputEl.click();
+      }
+    });
+
     inputEl.addEventListener('change', (e) => {
       if (e.target.files && e.target.files.length) handleFiles(Array.from(e.target.files));
     });
@@ -382,6 +395,34 @@
     root.setAttribute('data-theme', next);
     try { localStorage.setItem('ts-theme', next); } catch (e) { /* private mode */ }
   }
+
+  // Opt-in progress for tools using the shared picker / controls / result shell.
+  // Observe UI state rather than file selection: invalid files must not advance.
+  function initToolWorkflow() {
+    const layout = document.querySelector('[data-workflow]');
+    const steps = document.querySelector('.tool-steps');
+    if (!layout || !steps) return;
+    const controls = layout.querySelector('#controls');
+    const result = layout.querySelector('.result-panel');
+    if (!controls || !result) return;
+    let previous = -1;
+    function sync() {
+      const stage = result.classList.contains('active') && result.dataset.state !== 'error' ? 2 : controls.style.display !== 'none' && !controls.hidden ? 1 : 0;
+      steps.querySelectorAll('li').forEach((step, index) => {
+        if (index === stage) step.setAttribute('aria-current', 'step');
+        else step.removeAttribute('aria-current');
+        step.classList.toggle('is-complete', index < stage);
+      });
+      if (stage === 2 && previous !== 2) result.focus({ preventScroll: true });
+      previous = stage;
+    }
+    const observer = new MutationObserver(sync);
+    observer.observe(controls, { attributes: true, attributeFilter: ['style', 'hidden'] });
+    observer.observe(result, { attributes: true, attributeFilter: ['class', 'data-state'] });
+    sync();
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initToolWorkflow);
+  else initToolWorkflow();
 
   // Build a store-only ZIP (no compression) for multi-file downloads.
   function buildZip(entries) {
