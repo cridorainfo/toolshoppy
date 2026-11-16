@@ -2722,13 +2722,13 @@ html:not([data-theme-enabled]) .theme-toggle { display: none !important; }
 .task-grid span { font-size: .6rem; font-weight: 700; letter-spacing: .1em; color: var(--primary); }
 .task-grid strong { font-size: 1rem; }
 .task-grid small { font-size: .78rem; color: var(--text-muted); }
-.tool-experience .tool-page { padding: 24px 20px 60px; }
-.tool-experience .tool-header { text-align: center; margin: 32px auto; max-width: 760px; }
-.tool-experience .tool-header > .icon-tile { margin: 0 auto 16px; }
+.tool-experience .tool-page { padding: 16px 20px 60px; }
+.tool-experience .tool-header { text-align: center; margin: 18px auto; max-width: 760px; }
+.tool-experience .tool-header > .icon-tile { margin: 0 auto 8px; }
 .tool-experience .tool-header h1 { font-size: clamp(1.9rem, 4vw, 2.65rem); letter-spacing: -.04em; line-height: 1.2; }
-.tool-experience .tool-header p { max-width: 65ch; margin: 14px auto 0; line-height: 1.75; font-size: .95rem; }
-.tool-experience .tool-card-main { padding: 24px; border-radius: 18px; box-shadow: none; }
-.tool-experience .drop-zone { background: var(--card); border: 1px dashed var(--border); padding: 42px 18px; }
+.tool-experience .tool-header p { max-width: 65ch; margin: 8px auto 0; line-height: 1.6; font-size: .95rem; }
+.tool-experience .tool-card-main { padding: 20px; border-radius: 18px; box-shadow: none; }
+.tool-experience .drop-zone { background: var(--card); border: 1px dashed var(--border); padding: 28px 18px; }
 .tool-experience .drop-zone:hover, .tool-experience .drop-zone.dragover { border-color: var(--primary); background: var(--primary-tint); }
 .tool-experience .drop-zone--compact { padding: 20px 16px; }
 .tool-experience .drop-zone .dz-cta { border-radius: 10px; }
@@ -2739,7 +2739,7 @@ html:not([data-theme-enabled]) .theme-toggle { display: none !important; }
 .tool-search button { display: grid; place-items: center; background: var(--card); color: var(--primary); border: 1px solid var(--border); border-radius: 8px; min-width: 44px; min-height: 44px; }
 .tool-experience .theme-toggle { display: inline-flex; flex-shrink: 0; }
 .tool-experience .tool-search input { min-width: 0; color: var(--text); background: var(--card); }
-.tool-steps { display: flex; justify-content: center; gap: 24px; list-style: none; padding: 0; margin: 24px 0; }
+.tool-steps { display: flex; justify-content: center; gap: 24px; list-style: none; padding: 0; margin: 14px 0; }
 .tool-steps li { display: flex; align-items: center; gap: 7px; padding: 10px 0; border-bottom: 2px solid var(--border); color: var(--text-muted); font-size: .8rem; }
 .tool-steps li[aria-current=step] { color: var(--primary); border-color: var(--primary); font-weight: 700; }
 .tool-steps .is-complete { color: var(--text); }
@@ -2755,17 +2755,22 @@ html:not([data-theme-enabled]) .theme-toggle { display: none !important; }
 @media (min-width: 640px) { .task-grid { grid-template-columns: repeat(3, minmax(0,1fr)); } }
 @media (min-width: 960px) { .tool-experience .tool-layout.with-sidebar { grid-template-columns: minmax(0,1fr) 280px; gap: 24px; } .tool-experience .tool-layout.is-active.with-sidebar { grid-template-columns: minmax(0,1fr); } }
 @media (max-width: 640px) {
-  .tool-experience .tool-page { padding-left: 16px; padding-right: 16px; }
-  .tool-experience .tool-card-main { padding: 16px; }
+  .tool-experience .tool-page { padding: 12px 16px 60px; }
+  .tool-experience .tool-header { margin: 12px auto; }
+  .tool-experience .tool-header > .icon-tile { display: none; }
+  .tool-experience .tool-header h1 { font-size: 1.65rem; }
+  .tool-experience .tool-header p { font-size: .85rem; line-height: 1.5; }
+  .tool-experience .tool-card-main { padding: 12px; }
   .tool-experience .tool-search { max-width: 150px; }
   .tool-experience .tool-search input { width: 100%; font-size: 16px; }
   .tool-experience .site-header > .container { gap: 10px; flex-wrap: wrap; }
   .tool-experience .logo { font-size: 1.15rem; }
   .tool-experience .tool-search { order: 3; max-width: none; width: 100%; margin: 0 0 10px; }
   .tool-experience .theme-toggle { margin-left: auto; }
-  .tool-steps { gap: 12px; }
-  .tool-steps li { font-size: .7rem; }
-  .tool-experience .drop-zone { padding: 30px 12px; }
+  .tool-steps { gap: 12px; margin: 10px 0; }
+  .tool-steps li { font-size: .7rem; padding: 7px 0; }
+  .tool-experience .drop-zone { padding: 20px 12px; }
+  .tool-experience .drop-zone .icon { margin-bottom: 10px; }
   .tool-experience .drop-zone--compact { padding: 16px 12px; }
   .tool-experience .sticky-cta-bar { bottom: calc(78px + env(safe-area-inset-bottom)); }
 }
