@@ -2684,12 +2684,12 @@ html:not([data-theme-enabled]) .theme-toggle { display: none !important; }
 /* Task-first homepage and shared tool experience. Keep component styling here. */
 .home-directory .container, .tool-experience > .site-header .container,
 .tool-experience .tool-page { max-width: 1120px; }
-.home-directory .directory-intro { display: block; text-align: center; padding-top: 36px; padding-bottom: 28px; }
+.home-directory .directory-intro { display: block; text-align: center; padding-top: 22px; padding-bottom: 16px; }
 .home-directory .directory-intro h1 { font-size: clamp(2.35rem, 5vw, 3.8rem); line-height: 1.12; letter-spacing: -.055em; }
 .home-directory .directory-intro h1 span { color: var(--primary); }
-.home-directory .directory-eyebrow { font-size: .62rem; letter-spacing: .16em; margin-bottom: 16px; }
-.home-directory .directory-promise { margin: 16px auto 0; max-width: 54ch; font-size: .95rem; line-height: 1.8; }
-.home-directory .directory-search { max-width: 650px; margin: 26px auto 0; text-align: left; }
+.home-directory .directory-eyebrow { font-size: .62rem; letter-spacing: .16em; margin-bottom: 10px; }
+.home-directory .directory-promise { margin: 10px auto 0; max-width: 54ch; font-size: .95rem; line-height: 1.6; }
+.home-directory .directory-search { max-width: 650px; margin: 16px auto 0; text-align: left; }
 .home-directory .directory-search label { font-size: .8rem; }
 .home-directory .directory-search-field { padding: 7px 8px 7px 16px; gap: 10px; border-radius: 14px; }
 .home-directory .directory-search input { padding: 10px 0; }
@@ -2697,10 +2697,10 @@ html:not([data-theme-enabled]) .theme-toggle { display: none !important; }
 .home-directory .directory-search .directory-find:hover { background: var(--primary-dark); }
 .directory-reassurance { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 22px; }
 .directory-reassurance span::before { content: '✓'; color: var(--primary); margin-right: 6px; }
-.home-directory .directory-categories { justify-content: center; border-top: 0; padding-bottom: 20px; }
+.home-directory .directory-categories { justify-content: center; border-top: 0; padding: 8px 0; }
 .home-directory .directory-categories .filter-chip.active { color: var(--primary); background: var(--primary-tint); border-color: transparent; }
-.home-directory .directory-collections { padding-top: 12px; }
-.home-directory .directory-heading { margin: 22px 0 20px; justify-content: space-between; }
+.home-directory .directory-collections { padding-top: 4px; }
+.home-directory .directory-heading { margin: 12px 0 14px; justify-content: space-between; }
 .home-directory .directory-heading h2, .directory-tasks h2 { font-size: 1.45rem; letter-spacing: -.035em; }
 .directory-subtitle, .directory-tasks > p { font-size: .8rem; color: var(--text-muted); margin-top: 6px; }
 .home-directory .tool-card { padding: 20px; min-height: 170px; border-radius: 14px; }
@@ -2770,8 +2770,14 @@ html:not([data-theme-enabled]) .theme-toggle { display: none !important; }
   .tool-experience .sticky-cta-bar { bottom: calc(78px + env(safe-area-inset-bottom)); }
 }
 @media (max-width: 480px) {
-  .home-directory .directory-intro { padding-top: 26px; }
-  .home-directory .directory-promise { font-size: .83rem; }
+  .home-directory .directory-intro { padding-top: 16px; padding-bottom: 10px; }
+  .home-directory .directory-intro h1 { font-size: clamp(1.65rem, 7.5vw, 2.1rem); }
+  .home-directory .directory-eyebrow { display: none; }
+  .home-directory .directory-promise { font-size: .8rem; margin-top: 8px; line-height: 1.5; }
+  .home-directory .directory-search { margin-top: 14px; }
+  .home-directory .directory-search label { margin-bottom: 6px; }
+  .home-directory .directory-subtitle { display: none; }
+  .home-directory .directory-heading { margin: 8px 0 12px; }
   .home-directory .directory-promise br { display: none; }
   .home-directory .directory-search-field { padding-left: 10px; gap: 6px; }
   .home-directory .directory-search .directory-find { font-size: .72rem; padding: 10px; }
