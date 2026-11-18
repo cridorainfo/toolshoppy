@@ -142,7 +142,7 @@
       <button type="button" class="filter-chip" data-cat="recent" aria-pressed="false">Recently used</button>
       <button type="button" class="filter-chip" data-cat="favorites" aria-pressed="false">Favorites</button>
       <button type="button" class="filter-chip" data-cat="akshaya" aria-pressed="false">Akshaya tools</button>
-      <a class="filter-chip" href="/akshaya/">Akshaya Work Desk</a>
+      <a class="filter-chip" href="/akshaya/">Akshaya centre near me & tools</a>
       <a class="filter-chip" href="/akshaya-malayalam/" lang="ml">മലയാളം സഹായം</a>
     </div>
     <div class="directory-heading">
@@ -1039,6 +1039,7 @@
     'image-resizer': 'resize photo dimensions pixels'
   };
   function searchTools(query) {
+    if (/\b(?:akshaya|aksjaya|akshya)\b|അക്ഷയ/i.test(query)) return liveTools.filter(t => t.akshaya);
     const q = query.toLowerCase().replace(/(\d)(kb|mb)/g, '$1 $2').replace(/[^a-z0-9]+/g, ' ').trim();
     if (!q) return liveTools;
     // Direction matters: "PDF to Word" must not tie with "Word to PDF".
