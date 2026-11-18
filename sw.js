@@ -6,7 +6,7 @@
 // calls always go to the network first.
 'use strict';
 
-var CACHE_NAME = 'toolshoppy-shell-v11';
+var CACHE_NAME = 'toolshoppy-shell-v12';
 var SHELL_URLS = [
   '/',
   '/manifest.json',

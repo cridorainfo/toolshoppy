@@ -5,6 +5,15 @@
   var cache = null;
   var cacheTime = 0;
   var TTL = 60 * 60 * 1000;
+  var MAX_AGE = 24 * 60 * 60 * 1000;
+
+  function validate(data) {
+    var updated = Date.parse(data.updated_at);
+    if (!Number.isFinite(updated) || Date.now() - updated > MAX_AGE || updated > Date.now() + 60000) {
+      throw new Error('Current fuel prices unavailable');
+    }
+    return data;
+  }
 
   function fetchFuel(state) {
     var now = Date.now();
@@ -18,6 +27,7 @@
         throw new Error('API ' + res.status);
       })
       .then(function (data) {
+        validate(data);
         if (!state) {
           cache = data;
           cacheTime = now;
@@ -28,10 +38,11 @@
         return fetch('/api/fuel.json', { cache: 'no-cache' })
           .then(function (res) { return res.json(); })
           .then(function (data) {
+            validate(data);
             data.live = false;
             data.source_note = data.source_note || 'Cached snapshot — live feed temporarily unavailable';
             if (state && data.states && data.states[state]) {
-              return { state: Object.assign({ key: state }, data.states[state]), live: false, source_note: data.source_note };
+              return { updated_at: data.updated_at, state: Object.assign({ key: state }, data.states[state]), live: false, source_note: data.source_note };
             }
             if (!state) {
               cache = data;

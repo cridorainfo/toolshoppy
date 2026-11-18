@@ -225,6 +225,9 @@ function insertSchemas(html, key, cfg, url) {
 
 function enrichFile(abs) {
   const key = keyFromFile(abs);
+  // Do not invent instructions or FAQs for unreviewed pages. In particular,
+  // regional rate summaries are not file-upload tools.
+  if (!TOOL_SEO[key]) return false;
   const cfg = { ...defaultCopy(key), ...(TOOL_SEO[key] || {}) };
   const url = `https://toolshoppy.com/tools/${key}/`;
   let html = fs.readFileSync(abs, 'utf8');

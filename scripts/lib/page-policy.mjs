@@ -29,8 +29,13 @@ export const isThinPage = rel => THIN_DISTRICT.test(rel);
 // Navigational and legal pages: no ads. Link hubs and short policy pages have little
 // publisher content of their own ("screens without publisher content"), and ads there add
 // risk for almost no revenue.
-const AD_FREE_FILES = new Set(['about.html', 'contact.html', 'privacy.html', 'terms.html', '404.html', 'search/index.html', 'blog/index.html', 'tools/rates/methodology/index.html']);
-export const isAdFree = rel => isThinPage(rel) || AD_FREE_FILES.has(rel) || /^tools\/(image|pdf|video|finance|misc|rates)\/index\.html$/.test(rel);
+const AD_FREE_FILES = new Set(['akshaya.html', 'akshaya-malayalam.html', 'about.html', 'contact.html', 'privacy.html', 'terms.html', '404.html', 'search/index.html', 'blog/index.html', 'tools/rates/methodology/index.html']);
+// Regional rate summaries are lightweight views of the main comparison tools.
+// Keep them useful and crawlable, but do not monetize their templated summaries.
+export const isAdFree = rel => isThinPage(rel) || AD_FREE_FILES.has(rel) ||
+  /^tools\/rates\/[^/]+\/[^/]+\/index\.html$/.test(rel) ||
+  rel === 'tools/image/govt-photo/aadhaar/index.html' ||
+  /^tools\/(image|pdf|video|finance|misc|rates)\/index\.html$/.test(rel);
 
 export const FOOTER_LINKS = [
   ['/about/', 'About'], ['/contact/', 'Contact'], ['/privacy/', 'Privacy Policy'],

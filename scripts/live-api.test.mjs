@@ -38,6 +38,18 @@ test('fuel prices are parsed from the page intro for either wording', async () =
   } finally { restore(); }
 });
 
+test('re-reading cached fuel does not advance the observation timestamp', async () => {
+  const restore = stubFetch(() => new Response(page('95.20')));
+  const originalNow = Date.now;
+  try {
+    const first = await handleLiveApi('/api/fuel', new URLSearchParams('state=delhi'));
+    Date.now = () => originalNow() + 60000;
+    const second = await handleLiveApi('/api/fuel', new URLSearchParams('state=delhi'));
+    assert.equal(first.status, 200);
+    assert.equal(second.body.updated_at, first.body.updated_at);
+  } finally { Date.now = originalNow; restore(); }
+});
+
 test('an unparseable fuel page yields 502 so the client falls back to its cached snapshot', async () => {
   const restore = stubFetch(() => new Response('<html>redesigned</html>'));
   try {

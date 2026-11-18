@@ -717,8 +717,8 @@ export const TOOL_SEO = {
   },
   'image/govt-photo': {
     name: 'Govt Photo Resizer',
-    title: 'Govt Form Photo Resizer Free | PSC UPSC PAN Aadhaar | ToolShoppy',
-    description: 'Resize photos for PSC, UPSC, PAN and Aadhaar forms free online. Exact size and KB — no signup, private.',
+    title: 'Govt Form Photo Resizer Free | PSC UPSC PAN | ToolShoppy',
+    description: 'Resize photos for PSC, UPSC and PAN forms free online. Check your application’s current dimensions and KB limit. No signup; private.',
   },
 };
 

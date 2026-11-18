@@ -44,7 +44,7 @@ const results = [];
     return out;
   }
   try {
-    for (const [tool, button] of [['rotate', '#saveBtn'], ['organize', '#saveBtn'], ['page-numbers', '#applyBtn'], ['watermark', '#applyBtn'], ['compress', '#compressBtn'], ['editor', '#saveBtn'], ['sign', '#saveBtn']]) {
+    for (const [tool, button] of [['rotate', '#saveBtn'], ['organize', '#saveBtn'], ['page-numbers', '#applyBtn'], ['watermark', '#applyBtn'], ['compress', '#compressBtn'], ['sign', '#saveBtn']]) {
       await test('pdf/' + tool, 'valid PDF download preserves pages and dimensions', async p => {
         await p.locator('#fileInput').setInputFiles(pdf);
         await p.locator(button).waitFor({ state: 'visible' });
@@ -52,6 +52,14 @@ const results = [];
         await pdfOutput(p, button);
       });
     }
+    await test('pdf/editor', 'valid PDF download preserves pages and dimensions', async p => {
+      await p.locator('#pdfFileInput').setInputFiles(pdf);
+      await p.locator('#editorWorkspace').waitFor({ state: 'visible' });
+      await p.waitForFunction(() => document.getElementById('pdfCanvas').width > 0);
+      const out = await PDFDocument.load(await download(p, '#downloadEditedPdf'));
+      assert.equal(out.getPageCount(), 3);
+      assert.equal(out.getPage(0).getWidth(), 300);
+    });
     await test('pdf/split', 'thumbnail selection toggles once', async p => {
       await p.locator('#fileInput').setInputFiles(pdf);
       const tile = p.locator('.pdf-page-tile').first();
@@ -138,7 +146,7 @@ const results = [];
     await test('pdf/html-to-pdf', 'HTML export', async p => {
       await p.locator('#htpCode').fill('<h1>Audit document</h1><p>Readable content</p>');
       await p.locator('#renderBtn').click();
-      await p.frameLocator('iframe').locator('h1').waitFor();
+      await p.frameLocator('#htpPreviewFrame').locator('h1').waitFor();
       await pdfOutput(p, '#exportBtn', 1, false);
     });
     await test('pdf/word-to-pdf', 'DOCX conversion', async p => {
@@ -249,6 +257,7 @@ const results = [];
   } finally {
     fs.mkdirSync('artifacts', { recursive: true });
     fs.writeFileSync('artifacts/tool-workflows' + (process.env.TEST_FILTER ? '-' + process.env.TEST_FILTER.replace(/[^a-z0-9]/gi, '-') : '') + '.json', JSON.stringify(results, null, 2));
+    if (results.some(result => result.status === 'FAIL')) process.exitCode = 1;
     await browser.close();
   }
 })();

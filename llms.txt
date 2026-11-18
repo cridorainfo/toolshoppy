@@ -14,6 +14,8 @@
 
 ## Browse
 
+- [Akshaya Work Desk — English](https://toolshoppy.com/akshaya/): Photo and PDF preparation workflows and a submission checklist for centre staff and customers. Independent of Akshaya and government agencies.
+- [Akshaya Work Desk — Malayalam](https://toolshoppy.com/akshaya-malayalam/): The same workflows with Malayalam instructions. Current official application requirements take precedence over tool presets.
 - [All tools](https://toolshoppy.com/)
 - [PDF tools](https://toolshoppy.com/tools/pdf/)
 - [Image tools](https://toolshoppy.com/tools/image/)

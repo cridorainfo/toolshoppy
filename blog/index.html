@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme-enabled>
 <head>
 <!-- Google tag (gtag.js) -->
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});gtag('js',new Date());gtag('config','G-PNN1LM2D9Q');</script>
 <meta charset="UTF-8">
-<script>(function(){try{/* TEMP: dark mode disabled — restore prior boot to re-enable */document.documentElement.setAttribute('data-theme','light');localStorage.setItem('ts-theme','light');}catch(e){}})();</script>
+<script>(function(){try{document.documentElement.setAttribute('data-theme',localStorage.getItem('ts-theme')==='dark'?'dark':'light');}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ToolShoppy Blog — Guides for Govt Forms, PDF &amp; Gold Rates</title>
 <meta name="description" content="Practical guides for Kerala PSC photos, UPSC sizing, PDF tools, HEIC conversion, and gold rates in India and Dubai. Free, privacy-first tips from ToolShoppy.">
@@ -56,11 +56,11 @@
 <script defer src="/assets/js/third-party.js?v=3"></script>
 <meta name="ts-ads" content="off">
 </head>
-<body>
+<body class="tool-experience">
 <header class="site-header">
   <div class="container">
     <a href="/" class="logo"><img src="/assets/img/logo.webp?v=3" alt="" class="logo-mark" width="28" height="28"> Tool<span>Shoppy</span></a>
-    <div class="site-search"><input type="text" placeholder="Search tools…" onfocus="location.href='/'"></div>
+    <form class="site-search tool-search" action="/search/" role="search"><input type="search" name="q" placeholder="Find a tool…" aria-label="Search tools"><button type="submit" aria-label="Find tools"><svg class="icon-svg" width="20" height="20" aria-hidden="true"><use href="/assets/icons/sprite.svg#search"></use></svg></button></form>
     <button type="button" class="theme-toggle" onclick="TS.toggleTheme()" aria-label="Toggle dark mode">
       <svg class="icon-svg theme-icon-sun" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#sun"></use></svg>
       <svg class="icon-svg theme-icon-moon" width="24" height="24" aria-hidden="true"><use href="/assets/icons/sprite.svg#moon"></use></svg>
@@ -121,7 +121,7 @@
     <a href="/blog/aadhaar-photo-size-online/" class="blog-card">
       <span class="blog-tag">Govt Forms</span>
       <h3>Aadhaar Photo Size Online</h3>
-      <p>Correct dimensions and file size for Aadhaar enrolment and update photo uploads.</p>
+      <p>Why Aadhaar photo updates require a centre visit, with official UIDAI guidance.</p>
     </a>
     <a href="/blog/word-to-pdf-free-no-upload/" class="blog-card">
       <span class="blog-tag">PDF</span>

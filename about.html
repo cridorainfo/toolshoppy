@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme-enabled>
 <head>
 <!-- Google tag (gtag.js) -->
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});gtag('js',new Date());gtag('config','G-PNN1LM2D9Q');</script>
 <meta charset="UTF-8">
-<script>(function(){try{/* TEMP: dark mode disabled — restore prior boot to re-enable */document.documentElement.setAttribute('data-theme','light');localStorage.setItem('ts-theme','light');}catch(e){}})();</script>
+<script>(function(){try{document.documentElement.setAttribute('data-theme',localStorage.getItem('ts-theme')==='dark'?'dark':'light');}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About ToolShoppy — Free, Private, Client-Side Tools</title>
-<meta name="description" content="ToolShoppy is a free, private utility platform with 55+ PDF, image, video and finance tools that run in your browser, built with a focus on India and the Gulf.">
+<meta name="description" content="ToolShoppy is a free, private utility platform with 60+ PDF, image, video and finance tools that run in your browser, built with a focus on India and the Gulf.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://toolshoppy.com/about/">
 <meta property="og:title" content="About ToolShoppy">
@@ -28,7 +28,7 @@
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#DC2626">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"AboutPage","name":"About ToolShoppy","url":"https://toolshoppy.com/about/","description":"ToolShoppy is a free, private utility platform with 55+ PDF, image, video and finance tools that run in your browser, built with a focus on India and the Gulf.","isPartOf":{"@type":"WebSite","name":"ToolShoppy","url":"https://toolshoppy.com/"}}
+{"@context":"https://schema.org","@type":"AboutPage","name":"About ToolShoppy","url":"https://toolshoppy.com/about/","description":"ToolShoppy is a free, private utility platform with 60+ PDF, image, video and finance tools that run in your browser, built with a focus on India and the Gulf.","isPartOf":{"@type":"WebSite","name":"ToolShoppy","url":"https://toolshoppy.com/"}}
 </script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://toolshoppy.com/"}, {"@type": "ListItem", "position": 2, "name": "About ToolShoppy", "item": "https://toolshoppy.com/about/"}]}</script>
 <meta name="google-adsense-account" content="ca-pub-1180208702657280">
@@ -50,29 +50,30 @@
   <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true"> / </span><span aria-current="page">About ToolShoppy</span></nav>
   <h1 style="margin-bottom:16px;">About ToolShoppy</h1>
 
-  <p style="margin-bottom:14px;">ToolShoppy is a free online tools hub: 55+ single-purpose utilities for PDFs, images, video and everyday finance math, each living on its own dedicated page instead of being buried behind a paywall or a signup wall. Every tool runs entirely inside your browser tab — there is no upload step, no server-side processing queue, and no account to create. Open the tool, do the task, close the tab.</p>
+  <p style="margin-bottom:14px;">ToolShoppy is a free online tools hub: 60+ single-purpose utilities for PDFs, images, video and everyday finance math, each living on its own dedicated page instead of being buried behind a paywall or a signup wall. File-processing tools run inside your browser tab — there is no upload step, no server-side processing queue, and no account to create. Open the tool, do the task, close the tab.</p>
 
   <div class="content-section">
     <h2>Why we built it this way</h2>
-    <p style="margin-bottom:14px;">Most "free" online tool sites quietly upload your file to a server to process it, then delete it later (or claim to). That means your Aadhaar card, salary slip, exam admit card, or a client's contract passes through a stranger's infrastructure before you get the result back. We think that's the wrong default for something as routine as compressing a photo or merging two PDFs, so ToolShoppy is built the other way around: every tool uses your browser's own File API, Canvas, and WebAssembly libraries to do the work on your device. Nothing you open in a ToolShoppy tool is ever transmitted anywhere — we couldn't read it even if we wanted to, because it never reaches a server we control.</p>
+    <p style="margin-bottom:14px;">Most "free" online tool sites quietly upload your file to a server to process it, then delete it later (or claim to). That means your Aadhaar card, salary slip, exam admit card, or a client's contract passes through a stranger's infrastructure before you get the result back. We think that's the wrong default for something as routine as compressing a photo or merging two PDFs, so ToolShoppy is built the other way around: every tool uses your browser's own File API, Canvas, and WebAssembly libraries to do the work on your device. Selected files are processed on your device. Public rate tools request external market data; advertising and consent services make network requests as described in our privacy policy.</p>
     <p>The trade-off is that ToolShoppy can't offer things that genuinely require a server (cloud storage, team collaboration on a shared file, OCR trained on proprietary datasets). What it can offer is speed — there's no upload queue or network round-trip, so a 20 MB PDF merges in the time it takes to click twice — and a straightforward privacy answer: your files stay on your device, full stop.</p>
   </div>
 
   <div class="content-section">
     <h2>What's on ToolShoppy</h2>
-    <p style="margin-bottom:10px;">Tools are grouped into five categories, each with its own hub page:</p>
+    <p style="margin-bottom:10px;">Tools are grouped into six categories, each with its own hub page:</p>
     <ul style="padding-left:20px;color:var(--text-muted);font-size:0.92rem;line-height:1.8;margin-bottom:4px;">
       <li><strong>PDF tools</strong> — merge, split, compress, organize, rotate, watermark, password-protect and unlock, add page numbers, convert Word/Excel/images to and from PDF, sign, redact and annotate with the built-in PDF Editor.</li>
-      <li><strong>Image tools</strong> — compress to an exact KB target, resize, convert between HEIC/PNG/JPG/WebP, remove backgrounds, upscale, generate passport and sticker photos, and produce government-form photos with ready-made presets for PSC, UPSC, PAN and Aadhaar.</li>
+      <li><strong>Image tools</strong> — compress toward a KB limit, resize, convert between HEIC/PNG/JPG/WebP, remove backgrounds, upscale, generate passport and sticker photos, and produce government-form photos with ready-made presets for PSC, UPSC and PAN, subject to the current application instructions.</li>
       <li><strong>Video &amp; audio tools</strong> — compress and trim video, extract audio, cut ringtones, and split long clips into WhatsApp-status-length pieces.</li>
       <li><strong>Finance calculators</strong> — EMI, SIP, FD/RD, GST, income tax (new vs. old regime), salary/CTC, and UAE VAT.</li>
+      <li><strong>Text and everyday utilities</strong> — text formatting, QR codes, unit conversion and other small browser tools.</li>
       <li><strong>Rates</strong> — daily gold and silver rates for Kerala, India and the UAE, plus a currency converter tuned for AED/SAR/USD-to-INR conversions.</li>
     </ul>
   </div>
 
   <div class="content-section">
     <h2>Built with India and the Gulf in mind</h2>
-    <p>ToolShoppy started as a way to solve small, specific, recurring problems for people in India and the Gulf — the exact PAN card photo dimensions a government form demands, today's gold rate in Kerala versus Dubai, or GST-inclusive pricing for a small business invoice. That focus shows up throughout the product: government-photo presets matched to real exam and ID-card specs, rate trackers pulled from regional sources with attribution, and finance calculators built around India's tax slabs and the UAE's 5% VAT rather than a generic US template. The tools work for anyone, anywhere, but the edge cases are tuned for this audience first.</p>
+    <p>ToolShoppy started as a way to solve small, specific, recurring problems for people in India and the Gulf — the exact PAN card photo dimensions a government form demands, today's gold rate in Kerala versus Dubai, or GST-inclusive pricing for a small business invoice. That focus shows up throughout the product: government-photo presets that must be checked against the current application instructions, rate trackers with source attribution and retail-versus-spot labels, and finance calculators built around India's tax slabs and the UAE's 5% VAT rather than a generic US template. The tools work for anyone, anywhere, but the edge cases are tuned for this audience first.</p>
   </div>
 
   <div class="content-section">

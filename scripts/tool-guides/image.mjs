@@ -116,7 +116,7 @@ export const IMAGE = {
     name: 'Government Photo Resizer',
     kind: 'image',
     how: [
-      'You choose a form type such as Kerala PSC, UPSC, SSC, PAN, Aadhaar, passport or Emirates ID, and a background colour. The tool crops your photo to the preset’s aspect ratio, pads it onto the chosen background, scales it to the preset’s pixel size, and then searches for a JPEG quality that keeps the file under the preset’s size limit.',
+      'You choose a form type such as Kerala PSC, UPSC, SSC, PAN, passport or Emirates ID, and a background colour. The tool crops your photo to the preset’s aspect ratio, pads it onto the chosen background, scales it to the preset’s pixel size, and then searches for a JPEG quality that keeps the file under the preset’s size limit.',
       'Everything happens in your browser. The presets reflect commonly published requirements, but portals update their rules. The size and limit shown for your chosen preset are the numbers used, so compare them with your form’s current notification before you upload.',
     ],
     benefits: [
@@ -241,32 +241,6 @@ export const IMAGE = {
       'Keep the original so you can regenerate the photo if the portal rejects it.',
     ],
     links: [['/blog/pan-card-photo-online-free/', 'PAN card photo guide'], ['/tools/image/compress/', 'Compress an image'], ['/tools/pdf/protect/', 'Protect your scans']],
-  },
-
-  'image/govt-photo/aadhaar': {
-    name: 'Aadhaar Photo Resizer',
-    kind: 'image',
-    how: [
-      'The Aadhaar preset is selected on arrival. You upload a recent photo and the tool crops, pads and scales it to the pixel size shown at the top of the page, then compresses it to the stated size limit on a white background.',
-      'It runs in your browser, so the photo is never uploaded. Aadhaar enrolment itself involves biometric capture at a centre, so a prepared photo mainly helps with forms and update requests that accept an uploaded image.',
-    ],
-    benefits: [
-      'Ready-to-upload photo for Aadhaar update forms.',
-      'Spec and file limit applied automatically.',
-      'Private processing on your device.',
-      'Free, with no signup.',
-    ],
-    rows: [
-      ['Specific to this form', 'Preset selected on arrival with the spec visible.', 'Generic tools need manual numbers.', 'Manual setup.'],
-    ],
-    better: 'your request needs in-person biometric capture or a photo taken at the enrolment centre. In that case follow the centre’s process; this tool prepares images for uploads only.',
-    tips: [
-      'Use a recent, front-facing photo with a plain background.',
-      'Do not upload photos with heavy filters.',
-      photoNote,
-      'Protect any Aadhaar PDF you email with the password protect tool.',
-    ],
-    links: [['/blog/aadhaar-photo-size-online/', 'Aadhaar photo guide'], ['/tools/pdf/protect/', 'Password protect a PDF'], ['/tools/image/govt-photo/', 'All presets']],
   },
 
   'image/passport-photo': {

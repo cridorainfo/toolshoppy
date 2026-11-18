@@ -29,7 +29,7 @@ if (arg) {
   if (next !== src) fs.writeFileSync(policyFile, next);
 }
 
-const SKIP = new Set(['node_modules', 'assets', 'scripts', 'docs', 'api', 'artifacts', 'lib', 'worker', 'functions', '_workers', 'libs']);
+const SKIP = new Set(['node_modules', 'assets', 'scripts', 'docs', 'api', 'artifacts', 'lib', 'worker', 'functions', '_workers', 'libs', 'design-preview']);
 const files = [];
 (function walk(dir) {
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -65,7 +65,8 @@ for (const file of files) {
     html = html.replace("gtag('js',new Date())", consentDefault + "gtag('js',new Date())");
   }
   html = html.replace(/third-party\.js\?v=\d+/g, 'third-party.js?v=3');
-  html = html.replace(/main\.css\?v=\d+/g, 'main.css?v=10');
+  // Preserve each page's current stylesheet version; policy changes must never
+  // downgrade a newer cache-busting URL to an older release.
   html = html.replace(/ads\.js\?v=\d+/g, 'ads.js?v=9');
   if (THIRD_PARTY_RE.test(html) && !html.includes('https://fundingchoicesmessages.google.com/i/')) {
     html = html.replace(THIRD_PARTY_RE, m => `${CONSENT_TAG}\n${m}`);
